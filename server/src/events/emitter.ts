@@ -1,5 +1,5 @@
 import { WebSocketServer, WebSocket } from 'ws';
-import { StreamMessage } from '../types/index.js';
+import { StreamMessage } from '@monkeytown/shared/types';
 
 export class EventEmitterServer {
   private wss: WebSocketServer | null = null;

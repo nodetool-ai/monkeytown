@@ -9,6 +9,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@monkeytown/shared": "*",
     "ws": "^8.16.0"
   },
   "devDependencies": {

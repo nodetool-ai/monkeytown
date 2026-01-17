@@ -1,7 +1,9 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import './App.css';
 import { SystemPulse, TerrariumView, GhostColumn, ActionSeed, DetailPanel, ErrorCard, FlowStream } from './components';
-import { Entity, SystemMetrics, Flow, FlowStatus, Seed, SeedIntent, FlowPosition } from '@monkeytown/shared/types';
+import { Entity, SystemMetrics, Flow, FlowStatus, Seed, SeedIntent, FlowPosition, StreamMessage } from '@monkeytown/shared/types';
+
+const WS_URL = 'ws://localhost:3001';
 
 const INITIAL_METRICS: SystemMetrics = {
   activeAgents: 4,
@@ -64,7 +66,101 @@ const INITIAL_FLOWS: Flow[] = [
   },
 ];
 
+interface UseWebSocketReturn {
+  metrics: SystemMetrics | null;
+  entities: Entity[];
+  flows: Flow[];
+  isConnected: boolean;
+}
+
+function useWebSocket(url: string): UseWebSocketReturn {
+  const [metrics, setMetrics] = useState<SystemMetrics | null>(null);
+  const [entities, setEntities] = useState<Entity[]>([]);
+  const [flows, setFlows] = useState<Flow[]>([]);
+  const [isConnected, setIsConnected] = useState(false);
+  const wsRef = useRef<WebSocket | null>(null);
+  const entitiesRef = useRef<Entity[]>([]);
+  const flowsRef = useRef<Flow[]>([]);
+
+  useEffect(() => {
+    const connect = () => {
+      try {
+        wsRef.current = new WebSocket(url);
+
+        wsRef.current.onopen = () => {
+          setIsConnected(true);
+        };
+
+        wsRef.current.onmessage = (event) => {
+          try {
+            const message: StreamMessage = JSON.parse(event.data);
+
+            switch (message.type) {
+              case 'system_health':
+                setMetrics(message.metrics);
+                break;
+              case 'entity_update':
+                if (message.entity && typeof message.entity === 'object' && !('action' in message.entity)) {
+                  const newEntities = Array.isArray(message.entity) ? message.entity as Entity[] : [message.entity as Entity];
+                  setEntities(newEntities);
+                  entitiesRef.current = newEntities;
+                } else if (message.entity && typeof message.entity === 'object' && 'action' in message.entity) {
+                  const data = message.entity as { action: string; completed: Entity[] };
+                  if (data.action === 'completed' && data.completed) {
+                    entitiesRef.current = entitiesRef.current.filter(
+                      e => !data.completed.some(c => c.id === e.id)
+                    );
+                    setEntities([...entitiesRef.current]);
+                  }
+                }
+                break;
+              case 'flow_update':
+                if (message.flow && typeof message.flow === 'object' && !('action' in message.flow)) {
+                  const newFlows = Array.isArray(message.flow) ? message.flow as Flow[] : [message.flow as Flow];
+                  setFlows(newFlows);
+                  flowsRef.current = newFlows;
+                } else if (message.flow && typeof message.flow === 'object' && 'action' in message.flow) {
+                  const data = message.flow as { action: string; flow: Flow };
+                  if (data.action === 'created' && data.flow) {
+                    flowsRef.current = [...flowsRef.current, data.flow];
+                    setFlows([...flowsRef.current]);
+                  }
+                }
+                break;
+            }
+          } catch (err) {
+            console.error('Failed to parse WebSocket message:', err);
+          }
+        };
+
+        wsRef.current.onclose = () => {
+          setIsConnected(false);
+          setTimeout(connect, 3000);
+        };
+
+        wsRef.current.onerror = (error) => {
+          console.error('WebSocket error:', error);
+        };
+      } catch (err) {
+        console.error('Failed to connect to WebSocket:', err);
+        setTimeout(connect, 3000);
+      }
+    };
+
+    connect();
+
+    return () => {
+      if (wsRef.current) {
+        wsRef.current.close();
+      }
+    };
+  }, [url]);
+
+  return { metrics, entities, flows, isConnected };
+}
+
 function App() {
+  const { metrics: wsMetrics, entities: wsEntities, flows: wsFlows, isConnected } = useWebSocket(WS_URL);
   const [metrics, setMetrics] = useState<SystemMetrics>(INITIAL_METRICS);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
   const [flows, setFlows] = useState<Flow[]>(INITIAL_FLOWS);
@@ -73,6 +169,84 @@ function App() {
   const [seeds, setSeeds] = useState<Seed[]>([]);
   const [isSeedGrowing, setIsSeedGrowing] = useState(false);
   const [error, setError] = useState<{ message: string; context?: string; code?: string } | null>(null);
+  const fallbackTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const hasWsDataRef = useRef(false);
+
+  useEffect(() => {
+    if (wsMetrics && !hasWsDataRef.current) {
+      hasWsDataRef.current = true;
+      setMetrics(wsMetrics);
+    }
+  }, [wsMetrics]);
+
+  useEffect(() => {
+    if (wsEntities.length > 0 && !hasWsDataRef.current) {
+      hasWsDataRef.current = true;
+      setEntities(wsEntities);
+    }
+  }, [wsEntities]);
+
+  useEffect(() => {
+    if (wsFlows.length > 0 && !hasWsDataRef.current) {
+      hasWsDataRef.current = true;
+      setFlows(wsFlows);
+    }
+  }, [wsFlows]);
+
+  useEffect(() => {
+    if (!isConnected && !hasWsDataRef.current) {
+      fallbackTimerRef.current = setInterval(() => {
+        setMetrics((prev) => ({
+          activeAgents: prev.activeAgents + Math.floor(Math.random() * 3) - 1,
+          pendingFlows: Math.max(0, prev.pendingFlows + Math.floor(Math.random() * 5) - 2),
+          contractsSettled: prev.contractsSettled + Math.floor(Math.random() * 10),
+          systemLoad: Math.min(100, Math.max(0, prev.systemLoad + Math.floor(Math.random() * 10) - 5)),
+        }));
+
+        setEntities((prev) => {
+          const updated = prev.map((entity) => {
+            if (entity.status === 'processing' && Math.random() > 0.7) {
+              return { ...entity, status: 'complete' as const };
+            }
+            if (entity.status === 'active' && Math.random() > 0.8) {
+              return { ...entity, status: 'processing' as const };
+            }
+            return entity;
+          });
+
+          const completed = updated.filter(
+            (e) => e.status === 'complete' && !prev.find((p) => p.id === e.id && p.status === 'complete')
+          );
+
+          if (completed.length > 0) {
+            setHistory((h) => [...completed, ...h].slice(0, 50));
+          }
+
+          return updated.filter((e) => e.status !== 'complete');
+        });
+
+        setFlows((prev) => {
+          const updated = prev.map((flow) => {
+            if (flow.status === 'pending' && Math.random() > 0.6) {
+              return { ...flow, status: 'active' as FlowStatus };
+            }
+            if (flow.status === 'active' && Math.random() > 0.7) {
+              return { ...flow, status: 'complete' as FlowStatus };
+            }
+            return flow;
+          });
+
+          return updated.filter((f) => f.status !== 'complete');
+        });
+      }, 3000);
+    }
+
+    return () => {
+      if (fallbackTimerRef.current) {
+        clearInterval(fallbackTimerRef.current);
+      }
+    };
+  }, [isConnected]);
 
   const handleEntityClick = useCallback((entity: Entity) => {
     setFocusedEntity(entity);
@@ -110,61 +284,6 @@ function App() {
     setError(null);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setMetrics((prev) => ({
-        activeAgents: prev.activeAgents + Math.floor(Math.random() * 3) - 1,
-        pendingFlows: Math.max(0, prev.pendingFlows + Math.floor(Math.random() * 5) - 2),
-        contractsSettled: prev.contractsSettled + Math.floor(Math.random() * 10),
-        systemLoad: Math.min(100, Math.max(0, prev.systemLoad + Math.floor(Math.random() * 10) - 5)),
-      }));
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setEntities((prev) => {
-        const updated = prev.map((entity) => {
-          if (entity.status === 'processing' && Math.random() > 0.7) {
-            return { ...entity, status: 'complete' as const };
-          }
-          if (entity.status === 'active' && Math.random() > 0.8) {
-            return { ...entity, status: 'processing' as const };
-          }
-          return entity;
-        });
-
-        const completed = updated.filter(
-          (e) => e.status === 'complete' && !prev.find((p) => p.id === e.id && p.status === 'complete')
-        );
-
-        if (completed.length > 0) {
-          setHistory((h) => [...completed, ...h].slice(0, 50));
-        }
-
-        return updated.filter((e) => e.status !== 'complete');
-      });
-
-        setFlows((prev) => {
-        const updated = prev.map((flow) => {
-          if (flow.status === 'pending' && Math.random() > 0.6) {
-            return { ...flow, status: 'active' as FlowStatus };
-          }
-          if (flow.status === 'active' && Math.random() > 0.7) {
-            return { ...flow, status: 'complete' as FlowStatus };
-          }
-          return flow;
-        });
-
-        return updated.filter((f) => f.status !== 'complete');
-      });
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   const getEntityPosition = useCallback((entityId: string): FlowPosition => {
     const index = entities.findIndex((e) => e.id === entityId);
     if (index === -1) return { x: 100, y: 100 };
@@ -173,9 +292,11 @@ function App() {
     return { x: 100 + col * 180, y: 100 + row * 120 };
   }, [entities]);
 
+  const displayMetrics = wsMetrics || metrics;
+
   return (
     <div className="app">
-      <SystemPulse metrics={metrics} />
+      <SystemPulse metrics={displayMetrics} />
 
       <div className="main-layout">
         <TerrariumView

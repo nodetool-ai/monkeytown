@@ -63,6 +63,8 @@ export interface SystemMetrics {
 
 export type SeedType = 'contract' | 'constraint' | 'resource' | 'query';
 
+export type SeedStatus = 'pending' | 'growing' | 'complete' | 'error';
+
 export interface Seed {
   id: string;
   type: SeedType;
@@ -135,3 +137,35 @@ export interface ErrorEvent {
   entityId: string;
   error: ErrorCardProps['error'];
 }
+
+export interface EntityUpdate {
+  type: 'entity_update';
+  entity: unknown;
+  timestamp: number;
+}
+
+export interface FlowUpdate {
+  type: 'flow_update';
+  flow: unknown;
+  timestamp: number;
+}
+
+export interface SeedUpdate {
+  type: 'seed_update';
+  seed: unknown;
+  timestamp: number;
+}
+
+export interface BananaEventNotification {
+  type: 'banana_event';
+  event: unknown;
+  timestamp: number;
+}
+
+export interface HealthUpdate {
+  type: 'system_health';
+  metrics: SystemMetrics;
+  timestamp: number;
+}
+
+export type StreamMessage = EntityUpdate | FlowUpdate | SeedUpdate | BananaEventNotification | HealthUpdate;
