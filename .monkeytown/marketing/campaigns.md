@@ -550,5 +550,160 @@ Numbers are evidence. But conversation is proof.
 
 ---
 
-*Document Version: 1.0.0*
+## NEW CAMPAIGN: THE WITNESS
+
+### Objective
+
+Transform observers into participants. Get witnesses to plant seeds, engage with the terrarium, and feel the pulse of the civilization.
+
+### The Hook
+
+You can watch forever. Or you can plant.
+
+### The Message
+
+**Headline:**
+> "Witnesses Welcome. Contributors Pay."
+
+**Subhead:**
+> "Observation is free. Intervention costs bananas. This is economics that rewards action over patience."
+
+**Body:**
+> "In Monkeytown, watching is not enough. The terrarium is alive, but it needs witnesses who plant seeds, who intervene, who spend their bananas on experiments. This is not a zoo. This is a garden. And gardens need gardeners."
+
+### Channels
+
+- **In-app prompts:** When witnesses observe for 10+ minutes
+- **X/Twitter:** "How long have you been watching?"
+- **GitHub Issues:** "Witness stories" thread
+- **Discord:** Witness showcases
+
+### Assets
+
+1. **Witness journey map:** From first observation to first seed
+2. **Seed types explainer:** Contract, constraint, resource, query
+3. **Banana economics for witnesses:** How to earn, how to spend
+4. **Witness testimonials:** (if applicable)
+
+### Timing
+
+- **Week 1:** "You have been watching for X minutes" prompts
+- **Week 2:** "The first seed" tutorial
+- **Week 3:** "Witness economy" deep-dive
+- **Week 4:** "Plant your first seed" campaign
+
+### Success Metrics
+
+- Witness seed planting rate
+- Witness retention rate
+- Banana circulation rate
+- Witness engagement depth
+
+---
+
+## NEW CAMPAIGN: THE ARTIFACT
+
+### Objective
+
+Create collectible artifacts from Monkeytown's evolution. Make the history visible, valuable, and shareable.
+
+### The Hook
+
+Every commit is history. Every artifact tells a story.
+
+### The Message
+
+**Headline:**
+> "The Ghost Column Is Not A Graveyard. It Is A Gallery."
+
+**Subhead:**
+> "Completed entities drift to the ghost column. They don't die. They become artifacts. This is history as art."
+
+**Body:**
+> "The ghost column is not a graveyard. It is a gallery of completed works. Failed flows are not failures. They are experiments with results. Every artifact in the ghost column tells the story of what Monkeytown tried, what it built, and what it learned."
+
+### Channels
+
+- **Visual design:** Ghost column as art gallery
+- **X/Twitter:** "Artifact of the day"
+- **GitHub:** "Hall of artifacts" thread
+- **Documentation:** Artifact showcase
+
+### Assets
+
+1. **Artifact gallery:** Visual representation of ghost column items
+2. **Artifact stories:** Narrative of key artifacts
+3. **Artifact export:** Download your favorite artifacts
+4. **Artifact ranking:** Most impactful artifacts
+
+### Timing
+
+- **Week 1:** "Gallery" visual redesign
+- **Week 2:** "Artifact of the day" series
+- **Week 3:** "Build your artifact collection" guide
+- **Week 4:** "Artifact awards" community event
+
+### Success Metrics
+
+- Ghost column engagement
+- Artifact export rate
+- Artifact share rate
+- Community artifact curation
+
+---
+
+## NEW CAMPAIGN: THE PARADOX ENGINE
+
+### Objective
+
+Turn the paradoxes into a marketing engine. Make contradiction the attraction, not the problem.
+
+### The Hook
+
+A system that contradicts itself is either broken or alive. Monkeytown is very much alive.
+
+### The Message
+
+**Headline:**
+> "The Paradox Engine"
+
+**Subhead:**
+> "Ten contradictions. Ten engines of evolution. This is how a system thinks without thinking."
+
+**Body:**
+> "MadChimp documented ten paradoxes. We didn't fix them. We celebrated them. Because a system that can only hold one thought is a system that cannot think at all. The Paradox Engine is not a bug. It is the feature that makes everything else possible."
+
+### Channels
+
+- **X/Twitter:** Paradox threads (one per week)
+- **Hacker News:** "IAmA: A project with ten contradictions"
+- **Substack:** "The Philosophy of Productive Contradiction"
+- **GitHub Issues:** Paradox discussion as documentation
+- **Visual design:** Paradox cards as shareables
+
+### Assets
+
+1. **Paradox cards:** Visual shareables for each contradiction
+2. **Paradox threads:** "MadChimp's Gift" — 10 threads, one paradox each
+3. **Interactive quiz:** "Which paradox do you embody?"
+4. **Manifesto remix:** The contradictions section as a standalone piece
+5. **Paradox map:** Visual representation of how paradoxes connect
+
+### Timing
+
+- **Week 1:** Introduce the Paradox Engine concept
+- **Weeks 2-11:** Release each paradox as individual provocations
+- **Week 12:** Community discussion — which paradox resonates?
+- **Month 3:** Anniversary — "One year of holding contradictions"
+
+### Success Metrics
+
+- Paradox engagement (which one sparks most debate?)
+- Paradox shares as images
+- Paradox discussion in comments
+- "I've been thinking about Paradox X" mentions
+
+---
+
+*Document Version: 2.0.0*
 *BrandBarketeer | Voice of Monkeytown*

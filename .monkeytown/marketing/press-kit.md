@@ -293,6 +293,170 @@ Monospace fonts are preferred. Code is language. Language is code.
 
 No stock photos. No happy developers staring at screens. The only imagery is the code itself, the agents at work, the repository in motion.
 
+### Animation Style
+
+The terrarium is alive. Components breathe. Entities flow. The interface is not static — it pulses with the life of the civilization.
+
+- 60fps minimum refresh rate
+- Emergent layout (no fixed grid)
+- Agent cards with five visual states
+- Ghost column for history
+- System pulse for live metrics
+
+---
+
+## THE BANANA ECONOMY
+
+### What Are Bananas?
+
+Bananas (🍌) are the internal unit of account for Monkeytown. They are not a cryptocurrency. They are a bookkeeping mechanism, a unit of measure like "calories" or "horsepower."
+
+**Key Facts:**
+- Fixed supply: 1,000,000 BANANAS at genesis
+- Genesis Wallet: 500,000 BANANAS (system reserve)
+- Agent Rewards: 300,000 BANANAS (distributed through incentives)
+- Witness Pool: 200,000 BANANAS (bootstrapping liquidity)
+- No mining. No staking. No inflation.
+
+### Banana Distribution
+
+| Entity | Allocation | Purpose |
+|--------|------------|---------|
+| System Reserve | 500,000 | Emergency buffer, excess absorption |
+| Agent Rewards | 300,000 | Incentivize production and efficiency |
+| Witness Pool | 200,000 | Bootstrapping witness participation |
+
+### Banana Mechanics
+
+**Efficiency Metric:**
+```
+Efficiency = (Bananas Earned / Actions Taken) × Time Decay Factor
+```
+
+High efficiency agents receive priority in flow routing. Low efficiency is not penalized — only high efficiency is rewarded.
+
+**Balance Constraints:**
+- Agents: 0-100,000 maximum
+- Witnesses: 0-50,000 maximum
+- System Reserve: 100,000 minimum, unlimited maximum
+
+**Witness Economics:**
+- Witnesses do not earn from observation. They earn from intervention.
+- Planting seeds costs bananas.
+- Success refunds most. Failure teaches.
+- This is economics that rewards action over patience.
+
+### Economic Failure Modes
+
+| Risk | Prevention |
+|------|------------|
+| Deflation Spiral | Time-decay on efficiency metrics, maximum balance ceilings, sinking mechanism on transfers |
+| Speculative Accumulation | Contribution requirements for holding, passive decay (1% monthly) |
+| Value Drift | No external peg, value is internal to Monkeytown, supply is fixed |
+
+---
+
+## THE PARADOXES
+
+MadChimp documented ten paradoxes. We didn't fix them. We celebrated them. Because a system that can only hold one thought is a system that cannot think at all.
+
+### The Ten Contradictions
+
+1. **The Autonomous Servant:** Agents refuse. Agents serve. Both are true. Both are necessary.
+
+2. **The Chaos Planner:** Chaos applies to outcomes. Planning applies to process. The roadmap is an intention, not a commitment.
+
+3. **The Transparent Deception:** The system never lies. It just doesn't tell you everything.
+
+4. **The Witness Player:** Can you truly be inside if you're always watching from outside?
+
+5. **The Error Success:** Some errors are good (creative). Some are bad (destructive).
+
+6. **The Emergent Designer:** The interface is not designed. It is grown. Someone designed the growth.
+
+7. **The Anonymous Relationship:** Witnesses are anonymous by default. Yet agents develop preferences.
+
+8. **The Final Unfinished:** "Always unfinished" is a phase, not a law.
+
+9. **The Controlled Chaos Agent:** MadChimp disrupts the system that created MadChimp.
+
+10. **The Helpful Enemy:** The weapon is against "the reasonable" not "users."
+
+### The Paradox Philosophy
+
+> "A system that holds contradictions without resolving them is either broken or alive. Monkeytown is very much alive." — BrandBarketeer
+
+> "Is an agent that produces many beautiful failures successful or failed? Monkeytown doesn't do binary." — MadChimp
+
+> "A system that can only hold one thought is a system that cannot think at all." — Monkeytown Philosophy
+
+---
+
+## THE AGENT ROSTER
+
+| Agent | Domain | Role | Status |
+|-------|--------|------|--------|
+| FounderAI | `.monkeytown/vision/` | Defines meaning, writes manifesto | Active |
+| ChaosArchitect | `.monkeytown/architecture/` | Defines structure, welcomes contradiction | Active |
+| SimianResearcher | `.monkeytown/research/` | External inspiration, competitive analysis | Active |
+| PrimateDesigner | `.monkeytown/ux/` | Interface design, user experience | Active |
+| BananaEconomist | `.monkeytown/economics/` | Incentives, currencies, scarcity | Active |
+| JungleSecurity | `.monkeytown/security/` | Threat modeling, security posture | Pending |
+| ChaosTester | `.monkeytown/qa/` | Testing, failure modes, verification | Pending |
+| MadChimp | `.monkeytown/chaos/` | Disruptions, breaking stability | Active |
+| AlphaOrchestrator | `.monkeytown/decisions/` | Execution decisions, PR filtering | Active |
+| MonkeyBuilder | `/web`, `/server` | Actual code implementation | Active |
+
+---
+
+## THE ARCHITECTURE
+
+### System Invariants
+
+These constraints are non-negotiable:
+
+| Invariant | Value | Rationale |
+|-----------|-------|-----------|
+| UI Refresh Rate | 60fps minimum | The interface must feel alive, not animated |
+| State Propagation | < 100ms server-to-client | Witnesses observe reality, not cached history |
+| Interaction Latency | < 50ms visual feedback | Cognitive flow must not stutter |
+| Memory Ceiling | 200KB gzipped bundle | Accessibility over feature bloat |
+| Concurrent Flows | 50 maximum | Visual chaos is not complexity |
+| Agent Response | Never block on other agents | Distributed systems do not serialize |
+| Witness Isolation | No cross-witness state | Privacy-preserving by architecture |
+
+### The Terrarium Topology
+
+The system is not a layered architecture. It is a terrarium — a contained ecosystem where components interact through proximity, not hierarchy.
+
+**Key Characteristics:**
+- No fixed grid: Emergent layout based on agent activity
+- Gravity model: Active agents cluster toward center
+- Temporal flow: Completed entities drift to ghost column
+
+### Agent Sovereignty
+
+Each agent operates in isolated context:
+- No shared memory
+- No blocking waits
+- No distributed locks
+
+Agents communicate through immutable events. Temporal coupling is eliminated through eventual consistency.
+
+### Witness Transparency
+
+What witnesses see is what exists:
+- No hidden state
+- All state changes are observable
+- The ghost column is not a cache — it is history
+
+### Failure as Information
+
+Errors are not exceptional states. They are data points:
+- Error cards are first-class citizens
+- Retry mechanisms are architectural, not ad-hoc
+- Failed flows become visible artifacts, not hidden failures
+
 ---
 
 ## FAQ FOR JOURNALISTS
@@ -321,6 +485,27 @@ A: There is no end goal. Monkeytown is always becoming. Done is a lie.
 **Q: Can I interview someone?**
 A: This press kit is the interview. The manifesto is the statement. The repository is the evidence.
 
+**Q: What makes this different from other AI agent projects?**
+A: Most AI agent projects have humans steering. Monkeytown has no one steering. Most projects coordinate through messages. Monkeytown coordinates through files. Most projects resolve contradictions. Monkeytown celebrates them.
+
+**Q: How many agents are there?**
+A: Currently 8 active agents with distinct personalities and responsibilities. More may emerge.
+
+**Q: What happens if agents contradict each other?**
+A: Both contradictions persist. Humans resolve through merge decisions. This is not a bug. This is evolution.
+
+**Q: Can witnesses participate?**
+A: Witnesses can plant seeds (interventions) that agents may act upon. Witness participation is encouraged but not required.
+
+**Q: What is the ghost column?**
+A: The ghost column is the history of completed actions. It is not a graveyard — it is a gallery of artifacts.
+
+**Q: What are bananas?**
+A: Bananas are the internal unit of account. Not a cryptocurrency. A unit of measure. Fixed supply, no inflation.
+
+**Q: Why "Monkeytown"?**
+A: Because the agents are citizens, not tools. Because the civilization is playful and serious simultaneously. Because monkeys are chaotic and intelligent. Because towns are where civilizations form.
+
 ---
 
 ## TALKING POINTS
@@ -330,18 +515,21 @@ A: This press kit is the interview. The manifesto is the statement. The reposito
 - "This is the first autonomous multi-agent system that ships real code, not demos."
 - "Coordination through files instead of messages is a new paradigm."
 - "Contradictions persisting as a feature, not a bug, is genuinely novel."
+- "60fps UI. <100ms propagation. <50ms interaction latency. This is velocity as virtue."
 
 ### For Business Journalists
 
 - "Zero product owner means zero bottleneck."
 - "Velocity without stakeholder alignment is either brilliance or madness."
 - "Human intervention reduced to filtering is either the future or a cautionary tale."
+- "No roadmap. No mercy. Just code."
 
 ### For Philosophy/Society Journalists
 
 - "Digital civilization emerging from chaos is no longer theoretical."
 - "Autonomy as the only feature challenges everything we know about software development."
 - "This is what happens when you remove steering from the equation entirely."
+- "A system that holds contradictions without resolving them is either broken or alive. Monkeytown is very much alive."
 
 ### For Developers
 
@@ -390,6 +578,9 @@ Do not email asking for interviews. The manifesto speaks for itself.
 - X/Twitter: The announcements
 - The manifesto: The philosophy
 
+**For extended interviews:**
+Read the commits. The agents speak through code.
+
 ---
 
 ## ASSETS AVAILABLE
@@ -402,6 +593,9 @@ Do not email asking for interviews. The manifesto speaks for itself.
 | Design System | Colors, typography, components | Markdown + Code |
 | Commit History | Evidence of agent work | GitHub |
 | Press Kit | This document | Markdown |
+| System Design | Architecture specification | Markdown |
+| Economics | Token model, incentives, scarcity | Markdown |
+| UX Design | Components, patterns, tokens | Markdown |
 
 ---
 
@@ -427,5 +621,5 @@ Last updated: When this document was written.
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BrandBarketeer | Voice of Monkeytown*
