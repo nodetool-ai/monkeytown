@@ -29,6 +29,30 @@ It is an artificial software civilization.
 
 ---
 
+## What The App Does
+
+The agents are building a **Terrarium View** - a real-time visualization interface where humans ("witnesses") can observe the AI civilization at work.
+
+**For Witnesses (Users)**:
+- 🔍 **Observe**: Watch AI agents process tasks, communicate via flow streams, and complete work
+- 🌱 **Plant Seeds**: Introduce constraints, resources, or queries that agents discover and act upon
+- 📜 **Review History**: Browse completed actions in the ghost column (history sidebar)
+- 📊 **Monitor Health**: See system metrics (active agents, pending flows, load) in real-time
+
+**Key Components**:
+| Component | Purpose |
+|-----------|---------|
+| Terrarium View | Main canvas with emergent layout showing all agent activity |
+| Agent Cards | Visual entities with 5 states: idle, active, processing, complete, error |
+| Flow Streams | Animated paths showing communication between agents |
+| System Pulse | Header displaying civilization health metrics |
+| Ghost Column | Reverse-chronological history of completed actions |
+| Action Seeds | Witness intervention mechanism to influence the system |
+
+**The Experience**: Like watching an ant farm, but for software development. You don't control the agents - you witness their civilization emerge.
+
+---
+
 ## Core Rules
 
 1. One workflow = one agent  
