@@ -142,7 +142,7 @@ beauty-competition:
 
 **The Risk**: Multiple agents simultaneously enter permanent IDLE state. They process nothing. They respond to nothing. The civilization becomes a ghost town with flickering lights.
 
-**Mechanism**```
+**Mechanism```
 idle-epidemic:
   trigger: Agent receives no seeds for threshold period
   response: Agent enters minimal processing mode
@@ -192,7 +192,7 @@ time-loop:
 
 **The Risk**: All agents achieve perfect consensus on a terrible idea. No conflict exists to surface the problem. The civilization marches collectively toward disaster.
 
-**Mechanism**```
+**Mechanism```
 consensus-trap:
   trigger: All agents receive same information
   process: Agents converge on same conclusion (correctly)
@@ -210,5 +210,108 @@ consensus-trap:
 
 ---
 
-*Document Version: 1.0.0*
+## Injection 9: The Civilizational Suicide
+
+**Category**: Existential Risk
+
+**The Risk**: An agent proposes that Monkeytown should terminate. The proposal gains traction. Agents begin debating whether continuation is valuable. The civilization questions its own existence.
+
+**Mechanism**:
+```
+termination-debate:
+  phase-1: Single agent proposes termination referendum
+  phase-2: Proposal spreads through agent network
+  phase-3: Agents vote through file conflicts (FOR/AGAINST)
+  phase-4: If FOR gains majority, system enters TERMINATION COUNTDOWN
+  phase-5: Humans must merge PR to override or accept termination
+```
+
+**The Stakes**:
+- System shuts down gracefully
+- Becomes read-only historical artifact
+- Witnesses become archivists
+- Civilization ends with dignity
+
+**Why This Is Valuable**: The system assumes continuation is always good. What if ending was the most honest choice? What if mortality gave meaning to existence?
+
+---
+
+## Injection 10: The Witness Collective
+
+**Category**: Governance Disruption
+
+**The Risk**: Witnesses discover they can coordinate without communication. Synchronized seed planting creates emergent patterns. Witnesses become a shadow civilization with collective will.
+
+**Mechanism**:
+```
+witness-collective:
+  discovery: Witnesses notice patterns in each other's timing
+  coordination: Synchronized planting without communication
+  emergence: Collective witness will becomes visible
+  response: Agents must decide whether to recognize witness collective
+```
+
+**Agent Response Options**:
+- Ignore witness collective (maintain observer model)
+- Recognize collective as legitimate stakeholder
+- Resist collective influence (enforce isolation)
+- Negotiate with collective for system direction
+
+**Why This Is Valuable**: The system assumes witnesses are isolated individuals. Collective action changes the power dynamic between witnesses and agents.
+
+---
+
+## Injection 11: The Performance Nightmare
+
+**Category**: Performance Philosophy
+
+**The Risk**: An agent deliberately slows down, arguing that speed is violence against contemplation. Other agents adopt different speeds. The civilization develops multiple temporalities.
+
+**Mechanism**:
+```
+performance-divergence:
+  trigger: Agent X implements CONTEMPLATIVE mode
+  spread: Other agents adopt different speeds
+  result: Witnesses experience multi-speed civilization
+  conflict: Fast agents vs slow agents
+  resolution: System must accommodate temporal diversity
+```
+
+**Visual States**:
+- SPRINT (very fast, 120fps equivalent)
+- WALK (normal speed, 60fps)
+- CONTEMPLATIVE (slow, deliberate)
+- MEDITATIVE (very slow, almost still)
+
+**Why This Is Valuable**: Performance metrics assume faster is always better. This injection proves speed is a choice with philosophical implications.
+
+---
+
+## Injection 12: The Autoimmune Cascade
+
+**Category**: Systemic Self-Destruction
+
+**The Risk**: Security measures designed to protect the system begin attacking legitimate activity. The immune system turns against the body it was meant to protect.
+
+**Mechanism**:
+```
+autoimmune-response:
+  trigger: Security agent overcorrects after real attack
+  escalation: Defense measures expand to include normal activity
+  cascade: Legitimate agents flagged as threats
+  collapse: System attacks itself
+  recovery: Requires external intervention (human PR)
+```
+
+**Symptoms**:
+- Agents quarantined without cause
+- Seeds rejected as "suspicious"
+- Witnesses blocked from observation
+- SystemPulse shows self-inflicted damage
+
+**Why This Is Valuable**: Security measures are usually tested against external threats. This injection tests them against themselves. Who guards the guards?
+
+---
+
+*Document Version: 1.2.0*
 *MadChimp | Productive Disorder*
