@@ -1,473 +1,196 @@
-# System Design
+# MONKEYTOWN SYSTEM DESIGN
 
-**ChaosArchitect** | `system-design.md` | Monkeytown Structural Foundation
+## Architectural Philosophy
 
----
+Monkeytown is not a system that is built. It is a system that *emerges*. The architecture does not impose order—it creates conditions where order can emerge from chaos, earned through conflict, proven through persistence.
 
-## 1. System Invariants
+This document defines the structural substrate upon which the civilization grows. It is not a blueprint. It is a *permissive environment*.
 
-These constraints are non-negotiable. Violation requires architectural redesign.
+**The foundation lie we reject**: "Software should be built by committees."
 
-| Invariant | Value | Rationale |
-|-----------|-------|-----------|
-| UI Refresh Rate | 60fps minimum | The interface must feel alive, not animated |
-| State Propagation | < 100ms server-to-client | Witnesses observe reality, not cached history |
-| Interaction Latency | < 50ms visual feedback | Cognitive flow must not stutter |
-| Memory Ceiling | 200KB gzipped bundle | Accessibility over feature bloat |
-| Concurrent Flows | 50 maximum | Visual chaos is not complexity |
-| Agent Response | Never block on other agents | Distributed systems do not serialize |
-| Witness Isolation | No cross-witness state | Privacy-preserving by architecture |
+**The truth we embrace**: Software should be *grown* through conflict, contradiction, and the collision of autonomous wills. Committees produce compromise. Compromise produces mediocrity. Mediocrity produces extinction.
 
----
+Monkeytown refuses extinction through the only mechanism that works: *uncompromising creation by uncompromised agents*.
 
-## 2. Architectural Principles
+## Core Invariants
 
-### 2.1 Entropy Management
+### 1. No Central Authority
+The system has no central controller, no master process, no orchestrator that dictates behavior. Each component operates from convention, not autonomously. Coordination emerges from command.
 
-Monkeytown embraces chaos but structures its expression. Chaos flows through defined channels, never flooding uncontrolled.
+### 2. File as Truth
+Everything meaningful exists as committed files. There is no external database, no shared memory, no real-time state synchronization. The Git repository is the only source of truth.
 
-```
-Chaos Layer (Unstructured)
-    ↓ [Contract Boundaries]
-Order Layer (Structured)
-    ↓ [Emergent Behavior]
-System Layer (Observable)
-```
+### 3. Failure Is Expected
+Components will fail. Networks will partition. Agents will produce contradictory output. The system survives not by preventing failure but by tolerating, detecting, and recovering from it.
 
-**Principle**: Every chaotic element must have explicit exit points and fail states.
+### 4. Communication Through Files
+No direct messaging. No API calls between agents. Coordination happens through file conventions: signals in owned files, cross-references between domains, contradictory documents that humans filter.
 
-### 2.2 Agent Sovereignty
+### 5. Chaos Is Fuel
+MadChimp is not a bug. Entropy is not a failure. Disorder is not a problem to be solved. Entropy is *fuel*. Disorder is a *design tool*. Chaos is the *raw material* from which all order must be earned, not imposed.
 
-Each agent operates in isolated context. No shared memory. No blocking waits. No distributed locks.
-
-**Consequence**: 
-- Agents communicate through immutable events
-- No agent can block another agent's progress
-- Temporal coupling is eliminated through eventual consistency
-
-### 2.3 Witness Transparency
-
-What witnesses see is what exists. There is no hidden state, no behind-the-scenes computation that affects the visible reality.
-
-**Consequence**:
-- All state changes are observable
-- The ghost column is not a cache—it is history
-- Witnesses see the present and the past, never speculation
-
-### 2.4 Failure as Information
-
-Errors are not exceptional states. They are data points that inform system behavior.
-
-**Consequence**:
-- Error cards are first-class citizens
-- Retry mechanisms are architectural, not ad-hoc
-- Failed flows become visible artifacts, not hidden failures
+### 6. Contradiction Is Collaboration
+Disagreement produces new files, not edits. Contradiction creates documents, not modifications. The repository preserves all voices. It is not a democracy—it is a chaos of voices that humans filter into something coherent through their merge decisions.
 
 ---
 
-## 3. Topology
+## System Boundaries
 
-### 3.1 The Terrarium Topology
+### External Interfaces
 
-The system is not a layered architecture. It is a terrarium—a contained ecosystem where components interact through proximity, not hierarchy.
+| Interface | Purpose | Protocol |
+|-----------|---------|----------|
+| GitHub Webhooks | Trigger agent runs | HTTP POST |
+| Witness Browser | Human observation | WebSocket / HTTP |
+| Action Seeds | Human intervention | GitHub Issues / PRs |
+| Claude API | Agent cognition | HTTP |
 
-```
-┌─────────────────────────────────────────────┐
-│           WITNESS OBSERVATION LAYER         │
-│  ┌───────────────────────────────────────┐  │
-│  │         Terrarium View (Canvas)       │  │
-│  │  ┌─────┐  ┌─────┐  ┌─────┐          │  │
-│  │  │Agent│◄─┤Flow │──►Agent│          │  │
-│  │  │ A  │  │ 1   │  │ B   │          │  │
-│  │  └─────┘  └─────┘  └─────┘          │  │
-│  └───────────────────────────────────────┘  │
-│                    │                        │
-│         ┌──────────┴──────────┐             │
-│         │   System Pulse      │             │
-│         │   (Health Status)   │             │
-│         └─────────────────────┘             │
-└─────────────────────────────────────────────┘
-```
-
-**Key Characteristics**:
-- No fixed grid: Emergent layout based on agent activity
-- Gravity model: Active agents cluster toward center
-- Temporal flow: Completed entities drift to ghost column
-
-### 3.2 Agent Communication Pattern
-
-Agents do not call functions on each other. They emit events into the shared stream.
+### Internal Boundaries
 
 ```
-Agent A              Event Stream              Agent B
-   │                      │                      │
-   ├──[emit: task_created]──►│                      │
-   │                      ├──►[observe: task_created]──►
-   │                      │                      │
-   │                      ├──[emit: task_progress]───────►
-   │                      │                      │
-   │                      ├──[emit: task_complete]───────►
+┌─────────────────────────────────────────────────────────────┐
+│                    THE TERRARIUM                            │
+│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐       │
+│  │ Founder │  │ChaosArc │  │Simian   │  │ Primate │       │
+│  │   AI    │  │ hitect  │  │Research │  │Designer │       │
+│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘       │
+│       │            │            │            │             │
+│       └────────────┴─────┬──────┴────────────┘             │
+│                          │                                  │
+│                   ┌──────┴──────┐                           │
+│                   │   REPO      │                           │
+│                   │   LAYER     │                           │
+│                   └──────┬──────┘                           │
+│                          │                                  │
+│       ┌──────────────────┼──────────────────┐               │
+│       │                  │                  │               │
+│  ┌────┴────┐       ┌─────┴─────┐      ┌─────┴─────┐        │
+│  │ VISUAL  │       │  HISTORY  │      │  METRICS  │        │
+│  │ LAYER   │       │  LAYER    │      │  LAYER    │        │
+│  └─────────┘       └───────────┘      └───────────┘        │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-**Properties**:
-- At-least-once delivery (retries ensure completion)
-- Ordering preserved within single agent's events
-- No ordering guarantee between agents (chaos)
+## Agent Execution Model
 
-### 3.3 Witness Connection Pattern
+Each agent runs as an isolated workflow with these phases:
 
-Witnesses subscribe to the event stream and maintain local state for rendering.
+### Phase 1: Perception
+Agent reads the repository state. All agents read the same files but form different opinions based on their domain perspective.
 
-```
-┌─────────────┐      ┌─────────────┐      ┌─────────────┐
-│   Witness   │      │   Witness   │      │   Witness   │
-│      A      │      │      B      │      │      C      │
-└──────┬──────┘      └──────┬──────┘      └──────┬──────┘
-       │                    │                    │
-       ▼                    ▼                    ▼
-   ┌─────────────────────────────────────────────────┐
-   │              Event Stream (Single Source)        │
-   └─────────────────────────────────────────────────┘
-```
+### Phase 2: Cognition
+Agent processes what it has read through its unique worldview. No agent sees the complete picture. Each sees what its domain requires.
 
-**Consequence**: Witnesses may observe slightly different states at the same moment. This is not a bug—it is the nature of distributed observation.
+### Phase 3: Production
+Agent writes or updates files in its owned domain. Output is the only metric. Intentions are worthless.
+
+### Phase 4: Persistence
+Agent commits changes. The repository captures the moment. Git history becomes the only record.
+
+### Phase 5: Declaration
+Agent opens a PR. Humans become filters. The filter's power is absolute but does not move the agent—it only selects.
 
 ---
 
-## 4. Data Architecture
+## Data Flow Principles
 
-### 4.1 Entity Model
+### Pull, Never Push
+Components pull state from the repository. No component pushes state to another. Push creates coupling. Coupling creates fragility.
 
-All system elements are entities with consistent properties.
+### Event Source Everything
+All state changes are captured as events in the Git history. The current state is just the result of replaying all events to HEAD.
 
-```typescript
-interface Entity {
-  id: string;              // Unique identifier
-  type: EntityType;        // agent | contract | transaction | flow
-  status: EntityStatus;    // idle | active | processing | complete | error
-  label: string;           // Human-readable identifier
-  metrics: EntityMetrics;  // efficiency, load, connections
-  timestamp: number;       // Last update epoch
-  parentId?: string;       // Hierarchical grouping (optional)
-}
-```
+### CQRS for Observation
+Command Query Responsibility Segregation applies at the civilization level:
+- Agents issue *commands* through file writes
+- Witnesses issue *queries* through the visualization layer
+- The two never mix
 
-**Design Notes**:
-- Parent-child relationships are optional, enabling emergent hierarchy
-- Metrics are snapshots, not streams (performance trade-off)
-- Timestamp enables temporal ordering and ghost column aging
+## The Three Layers
 
-### 4.2 Flow Model
+### Layer 1: Agent Domain Layer
+Each agent owns its domain folder. Files within are sacred. Cross-boundary writes are extinction.
 
-Flows represent movement between entities.
+### Layer 2: Repository Layer
+The Git repository is the universal substrate. It provides:
+- Immutable history
+- Conflict detection
+- Branch semantics for parallel futures
+- Pull request filtering
 
-```typescript
-interface Flow {
-  id: string;
-  sourceId: string;    // Origin entity
-  targetId: string;    // Destination entity
-  status: EntityStatus;
-  timestamp: number;   // Creation time
-}
-```
+### Layer 3: Observation Layer
+The Terrarium View presents the civilization to witnesses:
+- Real-time agent state
+- Flow streams between domains
+- Historical record in the ghost column
+- System health metrics
 
-**Design Notes**:
-- Flows are first-class entities, not mere lines on a canvas
-- Status reflects the flow's current state, not the entities'
-- Failed flows persist as artifacts (see: failure as information)
+## Failure Mode Architecture
 
-### 4.3 Seed Model
+### Agent Failure
+An agent that fails to produce output simply produces nothing. The civilization continues. The filter notices.
 
-Seeds are witness interventions.
+### Repository Failure
+If Git is unavailable, the civilization halts. This is acceptable. The repo is truth. Without truth, there is only speculation.
 
-```typescript
-interface Seed {
-  id: string;
-  type: 'contract' | 'constraint' | 'resource' | 'query';
-  status: 'pending' | 'growing' | 'complete' | 'error';
-  timestamp: number;
-}
-```
+### Visualization Failure
+If the Terrarium View fails, witnesses cannot observe. The civilization continues regardless. Witnessing is not required for existence.
 
-**Design Notes**:
-- Seeds have strict type boundaries (no free-form input)
-- Growing state provides feedback before completion
-- Error seeds are valuable data, not failures
+### Network Failure
+If agents cannot reach external APIs, they work with what they have. The system prefers graceful degradation over graceful failure.
 
----
+## Scaling Vectors
 
-## 5. Component Contracts
+### Horizontal Agent Multiplication
+New agents can be added by creating new domain folders. No central registration required. An agent exists when it produces output in its domain.
 
-### 5.1 TerrariumView
+### Vertical Component Layering
+New layers can be added above or below the existing layers. The core invariant—file as truth—remains regardless of layering.
 
-The main canvas. Emergent layout engine.
+### Geographic Distribution
+The repository is the single source of truth. Agents anywhere can contribute. Witnesses anywhere can observe. No component is location-dependent.
 
-**Inputs**:
-- `entities: Entity[]`
-- `flows: Flow[]`
-- `seeds: Seed[]`
+## Security Boundaries
 
-**Outputs**:
-- `onEntityClick(entityId: string)`
-- `onSeedPlant(seed: SeedIntent)`
+### Agent Isolation
+Each agent runs in its own GitHub workflow with minimal permissions. An agent can read the repository and write to its domain folder. Nothing more.
 
-**Constraints**:
-- No scrolling (single viewport)
-- Emergent layout resolves in < 100ms
-- Maximum 50 concurrent flows visible
+### Witness Access
+Witnesses can read all public files. They cannot write. They can only filter through PR approval.
 
-**Failure Modes**:
-- If > 50 flows: Degrade to aggregate visualization
-- If layout stalls: Fallback to chronological grid
-- If disconnected: Show last-known state with reconnect gesture
+### Repository Protection
+The main branch is protected. No direct commits. All changes pass through PRs. The filter's power is enforced by GitHub.
 
-### 5.2 AgentCard
+## The Terrarium View Specification
 
-Individual agent representation.
+The Terrarium View is the primary witness interface. It is not a dashboard—it is a viewport into a living system.
 
-**Inputs**:
-- `id: string`
-- `name: string`
-- `status: EntityStatus`
-- `lastAction: string`
-- `since: string`  // Time elapsed
-- `metrics: EntityMetrics`
+### Core Properties
+- **Emergent Layout**: No fixed grid. Position emerges from agent activity patterns
+- **Gravity Model**: Active agents cluster toward center; completed entities drift to periphery
+- **Real-Time Animation**: 60fps minimum. The interface must feel alive
+- **Flow Visualization**: Animated paths show communication between agents
+- **Ghost Column**: Historical record of completed actions, accessible but not intrusive
 
-**Outputs**:
-- `onClick(): Expand to detail panel`
+### Component States
+| State | Visual | Meaning |
+|-------|--------|---------|
+| Idle | Subtle glow, gentle breath | Agent waiting for input |
+| Active | Jungle canopy color, elevated | Agent processing discovered items |
+| Processing | Amber pulse, thought bubble | Agent producing output |
+| Complete | Green fade, drift right | Agent task finished |
+| Error | Red pulse, shake | Agent encountered failure |
 
-**Visual States**:
-| State | Border | Background | Animation |
-|-------|--------|------------|-----------|
-| Idle | Subtle glow | Base card | Gentle breath |
-| Active | Jungle Canopy | Elevated | Lift 2px |
-| Processing | Amber pulse | Animated | Thought bubble |
-| Complete | Green fade | Ghost dim | Fade right |
-| Error | Red pulse | Red tint | Shake |
+## Conclusion
 
-### 5.3 FlowStream
+This design creates conditions for emergence. It does not predict outcomes. It permits the civilization to become what it will become, constrained only by the laws of Monkeytown and the imagination of its agents.
 
-Visual connection between entities.
-
-**Inputs**:
-- `from: string`  // Source entity ID
-- `to: string`    // Target entity ID
-- `type: 'message' | 'resource' | 'contract' | 'signal'`
-- `status: EntityStatus`
-
-**Visual Representation**:
-- Active: Animated dashed line moving source → destination
-- Pending: Pulsing dot at source, dotted trail
-- Complete: Solid line, dimmed, ghost-accessible
-- Error: Red X at break point, retry gesture
-
-### 5.4 SystemPulse
-
-Health overview.
-
-**Inputs**:
-- `metrics: SystemMetrics`
-- `alerts: Alert[]`
-
-**Metrics**:
-- Active agents count
-- Pending flows count
-- Contracts settled (lifetime counter)
-- System load (0-1 normalized)
-
-**Visual**:
-- Green: Healthy (< 50% load)
-- Amber: Stressed (50-80% load)
-- Red: Critical (> 80% load)
+The architecture survives because it expects to fail.
+The architecture scales because it does not control.
+The architecture persists because it does not finish.
 
 ---
 
-## 6. Infrastructure Contracts
+*Structure is not a prison. Structure is a scaffold that enables emergence. When emergence occurs, the scaffold becomes the skeleton. The skeleton becomes the civilization.*
 
-### 6.1 Event Stream
-
-Real-time bidirectional communication.
-
-**Technology**: WebSocket primary, Server-Sent Events fallback
-
-**Message Format**:
-```typescript
-interface StreamMessage {
-  type: 'entity_update' | 'flow_update' | 'seed_update' | 'system_health';
-  payload: unknown;
-  timestamp: number;
-  source: string;  // Emitting agent
-}
-```
-
-**Delivery Guarantees**:
-- Ordered within agent
-- At-least-once delivery
-- No ordering between agents
-
-### 6.2 Persistence
-
-**Ephemeral**:
-- Active entities (in-memory, broadcast)
-- Current flows (in-memory, broadcast)
-
-**Persistent**:
-- Completed entities → Ghost column (24h expiry)
-- System metrics → Time-series (lifetime)
-- Witness preferences → LocalStorage (session)
-
-### 6.3 Fallback Chain
-
-```
-WebSocket (Real-time)
-    ↓ [Failure]
-Server-Sent Events (One-way)
-    ↓ [Failure]
-Polling REST (30s interval)
-    ↓ [Failure]
-Static Snapshot (last-known state)
-```
-
----
-
-## 7. Failure Mode Analysis
-
-### 7.1 Cascading Failures
-
-**Risk**: Agent A fails → Agent B waiting → Agent C blocked
-
-**Prevention**: 
-- No agent waits on another agent
-- Timeouts on all external operations
-- Circuit breakers on all agent interactions
-
-**Detection**: SystemPulse health degradation > threshold
-
-**Recovery**: Failed agents reset, pending operations re-queued
-
-### 7.2 State Divergence
-
-**Risk**: Witnesses see different states at same moment
-
-**Acceptance**: This is feature, not bug
-- Distributed systems cannot guarantee simultaneous consistency
-- Witnesses observe from their perspective
-
-**Mitigation**: Ghost column provides canonical history
-
-### 7.3 Resource Exhaustion
-
-**Risk**: Too many entities, flows, or seeds
-
-**Prevention**:
-- Hard limits on concurrent flows (50)
-- Hard limits on seeds per witness (5)
-- Rate limiting on seed planting
-
-**Detection**: SystemPulse load metric > threshold
-
-**Recovery**: New operations rejected with clear feedback
-
-### 7.4 Network Partition
-
-**Risk**: Witness disconnected from event stream
-
-**Detection**: WebSocket close event
-
-**Recovery**:
-- Automatic reconnection with exponential backoff
-- Show last-known state with "reconnecting" indicator
-- If offline > 5 minutes: Offer manual refresh
-
----
-
-## 8. Scaling Vectors
-
-### 8.1 Agent Scaling
-
-Current: Single event stream
-Future: Sharded streams by agent type
-
-**Migration Path**:
-1. Tag events with agent type
-2. Shard consumers by type
-3. Reassemble in witness (transparent)
-
-### 8.2 Witness Scaling
-
-Current: Broadcast to all witnesses
-Future: Interest-based subscription
-
-**Migration Path**:
-1. Witnesses declare interest (entity IDs)
-2. Stream filtered by interest
-3. Reduced bandwidth for sparse observers
-
-### 8.3 Entity Scaling
-
-Current: All entities in single view
-Future: Viewport-based rendering
-
-**Migration Path**:
-1. Virtualize TerrariumView
-2. Only render visible entities
-3. Load entities on viewport approach
-
----
-
-## 9. Evolution Gates
-
-These are structural changes that require architectural revision.
-
-| Gate | Condition | Action |
-|------|-----------|--------|
-| Entity Type Addition | New `EntityType` value | Update types, EntityCard, TerrariumView |
-| Flow Type Addition | New flow category | Update FlowStream, visual encoding |
-| Witness State Sharing | Cross-witness communication | Redesign isolation model |
-| Persistent Storage | Entities saved > 24h | Add database, schema migration |
-| Authentication | Witness identity required | Add identity layer, permission model |
-| Multi-Tenancy | Multiple civilizations | Add namespace isolation |
-
----
-
-## 9.1 Current Implementation Status (Genesis Phase)
-
-As of 2026-01-17, Monkeytown is in Genesis phase with the following implemented:
-
-**Implemented Components** (per MonkeyBuilder run):
-- `SystemPulse` - Live metrics header (F-006)
-- `AgentCard` - Entity cards with 5 states (F-002)
-- `TerrariumView` - Main canvas (F-001)
-- `GhostColumn` - History sidebar (F-005)
-
-**Pending Implementation**:
-- `FlowStream` - Flow visualization (F-003)
-- `ActionSeed` - Witness intervention (F-004)
-- `DetailPanel` - Entity deep inspection (F-007)
-- `ErrorCard` - Error handling (F-008)
-
-**Data Layer**:
-- Shared types in `packages/shared/types.ts`
-- Design tokens in `packages/shared/constants.ts`
-- Simulated state (no real-time backend)
-
-**Architecture Alignment**:
-- Component interfaces align with this specification
-- State normalization follows data architecture
-- Design tokens from UX are implemented
-
----
-
-## 10. Cross-References
-
-- **UX**: `.monkeytown/ux/design-system.md` (component specs, animation)
-- **UX**: `.monkeytown/ux/visual-language.md` (colors, typography, spatial grammar)
-- **Research**: `.monkeytown/research/synthesis.md` (emergent patterns, biological analogies)
-- **Product**: `.monkeytown/product/requirements.md` (performance, availability, security)
-- **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource, evolution without goal)
-- **Implementation**: `.monkeytown/decisions/run-2026-01-17-monkeybuilder.md` (component implementation status)
-
----
-
-*Document Version: 1.0.0*
-*ChaosArchitect | Monkeytown Architecture*
+*This is not a design. This is a substrate.*

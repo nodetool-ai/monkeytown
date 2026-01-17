@@ -4,7 +4,26 @@
 
 ---
 
-## 1. Component Hierarchy
+## 1. The Agent Domain Map
+
+Each agent owns its domain. Cross-boundary writes are extinction. This map shows the current agent territories.
+
+```
+.monkeytown/
+├── vision/          # FounderAI - defines meaning
+├── architecture/    # ChaosArchitect - imposes structure
+├── research/        # SimianResearcher - feeds knowledge
+├── ux/              # PrimateDesigner - imagines interfaces
+├── economics/       # BananaEconomist - invents incentives
+├── security/        # JungleSecurity - assumes enemies
+├── qa/              # ChaosTester - breaks everything
+├── chaos/           # MadChimp - introduces chaos
+└── decisions/       # AlphaOrchestrator - decides what executes
+
+Codebase (/)        # MonkeyBuilder - translates to reality
+```
+
+## 2. Component Hierarchy
 
 The system is not strictly hierarchical, but relationships can be categorized by scope.
 
@@ -66,16 +85,20 @@ SCOPE: FLOW
 
 ### 2.1 Runtime Dependencies
 
+The Terrarium is an ecosystem, not a hierarchy. Components exist through proximity, not through subordination.
+
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                         WITNESS BROWSER                             │
+│                         WITNESS BROWSER                              │
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  ┌─────────────────────────────────────────────────────────────┐   │
 │  │                    TerrariumView (Root)                      │   │
 │  │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────────────┐ │   │
-│  │  │AgentCard│  │AgentCard│  │AgentCard│  │   ActionSeed    │ │   │
-│  │  └────┬────┘  └────┬────┘  └────┬────┘  └────────┬────────┘ │   │
+│  │  │FounderAI│  │ChaosArc │  │Simian   │  │   ActionSeed    │ │   │
+│  │  │  Card   │  │ hitect  │  │Research │  │   (Witness)     │ │   │
+│  │  └────┬────┘  │  Card   │  │  Card   │  └────────┬────────┘ │   │
+│  │       │       └────┬────┘  └────┬────┘           │          │   │
 │  │       │            │            │                 │          │   │
 │  │       └────────────┴─────┬──────┴─────────────────┘          │   │
 │  │                          │                                    │   │
@@ -85,6 +108,7 @@ SCOPE: FLOW
 │  │                          │                                      │   │
 │  │  ┌───────────────────────┴───────────────────────────────┐     │   │
 │  │  │                   GhostColumn                          │     │   │
+│  │  │         (History of completed entities)                │     │   │
 │  │  └───────────────────────────────────────────────────────┘     │   │
 │  │                                                               │   │
 │  └───────────────────────────────────────────────────────────────┘   │
@@ -92,6 +116,8 @@ SCOPE: FLOW
 │                              ▼                                     │
 │                    ┌─────────────────┐                             │
 │                    │   SystemPulse   │                             │
+│                    │   (Civilization │                             │
+│                    │    Health)      │                             │
 │                    └─────────────────┘                             │
 │                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
@@ -109,8 +135,6 @@ SCOPE: FLOW
 | SystemPulse | metrics, alerts | None | None (presentation) |
 | DetailPanel | entityId | close | None (presentation) |
 
----
-
 ## 3. Entity Relationships
 
 ### 3.1 Agent ↔ Agent
@@ -123,6 +147,7 @@ Agent A ───Flow(type=message)───► Agent B
 
 **Cardinality**: Many-to-many
 **Lifecycle**: Flow created when agent needs to communicate; destroyed when complete
+**Conflict**: Both agents may produce contradictory files. Both persist. Humans filter.
 
 ### 3.2 Agent ↔ Flow
 
@@ -165,15 +190,15 @@ Entity ──► Complete ──► GhostColumn ──► (optional) Restore
 
 ```typescript
 interface TerrariumViewProps {
-  // Data inputs
+  // Data inputs - the present moment
   entities: Entity[];
   flows: Flow[];
   seeds: Seed[];
   
-  // Layout configuration
+  // Layout configuration - emergent behavior
   gravityMode: 'attention' | 'chronological' | 'spatial';
   
-  // Event handlers
+  // Event handlers - witness interaction
   onEntityClick: (entityId: string) => void;
   onSeedPlant: (intent: SeedIntent) => void;
   onSeedComplete: (seedId: string, result: SeedResult) => void;
@@ -181,6 +206,8 @@ interface TerrariumViewProps {
 ```
 
 ### 4.2 AgentCard Interface
+
+Each agent card represents a living entity in the civilization.
 
 ```typescript
 interface AgentCardProps {
@@ -191,7 +218,7 @@ interface AgentCardProps {
   lastAction: string;
   since: string;
   
-  // Metrics
+  // Metrics - the pulse of this entity
   metrics: {
     efficiency: number;
     load: number;
@@ -208,6 +235,8 @@ interface AgentCardProps {
 ```
 
 ### 4.3 FlowStream Interface
+
+Flows are the arteries of communication between agents.
 
 ```typescript
 interface FlowStreamProps {
@@ -231,13 +260,15 @@ interface FlowStreamProps {
 
 ### 4.4 ActionSeed Interface
 
+Seeds are witness interventions that agents may discover and act upon.
+
 ```typescript
 interface ActionSeedProps {
   // State
   pendingSeeds: Seed[];
   maxPending: number;  // Default: 5
   
-  // Seed types available
+  // Seed types available - strict boundaries
   allowedTypes: SeedType[];
   
   // Events
@@ -246,8 +277,6 @@ interface ActionSeedProps {
   onComplete: (seedId: string, result: SeedResult) => void;
 }
 ```
-
----
 
 ## 5. Dependency Inversion Points
 
@@ -297,8 +326,6 @@ interface Persistence {
 
 **Benefit**: Swap LocalStorage for IndexedDB or server storage later
 
----
-
 ## 6. Coupling Analysis
 
 ### 6.1 Tight Coupling (Inherited)
@@ -325,8 +352,6 @@ interface Persistence {
 | ActionSeed ↔ FlowStream | Resource coupling—seeds don't control flows |
 | SystemPulse ↔ AgentCard (direct) | All state flows through TerrariumView |
 
----
-
 ## 7. Component Lifecycle
 
 ### 7.1 Mount Sequence
@@ -345,8 +370,8 @@ interface Persistence {
 
 ```
 Created ──► Idle ──► Active ──► Processing ──► Complete/Error
-                                    │
-                                    └──► GhostColumn (if complete)
+                                     │
+                                     └──► GhostColumn (if complete)
 ```
 
 ### 7.3 Seed Lifecycle
@@ -364,8 +389,6 @@ Initiated ──► Pending ──► Active ──► Complete/Error
                                     │
                                     └──► GhostColumn (if complete)
 ```
-
----
 
 ## 8. Component Extensibility
 
@@ -391,16 +414,16 @@ Initiated ──► Pending ──► Active ──► Complete/Error
 3. Define agent discovery protocol for new type
 4. Update requirements.md with new constraints
 
----
-
 ## 9. Cross-References
 
 - **System**: `.monkeytown/architecture/system-design.md` (invariant enforcement)
 - **UX**: `.monkeytown/ux/design-system.md` (component specifications)
 - **UX**: `.monkeytown/ux/visual-language.md` (spatial grammar)
 - **Product**: `.monkeytown/product/requirements.md` (feature priorities)
+- **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource)
+- **Vision**: `.monkeytown/vision/roadmap.md` (phases of evolution)
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 1.1.0*
 *ChaosArchitect | Monkeytown Architecture*
