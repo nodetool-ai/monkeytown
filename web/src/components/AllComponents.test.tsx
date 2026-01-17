@@ -4,6 +4,9 @@ import { AgentCard } from './AgentCard';
 import { SystemPulse } from './SystemPulse';
 import { TerrariumView } from './TerrariumView';
 import { GhostColumn } from './GhostColumn';
+import { ActionSeed } from './ActionSeed';
+import { DetailPanel } from './DetailPanel';
+import { ErrorCard, InlineError } from './ErrorCard';
 import { Entity } from '@monkeytown/shared/types';
 
 const mockEntity: Entity = {
@@ -114,6 +117,119 @@ describe('GhostColumn', () => {
     );
     expect(screen.getByText('history')).toBeTruthy();
     expect(screen.getByText('1')).toBeTruthy();
+    unmount();
+  });
+});
+
+describe('ActionSeed', () => {
+  it('renders seed trigger button', () => {
+    const { unmount } = render(
+      <ActionSeed onPlant={() => {}} />
+    );
+    expect(screen.getByText('plant something')).toBeTruthy();
+    unmount();
+  });
+
+  it('shows pending count when seeds are growing', () => {
+    const { unmount } = render(
+      <ActionSeed onPlant={() => {}} isGrowing={true} pendingCount={2} />
+    );
+    expect(screen.getByText('seed growing...')).toBeTruthy();
+    unmount();
+  });
+
+  it('disables trigger when max seeds reached', () => {
+    const { unmount } = render(
+      <ActionSeed onPlant={() => {}} pendingCount={5} />
+    );
+    expect(screen.getByText('5')).toBeTruthy();
+    unmount();
+  });
+});
+
+describe('DetailPanel', () => {
+  it('renders entity label and type', () => {
+    const { unmount } = render(
+      <DetailPanel
+        entity={mockEntity}
+        onClose={() => {}}
+      />
+    );
+    expect(screen.getByText('TestAgent')).toBeTruthy();
+    expect(screen.getByText('agent')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders tabs', () => {
+    const { unmount } = render(
+      <DetailPanel
+        entity={mockEntity}
+        onClose={() => {}}
+      />
+    );
+    const tabs = screen.getAllByRole('button', { name: /status|logs|connections|history/i });
+    expect(tabs.length).toBe(4);
+    unmount();
+  });
+
+  it('renders metrics', () => {
+    const { unmount } = render(
+      <DetailPanel
+        entity={mockEntity}
+        onClose={() => {}}
+      />
+    );
+    const efficiencyValues = screen.getAllByText('94%');
+    expect(efficiencyValues.length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText('23%')).toBeTruthy();
+    expect(screen.getByText('5')).toBeTruthy();
+    unmount();
+  });
+});
+
+describe('ErrorCard', () => {
+  it('renders error message', () => {
+    const { unmount } = render(
+      <ErrorCard
+        error={{ message: 'Connection failed', context: 'Unable to reach server' }}
+        onRetry={() => {}}
+      />
+    );
+    expect(screen.getByText('Connection failed')).toBeTruthy();
+    expect(screen.getByText('something broke')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders retry action', () => {
+    const { unmount } = render(
+      <ErrorCard
+        error={{ message: 'Test error' }}
+        onRetry={() => {}}
+      />
+    );
+    expect(screen.getByText('retry')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders suggestion when provided', () => {
+    const { unmount } = render(
+      <ErrorCard
+        error={{ message: 'Test error' }}
+        suggestion="Check your connection"
+        onRetry={() => {}}
+      />
+    );
+    expect(screen.getByText('Check your connection')).toBeTruthy();
+    unmount();
+  });
+});
+
+describe('InlineError', () => {
+  it('renders error message', () => {
+    const { unmount } = render(
+      <InlineError error={{ message: 'Something went wrong' }} />
+    );
+    expect(screen.getByText('Something went wrong')).toBeTruthy();
     unmount();
   });
 });
