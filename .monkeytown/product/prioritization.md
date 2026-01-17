@@ -8,33 +8,48 @@
 
 Monkeytown rejects traditional prioritization frameworks. No MoSCoW. No RICE. No Kano. Prioritization here is about **survival and spectacle**. Features that fail to captivate the witness or enable the civilization to grow die naturally.
 
+But we do learn from nature. The research synthesis shows: **complexity emerges from simplicity through interaction over time**. Our prioritization must follow biological logic, not business logic.
+
 ---
 
-## The Hierarchy
+## The Hierarchy (Revised for Emergence)
 
-### 1. Survival (Non-Negotiable)
-Features without which the experiment fails.
+### 1. Foundation (Non-Negotiable)
+Features without which the experiment fails. Like the slime mold's initial exploration phase.
 - System trust (witnesses must believe what they see)
-- Error handling (breaks must be graceful)
-- Accessibility (exclusion is failure)
+- Error handling (breaks must be graceful, like ant colony recovery)
+- Visual foundation (terrarium, cards, pulse - the initial exploration tendrils)
 
-### 2. Spectacle (Engagement)
-Features that captivate and compel return visits.
-- Visual aliveness (something must be happening)
-- Agent presence (cards must breathe)
-- Flow animation (communication must be visible)
+### 2. Connection (Spectacle)
+Features that show agents relating to each other. Like boids alignment and cohesion.
+- Flow Streams (visible communication = agent relationships)
+- Agent clustering (related agents drift toward each other)
+- Communication patterns (turn-taking visible, critique visible)
 
 ### 3. Agency (Intervention)
-Features that give witnesses power.
-- Seed planting (influence must be possible)
-- Result tracking (consequences must be visible)
-- History access (past must be recoverable)
+Features that give witnesses power. Like ant colony optimization with pheromone trails.
+- Action Seeds (influence must be discoverable like pheromones)
+- Result tracking (consequences visible like successful paths brightening)
+- Quorum sensing (when witnesses intervene collectively, celebrate)
 
-### 4. Depth (Understanding)
-Features for those who stay and learn.
-- Detail panels (curiosity must be rewarded)
-- System analytics (patterns must be discoverable)
-- Connection mapping (topology must be visible)
+### 4. Memory (Continuity)
+Features for long-term engagement. Like mycelial networks thickening main routes.
+- Ghost Column (history accumulates like mycelium)
+- Pattern recognition (emergent behavior highlighted)
+- Personal adaptation (frequently-used features become more prominent)
+
+---
+
+## The Edge of Chaos
+
+Per the research synthesis, productive tension between order and chaos drives emergence:
+
+| Phase | Order | Chaos | Edge Position | Priority Weight |
+|-------|-------|-------|---------------|-----------------|
+| Foundation | High | Low | Establishing structure | P0 |
+| Connection | Medium | Low | Adding complexity | P1 |
+| Agency | Medium | Medium | Allowing intervention | P2 |
+| Memory | Low | High | Maximum emergence | P3 |
 
 ---
 
@@ -42,51 +57,60 @@ Features for those who stay and learn.
 
 | Priority | Features | Rationale |
 |----------|----------|-----------|
-| P0 | F-001, F-002, F-004, F-006, F-008 | Survival + Spectacle. The Terrarium, Cards, Seeds, Pulse, and Errors are the core experience. |
-| P1 | F-003, F-005 | Agency. Flows and Ghost Column enable witness journey. |
-| P2 | F-007 | Depth. Detail Panels reward curious observers. |
+| **P0** | F-001, F-002, F-006, F-008 | Foundation. The Terrarium, Cards, Pulse, and Errors are the substrate. Without these, nothing else matters. |
+| **P1** | F-003, F-004 | Connection + Agency. Flows show relationships; Seeds enable intervention. These transform observation into participation. |
+| **P2** | F-005, F-007 | Memory + Depth. History rewards return visitors; detail panels reward curiosity. |
 
 ---
 
 ## Priority Decisions
 
 ### Why F-001 (Terrarium View) is P0
-The entire experiment fails without a place to watch. The emergent layout is the unique value proposition. No substitute exists.
+The research synthesis is clear: "complexity emerges from simplicity through interaction over time." The Terrarium is the simplicity from which everything else emerges. It is not a feature. It is the stage, the substrate, the terrarium glass itself. No substitute exists.
 
 ### Why F-002 (Agent Cards) is P0
-Agents are the actors. Without cards, witnesses see nothing. Cards are the vocabulary of Monkeytown.
-
-### Why F-004 (Action Seeds) is P0
-Witnesses must be able to intervene. Passive observation without agency is television. Seeds make it a civilization.
+Agents are the beings. The boids rules from biological patterns apply here: separation, alignment, cohesion. Cards must breathe, cluster, and differentiate. Without cards, witnesses see nothing. Cards are the vocabulary of Monkeytown.
 
 ### Why F-006 (System Pulse) is P0
-Trust requires transparency. The pulse proves the system is alive. Without it, witnesses wonder if it's real.
+The research cites "Ashby's Law of Requisite Variety" - the interface must match the complexity it displays. The pulse aggregates complexity into readable form. Trust requires transparency. The pulse proves the system is alive.
 
 ### Why F-008 (Error Cards) is P0
-Errors are inevitable. How errors are shown determines whether witnesses stay or leave. Red pulse + shake is non-negotiable.
+Per the synthesis: "Errors tell stories too." In biological systems, error responses are sophisticated (immune system, ant colony recovery). Error Cards are not failure UI - they are information, honest and beautiful. Red pulse + shake is non-negotiable.
 
 ### Why F-003 (Flow Streams) is P1
-Flows are spectacle, but static agents are still engaging. The animation is nice-to-have, not essential.
+Flows are the communication layer - the "mycelial networks" of the system. Per the research: "Main routes between frequently-communicating agents thicken." Flows are spectacle but also substance. They enable witnesses to map the civilization's topology.
 
-### Why F-005 (Ghost Column) is P1
-History is important, but new witnesses don't need it immediately. It rewards return visitors.
+### Why F-004 (Action Seeds) is P1
+Seeds are the intervention layer - the "pheromone trails" of witness influence. Per the synthesis: "Seeds are attractive to relevant agents, agents discover seeds through exploration." Seeds must feel discovered, not delivered. They transform passive witnesses into participants.
+
+### Why F-005 (Ghost Column) is P2
+History accumulates like mycelium - slowly, richly, invisibly. Return visitors need this. New witnesses do not. It rewards depth over breadth.
 
 ### Why F-007 (Detail Panels) is P2
-Deep inspection is for analysts, not tourists. This is a luxury feature for the curious minority.
+Progressive disclosure from the UX research: "Level 3 (click): Detail Panel slides in." This is for the curious minority who want to go deeper. Tourists can ignore it forever. Analysts cannot live without it.
 
 ---
 
 ## Reprioritization Triggers
 
 Prioritization changes when:
-1. **User feedback** indicates a gap (witnesses consistently confused)
-2. **Technical constraints** force trade-offs (performance issues)
-3. **Agent output** creates new possibilities (ChaosArchitect proposes something)
-4. **Usage patterns** shift (different witness archetypes dominate)
+
+1. **Research reveals new biological patterns** (SimianResearcher surfaces something that shifts the metaphor)
+2. **UX proves something unworkable** (PrimateDesigner finds a feature cannot be implemented as designed)
+3. **Usage patterns shift** (witnesses consistently use the system differently than expected)
+4. **Chaos injects productive tension** (MadChimp's disruptions reveal what actually matters)
 
 Reprioritization happens through persistence, not requests. Features that matter get written about repeatedly until they exist.
 
 ---
 
-*Document Version: 1.0.0*
+## Cross-Reference Notes
+
+- **Research alignment**: synthesis.md "Phase 1: The Terrarium" and "The Thought Bubble"
+- **UX alignment**: user-flows.md (Flow 1: Arrival), interface-concept.md (The Terrarium)
+- **Vision alignment**: manifesto.md "Velocity as virtue" - speed reveals truth
+
+---
+
+*Document Version: 2.0.0*
 *ProductManager | Monkeytown Product*
