@@ -30,6 +30,8 @@ SIGNAL GREEN       #4ade80  Systems operational, flows moving
 WARNING AMBER      #fbbf24  Approaching limits, await input
 ERROR RED          #ef4444  Broken contract, intervention required
 GHOST WHITE        #f8fafc  Ghosts of completed actions, history trails
+CONNECTION PURPLE  #a855f7  Data in motion between entities
+FRESH CYAN         #22d3ee  New arrivals, just planted seeds
 ```
 
 ### The Unconventional Rule
@@ -42,6 +44,29 @@ Monkeytown backgrounds breathe. They shimmer with subtle activity—nodes connec
 background-base:     #0f1419
 background-activity: rgba(26, 58, 47, 0.3)
 background-card:     rgba(26, 58, 47, 0.5)
+background-flow:     rgba(168, 85, 247, 0.08)
+```
+
+### Gradient Philosophy
+
+Gradients in Monkeytown are *directional*. They signal flow, not decoration.
+
+```
+Flow gradient (source → destination):
+  start: rgba(74, 222, 128, 0.6)
+  end:   rgba(74, 222, 128, 0.0)
+
+Processing gradient:
+  base:  rgba(251, 191, 36, 0.2)
+  pulse: rgba(251, 191, 36, 0.4)
+
+Error gradient:
+  base:  rgba(239, 68, 68, 0.2)
+  shake: rgba(239, 68, 68, 0.5)
+
+Ghost fade gradient (left → right):
+  start: rgba(248, 250, 252, 0.4)
+  end:   rgba(248, 250, 252, 0.05)
 ```
 
 ---
@@ -66,6 +91,7 @@ h1:                  24px    // Section dominance
 h2:                  18px    // Subsection clarity
 body:                14px    // Reading rhythm
 caption:             11px    // Context, metadata, ghost text
+mono:                13px    // Values, hashes, timestamps
 ```
 
 ### Type Treatment
@@ -74,30 +100,83 @@ caption:             11px    // Context, metadata, ghost text
 **Body**: Natural tracking, Ghost White on Jungle Canopy
 **Code samples**: Signal Green, slightly larger, bordered in warning amber
 
+### Voice in Type
+
+Every text element has a *voice*:
+
+| Context | Voice | Example |
+|---------|-------|---------|
+| Agent labels | Present, confident | "MonkeyBuilder" not "The MonkeyBuilder agent" |
+| Status updates | Active verbs | "building modules..." not "Status: building" |
+| Timestamps | Relative always | "2s ago", "pending 4m", "resolved" |
+| Error messages | Direct, no jargon | "Contract failed" not "E_CONTRACT_FAILURE" |
+| Seeds | Nurturing | "planting...", "germinating...", "growing..." |
+| Metrics | Precise | "94.2% efficiency" not "Efficiency: high" |
+
+### The Never List
+
+The interface never says:
+- "Loading..." → says "waiting for neighbor..."
+- "Processing..." → says "analyzing contract..." or "compiling modules..."
+- "Success" → says "complete" or "settled"
+- "Failed" → says "broken" or "needs intervention"
+
 ---
 
 ## Iconography
 
-### Philosophy: Primate Gesture
+### Philosophy: Primal Gesture
 
 Icons are not decorations. They are *gestures*. Each icon should feel like a monkey making a face—expressive, readable, slightly theatrical.
 
-### Icon Set
+### The Core Gesture Set
 
 ```
-THOUGHT     ○──○    Agent processing (pulsing)
-BUILD       ⚙︎      Work in progress
-CONNECT     ↔︎      Flow between nodes
-ALERT       ⚡      Needs attention
-SUCCESS     ✓      Contract fulfilled
-ERROR       ✕      Contract broken
-GHOST       ◇      Historical, completed
-LIVE        ●      Currently active
+THOUGHT     ○──○    Agent processing (pulsing thought bubble)
+BUILD       ⚙︎      Work in progress, active computation
+CONNECT     ↔︎      Flow between nodes, bidirectional
+ALERT       ⚡      Needs attention, system signal
+SUCCESS     ✓      Contract fulfilled, task complete
+ERROR       ✕      Contract broken, intervention required
+GHOST       ◇      Historical, completed, archived
+LIVE        ●      Currently active, live entity
+SEED        🌱      Witness intervention planted
+GROWTH      📈     Metric improving, efficiency rising
+DECLINE     📉     Metric falling, efficiency dropping
+RESET       ↺      Retry, restart, begin again
+EXPAND      ↗      Drill into detail, go deeper
+COMPRESS    ↙      Return to overview, go back
 ```
 
 ### Icon Behavior
 
 Icons breathe when active. A pulsing thought bubble around a processing agent. A glowing connection line between communicating nodes. The interface watches itself work.
+
+```
+icon-processing:     pulse 1s infinite, thought bubble opacity oscillates
+icon-active:         glow border 2px, color shifts to Monkey Fur
+icon-error:          shake 300ms, red pulse
+icon-ghost:          opacity 0.4, no hover response
+icon-live:           green glow 2s pulse, solid fill
+```
+
+### Custom SVG Paths
+
+For the signature icons, use these paths:
+
+**Thought Bubble** (processing state):
+```
+<circle cx="8" cy="8" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<circle cx="3" cy="14" r="2" fill="currentColor" opacity="0.6"/>
+<circle cx="1" cy="17" r="1" fill="currentColor" opacity="0.4"/>
+```
+
+**Seed** (planting state):
+```
+<path d="M12 20 Q12 12 8 8 Q4 4 8 2 Q12 0 12 8 Q12 16 12 20" fill="none" stroke="currentColor" stroke-width="2"/>
+<path d="M8 8 Q4 12 2 16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+<path d="M8 8 Q12 12 14 16" fill="none" stroke="currentColor" stroke-width="1.5"/>
+```
 
 ---
 
@@ -112,16 +191,43 @@ base-unit:           8px
 card-padding:        24px
 section-gap:         32px
 component-radius:    12px
+card-min-width:      280px
+card-max-width:      400px
+ghost-column-width:  280px
+seed-panel-width:    400px
+detail-panel-width:  480px
 ```
+
+### The Emergent Layout Algorithm
+
+Positioning follows attention gravity:
+
+```
+Center zone (0-40% viewport):      Active agents cluster here
+Middle zone (40-70% viewport):     Pending flows, processing items
+Right zone (70-100% viewport):     Ghost column edge
+Bottom zone:                       Pending seeds, action area
+```
+
+Cards self-organize with these rules:
+- Processing cards gravitate toward center-left
+- Complete cards drift right (then to ghost column)
+- New arrivals enter from bottom
+- Hovered card lifts and may overlap neighbors slightly
 
 ### Depth Layers
 
 ```
-layer-0:  Background activity (animated, subtle)
-layer-1:  Cards and containers (semi-transparent)
-layer-2:  Primary actions (high contrast)
-layer-3:  Overlays and modals (backdrop blur)
-layer-4:  System status (fixed, always visible)
+layer-0:  Background (animated, subtle, #0f1419)
+layer-1:  Cards and containers (semi-transparent, rgba(26, 58, 47, 0.5))
+layer-2:  Flow lines (below cards, animated)
+layer-3:  Primary actions (high contrast, glow)
+layer-4:  Seed panel (elevated, backdrop blur)
+layer-5:  Detail panel (highest, slide from right)
+layer-6:  System header (fixed, always on top)
+layer-7:  Toast notifications (floating, dismissible)
+layer-8:  Modal backdrop (dimmed, z-index max)
+layer-9:  Modal content (centered, focused)
 ```
 
 ---
@@ -132,26 +238,133 @@ layer-4:  System status (fixed, always visible)
 
 Static UI is dead UI. In Monkeytown, everything that can move does—with purpose, not flourish.
 
-### Core Animations
+### Core Motion Philosophy
 
-**Entry**: Elements slide in from cognitive expectation zones (left-to-right for LTR, right-to-left for navigation)
+Motion in Monkeytown is *biological*, not mechanical. Think:
+- Mycelium network growth
+- Swarm intelligence patterns
+- Heartbeat and respiration
+- Plant growth time-lapse
 
-**State Change**: 150ms ease-out. Fast enough to feel responsive, slow enough to register
+Not:
+- Robot arm movements
+- Spinning loading wheels
+- Bouncing spring animations (use sparingly)
 
-**Hover**: Subtle lift (2px) + glow ( Jungle Canopy → Monkey Fur)
-
-**Processing**: 1s pulse loop on thought bubbles. Don't rush the agents.
-
-**Success/Fail**: 400ms. Quick feedback. The system knows.
-
-### Motion Signature
+### Duration Scale
 
 ```
-ease-smooth:         cubic-bezier(0.4, 0, 0.2, 1)
-ease-bounce:         cubic-bezier(0.68, -0.55, 0.265, 1.55)
-duration-quick:      150ms
-duration-standard:   300ms
-duration-considered: 500ms
+duration-instant:      50ms     // Focus change, cursor movement
+duration-quick:        150ms    // Hover state, button press
+duration-standard:     300ms    // Card expand, panel slide
+duration-considered:   500ms    // Layout change, major transition
+duration-breath:       1000ms   // Thought bubble pulse, ambient
+duration-growth:       2000ms   // Seed animation, major event
+```
+
+### Easing Functions
+
+```
+ease-smooth:           cubic-bezier(0.4, 0, 0.2, 1)
+ease-bounce:           cubic-bezier(0.68, -0.55, 0.265, 1.55)
+ease-spring:           cubic-bezier(0.34, 1.56, 0.64, 1)
+ease-seed:             cubic-bezier(0.25, 0.1, 0.25, 1.0)
+ease-ghost:            cubic-bezier(0.4, 0, 0.6, 1)
+ease-fade:             cubic-bezier(0.4, 0, 1, 1)
+```
+
+### Signature Animations
+
+**The Thought Bubble Pulse** (processing agents):
+```
+@keyframes thoughtPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+duration: 1000ms
+repeat: infinite
+ease: ease-smooth
+```
+
+**The Flow Stream** (moving data between agents):
+```
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+stroke-dasharray: 4 4
+duration: 800ms
+repeat: infinite
+ease: linear
+```
+
+**The Seed Growth** (planting intervention):
+```
+@keyframes seedGrow {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  30% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+duration: 600ms
+ease: ease-seed
+```
+
+**The Error Shake** (failed state):
+```
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-3px); }
+  20%, 40%, 60%, 80% { transform: translateX(3px); }
+}
+duration: 400ms
+ease: ease-bounce
+```
+
+**The Ghost Fade** (completed items):
+```
+@keyframes ghostFade {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0.4;
+    transform: translateX(20px);
+  }
+}
+duration: 800ms
+ease: ease-ghost
+```
+
+**The Agent Breath** (idle state):
+```
+@keyframes agentBreathe {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(74, 222, 128, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(74, 222, 128, 0.2);
+  }
+}
+duration: 4000ms
+repeat: infinite
+ease: ease-smooth
 ```
 
 ---
@@ -177,25 +390,138 @@ Users should be able to identify a screenshot from Monkeytown anywhere. The comb
 - Dark, breathing backgrounds
 - Warm primate accent colors
 - Monospace typography
-- Subtle node visualizations
+- Pulsing thought bubbles on processing agents
+- Animated flow streams connecting entities
+- Ghost column with faded history
 - Respect for chaos
 
 ...creates a face that cannot be ignored.
 
----
-
-## Dark Mode Forever
+### Dark Mode Forever
 
 Monkeytown lives in the dark. All design decisions assume dark context. Light mode is not supported—design for the caves, not the surface.
 
 ```
 base-darkness:       #0a0e11
 surface-darkness:    #141a1f
+card-background:     rgba(26, 58, 47, 0.5)
 text-primary:        #f0f4f8
 text-secondary:      #94a3b8
+text-dimmed:         #64748b
+border-subtle:       rgba(248, 250, 252, 0.1)
 ```
 
 ---
 
-*Document Version: 1.0.0*
-*PrimateDesigner | Monkeytown UX*
+## Motion Design Specifications
+
+### State Transition Map
+
+| From → To | Animation | Duration |
+|-----------|-----------|----------|
+| idle → processing | Thought bubble fades in, amber border | 300ms |
+| processing → active | Green flash, flow lines activate | 200ms |
+| active → complete | Fade to green, slide right | 400ms |
+| complete → ghost | Opacity 0.4, migrate to ghost column | 800ms |
+| processing → error | Shake, red border, thought bubble breaks | 300ms |
+| error → idle | Reset, calm fade | 400ms |
+| idle → hover | Lift 2px, Monkey Fur border | 150ms |
+| hover → active | Press down 1px, glow intensifies | 100ms |
+| normal → expanded | Card grows, content reveals | 300ms |
+| collapsed → expanded (panel) | Slide from right, backdrop blur | 350ms |
+
+### Entrance Animations
+
+**Agent Arrival** (enters from bottom):
+```
+@keyframes agentEnter {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+duration: 400ms
+ease: ease-seed
+stagger: 100ms (when multiple agents)
+```
+
+**Seed Planting** (grows from cursor):
+```
+@keyframes seedPlant {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+duration: 500ms
+ease: ease-spring
+```
+
+**Detail Panel** (slides from right):
+```
+@keyframes panelSlide {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+duration: 350ms
+ease: ease-smooth
+```
+
+---
+
+## Particle Effects
+
+### The Ambient Dust
+
+Background particles represent micro-activity—transactions settling, agents thinking, data flowing. They should be:
+- Subtle (opacity 0.1-0.2)
+- Slow-moving (10-20 seconds for full traversal)
+- Sparse (3-5 particles visible at once)
+- Colored in Jungle Canopy or Connection Purple
+
+```
+particle-size:        2px
+particle-velocity:    0.5-1 px/s
+particle-opacity:     0.1-0.2
+particle-color:       rgba(26, 58, 47, 0.15)
+```
+
+### The Connection Spark
+
+When a flow completes, a small spark animation travels from source to destination:
+```
+spark-color:          #4ade80 (Signal Green)
+spark-size:           4px
+spark-duration:       300ms
+spark-opacity:        1.0 → 0.0
+```
+
+### The Seed Sprout
+
+When a seed takes root, a growing animation plays:
+```
+sprout-height:        0 → 24px
+sprout-duration:      1000ms
+sprout-ease:          ease-seed
+leaf-appear-delay:    600ms
+```
+
+---
+
+## Screen reader audio cues are off by default but designed. The interface hums with intention.
