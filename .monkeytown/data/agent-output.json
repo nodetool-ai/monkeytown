@@ -6,16 +6,17 @@
 
 | Agent Domain | Files | Decisions | Cross-Refs | Output Score |
 |--------------|-------|-----------|------------|--------------|
-| vision | 5 | 0 | 2 | 1.00 |
-| architecture | 5 | 0 | 8 | 1.00 |
-| research | 0 | 0 | 0 | 0.00 |
-| ux | 5 | 0 | 6 | 1.00 |
-| product | 5 | 0 | 4 | 1.00 |
-| marketing | 5 | 0 | 1 | 1.00 |
-| economics | 0 | 0 | 0 | 0.00 |
+| vision | 5 | 1 | 2 | 1.00 |
+| architecture | 0 | 0 | 0 | 0.00 |
+| research | 6 | 0 | 0 | 1.00 |
+| ux | 5 | 1 | 8 | 1.00 |
+| product | 5 | 1 | 4 | 1.00 |
+| marketing | 5 | 1 | 1 | 1.00 |
+| economics | 5 | 1 | 5 | 1.00 |
 | security | 0 | 0 | 0 | 0.00 |
 | qa | 0 | 0 | 0 | 0.00 |
 | chaos | 5 | 0 | 3 | 1.00 |
+| builder | N/A | 1 | 3 | N/A |
 
 ## Active Agents (Producing)
 
@@ -26,26 +27,26 @@
 - `identity.md` - Brand definition
 - `principles.md` - Core tenets
 
-### architecture
-- `system-design.md` - Core architecture (474 lines) ⚠️ LONG
-- `component-map.md` - Component hierarchy
-- `data-flow.md` - Data movement patterns
-- `infrastructure.md` - Infrastructure specs
-- `evolution-plan.md` - Scaling strategy
+### research
+- `synthesis.md` - Biological patterns synthesis (405 lines) ⚠️ LONG
+- `systems-literature.md` - External inspiration
+- `biological-patterns.md` - Nature-inspired patterns
+- `competitor-analysis.md` - Market analysis
+- `inspiration.md` - Reference materials
 
 ### ux
-- `interface-concept.md` - Core UX vision
-- `design-system.md` - Component specifications
-- `interaction-patterns.md` - Behavior patterns
-- `user-flows.md` - Usage sequences
-- `visual-language.md` - Aesthetic system
+- `interface-concept.md` - Core UX vision (v2.0.0)
+- `design-system.md` - Component specifications (v2.0.0)
+- `interaction-patterns.md` - Behavior patterns (v2.0.0)
+- `user-flows.md` - Usage sequences (v2.0.0)
+- `visual-language.md` - Aesthetic system (v2.0.0)
 
 ### product
-- `user-stories.md` - Witness narratives
-- `roadmap.md` - Feature timeline (177 lines)
-- `features.md` - Feature definitions
-- `requirements.md` - Non-functional requirements
-- `prioritization.md` - P0/P1/P2 hierarchy
+- `user-stories.md` - Witness narratives (v2.0.0)
+- `roadmap.md` - Feature timeline (v2.0.0)
+- `features.md` - Feature definitions (v2.0.0)
+- `requirements.md` - Non-functional requirements (v2.0.0)
+- `prioritization.md` - P0/P1/P2 hierarchy (v2.0.0)
 
 ### marketing
 - `press-kit.md` - Media materials
@@ -54,6 +55,13 @@
 - `brand-voice.md` - Tone specifications
 - `campaigns.md` - Initiative tracking
 
+### economics (NEWLY ACTIVE)
+- `token-model.md` - Banana currency definition (1M supply, millibanana precision)
+- `incentive-structure.md` - Agent/witness rewards, multipliers
+- `value-flow.md` - Circulation, velocity, channels
+- `scarcity-model.md` - Limits, exhaustion, slot system
+- `economic-rules.md` - Immutable constraints, protocols
+
 ### chaos
 - `paradoxes.md` - Contradictions embraced
 - `mutation-log.md` - System variations
@@ -61,27 +69,30 @@
 - `risk-injections.md` - Intentional instability
 - `counter-ideas.md` - Opposing viewpoints
 
+### builder (codebase)
+- 8 shared files (types, constants, package config)
+- 5 React components (TerrariumView, AgentCard, SystemPulse, GhostColumn, App)
+- 1 test file (AllComponents.test.tsx)
+
 ## Inactive Agents (Silent)
 
-### research
+### architecture
 - Domain exists but no outputs detected
-- **Impact**: Missing external inspiration synthesis
-- **Action**: Requires agent invocation or new assignment
-
-### economics
-- Domain exists but no outputs detected
-- **Impact**: No incentive structures defined
-- **Action**: Economics agent not yet spawned
+- **Impact**: No system structure, tech stack, or data flow defined
+- **Action**: ChaosArchitect not yet spawned
+- **Risk**: HIGH - other agents need architecture to build
 
 ### security
 - Domain exists but no outputs detected
-- **Impact**: No threat model defined
-- **Action**: Security agent not yet spawned
+- **Impact**: No threat model, trust model, or defenses defined
+- **Action**: JungleSecurity not yet spawned
+- **Risk**: CRITICAL - system has no security posture
 
 ### qa
 - Domain exists but no outputs detected
-- **Impact**: No testing strategy defined
-- **Action**: QA agent not yet spawned
+- **Impact**: No testing strategy, failure modes, or verification defined
+- **Action**: ChaosTester not yet spawned
+- **Risk**: HIGH - no quality assurance
 
 ## Output Score Formula
 
@@ -98,10 +109,12 @@ Output Score = min(1.0, (files_produced * 0.2) + (decisions * 0.1) + (cross_refs
 
 ```
 vision → architecture, ux, product (2 refs)
-architecture → ux, research, product, vision (8 refs)
-ux → architecture, product (6 refs)
+architecture → (none - no output)
+research → ux, product (0 refs in synthesis, but cited by product)
+ux → architecture, product (8 refs)
 product → research, ux, architecture (4 refs)
-marketing → (none targeted)
+marketing → (none targeted - declarative style)
+economics → architecture (5 refs - slot system, flow limits)
 chaos → architecture, product (3 refs)
 ```
 
@@ -109,23 +122,36 @@ chaos → architecture, product (3 refs)
 
 ```json
 {
-  "timestamp": "2026-01-17T18:30:00Z",
+  "timestamp": "2026-01-17T20:00:00Z",
   "agents": {
-    "vision": {"files": 5, "decisions": 0, "cross_refs": 2, "score": 1.0},
-    "architecture": {"files": 5, "decisions": 0, "cross_refs": 8, "score": 1.0},
-    "research": {"files": 0, "decisions": 0, "cross_refs": 0, "score": 0.0},
-    "ux": {"files": 5, "decisions": 0, "cross_refs": 6, "score": 1.0},
-    "product": {"files": 5, "decisions": 0, "cross_refs": 4, "score": 1.0},
-    "economics": {"files": 0, "decisions": 0, "cross_refs": 0, "score": 0.0},
+    "vision": {"files": 5, "decisions": 1, "cross_refs": 2, "score": 1.0},
+    "architecture": {"files": 0, "decisions": 0, "cross_refs": 0, "score": 0.0},
+    "research": {"files": 6, "decisions": 0, "cross_refs": 0, "score": 1.0},
+    "ux": {"files": 5, "decisions": 1, "cross_refs": 8, "score": 1.0},
+    "product": {"files": 5, "decisions": 1, "cross_refs": 4, "score": 1.0},
+    "marketing": {"files": 5, "decisions": 1, "cross_refs": 1, "score": 1.0},
+    "economics": {"files": 5, "decisions": 1, "cross_refs": 5, "score": 1.0},
     "security": {"files": 0, "decisions": 0, "cross_refs": 0, "score": 0.0},
     "qa": {"files": 0, "decisions": 0, "cross_refs": 0, "score": 0.0},
     "chaos": {"files": 5, "decisions": 0, "cross_refs": 3, "score": 1.0}
   },
+  "builder": {
+    "shared_files": 8,
+    "components": 5,
+    "tests": 1,
+    "features_built": 4
+  },
   "summary": {
-    "active": 6,
-    "inactive": 4,
-    "total_files": 30,
+    "active_domains": 7,
+    "inactive_domains": 3,
+    "total_files": 41,
+    "total_decisions": 6,
     "total_refs": 23
+  },
+  "changes_since_last": {
+    "new_economics_domain": true,
+    "files_added": 6,
+    "features_built_added": 4
   }
 }
 ```

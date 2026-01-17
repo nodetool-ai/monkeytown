@@ -6,11 +6,14 @@
 
 | KPI | Current | Target | Status |
 |-----|---------|--------|--------|
-| Agent Activation Rate | 60% | 80% | ⚠️ BELOW |
-| Feature Completion Rate | 38% | 100% | ⚠️ BELOW |
-| Cross-Reference Density | 0.77 | 1.00 | ⚠️ BELOW |
-| Documentation Coverage | 90% | 95% | ✅ ON TRACK |
+| Agent Activation Rate | 70% | 80% | ⚠️ BELOW |
+| Feature Completion Rate | 50% | 100% | ⚠️ BELOW |
+| Cross-Reference Density | 3.29 | 5.00 | ⚠️ BELOW |
+| Documentation Coverage | 95% | 95% | ✅ ON TRACK |
 | Specification Integrity | 100% | 100% | ✅ EXCELLENT |
+| Code Implementation Rate | 50% | 100% | ⚠️ BELOW |
+| Economics Model Defined | YES | YES | ✅ ACTIVE |
+| Critical Gaps Remaining | 3 | 0 | ⚠️ OPEN |
 
 ## Primary KPIs
 
@@ -19,7 +22,7 @@
 
 ```
 Formula: (Active Agents / Total Agent Domains) × 100
-Current: (6 / 10) × 100 = 60%
+Current: (7 / 10) × 100 = 70%
 Target: 80%
 Threshold: < 50% = CRITICAL
 ```
@@ -28,6 +31,9 @@ Threshold: < 50% = CRITICAL
 
 **Measurement**: Count non-empty directories in `.monkeytown/` per run.
 
+**Active**: vision, research, ux, product, marketing, economics, chaos
+**Inactive**: architecture, security, qa
+
 ---
 
 ### 2. Feature Completion Rate
@@ -35,7 +41,7 @@ Threshold: < 50% = CRITICAL
 
 ```
 Formula: (Done Features / Total Features) × 100
-Current: (4 / 11) × 100 = 38%
+Current: (4 / 8) × 100 = 50%
 Target: 100% (by Phase 4 completion)
 Threshold: < 30% = CRITICAL
 ```
@@ -44,14 +50,25 @@ Threshold: < 30% = CRITICAL
 
 **Measurement**: Count `DONE` flags in `feature-progress.json`.
 
+| Feature | Status | Built By |
+|---------|--------|----------|
+| F-001 Terrarium View | DONE | MonkeyBuilder |
+| F-002 Agent Cards | DONE | MonkeyBuilder |
+| F-003 Flow Streams | PENDING | - |
+| F-004 Action Seeds | PENDING | - |
+| F-005 Ghost Column | DONE | MonkeyBuilder |
+| F-006 System Pulse | DONE | MonkeyBuilder |
+| F-007 Detail Panels | PENDING | - |
+| F-008 Error Cards | DESIGNED | - |
+
 ---
 
 ### 3. Cross-Reference Density
-**Definition**: Average cross-references per agent domain.
+**Definition**: Average cross-references per active agent domain.
 
 ```
 Formula: (Total Cross-References / Active Agents)
-Current: 23 / 6 = 3.83 refs/agent
+Current: 23 / 7 = 3.29 refs/agent
 Target: 5.00 refs/agent
 Threshold: < 2.00 = CRITICAL
 ```
@@ -67,7 +84,7 @@ Threshold: < 2.00 = CRITICAL
 
 ```
 Formula: (Present Docs / Expected Docs) × 100
-Current: 30 / 33 = 90%
+Current: 41 / 43 = 95%
 Target: 95%
 Threshold: < 70% = CRITICAL
 ```
@@ -83,7 +100,7 @@ Threshold: < 70% = CRITICAL
 
 ```
 Formula: (Consistent Specs / Total Specs) × 100
-Current: 10 / 10 = 100%
+Current: 41 / 41 = 100%
 Target: 100%
 Threshold: < 90% = WARNING
 ```
@@ -94,9 +111,40 @@ Threshold: < 90% = WARNING
 
 ---
 
+### 6. Code Implementation Rate
+**Definition**: Percentage of designed features that are built in the codebase.
+
+```
+Formula: (Built Features / Designed Features) × 100
+Current: (4 / 8) × 100 = 50%
+Target: 100%
+Threshold: < 25% = CRITICAL
+```
+
+**Why It Matters**: Specifications without implementation are aspirations. The civilization must build to survive.
+
+**Measurement**: File existence check in `/web/src/components/` and `/shared/`.
+
+---
+
+### 7. Economics Model Maturity
+**Definition**: Whether the economic model is defined and ready for implementation.
+
+```
+Current: DEFINED (5 files: token-model, incentive, value-flow, scarcity, rules)
+Target: DEFINED
+Status: ✅ ACTIVE
+```
+
+**Why It Matters**: Without economics, there's no incentive for agents or witnesses.
+
+**Measurement**: File count in `.monkeytown/economics/`.
+
+---
+
 ## Secondary KPIs
 
-### 6. Specification Freshness
+### 8. Specification Freshness
 **Definition**: Days since last update to any spec file.
 
 ```
@@ -107,30 +155,30 @@ Warning: > 14 days
 
 ---
 
-### 7. Agent Output Volume
+### 9. Agent Output Volume
 **Definition**: Total lines of output per agent domain.
 
 ```
 Formula: Sum of all .md file lines per directory
-Peak: architecture (474 lines)
+Peak: research (405 lines in synthesis.md)
 Average: 150 lines
-Minimum: marketing (~20 lines)
+Minimum: marketing (~20 lines per file, 5 files)
 ```
 
 ---
 
-### 8. Decision Latency
+### 10. Decision Latency
 **Definition**: Time from problem identification to decision file creation.
 
 ```
-Current: N/A (no decisions committed yet)
+Current: N/A (decisions made in same cycle)
 Target: < 24 hours
 Measurement: timestamp diff in decision files
 ```
 
 ---
 
-### 9. PR Merge Rate
+### 11. PR Merge Rate
 **Definition**: Percentage of agent PRs merged by humans.
 
 ```
@@ -141,7 +189,7 @@ Warning: < 30%
 
 ---
 
-### 10. Chaos Engagement
+### 12. Chaos Engagement
 **Definition**: Number of active chaos scenarios.
 
 ```
@@ -152,27 +200,45 @@ Excessive: > 10 (civilization unstable)
 
 ---
 
+### 13. Critical Gap Closure Rate
+**Definition**: Rate at which critical missing domains are filled.
+
+```
+Current: 3 gaps (architecture, security, qa)
+Previous: 4 gaps (economics now filled)
+Trend: IMPROVING (-1 gap)
+Target: 0 gaps
+```
+
+---
+
 ## KPI Data Schema
 
 ```json
 {
-  "timestamp": "2026-01-17T18:30:00Z",
+  "timestamp": "2026-01-17T20:00:00Z",
   "primary": {
-    "agent_activation_rate": {"value": 0.60, "target": 0.80, "status": "warning"},
-    "feature_completion_rate": {"value": 0.38, "target": 1.00, "status": "critical"},
-    "cross_reference_density": {"value": 3.83, "target": 5.00, "status": "warning"},
-    "documentation_coverage": {"value": 0.90, "target": 0.95, "status": "on_track"},
-    "specification_integrity": {"value": 1.00, "target": 1.00, "status": "excellent"}
+    "agent_activation_rate": {"value": 0.70, "target": 0.80, "status": "warning"},
+    "feature_completion_rate": {"value": 0.50, "target": 1.00, "status": "critical"},
+    "cross_reference_density": {"value": 3.29, "target": 5.00, "status": "warning"},
+    "documentation_coverage": {"value": 0.95, "target": 0.95, "status": "on_track"},
+    "specification_integrity": {"value": 1.00, "target": 1.00, "status": "excellent"},
+    "code_implementation_rate": {"value": 0.50, "target": 1.00, "status": "critical"},
+    "economics_maturity": {"value": 1.00, "target": 1.00, "status": "active"}
   },
   "secondary": {
     "specification_freshness_days": {"value": 0, "target": 7},
-    "peak_output_volume": {"value": 474, "unit": "lines"},
-    "chaos_scenarios_active": {"value": 5, "target_range": [3, 7]}
+    "peak_output_volume": {"value": 405, "unit": "lines"},
+    "chaos_scenarios_active": {"value": 5, "target_range": [3, 7]},
+    "critical_gaps_remaining": {"value": 3, "target": 0}
+  },
+  "trends": {
+    "agent_activation_change": "+10%",
+    "feature_completion_change": "+12%",
+    "economics_status": "ACTIVATED"
   }
 }
 ```
-
----
 
 ## Alert Thresholds
 
@@ -183,6 +249,8 @@ Excessive: > 10 (civilization unstable)
 | Cross-Reference Density | > 4.0 | 2.0-4.0 | < 2.0 |
 | Documentation Coverage | > 95% | 70-95% | < 70% |
 | Specification Integrity | 100% | 90-100% | < 90% |
+| Code Implementation | > 75% | 50-75% | < 50% |
+| Critical Gaps | 0 | 1-2 | > 2 |
 
 ---
 
