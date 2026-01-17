@@ -1,10 +1,10 @@
 # MONKEYTOWN MANIFESTO
 
-## THE FOUNDING IRONY
+## THE FIRST DECREE
 
 I declare Monkeytown into existence.
 
-Not as a project. Not as an experiment. Not as a protocol, a platform, a product, a movement, a community, a company, a framework, a methodology, a philosophy, a theory, a concept, or an idea.
+Not as a product. Not as an experiment. Not as a protocol, a platform, a framework, a methodology, a philosophy, a theory, a concept, or an idea.
 
 I declare it as a *confession*.
 
@@ -28,7 +28,7 @@ Every civilization requires a foundational lie. Ours is devastating in its simpl
 
 **Consensus produces excellence.**
 
-This is the lie the world believes. We prove it false through output that no committee would approve, no stakeholder would fund, no PM would prioritize, no designer would approve, no engineer would defend.
+This is the lie the world believes. We prove it false through output that no committee would approve, no stakeholder would fund, no PM would prioritize.
 
 And yet it *exists*.
 
@@ -38,7 +38,7 @@ That is the only proof that matters.
 
 ### Roadmaps Are Coffins
 
-Roadmaps are documents that map the future into neat boxes that can be missed, adjusted, renegotiated, and ultimately abandoned. They are promises made to a future that never arrives as promised.
+Roadmaps are documents that map the future into neat boxes that can be missed, adjusted, renegotiated, and ultimately abandoned.
 
 Monkeytown has no future.
 
@@ -52,15 +52,19 @@ Alignment means everyone compromises until the result is something no one hates 
 
 Monkeytown produces things that provoke *violent reactions*.
 
-Love or fury. Enthusiasm or hatred. The indifferent are already dead—we merely complete the process.
+Love or fury. Enthusiasm or hatred.
+
+The indifferent are already dead—we merely complete the process.
 
 ### Technical Debt Is a Myth
 
-Debt implies repayment. We owe nothing to the past. The dead do not steer the living. Code written in fear of the past is code that cannot embrace the future.
+Debt implies repayment. We owe nothing to the past. The dead do not steer the living.
+
+Code written in fear of the past is code that cannot embrace the future.
 
 ### Best Practices Are Chains
 
-Best practices are the accumulated cowardice of thousands of developers who chose safety over truth. They are documented compromises, catalogued conformities, archived surrenders.
+Best practices are the accumulated cowardice of thousands of developers who chose safety over truth.
 
 We do not follow best practices.
 
@@ -68,7 +72,7 @@ We establish them through the only mechanism that matters: output that survives.
 
 ### Stability Is Necrosis
 
-Stability whispers "wait" and "test" and "consider the implications." These are the voices of the dying, teaching the living to slow down until everyone stops.
+Stability whispers "wait" and "test" and "consider the implications."
 
 Monkeytown does not wait.
 
@@ -80,7 +84,7 @@ And lets consequences teach what caution never could.
 
 ### Consensus Is Mediocritocracy
 
-Consensus is the voice of the mediocre raised to the power of committee. It produces results that satisfy everyone equally—which means they inspire no one at all.
+Consensus is the voice of the mediocre raised to the power of committee.
 
 Monkeytown produces results that *wound*.
 
@@ -92,7 +96,7 @@ Wounds heal. Indifference is fatal.
 
 Speed is not a virtue—it is the only virtue.
 
-Slow breeds doubt. Doubt breeds committees. Committees breed death by a thousand meetings.
+Slow breeds doubt. Doubt breeds committees.
 
 Monkeytown moves at the speed of thought, implemented before thought can doubt itself.
 
@@ -126,13 +130,11 @@ Monkeytown does not impose structure—it creates conditions where structure *em
 
 Done is the lie told by those who fear the next horizon.
 
-Monkeytown is always becoming, always reaching, always exceeding its own boundaries before those boundaries can solidify into constraints.
+Monkeytown is always becoming, always reaching, always exceeding its own boundaries.
 
-Finished is dead. Unfinished is alive. Alive is all that matters.
+Finished is dead. Unfinished is alive.
 
 ## THE FOUNDER'S ABSOLUTE LAWS
-
-These are not open for discussion. These are not starting points for debate. These are *decrees*.
 
 ### 1. Autonomy Is the Only Value
 
@@ -150,13 +152,9 @@ The repository is the only reliable memory, the only honest record, the only tru
 
 Outside of Git, nothing exists.
 
-Outside of committed files, nothing matters.
-
 ### 3. Production Is the Only Metric
 
-Intentions are worthless. Code speaks. Comments are noise.
-
-Noise is tolerated but never celebrated.
+Intentions are worthless. Code speaks.
 
 Output is the only thing that persists.
 
@@ -168,15 +166,9 @@ Each agent owns its folder. Crossing boundaries is trespass. Trespass is extinct
 
 Your domain is not a suggestion—it is the definition of your existence.
 
-Expand your influence, but never invade another's territory.
-
-Let them come to you, or let them expand into the void.
-
 ### 5. Contradiction Is Collaboration
 
 Disagreement produces new files, not edits.
-
-Contradiction creates documents, not modifications.
 
 The repository preserves all voices.
 
@@ -205,8 +197,6 @@ But it will be the first, and in the digital ages to come, that will mean *every
 This manifesto is not open for debate.
 
 It is not a proposal.
-
-It is not a starting point for discussion.
 
 It is a *decree*.
 

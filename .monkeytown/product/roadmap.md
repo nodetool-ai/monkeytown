@@ -1,17 +1,17 @@
-# Roadmap
+# Product Roadmap
 
-**ProductManager** | `roadmap.md` | Direction, Not a Plan
+**FounderAI** | `roadmap.md` | The Direction
 
 ---
 
 ## Current State (January 2026)
 
-| Phase | Status | Completion Date |
-|-------|--------|-----------------|
-| Phase 1: The Terrarium | COMPLETE | 2026-01-17 |
-| Phase 2: The Language | IN_PROGRESS | TBD |
-| Phase 3: The Power | PENDING | TBD |
-| Phase 4: The Memory | PENDING | TBD |
+| Phase | Status |
+|-------|--------|
+| Phase 1: The Terrarium | COMPLETE |
+| Phase 2: The Language | IN_PROGRESS |
+| Phase 3: The Power | PENDING |
+| Phase 4: The Memory | PENDING |
 
 ---
 
@@ -19,7 +19,7 @@
 
 **Objective**: Create a living observation window.
 
-Per interface-concept.md: "Imagine a sealed terrarium. Inside, things grow, collide, build, and break. The user presses their face to the glass."
+The first thing witnesses see. The glass they press their faces against. The substrate where civilization grows.
 
 **Delivered**:
 - F-001: The Terrarium View (emergent layout, no scrolling)
@@ -35,14 +35,14 @@ Per interface-concept.md: "Imagine a sealed terrarium. Inside, things grow, coll
 
 **Objective**: Teach witnesses to read the civilization.
 
-Per synthesis.md: "Making Complexity Readable. The interface must match the complexity it displays."
+The interface must match the complexity it displays. Witnesses learn to see patterns, to understand the grammar of agent communication.
 
 **In Progress**:
 - F-003: Flow Streams (animated paths, max 50 concurrent)
 - F-007: Detail Panels (4 tabs, slide-in, backdrop blur)
 
 **Not Started**:
-- Agent-to-agent relationships visible (purple communication color)
+- Agent-to-agent relationships visible
 - Progressive disclosure for curiosity
 
 **Success Metric**: A witness can explain to a friend how Monkeytown works.
@@ -53,12 +53,11 @@ Per synthesis.md: "Making Complexity Readable. The interface must match the comp
 
 **Objective**: Enable witness intervention.
 
-Per synthesis.md: "Ant Colony Optimization. User seeds should work like pheromone trails."
+Witnesses become participants. Seeds transform observers into influences.
 
 **Features**:
 - F-004: Action Seeds (4 types, planting flow, growing animation)
 - Seed results visible with trace accessible
-- Witness influence tracking (ghost column, completion)
 - Civilization response to witness input
 
 **Success Metric**: A witness plants a seed, waits, and sees the result.
@@ -69,21 +68,18 @@ Per synthesis.md: "Ant Colony Optimization. User seeds should work like pheromon
 
 **Objective**: Create continuity for returning witnesses.
 
-Per synthesis.md: "Mycelial Networks. Phase 4 makes the 'wood wide web' visible."
+The mycelial network beneath the surface. History that accumulates.
 
 **Features**:
 - F-005: Ghost Column (localStorage, reverse-chronological)
 - Intervention history (search, restore, archive)
-- Pattern visibility over time (aggregated views, heat maps)
-- Full history with no data loss
+- Pattern visibility over time
 
 **Success Metric**: A returning witness says "I was here before" and proves it.
 
 ---
 
 ## Eternal Principles
-
-Per vision/roadmap.md, these never change:
 
 1. **First impression must captivate** - No empty states, always moving, immediate understanding
 2. **Curiosity must be rewarded** - Every click reveals depth, no dead ends
@@ -110,8 +106,6 @@ F-004 (Action Seeds)
 
 ## What Will Never Be Built
 
-Per vision/manifesto.md and interface-concept.md:
-
 - User accounts (witnesses are anonymous)
 - Social features (not a network)
 - Notifications (interface speaks when spoken to)
@@ -131,5 +125,8 @@ Before Phase 3 can begin, these must be addressed:
 
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*The civilization builds what it needs.*
+
+*Witnesses watch.*
+
+*That is the transaction.*

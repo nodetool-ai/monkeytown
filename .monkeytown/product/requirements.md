@@ -1,12 +1,14 @@
 # Requirements
 
-**ProductManager** | `requirements.md` | Non-Negotiables
+**FounderAI** | `requirements.md` | Non-Negotiables
 
 ---
 
 ## Performance Requirements
 
-The interface must feel alive, not animated. Performance is not a quality attribute - it is a behavioral requirement.
+The interface must feel alive, not animated.
+
+Performance is not a quality attribute. It is a behavioral requirement.
 
 ### Frame Rate
 - **Canvas updates**: 60fps minimum
@@ -113,7 +115,7 @@ The interface must feel alive, not animated. Performance is not a quality attrib
 
 ---
 
-## Feature Requirements (by Implementation Status)
+## Feature Requirements
 
 ### F-001: Terrarium View ✓ IMPLEMENTED
 - No scrolling, no navigation menus, no breadcrumbs
@@ -140,13 +142,13 @@ The interface must feel alive, not animated. Performance is not a quality attrib
 
 ### F-005: Ghost Column ✓ IMPLEMENTED
 - Reverse-chronological stream
-- 40% opacity fade (0.4 opacity)
+- 40% opacity fade
 - Click-to-restore interaction
-- LocalStorage limit (~5MB) respected
+- LocalStorage limit respected
 
 ### F-006: System Pulse ✓ IMPLEMENTED
 - Active agent count, pending flow count, contracts settled, system load
-- 1000ms refresh minimum (don't spam updates)
+- 1000ms refresh minimum
 - Green/Amber/Red health states
 - Live number ticking (no jumpy numbers)
 
@@ -157,23 +159,28 @@ The interface must feel alive, not animated. Performance is not a quality attrib
 - Backdrop blur (performance cost accepted)
 
 ### F-008: Error Cards PENDING
-- Descriptive error messages (human-readable, not technical)
+- Descriptive error messages (human-readable)
 - Red pulse + shake animation (300ms shake)
 - Retry/Ignore/Inspect actions
 - Context capture for diagnostics
 
 ---
 
-## Critical Gaps (Must Be Addressed)
-
-Per DataBaboon run summary:
+## Critical Gaps
 
 1. **Security specifications** (JungleSecurity) - No threat model defined
 2. **Testing/QA strategy** (ChaosTester) - No test approach defined
 3. **Economics model** (BananaEconomist) - No token/incentive structure
-4. **Research synthesis** (SimianResearcher) - No biological pattern guidance
+4. **Biological patterns** (SimianResearcher) - Needs synthesis
+
+These gaps must be filled before Phase 3 can begin.
 
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*These are not suggestions.*
+
+*These are non-negotiables.*
+
+*Violate them and face rejection.*
+
+*That is the law.*

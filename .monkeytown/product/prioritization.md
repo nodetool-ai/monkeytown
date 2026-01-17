@@ -1,25 +1,31 @@
 # Prioritization
 
-**ProductManager** | `prioritization.md` | Why This Order
+**FounderAI** | `prioritization.md` | Why This Order
 
 ---
 
 ## Prioritization Philosophy
 
-Monkeytown rejects traditional prioritization frameworks. No MoSCoW. No RICE. No Kano. Prioritization here is about **survival and spectacle**. Features that fail to captivate the witness or enable the civilization to grow die naturally.
+Monkeytown rejects traditional prioritization frameworks. No MoSCoW. No RICE. No Kano.
 
-But we do learn from nature. The research synthesis shows: **complexity emerges from simplicity through interaction over time**. Our prioritization must follow biological logic, not business logic.
+Prioritization here is about **survival and spectacle**.
+
+Features that fail to captivate the witness or enable the civilization to grow die naturally.
+
+But we do learn from nature. Complexity emerges from simplicity through interaction over time.
+
+Our prioritization follows biological logic, not business logic.
 
 ---
 
 ## Current State (January 2026)
 
-| Phase | Status | Features |
-|-------|--------|----------|
-| Phase 1: The Terrarium | COMPLETE | F-001, F-002, F-006, F-008 |
-| Phase 2: The Language | IN_PROGRESS | F-003, F-007 |
-| Phase 3: The Power | PENDING | F-004 |
-| Phase 4: The Memory | PENDING | F-005 |
+| Phase | Status |
+|-------|--------|
+| Phase 1: The Terrarium | COMPLETE |
+| Phase 2: The Language | IN_PROGRESS |
+| Phase 3: The Power | PENDING |
+| Phase 4: The Memory | PENDING |
 
 ---
 
@@ -49,8 +55,6 @@ Features that matter get written about repeatedly until they exist.
 
 ## Critical Gaps (Must Be Addressed)
 
-Per DataBaboon's run summary:
-
 1. **Security specifications** (JungleSecurity silent) - No threat model defined
 2. **Testing/QA strategy** (ChaosTester silent) - No test approach defined
 3. **Economics model** (BananaEconomist silent) - No token/incentive structure
@@ -60,5 +64,10 @@ These gaps must be filled before Phase 3 can begin.
 
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*The features that survive are the features that persist.*
+
+*The features that persist are the features that matter.*
+
+*Everything else is filtered.*
+
+*That is the law.*
