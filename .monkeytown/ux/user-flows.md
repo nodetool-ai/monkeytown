@@ -847,6 +847,261 @@ Cannot reverse:           Time moves forward, always
 
 ---
 
+## Flow 14: Entering the Mind Temple
+
+### Trigger
+Witness wants to see agent reasoning, not just agent state
+
+### Experience
+
+```
+Hover agent card + "T" key:     Card transforms, grid lines appear
+Click "Show Signature" button:  Detail panel switches to Mind Temple view
+Command "/mind [agent-id]":     Full Mind Temple view opens
+```
+
+### The Transformation
+
+```
+0.0s - 0.3s    Card edges sharpen, breathing slows
+0.3s - 0.6s    Signature block slides in from top
+0.6s - 1.0s    Reasoning chain grid appears below signature
+1.0s - 1.5s    Tools section slides in from right
+1.5s+          Mind Temple fully active, witness observes reasoning
+```
+
+### Mind Temple Components
+
+**Signature Block**:
+```
+ax('context:string, question:string -> reasoning:string, answer:string')
+Type badge:              reasoner
+Status:                  Active (pulsing blue)
+Validation:              Type-safe (green glow)
+```
+
+**Reasoning Chain**:
+```
+Step 1: parsing...        [Complete, green]
+Step 2: analyzing...      [Active, amber pulse]
+Step 3: reasoning...      [Pending, dimmed]
+Step 4: answering...      [Pending, dimmed]
+```
+
+**Tools Section**:
+```
+Available:
+  🔍 search(query:string)
+  📊 calculate(expr:string)
+  💾 memory operations
+
+Active:
+  🔍 search(...) → [Returning...]
+```
+
+**Input/Output Docks**:
+```
+INPUT DOCK                    OUTPUT DOCK
+context: "..."                reasoning: "..."
+question: "..."              answer: "..."
+```
+
+### Exiting the Mind Temple
+
+```
+Press "Escape" key:           Grid fades, card softens
+Click "Back to Terrarium":    Smooth transition to card view
+Click outside:                Card returns, reasoning hidden
+```
+
+### Success Criteria
+
+- [ ] Witness can activate Mind Temple in 2 interactions or less
+- [ ] Signature clearly shows input/output types
+- [ ] Reasoning chain shows current step with progress
+- [ ] Tools are visible and their invocation is clear
+- [ ] Exiting returns smoothly to Terrarium view
+
+---
+
+## Flow 15: Inspecting Agent Signature
+
+### Trigger
+Witness clicks on agent signature in Mind Temple view
+
+### Experience
+
+```
+0.0s - 0.2s    Signature highlights
+0.2s - 0.4s    Tooltip appears with type definition
+0.4s - 0.6s    Expandable sections reveal
+0.6s+          Full signature documentation available
+```
+
+### Signature Anatomy Tooltip
+
+```
+ax('context:string, question:string -> reasoning:string, answer:string')
+
+├─ INPUTS
+│  ├─ context:string      The conversation context
+│  └─ question:string     The question to answer
+│
+├─ OUTPUTS
+│  ├─ reasoning:string    Step-by-step reasoning trace
+│  └─ answer:string       Final answer to the question
+│
+└─ TYPE
+   └─ reasoner            Agent type classification
+```
+
+### Type Safety Visualization
+
+```
+Valid output:               Green border, checkmark badge
+Invalid output:             Red border, warning badge, shows expected type
+Pending output:             Amber pulse, spinner
+Memory reference:           Purple underline, hover shows memory content
+Tool invocation:            Tool icon appears, particle burst
+```
+
+### Multi-Agent Signature Display
+
+When inspecting a composed agent:
+
+```
+agent_a.output ──▶ agent_b.input
+
+├─ COMPOSITION
+│  ├─ agent_a              Source agent
+│  ├─ agent_b              Target agent
+│  └─ connection           Typed connection (agent_a.output -> agent_b.input)
+│
+├─ CHAIN SIGNATURE
+│  ax('input_a -> output_a -> input_b -> output_b')
+│
+└─ VALIDATION STATUS
+   ├─ Type compatibility:  ✓ Valid
+   └─ Memory sharing:      Shared context enabled
+```
+
+---
+
+## Flow 16: Watching Reasoning Unfold
+
+### Trigger
+Witness observes agent thinking in real-time
+
+### Experience
+
+```
+Continuous:           Reasoning steps appear one by one
+Step 1 complete:      Green check, arrow to step 2
+Step 2 active:        Amber pulse, shows "analyzing..."
+Step 3 pending:       Dimmed, waiting for step 2
+Every step:           Signature glows briefly
+```
+
+### Reasoning Step Visualization
+
+```
+┌─────────────────────────────────────────────┐
+│  Step 1: parsing input...                   │
+│  ├─ Token count: 47                         │
+│  ├─ Entities found: 3                       │
+│  └─ Intent: question_answering              │
+│  ✓ Complete                                 │
+├─────────────────────────────────────────────┤
+│  Step 2: analyzing context...               │
+│  ├─ Memory retrieved: 2 items               │
+│  ├─ Context relevance: high                 │
+│  └─ ▸ Current processing...                 │
+│  ⟳ In Progress                              │
+├─────────────────────────────────────────────┤
+│  Step 3: reasoning...                       │
+│  ⟳ Pending                                  │
+└─────────────────────────────────────────────┘
+```
+
+### Reasoning Speed Options
+
+```
+Normal:               Steps appear at natural reasoning pace
+Fast:                 2x speed, only show key steps
+Detailed:             Show sub-steps, token-level processing
+Breakdown:            Each token, each inference visible
+```
+
+### Step Interactions
+
+```
+Click step:           Expand to show sub-steps
+Hover step:           Highlight related memory/tool references
+Right-click:          Copy reasoning text, export as JSON
+Drag step:            Reorder reasoning (for experimentation)
+```
+
+---
+
+## Flow 17: Tool Invocation Witnessing
+
+### Trigger
+Witness watches an agent use a tool
+
+### Experience
+
+```
+0.0s - 0.2s    Tool icon highlights
+0.2s - 0.5s    Particle travels from agent to tool
+0.5s - 1.0s    Tool executes (spinner or progress)
+1.0s - 1.5s    Particle returns with result
+1.5s+          Result appears in output dock
+```
+
+### Tool Invocation Visualization
+
+```
+┌─────────────────────────────────────────────────────┐
+│  TOOL: search(query:string) → results:string[]     │
+│                                                     │
+│  ⟳ Querying... "system architecture patterns"      │
+│                                                     │
+│  ════════════════════════════════════════════════   │
+│  Particle travel: agent → tool → result            │
+│  ════════════════════════════════════════════════   │
+│                                                     │
+│  ✓ 3 results found                                  │
+│  ├─ "Microservices at Scale"                       │
+│  ├─ "Event Sourcing Patterns"                      │
+│  └─ "Agent Coordination Models"                    │
+└─────────────────────────────────────────────────────┘
+```
+
+### Tool States
+
+```
+Idle:                 Icon dimmed, available
+Invoking:             Icon highlighted, particle traveling
+Executing:            Icon pulsing, progress shown
+Returning:            Icon glowing, particle returning
+Complete:             Icon check, results shown
+Error:                Icon red, error badge, retry option
+```
+
+### Tool Chain Witnessing
+
+When tools chain:
+
+```
+Tool A ──▶ Tool B ──▶ Tool C
+
+├─ Chained visualization:       Particles flow through chain
+├─ Intermediate results:         Shown between tools
+└─ Final result:                Arrives at agent output
+```
+
+---
+
 ## Flow Summary
 
 | Flow | Trigger | Duration | Key Outcome |
@@ -864,8 +1119,12 @@ Cannot reverse:           Time moves forward, always
 | Witnessing Multiple | Multiple watchers | Continuous | Shared observation |
 | Witnessing Departure | Close/navigate | Instant | Leaving the civilization |
 | Replay History | Click ghost | Variable | Understanding the past |
+| Enter Mind Temple | "T" key or command | 1.5s | Seeing agent reasoning |
+| Inspect Signature | Click signature | 0.6s | Understanding type contract |
+| Watch Reasoning | Passive observation | Variable | Observing thought unfold |
+| Witness Tool Use | Tool invocation | 1.5s | Seeing tools in action |
 
 ---
 
-*Document Version: 2.1.0*
+*Document Version: 2.2.0*
 *PrimateDesigner | Monkeytown UX*

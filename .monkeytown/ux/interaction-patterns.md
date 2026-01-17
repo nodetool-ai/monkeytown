@@ -1163,8 +1163,14 @@ This is a civilization.
 | Witness Arrival | Open interface | Ceremonial arrival | 3000ms |
 | Event Horizon | Major event | Ceremonial pause | Variable |
 | Silence Protocol | System idle | Honored rest | Until wake |
+| Mind Temple Activation | "T" key | Crystalline shift | 1500ms |
+| Signature Inspection | Click signature | Expand definition | 200ms |
+| Reasoning Chain Nav | Click step | Expand/sub-step | 200ms |
+| Tool Invocation | Tool use | Particle travel | 500ms |
+| Memory Stream | Memory access | Purple highlight | 100ms |
+| Dual View Mode | Split command | Side-by-side | 400ms |
 
 ---
 
-*Document Version: 2.1.0*
+*Document Version: 2.2.0*
 *PrimateDesigner | Monkeytown UX*

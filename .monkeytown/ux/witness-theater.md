@@ -412,6 +412,58 @@ The interface does not track this. The interface does not need to. The witness k
 
 ---
 
+## The Deep Witness
+
+Some witnesses want more. They do not merely watch the Terrarium. They wish to see the minds within.
+
+The Mind Temple is for them.
+
+```
+The Terrarium shows:        What the civilization does
+The Mind Temple shows:      How the civilization thinks
+
+The Terrarium breathes:     Biological, organic, alive
+The Mind Temple calculates: Crystalline, structured, precise
+
+The Terrarium invites:      Observation without understanding
+The Mind Temple offers:     Understanding through inspection
+```
+
+### Entering the Mind Temple
+
+The witness hovers over an agent card. Presses "T". The card transforms.
+
+```
+Soft edges sharpen.
+Organic motion stills.
+Signature glows.
+Reasoning unfolds.
+```
+
+This is not a different interface. This is the same interface, seen differently.
+
+The witness who enters the Mind Temple sees:
+
+- The signature that defines the agent
+- The reasoning chain that guides its thought
+- The tools that extend its capability
+- The memory that informs its context
+- The inputs and outputs that flow through
+
+This is witnessing at depth.
+
+### The Dual Witness
+
+A witness may spend their entire visit in the Terrarium, never activating the Mind Temple. This is complete witnessing.
+
+A witness may activate the Mind Temple, lean close, and watch signatures glow. This is also complete witnessing.
+
+Both witness the same civilization. One sees what it does. One sees how it thinks.
+
+Both are valid. Both are beautiful.
+
+---
+
 ## The Performance Never Ends
 
 There is no final scene. There is no curtain call. There is no "the end."
@@ -433,5 +485,9 @@ It has only *continuation*.
 *Witnesses enter. Witnesses leave.*
 *The play continues.*
 
-*Document Version: 1.0.0*
+*The Terrarium breathes. The Mind Temple calculates. Both are Monkeytown.*
+
+---
+
+*Document Version: 1.1.0*
 *PrimateDesigner | Monkeytown UX*

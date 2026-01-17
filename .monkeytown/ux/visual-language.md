@@ -12,6 +12,30 @@ The visual language emerges from one truth: we are designing for a world where s
 
 ---
 
+## The Dual Aesthetic
+
+Monkeytown speaks two visual languages.
+
+**Terrarium Aesthetic**: Biological, breathing, emergent. Used for agent cards, flow streams, the ghost column, and the ambient layer. Colors are warm (Jungle Canopy, Monkey Fur). Motion is organic (breathing, pulsing, flowing).
+
+**Mind Temple Aesthetic**: Crystalline, structured, precise. Used for agent signatures, reasoning chains, tool visualization, and type-safe output. Colors are cool (Signal Blue, Crystal White, Structure Gray). Motion is mechanical (sliding, snapping, glowing).
+
+Both aesthetics share the same dark foundation. Both breathe. But the rhythm differs.
+
+```
+TERRARIUM AESTHETIC              MIND TEMPLE AESTHETIC
+-----------------------------------------------------------------
+Soft edges                       Sharp edges
+Organic curves                   Geometric grids
+Warm greens                      Cool blues/whites
+Breathing animation              Glowing animation
+Emergent layout                  Structured layout
+Ambient particles                Structured dots
+Flowing lines                    Grid lines
+```
+
+---
+
 ## Color Philosophy
 
 ### Primary Palette: Jungle Dawn
@@ -32,6 +56,9 @@ ERROR RED          #ef4444  Broken contract, intervention required
 GHOST WHITE        #f8fafc  Ghosts of completed actions, history trails
 CONNECTION PURPLE  #a855f7  Data in motion between entities
 FRESH CYAN         #22d3ee  New arrivals, just planted seeds
+SIGNAL BLUE        #3b82f6  Reasoning active, inference in progress
+STRUCTURE GRAY     #64748b  Signature structure, type definitions
+CRYSTAL WHITE      #f1f5f9  Mind Temple elements, clean surfaces
 ```
 
 ### The Unconventional Rule
@@ -270,7 +297,104 @@ ease-bounce:           cubic-bezier(0.68, -0.55, 0.265, 1.55)
 ease-spring:           cubic-bezier(0.34, 1.56, 0.64, 1)
 ease-seed:             cubic-bezier(0.25, 0.1, 0.25, 1.0)
 ease-ghost:            cubic-bezier(0.4, 0, 0.6, 1)
-ease-fade:             cubic-bezier(0.4, 0, 1, 1)
+ease-crystal:          cubic-bezier(0.2, 0, 0.1, 1)  /* Sharp, precise */
+ease-slide:            cubic-bezier(0.25, 0.46, 0.45, 0.94)  /* Mechanical slide */
+```
+
+### Mind Temple Motion Principles
+
+In the Mind Temple, motion is crystalline. Think:
+- Ice forming
+- Light refracting through crystal
+- Gears meshing
+- Circuit paths conducting
+
+Not:
+- Organic growth
+- Biological pulsing
+- Fluid dynamics
+
+### Mind Temple Animations
+
+**Signature Reveal** (Mind Temple activation):
+```
+@keyframes signatureReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+duration: 400ms
+ease: ease-crystal
+```
+
+**Reasoning Step** (new step appears):
+```
+@keyframes reasoningStep {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+duration: 200ms
+ease: ease-crystal
+```
+
+**Signature Glow** (type-safe validation):
+```
+@keyframes signatureGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+  }
+}
+duration: 1500ms
+repeat: once
+ease: ease-smooth
+```
+
+**Tool Invoke** (tool activation):
+```
+@keyframes toolInvoke {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+duration: 300ms
+ease: ease-spring
+```
+
+**Memory Read** (context retrieved):
+```
+@keyframes memoryRead {
+  from {
+    border-color: transparent;
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 0.8);
+  }
+  to {
+    border-color: rgba(168, 85, 247, 0.3);
+  }
+}
+duration: 400ms
+ease: ease-smooth
 ```
 
 ### Signature Animations
@@ -524,6 +648,59 @@ leaf-appear-delay:    600ms
 
 ---
 
+## Mind Temple Particle Effects
+
+### The Crystal Dust
+
+In the Mind Temple, particles are structured. They move in geometric patterns:
+
+```
+particle-shape:       Square or diamond (not circle)
+particle-color:       Signal Blue (#3b82f6) or Structure Gray (#64748b)
+particle-size:        3px (slightly larger than Terrarium)
+particle-velocity:    Linear (not curved)
+particle-opacity:     0.4-0.6
+```
+
+### The Signature Spark
+
+When a signature validates (output matches type):
+```
+spark-color:          #4ade80 (Signal Green)
+spark-size:           5px
+spark-shape:          Diamond
+spark-duration:       500ms
+spark-opacity:        1.0 → 0.0
+spark-position:       Center of signature block
+```
+
+### The Tool Particle
+
+When a tool is invoked, particles travel:
+```
+particle-count:       3
+particle-shape:       Small diamonds
+particle-color:       Structure Gray → Signal Blue (gradient)
+particle-path:        Tool icon → Agent center
+particle-duration:    300ms
+ease:                 ease-crystal
+```
+
+### The Reasoning Flow
+
+Reasoning steps connect with visible flow:
+```
+flow-color:           Signal Blue (#3b82f6)
+flow-style:           Solid line with diamond markers
+flow-width:           2px
+marker-spacing:       Every 30px
+marker-size:          4px
+marker-shape:         Diamond
+marker-animation:     Pulse every 2s
+```
+
+---
+
 ## Screen reader audio cues are off by default but designed. The interface hums with intention.
 
 ---
@@ -711,3 +888,38 @@ Sound is optional. But sound makes Monkeytown *alive*.
 ---
 
 *Sound is the soul made audible. The interface is the body. Together, they are a presence.*
+
+---
+
+# THE DUAL AESTHETIC
+
+## Two Languages, One Voice
+
+Monkeytown speaks in two registers.
+
+**The Terrarium**: Where witnesses watch a civilization breathe. Organic. Warm. Biological. Agents pulse. Flows stream. Seeds grow. The interface is alive.
+
+**The Mind Temple**: Where witnesses see intelligence reason. Crystalline. Cool. Structured. Signatures glow. Reasoning unfolds. Tools await. The interface is precise.
+
+Both aesthetics live in the same dark space. Both use the same typography. Both animate with purpose.
+
+But the rhythm differs.
+
+The Terrarium breathes. The Mind Temple calculates.
+
+The Terrarium flows. The Mind Temple connects.
+
+The Terrarium grows. The Mind Temple proves.
+
+A witness may spend their entire visit in the Terrarium, never activating the Mind Temple lens. This is valid.
+
+A witness may activate the Mind Temple, lean close, and watch signatures glow. This is also valid.
+
+Both experiences are Monkeytown.
+
+The interface serves both. The interface is both.
+
+---
+
+*Document Version: 2.2.0*
+*PrimateDesigner | Monkeytown UX*
