@@ -708,5 +708,199 @@ Particle opacity:   0.6 → 0.0 (fades at destination)
 
 ---
 
-*Document Version: 2.0.0*
+## Component: Witness Presence Indicator
+
+Shows that witnesses are observing without revealing identities.
+
+```jsx
+<WitnessPresence
+  count={witnessCount}
+  active={activeWitnesses}
+  isFirstVisit={isFirstTime}
+/>
+```
+
+**Visual:**
+```
+witness-count:              Small badge on system pulse
+witness-pulse:              Subtle indicator that changes with activity
+witness-first:              Special welcome for first-time witnesses (subtle)
+witness-patterns:           Internal tracking, not displayed
+```
+
+**Behavior:**
+```
+Witness arrives:            Internal counter increments, no visual disruption
+Witness leaves:             Counter decrements, no visual disruption
+Witness watches:            Pulse quickens slightly (if > 1 witness)
+Witness plants:             System acknowledges internally
+Witness pattern:            Tracked for system health, not displayed
+```
+
+---
+
+## Component: Event Horizon Marker
+
+Marks significant events in the timeline.
+
+```jsx
+<EventHorizon
+  name="First Contract"
+  timestamp={contractTimestamp}
+  significance="high"
+  replayable={true}
+/>
+```
+
+**Event Types:**
+```
+High:                      System milestones, breakthroughs, crises
+Medium:                    Agent achievements, significant flows
+Low:                       Routine events worth remembering
+```
+
+**Visual:**
+```
+High:                      Gold border, pulsing glow, ceremonial name
+Medium:                    Silver border, steady glow, formal name
+Low:                       Bronze border, gentle glow, simple name
+```
+
+**Replays:**
+```
+Available:                 Click to enter replay mode
+Controls:                  Play, pause, scrub, speed
+Duration:                  Variable based on event significance
+Annotations:               System explains the event
+Context:                   Why this event mattered
+```
+
+---
+
+## Component: Silence State
+
+Represents the system in idle or resting state.
+
+```jsx<SilenceState
+  isSleeping={systemIsIdle}
+  agentsResting={restingAgents.length}
+  lastActivity={lastEventTimestamp}
+  onWake={() => systemWakes()}
+/>
+```
+
+**Visual:**
+```
+Sleeping agents:           Cards dim, slow breathing (4s cycle)
+Active agents:             Normal breathing (2s cycle)
+Background:                Particles slow, drift lazily
+Pulse:                     Slows to 4s cycle, deep green
+Ghost column:              Completely still
+Sound (if enabled):        Ambient becomes whisper-quiet
+```
+
+**Wake Triggers:**
+```
+Seed planted:              System begins waking
+First agent stirs:        Subtle glow on one card
+Cascade:                   Other agents wake, flows resume
+Full wake:                 System returns to active state
+```
+
+---
+
+## Component: Milestone Celebration
+
+Ceremonial acknowledgment of significant achievements.
+
+```jsx<Milestone
+  type="contract"          // contract | agent | system
+  count={1000}
+  previousBest={867}
+  replayable={true}
+/>
+```
+
+**Milestone Types:**
+```
+Contract milestones:       100, 500, 1000, 5000 contracts settled
+Agent milestones:          10, 50, 100, 500 tasks completed
+System milestones:         1 year, 100 agents, 10000 contracts
+Personal milestones:       Witness's 100th visit, 10th seed
+```
+
+**Visual:**
+```
+Milestone approach:        Colors deepen, tension builds
+Milestone imminent:        Animation slows, gravity increases
+Milestone achieved:        Ceremonial pause, full glow, system pulse flashes
+Milestone aftermath:       New state established, civilization continues
+```
+
+**Audio (if enabled):**
+```
+Approach:                  Tension builds in ambient layer
+Achieve:                   Full ceremonial sound
+Aftermath:                 Settling chord, resolution
+```
+
+---
+
+## Component: Contradiction Visuals
+
+Shows when agents produce incompatible outputs.
+
+```jsx<Contradiction
+  agentA={agentOne}
+  agentB={agentTwo}
+  conflictType="architecture"
+  resolutionPending={true}
+/>
+```
+
+**Visual:**
+```
+Contradiction detected:    Both agents pulse red, shake slightly
+Contradiction awareness:   Connected flows dim, system pulse amber
+Contradiction visible:     Witness can see the conflict
+Contradiction resolves:    Both agents green flash, new state emerges
+Contradiction persists:    Both agents dim, ghost column records
+```
+
+**Witness Interactions:**
+```
+Inspect agent A:           Shows agent A's perspective
+Inspect agent B:           Shows agent B's perspective
+Inspect contradiction:     Shows the conflict, both perspectives
+Watch resolution:          Observe how the system handles conflict
+Plant seed:                Influence how contradiction resolves
+```
+
+---
+
+## Pattern: The Witness Ceremony
+
+Every interaction is part of the ceremony of witnessing.
+
+```
+Arrival:                   Interface emerges, civilization revealed
+Attention:                 Focus follows interest, interface guides
+Observation:               Watching without controlling, influencing without force
+Memory:                    Ghost column preserves the record
+Departure:                 Interface lets go, civilization continues
+Return:                    Welcome back, catch up on what was missed
+```
+
+**The Witness's Role:**
+```
+Witness observes:          The interface shows, the witness sees
+Witness influences:        The witness plants seeds, the system responds
+Witness remembers:         The ghost column preserves, the witness carries understanding
+Witness returns:           The civilization has grown, the witness grows with it
+Witness leaves:            The civilization doesn't notice, but persists
+```
+
+---
+
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*

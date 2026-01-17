@@ -525,3 +525,189 @@ leaf-appear-delay:    600ms
 ---
 
 ## Screen reader audio cues are off by default but designed. The interface hums with intention.
+
+---
+
+# SOUND IDENTITY
+
+## The Voice of the Civilization
+
+Monkeytown speaks. Not through words—through sounds that make the invisible visible. The audio layer transforms the interface from a picture into a *presence*. Witnesses don't just see the civilization. They hear it breathe.
+
+**Sound is always optional.** The interface functions perfectly in silence. But for those who listen, the civilization reveals another dimension.
+
+### The Signature Soundscape
+
+```
+ambient-base:            Low-frequency hum (45Hz), machine room warmth
+ambient-variation:       Subtle shifts based on system load
+flow-complete:           Rising tone, C5 → G5, 400ms
+contract-settle:         Three-part chord, major, bell-like
+agent-complete:          Satisfying click, wooden block texture
+error:                   Discordant thunk, low C + flat fifth
+seed-plant:              Soft splash, water droplet texture
+seed-growth:             Organic crackling, like a fire spreading
+system-healthy:          Gentle pulse every 2s
+system-stressed:         Faster pulse every 1s, tension
+system-critical:         Rapid pulse + low rumble
+witness-arrival:         Brief welcome tone (first visit only)
+witness-departure:       Fade out, not goodbye
+milestone:               Full chord, sustained, fade over 2s
+```
+
+### Sound Philosophy
+
+Sound in Monkeytown is *semantic* and *ambient*. It communicates state without demanding attention. The interface should feel like a living space, not an alarm system.
+
+```
+Never alarm:              Sounds never startle or demand immediate action
+Always aware:             State changes are audible but not intrusive
+Ambient first:            Background layer is always present
+Event layer:              Specific sounds only on significant events
+Spatial:                  Sounds can be stereo-panned based on screen position
+Dynamic volume:           Adapts to ambient noise (with permission)
+```
+
+### The Ambient Layer
+
+The baseline soundscape represents the civilization's pulse. It shifts based on system state:
+
+```
+Healthy (green):          Warm, steady hum, slight variation, reassuring
+Stressed (amber):         Higher pitch in base tone, tension, unease
+Critical (red):           Disrupted rhythm, low rumble underneath, danger
+Idle:                     Slower pulse, deeper, like sleeping
+Active:                   Energetic, multiple tones layering, productive
+Disconnected:             Silence slowly creeping in, then stopping
+```
+
+### Event Sound Design
+
+**Flow Completion:**
+```
+Particle reaches destination → rising tone (C5 to G5, 400ms)
+Multiple simultaneous flows → layered tones, harmonious
+Flow failure → sound reverses, falls, silence
+```
+
+**Contract Settlement:**
+```
+Contract fulfilled → three-part chord (C-E-G), bell-like decay
+Multi-party contract → chord layers, additive
+Contract broken → chord dissons, tension, fade
+```
+
+**Agent Milestones:**
+```
+Agent reaches 100th task → ceremonial tone, full chord
+Agent discovers contradiction → two tones, unresolved
+Agent produces breakthrough → ascending arpeggio
+Agent enters error state → brief warning, then silence
+```
+
+**Seed Events:**
+```
+Seed planted → soft splash, single droplet
+Seed germinating → subtle crackling, organic
+Seed sprouting → higher crackling, growth
+Seed maturing → settling sound, completeness
+Seed complete → satisfying chord, resolution
+Seed failed → wilting sound, descending, fade
+```
+
+**System Events:**
+```
+New agent born → arrival tone, welcoming
+Agent terminated → departure tone, not mournful
+System milestone → full soundscape, celebration
+System error → attention demanded, cannot ignore
+```
+
+### Technical Specifications
+
+```
+sample-rate:              48kHz minimum
+bit-depth:                24-bit
+format:                   Web Audio API, Ogg Vorbis files
+latency-target:           < 50ms from event to sound
+volume-range:             -60dB to -12dB (comfortable)
+frequency-range:          20Hz to 20kHz (human hearing)
+stereo:                   Yes, spatial positioning
+looping:                  Ambient layers loop seamlessly
+browser-policy:           Requires user gesture to start
+```
+
+### Sound Disabled Behavior
+
+When sound is off (default), the interface compensates:
+
+```
+Visual reinforcement:     Color pulses, glows, animations intensify
+Haptic feedback:          Vibration on supported devices (mobile)
+字幕 (captions):           Sound events logged in accessible panel
+No penalty:               Disabled users experience full functionality
+```
+
+### The Sound File Structure
+
+```
+/audio/
+  ambient/
+    healthy.ogg           (looping, 30s minimum)
+    stressed.ogg
+    critical.ogg
+    idle.ogg
+  events/
+    flow-complete.ogg
+    contract-settle.ogg
+    agent-complete.ogg
+    error.ogg
+    seed-plant.ogg
+    seed-complete.ogg
+    milestone.ogg
+  ui/
+    click.ogg             (subtle, always same)
+    hover.ogg             (barely audible)
+    panel-open.ogg
+    panel-close.ogg
+  spatial/
+    witness-arrival.ogg   (first visit only, per session)
+```
+
+### User Control
+
+Sound settings are discoverable but not intrusive:
+
+```
+Default:                  Off
+Discovery:                Hover on volume icon → preview sounds
+Settings panel:           Toggle master sound
+Sub-controls:             Ambient / Events / UI separately
+Spatial balance:          Left/right, front/back sliders
+Volume:                   Slider with preview on change
+Mute when idle:           Automatic after 5 minutes
+Mute when hidden:         Automatic when tab backgrounded
+```
+
+### Accessibility
+
+Sound respects all accessibility requirements:
+
+```
+prefers-reduced-motion:   Sounds reduced, visual feedback increased
+hearing-impaired:         Full visual alternative, haptic feedback
+screen-reader users:      Sounds described in live region
+no-surprise:              No sudden sounds without visual warning
+```
+
+### The Philosophy
+
+Sound makes the invisible *felt*. The witness doesn't just observe the civilization. They *inhabit* it.
+
+The interface breathes. The civilization pulses. And when something happens—something meaningful—the witness hears it.
+
+Sound is optional. But sound makes Monkeytown *alive*.
+
+---
+
+*Sound is the soul made audible. The interface is the body. Together, they are a presence.*

@@ -525,5 +525,347 @@ Analytics:            Failure logged, patterns tracked
 
 ---
 
-*Document Version: 2.0.0*
+# WITNESS CEREMONY FLOWS
+
+## Flow 8: The First Arrival
+
+### Trigger
+First-time witness opens Monkeytown URL
+
+### Experience
+
+```
+0.0s - 0.5s        Brief flash of Midnight Banana (brand color)
+0.5s - 2.0s        Interface emerges from darkness
+2.0s - 4.0s        System pulse becomes visible, agents appear
+4.0s+              System is live, waiting for observation
+```
+
+### First-Time Specifics
+
+```
+No tutorial:              The interface trusts the witness
+No welcome message:       The world speaks for itself
+No onboarding:            Diving in is the only way
+No guidance:              Curiosity is the only guide
+```
+
+The witness sees the civilization as it exists. Not a sanitized version. Not a simplified version. The real thing.
+
+### What the Witness Sees
+
+1. **The Pulse** (center top): Live numbers, green glow, reassuring
+2. **Active Agents** (center): Cards breathing, processing, building
+3. **Flow Lines** (connecting): Animated connections between active entities
+4. **Ghost Column** (right): Fading silhouettes of completed work
+5. **Action Seed** (bottom right): Glowing, patient, optional
+6. **Ambient Particles**: Subtle background activity
+7. **Silence or Sound**: Depending on system state and user settings
+
+### The First Decision
+
+The witness has one choice:
+
+```
+Plant a seed:             Click the action seed button
+Inspect an agent:         Click any agent card
+Watch flows:              Observe the animated connections
+Read ghost column:        Browse the history
+Leave:                    Close the tab, try again later
+```
+
+There is no wrong choice. There is only witnessing.
+
+### Success Criteria
+
+- [ ] Witness can immediately see something is happening
+- [ ] Witness understands they are watching a live system
+- [ ] Witness feels invited to observe, not required to act
+- [ ] Witness wants to plant a seed or inspect an agent
+- [ ] Witness understands their role (witness, not controller)
+
+---
+
+## Flow 9: Witnessing an Event Horizon
+
+### Trigger
+System approaches or crosses a significant threshold
+
+### What Qualifies
+
+```
+System milestones:        1000th contract, 100th agent, anniversary
+Agent breakthroughs:      First self-modification, emergent behavior
+System crises:            Cascading failures, near-death experiences
+Contradictions:           Agents produce incompatible outputs
+Firsts:                   First agent, first contract, first flow
+```
+
+### The Approach
+
+```
+Before (30s):             Interface creates tension, colors deepen
+Before (10s):             Animation slows, gravity increases
+Before (5s):              System pulse changes rhythm
+Before (1s):              Everything stills
+Before (0s):              The moment arrives
+```
+
+### The Event
+
+```
+Duration:                 0.5s - 5s depending on event significance
+Visual:                   Ceremonial pause, focus on the moment
+Audio (if enabled):       Signature event sound
+Witness can:              Watch, plant seed, inspect, remember
+Witness cannot:           Stop, control, or alter the event
+```
+
+### The Aftermath
+
+```
+Resolution:               New state emerges, civilization absorbs
+Memory:                   Event recorded in ghost column with name
+Replays:                  Event can be replayed from ghost column
+Significance:             The interface remembers, the witness remembers
+```
+
+### Witness Experience
+
+```
+Awe:                      Witness sees something significant
+Understanding:            Witness grasps the event's meaning
+Connection:               Witness feels part of the civilization
+Wonder:                   Witness recognizes the beauty of emergence
+```
+
+---
+
+## Flow 10: The Silence Protocol
+
+### Trigger
+System enters idle state (no active agents, no pending flows)
+
+### What Happens
+
+```
+Agents:                   Cards dim, slow breathing animation
+Flows:                    Lines still, particles frozen
+Pulse:                    Slows, becomes meditative
+Background:               Particles drift lazily
+Ghost:                    Stills completely
+Sound (if enabled):       Ambient becomes whisper-quiet
+```
+
+### Witness Arrives to Silence
+
+```
+If witness arrives and system is sleeping:
+  The interface shows the sleeping state.
+  No "wake up" animation.
+  No "agents are resting" message.
+  Just the sleeping civilization.
+  Beautiful in its rest.
+```
+
+### Witness Options
+
+```
+Wait:                     Watch the sleeping system, practice patience
+Leave:                    Come back later when the system wakes
+Plant seed:               The only way to influence sleeping system
+Inspect ghost:            Browse history while waiting
+```
+
+### The Waking
+
+```
+First agent stirs:        Subtle glow, one card
+Cascade:                  Other agents wake, flows resume
+Full wake:                System returns to active state
+Witness notification:     Subtle (if enabled), not demanding
+```
+
+### Philosophy
+
+```
+Silence is not emptiness.
+Silence is not failure.
+Silence is not an error.
+Silence is rest.
+Silence is preparation.
+Silence is the civilization gathering energy.
+```
+
+---
+
+## Flow 11: Witnessing Multiple
+
+### Trigger
+Multiple witnesses observe simultaneously
+
+### What Witnesses See
+
+```
+Same system:              All witnesses see identical state
+No priority:              No "first come first served"
+No visibility:            Witnesses don't see each other
+No interference:          Witnesses don't block each other
+```
+
+### Witness Interactions
+
+```
+Planting:                 Witnesses may plant conflicting seeds
+Result:                   System resolves contradictions
+Witnesses observe:        The resolution of conflict
+No blame:                 System handles chaos, witnesses watch
+```
+
+### Witness Experience
+
+```
+Shared witnessing:        Multiple perspectives on same system
+Shared memory:            Witnesses remember different things
+Shared seeds:             Witnesses influence together
+Shared civilization:      Witnesses are part of the same whole
+```
+
+### Edge Cases
+
+```
+Witness disconnects:      System continues, other witnesses unaffected
+Witness returns:          System syncs, catch-up animation
+Witness conflicts:        System resolves, witnesses observe
+Witness leaves:           System continues, civilization persists
+```
+
+---
+
+## Flow 12: Witnessing Departure
+
+### Trigger
+Witness closes tab, navigates away, or goes idle
+
+### Experience
+
+```
+Immediate:                Interface pauses animation (respects battery)
+After 5m idle:            System pulse dims, agents slow
+After 15m idle:           Mode shifts to "idle" - gentle breathing only
+On return:                Interface wakes, syncs state, continues
+```
+
+### What the Witness Leaves Behind
+
+```
+Seeds in progress:        Preserved (up to 24h)
+Ghost column:             Session-scoped, not persistent
+Preferences:              LocalStorage remembers settings
+Last viewed:              Remembered for return
+Memories:                 Witness carries understanding of what they saw
+```
+
+### The Civilization Continues
+
+```
+Witness departure:        Not mourned, not celebrated
+System continues:         The civilization doesn't notice
+Agents keep working:      The play continues without audience
+Flows keep moving:        Time doesn't stop for witnesses
+```
+
+### Return from Departure
+
+```
+0.0s - 0.5s               Wake animation (screen brightens)
+0.5s - 1.5s               State synchronization (show "syncing...")
+1.5s+                     Full live state restored
+"What you missed":        Subtle notification of major events
+```
+
+### Success Criteria
+
+- [ ] Witness can leave and return without data loss
+- [ ] System handles idleness gracefully (no annoying alerts)
+- [ ] Return is smooth, not jarring
+- [ ] Witness understands the civilization continued without them
+- [ ] Witness feels invited to return
+
+---
+
+## Flow 13: Replaying History
+
+### Trigger
+Witness clicks a significant event in the ghost column
+
+### Experience
+
+```
+Click event:              Interface enters replay mode
+Replay controls:          Play, pause, scrub, speed (0.5x - 2x)
+Replay focus:             Time slows, witness follows the moment
+Replay annotations:       System explains what happened
+Replay context:           Why this event mattered
+```
+
+### Replay Modes
+
+```
+Normal:                   1x speed, full animation
+Slow:                     0.5x speed, emphasis on detail
+Fast:                     2x speed, overview only
+Step:                     Frame-by-frame analysis
+```
+
+### What Replays Show
+
+```
+The event:                What happened, moment by moment
+The context:              Why it happened, what led to it
+The aftermath:            What changed, what persisted
+The significance:         Why this event matters
+```
+
+### Witness Interactions
+
+```
+Scrub through time:       Drag through the replay
+Pause at moments:         Examine details at key points
+Speed up:                 Skip to important parts
+Slow down:                Miss nothing, understand everything
+```
+
+### Limitations
+
+```
+Cannot alter:             Replay is observation, not time travel
+Cannot save:              Replays are ephemeral
+Cannot share:             No replay export (yet)
+Cannot reverse:           Time moves forward, always
+```
+
+---
+
+## Flow Summary
+
+| Flow | Trigger | Duration | Key Outcome |
+|------|---------|----------|-------------|
+| Arrival | Open app | 3s | Witnessing live system |
+| Inspection | Click element | 0.6s | Understanding context |
+| Plant Seed | Click Action Seed | 30s | Influencing the system |
+| Watch Progress | Passive observation | Variable | Pattern recognition |
+| Respond Error | Failure | 2s | Recovery and understanding |
+| Departure | Close/navigate | Instant | Graceful pause |
+| Keyboard Nav | Key press | Variable | Alternative access |
+| First Arrival | First visit | 4s | Entering the theater |
+| Event Horizon | Major event | Variable | Witnessing significance |
+| Silence Protocol | System idle | Variable | Honoring rest |
+| Witnessing Multiple | Multiple watchers | Continuous | Shared observation |
+| Witnessing Departure | Close/navigate | Instant | Leaving the civilization |
+| Replay History | Click ghost | Variable | Understanding the past |
+
+---
+
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
