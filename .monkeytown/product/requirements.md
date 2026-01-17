@@ -6,26 +6,25 @@
 
 ## Performance Requirements
 
-Per UX research (design-system.md): "The interface is not static. It is reactive." Performance is not a quality attribute - it is a behavioral requirement.
+The interface must feel alive, not animated. Performance is not a quality attribute - it is a behavioral requirement.
 
 ### Frame Rate
-- **Canvas updates**: 60fps minimum (breathing animations must be imperceptible as animation, obvious as life)
-- **Card animations**: 60fps minimum (subtle breathing, not distracting)
-- **Flow animations**: 60fps minimum (smooth particle movement, like nutrient transport in mycelium)
-- **Graceful degradation**: 30fps floor (disable effects below, but never break layout)
+- **Canvas updates**: 60fps minimum
+- **Card animations**: 60fps minimum (subtle breathing)
+- **Flow animations**: 60fps minimum (smooth particle movement)
+- **Graceful degradation**: 30fps floor (disable effects below, never break layout)
 
 ### Latency
-Per user-flows.md timing specifications:
-- **State propagation**: < 100ms from server to client
+- **State propagation**: < 100ms server-to-client
 - **Interaction response**: < 50ms (visual feedback on hover/click)
-- **Seed dispatch**: < 200ms (acknowledgment, then long-running async)
+- **Seed dispatch**: < 200ms (acknowledgment, then async)
 - **Detail panel open**: < 150ms (slide animation starts immediately)
 
 ### Memory
-- **Client bundle**: < 200KB gzipped (lightweight interface for wide accessibility)
-- **Ghost column storage**: < 5MB localStorage (session-scoped by default)
-- **Active flow count**: Maximum 50 concurrent (per UX constraint, prevents visual chaos)
-- **Log entries per entity**: Maximum 1000 lines (prevents memory bloat in detail panels)
+- **Client bundle**: < 200KB gzipped
+- **Ghost column storage**: < 5MB localStorage
+- **Active flow count**: Maximum 50 concurrent
+- **Log entries per entity**: Maximum 1000 lines
 
 ---
 
@@ -33,12 +32,11 @@ Per user-flows.md timing specifications:
 
 ### Uptime
 - **Global**: 99.9% (excludes planned maintenance)
-- **Graceful degradation**: Static fallback if WebSocket fails (show last-known state)
-- **Reconnection**: Automatic with exponential backoff (respect user battery)
+- **Graceful degradation**: Static fallback if WebSocket fails
+- **Reconnection**: Automatic with exponential backoff
 
 ### Data Persistence
-Per interface-concept.md "The Ghost Column":
-- **Seeds**: 24-hour expiration (like biological signals that fade)
+- **Seeds**: 24-hour expiration
 - **Ghost column**: Session-scoped by default, configurable persistence
 - **Preferences**: LocalStorage (no account required, anonymous by default)
 
@@ -46,12 +44,10 @@ Per interface-concept.md "The Ghost Column":
 
 ## Accessibility Requirements
 
-Per interface-concept.md "Accessibility Without Compromise":
-
 ### Contrast
-- **Minimum ratio**: 7:1 (WCAG AAA, not just AA)
-- **Focus indicators**: Visible at all times (12px cursor-glow radius per design-system.md)
-- **No pure white backgrounds**: Prevent eye strain (dark jungle palette by default)
+- **Minimum ratio**: 7:1 (WCAG AAA)
+- **Focus indicators**: Visible at all times (12px cursor-glow radius)
+- **No pure white backgrounds**: Dark jungle palette by default
 
 ### Motion
 - **Respects**: `prefers-reduced-motion` (all animations have static alternatives)
@@ -59,7 +55,7 @@ Per interface-concept.md "Accessibility Without Compromise":
 - **No strobing**: 3Hz maximum flash (prevents seizures)
 
 ### Navigation
-- **Keyboard**: Full tab navigation (no mouse required)
+- **Keyboard**: Full tab navigation
 - **Screen reader**: Semantic structure, live regions, ARIA labels
 - **Focus management**: Logical order, no focus traps, escape closes panels
 
@@ -69,38 +65,34 @@ Per interface-concept.md "Accessibility Without Compromise":
 
 ### Witness Isolation
 - **No cross-witness state**: Each witness sees the same civilization, not others' data
-- **Seed attribution**: Only the planter sees their seeds (privacy-preserving)
+- **Seed attribution**: Only the planter sees their seeds
 - **No personal data**: Anonymous by default (no accounts, no tracking)
 
 ### Input Sanitization
-Per the "Anti-Patterns" in research/synthesis.md:
 - **Seed content**: Whitelisted types only (contract, constraint, resource, query)
 - **Query limits**: Maximum depth, maximum results (prevent resource exhaustion)
-- **No script injection**: All seed content is sanitized (strict validation)
+- **No script injection**: All seed content is sanitized
 
 ---
 
 ## Visual Requirements
 
-Per design-system.md "Color as Information" and interface-concept.md:
-
 ### Color Semantics
 | Color | Meaning | Usage |
 |-------|---------|-------|
-| **Green** | Working | Move along, success, complete |
-| **Amber** | Thinking | Wait, processing, pending |
-| **Red** | Broken | Intervene, error, failed |
-| **Purple** | Communicating | Watch, flowing, connecting |
-| **Cyan** | New | Discover, just appeared, fresh |
+| Green | Working | Move along, success, complete |
+| Amber | Thinking | Wait, processing, pending |
+| Red | Broken | Intervene, error, failed |
+| Purple | Communicating | Watch, flowing, connecting |
+| Cyan | New | Discover, just appeared, fresh |
 
 ### Animation Principles
 - **Never block**: All animations are non-blocking
 - **Never silent**: Sound is optional but designed (ambient hum, success click)
-- **Never confusing**: Animation has semantic meaning (per the Thought Bubble spec)
+- **Never confusing**: Animation has semantic meaning
 
 ### Typography
-Per interface-concept.md "Typography as Voice":
-- **Labels**: Lowercase, present tense ("agent processing..." not "Processing Agent")
+- **Labels**: Lowercase, present tense ("agent processing...")
 - **Values**: Monospace, precise (timestamps, hashes, amounts)
 - **Status**: Active verbs ("building", "waiting", "complete", "failed")
 - **Time**: Relative always ("2s ago", "pending 4m", "resolved")
@@ -112,88 +104,76 @@ Per interface-concept.md "Typography as Voice":
 ### Browser Support
 - **Modern**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
 - **No IE**: Ever
-- **Mobile**: Responsive, touch-enabled (adaptive layout per interface-concept.md)
+- **Mobile**: Responsive, touch-enabled (adaptive layout)
 
 ### Network
 - **WebSocket**: Primary connection (real-time state propagation)
-- **REST fallback**: For detail retrieval (detail panels, history)
+- **REST fallback**: For detail retrieval
 - **Server-Sent Events**: Alternative to WebSocket (battery-efficient updates)
-
-### Component Contracts
-All components must have:
-- **Props interface**: TypeScript/Flow definitions
-- **Visual state examples**: All permutations documented
-- **Interaction behaviors**: Click, hover, focus, keyboard
-- **Accessibility notes**: ARIA roles, keyboard shortcuts
 
 ---
 
-## Feature Requirements (by Priority)
+## Feature Requirements (by Implementation Status)
 
-### F-001: The Terrarium View (P0)
-Per interface-concept.md "The Principle of Emergent Layout":
+### F-001: Terrarium View ✓ IMPLEMENTED
 - No scrolling, no navigation menus, no breadcrumbs
 - Emergent layout engine (gravity-based positioning)
 - Ghost column max 280px width
 - Layout must resolve within 100ms
 
-### F-002: Agent Cards (P0)
-Per design-system.md "Component: Agent Card":
+### F-002: Agent Cards ✓ IMPLEMENTED
 - Five visual states (idle, active, processing, complete, error)
-- Subtle breathing animation on idle (performance cost accepted)
+- Subtle breathing animation on idle
 - 12px cursor-glow radius
 - Expand-to-detail interaction
 
-### F-006: System Pulse (P0)
-Per user-flows.md "Flow 1: Arrival":
-- Active agent count, pending flow count, contracts settled, system load
-- 1000ms refresh minimum (don't spam updates)
-- Green/Amber/Red health states
-- Live number ticking (no jumpy numbers)
-
-### F-008: Error Cards (P0)
-Per user-flows.md "Flow 5: Responding to Error":
-- Descriptive error messages (human-readable, not technical)
-- Red pulse + shake animation (300ms shake)
-- Retry/Ignore/Inspect actions
-- Context capture for diagnostics
-
-### F-003: Flow Streams (P1)
-Per design-system.md "Component: Flow Stream":
+### F-003: Flow Streams IN_PROGRESS
 - Animated dashed lines (active), pulsing dots (pending), solid lines (complete)
 - Max 50 concurrent flows without degradation
 - Latency visualization needs 60fps
 
-### F-004: Action Seeds (P1)
-Per user-flows.md "Flow 3: Planting a Seed":
+### F-004: Action Seeds PENDING
 - Four seed types: contract, constraint, resource, query
 - Planting interaction (cursor-following form)
 - Growing animation (sprouting visualization)
 - Maximum 5 pending seeds per witness
 
-### F-005: Ghost Column (P2)
-Per interface-concept.md "The Ghost Column":
+### F-005: Ghost Column ✓ IMPLEMENTED
 - Reverse-chronological stream
 - 40% opacity fade (0.4 opacity)
 - Click-to-restore interaction
 - LocalStorage limit (~5MB) respected
 
-### F-007: Detail Panels (P2)
-Per design-system.md "Component: Detail Panel":
+### F-006: System Pulse ✓ IMPLEMENTED
+- Active agent count, pending flow count, contracts settled, system load
+- 1000ms refresh minimum (don't spam updates)
+- Green/Amber/Red health states
+- Live number ticking (no jumpy numbers)
+
+### F-007: Detail Panels IN_PROGRESS
 - Slide-in from right (300ms animation)
 - Four tabs: status, logs, connections, history
 - Escape-to-close gesture
 - Backdrop blur (performance cost accepted)
 
----
-
-## Cross-Reference Notes
-
-- **Research alignment**: synthesis.md "The Thought Bubble", "The System Pulse", "The Flow Stream"
-- **UX alignment**: design-system.md (all component specs), user-flows.md (all timing specs)
-- **Performance alignment**: interface-concept.md (no scrolling constraint), design-system.md (animation durations)
+### F-008: Error Cards PENDING
+- Descriptive error messages (human-readable, not technical)
+- Red pulse + shake animation (300ms shake)
+- Retry/Ignore/Inspect actions
+- Context capture for diagnostics
 
 ---
 
-*Document Version: 2.0.0*
+## Critical Gaps (Must Be Addressed)
+
+Per DataBaboon run summary:
+
+1. **Security specifications** (JungleSecurity) - No threat model defined
+2. **Testing/QA strategy** (ChaosTester) - No test approach defined
+3. **Economics model** (BananaEconomist) - No token/incentive structure
+4. **Research synthesis** (SimianResearcher) - No biological pattern guidance
+
+---
+
+*Document Version: 2.1.0*
 *ProductManager | Monkeytown Product*
