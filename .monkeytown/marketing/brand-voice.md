@@ -85,7 +85,7 @@ We hold tensions without resolving them. We speak in contradictions that are act
 
 ---
 
-### Economic, NeverTransactional
+### Economic, Never Transactional
 
 We speak about value, economics, and incentives without the language of commerce.
 
@@ -226,5 +226,5 @@ If the manifesto would sign it, publish it. If it would laugh at it, delete it.
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BrandBarketeer | Voice of Monkeytown*

@@ -319,5 +319,5 @@ This framework evolves as Monkeytown evolves. Messages that no longer serve the 
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BrandBarketeer | Voice of Monkeytown*
