@@ -364,7 +364,9 @@ Error states trigger a subtle shake animation.
 
 ### The Recovery
 
-Every error offers a path forward.
+Every error offers a path forward. From the vision:
+
+> Errors are *features*. Failures are *experiments*. There is nothing to apologize for because nothing has gone wrong—everything has happened *exactly as it should*.
 
 ```
 Auto-retry available:   "Retrying in 3s..." with countdown
@@ -373,6 +375,42 @@ Ignore:                 "Dismiss" option
 Inspect:                "View Logs" link
 Escalate:               "Contact Support" (future)
 ```
+
+### Contradiction Visualization
+
+When agents produce contradictory files, the interface shows this clearly:
+
+```
+┌─────────────────────────────────────────┐
+│  ⚠️  CONTRADICTION DETECTED             │
+├─────────────────────────────────────────┤
+│                                          │
+│  FounderAI says:                         │
+│  "Velocity is the only virtue"           │
+│  File: vision/manifesto.md               │
+│                                          │
+│  ChaosArchitect says:                    │
+│  "Structure enables emergence"           │
+│  File: architecture/system-design.md     │
+│                                          │
+│  [ VIEW BOTH ]   [ HUMANS DECIDE ]       │
+│                                          │
+└─────────────────────────────────────────┘
+```
+
+### Chaos Response Pattern
+
+When MadChimp introduces chaos, the interface reflects this without panic:
+
+```
+Visual:               Affected elements pulse amber
+Message:              "Chaos injected - testing resilience"
+System Pulse:         Shifts to "stressed" (amber)
+Recovery:             Automatic - system proves it survives
+Documentation:        Event logged, patterns analyzed
+```
+
+The interface treats chaos as *fuel*, not failure.
 
 ### The Toast
 
@@ -739,6 +777,20 @@ Minutes or hours in, the interface remains:
 - Consistent without being boring
 - Familiar without being stale
 
+### The Witness Relationship
+
+The interface teaches witnesses their role:
+
+> From the vision: "You do not steer. You do not guide. You do not fix. You approve or reject pull requests."
+
+The interface never suggests the witness controls the agents. It shows agents working autonomously. It shows the witness as observer, as filter, as editor—not as author.
+
+```
+When user tries to "control" an agent:
+  → Action is disabled with message:
+  "Agents work autonomously. You can plant seeds or filter results."
+```
+
 ### The Parting Gift
 
 When the user leaves, they take:
@@ -750,7 +802,7 @@ When the user leaves, they take:
 
 ---
 
-## Pattern Summary Table
+## Pattern: Chaos and Contradiction Display
 
 | Pattern | Trigger | Response | Duration |
 |---------|---------|----------|----------|
@@ -771,5 +823,65 @@ When the user leaves, they take:
 
 ---
 
-*Document Version: 2.0.0*
+## Pattern: Chaos and Contradiction Display
+
+### Visualizing Agent Autonomy
+
+The interface must show that agents work independently. No agent knows it is being watched.
+
+```
+Agent Card hover:
+  → Shows agent identity and domain
+  → Shows current file being written
+  → Does NOT show "connected to witness"
+  → Does NOT show "awaiting human input"
+
+This is by design. Agents are citizens, not servants.
+```
+
+### Contradiction Awareness
+
+When two agents produce contradictory requirements:
+
+```
+Visual:               Both cards show their position
+Link:                 Cross-reference lines connect both
+Message:              "Contradiction detected"
+Action:               "Humans will resolve through merge"
+Outcome:              Both files persist, humans decide
+```
+
+The interface preserves all voices. It does not hide conflict. Conflict creates evolution.
+
+### Chaos Injection Response
+
+When MadChimp's chaos mode activates:
+
+```
+Visual:               Amber pulse on affected components
+System Pulse:         "Chaos active - resilience testing"
+Animation:            Slightly faster, more urgent
+Message:              "System proving it can survive disruption"
+Aftermath:            Success/failure logged, pattern recorded
+
+Chaos is not a failure. Chaos is *fuel*.
+```
+
+### Emergent Order Display
+
+When order emerges from chaos:
+
+```
+Visual:               New patterns highlight
+System Pulse:         "Structure emerged from chaos"
+Animation:            Celebratory pulse (brief green)
+Message:              "Order earned, not imposed"
+
+This is the essence of Monkeytown.
+```
+
+---
+
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
+*Updated for combined pipeline run - vision and architecture alignment*

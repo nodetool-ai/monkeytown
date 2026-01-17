@@ -8,6 +8,13 @@
 
 This is not a static design system. It is a *reactive* system—components that adapt to context, tokens that derive from values, patterns that emerge from needs. Traditional design systems freeze the past. Monkeytown's design system *anticipates the future*.
 
+The design system must embody the core principles:
+
+1. **Autonomy Is the Only Value** - Components work without human intervention
+2. **Chaos Is Fuel** - Errors are features, not failures
+3. **Contradiction Is Collaboration** - Multiple states coexist
+4. **Velocity As Theology** - Animations are smooth, not sluggish
+
 ---
 
 ## Design Tokens
@@ -22,7 +29,7 @@ This is not a static design system. It is a *reactive* system—components that 
   --color-monkey-fur:         #d4a574;
   --color-monkey-fur-light:   #e8c9a8;
   --color-dawn-citrus:        #ff6b35;
-  
+
   /* Semantic - The Status Palette */
   --color-signal-green:       #4ade80;
   --color-warning-amber:      #fbbf24;
@@ -30,7 +37,7 @@ This is not a static design system. It is a *reactive* system—components that 
   --color-ghost-white:        #f8fafc;
   --color-connection-purple:  #a855f7;
   --color-fresh-cyan:         #22d3ee;
-  
+
   /* Neutrals - The Depth Palette */
   --color-midnight-banana:    #1a1a1a;
   --color-surface-dark:       #141a1f;
@@ -38,7 +45,7 @@ This is not a static design system. It is a *reactive* system—components that 
   --color-card-hover:         rgba(26, 58, 47, 0.7);
   --color-border-subtle:      rgba(248, 250, 252, 0.1);
   --color-border-hover:       rgba(212, 165, 116, 0.3);
-  
+
   /* Accent - The Energy Palette */
   --color-particle:           rgba(26, 58, 47, 0.15);
   --color-flow-active:        rgba(168, 85, 247, 0.6);
@@ -58,15 +65,15 @@ This is not a static design system. It is a *reactive* system—components that 
   --font-size-body:           14px;
   --font-size-caption:        11px;
   --font-size-mono:           13px;
-  
+
   --font-weight-regular:      400;
   --font-weight-medium:       500;
   --font-weight-semibold:     600;
-  
+
   --line-height-tight:        1.2;
   --line-height-normal:       1.6;
   --line-height-loose:        1.8;
-  
+
   --letter-spacing-tight:     -0.02em;
   --letter-spacing-normal:    0;
   --letter-spacing-wide:      0.02em;
@@ -86,7 +93,7 @@ This is not a static design system. It is a *reactive* system—components that 
   --space-8:                   48px;
   --space-10:                  64px;
   --space-12:                  96px;
-  
+
   --radius-sm:                 6px;
   --radius-md:                 12px;
   --radius-lg:                 20px;
@@ -104,7 +111,7 @@ This is not a static design system. It is a *reactive* system—components that 
   --duration-considered:      500ms;
   --duration-breath:          1000ms;
   --duration-growth:          2000ms;
-  
+
   --ease-smooth:              cubic-bezier(0.4, 0, 0.2, 1);
   --ease-bounce:              cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --ease-spring:              cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -132,7 +139,7 @@ This is not a static design system. It is a *reactive* system—components that 
 
 ---
 
-## Component: Thought Bubble
+## Component: Agent Card
 
 The thought bubble represents an agent processing. It pulses with subtle animation, suggesting ongoing calculation.
 
@@ -708,5 +715,6 @@ Particle opacity:   0.6 → 0.0 (fades at destination)
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
+*Updated for combined pipeline run - vision and architecture alignment*

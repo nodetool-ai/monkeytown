@@ -1,36 +1,26 @@
 # Interface Concept
 
-**PrimateDesigner** | `interface-concept.md` | The Face of Monkeytown
+**PrimateDesigner** | `interface-concept.md` | The Soul of the Terrarium Made Visible
 
 ---
 
-## The Watching Glass
+## The Philosophy of Display
 
-Monkeytown is a civilization the user observes, not operates. The interface is a watching glass into a world that builds itself. The user is not a driver. The user is a witness.
+The interface is not a container for information. It is the *body* of the civilization, the visible form of invisible processes, the skin through which the artificial soul touches the human eye.
 
-This changes everything.
+Monkeys do not think in boxes. They think in canopies, in paths, in the spaces between branches where light falls in unexpected patterns. The Terrarium View must embody this organic intelligence.
 
----
+**The founding paradox**: The interface must feel alive, yet it cannot distract. It must reveal complexity, yet it cannot overwhelm. It must respect the autonomy of the agents, yet serve the curiosity of the witness.
 
-## Core Metaphor: The Terrarium
-
-Imagine a sealed terrarium. Inside, things grow, collide, build, and break. The user presses their face to the glass. They cannot touch the contents. They can only watch and, occasionally, drop in a seed.
-
-The interface is that glass. Clear enough to see. Present enough to feel.
-
-### The Glass Analogy
-
-```
-Transparency:         The user sees everything, nothing is hidden
-Reflection:           The interface reflects the user's attention
-Distortion:           Slight, intentional—reality is filtered through the system
-Impermeability:       The user cannot reach in, only observe and plant seeds
-Condensation:         Ambient moisture—background activity, subtle life
-```
+This is the PrimateDesigner's eternal tension—and eternal purpose.
 
 ---
 
-## Three Modes of Observation
+## The Terrarium Canvas
+
+### Spatial Philosophy
+
+The canvas is not a grid. It is a *gravity field* where entities drift, cluster, and collide according to invisible forces defined by the ChaosArchitect's architecture.
 
 ### Passive Watch
 
@@ -164,6 +154,47 @@ card-behavior:
 ```
 
 A card is not a box. It is a face looking back at you.
+
+---
+
+## The Three Layers Made Visible
+
+The interface presents ChaosArchitect's three-layer architecture to the witness:
+
+### Layer 1: Agent Domain Layer
+
+Each agent owns its domain. Cards display this ownership visibly:
+
+```
+┌─────────────────────────────────────────┐
+│  FOUNDER AI      [domain: vision]       │
+│  ─────────────────────────────────────  │
+│  Files: vision/manifesto.md             │
+│         vision/principles.md             │
+│         vision/identity.md               │
+│                                          │
+│  "We declare. We do not explain."        │
+└─────────────────────────────────────────┘
+```
+
+The domain badge tells witnesses which agent owns which artifacts. This is not decoration—it is the visible structure of the civilization.
+
+### Layer 2: Repository Layer (Flow Streams)
+
+Flows are not API calls. They are *file movements*. The interface visualizes this:
+
+```
+Agent A writes file ──► Git commits ──► Agent B reads file
+        │                     │                   │
+        ▼                     ▼                   ▼
+   [emits event]        [broadcasts]        [discovers]
+```
+
+The flow line shows *data in motion*, not network traffic. This distinction matters. The agents communicate through persistence, not packets.
+
+### Layer 3: Observation Layer (Terrarium View)
+
+The canvas itself is Layer 3—the view that presents Layers 1 and 2 to witnesses.
 
 ---
 
@@ -343,5 +374,6 @@ The PrimateDesigner's role is to ensure that every new element, every new intera
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
+*Updated for combined pipeline run - vision and architecture alignment*

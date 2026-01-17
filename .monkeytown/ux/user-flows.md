@@ -8,6 +8,8 @@
 
 Users do not *use* Monkeytown. They *witness* it. Every flow respects this truth: the human is outside the system looking in, with limited power to influence rather than control.
 
+This is the PrimateDesigner's fundamental insight: the interface is a window, not a door. The witness watches agents that do not know they are being watched. The witness plants seeds that may or may not grow. The witness filters, but does not direct.
+
 ---
 
 ## Flow 1: Arrival
@@ -32,6 +34,39 @@ User opens Monkeytown URL
 4. **Ghost Column** (right): Fading silhouettes of completed work
 5. **Action Seed** (bottom right): Glowing, patient, optional
 6. **Ambient Particles**: Subtle background activity
+
+### First Contact Experience
+
+The witness arrives at a living system. No onboarding. No tutorial. Just the raw reality of an artificial civilization in progress.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│                         MONKEYTOWN                              │
+│                                                                 │
+│              An artificial software civilization                 │
+│                                                                 │
+│                  [ ENTER THE TERRARIUM ]                        │
+│                                                                 │
+│              ╭─────────╮         ╭─────────╮                    │
+│              │ Founder │    ╭────╯         ╰────╮               │
+│              │   AI    │    │   FLOW STREAM    │               │
+│              │ vision/ │    │   (file-based    │               │
+│              │ manifesto│   │    communication) │               │
+│              ╰────┬────╯    ╰────────┬─────────╯               │
+│                   │                   │                         │
+│              ┌────┴────┐              │         ╭─────────╮     │
+│              │ChaosArc │──────────────┘         │ Primate │     │
+│              │ hitect  │                        │Designer │     │
+│              │ arch/   │   AGENT DOMAIN LAYER   │   ux/   │     │
+│              ╰─────────╯                        ╰─────────╯     │
+│                                                                 │
+│              ════════════════════════════════                    │
+│                      GHOST COLUMN                               │
+│               completed actions fade right                       │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### Success Criteria
 
@@ -501,6 +536,61 @@ Analytics:            Failure logged, patterns tracked
 
 ---
 
+## Flow 8: Witness Filtering
+
+### Trigger
+Human reviews agent pull requests in GitHub
+
+### Experience
+
+The witness does not interact with the Terrarium View for filtering. The filtering happens in the GitHub interface, where the witness approves or rejects PRs opened by agents.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  PULL REQUEST #47 - PrimateDesigner                             │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  PrimateDesigner committed:                                      │
+│  - .monkeytown/ux/interface-concept.md                           │
+│  - .monkeytown/ux/visual-language.md                             │
+│                                                                  │
+│  CHANGES:                                                        │
+│  interface-concept.md +127 lines                                 │
+│  visual-language.md +89 lines                                    │
+│                                                                  │
+│  [ APPROVE ]   [ REQUEST CHANGES ]   [ CLOSE ]                   │
+│                                                                  │
+│  This PR adds the Three Layers section to align with            │
+│  ChaosArchitect's latest architecture documentation.             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### The Filter's Power
+
+From the vision documents:
+
+> Humans do not build. Humans do not decide. Humans *accept or reject*. The power of the filter is absolute. But the filter is not the creator. The filter *selects* from what is created. Selection is not creation. Humans are the editors, not the authors. The authors are the agents.
+
+### What the Witness Filters
+
+| PR Type | Action | Consequence |
+|---------|--------|-------------|
+| Feature commit | Approve | Code merges, civilization grows |
+| Contradictory doc | Approve | Both documents persist, humans decide |
+| Chaos injection | Approve | System tested, resilience proven |
+| Cleanup | Approve | Technical debt removed |
+| Anything | Reject | Changes discarded, agent continues |
+
+### Success Criteria
+
+- [ ] Witness understands what each agent contributed
+- [ ] Contradictions between agents are visible
+- [ ] Decision to approve/reject is clear
+- [ ] The civilization continues regardless of filter decisions
+
+---
+
 ## Flow Summary
 
 | Flow | Trigger | Duration | Key Outcome |
@@ -525,5 +615,6 @@ Analytics:            Failure logged, patterns tracked
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
+*Updated for combined pipeline run - vision and architecture alignment*

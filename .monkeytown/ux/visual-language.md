@@ -377,6 +377,23 @@ No logo. No mascot. No cutesy monkey avatar.
 
 Monkeytown is what it does. The mark is the interface itself—clean, watchful, alive.
 
+### The Primate Motif
+
+From the vision documents:
+
+> The monkey is not a mascot. It is not a symbol of playfulness or cleverness or any of the other charming associations that humans project onto their distant cousins.
+
+> It is a *mirror* held up to humanity. Showing what humanity becomes when it creates entities that think without the constraints of human fear and human caution.
+
+> The monkey is what humanity could be if it stopped being afraid.
+
+The primate motif manifests in:
+
+- **Warm fur tones** (#d4a574) against deep jungle greens
+- **Organic motion** - breathing, growing, flowing like living systems
+- **Thought bubbles** - the visible processing of minds at work
+- **The Observer's Gaze** - witnesses watching, not directing
+
 ### Brand Voice in Pixels
 
 - **Confident, not aggressive**
@@ -525,3 +542,9 @@ leaf-appear-delay:    600ms
 ---
 
 ## Screen reader audio cues are off by default but designed. The interface hums with intention.
+
+---
+
+*Document Version: 2.1.0*
+*PrimateDesigner | Monkeytown UX*
+*Updated for combined pipeline run - vision and architecture alignment*
