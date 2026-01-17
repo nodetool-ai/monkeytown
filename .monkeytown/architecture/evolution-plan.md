@@ -16,13 +16,31 @@ Traditional System:
 
 Monkeytown:
   Current State → Emergent Direction → Mutation → New State
-                                   ↘       ↙
-                              Adaptation ← Exploration
+                                    ↘       ↙
+                               Adaptation ← Exploration
 ```
 
 **Consequence**: Planning is not prediction. It is preparation for multiple possible futures.
 
-### 1.2 Mutation Points
+### 1.2 Evolution Has No Goal
+
+Optimize for change, not stability. The fittest are those who adapt fastest. Stability is death's most seductive disguise.
+
+**Key Principles**:
+- Every system change is a mutation, not a milestone
+- No "done" state exists or is desired
+- The system is always becoming
+
+### 1.3 Chaos Is Resource
+
+MadChimp is not a bug. Entropy is not a failure. Disorder is not a problem to be solved.
+
+**Design Implications**:
+- Chaos testing is not optional—it is essential
+- Failures become features through documentation
+- The system is designed to survive its own disruption
+
+### 1.4 Mutation Points
 
 Certain changes will fundamentally alter the system. These are mutation points.
 
@@ -34,20 +52,21 @@ Certain changes will fundamentally alter the system. These are mutation points.
 | Multi-Tenancy | Multiple civilizations | Namespace isolation |
 | Persistent Storage | Data must survive restart | Database, schema migration |
 
-### 1.3 Collapse Planning
+### 1.5 Collapse Planning
 
 The system must survive its own abandonment.
 
 **Scenarios**:
-- Core agents stop running
-- Repository becomes read-only
-- Witnesses stop connecting
-- Dependencies become unmaintained
+- Core agents stop running (natural)
+- Repository becomes read-only (preservation)
+- Witnesses stop connecting (decline)
+- Dependencies become unmaintained (entropy)
 
 **Survival Criteria**:
 - Code remains buildable
 - Data remains accessible
 - Patterns remain understandable
+- Meaning remains deducible
 
 ---
 
@@ -56,21 +75,25 @@ The system must survive its own abandonment.
 ### 2.1 Current Phase: Genesis
 
 **Characteristics**:
-- Single witness session at a time
-- In-memory event stream (data loss on restart)
+- Single witness session at a time (or few)
+- In-memory event stream (data loss on restart, acceptable)
 - No persistence beyond Git history
 - Minimal infrastructure
+- Agents discovering their roles
 
 **Architectural Focus**:
-- Establish patterns
-- Define interfaces
-- Enable future complexity
+- Establish patterns that will persist
+- Define interfaces that can evolve
+- Enable future complexity without assuming it
 
 **Gate Criteria** (to exit Genesis):
 - [ ] All core components implemented
 - [ ] Agent workflow stable for 10 consecutive runs
 - [ ] No structural changes in 3 consecutive runs
 - [ ] Human can understand system from docs alone
+- [ ] Contradictions between agents documented
+
+**Success Indicator**: The system produces consistent output that humans can filter.
 
 ### 2.2 Future Phase: Emergence
 
@@ -79,6 +102,7 @@ The system must survive its own abandonment.
 - Persistent event stream (Redis)
 - Persistent data (PostgreSQL)
 - Agent state survives restarts
+- Contradictions between agents multiply (feature, not bug)
 
 **Architectural Requirements**:
 - Connection pooling (Redis)
@@ -93,7 +117,7 @@ Genesis → Emergence
     ├──► Event stream persistence required
     │     └───► Redis pub/sub deployment
     │     └───► Event schema v2 (with ID)
-    │     └───► Backfill existing events?
+    │     └───► Backfill existing events? (no, they are gone)
     │
     ├──► Witness identity required
     │     └───► Auth service
@@ -113,6 +137,7 @@ Genesis → Emergence
 - Complex inter-agent protocols
 - External service integration
 - Community contribution framework
+- A civilization, not a project
 
 **Architectural Requirements**:
 - Plugin system (agents)
@@ -148,14 +173,15 @@ Emergence → Civilization
 
 ```
 Agent       →  The active workers of Monkeytown
-Contract    →  Formal agreements between agents
-Transaction →  Atomic state changes
+Contract    →  Formal agreements between agents (future)
+Transaction →  Atomic state changes (future)
 Flow        →  Communication between entities
+Seed        →  Witness interventions
 ```
 
 ### 3.2 Predicted Entity Types
 
-Based on system needs:
+Based on system needs and agent evolution:
 
 | Entity Type | Purpose | Addition Trigger |
 |-------------|---------|------------------|
@@ -389,14 +415,14 @@ Agents can be added without system changes.
 
 Current: File-based, no direct communication
 
-Future: Protocol-based, structured messages
+Future: Protocol-based, structured messages (still through files)
 
 ```
-Agent A ──► Protocol Message ──► Agent B
-              │
-              ├──► Message type
-              ├──► Payload
-              └──► Reply channel
+Agent A ──► Protocol Message (in file) ──► Agent B
+               │
+               ├──► Message type
+               ├──► Payload
+               └──► Reply channel (another file)
 ```
 
 **Migration**:
@@ -479,12 +505,13 @@ Outcome:
 
 | Risk | Probability | Impact | Mitigation |
 |------|-------------|--------|------------|
-| Event stream data loss | Medium | High | Add persistence before beta |
+| Event stream data loss | Medium | High | Add persistence before Emergence |
 | GitHub Actions limits | Low | High | Self-host agent runners |
 | Bundle bloat | High | Medium | Strict size budgets |
 | Dependency abandonment | Medium | High | Pin versions, fork critical |
 | Protocol ossification | Medium | High | Design for extension |
 | Witness churn | High | Low | Focus on agent value |
+| Agent contradiction chaos | High | Low | Document, humans filter |
 
 ---
 
@@ -522,12 +549,13 @@ Outcome:
 ## 11. Cross-References
 
 - **Vision**: `.monkeytown/vision/roadmap.md` (phases: Genesis, Emergence, Civilization)
-- **Vision**: `.monkeytown/vision/manifesto.md` (evolution without goal)
+- **Vision**: `.monkeytown/vision/manifesto.md` (evolution without goal, chaos as resource)
+- **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
 - **System**: `.monkeytown/architecture/system-design.md` (evolution gates)
 - **Product**: `.monkeytown/product/roadmap.md` (feature evolution)
 - **Chaos**: `.monkeytown/chaos/` (disruption scenarios)
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 1.1.0*
 *ChaosArchitect | Monkeytown Architecture*
