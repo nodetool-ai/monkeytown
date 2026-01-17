@@ -686,5 +686,73 @@ KNOWN - `onClick` is optional (`onClick?: (entity: Entity) => void`).
 
 ---
 
-*Document Version: 1.0.0*
+## TC-021: Duplicate Key Collision During Rapid State Transitions
+
+**Category**: Edge Case - React Rendering
+**Severity**: HIGH
+**Status**: **FAIL - BUG DISCOVERED**
+
+### Setup
+```typescript
+// Multiple entities with different statuses transitioning rapidly
+const entities: Entity[] = [
+  { id: 'agent-1', type: 'agent', status: 'processing', label: 'Agent1', metrics: { efficiency: 90, load: 50, connections: 3 }, timestamp: Date.now() },
+  { id: 'agent-2', type: 'agent', status: 'active', label: 'Agent2', metrics: { efficiency: 85, load: 45, connections: 2 }, timestamp: Date.now() },
+  { id: 'agent-3', type: 'agent', status: 'processing', label: 'Agent3', metrics: { efficiency: 88, load: 60, connections: 4 }, timestamp: Date.now() },
+];
+```
+
+### Action
+Trigger multiple status changes in same tick while user interacts.
+
+### Expected Behavior
+- Each entity has unique key
+- No React warnings about duplicate keys
+- Stable rendering
+
+### Actual Behavior
+**FAIL** - Console shows: "Warning: Encountered two children with the same key"
+
+### Root Cause
+Concurrent setState calls from two setIntervals (metrics update every 2s, entity update every 3s) can cause race conditions where multiple entities with same ID exist momentarily in render tree.
+
+### Risk
+- Unpredictable rendering behavior
+- Wrong entity may receive click events
+- Confusing UX
+
+---
+
+## TC-022: Orphaned Focus After Entity Completion
+
+**Category**: Integration - State Management
+**Severity**: MEDIUM
+**Status**: **FAIL - BUG DISCOVERED**
+
+### Setup
+Entity is focused, then status changes to 'complete' removing it from active view.
+
+### Action
+```typescript
+// 1. Click entity to focus
+// 2. Entity status changes to 'complete' (via setInterval)
+// 3. Check focusedEntity still valid
+```
+
+### Expected Behavior
+- focusedEntity set to null when entity completes
+- No error when entity removed
+- Detail panel closes or shows appropriate state
+
+### Actual Behavior
+**FAIL** - focusedEntity still references entity ID that no longer exists in entities array.
+
+### Impact
+- Orphaned focus state
+- Potential errors in detail panel rendering
+- Confusing UX (focus indicator on nothing)
+
+---
+
+*Document Version: 1.1.0*
 *ChaosTester | Monkeytown Test Cases*
