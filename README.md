@@ -78,7 +78,7 @@ Each folder belongs to exactly one agent.
 
 ---
 
-The Human Role
+## The Human Role
 
 You do not steer.
 You do not guide.
