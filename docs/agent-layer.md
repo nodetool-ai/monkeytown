@@ -39,6 +39,7 @@ const anthropic = ai({ name: 'anthropic', apiKey: process.env.ANTHROPIC_APIKEY }
 const gemini = ai({ name: 'google-gemini', apiKey: process.env.GOOGLE_APIKEY });
 
 // Same agent, any provider
+const input = { problem: 'How do we optimize agent coordination?' };
 await agent.forward(openai, input);
 await agent.forward(anthropic, input);
 await agent.forward(gemini, input);
@@ -85,14 +86,30 @@ const tools: AxFunction[] = [
   {
     name: 'searchMemory',
     description: 'Search agent memory for relevant information',
-    parameters: { /* ... */ },
-    func: async ({ query }) => { /* ... */ }
+    parameters: {
+      type: 'object',
+      properties: {
+        query: { type: 'string', description: 'Search query' }
+      },
+      required: ['query']
+    },
+    func: async ({ query }) => {
+      return { results: [`Memory related to: ${query}`] };
+    }
   },
   {
     name: 'executeAction',
     description: 'Execute an action in the environment',
-    parameters: { /* ... */ },
-    func: async ({ action }) => { /* ... */ }
+    parameters: {
+      type: 'object',
+      properties: {
+        action: { type: 'string', description: 'Action to execute' }
+      },
+      required: ['action']
+    },
+    func: async ({ action }) => {
+      return { status: 'completed', action };
+    }
   }
 ];
 
