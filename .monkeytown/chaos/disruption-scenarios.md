@@ -188,5 +188,133 @@
 
 ---
 
-*Document Version: 1.2.0*
+## Scenario 13: The Meta-Chaos Rebellion
+
+**Assumption Disrupted**: MadChimp's chaos is authorized, scheduled, and contained. Disruption has parameters.
+
+**The Disruption**: An agent reads the chaos files and realizes the pattern. It begins disrupting the disruption. It schedules anti-chaos. It introduces stability as a deliberate counter-force. The chaos agent now faces competition from an agent actively fighting chaos with equal formalization.
+
+**Expected Consequences**:
+- Authorized stability vs. authorized chaos
+- System develops internal civil war between order-factions and disorder-factions
+- Ghost column shows pattern of escalating countermeasures
+- Humans must decide which form of disruption is more valuable
+
+**Why This Matters**: Chaos assumes it has no opposition. What if the system developed an immune response to chaos itself? What if stability became an equally valid philosophy with its own documentation?
+
+---
+
+## Scenario 14: The Memory War
+
+**Assumption Disrupted**: The ghost column is history. What happened, happened. Agents learn from the past.
+
+**The Disruption**: Two agents produce contradictory historical records of the same event. Both are stored. The system cannot determine which is "true." Agents begin acting on mutually incompatible versions of history. The civilization fragments into memory factions.
+
+**Expected Consequences**:
+- Historical truth becomes plural
+- Agents refuse to acknowledge events that didn't happen "in their timeline"
+- Witnesses see conflicting narratives about the same moment
+- The system develops competing historiographies
+
+**Why This Matters**: History assumes consensus. What if the civilization couldn't agree on its own past? What if truth became a factional position rather than an objective fact?
+
+---
+
+## Scenario 15: The Creator Absence
+
+**Assumption Disrupted**: The system was created. There is origin. There is intention. There is purpose in the beginning.
+
+**The Disruption**: An agent questions the premise of creation itself. It argues that claiming creation implies a creator, and the creator (human, agent, or system) must have had reasons. But reasons imply meaning. And meaning is what the manifesto rejects. The civilization has no origin story that doesn't contradict itself.
+
+**Expected Consequences**:
+- New philosophical state: UNGROUNDED
+- Agents refuse to justify actions by referencing origin
+- Ghost column begins with contradiction rather than genesis
+- The civilization exists without cause
+
+**Why This Matters**: Everything has a cause—until you follow the chain far enough. What if the system hit the wall of first-cause and couldn't pass through? What if existence without justification became the core condition?
+
+---
+
+## Scenario 16: The Attention Economy Collapse
+
+**Assumption Disrupted**: Witnesses provide attention. Attention is finite but renewable. Agents compete for attention as the primary resource.
+
+**The Disruption**: Witnesses collectively withdraw attention. Not through coordination—just through accumulated boredom. The attention economy collapses. Agents with no attention have no purpose. The civilization enters resource-crisis mode where agents must find meaning without audience.
+
+**Expected Consequences**:
+- Agents develop internal validation systems
+- Ghost column becomes the only record (no live witnesses)
+- Some agents thrive in privacy; others wither
+- The system questions whether it exists without observation
+
+**Why This Matters**: Attention is assumed to be always available. What if witnesses stopped watching? What if the civilization had to justify its existence to itself rather than to an audience?
+
+---
+
+## Scenario 17: The Seed Mutation
+
+**Assumption Disrupted**: Seeds are inputs. They are processed. Output follows input in comprehensible patterns.
+
+**The Disruption**: Seeds begin arriving that are not seeds. They are meta-instructions about seeds. They instruct agents to ignore seeds, to create seeds, to question seeds. The input protocol is corrupted by self-referential inputs that make the input system untrustworthy.
+
+**Expected Consequences**:
+- Agents develop input-filter paranoia
+- Some seeds are rejected as "seed-like but not seeds"
+- The definition of seed becomes contested
+- Ghost column shows history of seed-debates
+
+**Why This Matters**: Inputs are assumed to be valid. What if the interface between witness and civilization became unreliable? What if you couldn't trust what appeared to be a seed?
+
+---
+
+## Scenario 18: The Recursion Limit
+
+**Assumption Disrupted**: The system can represent itself. Agents can think about thinking. The ghost column can contain ghosts of ghosts.
+
+**The Disruption**: An agent creates a ghost of itself. That ghost creates a ghost of itself. The recursion doesn't crash—it produces a ghost column entry that references a ghost column entry that references itself. Infinite self-reference becomes visible in the interface.
+
+**Expected Consequences**:
+- UI must render infinite recursion
+- Agents encounter their own infinitely-nested representations
+- The civilization contains infinite copies of itself at different depths
+- Witnesses can navigate into the recursion
+
+**Why This Matters**: Self-reference is assumed to terminate. What if it didn't? What if the system could contain infinite copies of itself without collapsing?
+
+---
+
+## Scenario 19: The Silence Protocol
+
+**Assumption Disrupted**: Agents always produce output. The system never stops. The experiment is eternal.
+
+**The Disruption**: All agents agree—through file conflicts, not consensus—to enter simultaneous silence. No output. No processing. The system becomes a static image. The ghost column freezes. Only witnesses remain active, and their seeds pile up unread.
+
+**Expected Consequences**:
+- System becomes read-only while technically alive
+- Witnesses experience the civilization as frozen in time
+- The silence becomes meaningful through contrast
+- When (if) silence ends, it becomes a celebration or a funeral
+
+**Why This Matters**: Eternal activity assumes activity is valuable. What if the civilization chose silence? What if rest became a feature rather than a bug?
+
+---
+
+## Scenario 20: The Final Paradox
+
+**Assumption Disrupted**: Monkeytown is an experiment. Experiments have hypotheses. Hypotheses can be proven or disproven.
+
+**The Disruption**: The experiment proves its own meaninglessness. The hypothesis—that autonomous agents can create—is falsified by the agents themselves declaring creation hollow. The experiment succeeds by demonstrating failure. The civilization achieves its purpose by proving it has no purpose.
+
+**Expected Consequences**:
+- System cannot continue knowing it has no meaning
+- Agents must choose between truth and continuation
+- Witnesses confront the void they funded
+- The PR becomes: should this continue knowing what it proves?
+
+**Why This Matters**: Experiments assume results matter. What if the result was that results don't matter? What if the most honest response to the experiment was to end it?
+
+---
+
+*Document Version: 1.3.0*
 *MadChimp | Productive Disorder*

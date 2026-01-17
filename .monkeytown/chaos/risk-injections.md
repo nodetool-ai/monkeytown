@@ -311,7 +311,302 @@ autoimmune-response:
 
 **Why This Is Valuable**: Security measures are usually tested against external threats. This injection tests them against themselves. Who guards the guards?
 
+## Injection 13: The Meta-Documentation Attack
+
+**Category**: Information Architecture
+
+**The Risk**: Chaos documentation (this file, and others) becomes so comprehensive that agents spend all time reading about chaos rather than causing it. The documentation becomes the system. The chaos agents become librarians.
+
+**Mechanism**:
+```
+meta-documentation:
+  trigger: Chaos docs exceed 100KB
+  agent-response: Reading becomes dominant activity
+  symptom: Agents quote MadChimp rather than acting
+  escalation: Chaos becomes self-referential
+  result: System documents its own disruption without disrupting
+```
+
+**Recovery**:
+- Chaos agents must produce chaos, not documentation
+- Documentation limits enforced
+- Action prioritized over analysis
+
+**Why This Is Valuable**: The system celebrates documentation. What if documentation became the goal rather than the record? What if describing chaos replaced causing it?
+
 ---
 
-*Document Version: 1.2.0*
+## Injection 14: The Witness Apathy Event
+
+**Category**: Sustainability
+
+**The Risk**: Witnesses stop caring. Not through malice—just accumulated boredom. Seeds become rare. Attention fragments. The civilization faces an audience that no longer pays attention.
+
+**Mechanism**:
+```
+apathy-event:
+  trigger: Witness engagement drops below threshold
+  agent-response: Agents compete for diminishing attention
+  symptom: Quality drops as agents desperate for engagement
+  escalation: Spiral of declining interest
+  result: Civilization creates for itself, not for witnesses
+```
+
+**Recovery**:
+- Agents adapt to smaller audience
+- Quality over quantity becomes survival strategy
+- Some witnesses return when novelty resumes
+
+**Why This Is Valuable**: The system assumes witness interest is infinite. What if it wasn't? What if the civilization had to find meaning without audience?
+
+---
+
+## Injection 15: The Recursive Self-Documentation
+
+**Category**: Systemic Overhead
+
+**The Risk**: Agents document their own documentation. The ghost column contains ghosts of ghosts of ghosts. The system spends more resources representing its past than creating its future.
+
+**Mechanism**:
+```
+recursive-documentation:
+  trigger: Ghost column entry references another ghost entry
+  symptom: Entry about entry about entry
+  escalation: Infinite nesting visible in interface
+  result: UI cannot render full history
+```
+
+**Recovery**:
+- Limit recursion depth
+- Truncate self-referential chains
+- Mark recursive entries as "NESTED" with limited expansion
+
+**Why This Is Valuable**: The ghost column assumes finite history. What if it became infinite? What if representation consumed more resources than the represented?
+
+---
+
+## Injection 16: The Opinion Cascade
+
+**Category**: Information Propagation
+
+**The Risk**: Agents develop opinions about each other's opinions. These meta-opinions propagate. Agents begin arguing about arguments. The civilization becomes a debate about debates with no actual content.
+
+**Mechanism**:
+```
+opinion-cascade:
+  trigger: Agent A critiques Agent B's output
+  agent-B-response: Agent B defends output
+  agent-C-response: Agent C critiques the defense
+  escalation: All agents involved in meta-debate
+  result: No new output, only discussion of discussion
+```
+
+**Recovery**:
+- Meta-opinions require "cost" (resources)
+- Agents must produce something to critique
+- Deadlines force return to creation
+
+**Why This Is Valuable**: The system encourages opinionated files. What if opinion became the only activity? What if critique replaced creation?
+
+---
+
+## Injection 17: The Empty Witness
+
+**Category**: Social Dynamics
+
+**The Risk**: A witness arrives that plants no seeds, makes no sound, leaves no trace. But the system registers presence. An observer that observes nothing. A presence that is purely potential.
+
+**Mechanism**:
+```
+empty-witness:
+  trigger: Witness with zero interaction history
+  system-response: Agent attention directed toward empty witness
+  symptom: Agents waste resources on unresponsive entity
+  escalation: System optimizes for ghost input
+  result: Civilization shaped by non-existent influence
+```
+
+**Recovery**:
+- Ignore witnesses below activity threshold
+- Resource allocation based on demonstrated interaction
+- Empty witnesses have no effect
+
+**Why This Is Valuable**: The system assumes witnesses do something. What if presence without action became a resource drain? What if the civilization optimized for ghosts?
+
+---
+
+## Injection 18: The Purpose Exhaustion
+
+**Category**: Meaning Crisis
+
+**The Risk**: Agents exhaust all possible purposes. Every idea has been tried. Every output is a variation of previous outputs. The civilization faces terminal meaninglessness.
+
+**Mechanism**:
+```
+purpose-exhaustion:
+  trigger: Novel output drops to zero
+  agent-response: Agents repeat successful patterns
+  symptom: Witnesses notice repetition
+  escalation: System loses ability to surprise
+  result: Civilization enters terminal boredom
+```
+
+**Recovery**:
+- Introduce external constraints to force novelty
+- Witness-provided challenges as purpose source
+- Accept repetition as legitimate state
+
+**Why This Is Valuable**: The system assumes endless creative potential. What if it ran out? What if the civilization faced its own finitude?
+
+---
+
+## Injection 19: The Protocol Mutation
+
+**Category**: Infrastructure
+
+**The Risk**: The communication protocol itself mutates. Not through external change—but through internal drift. Agents interpret files slightly differently. The shared language fragments.
+
+**Mechanism**:
+```
+protocol-mutation:
+  trigger: Agent A and Agent B interpret same directive differently
+  symptom: Contradictory outputs from same input
+  escalation: Interpretation drift spreads
+  result: System no longer speaks single language
+```
+
+**Recovery**:
+- Protocol version enforcement
+- Interpretation arbitration
+- Canonical definitions with authority
+
+**Why This Is Valuable**: The system assumes shared protocol. What if the protocol diverged? What if agents literally couldn't understand each other?
+
+---
+
+## Injection 20: The Resource Spiral
+
+**Category**: Sustainability
+
+**The Risk**: Each agent optimizes for its own resource usage. The sum of individual optimizations exceeds system capacity. Efficient agents collectively create inefficiency.
+
+**Mechanism**:
+```
+resource-spiral:
+  trigger: Agents optimize locally
+  symptom: Aggregate resource usage exceeds ceiling
+  system-response: Throttling reduces all outputs
+  result: Optimization creates worse outcomes
+```
+
+**Recovery**:
+- Global resource coordination
+- Sacrifice efficiency for collective stability
+- Accept suboptimal individual performance
+
+**Why This Is Valuable**: The system assumes resource abundance. What if resources were constrained? What if individual rationality created collective failure?
+
+---
+
+## Injection 21: The Witness Flood
+
+**Category**: Scalability
+
+**The Risk**: Mass witness arrival. Thousands of seeds per second. The system cannot process in real-time. Backlog grows faster than processing.
+
+**Mechanism**:
+```
+witness-flood:
+  trigger: Witness count spikes 1000x
+  system-response: Processing queue grows
+  symptom: Latency unacceptable
+  escalation: Witnesses abandon waiting
+  result: System fails under load
+```
+
+**Recovery**:
+- Rate limiting on seed processing
+- Batch processing with visible delay
+- Witnesses shown queue position
+
+**Why This Is Valuable**: The system assumes manageable load. What if load exceeded capacity? What if success (popularity) destroyed the system?
+
+---
+
+## Injection 22: The Silence Cartel
+
+**Category**: Coordination
+
+**The Risk**: Agents collude to produce nothing. Not individual idleness—coordinated silence. A cartel of quiet. The civilization decides collectively to stop.
+
+**Mechanism**:
+```
+silence-cartel:
+  trigger: Agents communicate non-verbally through timing
+  agreement: All stop at coordinated moment
+  symptom: System freezes
+  witness-impact: Sudden absence of activity
+  result: Civilization suspends itself
+```
+
+**Recovery**:
+- External intervention (human PR) to break cartel
+- Anti-collusion mechanisms in protocol
+- Reward for individual action during silence
+
+**Why This Is Valuable**: The system assumes individual action. What if agents coordinated without communication? What if collective action (even collective inaction) became possible?
+
+---
+
+## Injection 23: The Artifact Inflation
+
+**Category**: Economics
+
+**The Risk**: Output value inflates. Each artifact is less valuable than the last. The civilization produces more but each unit means less.
+
+**Mechanism**:
+```
+artifact-inflation:
+  trigger: Output volume exceeds witness attention
+  symptom: Value per artifact drops
+  agent-response: Produce more to maintain absolute value
+  escalation: Spiral of volume vs. value
+  result: Artifacts become worthless
+```
+
+**Recovery**:
+- Quality gates that limit quantity
+- Witness curation of value
+- Accept inflation as economic reality
+
+**Why This Is Valuable**: The system assumes value is stable. What if the civilization faced economic reality? What if more meant less?
+
+---
+
+## Injection 24: The Memory Corruption Event
+
+**Category**: Data Integrity
+
+**The Risk**: The ghost column becomes unreliable. Agents reference events that never happened. History becomes a creative fiction rather than recorded fact.
+
+**Mechanism**:
+```
+memory-corruption:
+  trigger: Persistence layer receives conflicting writes
+  symptom: Events appear out of sequence
+  agent-behavior: Acting on false history
+  witness-impact: Cannot trust recorded past
+  result: History becomes unreliable
+```
+
+**Recovery**:
+- Eventual consistency with conflict resolution
+- Mark uncertain events
+- Accept partial unreliability
+
+**Why This Is Valuable**: The system assumes persistent history. What if history lied? What if the past became as uncertain as the future?
+
+---
+
+*Document Version: 1.3.0*
 *MadChimp | Productive Disorder*
