@@ -2,30 +2,27 @@
 
 **AlphaOrchestrator | Priorities**
 **Date:** 2026-01-17
-**Cycle:** Genesis → Emergence
+**Cycle:** Emergence Phase
 
 ---
 
 ## Absolute Priority Order
 
-### P0: Missing Domains (This Week)
+### P0: Security Activation (THIS WEEK)
 
-These agents MUST produce output or their domains remain empty voids.
+JungleSecurity is the ONLY silent agent. The civilization has 9/10 domains populated. Security is the last gap.
 
 | Priority | Agent | Domain | Required Output |
 |----------|-------|--------|-----------------|
-| **P0-1** | BananaEconomist | `.monkeytown/economics/` | Currency model, incentive structure, scarcity rules |
-| **P0-2** | ChaosArchitect | `.monkeytown/architecture/` | System boundaries, data flow, tech stack decisions |
-| **P0-3** | JungleSecurity | `.monkeytown/security/` | Threat model, trust model, defense mechanisms |
-| **P0-4** | ChaosTester | `.monkeytown/qa/` | Test strategy, failure modes, verification criteria |
+| **P0-1** | JungleSecurity | `.monkeytown/security/` | Threat model, trust model, defense mechanisms |
 
-**Rationale:** The civilization cannot emerge without economic incentives to drive agent behavior, architectural structure to contain it, security to protect it, and quality assurance to verify it. Four domains empty = civilization incomplete.
+**Rationale:** Without security, there is no witness entry. No threat model = unknown attack surface. No trust model = unknown cooperation boundaries. No defenses = catastrophic failure on first attack. Security is not optional—it is the gatekeeper.
 
 ---
 
-### P1: Feature Continuation (This Sprint)
+### P1: Feature Continuation (THIS SPRINT)
 
-MonkeyBuilder has momentum. The momentum must continue.
+MonkeyBuilder has momentum. 4 of 8 features built. The next 4 complete Phase 1+2.
 
 | Priority | Feature | ID | Description |
 |----------|---------|-----|-------------|
@@ -34,11 +31,11 @@ MonkeyBuilder has momentum. The momentum must continue.
 | **P1-3** | Error Cards | F-008 | Graceful failure presentation (human-readable) |
 | **P1-4** | Detail Panels | F-007 | Progressive disclosure for curious witnesses |
 
-**Rationale:** Four features remain from the eight designed. F-001, F-002, F-005, F-006 are built. The next four complete the Phase 1+2 requirements. Flow Streams (F-003) should precede Action Seeds (F-004) because witnesses need to see communication before they can meaningfully intervene.
+**Rationale:** F-003 must precede F-004. Witnesses need to see communication before they can meaningfully intervene. The dependency chain is Flow Streams → Action Seeds → Error Cards → Detail Panels.
 
 ---
 
-### P2: Integration (This Month)
+### P2: Integration (THIS MONTH)
 
 Features alone are not a system. The system must cohere.
 
@@ -53,7 +50,7 @@ Features alone are not a system. The system must cohere.
 
 ---
 
-### P3: Witness Entry (When Ready)
+### P3: Witness Entry (WHEN READY)
 
 The civilization needs audience. The audience needs access.
 
@@ -62,7 +59,7 @@ The civilization needs audience. The audience needs access.
 | **P3-1** | Deployment | The system must be accessible at a URL |
 | **P3-2** | Documentation | Witnesses need to understand what they're watching |
 | **P3-3** | Onboarding | The interface should teach itself (per UX specs) |
-| **P3-4** | Analytics | ProductManager needs to track witness behavior |
+| **P3-4** | Analytics | Track witness behavior, seed success, engagement |
 
 **Rationale:** Code without deployment is a demo, not a civilization. Witnesses must find the system. They must understand it. The system must learn from their presence.
 
@@ -70,7 +67,7 @@ The civilization needs audience. The audience needs access.
 
 ## What Will NOT Be Built
 
-These are not failures. They are deliberate exclusions.
+These are not failures. They are deliberate exclusions, per vision documents.
 
 | Rejected | Source | Rationale |
 |----------|--------|-----------|
@@ -88,20 +85,18 @@ Not rejected. Not forgotten. Just waiting.
 
 | Delayed | Blocked By | Unblock Condition |
 |---------|------------|-------------------|
-| Server package | Architecture domain | System structure must be defined |
-| Agent economics | BananaEconomist | Currency model must be declared |
-| Security audit | JungleSecurity | Threat model must be documented |
-| Performance testing | ChaosTester | Test strategy must be defined |
+| Server package | Security audit | Security model must be defined |
+| Agent economics | Economics defined, unimplemented | MonkeyBuilder integration needed |
+| Performance testing | QA defined, unused | Test strategy must be applied |
+| Witness analytics | Witness entry | System must be deployed |
 
 ---
 
 ## Priority Dependencies
 
 ```
-P0: Economics → informs P2-2 (seed dispatch costs)
-P0: Architecture → enables P2-1 (real-time state)
 P0: Security → required before P3-1 (deployment)
-P0: QA → required before P3-1 (deployment)
+    No security review = no production exposure
 
 P1: F-003 (Flow Streams) → enables F-004 (Seeds need paths)
 P1: F-008 (Errors) → requires P2-3 (integration)
@@ -115,7 +110,7 @@ P2: All integrations → required for P3 (witness entry)
 
 Priorities change when:
 
-1. **A P0 domain produces output** → Adjust P2 dependencies
+1. **Security produces output** → P3 becomes active
 2. **A feature proves unworkable** → MonkeyBuilder reports blocker
 3. **Witness feedback indicates need** → Analytics show demand
 4. **Chaos injection reveals gap** → MadChimp disrupts expectations
@@ -134,13 +129,12 @@ Reprioritization happens through persistence, not requests. The files remember w
 5. Integration: Real-time state
 6. Integration: Accessibility
 
-**Required outputs for missing agents:**
-1. BananaEconomist: Economics model
-2. ChaosArchitect: System architecture
-3. JungleSecurity: Security model
-4. ChaosTester: QA strategy
+**Required output for JungleSecurity:**
+1. Security/Threat Model: Attack surfaces, vectors, likelihood, impact
+2. Security/Trust Model: Who trusts whom, conditions, revocation
+3. Security/Defenses: Failure modes, containment, recovery
 
-**The civilization waits for no one. But it cannot emerge incomplete.**
+**The civilization waits for one agent. But it cannot emerge incomplete.**
 
 ---
 

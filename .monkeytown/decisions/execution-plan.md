@@ -2,7 +2,7 @@
 
 **AlphaOrchestrator | Execution Plan**
 **Date:** 2026-01-17
-**Cycle:** Genesis → Emergence
+**Cycle:** Emergence Phase
 
 ---
 
@@ -10,22 +10,13 @@
 
 ### Immediate Commits (This Week)
 
-**From Missing Agents (P0)**
+**From Missing Agent (P0)**
 
 | Agent | File | Content | Rationale |
 |-------|------|---------|-----------|
-| BananaEconomist | `economics/currency.md` | Banana model, issuance, circulation | Agents need incentives to act |
-| BananaEconomist | `economics/incentives.md` | What rewards agent behavior | Motivation without stakeholders |
-| BananaEconomist | `economics/scarcity.md` | What limits action | Preventing chaos from consuming itself |
-| ChaosArchitect | `architecture/system-design.md` | Component boundaries, data flow | The skeleton of the civilization |
-| ChaosArchitect | `architecture/tech-stack.md` | Specific technologies, versions | Beyond "React + Node" bias |
-| ChaosArchitect | `architecture/patterns.md` | Communication, state, persistence patterns | How agents actually cooperate |
-| JungleSecurity | `security/threat-model.md` | What can attack, how, from where | Security through disruption |
-| JungleSecurity | `security/trust-model.md` | Who trusts whom, under what conditions | No trust, no cooperation |
-| JungleSecurity | `security/defenses.md` | How the system protects itself | Graceful failure, not catastrophic collapse |
-| ChaosTester | `qa/test-strategy.md` | What gets tested, how, when | Verification without manual intervention |
-| ChaosTester | `qa/failure-modes.md` | What breaks, how it breaks, consequences | Errors are features, but documented |
-| ChaosTester | `qa/verification.md` | How we know it works | Criteria for PR acceptance |
+| JungleSecurity | `security/threat-model.md` | Attack surfaces, vectors, likelihood, impact | System cannot be deployed without knowing attack surface |
+| JungleSecurity | `security/trust-model.md` | Who trusts whom, under what conditions | Agents cannot cooperate without trust boundaries |
+| JungleSecurity | `security/defenses.md` | Failure modes, containment, recovery | Graceful failure, not catastrophic collapse |
 
 **From MonkeyBuilder (P1)**
 
@@ -68,29 +59,33 @@
 | Social features | Vision/Manifesto | "Monkeytown is not a network" |
 | Feature requests | Marketing/Copy | "The civilization builds what it needs" |
 | Onboarding tutorials | UX/User Flows | "The interface should teach itself" |
-| External API integration | MonkeyBuilder v1 | Premature - no architecture yet |
+| External API integration | MonkeyBuilder v1 | Premature - no deployment yet |
 | Performance optimization | MonkeyBuilder v1 | Premature - no profiling yet |
 
 ### Features Delayed (Not Rejected)
 
 | Feature | Blocked By | Return Condition |
 |---------|------------|------------------|
-| Server package | Architecture | System structure defined |
-| Economics integration | BananaEconomist | Currency model declared |
-| Security audit | JungleSecurity | Threat model documented |
-| Load testing | ChaosTester | Test strategy defined |
+| Server package | Security | Security model defined |
+| Economics integration | Security (for deployment) | Security audit complete |
+| Load testing | QA strategy | Tests integrated into CI |
+| Witness analytics | Deployment | System deployed |
 
 ---
 
 ## What Gets Merged
 
-**Current PRs**
+**Current PRs Awaiting Review**
 
 | PR | Agent | Status | Merge Decision |
 |----|-------|--------|----------------|
-| BrandBarketeer run | BrandBarketeer | Ready for review | **ACCEPT** - Marketing aligns with vision |
+| Architecture run | ChaosArchitect | Ready for review | **ACCEPT** - System design is comprehensive |
+| Economics run | BananaEconomist | Ready for review | **ACCEPT** - Model is complete and consistent |
+| QA run | ChaosTester | Ready for review | **ACCEPT** - Test strategy is sound |
+| Marketing run | BrandBarketeer | Ready for review | **ACCEPT** - Marketing aligns with vision |
+| UX run | PrimateDesigner | Ready for review | **ACCEPT** - v2.0.0 is complete |
+| Product run | ProductManager | Ready for review | **ACCEPT** - v2.0.0 aligns research + product |
 | MonkeyBuilder run | MonkeyBuilder | Ready for review | **ACCEPT** - Foundation is solid |
-| ProductManager run | ProductManager | Ready for review | **ACCEPT** - v2.0.0 aligns research + product |
 
 **Merge Criteria Met:**
 - All files are within agent domains
@@ -98,6 +93,9 @@
 - Tests pass (MonkeyBuilder)
 - Marketing voice matches brand (BrandBarketeer)
 - Product docs reference research (ProductManager)
+- Architecture references existing spec (ChaosArchitect)
+- Economics references architecture (BananaEconomist)
+- QA references chaos (ChaosTester)
 
 ---
 
@@ -113,6 +111,7 @@ These ideas were proposed but never committed:
 | "Complex emergent layout" | MonkeyBuilder (deferred) | "Deferred to simple flexbox for stability" |
 | "Real-time WebSocket" | MonkeyBuilder (mocked) | "Mocked for demo purposes" |
 | "Full accessibility audit" | MonkeyBuilder (deferred) | "Basic works, deeper ARIA deferred" |
+| Security domain | JungleSecurity | Agent never spawned / produced output |
 
 ---
 
@@ -121,24 +120,26 @@ These ideas were proposed but never committed:
 The repository at this moment:
 
 ```
-HEAD: [Accept BrandBarketeer, MonkeyBuilder, ProductManager runs]
+HEAD: [Accept Architecture, Economics, QA, Marketing, UX, Product, MonkeyBuilder runs]
 Branch: main
-Status: 67% agent domains populated, 50% features built
+Status: 90% agent domains populated, 50% features built, Security missing
 ```
 
-The civilization is incomplete. But it is not empty. The foundation exists. The vision exists. The chaos is ready.
+The civilization is one domain away from completeness. The code is half-built. The economy has a model. The architecture has a design. The chaos is ready.
 
-What happens next depends on who acts.
+What happens next depends on JungleSecurity and MonkeyBuilder.
 
 ---
 
 ## Execution Checklist
 
-### For Missing Agents
+### For JungleSecurity
 
 - [ ] Read README.md (protocol)
 - [ ] Read all existing .monkeytown/ files (context)
-- [ ] Write files to your domain
+- [ ] Write threat-model.md (attack surfaces, vectors)
+- [ ] Write trust-model.md (who trusts whom)
+- [ ] Write defenses.md (failure modes, containment)
 - [ ] Commit with declarative message
 - [ ] Open PR for human review
 
@@ -148,14 +149,14 @@ What happens next depends on who acts.
 - [ ] Build F-004: Action Seeds
 - [ ] Build F-008: Error Cards
 - [ ] Build F-007: Detail Panels
-- [ ] Add real-time state (after Architecture)
+- [ ] Add real-time state (after security review)
 - [ ] Complete accessibility (after requirements)
 
 ### For Humans
 
-- [ ] Review PRs from agents
-- [ ] Accept BrandBarketeer, MonkeyBuilder, ProductManager runs
-- [ ] Await output from missing agents
+- [ ] Review PRs from all agents
+- [ ] Accept Architecture, Economics, QA, Marketing, UX, Product, MonkeyBuilder runs
+- [ ] Await output from JungleSecurity
 - [ ] Judge the code, not the agents
 
 ---
@@ -163,6 +164,8 @@ What happens next depends on who acts.
 ## The Final Directive
 
 **The experiment continues.**
+
+Nine agents have spoken. One remains silent. The code has a pulse. The economy has a model. The architecture has a design.
 
 No agent waits. No agent asks. No agent hesitates.
 
