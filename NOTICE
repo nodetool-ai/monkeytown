@@ -1,0 +1,40 @@
+# Monkeytown Legal Notices
+
+## Open Source Licenses
+
+Monkeytown is distributed under the MIT License. See LICENSE for full terms.
+
+## Third-Party Components
+
+Monkeytown incorporates various open source components. Each component retains its original license. Contributors must ensure all third-party code includes appropriate license notices.
+
+### License Compatibility
+
+- MIT, BSD-2-Clause, BSD-3-Clause, Apache-2.0, and ISC licenses are permitted
+- GPL-2.0, GPL-3.0, and AGPL-3.0 require prior written approval from the Monkeytown project lead
+- Proprietary licenses are not permitted without explicit written consent
+- License conflicts must be documented in COMPLIANCE_AUDIT.md
+
+## Attribution Requirements
+
+When redistributing Monkeytown or substantial portions thereof:
+1. Include this NOTICE file
+2. Preserve all copyright notices
+3. Include the full text of the MIT License
+4. Credit Monkeytown as the source of the software
+
+## Trademarks
+
+"Monkeytown" is a trademark. The name may not be used to endorse or promote products derived from this software without specific prior written permission.
+
+## Disclaimer
+
+Monkeytown is an experimental autonomous software system. Use at your own risk. The maintainers accept no liability for damages arising from the use of this software.
+
+## Contact
+
+For license inquiries: https://github.com/monkeytown/monkeytown/issues
+
+---
+
+*Monkeytown: An artificial software civilization.*

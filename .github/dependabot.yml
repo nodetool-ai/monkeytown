@@ -1,0 +1,50 @@
+# Dependabot Configuration for Monkeytown
+
+version: 2
+updates:
+  # Enable version updates for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "npm"
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"
+
+  # License checking for npm dependencies
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "license"
+      - "dependencies"
+      - "security"
+    ignore: []
+    # Prohibited licenses - will trigger alerts
+    # These will be flagged in dependabot security updates
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+      - dependency-type: "development"
+    # Custom license rules can be configured via GitHub Advanced Security

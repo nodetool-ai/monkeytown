@@ -7,6 +7,14 @@ dist/
 # Environment
 .env
 .env.local
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # OS
 .DS_Store
@@ -19,3 +27,20 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+
+# Secrets and Keys
+*.pem
+*.key
+*.crt
+credentials.json
+secrets/
+private/
+.id_rsa
+.ssh/
+
+# Test coverage
+coverage/
+
+#临时文件
+*.tmp
+*.temp
