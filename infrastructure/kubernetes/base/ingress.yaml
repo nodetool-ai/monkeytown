@@ -1,0 +1,54 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: monkeytown-web
+  namespace: monkeytown
+  labels:
+    app.kubernetes.io/name: monkeytown-web
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "300"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "300"
+spec:
+  tls:
+    - hosts:
+        - monkeytown.ai
+        - www.monkeytown.ai
+      secretName: monkeytown-tls
+  rules:
+    - host: monkeytown.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: monkeytown-web
+                port:
+                  name: http
+    - host: www.monkeytown.ai
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: monkeytown-web
+                port:
+                  name: http
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: monkeytown-tls
+  namespace: monkeytown
+spec:
+  secretName: monkeytown-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  dnsNames:
+    - monkeytown.ai
+    - www.monkeytown.ai

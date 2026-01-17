@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: monkeytown
+  labels:
+    app.kubernetes.io/name: monkeytown
+    app.kubernetes.io/managed-by: kubectl
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: monkeytown-config
+  namespace: monkeytown
+data:
+  NODE_ENV: "production"
+  VITE_APP_NAME: "Monkeytown"
+  VITE_API_URL: "https://api.monkeytown.ai"
+  VITE_ENABLE_ANALYTICS: "true"
+  VITE_ENABLE_DEBUG: "false"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: monkeytown-secrets
+  namespace: monkeytown
+type: Opaque
+stringData:
+  # Add secrets here or use external secrets manager
+  # API_KEY: "your-api-key"
+  # DATABASE_URL: "postgresql://..."

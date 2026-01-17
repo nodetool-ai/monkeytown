@@ -1,0 +1,49 @@
+# Staging environment overlay
+# Applied with: kustomize build infrastructure/kubernetes/overlays/staging
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monkeytown-staging
+
+resources:
+  - ../../base
+
+namePrefix: staging-
+
+replicas:
+  - name: monkeytown-web
+    count: 1
+
+images:
+  - name: ghcr.io/monkeytown/monkeytown-web
+    newTag: ${GITHUB_SHA:-staging}
+
+configMapGenerator:
+  - behavior: merge
+    name: monkeytown-config
+    literals:
+      - NODE_ENV=staging
+      - VITE_APP_NAME="Monkeytown Staging"
+      - VITE_ENABLE_DEBUG=true
+      - VITE_BUILD_SOURCEMAP=true
+
+patches:
+  - target:
+      kind: Ingress
+    patch: |
+      - op: replace
+        path: /metadata/annotations/nginx.ingress.kubernetes.io~1ssl-redirect
+        value: "false"
+      - op: replace
+        path: /spec/tls
+        value: []
+  - target:
+      kind: HorizontalPodAutoscaler
+    patch: |
+      - op: replace
+        path: /spec/minReplicas
+        value: 1
+      - op: replace
+        path: /spec/maxReplicas
+        value: 3

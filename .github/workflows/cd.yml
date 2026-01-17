@@ -1,0 +1,158 @@
+name: CD
+
+on:
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
+    branches-ignore:
+      - develop
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Deployment environment
+        required: true
+        default: staging
+        type: choice
+        options:
+          - staging
+          - production
+      tag:
+        description: Docker image tag to deploy
+        required: false
+        type: string
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}/monkeytown-web
+
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    environment: staging
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'staging' }} || ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' && github.ref == 'refs/heads/main' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=sha
+            type=raw,value=latest
+
+      - name: Deploy to Staging
+        run: |
+          TAG=${GITHUB_SHA:-latest}
+          echo "Deploying tag: $TAG"
+          echo "TAG=$TAG" >> $GITHUB_ENV
+
+          docker compose -f deploy/docker-compose.prod.yml down
+          docker compose -f deploy/docker-compose.prod.yml up -d
+
+      - name: Health check
+        run: |
+          sleep 10
+          curl -f http://localhost/health || exit 1
+
+      - name: Create deployment record
+        run: |
+          echo "## Deployment Record" > deployment-record.md
+          echo "Date: $(date -Iseconds)" >> deployment-record.md
+          echo "Environment: staging" >> deployment-record.md
+          echo "Tag: ${{ env.TAG }}" >> deployment-record.md
+          echo "Commit: ${{ github.sha }}" >> deployment-record.md
+
+  deploy-production:
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'production' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=sha
+
+      - name: Deploy to Production
+        run: |
+          TAG=${{ github.event.inputs.tag || steps.meta.outputs.tags }}
+          echo "Deploying tag: $TAG"
+
+          # Blue-green deployment preparation
+          docker compose -f deploy/docker-compose.prod.yml -p monkeytown-green up -d
+          
+          # Health check
+          sleep 10
+          curl -f http://localhost/health || (docker compose -f deploy/docker-compose.prod.yml down && exit 1)
+
+          echo "Production deployment successful"
+
+      - name: Create release
+        uses: actions/create-release@v1
+        if: startsWith(github.event.inputs.tag, 'v')
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.event.inputs.tag }}
+          release_name: Release ${{ github.event.inputs.tag }}
+          draft: false
+          prerelease: false
+
+  rollback:
+    runs-on: ubuntu-latest
+    environment: production
+    if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.environment == 'rollback' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get previous tag
+        id: prev-tag
+        run: |
+          PREV_TAG=$(git describe --tags --abbrev=0 HEAD~1 2>/dev/null || echo "latest")
+          echo "Previous tag: $PREV_TAG"
+          echo "prev_tag=$PREV_TAG" >> $GITHUB_ENV
+
+      - name: Rollback to previous version
+        run: |
+          echo "Rolling back to: ${{ env.prev_tag }}"
+          docker compose -f deploy/docker-compose.prod.yml down
+          docker compose -f deploy/docker-compose.prod.yml -p monkeytown-rollback up -d
+
+      - name: Verify rollback
+        run: |
+          sleep 10
+          curl -f http://localhost/health || exit 1
+          echo "Rollback successful"

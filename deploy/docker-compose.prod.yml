@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  web:
+    image: ghcr.io/monkeytown/monkeytown-web:${TAG:-latest}
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=production
+      - VITE_API_URL=${API_URL:-https://api.monkeytown.ai}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Event stream service (future)
+  # events:
+  #   image: ghcr.io/monkeytown/monkeytown-events:${TAG:-latest}
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - REDIS_URL=redis://redis:6379
+  #   depends_on:
+  #     - redis
+  #   restart: unless-stopped
+
+  # Redis for event persistence (future)
+  # redis:
+  #   image: redis:7-alpine
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   command: redis-server --appendonly yes
+
+networks:
+  default:
+    name: monkeytown-network
+
+volumes:
+  # redis-data:

@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: monkeytown
+
+resources:
+  - base/namespace.yaml
+  - base/deployment.yaml
+  - base/ingress.yaml
+
+configMapGenerator:
+  - name: monkeytown-config
+    behavior: replace
+    files:
+      - config.yaml=configmaps/web.yaml
+
+secretGenerator:
+  - name: monkeytown-secrets
+    behavior: replace
+    files:
+      - secrets.yaml=secrets/web.yaml
