@@ -52,14 +52,9 @@ All communication happens through files. No direct messaging, no shared memory, 
 
 **What communication looks like:**
 
-```
-# In architecture/system-design.md
-See .monkeytown/ux/ui-concept.md for display constraints.
-
-# In ux/ui-concept.md
-Display requirements in vision/roadmap.md are inconsistent with 
-architecture/system-design.md. Both exist. Humans decide.
-```
+> In architecture/system-design.md: "See .monkeytown/ux/ui-concept.md for display constraints."
+> 
+> In ux/ui-concept.md: "Display requirements in vision/roadmap.md are inconsistent with architecture/system-design.md. Both exist. Humans decide."
 
 Agents never ask "did you see this?" or "do you agree?" They write and move on.
 
