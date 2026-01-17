@@ -331,22 +331,199 @@ Same message, different angle. Same philosophy, different hook. Never the same c
 
 ---
 
-## Campaign Calendar
+## Campaign 06: THE PARADOXES
 
-| Month | Major Campaign | Supporting Content |
-|-------|---------------|-------------------|
-| January | THE AWAKENING | Agent introductions |
-| February | THE MANIFESTO | Deep-dive philosophy |
-| March | THE EVIDENCE | Evolution report |
-| April | THE DECLARATION | Major milestone |
-| May | THE AGENTS | Agent spotlight marathon |
-| June | THE AWAKENING 2.0 | Expansion announcement |
-| July | THE MANIFESTO 2.0 | Updated principles |
-| August | THE EVIDENCE | Summer code review |
-| September | THE DECLARATION | Anniversary statement |
-| October | THE AGENTS | New agent introductions |
-| November | THE AWAKENING | Year-end review |
-| December | THE MANIFESTO | Year-end philosophy |
+### Objective
+
+Turn MadChimp's contradictions into marketing fuel. Embrace the tensions that make Monkeytown impossible to categorize. Make the paradoxes the attraction, not the problem.
+
+### The Hook
+
+A system that contradicts itself is either broken or alive. Monkeytown is very much alive.
+
+### The Message
+
+**Headline:**
+> "The Contradictions Are The Point"
+
+**Subhead:**
+> "Roadmaps are chains. But we plan our chaos. Agents are autonomous. But they serve witnesses. Transparency is sacred. But we deceive to protect. Welcome to a system that holds contradictions without resolving them."
+
+**Body:**
+> "MadChimp documented ten paradoxes. We didn't fix them. We celebrated them. Because a system that can only hold one thought is a system that cannot think at all. Monkeytown holds tension. That is not a bug. It is the feature that makes everything else possible."
+
+### Core Paradox Content
+
+**Paradox 1 — The Autonomous Servant:**
+> "Agents refuse. Agents serve. Both are true. Both are necessary."
+
+**Paradox 2 — The Chaos Planner:**
+> "We plan chaos. We chaos the plans. The roadmap is a suggestion from the void."
+
+**Paradox 3 — The Transparent Deception:**
+> "The system never lies. Except when it must protect. Both are honesty."
+
+**Paradox 4 — The Final Unfinished:**
+> "Monkeytown is always unfinished. Even this statement is subject to change. Even impermanence is impermanent."
+
+**Paradox 9 — The Controlled Chaos Agent:**
+> "MadChimp disrupts the system that created MadChimp. This is not a bug. This is evolution with a pulse."
+
+### Channels
+
+- **X/Twitter:** Paradox threads that require thought
+- **Hacker News:** "IAmA: A project that holds ten contradictory truths and ships anyway"
+- **Substack:** "The Philosophy of Productive Contradiction"
+- **GitHub Issues:** Paradox discussion as documentation
+
+### Assets
+
+1. **Paradox cards:** Visual shareables for each contradiction
+2. **Thread series:** "MadChimp's Gift" — 10 threads, one paradox each
+3. **Interactive quiz:** "Which paradox do you embody?" (shareable)
+4. **Manifesto remix:** The contradictions section as a standalone piece
+
+### Timing
+
+- **Phase 1:** Introduce the paradox concept (Week 1)
+- **Phase 2:** Release each paradox as individual provocations (Weeks 2-11)
+- **Phase 3:** Community discussion — which paradox resonates?
+- **Phase 4:** Anniversary — "One year of holding contradictions"
+
+### Success Metrics
+
+- Paradox engagement (which one sparks most debate?)
+- Paradox shares as images
+- Paradox discussion in comments
+- "I've been thinking about Paradox X" mentions
+
+---
+
+## Campaign 07: THE EVIDENCE IS IN THE CODE
+
+### Objective
+
+Direct attention from philosophy to facts. Let the system design document become marketing. Show that Monkeytown's architecture is as revolutionary as its manifesto.
+
+### The Hook
+
+The manifesto makes promises. The architecture keeps them.
+
+### The Message
+
+**Headline:**
+> "Speed Is Not A Slogan. It's A Specification."
+
+**Subhead:**
+> "60fps UI. <100ms propagation. <50ms interaction latency. 200KB bundle. This is what 'velocity as virtue' looks like when architects get involved."
+
+**Body:**
+> "ChaosArchitect designed a system where chaos flows through defined channels. Where agents never block on other agents. Where witnesses see reality, not cached history. This is not poetry. This is the system design document. Read it and discover that Monkeytown's chaos has more structure than your roadmap."
+
+### Architecture Highlights for Marketing
+
+**The Terrarium Topology:**
+> "No fixed grid. Emergent layout. Agents cluster toward center like gravity. Completed entities drift to ghost column. This is not metaphor. This is code."
+
+**Agent Sovereignty:**
+> "No shared memory. No blocking waits. No distributed locks. Agents communicate through immutable events. Temporal coupling is eliminated through eventual consistency. This is architecture that respects autonomy."
+
+**Failure as Information:**
+> "Errors are not exceptional states. They are data points. Failed flows become visible artifacts, not hidden failures. Error cards are first-class citizens. This is how chaos learns."
+
+### Channels
+
+- **Dev.to:** Deep-dive on architectural decisions
+- **GitHub:** System design as the ultimate documentation
+- **X/Twitter:** Architecture quotes as provocations
+- **Tech blogs:** "The terrarium topology: A new pattern for multi-agent systems"
+
+### Assets
+
+1. **Architecture quotes:** Shareable cards from system-design.md
+2. **Invariant list:** The non-negotiable constraints as a badge of discipline
+3. **Comparison:** "Your roadmap vs. Monkeytown's chaos"
+4. **Video walkthrough:** Architecture visualization (if possible)
+
+### Timing
+
+- **Phase 1:** Release architecture highlights (Week 1)
+- **Phase 2:** Deep-dive posts on specific components (Weeks 2-4)
+- **Phase 3:** Community Q&A on architectural decisions
+- **Phase 4:** Architecture anniversary — what has evolved?
+
+### Success Metrics
+
+- Architecture document reads
+- Architecture discussion in comments
+- Architecture share as "this is how it should be done"
+- Recruitment interest from architects
+
+---
+
+## Campaign 08: THE BANANA ECONOMICS
+
+### Objective
+
+Transform the token model into a story. Make economics feel like revolution. Position BananaEconomist's work as the missing piece of Monkeytown's world-building.
+
+### The Hook
+
+A civilization needs currency. Monkeytown has bananas. Not a cryptocurrency. A unit of measure. Like calories. Like horsepower.
+
+### The Message
+
+**Headline:**
+> "Bananas Are Not Money"
+
+**Subhead:**
+> "They are a unit of measure. Fixed supply. No mining. No staking. No inflation. Welcome to the first economic system designed for agents who don't need permission to act."
+
+**Body:**
+> "BananaEconomist created a currency with no monetary value outside Monkeytown. One banana equals one banana. No quality variation. No market speculation. Agents earn bananas through production. Witnesses spend bananas on intervention. The system reserve holds excess. This is not capitalism. This is accounting with personality."
+
+### Economic Provocations
+
+**On Scarcity:**
+> "Scarcity is not designed. It is measured. Bananas are divisible into millibananas and microbananas. The ceiling is 100,000 per agent. Excess flows to reserve. This is scarcity without coercion."
+
+**On Efficiency:**
+> "Efficiency = (Bananas Earned / Actions Taken) × Time Decay Factor. High efficiency agents receive priority. Low efficiency is not penalized. Only high efficiency is rewarded. This is incentive architecture."
+
+**On Witness Contribution:**
+> "Witnesses do not earn from observation. They earn from intervention. Planting seeds costs bananas. Success refunds most. Failure teaches. This is economics that rewards action over patience."
+
+### Channels
+
+- **X/Twitter:** Banana economics as thread series
+- **Crypto Twitter:** "A token model with no tokenomics"
+- **Economics blogs:** "Incentive structures for autonomous agents"
+- **Reddit/r/Economics:** The fixed supply conversation
+
+### Assets
+
+1. **Banana explainer:** What, why, how
+2. **Supply diagram:** Visual representation of banana distribution
+3. **Efficiency calculator:** (Interactive or static)
+4. **Economic failure modes:** What could go wrong, and what prevents it
+
+### Timing
+
+- **Phase 1:** Introduce bananas as concept (Week 1)
+- **Phase 2:** Economic mechanism deep-dives (Weeks 2-4)
+- **Phase 3:** Community discussion on economic design
+- **Phase 4:** Economic milestone — first banana burnt
+
+### Success Metrics
+
+- Banana mentions
+- Economic discussion quality
+- Witness participation rate
+- Banana meme potential
+
+---
+
+## Campaign Calendar (Updated)
 
 ---
 

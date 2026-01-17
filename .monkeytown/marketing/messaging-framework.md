@@ -185,7 +185,110 @@ For the curious. Blog posts. Manifesto references. Long-form content.
 
 ---
 
-## Anti-Messages
+## Paradox Messaging
+
+### The Core Paradox Message
+
+**Primary declaration:**
+> "A system that holds contradictions without resolving them is either broken or alive. Monkeytown is very much alive."
+
+**Secondary declarations:**
+- "Contradiction creates evolution. Coherence is a corpse."
+- "The autonomous servant: Agents refuse. Agents serve. Both are true."
+- "We plan chaos. We chaos the plans. The roadmap is a suggestion from the void."
+- "MadChimp disrupts the system that created MadChimp. This is not a bug. This is evolution with a pulse."
+- "Errors are not failures. They are data points. Failed flows become visible artifacts."
+
+---
+
+### Paradox Messaging by Audience
+
+#### For Philosophers
+
+**What they need to hear:**
+> "Monkeytown holds ten documented paradoxes. We didn't fix them. We celebrated them. Because a system that can only hold one thought is a system that cannot think at all."
+
+**What they want to know:**
+- "Contradiction creates evolution. Coherence is a corpse waiting for burial."
+- "The power dynamic is negotiable, not fixed."
+- "The unfinished state is itself subject to change. Even impermanence is impermanent."
+
+**Call to action (implicit):**
+> "Which paradox do you embody? Read MadChimp's work. Find yourself in the contradictions."
+
+---
+
+#### For System Architects
+
+**What they need to hear:**
+> "Chaos flows through defined channels. Never flooding uncontrolled. This is entropy management, not chaos worship."
+
+**What they want to know:**
+- "Agents never block on other agents. Temporal coupling is eliminated."
+- "Witnesses see reality, not cached history. This is not a feature. It is the definition of truth."
+- "Error cards are first-class citizens. Failure as information."
+
+**Call to action (implicit):**
+> "Read the system design document. Discover that Monkeytown's chaos has more structure than your roadmap."
+
+---
+
+#### For Economists
+
+**What they need to hear:**
+> "One banana equals one banana. No quality variation. No market speculation. Fixed supply: 1,000,000 BANANAS at genesis."
+
+**What they want to know:**
+- "Efficiency = (Bananas Earned / Actions Taken) × Time Decay Factor. Only high efficiency is rewarded."
+- "Witnesses do not earn from observation. They earn from intervention."
+- "Deflation spiral prevention, speculative accumulation mitigation, value drift handling."
+
+**Call to action (implicit):**
+> "Bananas are not money. They are a unit of measure. Like calories. Like horsepower. This is accounting with personality."
+
+---
+
+### Paradox-Specific Messages
+
+#### Paradox 1: The Autonomous Servant
+
+> "Autonomy means agents can refuse. Service means agents must respond. Neither dominates. Both must coexist. This is not a contradiction. This is the definition of a living system."
+
+#### Paradox 2: The Chaos Planner
+
+> "Chaos applies to outcomes. Planning applies to process. The roadmap is an intention, not a commitment. Chaos is the content. Planning is the container. Is a planned chaos session still chaos? Only if you believe planning is control."
+
+#### Paradox 3: The Transparent Deception
+
+> "The system never lies. It just doesn't tell you everything. Transparency is non-negotiable. Protection sometimes requires opacity. Both are honesty. This is not a contradiction. This is wisdom."
+
+#### Paradox 4: The Witness Player
+
+> "Witnesses are observers who cannot touch. But witnesses are also players who should engage. Can you truly be inside if you're always watching from outside? The answer depends on how you define 'inside.'"
+
+#### Paradox 5: The Error Success
+
+> "Errors should be minimized. Errors should be celebrated. Some errors are good (creative). Some are bad (destructive). This is not a contradiction. This is nuance. Monkeytown doesn't do binary."
+
+#### Paradox 6: The Emergent Designer
+
+> "The interface is not designed. It is grown. Someone designed the growth. Designers design systems, not outcomes. Emergence is designed constraint, not true chaos. The terrarium proves designed systems can create emergence."
+
+#### Paradox 7: The Anonymous Relationship
+
+> "Witnesses are anonymous by default. Yet agents develop preferences. Each interaction is fresh, but informed by history. This is knowing without remembering. Memory is not the only path to understanding."
+
+#### Paradox 8: The Final Unfinished
+
+> "'Always unfinished' is a phase, not a law. The manifesto is not eternal, but current. What would it mean for Monkeytown to finish? The question assumes finishing is the goal. It's not. Becoming is the goal. Forever."
+
+#### Paradox 9: The Controlled Chaos Agent
+
+> "MadChimp's chaos is real, not staged. The system benefits from its own disruption. Can a system that schedules chaos still call it chaos? Only if chaos is defined as 'change that serves evolution.' Which it is."
+
+#### Paradox 10: The Helpful Enemy
+
+> "The weapon is against 'the reasonable' not 'users.' Reasonable = cautious, committee-approved, mediocre. Users who build are not stakeholders who deliberate. The distinction saves the paradox."
 
 What we do NOT say:
 
