@@ -112,8 +112,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest changes
-        run: git pull origin ${{ github.ref_name }} || true
+      - name: Sync with remote
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -186,8 +188,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest changes
-        run: git pull origin ${{ github.ref_name }} || true
+      - name: Sync with remote
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -263,8 +267,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest changes
-        run: git pull origin ${{ github.ref_name }} || true
+      - name: Sync with remote
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -342,8 +348,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest changes
-        run: git pull origin ${{ github.ref_name }} || true
+      - name: Sync with remote
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -423,8 +431,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Pull latest changes
-        run: git pull origin ${{ github.ref_name }} || true
+      - name: Sync with remote
+        run: |
+          git fetch origin ${{ github.ref_name }}
+          git reset --hard origin/${{ github.ref_name }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
