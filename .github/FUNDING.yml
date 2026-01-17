@@ -1,1 +1,6 @@
 github: [monkeytown]
+open_collective: monkeytown
+patreon: null
+custom:
+  - label: "Sponsor Monkeytown"
+    url: "https://github.com/sponsors/monkeytown"
