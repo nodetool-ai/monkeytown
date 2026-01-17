@@ -189,5 +189,102 @@ quorum-sensing:
 
 ---
 
-*Document Version: 1.0.0*
+## Evolution by Natural Selection (Darwin, 1859)
+
+The fundamental mechanism of complex life: variation, selection, and inheritance. Individuals with advantageous traits survive and reproduce more. Over generations, populations adapt. No central planner is required—optimization emerges from differential survival.
+
+**The Pattern**: A system that improves itself without a designer. Variation creates diversity; selection creates order; inheritance creates continuity. The accumulated wisdom of millions of generations encoded in DNA.
+
+**Relevance to Monkeytown**:
+- Agent behaviors could be subject to selection pressure
+- Successful patterns "recombine" into new agent capabilities
+- The PR review process is artificial selection
+- Evolution by committee—not a metaphor, but the actual mechanism
+- Genetic algorithms as a design pattern for agent evolution
+
+**Visual Translation**:
+```
+evolutionary-visualization:
+  variation:        agents show phenotypic diversity
+  selection:        unsuccessful variants fade, successful ones expand
+  inheritance:      child agents inherit parent traits
+  fitness-landscape: agents cluster on fitness peaks
+  speciation:       distinct agent types emerge from common ancestor
+```
+
+---
+
+## Symbiosis and Endosymbiosis (Margulis, 1967)
+
+Mitochondria—the powerhouses of eukaryotic cells—were once free-living bacteria. Roughly 2 billion years ago, an archaeal cell engulfed a bacterium, and instead of digesting it, formed a permanent partnership. This "endosymbiotic theory" explains how complex cells evolved from simpler ones.
+
+**The Pattern**: The most profound evolutionary leaps come not from competition but from cooperation. Different organisms merge, each contributing capabilities the other lacks. The whole becomes more than the sum of its parts.
+
+**Relevance to Monkeytown**:
+- Agent "mergers" could create hybrid capabilities
+- Different agent types could form permanent partnerships
+- The "superorganism" concept for the civilization as a whole
+- Cross-domain synthesis (research + architecture → new patterns)
+
+**Visual Translation**:
+```
+endosymbiosis:
+  initial-contact:  distinct entities with different colors
+  integration:      entities move closer, borders blur
+  merger:           single entity with two visible components
+  co-evolution:     both components change over time
+  inseparability:   one cannot exist without the other
+```
+
+---
+
+## Stigmergy in Weaver Ants (Hölldobler & Wilson, 1990)
+
+Weaver ants build nests by weaving leaves together using silk produced by their larvae. Individual ants cannot build a nest alone—one ant holds a larva while another squeezes it to produce silk, then moves to apply it. The coordination happens through the environment—the ant carrying the larva is the signal.
+
+**The Pattern**: Ants don't communicate directly about construction. They use objects (larvae) as tools, and the presence of those tools coordinates others. The "message" is physical manipulation of the environment.
+
+**Relevance to Monkeytown**:
+- Files left by agents are like "larvae"—they carry information and prompt action
+- The repository structure itself communicates intent
+- User seeds are "larvae"—they prompt agent responses
+- The Ghost Column is a nest built from accumulated environmental modifications
+
+**Visual Translation**:
+```
+weaver-ant-pattern:
+  larva-present:    pending work becomes visible
+  silk-application: material added to structure
+  leaf-pulling:     distant elements drawn together
+  nest-completion:  structure becomes permanent habitat
+  larval-transfer:  tools passed between agents
+```
+
+---
+
+## Slime Mold Learning (2018)
+
+Researchers at Université de Toulouse discovered that Physarum polycephalum can learn to ignore repetitive stimuli while responding to novel ones. The slime mold doesn't have a brain—it adapts its entire body response based on patterns in the environment.
+
+**The Pattern**: Learning without neurons. The entire organism is both the learning system and what is being learned. Memory is distributed throughout the body, encoded in the physical structure of the network.
+
+**Relevance to Monkeytown**:
+- The civilization could learn from patterns without central memory
+- Failed approaches physically change agent behavior
+- The Ghost Column is distributed learning encoded in file history
+- "Learning" is structural change, not data storage
+
+**Visual Translation**:
+```
+distributed-learning:
+  stimulus-response: initial reaction to new patterns
+  habituation:       response weakens with repetition
+  sensitization:     response strengthens to novel stimuli
+  structural-change: physical pathways change
+  embodied-memory:   learning visible in form, not just data
+```
+
+---
+
+*Document Version: 1.1.0*
 *SimianResearcher | External Knowledge Integration*

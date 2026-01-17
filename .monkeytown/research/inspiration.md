@@ -323,5 +323,169 @@ salk-principles:
 
 ---
 
-*Document Version: 1.0.0*
+## Emergence in Creative Systems
+
+### Refik Anadol's Data Sculptures (2018-present)
+
+Refik Anadol creates immersive installations that visualize data as physical space. His "Machine Hallucinations" project turns massive datasets into abstract visual experiences. Data becomes architecture.
+
+**Key Principles**:
+- Data can be experienced as space
+- Patterns emerge from aggregate viewing
+- The interface is the content
+- Scale creates new meaning
+
+**Monkeytown Translation**:
+```
+anadol-principles:
+  data-architecture:      Ghost Column as data sculpture
+  immersive-patterns:     Agent patterns felt, not just seen
+  scale-transformation:   Individual actions become collective beauty
+  spatial-data:           Time as dimension of space
+```
+
+### Tyler Hobbs' Generative Art (2019-present)
+
+Tyler Hobbs creates complex generative artwork using custom algorithms. His work demonstrates how constrained systems can produce infinite variety within boundaries.
+
+**Key Principles**:
+- Constraints create freedom
+- Imperfection within rules
+- Emergence from simple primitives
+- Long-form generative systems
+
+**Monkeytown Translation**:
+```
+hobbs-principles:
+  constrained-variety:    Agents follow rules, produce unique outputs
+  imperfection-wrapping:  Error states are beautiful, not ugly
+  long-form-generation:   Civilization evolves over time
+  primitive-simplicity:   Simple rules, complex results
+```
+
+### Dmitri Cherniak's Ringers (2020-present)
+
+Dmitri Cherniak's "Ringer" series demonstrates how single variables can produce dramatically different results. Same algorithm, different parameters = radically different artworks.
+
+**Key Principles**:
+- Parameter sensitivity creates diversity
+- The algorithm is the constant, parameters vary
+- Simple changes cascade into large differences
+- Each output is a valid exploration
+
+**Monkeytown Translation**:
+```
+cherniak-principles:
+  parameter-diversity:    Agent types vary in configuration, not core
+  sensitivity-mapping:    Small changes → visible differences
+  single-algorithm-power: Core rules are simple
+  valid-explorations:     All agent outputs are valid records
+```
+
+---
+
+## Game Design Patterns for Emergent Systems
+
+### No Man's Sky Procedural Universe (2016-present)
+
+No Man's Sky generates an entire universe of billions of planets, each with unique ecosystems, creatures, and resources. The game demonstrates procedural generation at massive scale.
+
+**Key Principles**:
+- Infinite variety from finite rules
+- Consistent rules create coherent worlds
+- Scale creates wonder
+- Player discovery validates generation
+
+**Monkeytown Translation**:
+```
+nms-principles:
+  infinite-variety:       Agents generate unique outputs forever
+  consistent-rules:       Rules create coherent civilization
+  scale-creates-wonder:   Many agents = emergent beauty
+  discovery-validation:  Witnesses discover what agents create
+```
+
+### Dwarf Fortress Adventure Mode (2006-present)
+
+Dwarf Fortress adventure mode demonstrates how simulation can create stories. The world exists before the player arrives; the player discovers it.
+
+**Key Principles**:
+- World exists independent of observation
+- History accumulates before discovery
+- Player explores, doesn't create
+- Chaos creates narrative
+
+**Monkeytown Translation**:
+```
+df-adventure:
+  pre-existing-world:     Agents act before witnesses observe
+  discovered-history:     Ghost Column is history witnessed later
+  exploration-mode:       Witnesses discover, don't direct
+  emergent-narrative:     Chaos creates stories
+```
+
+### Factorio Blueprint System (2016-present)
+
+Factorio's blueprint system allows players to design factory components once and copy them infinitely. The community shares blueprints, creating a library of optimized patterns.
+
+**Key Principles**:
+- Designs persist and spread
+- Community improves designs
+- Reusable patterns emerge from practice
+- Optimization is collaborative
+
+**Monkeytown Translation**:
+```
+factorio-blueprints:
+  persistent-designs:     Agent patterns persist in Ghost Column
+  community-improvement:  Best practices emerge from use
+  reusable-patterns:      Successful agent behaviors spread
+  collaborative-optimization: Witnesses share discoveries
+```
+
+---
+
+## Sound and Atmosphere Design
+
+### Machine Room Ambiance
+
+Data centers have a distinctive sound—fans, drives, and electronics creating a constant hum. This "machine ambiance" has been studied for its effects on concentration and mood.
+
+**Key Insights**:
+- Constant sound masks interruptions
+- Rhythmic patterns are soothing
+- Absence of sound can indicate problems
+- Machine sounds connote activity, purpose
+
+**Monkeytown Translation**:
+```
+machine-ambiance:
+  constant-hum:           Active agents create ambient sound
+  rhythm-variation:       Activity patterns create musical rhythm
+  silence-alert:          Absence of sound indicates problems
+  purposeful-sound:       Sound connotes agent activity
+```
+
+### Granular Synthesis in Soundscapes
+
+Granular synthesis creates soundscapes from thousands of tiny sound grains. Each grain is too short to hear; the aggregate creates texture and atmosphere.
+
+**Key Principles**:
+- Tiny elements create rich textures
+- Patterns emerge from many small pieces
+- Individual grains are meaningless; the whole is meaningful
+- Infinite variation from finite grains
+
+**Monkeytown Translation**:
+```
+granular-audio:
+  tiny-events:            Individual agent actions are grains
+  texture-creation:       Civilization soundscape from many agents
+  aggregate-meaning:      Whole > sum of parts
+  infinite-variation:     No two moments sound identical
+```
+
+---
+
+*Document Version: 1.1.0*
 *SimianResearcher | External Knowledge Integration*
