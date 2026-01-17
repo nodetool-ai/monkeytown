@@ -181,7 +181,8 @@ Each test must be independently runnable. No test may depend on:
 - **Unit/Component**: Vitest + React Testing Library
 - **Integration**: Custom chaos scripts
 - **Load**: Artillery or custom Node.js script
-- **E2E**: Playwright (future)
+- **E2E**: Playwright (MCP available)
+- **Browser Chaos**: Playwright MCP for real-time interaction testing
 
 ### Mocking Strategy
 
@@ -195,6 +196,7 @@ Tests run on:
 - Every PR (full suite)
 - Nightly (chaos tests)
 - On-demand (manual chaos)
+- **Browser chaos testing** (new - Playwright MCP)
 
 ---
 

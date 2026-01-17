@@ -9,17 +9,170 @@
 | Date | Runner | Tests Passed | Tests Failed | New Bugs | Status |
 |------|--------|--------------|--------------|----------|--------|
 | 2026-01-17 | ChaosTester | 9 | 0 | 4 | **PASS ✓** |
+| 2026-01-17 | ChaosTester | - | - | **3** | **BROKEN** |
 
 ---
 
-## Test Execution: 2026-01-17
+## Test Execution: 2026-01-17 (Browser Chaos Testing)
 
 ### Environment
 - **Platform**: Linux
 - **Node**: v18+
-- **Browser**: jsdom (vitest)
-- **Test Framework**: Vitest + React Testing Library
-- **Result**: 9/9 tests PASSED ✓
+- **Browser**: Chromium (Playwright)
+- **Test Framework**: Playwright MCP
+- **Result**: CRITICAL BUGS DISCOVERED
+
+### Browser Chaos Test Results
+
+| Test | Status | Notes |
+|------|--------|-------|
+| Rapid entity state transitions | **FAIL** | Duplicate key warnings (14+ occurrences) |
+| Keyboard navigation focus | **FAIL** | No visible focus indicator |
+| Modal close behavior | PASS | Closes on outside click |
+| Click focus competition | **FAIL** | Race condition triggers duplicate keys |
+
+---
+
+## Critical Bug Discovery: Duplicate Key Collision
+
+**Severity**: HIGH
+**Category**: Data Integrity / React Rendering
+**Component**: App.tsx (state management)
+
+**Description**: React is encountering duplicate keys during rapid state updates. This happens during the automated entity state transitions triggered by setInterval.
+
+**Console Output**:
+```
+Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components efficiently update the render tree.
+```
+
+**Occurrence**: 14+ duplicate key warnings during 30 seconds of observation.
+
+**Root Cause**: In App.tsx, the setEntities state update uses entity.id as keys, but rapid concurrent state transitions can cause multiple entities with the same ID to exist momentarily in the render tree.
+
+**Trigger Conditions**:
+- Multiple entities complete in the same tick
+- Entity completion while focus operations occur
+- Rapid seed planting triggering state changes
+
+**Impact**:
+- React warnings in console (not a crash, but indicates bug)
+- Unpredictable rendering behavior
+- Potential for wrong entity being focused/clicked
+- User confusion about which entity they're interacting with
+
+**Code Path**:
+```typescript
+// App.tsx lines 126-166
+// Rapid state updates from two setIntervals can cause race conditions
+setEntities((prev) => {
+  const updated = prev.map((entity) => {
+    if (entity.status === 'processing' && Math.random() > 0.7) {
+      return { ...entity, status: 'complete' as const };
+    }
+    // ...
+  });
+  // Multiple entities can complete, then both are added to history
+  // while still present in the render temporarily
+  return updated.filter((e) => e.status !== 'complete');
+});
+```
+
+**Recommendation**:
+1. Add key validation before rendering
+2. Use useId or generate unique render keys
+3. Add React DevTools Profiler to catch duplicates early
+4. Consider using a Map for entity tracking by ID
+
+**Status**: NEW DISCOVERY - Requires immediate investigation
+
+---
+
+## Bug Discovery: No Visible Keyboard Focus Indicator
+
+**Severity**: LOW
+**Category**: Accessibility
+**Component**: AgentCard, ActionSeed, all interactive elements
+
+**Description**: When navigating via keyboard (Tab key), the focused element has no visible focus ring or indicator.
+
+**Current Behavior**: Elements receive focus (detected via Playwright `[active]` state) but have no CSS outline.
+
+**Expected Behavior**: WCAG 2.1 AA requires visible focus indicators (2px outline minimum).
+
+**Observation**: The `.focused` class exists but no CSS rule provides visual feedback.
+
+**Recommendation**:
+```css
+*:focus-visible {
+  outline: 2px solid var(--status-color, #4ade80);
+  outline-offset: 2px;
+}
+```
+
+**Status**: Already documented (BD-001) - Still exists
+
+---
+
+## Bug Discovery: Orphaned Focus State
+
+**Severity**: MEDIUM
+**Category**: UX / State Management
+**Component**: App.tsx
+
+**Description**: Focus state can become orphaned when an entity is removed from the active view (completes) while focused.
+
+**Trigger Conditions**:
+1. Click entity to focus it
+2. Entity status changes to 'complete' (moves to ghost)
+3. Focus state remains on non-existent entity ID
+
+**Current Behavior**: No check for focusedEntity.id still existing in entities array.
+
+**Code Path**:
+```typescript
+// App.tsx lines 77-79
+const handleEntityClick = useCallback((entity: Entity) => {
+  setFocusedEntity(entity);  // No check if entity still exists
+}, []);
+
+// Entity completes, focusedEntity still references deleted entity
+```
+
+**Impact**:
+- Detail panel may try to show info for non-existent entity
+- Click on empty space doesn't clear focus
+- Confusing UX
+
+**Recommendation**:
+```typescript
+useEffect(() => {
+  if (focusedEntity && !entities.find(e => e.id === focusedEntity.id)) {
+    setFocusedEntity(null);  // Clear orphaned focus
+  }
+}, [entities, focusedEntity]);
+```
+
+**Status**: NEW DISCOVERY - Related to B-4 in failure-modes.md
+
+---
+
+## Bug Discoveries Summary
+
+| ID | Severity | Category | Status |
+|----|----------|----------|--------|
+| BD-001 | LOW | Accessibility | Documented, still exists |
+| BD-002 | MEDIUM | Error Resilience | Documented, awaiting fix |
+| BD-003 | LOW | UX | Documented, improvement candidate |
+| BD-004 | MEDIUM | Data Integrity | Documented, awaiting fix |
+| **BD-005** | **HIGH** | **Data Integrity** | **NEW - Duplicate key collision** |
+| **BD-006** | **MEDIUM** | **State Management** | **NEW - Orphaned focus state** |
+
+---
+
+## Screenshot Evidence
+
+- `bug-discovery-duplicate-keys.png` - Console showing 14+ duplicate key warnings
 
 ### Existing Tests (from AllComponents.test.tsx)
 

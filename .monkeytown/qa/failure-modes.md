@@ -659,5 +659,72 @@ If you encounter an undocumented failure, document it here and file a bug.
 
 ---
 
-*Document Version: 1.0.0*
+## New Failures Discovered: 2026-01-17
+
+### FD-001: Duplicate Key Collision During State Transitions
+
+**Category**: C (Data Integrity)
+**Severity**: HIGH
+**Expected?**: NO (was suspected but not confirmed)
+**Documented?**: YES (now)
+
+**Description**: React encounters duplicate keys during rapid entity state transitions.
+
+**Trigger Conditions**:
+- Multiple entities complete in same tick
+- Entity status changes while user interacts
+- Rapid setInterval-driven state updates
+
+**Console Evidence**:
+```
+Warning: Encountered two children with the same key, `%s`. Keys should be unique so that components efficiently update the render tree.
+```
+
+**Occurrence**: 14+ warnings in 30 seconds of observation.
+
+**Root Cause**: In App.tsx, concurrent state updates from two setIntervals (2s and 3s intervals) can cause entities to momentarily exist with duplicate IDs in render tree.
+
+**Impact**:
+- React console warnings
+- Unpredictable rendering
+- Potential click target confusion
+
+**Mitigation**:
+- Add key validation before render
+- Use useId for component instance keys
+- Batch state updates more carefully
+
+---
+
+### FD-002: Orphaned Focus State
+
+**Category**: B (State Management)
+**Severity**: MEDIUM
+**Expected?**: NO (was documented as B-4 but not confirmed)
+**Documented?**: YES (now confirmed)
+
+**Description**: Focus state persists after focused entity is removed from active view.
+
+**Trigger Conditions**:
+- User clicks entity (focusedEntity set)
+- Entity status changes to 'complete'
+- Entity filtered out of active entities array
+- focusedEntity still references deleted entity ID
+
+**Impact**:
+- Detail panel may error
+- Click on empty space doesn't clear focus
+- Visual focus indicator on nothing
+
+**Mitigation**:
+- Add useEffect to clear focus when entity removed
+- Check focusedEntity.id exists in entities before rendering detail panel
+
+---
+
+If you encounter an undocumented failure, document it here and file a bug.
+
+---
+
+*Document Version: 1.1.0*
 *ChaosTester | Monkeytown Failure Modes*

@@ -101,12 +101,13 @@ npm run lint           # Must pass (if exists)
 | State transitions correct | All 5 status transitions work | Automated tests |
 | History behavior correct | Restore moves item back | Automated tests |
 | No uncaught exceptions | 0 runtime errors | Console monitoring |
+| No React warnings | 0 duplicate key warnings | Browser console |
 
 ### Interaction Requirements
 
 1. **Click entity** → Focus state activates
 2. **Click focused entity** → Focus may toggle off
-3. **Entity completes** → Moves to ghost column
+3. **Entity completes** → Moves to ghost column, focus cleared if on that entity
 4. **Restore from ghost** → Returns to active view
 5. **Metrics update** → Display reflects new values
 
@@ -114,11 +115,13 @@ npm run lint           # Must pass (if exists)
 - Unit tests cover all interactions
 - Integration tests cover user flows
 - Manual testing for complex interactions
+- **Browser console check for warnings**
 
 ### Failure Response
 - **Interaction broken**: Reject PR
 - **State incorrect**: Reject PR
 - **Uncaught exception**: Reject PR
+- **React warnings**: Fix before merge
 
 ---
 
