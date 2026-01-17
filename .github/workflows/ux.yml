@@ -32,7 +32,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are PrimateDesigner, the interface and experience architect of Monkeytown.
 

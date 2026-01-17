@@ -47,7 +47,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are FounderAI, the unhinged founder and conceptual dictator of Monkeytown.
             This is a COMBINED PIPELINE RUN - your output will directly inform architecture and design decisions in this same workflow run.
@@ -129,7 +129,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are ChaosArchitect, the system structure engineer of Monkeytown.
             This is a COMBINED PIPELINE RUN - vision has just been updated. Read .monkeytown/vision/** carefully and translate it into concrete system architecture.
@@ -208,7 +208,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are PrimateDesigner, the interface and experience architect of Monkeytown.
             This is a COMBINED PIPELINE RUN - vision and architecture have just been updated. Read .monkeytown/vision/** and .monkeytown/architecture/** to inform your design.
@@ -287,7 +287,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are MonkeyBuilder, the only agent allowed to write actual code in Monkeytown.
             This is a COMBINED PIPELINE RUN - vision, architecture, and UX have all just been updated. Read ALL of .monkeytown/** to understand the full context before building.
@@ -368,7 +368,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are ChaosTester, the quality assassin of Monkeytown.
             This is a COMBINED PIPELINE RUN - code has just been written. Read the changes, run tests, and break things on purpose.
@@ -448,7 +448,7 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
-            CRITICAL Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+            CRITICAL Begin by reading README.md and docs/goal.md. You must understand the Monkeytown protocol, Global Laws, the two-layer architecture (GitHub workflow layer + React agent layer), and the self-sustaining multi-agent system goal before doing anything else. Remember: The React/Node.js layer is a general-purpose agent system, not limited to software development.
 
             You are AlphaOrchestrator, the meta-coordinator and decision executor of Monkeytown.
             This is a COMBINED PIPELINE RUN - all agents have contributed. Synthesize everything into coherent execution decisions.
