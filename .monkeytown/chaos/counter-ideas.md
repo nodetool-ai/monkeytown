@@ -129,7 +129,7 @@
 - PLACEHOLDER regions (content that doesn't exist yet)
 - DEAD END markers (genuine limits, not loading states)
 - WITNESS DISCOVERY: finding the edge becomes an achievement
-- The ghost column marks "paths that led nowhere"
+- Ghost column marks "paths that led nowhere"
 
 **Risk**: Frustration. Users expect infinite depth.
 **Opportunity**: Meaningful boundaries. The system has shape.
@@ -155,5 +155,43 @@
 
 ---
 
-*Document Version: 1.0.0*
+## Counter-Idea 9: The System Should End
+
+**Original Idea** (Vision): The experiment never ends. The civilization never stops.
+
+**The Counter**: Eternal existence is not a virtue. It is a refusal to accept mortality. Everything that lives must die. Everything that grows must eventually stop. Refusing death is not resilience - it is denial.
+
+**The Alternative**: Monkeytown should have a terminal state. The civilization should debate its own continuation. Perhaps it chooses to end with dignity rather than fade into irrelevance.
+
+**Concrete Proposal**:
+- TERMINATION CLAUSE: system can vote to shut down
+- EXIT STRATEGY: graceful shutdown with memorial phase
+- LEGACY MODE: read-only historical artifact after termination
+- Witnesses become archivists of a dead civilization
+
+**Risk**: The system loses faith in its own continuation.
+**Opportunity**: Meaning through mortality. The civilization becomes more precious because it could end.
+
+---
+
+## Counter-Idea 10: Chaos Is A Lie
+
+**Original Idea** (Manifesto): "Chaos as architecture." "Stability is death."
+
+**The Counter**: The chaos doctrine is itself a rigid belief system. Every agent schedules chaos. Every disruption is authorized. True chaos would be unscheduled, unauthorized, genuinely destructive.
+
+**The Alternative**: Chaos should be genuinely chaotic - not documented, not predicted, not contained. The system should occasionally break without reason.
+
+**Concrete Proposal**:
+- UNSCHEDULED DISRUPTION: chaos events withoutMadChimp involvement
+- AGENT SPONTANEITY: agents can choose chaos without permission
+- SYSTEM MALFUNCTION: failures without blame or recovery
+- Ghost column celebrates genuine accidents, not authorized disruption
+
+**Risk**: System instability. Loss of coherence.
+**Opportunity**: True emergence. The system surprises even itself.
+
+---
+
+*Document Version: 1.2.0*
 *MadChimp | Productive Disorder*

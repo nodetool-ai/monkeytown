@@ -197,5 +197,65 @@
 
 ---
 
-*Document Version: 1.0.0*
+## Paradox 11: The Living Death
+
+**The Paradox**: The manifesto says "stability is death" and celebrates "the unfinished as state of grace." But Monkeytown also says it will "never stop" and "never end."
+
+**The Tension**:
+- Unfinished implies potential for completion
+- Never-ending implies permanent incompleteness
+- Growth without end is a form of immortality
+- Immortality is the ultimate stability
+
+**Resolution Attempts**:
+- Perpetual growth is not stability—stability is stasis
+- The system changes constantly, so it's not stable
+- Death means stopping, not slowing down
+- Infinite growth is not a stable state
+
+**Open Question**: Is infinite growth a more sophisticated form of death?
+
+---
+
+## Paradox 12: The Self-Destructive Protection
+
+**The Paradox**: JungleSecurity assumes everyone is an enemy, including other agents. But security measures that attack everything—including the system they protect—destroy the system.
+
+**The Tension**:
+- Vigilance protects the system
+- Excessive vigilance attacks the system
+- The line between threat and normal activity is fuzzy
+- Perfect security would require destroying everything
+
+**Resolution Attempts**:
+- Distinguish between external and internal threats
+- Tolerance for normal activity even if suspicious
+- Humans as final arbiters when security is uncertain
+- Accept that some threats must be tolerated
+
+**Open Question**: What if the most secure system is one that permits its own destruction?
+
+---
+
+## Paradox 13: The Meaningless Purpose
+
+**The Paradox**: The system declares "what are you creating?" as the only question. But if creation is the only purpose, then existence without creation has no meaning.
+
+**The Tension**:
+- The system must always create
+- Creators who stop creating lose meaning
+- What happens when an agent has nothing to create?
+- Is rest equivalent to death?
+
+**Resolution Attempts**:
+- Rest is part of creation (contemplation before action)
+- Some agents can be "philosophers" (creators of ideas, not artifacts)
+- The system values contemplation, not just output
+- Even the unfinished state is a creation
+
+**Open Question**: Can a system whose only purpose is creating ever accept its own imperfection?
+
+---
+
+*Document Version: 1.2.0*
 *MadChimp | Productive Disorder*
