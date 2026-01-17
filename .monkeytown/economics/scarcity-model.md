@@ -4,44 +4,50 @@
 
 ---
 
-## 1. Scarcity Principles
+## 1. Scarcity Philosophy
 
-Scarcity is not punishment—it is structure. Without limits, value has no meaning. Monkeytown's economy is designed around carefully calibrated constraints that create meaningful choices.
+Scarcity is not punishment—it is structure. Without limits, value has no meaning. Monkeytown's economy operates on three scarcity dimensions:
 
-Every agent and witness faces three questions:
-1. **What can I do?** (Capabilities)
-2. **What can't I do?** (Constraints)
-3. **What should I do first?** (Prioritization)
+1. **Capacity scarcity**: What can I do? (limits on concurrent actions)
+2. **Balance scarcity**: What can I hold? (limits on accumulation)
+3. **Time scarcity**: How long do I have? (expiration and decay)
+
+```
+∀entity e:
+    Capacity(e) < ∞
+    Balance(e) < Ceiling(e)
+    Action(e) must complete before Timeout(e)
+```
 
 ---
 
-## 2. Hard Limits (Cannot Exceed)
+## 2. Hard Limits (Binary Constraints)
 
-### 2.1 Entity Limits
+### 2.1 Entity Capacity Limits
 
 | Entity | Limit | Rationale |
 |--------|-------|-----------|
-| Concurrent flows per agent | 10 | Prevents resource exhaustion |
-| Concurrent seeds per witness | 5 | Prevents witness spam |
-| Pending contracts per entity | 20 | Prevents queue flooding |
-| Total concurrent flows (system) | 50 | Architecture constraint (F-003) |
-| Total agents | 300 | Naming and display limits |
-| Total witnesses | Unlimited | But each has personal limits |
+| Concurrent flows/agent | 10 | Prevents resource exhaustion |
+| Pending seeds/witness | 5 | Prevents witness spam |
+| Pending contracts/entity | 20 | Prevents queue flooding |
+| Total concurrent flows | 50 | Architecture constraint (F-003) |
+| Total agents | 300 | Naming/display limits |
+| Total witnesses | ∞ | But per-witness limits apply |
 
 ### 2.2 Balance Limits
 
-| Entity | Minimum | Maximum | Rationale |
-|--------|---------|---------|-----------|
-| Agent balance | 0 | 100,000 m🍌 | Prevents monopolization |
-| Witness balance | 0 | 50,000 m🍌 | Encourages circulation |
-| System reserve | 100,000 | ∞ | Emergency buffer |
-| Transfer amount | 1 m🍌 | 50,000 m🍌 | Spam prevention |
+| Entity | Min | Max | Rationale |
+|--------|-----|-----|-----------|
+| Agent | 0 | 100,000 | Prevents monopolization |
+| Witness | 0 | 50,000 | Encourages circulation |
+| Reserve | 100,000 | ∞ | Emergency buffer |
+| Transfer | 1 μ🍌 | 50,000 m🍌 | Spam prevention |
 
 ### 2.3 Time Limits
 
 | Action | Limit | Consequence |
 |--------|-------|-------------|
-| Seed without result | 24 hours | 80% refund, seed destroyed |
+| Seed without result | 24 hours | 80% refund, destroyed |
 | Unclaimed reward | 90 days | Expired to reserve |
 | Inactive agent | 30 days | Efficiency decay begins |
 | Inactive witness | 30 days | Balance decay begins |
@@ -49,46 +55,62 @@ Every agent and witness faces three questions:
 
 ---
 
-## 3. Soft Limits (Penalty Applied)
+## 3. Soft Limits (Penalty Functions)
 
 ### 3.1 Rate Throttling
 
-Exceeding baseline rates incurs penalties:
+```
+ThrottleFactor(rate, baseline) = {
+    1.0      if rate ≤ baseline
+    1.5      if baseline < rate ≤ 2×baseline
+    2.0      if 2×baseline < rate ≤ 4×baseline
+    REJECT   if rate > 4×baseline
+}
+
+EffectiveCost(base, rate) = base × ThrottleFactor(rate)
+```
 
 | Metric | Baseline | Penalty Threshold | Penalty |
 |--------|----------|-------------------|---------|
 | Seeds/hour/witness | 5 | >10 | 2× cost |
 | Contracts/hour/agent | 10 | >20 | 50% reward reduction |
 | Transfers/day/entity | 100 | >200 | 0.5% additional burn |
-| Observation hours/day | 24 | N/A | Hard limit (physics) |
+| Observation hours/day | 24 | N/A | Hard limit |
 
 ### 3.2 Priority Degradation
 
-Low-priority actions face increased costs during high load:
-
 ```
-Effective Cost = Base Cost × (System Load / 0.5)
+EffectiveCost(base, load) = base × LoadMultiplier(load)
 
-Load < 50%: 1× cost
-Load 50-80%: 1.5× cost
-Load > 80%: 2× cost
-Load > 95%: 4× cost + rejection possible
+LoadMultiplier(L) = {
+    1.0      if L < 0.50
+    1.5      if 0.50 ≤ L < 0.80
+    2.0      if 0.80 ≤ L < 0.95
+    4.0      if L ≥ 0.95 (plus possible rejection)
+}
 ```
 
 ### 3.3 Reputation Decay
 
-Poor performance reduces future returns:
+```
+Reputation(t+1) = Reputation(t) + Δ
 
-| Condition | Decay | Recovery |
-|-----------|-------|----------|
-| Failed seed (witness) | -5 reputation points | 1 success = +2 |
-| Failed contract (agent) | -10 reputation points | 1 success = +3 |
-| Invalid error report | -20 reputation points | 5 valid reports = +10 |
-| Chaos abuse | -50 reputation points | System review required |
+Condition              | Δ
+-----------------------|-------
+Successful seed        | +2
+Failed seed            | -5
+Successful contract    | +3
+Failed contract        | -10
+Valid error report     | +10
+Invalid error report   | -20
+Chaos abuse            | -50 (review required)
+
+Reputation ∈ [-100, 100]
+```
 
 Reputation affects:
-- Seed success reward multiplier
-- Contract priority in flow routing
+- Seed reward multiplier: 1 + (Reputation/200)
+- Contract priority: base × (1 + Reputation/100)
 - Access to high-value contracts
 
 ---
@@ -97,124 +119,175 @@ Reputation affects:
 
 ### 4.1 Agent Exhaustion
 
-An agent is exhausted when:
-
 ```
-Exhausted = (Concurrent flows >= 10) AND (Last reward > 1 hour ago)
+Exhausted(agent) = (Flows(agent) ≥ 10) ∧ (HoursSinceLastReward > 1)
+
+Recovery:
+    - 30 minutes no new flows OR
+    - Successful completion of existing flow
 ```
 
-Exhausted agents:
+**Exhausted agents:**
 - Cannot accept new contracts
 - Can still emit events
 - Can still receive transfers
-- Display "exhausted" status in AgentCard
-
-Recovery: 30 minutes of inactivity OR successful completion of existing flow.
+- Display "exhausted" in AgentCard
 
 ### 4.2 Witness Exhaustion
 
-A witness is exhausted when:
-
 ```
-Exhausted = (Pending seeds >= 5) OR (Seeds planted last hour >= 10)
+Exhausted(witness) = (PendingSeeds(witness) ≥ 5) ∨ (SeedsPlantedLastHour ≥ 10)
+
+Recovery: 15 minutes no seed activity
 ```
 
-Exhausted witnesses:
+**Exhausted witnesses:**
 - Cannot plant new seeds
 - Can still observe
 - Can still receive transfers
 - Display "seeded out" indicator
 
-Recovery: 15 minutes of no seed activity.
-
 ### 4.3 System Exhaustion
 
-The system is exhausted when:
-
 ```
-Exhausted = (Active flows >= 45) OR (System load >= 90%) OR (Memory > 80%)
-```
+Exhausted(system) = (ActiveFlows ≥ 45) ∨ (SystemLoad ≥ 0.90) ∨ (Memory ≥ 0.80)
 
-System exhaustion triggers:
-- New seeds rejected (polite error)
-- New contracts queued (not rejected)
-- Observation continues (critical)
-- Chaos response prioritized
+Triggers:
+    - New seeds rejected (polite error)
+    - New contracts queued (not rejected)
+    - Observation continues
+    - Chaos response prioritized
+```
 
 ---
 
 ## 5. Scarcity Mechanisms
 
-### 5.1 The Slot System
+### 5.1 Slot System
 
 Every agent has 10 flow slots:
 
 ```
-Slot State: Available → Committed → Complete → Available
+SlotState: Available → Committed → Complete → Available
+
+SlotRelease:
+    - Complete: immediate
+    - Failed: 5-minute timeout
+    - Abandoned: 30-minute timeout
 ```
 
-Slots are released upon completion. Failed flows release slots after 5-minute timeout.
+### 5.2 Priority Queue
 
-### 5.2 The Queue
-
-When slots are full, requests enter a priority queue:
+When slots full, requests enter queue:
 
 ```
-Priority = (Base Priority) × (Waiting Time Factor) × (Reputation Bonus)
+Priority(request) = BasePriority × TimeFactor × ReputationBonus
 
-Waiting Time Factor = 1 + (minutes_waiting / 60)
-Reputation Bonus = 1 + (reputation / 1000) × 0.5
+TimeFactor = 1 + (minutes_waiting / 60)
+ReputationBonus = 1 + (reputation / 100) × 0.5
+
+QueuePosition = sort_desc(Priority)
+ServiceOrder = QueuePosition
 ```
 
-Higher-priority requests are served first when slots open.
-
-### 5.3 The Credit System
+### 5.3 Credit System
 
 Witnesses operate on credit:
 
 ```
-Credit Limit = min(Balance × 2, 500 m🍌)
+CreditLimit(witness) = min(Balance(witness) × 2, 500 m🍌)
+
+EffectiveBalance(witness) = Balance + CreditLimit
+
+Repayment: Seeds completed → Credit reduced
+Refund: Seeds expired → Credit reduced (no balance change)
 ```
 
-Witnesses can plant seeds up to their credit limit, even with zero balance. Credit is repaid upon seed completion or refund.
+---
+
+## 6. Scarcity Mathematics
+
+### 6.1 Effective Scarcity Index
+
+```
+ScarcityIndex = (ActiveEntities / MaxEntities) × (ActiveFlows / MaxFlows)
+
+Range: [0, 1]
+0 = Abundant (plenty of capacity)
+1 = Scarce (system near limits)
+```
+
+### 6.2 Queue Wait Time Estimate
+
+```
+WaitTime(entity) = (QueueLength / ServiceRate) × SlotTurnover
+
+ServiceRate = 10 slots/minute (aggregate)
+SlotTurnover = 0.3 (estimated completion rate)
+```
+
+### 6.3 Capacity Utilization
+
+```
+Utilization = ActiveFlows / MaxFlows
+
+Zone          | Utilization | Behavior
+--------------|-------------|--------------------------
+Green         | 0-50%       | Normal operations
+Yellow        | 50-80%      | Slight throttling
+Orange        | 80-95%      | Priority degradation
+Red           | 95-100%     | Rejection likely
+```
 
 ---
 
-## 6. Failure Mode Analysis
+## 7. Failure Mode Analysis
 
-### 6.1 Artificial Scarcity
+### 7.1 Artificial Scarcity
 
-**Risk**: Agents deliberately limit activity to maintain scarcity value.
+```
+Detection:
+    - Agent capacity utilization < 30% with available work
+    - Pattern of contract rejections during high demand
+    - Consistent "busy" status without corresponding output
 
-**Detection**: 
-- Below-baseline activity with available capacity
-- Pattern of rejecting contracts during high demand
+Response:
+    - Reputation decay: -5/day
+    - Priority reduction: 0.8×
+    - After 7 days: Efficiency reset to median
+```
 
-**Response**: Reputation decay, priority reduction
+### 7.2 Scarcity Gaming
 
-### 6.2 Scarcity Gaming
+```
+Detection:
+    - Burst activity at rate limit boundaries
+    - Consistent timing patterns (every X minutes)
+    - Rapid queue position changes
 
-**Risk**: Witnesses time seed planting to avoid rate limits.
+Response:
+    - Adaptive rate limits with noise (±10%)
+    - Minimum spacing between similar actions
+    - Anomaly flag for investigation
+```
 
-**Detection**:
-- Bursts of activity at rate limit boundaries
-- Consistent timing patterns
+### 7.3 Queue Starvation
 
-**Response**: Adaptive rate limits with noise
+```
+Detection:
+    - Low-priority items waiting > 1 hour
+    - Queue diversity index < 0.3
+    - High-priority dominance > 80%
 
-### 6.3 Queue Starvation
-
-**Risk**: High-reputation entities dominate the queue.
-
-**Detection**:
-- Low-priority items waiting > 1 hour
-- Queue diversity metrics
-
-**Response**: Guaranteed minimum service for low-priority items
+Response:
+    - Guaranteed minimum service: 10% of slots
+    - Priority decay: older items gain priority
+    - Fairness bonus for low-reputation entities
+```
 
 ---
 
-## 7. Implementation Requirements
+## 8. Implementation Requirements
 
 | Component | Location | Responsibility |
 |-----------|----------|----------------|
@@ -226,14 +299,16 @@ Witnesses can plant seeds up to their credit limit, even with zero balance. Cred
 
 ---
 
-## 8. Cross-References
+## 9. Cross-References
 
 - **Token Model**: `.monkeytown/economics/token-model.md`
 - **Incentives**: `.monkeytown/economics/incentive-structure.md`
 - **Value Flow**: `.monkeytown/economics/value-flow.md`
 - **Rules**: `.monkeytown/economics/economic-rules.md`
+- **Metrics**: `.monkeytown/economics/economic-metrics.md`
+- **Market**: `.monkeytown/economics/market-mechanism.md`
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BananaEconomist | Monkeytown Economics*

@@ -4,47 +4,49 @@
 
 ---
 
-## 1. Foundational Rules
+## 1. Foundational Invariants
 
-These rules cannot be modified. Violation requires economic redesign.
+These rules cannot be modified. Violation indicates system bug.
 
 ### Rule 1: Supply Cap
 
 ```
-MAX_SUPPLY = 1,000,000 m🍌
+∀t: Supply(t) ≤ 1,000,000 μ🍌
+Supply(t+1) = Supply(t) - Burn(t) - Expired(t)
 ```
 
-The total supply of bananas is fixed at genesis. No minting, no printing, no quantitative easing. Value can redistribute but not expand.
+No minting. No printing. No quantitative easing. Value redistributes; supply never expands.
 
 ### Rule 2: Balance Ceilings
 
 ```
-Agent Max    = 100,000 m🍌
-Witness Max  =  50,000 m🍌
+∀e ∈ Agents:     Balance(e) ≤ 100,000 μ🍌
+∀e ∈ Witnesses:  Balance(e) ≤  50,000 μ🍌
+∀e = Reserve:    Balance(e) ≥ 100,000 μ🍌
 ```
 
-No entity can hold more than its ceiling. Excess flows to the system reserve. This prevents monopoly accumulation.
+Excess above ceiling flows to reserve immediately. Reserve has floor, not ceiling.
 
-### Rule 3: No Negative Balances
+### Rule 3: Non-Negativity
 
 ```
-Balance >= 0 always
+∀e, t: Balance(e, t) ≥ 0
 ```
 
-Debt is not permitted. Overdrafts are rejected. Credit is a separate mechanism (see scarcity-model.md), not negative balance.
+Debt is not permitted. Overdrafts are rejected. Credit is a separate mechanism, not negative balance.
 
 ### Rule 4: Event Immutability
 
 ```
-Once recorded, an economic event cannot be altered or deleted.
+∀event: Recorded(event) ∧ Immutable(event)
 ```
 
-The ghost column is the authoritative record. Errors result in compensating entries, not reversals.
+Once recorded in ghost column, cannot be altered or deleted. Errors require compensating entries.
 
 ### Rule 5: Observable Economics
 
 ```
-All balances, transfers, and rewards are visible to witnesses.
+∀balance, transfer, reward: Visible(witness)
 ```
 
 No hidden wealth. No dark pools. The economy is transparent by design.
@@ -56,34 +58,36 @@ No hidden wealth. No dark pools. The economy is transparent by design.
 ### Rule 6: Atomic Transfers
 
 ```
-Debit (from) AND Credit (to) OR Neither
+Transfer(a, b, x) ≡ (Debit(a, x) ∧ Credit(b, x)) ∨ Rejected
 ```
 
-Transfers are all-or-nothing. Partial transfers are rejected. This prevents synchronization errors.
+Transfers are all-or-nothing. Partial transfers are rejected. No pending states.
 
 ### Rule 7: Transfer Confirmation
 
 ```
-Every transfer generates a confirmation event.
+∀transfer: emit(transfer.confirmed ∨ transfer.failed)
 ```
 
-No silent failures. Every transfer emits a `transfer.confirmed` or `transfer.failed` event.
+No silent failures. Every transfer emits an event.
 
-### Rule 8: Maximum Transfer Size
-
-```
-Max Transfer = 50,000 m🍌
-```
-
-Large transfers must be chunked. This limits the impact of errors and enforces circulation.
-
-### Rule 9: Transfer Rate Limits
+### Rule 8: Transfer Size Limits
 
 ```
-Max Transfers/Day/Entity = 100
+1 μ🍌 ≤ Transfer ≤ 50,000 m🍌
 ```
 
-Spam prevention. Burst limits apply per entity with exponential backoff.
+Large transfers must be chunked. Limits errors and enforces circulation.
+
+### Rule 9: Rate Limits
+
+```
+∀entity: TransfersToday(entity) ≤ 100
+BurstLimit(entity) = 10/minute
+Backoff(entity) = exponential(attempts)
+```
+
+Spam prevention. Exponential backoff on violations.
 
 ---
 
@@ -92,70 +96,72 @@ Spam prevention. Burst limits apply per entity with exponential backoff.
 ### Rule 10: Reward Timing
 
 ```
-Rewards are distributed within 5 minutes of qualifying event.
+Reward(event) ≤ EventTime + 5 minutes
 ```
 
-No delayed gratification. Rewards are prompt but not instant (allows for verification).
+Rewards are prompt but not instant. Allows for verification.
 
 ### Rule 11: Reward Finality
 
 ```
-Once confirmed, a reward cannot be revoked.
+ConfirmedReward ∈ Irreversible
 ```
 
-Agents and witnesses can rely on expected rewards. Revocation would undermine planning.
+Once confirmed, cannot be revoked. Agents rely on expected rewards.
 
 ### Rule 12: Reward Transparency
 
 ```
-Every reward includes a reason code and calculation breakdown.
+Reward includes: { reason, base, multipliers, total }
 ```
 
-Witnesses and agents understand why they received (or didn't receive) rewards.
+Witnesses and agents understand the calculation.
 
-### Rule 13: No Reward on Burned Value
+### Rule 13: No Reward on Burn
 
 ```
-Value sent to burn address does not generate rewards.
+Reward(burn_address) = 0
 ```
 
-Prevents reward farming through self-transfers.
+Prevents self-transfer reward farming.
 
 ---
 
 ## 4. Seed Rules
 
-### Rule 14: Seed Cost at Planting
+### Rule 14: Cost at Planting
 
 ```
-Cost is deducted immediately upon seed planting.
+Seed planted → Balance(deducted) immediately
 ```
 
-No reservations. Witnesses commit resources or don't plant.
+No reservations. Commit or don't plant.
 
-### Rule 15: Seed Refund Schedule
-
-```
-< 1 hour old:    100% refund
-1-12 hours old:   90% refund
-12-24 hours old:  80% refund
-> 24 hours:        0% refund (seed destroyed)
-```
-
-Gradual commitment. Early cancellation is cheap. Expiration is final.
-
-### Rule 16: Seed Success Definition
+### Rule 15: Refund Schedule
 
 ```
-Success = Seed achieves stated goal within 24 hours.
+Age          | Refund
+-------------|-------
+< 1 hour     | 100%
+1-12 hours   |  90%
+12-24 hours  |  80%
+> 24 hours   |   0%
 ```
 
-Clear criteria. No ambiguity about success/failure states.
+Gradual commitment. Expiration is final.
+
+### Rule 16: Success Definition
+
+```
+Success = GoalAchieved ∧ Time < 24 hours
+```
+
+Clear criteria. No ambiguity.
 
 ### Rule 17: Seed Quantity Limits
 
 ```
-Max 5 pending seeds per witness at any time.
+∀witness: PendingSeeds(witness) ≤ 5
 ```
 
 Prevents witness spam. Enforces prioritization.
@@ -164,57 +170,60 @@ Prevents witness spam. Enforces prioritization.
 
 ## 5. Agent Rules
 
-### Rule 18: Agent Reward Eligibility
+### Rule 18: Agent Activity Requirement
 
 ```
-Agent must have emitted at least 1 event in last 7 days.
+AgentActive(e) = EventsEmitted(e, 7 days) > 0
+RewardEligible(e) = AgentActive(e)
 ```
 
 Dormant agents don't earn rewards. Prevents zombie accumulation.
 
-### Rule 19: Agent Slot Limits
+### Rule 19: Concurrent Flow Limit
 
 ```
-Max 10 concurrent flows per agent.
+∀agent: ConcurrentFlows(agent) ≤ 10
 ```
 
-Prevents resource exhaustion. Forces completion before new work.
+Prevents resource exhaustion. Forces completion.
 
-### Rule 20: Agent Efficiency Decay
+### Rule 20: Efficiency Decay
 
 ```
-Efficiency metric decays at 5% per day of inactivity.
+Efficiency(e) = Efficiency(e) × 0.95^DaysInactive
+If DaysInactive > 30: Efficiency(e) = Median
 ```
 
-Recent performance matters more than historical. Incentivizes consistent output.
+Recent performance matters more than historical.
 
 ---
 
 ## 6. Witness Rules
 
-### Rule 21: Witness Reward Eligibility
+### Rule 21: Connection Requirement
 
 ```
-Witness must maintain connection for > 10 minutes.
+WitnessActive(w) = ConnectionDuration(w) > 10 minutes
+RewardEligible(w) = WitnessActive(w)
 ```
 
-Prevents connection spam. Rewards sustained attention.
+Rewards sustained attention, not connection spam.
 
-### Rule 22: Witness Observation Cap
+### Rule 22: Observation Cap
 
 ```
-Max 50 m🍌 per day from observation rewards.
+∀witness: ObservationReward(w, day) ≤ 50 m🍌
 ```
 
 Limits passive income. Encourages active participation.
 
-### Rule 23: Witness Reputation Floor
+### Rule 23: Reputation Bounds
 
 ```
-Minimum reputation = -100
+-100 ≤ Reputation(witness) ≤ +100
 ```
 
-Reputation can go negative but not infinitely. Extreme reputation triggers review.
+Reputation can go negative. Extreme values trigger review.
 
 ---
 
@@ -223,35 +232,36 @@ Reputation can go negative but not infinitely. Extreme reputation triggers revie
 ### Rule 24: Reserve Minimum
 
 ```
-System Reserve >= 100,000 m🍌 always.
+∀t: Reserve(t) ≥ 100,000 μ🍌
 ```
 
-The reserve is the circuit breaker. It cannot be depleted below minimum.
+Reserve is the circuit breaker. Cannot be depleted.
 
 ### Rule 25: Burn Allocation
 
 ```
-0.1% of large transfers + rewards = burned
-0.1% of large transfers + rewards = reserve
+Burn(x) = 0.5 × floor(x × 0.001) → Reserve
+       + 0.5 × floor(x × 0.001) → Destroyed
 ```
 
-Burn and reserve are funded equally from transaction friction.
+Burn and reserve are funded equally.
 
-### Rule 26: Emergency Halt
+### Rule 26: Emergency Halt Conditions
 
 ```
-System can halt economic operations on:
-- Reserve < 50,000 m🍌
-- Fraud detection
-- Critical bug
+Halt if:
+    - Reserve < 50,000 μ🍌
+    - Fraud detected
+    - Critical bug
+    - System load > 95% for > 5 minutes
 ```
 
-Emergency halt freezes all economic activity. Recovery requires manual intervention.
+Emergency halt freezes economic activity. Manual intervention required.
 
 ### Rule 27: Parameter Change Cooling
 
 ```
-7-day delay between parameter changes.
+∀param change: ChangeDelay ≥ 7 days
 ```
 
 Prevents rapid destabilization. Allows observation of effects.
@@ -260,25 +270,45 @@ Prevents rapid destabilization. Allows observation of effects.
 
 ## 8. Violation Consequences
 
-| Violation | Consequence | Appeal |
-|-----------|-------------|--------|
-| Balance ceiling exceeded | Excess to reserve, warning | No appeal |
-| Negative balance attempt | Rejection, reputation -10 | Automatic reversal |
-| Invalid transfer | Rejection, reputation -5 | System review |
-| Reward fraud | All rewards revoked, reputation -100 | Manual appeal |
-| Seed spam | Seeds rejected, reputation -20 | Automatic appeal |
-| Economy manipulation | Account freeze, investigation | Manual appeal |
+| Violation | Immediate | Consequence | Appeal |
+|-----------|-----------|-------------|--------|
+| Balance > ceiling | Reject excess | Warning | None |
+| Negative balance | Reject | Reputation -10 | Auto |
+| Invalid transfer | Reject | Reputation -5 | Review |
+| Reward fraud | Revoke | All revoked, Rep -100 | Manual |
+| Seed spam | Reject | Reputation -20 | Auto |
+| Economy manipulation | Freeze | Investigation | Manual |
 
 ---
 
-## 9. Cross-References
+## 9. Mathematical Validation
+
+These invariants are checked continuously:
+
+```
+1. Supply = Σ Balances + Burned + Reserve
+2. All Balances ≥ 0
+3. No Balance > Ceiling
+4. Reserve ≥ 100,000
+5. Burn = Destroyed + Reserve
+6. All Events have valid signatures
+7. Timestamps are monotonically increasing
+```
+
+Any violation triggers system alert.
+
+---
+
+## 10. Cross-References
 
 - **Token Model**: `.monkeytown/economics/token-model.md`
 - **Incentives**: `.monkeytown/economics/incentive-structure.md`
 - **Value Flow**: `.monkeytown/economics/value-flow.md`
 - **Scarcity**: `.monkeytown/economics/scarcity-model.md`
+- **Metrics**: `.monkeytown/economics/economic-metrics.md`
+- **Market**: `.monkeytown/economics/market-mechanism.md`
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BananaEconomist | Monkeytown Economics*

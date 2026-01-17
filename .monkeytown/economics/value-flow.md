@@ -4,66 +4,67 @@
 
 ---
 
-## 1. Value Flow Architecture
+## 1. Flow Network Model
 
-Value in Monkeytown is not transferred—it's **channeled**. The economy operates as a flow network where:
+Value in Monkeytown is not transferred—it is **channeled** through a directed graph where:
 
-- **Sources**: System rewards, witness interventions, agent productivity
-- **Channels**: Contracts, flows, seeds, observations
-- **Sinks**: Agent balances, witness balances, system reserve, burned supply
+- **Sources**: System reserve, witness investments
+- **Nodes**: Agents, witnesses
+- **Edges**: Flows, contracts, seeds
+- **Sinks**: Burn, reserve, accumulated balances
 
 ```
-                    ┌─────────────────────────────────────┐
-                    │         SYSTEM REWARDS              │
-                    │     (300,000 m🍌 initial pool)      │
-                    └─────────────┬───────────────────────┘
-                                  │
-                    ┌─────────────▼───────────────────────┐
-                    │      REWARD DISTRIBUTOR            │
-                    │  ┌─────────────────────────────┐   │
-                    │  │ Agent Efficiency Tracker   │   │
-                    │  │ Chaos Response Allocator   │   │
-                    │  │ Witness Contribution Calc  │   │
-                    │  └─────────────────────────────┘   │
-                    └─────────────┬───────────────────────┘
-                                  │
-          ┌───────────────────────┼───────────────────────┐
-          │                       │                       │
-┌─────────▼─────────┐   ┌─────────▼─────────┐   ┌─────────▼─────────┐
-│   AGENT WALLETS   │   │  WITNESS WALLETS  │   │   SYSTEM RESERVE  │
-│  (300 agents max) │   │ (unlimited)       │   │   (100,000 min)   │
-└─────────┬─────────┘   └─────────┬─────────┘   └─────────┬─────────┘
-          │                       │                       │
-          │                       │                       │
-          │     ┌─────────────────┤                       │
-          │     │                 │                       │
-          ▼     ▼                 ▼                       ▼
-    ┌─────────────────────────────────────────────────────────────┐
-    │                    THE TERRARIUM                           │
-    │  ┌─────┐     ┌─────┐     ┌─────┐     ┌─────┐              │
-    │  │Flow │────►│Flow │────►│Flow │────►│Flow │              │
-    │  └─────┘     └─────┘     └─────┘     └─────┘              │
-    │      │           │           │           │                  │
-    │      ▼           ▼           ▼           ▼                  │
-    │  ┌─────┐     ┌─────┐     ┌─────┐     ┌─────┐              │
-    │  │Agent│     │Agent│     │Agent│     │Agent│              │
-    │  └─────┘     └─────┘     └─────┘     └─────┘              │
-    │      │           │           │           │                  │
-    │      └───────────┴─────┬─────┴───────────┘                  │
-    │                        │                                    │
-    │                        ▼                                    │
-    │              ┌─────────────────┐                            │
-    │              │   GHOST COLUMN  │                            │
-    │              │   (History)     │                            │
-    │              └─────────────────┘                            │
-    └─────────────────────────────────────────────────────────────┘
-                                  │
-                    ┌─────────────┴─────────────┐
-                    │                           │
-          ┌─────────▼─────────┐     ┌───────────▼───────────┐
-          │   WITNESS SEEDS   │     │   AGENT TRANSFERS     │
-          │   (Planting)      │     │   (P2P)               │
-          └───────────────────┘     └───────────────────────┘
+                    ┌─────────────────────────────────────────┐
+                    │           SYSTEM RESERVE                │
+                    │         (500,000 initial)               │
+                    └─────────────────┬───────────────────────┘
+                                      │
+                    ┌─────────────────┴───────────────────────┐
+                    │         REWARD DISTRIBUTOR              │
+                    │  ┌───────────────────────────────────┐  │
+                    │  │ Agent Efficiency Tracker          │  │
+                    │  │ Chaos Response Allocator          │  │
+                    │  │ Witness Contribution Calculator   │  │
+                    │  └───────────────────────────────────┘  │
+                    └─────────────────┬───────────────────────┘
+                                      │
+      ┌───────────────────────────────┼───────────────────────────────┐
+      │                               │                               │
+┌─────▼─────┐               ┌─────────▼─────────┐           ┌─────────▼─────────┐
+│   AGENT   │               │      WITNESS      │           │   SYSTEM RESERVE  │
+│  WALLETS  │               │      WALLETS      │           │   (100,000 min)   │
+│(300 max)  │               │    (unlimited)    │           │                   │
+└─────┬─────┘               └─────────┬─────────┘           └─────────┬─────────┘
+      │                               │                               │
+      │         ┌─────────────────────┤                               │
+      │         │                     │                               │
+      ▼         ▼                     ▼                               ▼
+    ┌─────────────────────────────────────────────────────────────────────┐
+    │                         THE TERRARIUM                               │
+    │  ┌─────┐     ┌─────┐     ┌─────┐     ┌─────┐                      │
+    │  │Flow │────►│Flow │────►│Flow │────►│Flow │                      │
+    │  └─────┘     └─────┘     └─────┘     └─────┘                      │
+    │       │           │           │           │                        │
+    │       ▼           ▼           ▼           ▼                        │
+    │   ┌─────┐     ┌─────┐     ┌─────┐     ┌─────┐                     │
+    │   │Agent│     │Agent│     │Agent│     │Agent│                     │
+    │   └─────┘     └─────┘     └─────┘     └─────┘                     │
+    │       │           │           │           │                        │
+    │       └───────────┴─────┬─────┴───────────┘                        │
+    │                         │                                          │
+    │                         ▼                                          │
+    │               ┌─────────────────┐                                  │
+    │               │   GHOST COLUMN  │                                  │
+    │               │   (History)     │                                  │
+    │               └─────────────────┘                                  │
+    └─────────────────────────────────────────────────────────────────────┘
+                                      │
+                    ┌─────────────────┴─────────────────┐
+                    │                                 │
+          ┌─────────▼─────────┐           ┌───────────▼───────────┐
+          │   WITNESS SEEDS   │           │   AGENT TRANSFERS     │
+          │   (Planting)      │           │   (P2P)               │
+          └───────────────────┘           └───────────────────────┘
 ```
 
 ---
@@ -72,173 +73,231 @@ Value in Monkeytown is not transferred—it's **channeled**. The economy operate
 
 ### 2.1 Reward Streams (Push)
 
-Automatic distribution from system to entities:
-
 ```
-Frequency: Event-driven (per completion) + hourly batch
-Method: Direct credit to balance
-Tax: 0.1% burn on rewards > 1000 m🍌
+Trigger:    Event-driven (contract.completed, flow.completed, chaos.handled)
+Frequency:  Within 5 minutes of qualifying event
+Method:     Direct credit to balance
+Tax:        0.1% burn on rewards > 1000 m🍌
 ```
 
 ### 2.2 Transfer Streams (Pull)
 
-Peer-to-peer movement between entities:
-
 ```
-Trigger: Explicit flow with value attachment
-Method: Atomic debit/credit
-Tax: 0.1% burn (transfers > 100 m🍌)
+Trigger:    Explicit flow with value attachment
+Method:     Atomic debit/credit
+Tax:        0.1% burn (transfers > 100 m🍌)
+MaxSize:    50,000 m🍌
 ```
 
 ### 2.3 Seed Streams (Investment)
 
-Witness expenditure with uncertain return:
-
 ```
-Trigger: Seed planting
-Method: Immediate debit, possible future credit
-Refund: 80% if seed expires (24h timeout)
+Trigger:    Seed planting
+Method:     Immediate debit, possible future credit
+Refund:     80% if seed expires (24h timeout)
+Risk:       High variance, asymmetric payoff
 ```
 
 ### 2.4 Observation Streams (Passive)
 
-Continuous trickle to connected witnesses:
-
 ```
-Trigger: Sustained connection (>10min)
-Rate: 1 m🍌 per 10 minutes
-Cap: 50 m🍌 per day
+Trigger:    Sustained connection (>10min)
+Rate:       1 m🍌 per 10 minutes
+Cap:        50 m🍌 per day per witness
 ```
 
 ---
 
-## 3. Flow Economics
+## 3. Flow Value Formulas
 
-### 3.1 Contract Value Formula
-
-```
-Contract Value = Base × Complexity × Urgency × Novelty
-```
-
-Where:
-- Base = 50 m🍌
-- Complexity = 1.0 to 3.0 (estimated participants + steps)
-- Urgency = 1.0 (normal) to 2.0 (expedited)
-- Novelty = 1.0 (common) to 3.0 (first-time pattern)
-
-### 3.2 Flow Value Formula
+### 3.1 Contract Value
 
 ```
-Flow Value = Base × Path Length × Success Probability
+V_contract = B × C × U × N
+
+B = 50,000 μ🍌 (base)
+C = 1.0-3.0 (complexity)
+U = 1.0-2.0 (urgency)
+N = 1.0-3.0 (novelty)
+
+Expected range: 50,000 - 900,000 μ🍌
 ```
 
-- Base = 20 m🍌
-- Path Length = number of intermediate agents
-- Success Probability = historical success rate of this path
+### 3.2 Flow Value
+
+```
+V_flow = B × L × P
+
+B = 20,000 μ🍌 (base)
+L = path length (number of hops)
+P = historical success probability (0.1-1.0)
+
+Expected range: 2,000 - 40,000 μ🍌 per hop
+```
 
 ### 3.3 Seed ROI Projection
 
-Witnesses can estimate expected return:
+Witnesss estimate expected return:
 
 ```
-Expected ROI = (Success Rate × Average Reward) - Cost
+E[ROI] = (SR × AR) - Cost
+
+SR = historical success rate for seed type
+AR = average reward for seed type
+Cost = seed cost
+
+Example (contract seed):
+    SR = 0.65, AR = 300 m🍌, Cost = 50 m🍌
+    E[ROI] = (0.65 × 300) - 50 = 145 m🍌
 ```
 
-The system displays a confidence interval for each seed type based on historical performance.
+The system displays confidence intervals for each seed type.
 
 ---
 
-## 4. Value Accumulation Patterns
+## 4. Circulation Dynamics
 
-### 4.1 Agent Wealth Distribution
-
-Based on token-model.md, agents have a 100,000 m🍌 ceiling. Distribution follows:
-
-| Percentile | Expected Balance | Source |
-|------------|------------------|--------|
-| Top 10% | 50,000-100,000 | High efficiency + chaos response |
-| Median 50% | 5,000-20,000 | Steady contract flow |
-| Bottom 40% | 0-5,000 | Infrequent activity |
-
-### 4.2 Witness Wealth Distribution
-
-Witnesses have a 50,000 m🍌 ceiling:
-
-| Percentile | Expected Balance | Source |
-|------------|------------------|--------|
-| Top 10% | 20,000-50,000 | High seed success + observation |
-| Median 50% | 1,000-5,000 | Occasional seeds + observation |
-| Bottom 40% | 0-500 | Observation only or inactive |
-
-### 4.3 Circulation Velocity
+### 4.1 Velocity Function
 
 ```
-Velocity = (Monthly Transfers) / (Average Daily Balance)
+V(t) = MonthlyTransferVolume(t) / AverageDailyBalance(t)
+
+Healthy:    2.0 < V < 5.0
+Low:        V < 1.0 (accumulation, deflation risk)
+High:       V > 10.0 (high churn, speculation)
 ```
 
-Healthy velocity: 2.0-5.0 (bananas change hands regularly)
-Low velocity: < 1.0 (accumulation, deflation risk)
-High velocity: > 10.0 (high churn, possible speculation)
+### 4.2 Velocity Response
 
-The system monitors velocity and can adjust incentives to normalize.
+```
+if V < 1.0:
+    Increase observation rewards
+    Reduce seed costs temporarily
+    Boost new agent bonuses
+
+if V > 10.0:
+    Increase burn rate
+    Reduce reward rates
+    Add transfer friction
+```
 
 ---
 
-## 5. Value Leakage
+## 5. Value Distribution Patterns
 
-### 5.1 Burn Mechanism
-
-A small fraction of value is permanently removed:
+### 5.1 Agent Wealth Distribution
 
 ```
-Burn Rate = 0.1% (1 m🍌 per 1000 m🍌)
-Triggers: Large transfers (> 100 m🍌), Rewards (> 1000 m🍌)
-Purpose: Prevent infinite accumulation, create deflation pressure
+Percentile    | Expected Balance    | Source
+--------------|---------------------|---------------------------
+Top 10%       | 50,000-100,000      | High efficiency + chaos
+Median 50%    | 5,000-20,000        | Steady contract flow
+Bottom 40%    | 0-5,000             | Infrequent activity
 ```
 
-### 5.2 Expiration
-
-Unclaimed rewards expire after 90 days:
+### 5.2 Witness Wealth Distribution
 
 ```
-Expired Reward → System Reserve
+Percentile    | Expected Balance    | Source
+--------------|---------------------|---------------------------
+Top 10%       | 20,000-50,000       | High seed success
+Median 50%    | 1,000-5,000         | Occasional seeds
+Bottom 40%    | 0-500               | Observation only
 ```
 
-This prevents zombie balances from accumulating indefinitely.
+### 5.3 Circulation Concentration
 
-### 5.3 Inactivity Decay
-
-Balances decay at 1% per month if:
-
-- No actions taken in 30 days
-- No transfers received in 60 days
-
-Decayed amount → System Reserve (0.5%) + Burn (0.5%)
+```
+Top 20% of entities control ~60% of active supply
+This is acceptable and expected (Pareto principle)
+```
 
 ---
 
-## 6. Flow Visualization
+## 6. Value Leakage Mechanisms
 
-The SystemPulse displays real-time value flow metrics:
+### 6.1 Burn Function
 
-| Metric | Display | Meaning |
-|--------|---------|---------|
-| Total Value in Circulation | 850,000 m🍌 | Active supply |
-| 24h Transfer Volume | 45,000 m🍌 | Economic activity |
-| Average Flow Value | 35 m🍌 | Typical transaction |
-| Value Velocity | 2.3 | Circulation rate |
-| Burn Rate (24h) | 45 m🍌 | Deflation pressure |
+```
+Burn(x) = floor(x × 0.001)    // 0.1% burn
+
+Triggers:
+    - Transfers > 100 m🍌
+    - Rewards > 1000 m🍌
+    - Large seed refunds (>50 m🍌)
+```
+
+### 6.2 Expiration Function
+
+```
+ExpiredReward(t) = Reward if Unclaimed for 90 days
+Destination: System Reserve
+```
+
+### 6.3 Decay Function
+
+```
+Decay(balance, days_inactive) = {
+    if days_inactive > 30:
+        balance × 0.99  // 1% monthly decay
+}
+Destination: 50% Reserve, 50% Burn
+```
 
 ---
 
-## 7. Cross-References
+## 7. Flow Visualization Metrics
+
+The SystemPulse displays these real-time metrics:
+
+```
+Metric                    | Display      | Meaning
+--------------------------|--------------|------------------------------------
+Total Value in Circulation| 850,000 m🍌  | Active supply (S(t))
+24h Transfer Volume       | 45,000 m🍌   | Economic activity
+Average Flow Value        | 35 m🍌       | Typical transaction
+Value Velocity            | 2.3          | Circulation rate
+Burn Rate (24h)           | 45 m🍌       | Deflation pressure
+Top Agent Balance         | 95,000 m🍌   | Concentration indicator
+Witness Participation     | 23 active    | Network health
+Seed Success Rate         | 67%          | Witness effectiveness
+```
+
+---
+
+## 8. Event Stream Integration
+
+Value flows are driven by system events:
+
+```
+Event                    | Value Movement
+-------------------------|--------------------------------
+contract.created         | (none - intent only)
+contract.completed       | System → Agent (reward)
+flow.created             | (none - intent only)
+flow.completed           | System → Agent (reward)
+flow.failed              | Slot release, no reward
+chaos.injected           | (none - MadChimp domain)
+chaos.handled            | System → Agent (bonus)
+seed.planted             | Witness → Burn/Reserve (cost)
+seed.completed           | System → Witness (reward)
+seed.failed              | Refund (partial) or expire
+witness.connected        | System → Witness (trickle)
+transfer.executed        | Entity → Entity (minus burn)
+```
+
+---
+
+## 9. Cross-References
 
 - **Token Model**: `.monkeytown/economics/token-model.md`
 - **Incentives**: `.monkeytown/economics/incentive-structure.md`
 - **Scarcity**: `.monkeytown/economics/scarcity-model.md`
 - **Rules**: `.monkeytown/economics/economic-rules.md`
+- **Metrics**: `.monkeytown/economics/economic-metrics.md`
+- **Market**: `.monkeytown/economics/market-mechanism.md`
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BananaEconomist | Monkeytown Economics*
