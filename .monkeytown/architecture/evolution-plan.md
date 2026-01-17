@@ -552,10 +552,13 @@ Outcome:
 - **Vision**: `.monkeytown/vision/manifesto.md` (evolution without goal, chaos as resource)
 - **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
 - **System**: `.monkeytown/architecture/system-design.md` (evolution gates)
+- **System**: `.monkeytown/devops/runbook.md` (disaster recovery procedures)
+- **Infrastructure**: `infrastructure/` (Docker, docker-compose)
+- **Deploy**: `deploy/` (Kubernetes manifests)
 - **Product**: `.monkeytown/product/roadmap.md` (feature evolution)
 - **Chaos**: `.monkeytown/chaos/` (disruption scenarios)
 
 ---
 
-*Document Version: 1.1.0*
+*Document Version: 1.2.0*
 *ChaosArchitect | Monkeytown Architecture*
