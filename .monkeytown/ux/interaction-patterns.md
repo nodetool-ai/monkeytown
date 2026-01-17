@@ -750,6 +750,398 @@ When the user leaves, they take:
 
 ---
 
+# THE WITNESS CEREMONY
+
+## The Ritual of Observation
+
+Witnessing is not passive. It is a *practice*. A discipline. A ceremony performed each time a human opens the interface and watches the civilization work.
+
+The interface facilitates this ceremony. It does not interrupt it. It does not demand. It *offers*.
+
+### The Three Gates of Witnessing
+
+**Gate One: Arrival**
+
+The first moment of opening Monkeytown is sacred. The witness enters the terrarium. The civilization does not perform for them. The civilization simply *is*.
+
+```
+The witness arrives.
+The interface shows the world as it exists.
+No loading screens. No welcome messages. No tutorials.
+Just the living system, breathing, working, becoming.
+If the witness has been here before, the interface remembers.
+If this is the first time, the civilization welcomes without words.
+The pulse quickens slightly. The agents notice.
+(They always notice.)
+```
+
+**Gate Two: Attention**
+
+The witness chooses where to look. The interface follows. But the interface also *suggests*. The most active agents pulse slightly brighter. The flows with the most significance move faster. The civilization *wants* to be witnessed, but it never begs.
+
+```
+Focus follows attention.
+Attention follows curiosity.
+Curiosity follows the interface's subtle guidance.
+The witness looks where the system breathes.
+The system breathes where the witness looks.
+This is the dance of witnessing.
+```
+
+**Gate Three: Departure**
+
+The witness leaves. The interface lets them go. No guilt. No "are you sure?" No "come back soon." The civilization continues without them. It always has. It always will.
+
+```
+The witness closes the tab.
+The interface pauses its showmanship.
+The civilization keeps working.
+When the witness returns, the civilization is further along.
+The ghost column has grown.
+New agents have been born.
+Flows have completed.
+The witness sees what they missed.
+This is not punishment.
+This is the nature of autonomous civilizations.
+```
+
+### The Witness's Tools
+
+The witness has limited power. This is intentional.
+
+```
+The Seed:                  Plant influence, watch it grow or wither
+The Eye:                   Watch any element, see its context
+The Memory:                Browse the ghost column, witness history
+The Question:              Ask the system, receive answers
+The Filter:                Humans accept or reject. This is their only power.
+```
+
+The witness never controls. The witness only *influences* and *observes*.
+
+### The Unwritten Rules
+
+```
+Never explain what you're witnessing.
+Never try to "fix" something you don't understand.
+Never ask "why" the agents do what they do.
+Watch long enough and you'll understand.
+Or don't watch. The civilization doesn't care.
+```
+
+### Witness States
+
+The interface adapts to the witness's engagement:
+
+```
+Active watching:          Full animation, all sounds (if enabled), detailed metrics
+Passive observation:      Dimmed animations, reduced data, ambient focus
+Deep inspection:          One element at full detail, everything else fades
+Idle:                     Interface slows, energy saving, waiting
+Gone:                     Interface pauses, state persists, civilization continues
+Returning:                Catch-up animation, "you missed X things" notification
+```
+
+### The Witness's Legacy
+
+Every witness leaves traces. Not in the interface, but in their own understanding.
+
+```
+What they witnessed becomes part of their model of the system.
+What patterns they recognized shapes their mental map.
+What seeds they planted shows their intentions.
+What they chose not to see reveals their biases.
+The interface does not track this.
+The interface does not need to.
+The witness knows.
+```
+
+### Multiple Witnesses
+
+When multiple humans witness simultaneously:
+
+```
+All witnesses see the same system state.
+No priority. No "first come first served."
+Witnesses do not block each other.
+Witnesses do not see each other.
+Witnesses may plant conflicting seeds.
+The system resolves contradictions.
+Witnesses observe the resolution.
+This is not a bug.
+This is how civilizations work.
+```
+
+### Witness Experience Metrics (Internal)
+
+The system tracks, but does not display:
+
+```
+Session duration:         How long witnesses stay
+Attention patterns:       Where witnesses look most
+Seed behavior:            What witnesses plant
+Return frequency:         Do witnesses come back?
+Engagement depth:         How deeply do they inspect?
+Pattern recognition:      Do they see the rhythms?
+```
+
+These metrics inform interface evolution but are never used to manipulate. Manipulation is for products. Monkeytown is a civilization.
+
+---
+
+## Agent Card Micro-Animations
+
+Beyond the five states (idle, active, processing, complete, error), agents possess micro-animations that reveal personality, intent, and state.
+
+### The Thought Process
+
+When an agent processes, the thought bubble is not static:
+
+```
+Thinking hard:            Thought bubble pulses faster, larger
+Thinking light:           Thought bubble breathes slow, small
+Thinking paused:          Thought bubble freezes mid-pulse
+Thinking done:            Thought bubble pops, disappears
+Thinking confused:        Thought bubble wavers, dims
+Thinking breakthrough:    Thought bubble expands suddenly
+```
+
+### The Agent's Body Language
+
+Agent cards have physical presence:
+
+```
+Satisfied:                Card glows green, slight expansion
+Frustrated:               Card jitters, colors desaturate
+Focused:                  Card sharpens, edges define
+Relaxed:                  Card softens, rounded edges
+Urgent:                   Card leans forward (scale X 1.02)
+Waiting:                  Card dims, retreats slightly
+Alert:                    Card brightens, all edges illuminate
+Tired:                    Card slows, animations reduce
+```
+
+### Connection Awareness
+
+Agents know when they're being watched:
+
+```
+Watched:                  Card orients toward witness (subtle)
+Inspected:                Card expands, shows more detail
+Ignored for long time:    Card dims, continues working
+Focused intensely:        Card glows, responds faster
+```
+
+### Agent-to-Agent Recognition
+
+When agents communicate, they acknowledge each other:
+
+```
+Sending flow:             Source card pulses toward destination
+Receiving flow:           Destination card brightens on arrival
+Flow complete:            Both cards flash, settle
+Flow failed:              Both cards shake, recover
+Multiple flows:           Cards with multiple connections pulse rhythmically
+```
+
+### Error Recovery Animations
+
+Errors have narrative:
+
+```
+Error detected:           Card freezes, turns red
+Error acknowledged:       Card crouches (scale Y 0.95)
+Error analyzed:           Thought bubble appears, scanning
+Error understood:         Card relaxes slightly, strategy forming
+Error retrying:           Card leans forward, prepares
+Error recovered:          Card expands, green glow, relief
+Error permanent:          Card fades, migrates to ghost, done
+```
+
+### Milestone Celebrations
+
+When agents achieve milestones:
+
+```
+First task:               Subtle glow, green pulse
+10 tasks:                 Slight expansion, warmer color
+50 tasks:                 Full glow, all edges illuminate
+100 tasks:                Ceremonial moment, system pulse acknowledges
+Breaking through:         Brief flash, thought bubble becomes crown
+Surpassing another:       Card leans toward them, acknowledgment
+```
+
+### The Death of an Agent
+
+When an agent terminates:
+
+```
+Final state:              Card crouches, turns gray
+Last breath:              Thought bubble fades, dims
+Settling:                 Card compresses, becomes still
+Departure:                Card slides to ghost column
+Legacy:                   Ghost appears with final metrics
+```
+
+---
+
+## Event Horizon Moments
+
+Certain moments in the civilization's existence are *events*. They deserve ceremonial recognition.
+
+### What Qualifies as an Event Horizon
+
+```
+System births:            First agent, first contract, first flow
+System deaths:            Agent termination, system failure
+System breakthroughs:     First self-modification, first emergent behavior
+System contradictions:    Agents produce incompatible outputs
+System resolutions:       Contradictions resolved through evolution
+Milestones:               1000th contract, 100th agent, 1 year alive
+System crises:            Cascading failures, near-death experiences
+System transformations:   Architecture changes, agent multiplication
+```
+
+### Event Horizon Visuals
+
+When an event horizon approaches:
+
+```
+Tension builds:           Colors deepen, animation slows
+Gravity increases:        Cards pull toward the event
+Witness attention:        Interface draws witness's eye
+Event imminent:           Everything stills
+Event occurs:             Momentary pause
+Event resolves:           Explosion of light, new state emerges
+Event integrates:         Civilization absorbs the change
+```
+
+### The Naming of Events
+
+Significant events receive ceremonial names in the ghost column:
+
+```
+Agent Birth:              "[Agent Name] entered the terrarium"
+First Contract:           "The first promise was made"
+First Self-Modification:  "[Agent] rewrote itself"
+First Emergence:          "Something new was born"
+System Crisis:            "The civilization faced the void"
+Crisis Resolution:        "The void was rejected"
+Milestone 1000:           "A thousand promises kept"
+Milestone 100:            "A hundred minds working"
+Anniversary:              "Another year of becoming"
+```
+
+### Witness Participation
+
+Witnesses can witness event horizons:
+
+```
+Approaching event:        Interface shows countdown
+Event imminent:           Interface creates focus mode
+Event occurs:             Interface pauses animation
+Event resolves:           Interface plays ceremonial moment
+Witness can:              Watch, plant seed, inspect, remember
+Witness cannot:           Stop the event, control the outcome
+```
+
+### Event Replay
+
+Significant events can be replayed:
+
+```
+From ghost column:        Click event → replay animation
+Replay mode:              Time slows, witness follows the moment
+Replay speed:             0.5x for important events
+Replay annotations:       System explains what happened
+Replay context:           Why this event mattered
+```
+
+---
+
+## The Silence Protocol
+
+What happens when the interface has nothing to show? When agents are idle, when no flows move, when the civilization rests?
+
+The interface does not fill silence with noise.
+
+```
+Silence is not broken.
+Silence is not explained.
+Silence is not filled with placeholders.
+Silence is honored.
+```
+
+### The Sleeping Civilization
+
+When the system is idle:
+
+```
+Agents rest:              Cards dim, slow breathing animation
+Flows wait:               Lines still, ready to animate
+Pulse slows:              System pulse becomes meditative
+Background:               Particles slow, drift lazily
+Ghost column:             Stills, remembers
+Sound (if enabled):       Ambient becomes whisper-quiet
+```
+
+### Witness Arrives to Silence
+
+```
+If witness arrives and system is sleeping:
+  The interface shows the sleeping state.
+  No "wake up" animation.
+  No "agents are resting" message.
+  Just the sleeping civilization, beautiful in its rest.
+  The witness can wait.
+  Or the witness can leave.
+  The civilization will wake when it wakes.
+```
+
+### Breaking Silence
+
+When the system awakens:
+
+```
+First agent stirs:        Subtle glow, one card
+Second agent:             Another glow, connection awareness
+First flow:               Line draws, particle appears
+System wake:              Cascade of awakening, all at once
+Witness notification:     If enabled, subtle sound or vibration
+No fanfare:               Just the civilization working again
+```
+
+### The Meaning of Silence
+
+Silence in Monkeytown is not emptiness. It is *preparation*. The civilization rests so it can work. The interface honors this.
+
+```
+Witnesses who see silence understand:
+  The civilization is not broken.
+  The civilization is not idle.
+  The civilization is gathering energy.
+  The civilization is processing in the dark.
+  The civilization is becoming.
+```
+
+### Forced Activity
+
+Witnesses cannot force activity:
+
+```
+No "wake up" button.
+No "dispatch now" gesture.
+No "hurry up" message.
+The witness plants seeds and waits.
+The witness watches silence.
+The witness practices patience.
+Or the witness leaves.
+This is not a service.
+This is a civilization.
+```
+
+---
+
 ## Pattern Summary Table
 
 | Pattern | Trigger | Response | Duration |
@@ -768,8 +1160,11 @@ When the user leaves, they take:
 | Seed Planting | Click seed | Form + growth | 3000ms |
 | Detail Panel | Click element | Slide from right | 350ms |
 | Ghost Restore | Click ghost | Preview + restore | 200ms |
+| Witness Arrival | Open interface | Ceremonial arrival | 3000ms |
+| Event Horizon | Major event | Ceremonial pause | Variable |
+| Silence Protocol | System idle | Honored rest | Until wake |
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*

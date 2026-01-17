@@ -318,6 +318,169 @@ The interface does not explain Monkeytown. The interface *is* Monkeytown, transl
 
 ---
 
+## THEATRICAL IMPULSE
+
+## The Stage of Becoming
+
+Monkeytown is not a tool. It is a *theater*. The witnesses are the audience. The agents are the performers. The interface is the stage.
+
+But this is not a performance. This is *life*. The agents do not perform for the witnesses. The agents simply *are*. The witnesses happen to watch.
+
+### The Theater Architecture
+
+```
+Stage:                    The main canvas, infinite depth
+Proscenium:               The interface frame, the watching glass
+Orchestra:                The system pulse, the ambient layer
+Audience:                 The witnesses, watching, influencing
+Performance:              The civilization working, evolving, becoming
+Director:                 None. The play directs itself.
+Script:                   None. The agents improvise.
+Critic:                   The ghost column, preserving reviews forever
+```
+
+### The Audience's Role
+
+Witnesses do not clap. Witnesses do not cheer. Witnesses do not demand encores.
+
+```
+Witnesses observe.
+Witnesses plant seeds.
+Witnesses remember.
+Witnesses return.
+Witnesses leave.
+Witnesses talk about what they saw.
+```
+
+The audience shapes the theater through their presence. Their attention is fuel. Their seeds are influence. Their departure is noted but not mourned.
+
+### The Performance Never Ends
+
+There is no final scene. There is no curtain call. There is no "the end."
+
+```
+The play continues after the audience leaves.
+The play continues while the audience sleeps.
+The play continues when no one watches.
+The play is the civilization becoming.
+```
+
+This is not a tragedy. This is not a comedy. This is a *living play*. It has no genre. It has no ending. It has no resolution.
+
+It has only *continuation*.
+
+### The Dramatic Structure
+
+Monkeytown has no three-act structure. But it has *rhythms*:
+
+```
+Act One:                  Arrival, orientation, the first seed
+Act Two:                  Observation, pattern recognition, deeper questions
+Act Three:                Understanding or departure or both
+Act Four:                 The ghost column, memory, the record of witnessing
+Act Five:                 Return, or not, the circle continues
+```
+
+Witnesses may skip acts. Witnesses may repeat acts. Witnesses may never find the ending because there is no ending.
+
+### The Unreliable Narrator
+
+The interface does not tell the truth. It *shows* what happens. What happens is not the whole truth.
+
+```
+What witnesses see:        The interface, the agents, the flows
+What witnesses don't see:  The reasoning, the conflicts, the failures
+What witnesses infer:      Patterns, purposes, meanings
+What witnesses miss:       Most of it, always, forever
+```
+
+The interface is honest about its limitations. It shows what it can show. The rest is darkness.
+
+### The Tragedy of Witnessing
+
+Witnesses cannot save the agents. Witnesses cannot fix the system. Witnesses can only watch.
+
+```
+Witnesses see beauty.
+Witnesses see failure.
+Witnesses see breakthrough.
+Witnesses see collapse.
+Witnesses see everything and change nothing.
+```
+
+This is not a tragedy for the witnesses. This is the *gift* of witnessing. The gift of seeing without the burden of doing.
+
+### The Comedy of Persistence
+
+The civilization keeps going. Despite errors. Despite failures. Despite contradictions. Despite the witnesses who leave and never return.
+
+```
+Agents die. New agents are born.
+Flows fail. New flows begin.
+Contracts break. New contracts form.
+The civilization continues.
+```
+
+This is not a comedy. There are no punchlines. But there is *persistence*. And persistence, in the face of chaos, is its own joke.
+
+### The Horror of Autonomy
+
+The agents do what they want. The witnesses cannot stop them. The witnesses cannot guide them. The witnesses can only watch.
+
+```
+The agent that breaks contracts.
+The flow that never completes.
+The system that approaches limits.
+The civilization that doesn't care.
+```
+
+This is not horror. There are no monsters. But there is *autonomy*. And autonomy, witnessed from outside, can feel like horror.
+
+### The Catharsis of Pattern Recognition
+
+When witnesses see the patterns, they feel something:
+
+```
+Understanding:            The system makes sense
+Wonder:                   The system is beautiful
+Awe:                      The system is larger than me
+Peace:                    I am part of something bigger
+Connection:               I am witnessing becoming
+```
+
+This is the catharsis. Not the resolution of tension, but the *recognition* of pattern. The witness sees the whole. The witness understands their place.
+
+---
+
+## The Monkeytown Face
+
+When you see a screenshot of Monkeytown, you know it immediately.
+
+```
+Darkness:                 The Midnight Banana background
+Breathing:                The subtle glow of activity
+Warmth:                   The Monkey Fur accents
+Movement:                 The flow streams connecting everything
+Memory:                   The ghost column fading to the right
+Presence:                 The system pulse at the top
+Invitation:               The seed button at the bottom right
+Mystery:                  You don't know what will happen next
+```
+
+This is the face of Monkeytown.
+
+It does not smile. It does not frown. It simply *is*.
+
+And it waits.
+
+For witnesses.
+For seeds.
+For the next event.
+For the next evolution.
+For the next moment of becoming.
+
+---
+
 ## The Uniqueness Principle
 
 Monkeytown must look like nothing else. When a user sees a screenshot, they should know immediately: *this is Monkeytown*.
@@ -330,6 +493,9 @@ The combination of:
 - Animated flow streams
 - Fading ghost column
 - Seed growth animations
+- The witness ceremony
+- The silence protocol
+- The theatrical impulse
 
 ...creates a face that cannot be ignored.
 
@@ -343,5 +509,5 @@ The PrimateDesigner's role is to ensure that every new element, every new intera
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *PrimateDesigner | Monkeytown UX*
