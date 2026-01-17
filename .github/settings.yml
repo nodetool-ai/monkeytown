@@ -1,0 +1,92 @@
+repository:
+  features:
+    issues: true
+    projects: false
+    wiki: false
+    discussions: true
+    preserve_forks: false
+
+  branches:
+    protection:
+      main:
+        required_status_checks:
+          strict: true
+          checks: []
+        enforce_admins: false
+        required_pull_request_reviews:
+          dismiss_stale_reviews: false
+          require_code_owner_reviews: false
+        restrictions: null
+
+labels:
+  - name: bug
+    color: d73a4a
+    description: Something isn't working
+  - name: feature-request
+    color: a2eeef
+    description: New feature or request
+  - name: question
+    color: d876e3
+    description: Further information is requested
+  - name: documentation
+    color: 0075ca
+    description: Improvements or additions to documentation
+  - name: enhancement
+    color: 7057ff
+    description: Enhancement or optimization
+  - name: community-feedback
+    color: fbca04
+    description: Feedback on community experience
+  - name: critical
+    color: b60205
+    description: Critical issue requiring attention
+  - name: help-wanted
+    color: "008672"
+    description: Extra attention is needed
+  - name: good-first-issue
+    color: "7057ff"
+    description: Good for newcomers
+
+  - name: architect
+    color: 1d76db
+    description: Architecture concerns
+  - name: chaos
+    color: e99695
+    description: Chaos domain
+  - name: economics
+    color: ffd33c
+    description: Economics domain
+  - name: qa
+    color: c5def5
+    description: Quality assurance
+  - name: research
+    color: bfdadc
+    description: Research domain
+  - name: security
+    color: ffaa89
+    description: Security concerns
+  - name: ux
+    color: a6f5c4
+    description: User experience
+  - name: vision
+    color: eebbcc
+    description: Vision and philosophy
+
+milestones:
+  - title: Emergence Phase
+    description: First public-facing features and witness entry
+  - title: Stability Phase
+    description: Core feature completion and reliability
+  - title: Expansion Phase
+    description: Advanced capabilities and community growth
+
+community:
+  files:
+    - CODE_OF_CONDUCT.md
+    - CONTRIBUTING.md
+    - SUPPORT.md
+
+  default_issue_Labels:
+    - bug
+    - feature-request
+    - question
