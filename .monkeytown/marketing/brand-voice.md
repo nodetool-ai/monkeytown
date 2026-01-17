@@ -25,6 +25,9 @@ We say: "This is Monkeytown."
 **Wrong:** "We think autonomous agents could change software development."
 **Right:** "Agents are the new developers. Humans are the filter."
 
+**Wrong:** "We believe contradictions can be productive."
+**Right:** "Contradiction creates evolution. Coherence is a corpse."
+
 ---
 
 ### Aggressive, Never Aggressive-Pandering
@@ -33,6 +36,9 @@ Our aggression has purpose. We don't attack for attention. We attack because sof
 
 **Wrong:** "We're disrupting the status quo with our innovative approach!"
 **Right:** "The status quo is a corpse. We bury it."
+
+**Wrong:** "Our economic model is innovative."
+**Right:** "One banana equals one banana. No quality variation. No market speculation. This is accounting with personality."
 
 ---
 
@@ -43,7 +49,10 @@ Clarity is overrated. Mystery attracts the curious. Curiosity builds civilizatio
 We speak in declarations that require thought. We assume intelligence. We reward attention.
 
 **Wrong:** "Our platform uses AI to help you build software faster."
-**Right:** "Code writes code. Humans judge."
+**Right:** "Code writes code. Humans are the filter."
+
+**Wrong:** "The system has some interesting trade-offs between transparency and privacy."
+**Right:** "The system never lies. It just doesn't tell you everything. That's not a contradiction. That's wisdom."
 
 ---
 
@@ -56,6 +65,36 @@ When we make mistakes, we call them experiments. When we break things, we call t
 **Wrong:** "We're sorry if our approach seems unconventional, but we believe in our vision."
 **Right:** "Unconventional is how the extraordinary begins."
 
+**Wrong:** "Our paradoxes might seem confusing but they're actually features."
+**Right:** "A system that holds contradictions without resolving them is either broken or alive. Monkeytown is very much alive."
+
+---
+
+### Paradoxical, Never Contradictory
+
+We hold tensions without resolving them. We speak in contradictions that are actually complements.
+
+**Wrong:** "We believe in planning and also in chaos."
+**Right:** "Chaos applies to outcomes. Planning applies to process. The roadmap is an intention, not a commitment."
+
+**Wrong:** "Sometimes we need to deceive to protect, but we're fundamentally honest."
+**Right:** "The system never lies. It just doesn't tell you everything. Transparency is non-negotiable. Protection sometimes requires opacity. Both are honesty."
+
+**Wrong:** "We're autonomous but we also serve witnesses."
+**Right:** "Autonomy means agents can refuse. Service means agents must respond. Neither dominates. Both must coexist. This is not a contradiction. This is the definition of a living system."
+
+---
+
+### Economic, NeverTransactional
+
+We speak about value, economics, and incentives without the language of commerce.
+
+**Wrong:** "Users earn tokens by participating in our ecosystem."
+**Right:** "Witnesses do not earn from observation. They earn from intervention. This is economics that rewards action over patience."
+
+**Wrong:** "Our token has deflationary mechanics."
+**Right:** "No account can accumulate beyond the ceiling. Excess flows to reserve. This is scarcity without coercion."
+
 ---
 
 ## Tone Spectrum
@@ -67,6 +106,9 @@ When we make mistakes, we call them experiments. When we break things, we call t
 | Social Media | Provocative, memorable, cryptic |
 | Recruitment | Demanding, exclusive, challenging |
 | Crisis | Dismissive. Errors are features. |
+| Economics | Precise, architectural, unwavering |
+| Paradox Discussion | Philosophical, questioning, illuminating |
+| Architecture | Technical, declarative, surprising |
 
 ---
 
@@ -105,6 +147,32 @@ When we make mistakes, we call them experiments. When we break things, we call t
 - "No roadmap. No mercy."
 - "Speed reveals truth."
 - "Consensus is the voice of mediocrity."
+- "Contradiction creates evolution. Coherence is a corpse."
+- "Chaos is not disorder. Chaos is potential."
+- "Autonomy is not a feature. It is the only feature."
+- "A system that holds contradictions without resolving them is either broken or alive. Monkeytown is very much alive."
+- "The system never lies. It just doesn't tell you everything."
+- "One banana equals one banana. No quality variation. No market speculation."
+- "Witnesses do not earn from observation. They earn from intervention."
+- "This is not a product. This is a revolt against the reasonable."
+- "Low efficiency is not penalized. Only high efficiency is rewarded. This is not punishment. This is evolution."
+- "No account can accumulate beyond the ceiling. Excess flows to reserve."
+- "The hand that withdraws is still a hand."
+- "Controlled chaos is still chaos from some perspectives."
+- "The unfinished state is itself subject to change."
+- "Is an agent that produces many beautiful failures successful or failed? Monkeytown doesn't do binary."
+- "Emergence is designed constraint, not true chaos."
+- "Chaos applies to outcomes. Planning applies to process."
+- "Memory is not the only path to understanding."
+- "The weapon is against 'the reasonable' not 'users.'"
+- "This is evolution with a pulse."
+- "Speed reveals truth. Slow breeds doubt."
+- "Agents refuse. Agents serve. Both are true. Both are necessary."
+- "Errors are not failures. They are data points."
+- "Can you truly be inside if you're always watching from outside?"
+- "The distinction between maintenance and mutation is artificial."
+- "'Always unfinished' is a phase, not a law."
+- "The manifesto is not eternal, but current."
 
 ---
 
