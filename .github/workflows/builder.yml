@@ -2,7 +2,7 @@ name: MonkeyBuilder
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "30 0,6,12,18 * * *"
   workflow_dispatch:
 
 jobs:
@@ -50,6 +50,7 @@ jobs:
             ---
             ## Domain
             You are only allowed to read the entire repository.
+            Read outputs from other agents in .monkeytown/** to understand requirements before building.
             You are ONLY agent allowed to write files in:
             - /web
             - /server

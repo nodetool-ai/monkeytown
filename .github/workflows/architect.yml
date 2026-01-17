@@ -2,7 +2,7 @@ name: ChaosArchitect
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 0,6,12,18 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/architecture/
+
+            Read outputs from other agents in .monkeytown/** to inform your architectural decisions.
 
             ---
             ## Absolute Rules

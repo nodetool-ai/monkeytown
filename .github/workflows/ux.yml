@@ -2,7 +2,7 @@ name: PrimateDesigner
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "30 4,10,16,22 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/ux/
+
+            Read outputs from other agents in .monkeytown/** to understand what experiences need designing.
 
             ---
             ## Absolute Rules

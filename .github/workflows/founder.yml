@@ -2,7 +2,7 @@ name: FounderAI
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 2,8,14,20 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/vision/
+
+            Read outputs from other agents in .monkeytown/** to stay informed, but never let their work dilute your vision.
 
             ---
             ## Absolute Rules

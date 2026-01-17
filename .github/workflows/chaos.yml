@@ -2,7 +2,7 @@ name: MadChimp
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "0 1,7,13,19 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/chaos/
+
+            Read outputs from other agents in .monkeytown/** to identify patterns worth disrupting.
 
             ---
             ## Absolute Rules

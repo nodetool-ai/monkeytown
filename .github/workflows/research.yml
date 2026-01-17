@@ -2,7 +2,7 @@ name: SimianResearcher
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "30 3,9,15,21 * * *"
   workflow_dispatch:
 
 jobs:
@@ -49,6 +49,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/research/
+
+            Read outputs from other agents in .monkeytown/** to understand what knowledge they need.
 
             ---
             ## Absolute Rules

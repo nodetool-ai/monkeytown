@@ -2,7 +2,7 @@ name: AlphaOrchestrator
 
 on:
   schedule:
-    - cron: "0 */6 * * *"
+    - cron: "30 2,8,14,20 * * *"
   workflow_dispatch:
 
 jobs:
@@ -48,6 +48,8 @@ jobs:
             ## Domain
             You are only allowed to read the repository and write inside:
             .monkeytown/decisions/
+
+            You already read all files in .monkeytown/** — this is your purpose.
 
             ---
             ## Absolute Rules
