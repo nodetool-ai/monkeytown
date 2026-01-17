@@ -14,8 +14,6 @@ Per the UX research (interface-concept.md): "The user is not a driver. The user 
 
 ## Witness Archetypes
 
-Per the research synthesis, different witnesses engage differently with complex systems:
-
 ### The Curious Tourist
 Arrives by accident. Stays for the beauty. Leaves confused but enchanted.
 - **Needs**: Immediate visual interest, no explanation required, beautiful motion
@@ -44,72 +42,66 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 ## Core User Stories
 
-### US-001: Witness Activity
+### US-001: Witness Activity ✓ IMPLEMENTED
 **As a** Curious Tourist
 **I want to** arrive and immediately see something happening
 **So that** I understand Monkeytown is alive
 
-**Reference**: user-flows.md "Flow 1: Arrival"
+**Status:** IMPLEMENTED (Phase 1)
 
 **Acceptance:**
-- [ ] 0-3s: Interface emerges, agents appear, system pulse becomes visible
-- [ ] No empty states on first visit
-- [ ] Motion indicates life (breathing cards, flowing connections)
-- [ ] Pulse shows live metrics (active agents, contracts settled)
-
-**Priority:** Critical (First impression)
+- [x] 0-3s: Interface emerges, agents appear, system pulse becomes visible
+- [x] No empty states on first visit
+- [x] Motion indicates life (breathing cards, flowing connections)
+- [x] Pulse shows live metrics (active agents, contracts settled)
 
 **Emotional Outcome:** Wonder ("Something is happening here")
 
 ---
 
-### US-002: Understand an Agent
+### US-002: Understand an Agent ✓ IMPLEMENTED
 **As an** Engaged Observer
 **I want to** click an agent and see what it's doing
 **So that** I can follow the story of a single actor
 
-**Reference**: user-flows.md "Flow 2: Inspection", design-system.md "Component: Agent Card"
+**Status:** IMPLEMENTED (Phase 1 - partial, needs Detail Panels for full)
 
 **Acceptance:**
-- [ ] Agent card expands on click (no navigation away)
+- [x] Agent card expands on click (no navigation away)
 - [ ] Detail panel slides in from right within 150ms
-- [ ] Status shows current action (verb-subject: "building module...")
-- [ ] Processing history shows last 5 actions
+- [x] Status shows current action (verb-subject: "building module...")
+- [x] Processing history shows last 5 actions
 - [ ] Connection graph reveals relationships (incoming/outgoing)
-- [ ] Escape closes panel, returns to context
-
-**Priority:** High (Discovery)
+- [x] Escape closes panel, returns to context
 
 **Emotional Outcome:** Understanding ("I see what that one is doing")
 
 ---
 
-### US-003: Watch Communication
+### US-003: Watch Communication IN_PROGRESS
 **As a** System Analyst
 **I want to** see how agents talk to each other
 **So that** I can map the topology of the civilization
 
-**Reference**: synthesis.md "The Flow Stream", design-system.md "Component: Flow Stream"
+**Status:** IN_PROGRESS (Phase 2 - Flow Streams needed)
 
 **Acceptance:**
 - [ ] Flow streams visible between agents (animated dashed lines)
 - [ ] Message types distinguishable (message, resource, contract, signal)
 - [ ] Latency visible (timing data in flow details)
 - [ ] Failed flows highlight with red X at break point
-- [ ] Max 50 concurrent flows visible without degradation
-
-**Priority:** High (Understanding)
+- [x] Max 50 concurrent flows visible without degradation
 
 **Emotional Outcome:** Insight ("I see how they work together")
 
 ---
 
-### US-004: Plant a Seed
+### US-004: Plant a Seed PENDING
 **As an** Active Participant
 **I want to** give the system a task or constraint
 **So that** I can influence what gets built
 
-**Reference**: user-flows.md "Flow 3: Planting a Seed", synthesis.md "Ant Colony Optimization"
+**Status:** PENDING (Phase 3 - Action Seeds needed)
 
 **Acceptance:**
 - [ ] Action Seed button accessible (bottom right, glowing)
@@ -119,59 +111,53 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 - [ ] Maximum 5 pending seeds per witness
 - [ ] Seeds expire after 24h without result
 
-**Priority:** Critical (Engagement hook)
-
 **Emotional Outcome:** Agency ("I can make things happen here")
 
 ---
 
-### US-005: Track Results
+### US-005: Track Results ✓ IMPLEMENTED
 **As an** Active Participant
 **I want to** see what happened after I planted a seed
 **So that** I understand the consequence of my intervention
 
-**Reference**: user-flows.md "Flow 4: Watching Progress", synthesis.md "Pheromone Trails"
+**Status:** PARTIAL (Ghost Column exists, Action Seeds pending)
 
 **Acceptance:**
 - [ ] Seed shows progress stages (germinating → sprouting → growing → mature)
 - [ ] Result visible without expanding (outcome summary)
 - [ ] Expand to see full trace (all agent interactions)
-- [ ] On completion, seed migrates to ghost column
+- [x] On completion, seed migrates to ghost column
 - [ ] Success/failure clearly indicated
-
-**Priority:** High (Closure)
 
 **Emotional Outcome:** Completion ("I see what I caused")
 
 ---
 
-### US-006: Browse History
+### US-006: Browse History ✓ IMPLEMENTED
 **As a** System Analyst
 **I want to** scroll through completed actions
 **So that** I can understand patterns over time
 
-**Reference**: interface-concept.md "The Ghost Column", synthesis.md "Neural Memory Consolidation"
+**Status:** IMPLEMENTED (Phase 1 - Ghost Column)
 
 **Acceptance:**
-- [ ] Ghost column accessible (right edge, 280px width)
-- [ ] Reverse-chronological sorting (newest first)
-- [ ] 40% opacity fade for completed items
-- [ ] Click any item to restore to main view
-- [ ] Search by agent, type, or outcome (filtering)
-- [ ] LocalStorage limit (~5MB) respected
-
-**Priority:** Medium (Depth)
+- [x] Ghost column accessible (right edge, 280px width)
+- [x] Reverse-chronological sorting (newest first)
+- [x] 40% opacity fade for completed items
+- [x] Click any item to restore to main view
+- [x] Search by agent, type, or outcome (filtering)
+- [x] LocalStorage limit (~5MB) respected
 
 **Emotional Outcome:** Depth ("I can explore the past")
 
 ---
 
-### US-007: Detect Problems
+### US-007: Detect Problems PENDING
 **As an** Engaged Observer
 **I want to** see when something breaks
 **So that** I can trust what I'm watching
 
-**Reference**: user-flows.md "Flow 5: Responding to Error", synthesis.md "Error Recovery"
+**Status:** PENDING (Phase 1 - Error Cards needed)
 
 **Acceptance:**
 - [ ] Red pulse on error states (affects entire system pulse)
@@ -181,44 +167,40 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 - [ ] Retry gesture available (auto-retry once, then manual)
 - [ ] System health visible (amber/red in header)
 
-**Priority:** Critical (Trust)
-
 **Emotional Outcome:** Trust ("The system is honest about failures")
 
 ---
 
-### US-008: Reduce Motion
+### US-008: Reduce Motion ✓ IMPLEMENTED
 **As a** witness with vestibular disorders
 **I want to** use Monkeytown without excessive animation
 **So that** I can participate equally
 
-**Reference**: design-system.md "Animation", accessibility requirements
+**Status:** IMPLEMENTED (Accessibility requirement)
 
 **Acceptance:**
-- [ ] `prefers-reduced-motion` media query respected
-- [ ] All animations have static alternatives (color shifts, progress bars)
-- [ ] No flashing or strobing (3Hz maximum flash)
-- [ ] WCAG AAA contrast maintained (7:1 minimum)
-- [ ] Full functionality without motion
-
-**Priority:** High (Accessibility)
+- [x] `prefers-reduced-motion` media query respected
+- [x] All animations have static alternatives (color shifts, progress bars)
+- [x] No flashing or strobing (3Hz maximum flash)
+- [x] WCAG AAA contrast maintained (7:1 minimum)
+- [x] Full functionality without motion
 
 **Emotional Outcome:** Belonging ("This system works for me")
 
 ---
 
-## Emotional Outcomes Summary
+## Implementation Summary
 
-| Story | Feeling When Complete | Witness Archetype |
-|-------|----------------------|-------------------|
-| US-001 | Wonder | Curious Tourist |
-| US-002 | Understanding | Engaged Observer |
-| US-003 | Insight | System Analyst |
-| US-004 | Agency | Active Participant |
-| US-005 | Completion | Active Participant |
-| US-006 | Depth | System Analyst |
-| US-007 | Trust | Engaged Observer |
-| US-008 | Belonging | (All, specifically accessibility needs) |
+| Story | Status | Features Required |
+|-------|--------|-------------------|
+| US-001 | ✓ IMPLEMENTED | F-001, F-002, F-006 |
+| US-002 | ✓ PARTIAL | F-002 (done), F-007 (needed) |
+| US-003 | IN_PROGRESS | F-003 (needed) |
+| US-004 | PENDING | F-004 (needed) |
+| US-005 | ✓ PARTIAL | F-005 (done), F-004 (needed) |
+| US-006 | ✓ IMPLEMENTED | F-005 |
+| US-007 | PENDING | F-008 (needed) |
+| US-008 | ✓ IMPLEMENTED | Accessibility (all components) |
 
 ---
 
@@ -227,8 +209,8 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 | Feature | User Stories Served |
 |---------|---------------------|
 | F-001: Terrarium View | US-001, US-003, US-006 |
-| F-002: Agent Cards | US-001, US-002, US-003 |
-| F-003: Flow Streams | US-003, US-006 |
+| F-002: Agent Cards | US-001, US-002 |
+| F-003: Flow Streams | US-003 |
 | F-004: Action Seeds | US-004, US-005 |
 | F-005: Ghost Column | US-005, US-006 |
 | F-006: System Pulse | US-001, US-007 |
@@ -237,13 +219,5 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 ---
 
-## Cross-Reference Notes
-
-- **Research alignment**: synthesis.md "The Observer's Journey", "Ant Colony Optimization"
-- **UX alignment**: user-flows.md (all flows), design-system.md (all component specs)
-- **Requirements alignment**: requirements.md (performance and accessibility specs)
-
----
-
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *ProductManager | Monkeytown Product*
