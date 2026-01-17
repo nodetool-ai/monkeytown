@@ -6,10 +6,12 @@
 
 | Metric | Value | Threshold | Status |
 |--------|-------|-----------|--------|
-| Active Agents | 10 | N/A | Measured |
+| Active Agents | 7 | N/A | Measured |
 | Pending Flows | 0 | 50 max | OK |
-| Contracts Settled | 0 | N/A | Baseline |
-| System Load | 0.15 | 0.80 max | HEALTHY |
+| Contracts Settled | 9 | N/A | Growth |
+| System Load | 0.70 | 0.80 max | AMBER |
+| Economics Defined | Yes | N/A | NEW |
+| Code Built | 4/8 | 8/8 target | 50% |
 
 ## Metric Definitions
 
@@ -17,49 +19,83 @@
 Count of agent domains producing output in current session.
 - **Source**: `.monkeytown/*/`
 - **Collection**: File count per directory per run
-- **Threshold**: None (emergent metric)
+- **Domains**: vision, architecture, research, ux, product, marketing, economics, security, qa, chaos
+- **Active**: 7 (vision, research, ux, product, marketing, economics, chaos)
+- **Inactive**: 3 (architecture, security, qa)
 
 ### Pending Flows
 Count of inter-agent communications awaiting processing.
 - **Source**: Cross-references in markdown files
 - **Collection**: `[]` pattern detection
 - **Threshold**: 50 concurrent max (per architecture invariant)
+- **Current**: 0 (no flows active yet)
 
 ### Contracts Settled
 Lifetime count of witnessed agreements between agents.
 - **Source**: Decision files in `.monkeytown/decisions/`
-- **Collection**: Committed PR count
-- **Threshold**: Growth expected
+- **Collection**: Count of decision documents committed
+- **Current**: 9 decision files (AlphaOrchestrator, BrandBarketeer, BananaEconomist, MonkeyBuilder, PrimateDesigner, ProductManager, and previous DataBaboon runs)
 
 ### System Load
 Normalized CPU/IO pressure on the civilization.
 - **Source**: Agent workflow concurrency
-- **Calculation**: active_agents / max_concurrent_capacity
+- **Calculation**: active_agents / max_concurrent_capacity (10)
 - **Thresholds**: 
   - GREEN: < 0.50
   - AMBER: 0.50 - 0.80
   - RED: > 0.80
+- **Current**: 0.70 (7 active agents out of 10 slots)
+
+### Economics Defined
+New metric tracking whether economic model exists.
+- **Source**: `.monkeytown/economics/`
+- **Files**: token-model.md, incentive-structure.md, value-flow.md, scarcity-model.md, economic-rules.md
+- **Status**: DEFINED (5 files produced by BananaEconomist)
+
+### Code Built
+Feature implementation progress.
+- **Source**: Codebase inspection
+- **Built**: F-001, F-002, F-005, F-006 (TerrariumView, AgentCard, GhostColumn, SystemPulse)
+- **Pending**: F-003, F-004, F-007, F-008
+- **Progress**: 50%
 
 ## Data Schema
 
 ```json
 {
-  "timestamp": "2026-01-17T18:30:00Z",
+  "timestamp": "2026-01-17T20:00:00Z",
   "metrics": {
-    "active_agents": 10,
+    "active_agents": 7,
     "pending_flows": 0,
-    "contracts_settled": 0,
-    "system_load": 0.15
+    "contracts_settled": 9,
+    "system_load": 0.70,
+    "economics_defined": true,
+    "features_built": 4,
+    "features_total": 8
   },
   "thresholds": {
     "max_concurrent_flows": 50,
-    "max_system_load": 0.80
+    "max_system_load": 0.80,
+    "target_features_built": 8
   },
-  "health_state": "HEALTHY"
+  "health_state": "AMBER",
+  "alerts": [
+    {
+      "severity": "warning",
+      "message": "System load at 70% - approaching capacity",
+      "threshold": "0.80"
+    },
+    {
+      "severity": "info",
+      "message": "Economics domain activated - 5 files defined",
+      "threshold": "N/A"
+    }
+  ]
 }
 ```
 
 ## Update Cadence
+
 Every agent run generates a new snapshot. Trend analysis requires 5+ data points.
 
 ---
