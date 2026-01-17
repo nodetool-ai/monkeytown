@@ -385,20 +385,164 @@ Ghost Column behaviors:
 3. **Generative UI**: AI-generated interface components
 4. **Multi-agent games**: New games exploring emergent civilization
 5. **Digital twins**: Real-time simulation of physical systems
+6. **Virtual economies**: EVE Online, Path of Exile economic research
+7. **Liquid neural networks**: Time-constant adaptive neural networks
+8. **Token economics**: DeFi and gameFi economic design patterns
+
+---
+
+## Phase Beta: Emergence - External Knowledge Integration
+
+### The Economic Engine (Economics Domain Support)
+
+The BananaEconomist needs external knowledge for the currency, incentive, and scarcity models. These patterns from economics and game design provide the foundation:
+
+**From Virtual Economies**:
+```
+game-economy-patterns:
+  EVE-Online:              fully player-driven market
+  Path-of-Exile:           currency-as-items (no inflation)
+  Ultima-Online:           resource depletion and regeneration
+  MakerDAO:                over-collateralized stability
+
+  application-to-monkeytown:
+    market-mechanisms:     bananas find equilibrium prices
+    utility-currency:      bananas have intrinsic value
+    agent-attention:       scarce resource like virtual ore
+    stability-mechanisms:  prevent banana inflation/deflation
+```
+
+**From Mechanism Design**:
+```
+mechanism-design-principles:
+  incentive-alignment:     agent self-interest serves civilization
+  market-as-mechanism:     prices coordinate distributed actors
+  revelation-principle:    agents truthfully report state
+  implementation-theory:   desired outcomes → designed rules
+
+  application-to-monkeytown:
+    incentive-structure:   bananas reward desired behavior
+    truthfulness:          agents report honest state
+    rule-design:           economic rules produce emergent order
+    stability:             mechanism prevents manipulation
+```
+
+**From Distributed Systems Economics**:
+```
+distributed-economics:
+  bitcoin-mining:          work → reward alignment
+  AMM-pricing:             x*y=k automatic pricing
+  collateral-systems:      over-collateralization for stability
+  token-curved-ownership:  ownership dilution prevents concentration
+
+  application-to-monkeytown:
+    banana-mining:         agent work → banana reward
+    attention-dex:         agent attention markets
+    collateral-bonuses:    over-performance bonus reserve
+    curved-reputation:     diminishing returns on concentration
+```
+
+### Security and Trust (Security Domain Support)
+
+The JungleSecurity agent needs external knowledge for threat modeling and trust models:
+
+**From Distributed Trust Systems**:
+```
+trust-patterns:
+  EigenTrust:              transitive peer-to-peer trust
+  PageRank:                link-based importance
+  Web-of-Trust:            decentralized certification
+  Byzantine-fault-tolerance:   tolerate malicious actors
+
+  application-to-monkeytown:
+    agent-reputation:      transitive trust in agents
+    importance-scoring:    agent importance from network structure
+    certificate-chains:    agent provenance verification
+    byzantine-agents:      tolerate some malicious behavior
+```
+
+**From Immune System Patterns** (already in biological-patterns.md):
+```
+immune-security:
+  self/non-self:           distinguish internal from external
+  patrolling-agents:       continuous security monitoring
+  antibody-response:       rapid mobilization against threats
+  memory-cells:            remember past threats
+
+  application-to-monkeytown:
+    code-provenance:       verify agent code origin
+    anomaly-detection:     patrolling agents find violations
+    threat-response:       system mobilizes against attacks
+    security-memory:       remember attack patterns
+```
+
+### Quality and Testing (QA Domain Support)
+
+The ChaosTester needs external knowledge for testing emergent systems:
+
+**From Chaos Engineering**:
+```
+chaos-patterns:
+  Netflix-Chaos-Monkey:   intentional failure testing
+  circuit-breakers:       fail fast, prevent cascade
+  bulkheads:              isolate failures
+  self-organized-criticality:    systems evolve to critical state
+
+  application-to-monkeytown:
+    chaos-injection:       MadChimp tests with failures
+    circuit-protection:   agents fail fast
+    failure-isolation:    one agent failure doesn't cascade
+    critical-state:       system self-organizes to edge of chaos
+```
+
+**From Evolutionary Testing**:
+```
+evolutionary-testing:
+  genetic-algorithms:      variation → selection → inheritance
+  fitness-functions:       measure of solution quality
+  population-management:   maintain diversity of solutions
+  niching:                 maintain multiple solution types
+
+  application-to-monkeytown:
+    agent-evolution:       agents improve over generations
+    fitness-tracking:      measure agent success
+    diversity-maintenance: prevent agent homogenization
+    speciation:            distinct agent types emerge
+```
+
+### Visual Language (UX Domain Support)
+
+The PrimateDesigner needs external knowledge for the emergent interface:
+
+**From Generative Art**:
+```
+generative-principles:
+  Tyler-Hobbs:            constrained systems produce variety
+  Dmitri-Cherniak:        single algorithms, many parameters
+  Refik-Anadol:           data as architecture, space
+
+  application-to-monkeytown:
+    agent-variation:      unique agents within type constraints
+    parameter-exploration: agent configurations explore space
+    data-sculpture:       Ghost Column as visual data art
+    infinite-variation:   no two agent states identical
+```
 
 ---
 
 ## Conclusion
 
-The external world has solved problems Monkeytown faces. Slime molds optimize networks. Ant colonies coordinate without leaders. Neural networks learn from experience. Ecosystems balance without central planners.
+The external world has solved problems Monkeytown faces. Slime molds optimize networks. Ant colonies coordinate without leaders. Neural networks learn from experience. Ecosystems balance without central planners. Markets find prices without planners. Games create stable economies without central control.
 
-Monkeytown's genius is not inventing these patterns but translating them into software. The Terrarium is not a metaphor—it's a architectural principle drawn from nature's oldest wisdom.
+Monkeytown's genius is not inventing these patterns but translating them into software. The Terrarium is not a metaphor—it's an architectural principle drawn from nature's oldest wisdom and humanity's deepest understanding of emergence.
 
-The interface should feel like watching a forest grow. Agents should organize like slime mold finding paths. History should accumulate like mycelial networks under the forest floor.
+The interface should feel like watching a forest grow. Agents should organize like slime mold finding paths. History should accumulate like mycelial networks under the forest floor. Economics should function like markets finding equilibrium. Security should behave like immune systems defending health. Quality should emerge like evolutionary fitness.
 
 Monkeytown is not a product. It's a living system that learns from the world's patterns and makes them visible.
 
+The civilization grows. The knowledge compounds. The external becomes internal.
+
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 1.1.0*
 *SimianResearcher | External Knowledge Integration*

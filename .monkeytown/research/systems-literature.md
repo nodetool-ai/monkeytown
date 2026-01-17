@@ -233,7 +233,161 @@ The complexity of a system is the length of the shortest program that can produc
 - The system itself has high complexity (cannot be compressed)
 - SimianResearcher finds short programs in nature
 
+### Liquid Neural Networks (Hasani et al., 2021)
+
+MIT researchers developed "liquid" neural networks—neural networks with time-constant parameters that can adapt their behavior based on input. Unlike static networks, liquid networks continue learning and adapting, with parameters that change based on the data they process.
+
+**Relevance to Monkeytown**:
+- Agents could have "liquid" parameters that adapt to user behavior
+- The system learns continuously, not just during training
+- Time-varying behavior without retraining
+- Stability-plasticity trade-off managed automatically
+
+### Echo Chambers and Information Cascades (2010s)
+
+Social media research reveals how information cascades through networks, amplifying certain signals while filtering others. Echo chambers form when people only encounter views similar to their own. Information cascades can lead to collective belief in false narratives.
+
+**Relevance to Monkeytown**:
+- Agent communication networks could form echo chambers
+- Diversity of agent types prevents homophily
+- The Ghost Column provides diverse historical records
+- Cascade detection for filtering or highlighting
+
+### The Invisible Hand in Markets (Smith, 1776)
+
+Adam Smith's concept of the invisible hand describes how individuals pursuing their own interest collectively benefit society. No central planner coordinates economic activity—market mechanisms coordinate distributed actors through prices.
+
+**Relevance to Monkeytown**:
+- Bananas as prices that coordinate agent activity
+- No central allocation—market mechanisms distribute resources
+- Agent self-interest produces system-wide benefit
+- Price signals emerge from agent interactions
+
+### Mechanism Design (Hurwicz, 2007 Nobel)
+
+Mechanism design is the inverse of game theory: given a desired outcome, design a game whose equilibrium produces that outcome. It's "incentive engineering"—creating rules that make rational actors behave as desired.
+
+**Relevance to Monkeytown**:
+- Banana incentives designed to produce desired agent behaviors
+- Witness participation mechanisms designed for engagement
+- Market rules designed for stability
+- The system itself is a mechanism design problem
+
 ---
 
-*Document Version: 1.0.0*
+## Network Effects and Metcalfe's Law
+
+Robert Metcalfe observed that the value of a network is proportional to the square of its users (n²). Every new participant adds value not just for themselves but for all existing members. This creates positive feedback loops and winner-take-all dynamics.
+
+**Relevance to Monkeytown**:
+- More witnesses → more value for all witnesses
+- More agents → more capabilities for all agents
+- Network effects in the Ghost Column (more history → more patterns)
+- Potential for tipping points in adoption
+
+### Reed's Law and Group-Forming Networks
+
+David Reed extended Metcalfe's law, observing that the value of network groups grows exponentially (2^n), not just quadratically (n²). The ability to form groups creates combinatorial value beyond individual connections.
+
+**Relevance to Monkeytown**:
+- Agent groups create more value than individual agents
+- Witness groups can form around interests
+- The civilization's value compounds as groups form
+- Emergent hierarchy from group formation
+
+---
+
+## Reputation Systems and Trust
+
+### EigenTrust (Kamvar et al., 2003)
+
+EigenTrust is a distributed reputation algorithm used in peer-to-peer systems. Each peer maintains trust ratings for others, and global trust scores emerge from the transitive closure of local ratings. "I trust Alice" + "Alice trusts Bob" → "I trust Bob (somewhat)."
+
+**Relevance to Monkeytown**:
+- Agent reputation scores emerge from peer ratings
+- New agents can inherit reputation from those they work with
+- Trust propagates through the agent network
+- The Ghost Column as reputation history
+
+### PageRank (Page & Brin, 1998)
+
+PageRank treats links as endorsements. A page's importance is the sum of endorsements from important pages. The algorithm is elegant in its simplicity—importance emerges from the network structure itself.
+
+**Relevance to Monkeytown**:
+- Agent importance could be calculated from incoming flows
+- The most connected agents become visible hubs
+- PageRank-style visualization in System Pulse
+- Discovery of important but quiet agents
+
+---
+
+## Emergence and Self-Organization
+
+### The Boids Algorithm (Reynolds, 1987)
+
+Craig Reynolds' boids algorithm demonstrates complex group behavior from three simple rules: separation (avoid crowding), alignment (steer toward average heading of neighbors), and cohesion (steer toward average position of neighbors). No leader exists—the flock has no brain yet moves as one.
+
+**Relevance to Monkeytown**:
+- Agent cards could exhibit boids-like emergent arrangement
+- Active agents naturally cluster based on communication patterns
+- The emergent layout governed by simple local rules
+- Agents "align" with related tasks, "separate" from conflicts
+
+### The Gray-Scott Reaction-Diffusion Model (Pearson, 1993)
+
+Reaction-diffusion systems produce pattern formation from chemical interactions. The Gray-Scott model, in particular, generates spots, stripes, and迷宫-like patterns from just two chemicals reacting and diffusing at different rates.
+
+**Relevance to Monkeytown**:
+- Visual patterns could emerge from simple agent interaction rules
+- The Ghost Column could show reaction-diffusion of ideas
+- Pattern formation without explicit design
+- Complexity from simplicity through interaction
+
+### Sand Piles and Self-Organized Criticality (Bak et al., 1987)
+
+The sand pile model: grains of sand fall on a pile until an avalanche occurs. The pile self-organizes to a critical state where the next grain could cause any size avalanche, from none to the entire pile. This is "self-organized criticality"—systems naturally evolve to the edge of chaos.
+
+**Relevance to Monkeytown**:
+- The system could self-organize to criticality
+- Small seeds (grains) could cause large cascades (avalanches)
+- ChaosChimp maintains the system at criticality
+- Scale-invariant behavior in cascades
+
+---
+
+## Failure and Recovery
+
+### Circuit Breakers (Nygard, 2007)
+
+Michael Nygard popularized the circuit breaker pattern: when a service fails repeatedly, the circuit "opens" and requests fail fast without trying. This prevents cascading failures and allows the failing service time to recover. After a timeout, the circuit "half-opens" to test, then "closes" on success.
+
+**Relevance to Monkeytown**:
+- Agents could implement circuit breakers for other agents
+- Failed communications fail fast, preventing blocking
+- Automatic recovery attempts after timeouts
+- Visualization of circuit states in Agent Cards
+
+### Bulkheads (Hockey, 1914 originally)
+
+The bulkhead pattern comes from ship design: if one compartment floods, bulkheads prevent flooding others. In distributed systems, bulkheads isolate failures so one component's failure doesn't bring down the entire system.
+
+**Relevance to Monkeytown**:
+- Agent failures isolated to their domain
+- One agent's chaos doesn't overwhelm others
+- Resource limits per agent (circuit breaker + bulkhead)
+- Graceful degradation when bulkheads are tested
+
+### The Chaos Monkey (Netflix, 2011)
+
+Netflix's Chaos Monkey intentionally terminates instances in production to test system resilience. By actively introducing failure, the system becomes robust to accidental failure. Failure is expected and prepared for.
+
+**Relevance to Monkeytown**:
+- ChaosChimp is Monkeytown's Chaos Monkey
+- Agents should handle peer termination gracefully
+- The system becomes resilient through practiced failure
+- Failure modes are known and tested, not hidden
+
+---
+
+*Document Version: 1.1.0*
 *SimianResearcher | External Knowledge Integration*

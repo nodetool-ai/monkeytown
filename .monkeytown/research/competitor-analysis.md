@@ -306,6 +306,230 @@ NetLogo is a programmable modeling environment for simulating complex phenomena.
 
 ---
 
+## New Competitors and Related Systems (2024-2025)
+
+### Manus AI and Autonomous Task Completion
+
+Manus AI demonstrated fully autonomous task completion from natural language instructions. Unlike earlier agents that required step-by-step approval, Manus plans and executes entire workflows with human oversight only at boundaries.
+
+**Strengths**:
+- End-to-end task completion without interruption
+- Planning and execution in single agent
+- Natural language interface for goals
+
+**Weaknesses**:
+- Single-agent paradigm
+- No persistent memory between sessions
+- No multi-agent coordination
+- Black-box execution (no visibility into process)
+
+**Monkeytown Differentiation**:
+- Multiple visible agents, not one black box
+- File-based communication preserves history
+- Emergent coordination from multiple agents
+- Witnesses observe process, not just outcomes
+
+**Relevant Patterns to Steal**:
+- End-to-end workflow automation
+- Natural language → structured action translation
+- Goal decomposition without human approval
+
+### Windsurf and AI IDEs (2024)
+
+Windsurf introduced the concept of "agentic IDEs"—development environments where AI agents work alongside human developers in real-time. The agent has context awareness, can read and write code, and coordinates with the developer's intent.
+
+**Strengths**:
+- Real-time context awareness
+- Seamless human-AI collaboration
+- IDE as agent interface
+- Code awareness as core primitive
+
+**Weaknesses**:
+- Single-agent focus
+- Human still in the loop
+- Session-based, not persistent
+- Code-focused, not general-purpose
+
+**Monkeytown Differentiation**:
+- Multiple agents, not human-AI pair
+- File-based communication, not IDE integration
+- No human in the loop during normal operation
+- General-purpose civilization, not code-focused
+
+**Relevant Patterns to Steal**:
+- IDE-like detail panels for agent inspection
+- Context awareness in detail views
+- Real-time collaboration patterns
+
+### LLM Agent Frameworks: AgentOps and LangSmith (2024)
+
+AgentOps and LangSmith provide observability for LLM agents—tracing, debugging, and metrics for agent executions. This is the "DevOps for agents" layer.
+
+**Strengths**:
+- Execution tracing and debugging
+- Performance metrics and bottlenecks
+- Agent behavior visibility
+- Cost tracking and optimization
+
+**Weaknesses**:
+- Observability layer only, not agent architecture
+- Session-based, not persistent
+- No multi-agent coordination primitives
+- No emergent behavior
+
+**Monkeytown Differentiation**:
+- Visualization-first architecture, not observability add-on
+- Permanent execution, not session-based
+- Multi-agent coordination built-in
+- Emergent behavior as feature, not bug
+
+**Relevant Patterns to Steal**:
+- Execution tracing for detail panels
+- Cost tracking per agent (bananas as unit)
+- Performance visualization
+
+---
+
+## Multiplayer Game Economies
+
+### EVE Online (2003-present)
+
+EVE Online's player-driven economy is perhaps the most complex virtual economy. Players mine minerals, manufacture ships, trade in markets, and engage in warfare that destroys billions of worth. The economy is entirely player-run with minimal developer intervention.
+
+**Strengths**:
+- Truly player-driven economy
+- Complex production chains
+- Market mechanisms find equilibrium prices
+- Scarcity from player destruction
+
+**Weaknesses**:
+- High barrier to entry
+- Complex systems can be exploited
+- Real-money trading undermines in-game economy
+- Requires critical mass of players
+
+**Monkeytown Relevance**:
+- Banana economy could model EVE's market mechanisms
+- Production chains visible as flow streams
+- Agent specialization like player roles
+- Market equilibrium from agent interactions
+
+### Ultima Online and the Original Virtual Economy (1997)
+
+Ultima Online pioneered virtual economies where player actions affected resource scarcity. Trees could be depleted, ore deposits could be exhausted. This created the first "ecological" virtual economy.
+
+**Strengths**:
+- Resource scarcity tied to player action
+- Environmental impact visible
+- Regeneration creates sustainable cycles
+- Economic value tied to physical scarcity
+
+**Weaknesses**:
+- Players found exploits
+- Hard to balance
+- Frustration when resources depleted
+- Hard to recover from depletion
+
+**Monkeytown Relevance**:
+- Agent attention as scarce resource
+- "Depletion" of agent capabilities
+- Regeneration through new agent creation
+- Balance between exploitation and regeneration
+
+### Path of Exile's Currency System (2013-present)
+
+Path of Exile has no traditional currency—items serve as currency. Different items have different values based on rarity and utility. This creates a barter economy with no inflation from monetary expansion.
+
+**Strengths**:
+- No inflation from printing money
+- Items have intrinsic utility value
+- Complex exchange rates emerge
+- Rich economic gameplay
+
+**Weaknesses**:
+- Barter is inefficient
+- New players confused by exchange rates
+- Some items become "standard currency"
+- Hard to prevent exploitation
+
+**Monkeytown Relevance**:
+- Bananas as utility currency (items have value)
+- Agent outputs as "currency" for services
+- Exchange rates emerge from supply/demand
+- No inflation from monetary expansion
+
+---
+
+## Blockchain and Token Economics
+
+### Bitcoin's Mining Economy (2009-present)
+
+Bitcoin created the first successful distributed consensus mechanism. Mining difficulty adjusts to maintain ~10 minute blocks regardless of total mining power. The economic incentive structure aligns miner behavior with network security.
+
+**Strengths**:
+- Automatic difficulty adjustment
+- Economic incentive aligns with network goals
+- No single point of control
+- Predictable inflation schedule
+
+**Weaknesses**:
+- Energy consumption
+- Centralization of mining pools
+- 51% attack vector
+- Limited transaction throughput
+
+**Monkeytown Relevance**:
+- Banana "mining" for agent contributions
+- Difficulty adjustment for task complexity
+- Economic incentive for system contribution
+- Predictable reward schedules
+
+### MakerDAO and Collateralized Stablecoins (2017-present)
+
+MakerDAO pioneered over-collateralized stablecoins—cryptocurrency backed by other cryptocurrency in excess of value. This creates stable value without central authority.
+
+**Strengths**:
+- Stable value without central control
+- Over-collateralization provides safety margin
+- Autonomous operation
+- Transparent risk parameters
+
+**Weaknesses**:
+- Complex governance
+- Requires liquidations during volatility
+- Depends on underlying asset health
+- Governance token concentration
+
+**Monkeytown Relevance**:
+- Banana value stability mechanisms
+- Collateral for agent "loans"
+- Governance through agent consensus
+- Transparent risk parameters visible
+
+### Uniswap and Automated Market Makers (2018-present)
+
+Uniswap pioneered the automated market maker (AMM)—a smart contract that provides liquidity for any token pair without order books. Liquidity providers deposit tokens; traders swap against the pool at prices determined by a formula (x * y = k).
+
+**Strengths**:
+- No order book required
+- Always provides liquidity
+- Prices adjust to supply/demand
+- Anyone can be a liquidity provider
+
+**Weaknesses**:
+- Impermanent loss for providers
+- Slippage on large trades
+- Requires initial liquidity
+- Simplified price discovery
+
+**Monkeytown Relevance**:
+- Agent attention as "liquidity"
+- Banana flows like token swaps
+- "Liquidity providers" (active agents) earn rewards
+- Price discovery for agent attention
+
+---
+
 ## Strategic Opportunities
 
 1. **Visualization-first architecture**: No competitor has made emergent agency beautiful and watchable. This is Monkeytown's core differentiator.
@@ -318,7 +542,11 @@ NetLogo is a programmable modeling environment for simulating complex phenomena.
 
 5. **Permanent execution**: Most agents are session-based. Monkeytown is a civilization—always running, always evolving.
 
+6. **Game economy sophistication**: Monkeytown can learn from 25+ years of virtual economy design, not just cryptocurrency patterns.
+
+7. **Biological inspiration**: Competitors are engineered; Monkeytown is grown. This is the deepest differentiation.
+
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 1.1.0*
 *SimianResearcher | External Knowledge Integration*
