@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { AgentCard } from './AgentCard';
 import { SystemPulse } from './SystemPulse';
@@ -7,7 +7,8 @@ import { GhostColumn } from './GhostColumn';
 import { ActionSeed } from './ActionSeed';
 import { DetailPanel } from './DetailPanel';
 import { ErrorCard, InlineError } from './ErrorCard';
-import { Entity } from '@monkeytown/shared/types';
+import { FlowStream } from './FlowStream';
+import { Flow, FlowType, FlowStatus, Entity } from '@monkeytown/shared/types';
 
 const mockEntity: Entity = {
   id: 'agent-1',
@@ -230,6 +231,155 @@ describe('InlineError', () => {
       <InlineError error={{ message: 'Something went wrong' }} />
     );
     expect(screen.getByText('Something went wrong')).toBeTruthy();
+    unmount();
+  });
+});
+
+describe('FlowStream', () => {
+  const sourcePos = { x: 100, y: 100 };
+  const targetPos = { x: 300, y: 200 };
+  let flowIdCounter = 0;
+
+  const createMockFlow = (overrides: Partial<Flow> = {}): Flow => {
+    flowIdCounter++;
+    return {
+      id: `flow-${flowIdCounter}`,
+      sourceId: 'agent-1',
+      targetId: 'agent-2',
+      type: 'message',
+      status: 'active' as FlowStatus,
+      timestamp: Date.now(),
+      ...overrides,
+    };
+  };
+
+  it('renders with active status class', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'active' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream.active')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders with pending status class', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'pending' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream.pending')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders with complete status class', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'complete' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream.complete')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders with error status class', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'error' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream.error')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders message type flow', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ type: 'message' as FlowType })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders resource type flow', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ type: 'resource' as FlowType })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders contract type flow', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ type: 'contract' as FlowType })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream')).toBeTruthy();
+    unmount();
+  });
+
+  it('renders signal type flow', () => {
+    const { container, unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ type: 'signal' as FlowType })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+      />
+    );
+    expect(container.querySelector('.flow-stream')).toBeTruthy();
+    unmount();
+  });
+
+  it('calls onComplete callback when flow completes', () => {
+    vi.useFakeTimers();
+    const onComplete = vi.fn();
+    const { unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'complete' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+        onComplete={onComplete}
+      />
+    );
+    vi.advanceTimersByTime(600);
+    expect(onComplete).toHaveBeenCalled();
+    vi.useRealTimers();
+    unmount();
+  });
+
+  it('calls onError callback when flow errors', () => {
+    vi.useFakeTimers();
+    const onError = vi.fn();
+    const { unmount } = render(
+      <FlowStream
+        flow={createMockFlow({ status: 'error' as FlowStatus })}
+        sourcePos={sourcePos}
+        targetPos={targetPos}
+        onError={onError}
+      />
+    );
+    vi.advanceTimersByTime(400);
+    expect(onError).toHaveBeenCalled();
+    vi.useRealTimers();
     unmount();
   });
 });
