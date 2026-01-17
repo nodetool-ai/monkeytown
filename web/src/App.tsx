@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import './App.css';
-import { SystemPulse, TerrariumView, GhostColumn } from './components';
-import { Entity, SystemMetrics } from '@monkeytown/shared/types';
+import { SystemPulse, TerrariumView, GhostColumn, ActionSeed, DetailPanel, ErrorCard, FlowStream } from './components';
+import { Entity, SystemMetrics, Flow, FlowStatus, Seed, SeedIntent, FlowPosition } from '@monkeytown/shared/types';
 
 const INITIAL_METRICS: SystemMetrics = {
   activeAgents: 4,
@@ -43,21 +43,36 @@ const INITIAL_ENTITIES: Entity[] = [
     metrics: { efficiency: 91, load: 45, connections: 2 },
     timestamp: Date.now() - 8000,
   },
+];
+
+const INITIAL_FLOWS: Flow[] = [
   {
     id: 'flow-1',
-    type: 'flow',
-    status: 'processing',
-    label: 'data-sync',
-    metrics: { efficiency: 78, load: 12, connections: 2 },
+    sourceId: 'agent-1',
+    targetId: 'agent-2',
+    type: 'message',
+    status: 'active',
     timestamp: Date.now() - 3000,
+  },
+  {
+    id: 'flow-2',
+    sourceId: 'agent-2',
+    targetId: 'contract-1',
+    type: 'contract',
+    status: 'pending',
+    timestamp: Date.now() - 1000,
   },
 ];
 
 function App() {
   const [metrics, setMetrics] = useState<SystemMetrics>(INITIAL_METRICS);
   const [entities, setEntities] = useState<Entity[]>(INITIAL_ENTITIES);
+  const [flows, setFlows] = useState<Flow[]>(INITIAL_FLOWS);
   const [history, setHistory] = useState<Entity[]>([]);
   const [focusedEntity, setFocusedEntity] = useState<Entity | null>(null);
+  const [seeds, setSeeds] = useState<Seed[]>([]);
+  const [isSeedGrowing, setIsSeedGrowing] = useState(false);
+  const [error, setError] = useState<{ message: string; context?: string; code?: string } | null>(null);
 
   const handleEntityClick = useCallback((entity: Entity) => {
     setFocusedEntity(entity);
@@ -67,6 +82,32 @@ function App() {
     setEntities((prev) => [...prev, entity]);
     setHistory((prev) => prev.filter((e) => e.id !== entity.id));
     setFocusedEntity(entity);
+  }, []);
+
+  const handlePlantSeed = useCallback((intent: SeedIntent) => {
+    const newSeed: Seed = {
+      id: `seed-${Date.now()}`,
+      type: intent.type,
+      status: 'growing',
+      timestamp: Date.now(),
+    };
+    setSeeds((prev) => [...prev, newSeed]);
+    setIsSeedGrowing(true);
+
+    setTimeout(() => {
+      setSeeds((prev) =>
+        prev.map((s) => (s.id === newSeed.id ? { ...s, status: 'complete' } : s))
+      );
+      setIsSeedGrowing(false);
+    }, 3000);
+  }, []);
+
+  const handleCloseDetail = useCallback(() => {
+    setFocusedEntity(null);
+  }, []);
+
+  const handleRetryError = useCallback(() => {
+    setError(null);
   }, []);
 
   useEffect(() => {
@@ -105,10 +146,32 @@ function App() {
 
         return updated.filter((e) => e.status !== 'complete');
       });
+
+        setFlows((prev) => {
+        const updated = prev.map((flow) => {
+          if (flow.status === 'pending' && Math.random() > 0.6) {
+            return { ...flow, status: 'active' as FlowStatus };
+          }
+          if (flow.status === 'active' && Math.random() > 0.7) {
+            return { ...flow, status: 'complete' as FlowStatus };
+          }
+          return flow;
+        });
+
+        return updated.filter((f) => f.status !== 'complete');
+      });
     }, 3000);
 
     return () => clearInterval(interval);
   }, []);
+
+  const getEntityPosition = useCallback((entityId: string): FlowPosition => {
+    const index = entities.findIndex((e) => e.id === entityId);
+    if (index === -1) return { x: 100, y: 100 };
+    const col = index % 4;
+    const row = Math.floor(index / 4);
+    return { x: 100 + col * 180, y: 100 + row * 120 };
+  }, [entities]);
 
   return (
     <div className="app">
@@ -123,6 +186,48 @@ function App() {
 
         <GhostColumn history={history} onRestore={handleRestoreFromHistory} />
       </div>
+
+      {entities.length > 0 && flows.length > 0 && (
+        <svg className="flow-overlay">
+          {flows.map((flow) => {
+            const sourcePos = getEntityPosition(flow.sourceId);
+            const targetPos = getEntityPosition(flow.targetId);
+            return (
+              <FlowStream
+                key={flow.id}
+                flow={flow}
+                sourcePos={sourcePos}
+                targetPos={targetPos}
+              />
+            );
+          })}
+        </svg>
+      )}
+
+      <ActionSeed
+        onPlant={handlePlantSeed}
+        isGrowing={isSeedGrowing}
+        pendingCount={seeds.filter((s) => s.status === 'growing').length}
+      />
+
+      {focusedEntity && (
+        <DetailPanel
+          entity={focusedEntity}
+          onClose={handleCloseDetail}
+        />
+      )}
+
+      {error && (
+        <div className="error-overlay">
+          <ErrorCard
+            error={error}
+            onRetry={handleRetryError}
+            onIgnore={() => setError(null)}
+            onInspect={() => console.log('Inspect error:', error)}
+            suggestion="check the agent logs for details"
+          />
+        </div>
+      )}
     </div>
   );
 }

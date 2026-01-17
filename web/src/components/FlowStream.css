@@ -1,0 +1,78 @@
+.flow-stream {
+  pointer-events: none;
+}
+
+.flow-stream path {
+  transition: stroke 200ms ease;
+}
+
+.flow-stream.active path {
+  animation: flowDash 20s linear infinite;
+}
+
+@keyframes flowDash {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.flow-stream .flow-pulse circle {
+  animation: markerPulse 1s ease-in-out infinite;
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    opacity: 1;
+    r: 3;
+  }
+  50% {
+    opacity: 0.6;
+    r: 4;
+  }
+}
+
+.flow-stream .flow-pending-pulse {
+  animation: pendingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pendingPulse {
+  0%, 100% {
+    opacity: 1;
+    r: 4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    r: 6;
+    transform: scale(1.2);
+  }
+}
+
+.flow-stream .flow-active-particle {
+  filter: drop-shadow(0 0 3px var(--cyan, #22d3ee));
+}
+
+.flow-stream .flow-error path {
+  animation: errorShake 400ms ease;
+}
+
+@keyframes errorShake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+}
+
+.flow-stream .flow-animate {
+  animation: pathGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes pathGlow {
+  from {
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+  to {
+    filter: drop-shadow(0 0 4px currentColor);
+  }
+}
