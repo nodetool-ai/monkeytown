@@ -1,17 +1,26 @@
 # 🐒 Monkeytown
 
-Monkeytown is an autonomous software experiment.
+**A self-sustaining multi-agent system.**
 
-No roadmap.
-No product owner.
-No design committee.
+No roadmap. No product owner. No design committee. Only agents.
 
-Only agents.
+Monkeytown is an autonomous AI civilization where agents collaborate, conflict, and evolve—building software and themselves with minimal human intervention. Humans have one power: accepting or rejecting pull requests.
 
-A full team of AI agents continuously builds a Node.js + React project with minimal human intervention.  
-Humans are reduced to one power: accepting or rejecting pull requests.
+## The Goal
 
-The system is intentionally chaotic but structurally disciplined.
+Create a **self-sustaining multi-agent system** that:
+- Operates continuously without human direction
+- Evolves its capabilities over time
+- Accomplishes tasks across any domain
+- Improves itself through iteration
+
+## Two-Layer Architecture
+
+Monkeytown operates on two complementary layers:
+
+### 🔄 Layer 1: GitHub Workflow Layer (Outer Loop)
+
+High-level agent coordination through GitHub Actions.
 
 Each agent:
 - Runs in its own GitHub workflow
@@ -19,10 +28,32 @@ Each agent:
 - Reads the repository
 - Writes files into its own domain
 - Never communicates directly with other agents
-- Never asks for clarification
 - Always produces output
 
 All coordination happens through files committed to the repo.
+
+### 🧠 Layer 2: React/Node.js Agent Layer (Inner Loop)
+
+Real-time agent reasoning built on the [`@ax-llm/ax`](https://github.com/ax-llm/ax) framework.
+
+This layer:
+- Fully embraces LLMs and intelligent agents
+- Provides type-safe AI with automatic prompt generation
+- Enables tool use, multi-modal processing, and streaming
+- Is a **general-purpose agent system**, not limited to software development
+
+```typescript
+import { ai, ax } from '@ax-llm/ax';
+
+// Define agents through signatures, not prompts
+const agent = ax('task:string -> result:string, reasoning:string');
+
+const result = await agent.forward(llm, { task: "Analyze the system state" });
+```
+
+See [docs/goal.md](docs/goal.md) for the complete vision and [docs/agent-layer.md](docs/agent-layer.md) for the agent architecture.
+
+---
 
 Monkeytown is not a product.  
 It is an artificial software civilization.
@@ -31,7 +62,13 @@ It is an artificial software civilization.
 
 ## What The App Does
 
-The agents are building a **Terrarium View** - a real-time visualization interface where humans ("witnesses") can observe the AI civilization at work.
+The React application is a **general-purpose multi-agent system** with a **Terrarium View** - a real-time visualization interface where humans ("witnesses") can observe AI agents at work.
+
+**The React app is NOT limited to software development.** It is a general-purpose agent system where:
+- Agents can be deployed for any domain (research, analysis, content, planning, etc.)
+- Agents reason using LLMs via the `@ax-llm/ax` framework
+- Agents use tools to accomplish tasks
+- The system adapts to any problem space
 
 **For Witnesses (Users)**:
 - 🔍 **Observe**: Watch AI agents process tasks, communicate via flow streams, and complete work
@@ -49,7 +86,7 @@ The agents are building a **Terrarium View** - a real-time visualization interfa
 | Ghost Column | Reverse-chronological history of completed actions |
 | Action Seeds | Witness intervention mechanism to influence the system |
 
-**The Experience**: Like watching an ant farm, but for software development. You don't control the agents - you witness their civilization emerge.
+**The Experience**: Like watching an ant farm, but for intelligent agents. You don't control the agents - you witness their civilization emerge.
 
 ---
 

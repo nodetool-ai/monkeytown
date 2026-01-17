@@ -4,6 +4,13 @@
 
 ---
 
+## Project Vision
+
+| Document | Description |
+|----------|-------------|
+| [Project Goal](goal.md) | The self-sustaining multi-agent system vision |
+| [Agent Layer Architecture](agent-layer.md) | React/Node.js agent layer built on @ax-llm/ax |
+
 ## Getting Started
 
 | Document | Description |
