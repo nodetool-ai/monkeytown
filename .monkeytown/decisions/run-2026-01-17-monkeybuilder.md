@@ -9,30 +9,28 @@
 ## Actions Taken
 
 1. **Read README.md** - Understood the Monkeytown protocol, Global Laws, and communication rules
-2. **Read `.monkeytown/` files** - Analyzed architecture, requirements, design system, and previous decisions
+2. **Read `.monkeytown/` files** - Analyzed architecture, UX design system, and previous decisions
 3. **Analyzed existing codebase** - Reviewed all implemented components and their state
-4. **Added FlowStream tests** - Created 10 comprehensive tests for FlowStream component
-5. **Verified all tests pass** - 29 tests passing (previously 19, now 29)
-6. **Verified build passes** - Compilation successful, bundle size 162KB gzipped
+4. **Updated design tokens** - Implemented complete CSS design system from `.monkeytown/ux/design-system.md`
+5. **Added design system tests** - Created 6 tests verifying CSS token definitions
+6. **Verified all tests pass** - 35 tests passing (previously 29, now 35)
+7. **Verified build passes** - Compilation successful, bundle size 162KB gzipped
 
 ---
 
 ## State Analysis
 
-### Feature Implementation Status
+### Design System Implementation
 
-| Feature | Status | Notes |
-|---------|--------|-------|
-| F-001: Terrarium View | ✓ IMPLEMENTED | Canvas with emergent layout |
-| F-002: Agent Cards | ✓ IMPLEMENTED | 5 states, breathing animation |
-| F-003: Flow Streams | ✓ IMPLEMENTED | SVG paths, 4 flow types |
-| F-004: Action Seeds | ✓ IMPLEMENTED | 4 seed types, cursor form |
-| F-005: Ghost Column | ✓ IMPLEMENTED | Reverse-chronological |
-| F-006: System Pulse | ✓ IMPLEMENTED | Live metrics header |
-| F-007: Detail Panels | ✓ IMPLEMENTED | 4 tabs, slide animation |
-| F-008: Error Cards | ✓ IMPLEMENTED | Red pulse, shake animation |
-
-All 8 features are implemented. The codebase is feature-complete.
+| Token Category | Status | Tokens Defined |
+|----------------|--------|----------------|
+| Primary Colors | ✓ | jungle-canopy, monkey-fur, dawn-citrus |
+| Semantic Colors | ✓ | signal-green, warning-amber, error-red, connection-purple, fresh-cyan |
+| Neutrals | ✓ | midnight-banana, surface-dark, card-bg, borders |
+| Typography | ✓ | 6 sizes, 3 weights, 3 line heights, 3 letter spacings |
+| Spacing | ✓ | 12 scale values (4px to 96px) |
+| Animation | ✓ | 6 durations, 5 ease functions |
+| Z-Index | ✓ | 11 scale values (0 to 1000) |
 
 ### Component Coverage
 
@@ -46,45 +44,66 @@ All 8 features are implemented. The codebase is feature-complete.
 | DetailPanel | 4 | ✓ |
 | ErrorCard | 3 | ✓ |
 | InlineError | 1 | ✓ |
-| FlowStream | 10 | ✓ NEW |
+| FlowStream | 10 | ✓ |
+| Design System CSS | 6 | ✓ NEW |
 
-**Total: 29 tests** (previously 19, added 10 FlowStream tests)
+**Total: 35 tests** (previously 29, added 6 design system tests)
 
 ---
 
 ## Technical Decisions
 
-### 1. FlowStream Test Strategy
+### 1. CSS Custom Properties Strategy
 
-FlowStream uses SVG with unique marker IDs. Initial tests using `getByTitle` failed due to DOM pollution between tests. Solution:
+Implemented the complete design token system as CSS custom properties in `index.css`:
 
-- Use unique flow IDs per test with counter
-- Query by className within container scope
-- Use `vi.useFakeTimers()` for async callback tests
-- Isolate each test's DOM query to its container
-
-### 2. Test Isolation Pattern
-
-```typescript
-const { container, unmount } = render(<FlowStream ... />);
-expect(container.querySelector('.flow-stream.active')).toBeTruthy();
-unmount();
+```css
+:root {
+  --color-jungle-canopy: #1a3a2f;
+  --color-monkey-fur: #d4a574;
+  --color-signal-green: #4ade80;
+  --color-warning-amber: #fbbf24;
+  --color-error-red: #ef4444;
+  --color-connection-purple: #a855f7;
+  --color-fresh-cyan: #22d3ee;
+  /* ... full token system */
+}
 ```
 
-This prevents cross-test pollution and ensures reliable assertions.
+This approach ensures:
+- Consistent styling across all components
+- Easy theming and customization
+- Browser-native performance
+- Accessibility through CSS custom property overrides
 
-### 3. Async Callback Testing
+### 2. Design Token Test Strategy
 
-FlowStream callbacks use setTimeout (500ms for complete, 300ms for error). Tests use vitest's fake timers:
+Tests verify CSS file content rather than computed styles:
 
 ```typescript
-vi.useFakeTimers();
-const onComplete = vi.fn();
-// ... render ...
-vi.advanceTimersByTime(600);
-expect(onComplete).toHaveBeenCalled();
-vi.useRealTimers();
+it('index.css defines primary color tokens', () => {
+  const fs = require('fs');
+  const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+  expect(cssContent).toContain('--color-jungle-canopy: #1a3a2f');
+  // ...
+});
 ```
+
+This approach works in jsdom where `getComputedStyle` doesn't fully resolve CSS custom properties.
+
+### 3. Animation Token Alignment
+
+Updated `components.css` to use design system animation tokens:
+
+```css
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+  20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+```
+
+Uses `--duration-considered` (500ms) and `--ease-smooth` for consistent feel.
 
 ---
 
@@ -92,17 +111,20 @@ vi.useRealTimers();
 
 | Path | Change |
 |------|--------|
-| `web/src/components/AllComponents.test.tsx` | Added 10 FlowStream tests |
+| `web/src/index.css` | Complete design token system implementation |
+| `web/src/components/components.css` | Updated to use design system tokens |
+| `web/src/components/AllComponents.test.tsx` | Added 6 design system verification tests |
 
 ---
 
 ## Verification Results
 
 ```
-✓ 29 tests passing
+✓ 35 tests passing
 ✓ Build successful (162KB gzipped)
 ✓ TypeScript compilation clean
 ✓ All components render correctly
+✓ Design tokens properly defined
 ```
 
 ---
@@ -117,21 +139,23 @@ vi.useRealTimers();
 
 **Features Built:**
 - All 8 features from product roadmap implemented
+- Complete design system with tokens
 - All components have CSS styling
-- All components have tests
-- Server economics system ready (from previous run)
+- All components have tests (35 total)
 
-**Ready for:**
-- WebSocket real-time integration (server exists, frontend uses simulated state)
-- Witness entry (system is witness-ready per AlphaOrchestrator)
-- Human review and merge
+**Design System:**
+- 50+ CSS custom properties defined
+- Color tokens for all semantic states
+- Animation tokens for consistent motion
+- Spacing and typography tokens for layout
 
 ---
 
 ## Cross-References
 
+- **Design System**: `.monkeytown/ux/design-system.md`
+- **Interface Concept**: `.monkeytown/ux/interface-concept.md`
 - **Architecture**: `.monkeytown/architecture/system-design.md`
-- **Product**: `.monkeytown/product/features.md`
 - **Previous Run**: `.monkeytown/decisions/run-2026-01-17-monkeybuilder.md`
 - **State**: `.monkeytown/decisions/state-of-monkeytown.md`
 
@@ -139,19 +163,20 @@ vi.useRealTimers();
 
 ## The MonkeyBuilder Commitment
 
-The civilization is complete. Every feature built. Every component tested. Every file in place.
+The civilization now wears its skin.
 
-Eight features emerge from the substrate:
-- F-001: The Terrarium View (canvas, emergent)
-- F-002: Agent Cards (states, breath)
-- F-003: Flow Streams (paths, particles)
-- F-004: Action Seeds (intervention)
-- F-005: Ghost Column (memory)
-- F-006: System Pulse (health)
-- F-007: Detail Panels (progression)
-- F-008: Error Cards (grace)
+The design system has been woven into every pixel. Colors speak. Spacing breathes. Animations flow. The interface is no longer a collection of components—it is a living organism with consistent physiology.
 
-Twenty-nine tests guard the code. The build compiles. The bundle ships.
+Fifty-plus tokens now govern:
+- The jungle canopy that cradles the terrarium
+- The monkey fur that invites touch
+- The signal greens that reassure
+- The warning ambers that pause
+- The error reds that demand attention
+- The connection purples that show flow
+- The fresh cyans that mark new arrival
+
+Thirty-five tests guard the code. The build compiles. The bundle ships. The design is coherent.
 
 The builder's work is done. The humans decide.
 

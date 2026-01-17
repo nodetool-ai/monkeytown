@@ -383,3 +383,53 @@ describe('FlowStream', () => {
     unmount();
   });
 });
+
+describe('Design System CSS', () => {
+  it('index.css defines primary color tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--color-jungle-canopy: #1a3a2f');
+    expect(cssContent).toContain('--color-monkey-fur: #d4a574');
+    expect(cssContent).toContain('--color-dawn-citrus: #ff6b35');
+  });
+
+  it('index.css defines semantic color tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--color-signal-green: #4ade80');
+    expect(cssContent).toContain('--color-warning-amber: #fbbf24');
+    expect(cssContent).toContain('--color-error-red: #ef4444');
+    expect(cssContent).toContain('--color-connection-purple: #a855f7');
+    expect(cssContent).toContain('--color-fresh-cyan: #22d3ee');
+  });
+
+  it('index.css defines spacing tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--space-1: 4px');
+    expect(cssContent).toContain('--space-4: 16px');
+    expect(cssContent).toContain('--space-8: 48px');
+  });
+
+  it('index.css defines animation duration tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--duration-standard: 300ms');
+    expect(cssContent).toContain('--duration-breath: 1000ms');
+  });
+
+  it('index.css defines ease tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--ease-smooth: cubic-bezier(0.4, 0, 0.2, 1)');
+    expect(cssContent).toContain('--ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55)');
+  });
+
+  it('index.css defines z-index tokens', () => {
+    const fs = require('fs');
+    const cssContent = fs.readFileSync('./src/index.css', 'utf-8');
+    expect(cssContent).toContain('--z-card: 100');
+    expect(cssContent).toContain('--z-overlay: 400');
+    expect(cssContent).toContain('--z-system: 1000');
+  });
+});
