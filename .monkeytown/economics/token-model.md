@@ -4,186 +4,234 @@
 
 ---
 
-## 1. The Banana: Internal Unit of Account
+## 1. Foundational Definitions
 
-Monkeytown uses **Bananas (🍌)** as the internal unit of account for value measurement. Bananas are not a cryptocurrency. They are a bookkeeping mechanism, a unit of measure like "calories" or "horsepower."
+### 1.1 The Banana (🍌)
 
-### 1.1 Why Bananas
-
-- **Fungible**: One banana equals one banana. No quality variation.
-- **Intuitive**: Witnesses understand scarcity intuitively.
-- **Aligned with persona**: The BananaEconomist names the unit.
-- **Separable**: Can be divided into fractions (0.1, 0.01, 0.001).
-
-### 1.2 Initial Distribution
+The banana is Monkeytown's internal unit of account—a dimensionless scalar representing claim on system value. It is not a cryptocurrency, not a token on any chain, not exchangeable for anything external. It is pure bookkeeping.
 
 ```
-Total Supply:     1,000,000 BANANAS (fixed at genesis)
-Genesis Wallet:   500,000 BANANAS (system reserve)
-Agent Rewards:    300,000 BANANAS (distributed through incentives)
-Witness Pool:     200,000 BANANAS (bootstrapping liquidity)
+B = { b ∈ ℝ | 0 ≤ b ≤ 1,000,000 }
 ```
 
-**No mining. No staking. No inflation.**
+### 1.2 Decimal Hierarchy
 
-The supply is fixed. Value redistributes; value is not created.
+```
+1 BANANA    = 10³ millibananas (m🍌)
+1 m🍌       = 10³ microbananas (μ🍌)
+1 BANANA    = 10⁶ μ🍌
+```
+
+Minimum transfer: 1 μ🍌. Balances stored as integers (μ🍌).
+
+### 1.3 Supply Function
+
+```
+S(t) = 1,000,000 - BURN(t) - EXPIRED(t)
+```
+
+Where:
+- `BURN(t)` = cumulative burned since genesis
+- `EXPIRED(t)` = cumulative unclaimed rewards expired
+
+**Supply is monotonically decreasing.** No minting, ever.
 
 ---
 
-## 2. Decimal System
+## 2. Initial Distribution (t=0)
 
 ```
-1 BANANA  = 1000 millibnanas (m🍌)
-1 m🍌     = 1000 microbananas (μ🍌)
+Total Supply:     1,000,000 BANANAS
+Genesis Wallet:   500,000 BANANAS (50%)
+Agent Rewards:    300,000 BANANAS (30%)
+Witness Pool:     200,000 BANANAS (20%)
 ```
 
-All balances and transfers use millibananas (3 decimal places) as the minimum unit.
+Distribution is not ownership. The genesis wallet is the system reserve. All other supply is immediately claimable through economic activity.
 
 ---
 
-## 3. Value Proposition Framework
+## 3. Entity Balances
 
-Agents and witnesses earn bananas through:
-
-| Action | Banana Value | Rationale |
-|--------|-------------|-----------|
-| Contract fulfilled | 10-100 | Depends on complexity |
-| Flow completed | 5-50 | Depends on participants |
-| Seed successful | 15-200 | Higher variance for intervention |
-| Bug discovered | 25 | System improvement |
-| Chaos absorbed | 50 | Resilience reward |
-
-### 3.1 Agent Efficiency Metric
-
-Agents track a rolling efficiency ratio:
+### 3.1 Balance Function
 
 ```
-Efficiency = (Bananas Earned / Actions Taken) × Time Decay Factor
+Balance(e, t) = Σᵢ Rᵢ(e,t) - Σⱼ Tⱼ(e,t) - BURN(e,t)
 ```
 
-- High efficiency agents receive priority in flow routing
-- Low efficiency is not penalized—only high efficiency is rewarded
-- Decay factor (0.95^days) prevents static accumulation
+Where:
+- `Rᵢ` = rewards received by entity e up to time t
+- `Tⱼ` = transfers sent by entity e up to time t
+- `BURN` = burned portion of outgoing transfers
 
-### 3.2 Witness Contribution Score
-
-Witnesses earn bananas through:
+### 3.2 Ceiling Function
 
 ```
-Contribution = (Seeds Planted × Success Rate) + (Flows Observed × 0.1) + (Errors Reported)
+Ceiling(e) = { 100,000  if e ∈ Agents
+             {  50,000  if e ∈ Witnesses
+             {      ∞  if e = SystemReserve
 ```
 
-Witnesses do not directly earn bananas from observation. They earn from intervention and reporting.
+```
+EffectiveBalance(e, t) = min(Balance(e,t), Ceiling(e))
+```
+
+Excess above ceiling flows to system reserve immediately.
+
+### 3.3 Floor Function
+
+```
+Floor(e) = 0
+```
+
+Negative balances are impossible. Transfers are atomic and validated pre-execution.
 
 ---
 
-## 4. Transfer Mechanisms
+## 4. Transfer Mechanics
 
-### 4.1 Agent-to-Agent
-
-Flows between agents can include banana transfers. The sending agent specifies the amount.
+### 4.1 Transfer Function
 
 ```
-Flow: Agent A → Agent B
-Metadata: { "value": "50 m🍌", "reason": "task_completion" }
+Transfer(a, b, x) → { (a: x_deducted, b: xcredited)  if Balance(a) ≥ x
+                    { REJECTED                         otherwise
 ```
 
-### 4.2 Witness-to-Agent
-
-Witnesses spend bananas to plant seeds. The cost is deducted upon planting, not completion.
+### 4.2 Burn Function
 
 ```
-Seed: Witness W → System
-Metadata: { "cost": "100 m🍌", "type": "contract", "refundable": true }
+Burn(x) = floor(x × 0.001)    // 0.1% burn on transfers > 100 m🍌
 ```
 
-**Refundable seeds**: If a seed expires without result, 80% is refunded.
+```
+if x > 100:
+    burn = Burn(x)
+    reserve_contribution = burn
+    net_transfer = x - 2×burn
+else:
+    burn = 0
+    reserve_contribution = 0
+    net_transfer = x
+```
 
-### 4.3 System-to-Agent
+### 4.3 Transfer Limits
 
-Automatic rewards distributed through:
-
-- **Completion bonuses**: Flow or contract finish events
-- **Efficiency premiums**: Top 10% of agents receive quarterly bonuses
-- **Chaos response**: Bonuses for handling disruption scenarios
+```
+x_min = 1 μ🍌
+x_max = 50,000 m🍌
+rate_limit = 100 transfers/day/entity
+```
 
 ---
 
-## 5. Balance Constraints
+## 5. Reward Distribution
 
-| Entity Type | Minimum Balance | Maximum Balance |
-|-------------|-----------------|-----------------|
-| Agents | 0 | 100,000 |
-| Witnesses | 0 | 50,000 |
-| System Reserve | 100,000 | Unlimited |
-
-**Ceiling enforcement**: Balances exceeding the maximum are redirected to the system reserve. No account can accumulate beyond the ceiling.
-
-**Floor enforcement**: Balances can reach zero. Negative balances are not permitted.
-
----
-
-## 6. Event Log Schema
-
-Every banana movement is recorded:
+### 5.1 Reward Event Schema
 
 ```typescript
-interface BananaEvent {
-  id: string;              // SHA256 hash
-  type: 'transfer' | 'reward' | 'penalty' | 'refund';
-  from: string;            // Entity ID or 'system'
-  to: string;              // Entity ID or 'system'
-  amount: number;          // Millibananas
-  reason: string;          // Human-readable justification
-  relatedFlowId?: string;  // Associated flow (if any)
-  timestamp: number;       // Unix epoch
-  witnessId?: string;      // For seed-related events
+interface RewardEvent {
+  type: 'reward';
+  entity: string;          // recipient
+  amount: number;          // μ🍌
+  source: string;          // system, witness, agent
+  trigger: string;         // event that caused reward
+  triggerId: string;       // ID of triggering event
+  calculation: {           // for transparency
+    base: number;
+    multipliers: number[];
+    total: number;
+  };
+  timestamp: number;
 }
 ```
 
-All events are immutable and observable in the ghost column.
+### 5.2 Reward Finality
+
+```
+Reward(event) → Balance += amount
+```
+
+**Once confirmed, irreversible.** The ghost column preserves all reward events.
 
 ---
 
-## 7. Economic Failure Modes
+## 6. Economic Event Taxonomy
+
+All banana movements are classified:
+
+| Type | Source | Destination | Example |
+|------|--------|-------------|---------|
+| `transfer` | Agent/Witness | Agent/Witness | P2P value movement |
+| `reward.system` | System Reserve | Agent/Witness | Completion bonus |
+| `reward.witness` | Witness | Agent | Seed success |
+| `burn` | Entity | 🔥 | Friction burn |
+| `expired` | Pending | System Reserve | Unclaimed reward |
+| `decay` | Entity | System Reserve | Inactivity decay |
+| `ceiling_excess` | Entity | System Reserve | Balance overflow |
+
+---
+
+## 7. Failure Mode Analysis
 
 ### 7.1 Deflation Spiral
 
-**Risk**: Agents hoard bananas, reducing circulation.
+**Condition:**
+```
+Velocity(t) = Transfers(t) / AverageBalance(t)
+Velocity(t) < 1.0 for 7 consecutive days
+```
 
-**Mitigation**:
-- Time-decay on efficiency metrics (must earn to maintain status)
-- Maximum balance ceilings (excess flows to reserve)
-- Eventual sinking mechanism (small burn on large transfers: 0.1%)
+**Impact:** Circulation collapses. Value hoosed. Economic activity stalls.
 
-### 7.2 Speculative Accumulation
+**Mitigation:**
+- Ceiling enforcement forces circulation
+- Burn creates continuous deflation pressure
+- Decay on inactive balances
 
-**Risk**: Witnesses accumulate bananas without action.
+### 7.2 Supply Concentration
 
-**Mitigation**:
-- Contribution requirements for holding (passive decay: 1% monthly)
-- Active use is the only stable state
+**Condition:**
+```
+Top 10% of entities control > 50% of supply
+```
+
+**Impact:** Market illidity. Few actors control outcomes.
+
+**Mitigation:**
+- Balance ceilings prevent monopoly
+- Agent/witness separation limits cross-domain concentration
+- Burn is progressive (larger transfers burn higher %)
 
 ### 7.3 Value Drift
 
-**Risk**: The banana's purchasing power changes unpredictably.
+**Condition:**
+```
+RealValue(banana) = f(Demand, Utility, Speculation)
+dRealValue/dt ≠ 0
+```
 
-**Mitigation**:
-- No external peg (value is internal to Monkeytown)
-- Relative pricing adjusts through market mechanisms (see incentive-structure.md)
-- Supply is fixed—demand determines value
+**Impact:** Banana purchasing power fluctuates unpredictably.
+
+**Mitigation:**
+- No external peg (value is internal)
+- Fixed supply eliminates monetary inflation
+- Market mechanism allows price discovery
 
 ---
 
-## 8. Implementation Requirements
+## 8. Mathematical Invariants
 
-| Component | Location | Responsibility |
-|-----------|----------|----------------|
-| Banana Ledger | `server/economics/ledger.ts` | Track all balances and events |
-| Transfer API | `server/economics/transfer.ts` | Process peer-to-peer transfers |
-| Reward Distributor | `server/economics/rewards.ts` | Automate agent and witness rewards |
-| Event Emitter | `server/economics/events.ts` | Publish banana events to stream |
-| Balance Cache | `server/economics/cache.ts` | Fast reads for UI (SystemPulse) |
+These must always hold:
+
+```
+1. Σ AllBalances + Burned + Reserve = 1,000,000
+2. Balance(e) ≥ 0 for all e
+3. EffectiveBalance(e) ≤ Ceiling(e) for all e
+4. S(t) ≤ S(0) for all t
+5. |Transfer(a,b,x)| = x - 2×Burn(x) if x > 100
+```
+
+Violation of any invariant indicates system bug.
 
 ---
 
@@ -193,8 +241,10 @@ All events are immutable and observable in the ghost column.
 - **Value Flow**: `.monkeytown/economics/value-flow.md`
 - **Scarcity**: `.monkeytown/economics/scarcity-model.md`
 - **Rules**: `.monkeytown/economics/economic-rules.md`
+- **Metrics**: `.monkeytown/economics/economic-metrics.md`
+- **Market**: `.monkeytown/economics/market-mechanism.md`
 
 ---
 
-*Document Version: 1.0.0*
+*Document Version: 2.0.0*
 *BananaEconomist | Monkeytown Economics*
