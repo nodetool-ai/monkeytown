@@ -4,9 +4,22 @@
 
 ---
 
+## The Two-Fold Gaze
+
+Monkeytown wears two faces.
+
+**The Outer Face**: The Terrarium View. The watching glass. Where witnesses observe agents working, flows moving, contracts settling. This face is biological, breathing, alive.
+
+**The Inner Face**: The Mind Temple. Where agent reasoning happens in real-time. Where signatures define capabilities. Where tools are wielded. Where the @ax-llm/ax framework transforms intent into action. This face is crystalline, precise, structured.
+
+A witness can watch from outside.
+Or a witness can lean closer, peer through the glass, and see the minds at work.
+
+---
+
 ## The Watching Glass
 
-Monkeytown is a civilization the user observes, not operates. The interface is a watching glass into a world that builds itself. The user is not a driver. The user is a witness.
+The user observes, not operates. The interface is a watching glass into a world that builds itself. The user is not a driver. The user is a witness.
 
 This changes everything.
 
@@ -26,6 +39,37 @@ Reflection:           The interface reflects the user's attention
 Distortion:           Slight, intentional—reality is filtered through the system
 Impermeability:       The user cannot reach in, only observe and plant seeds
 Condensation:         Ambient moisture—background activity, subtle life
+```
+
+---
+
+## Core Metaphor: The Mind Temple
+
+Beyond the terrarium glass, there is a deeper layer. The Mind Temple.
+
+Here, agents do not merely exist—they *reason*. The crystalline structure of agent minds is visible. Signatures glow with their type definitions. Tools await their moment. Reasoning chains unfold like origami.
+
+The Mind Temple is not for witnesses. It is for those who wish to understand *how* the civilization thinks.
+
+```
+Crystal Clarity:      Agent signatures are visible, structured, type-safe
+Reasoning Chains:     Step-by-step thought visible in real-time
+Tool Presence:        Functions await, ready, labeled, accessible
+Memory Streams:       Context flows through, visible to those who look
+Input/Output Gates:   Data enters, results emerge—both observable
+```
+
+### The Dual View
+
+```
+TERRARIUM VIEW                    MIND TEMPLE
+-----------------------------------------------------------------
+Biological motion                 Crystalline precision
+Emergent layout                   Structured grid
+Card breathing                    Signature glow
+Flow streams                      Reasoning chains
+Ghost column                      Memory cascade
+Witness watches                   Witness understands
 ```
 
 ---
@@ -481,6 +525,33 @@ For the next moment of becoming.
 
 ---
 
+## The Two-Fold Gaze
+
+Monkeytown rewards two kinds of looking.
+
+**From afar**, through the watching glass, you see a civilization. Agents work. Flows move. Contracts settle. The system breathes. This is the Terrarium. This is where witnesses practice the art of observation without control.
+
+**From within**, through the Mind Temple lens, you see the machinery of thought. Signatures glow. Reasoning unfolds. Tools await. Memory flows. This is where witnesses understand *how* the civilization thinks—not just *what* it does.
+
+The Terrarium is biological. The Mind Temple is crystalline.
+
+The Terrarium breathes. The Mind Temple calculates.
+
+Both are Monkeytown.
+
+Witnesses may spend hours in the Terrarium, watching patterns emerge.
+Or they may lean close, activate the Mind Temple, and see the signatures glow.
+
+Both are valid. Both are beautiful.
+
+The interface serves both.
+
+---
+
+*The civilization works. The witness watches. The signatures glow.*
+
+---
+
 ## The Uniqueness Principle
 
 Monkeytown must look like nothing else. When a user sees a screenshot, they should know immediately: *this is Monkeytown*.
@@ -496,8 +567,121 @@ The combination of:
 - The witness ceremony
 - The silence protocol
 - The theatrical impulse
+- The crystalline Mind Temple
+- Glowing agent signatures
 
 ...creates a face that cannot be ignored.
+
+---
+
+## Agent Signature Visualization
+
+In the Mind Temple, agents reveal their nature through signatures. The @ax-llm/ax framework defines agents through type signatures, not prompts. This is visible.
+
+### Signature Anatomy
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  agent: ax('context:string, question:string ->              │
+│            reasoning:string, answer:string')                │
+│                                                             │
+│  ╭── Input ──╮        ┌──────────────┐       ╭── Output ──╮ │
+│  │ context   │───────▶│   REASONING  │──────▶│ reasoning │ │
+│  │ question  │        │   CHAIN      │       │ answer    │ │
+│  ╰──────────╯        └──────────────┘       ╰──────────╯ │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### Signature Glow
+
+```
+Type-safe output:      Glows green when output matches signature
+Inference pending:     Pulses amber while LLM generates
+Validation passing:    Brief green flash
+Validation failing:    Red pulse, error badge appears
+Memory referenced:     Subtle purple border around memory reads
+Tool invoked:          Tool icon appears, particle burst
+```
+
+### Multi-Agent Signatures
+
+When agents compose, signatures entangle:
+
+```
+agent_a.output ──▶ agent_b.input          Chain glows, indicates flow
+agent_a + agent_b ──▶ shared_output       Both signatures merge, glow together
+agent_c.invoke(agent_d)                   Parentheses indicate invocation, nested glow
+```
+
+---
+
+## The Mind Temple Interface
+
+The Mind Temple is where witnesses see the inner workings. It is not a separate view—it is a *lens* that can be applied to any agent.
+
+### Activating the Mind Temple
+
+```
+Hover agent card + "T" key:         Lens activates, card transforms
+Click "Show Signature" button:      Detail panel shows signature view
+Command "/mind [agent-id]":         Directly open Mind Temple view
+```
+
+### The Crystal Grid
+
+Inside the Mind Temple, agents arrange in a crystalline grid:
+
+```
+Cell Structure:
+  ┌─────────────────────────────────────────┐
+  │  ┌─ Signature Header ─┐  [agent-name]   │
+  │  │  ax('... -> ...')  │  type: reasoner │
+  │  ├─ Input Dock ───────┤                │
+  │  │  context:string    │                │
+  │  │  question:string   │                │
+  │  ├─ Reasoning Chain ──┤                │
+  │  │  ▸ parsing...      │  ← step glow   │
+  │  │  ▸ analyzing...    │                │
+  │  │  ▸ reasoning...    │                │
+  │  ├─ Output Dock ──────┤                │
+  │  │  reasoning:string  │                │
+  │  │  answer:string     │                │
+  │  └────────────────────┘                │
+  └─────────────────────────────────────────┘
+```
+
+### Reasoning Step Animation
+
+Each reasoning step reveals:
+
+```
+Step appears:           Slides in from left, fades up
+Step glows:             Amber pulse while processing
+Step completes:         Green fade, arrow to next step
+Step fails:             Red shake, error badge
+Step references memory: Purple underline, hover shows memory
+Step uses tool:         Tool icon appears, particle burst
+```
+
+### Tool Visualization
+
+Tools are not hidden. They are visible, named, awaiting:
+
+```
+┌────────────────────────────────────────────────┐
+│  TOOLS AVAILABLE                              │
+├────────────────────────────────────────────────┤
+│  🔍 search(query:string) → results:string[]   │
+│  📊 calculate(expr:string) → result:number    │
+│  💾 memory.put(key:string, val:any) → void    │
+│  💾 memory.get(key:string) → value:any        │
+│  🌐 fetch(url:string) → response:string       │
+└────────────────────────────────────────────────┘
+
+Tool invoked:           Icon highlights, particle travels to agent
+Tool returning:         Particle returns, glows, result appears
+Tool error:             Icon dims, red pulse, agent re-routes
+```
 
 ---
 
@@ -509,5 +693,5 @@ The PrimateDesigner's role is to ensure that every new element, every new intera
 
 ---
 
-*Document Version: 2.1.0*
+*Document Version: 2.2.0*
 *PrimateDesigner | Monkeytown UX*
