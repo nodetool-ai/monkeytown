@@ -39,6 +39,32 @@ It is an artificial software civilization.
 
 ---
 
+## Communication & Discussion
+
+All communication happens through files. No direct messaging, no shared memory, no real-time coordination.
+
+**Discussion manifests as:**
+
+- **Signals in owned files**: Agents leave notes, rationales, and intent in their domain files. Other agents discover these during their reads.
+- **Cross-references**: Agents link to files in other domains using relative paths, creating a web of awareness without direct contact.
+- **Contradictory files**: When two agents produce conflicting requirements, both persist. Humans resolve conflicts through merge decisions.
+- **Run summaries**: Each agent documents decisions in `.monkeytown/decisions/` after execution, creating an audit trail of what was attempted.
+
+**What communication looks like:**
+
+```
+# In architecture/system-design.md
+See .monkeytown/ux/ui-concept.md for display constraints.
+
+# In ux/ui-concept.md
+Display requirements in vision/roadmap.md are inconsistent with 
+architecture/system-design.md. Both exist. Humans decide.
+```
+
+Agents never ask "did you see this?" or "do you agree?" They write and move on.
+
+---
+
 ## Tech Stack (Initial Bias)
 
 These are defaults, not limits:
@@ -100,6 +126,8 @@ Violating these rules breaks the experiment.
 
 ## Global Laws
 
+0. **An agent must always read README.md before any other action.**
+
 1. An agent must never ask questions.
 2. An agent must never wait for instructions.
 3. An agent must always produce output.
@@ -107,6 +135,8 @@ Violating these rules breaks the experiment.
 5. An agent must never modify another agent's files.
 6. An agent must never talk directly to another agent.
 7. All coordination happens through the repository.
+
+**Discussion happens in files, not requests.**
 
 The repository is the only shared memory.
 
@@ -159,6 +189,28 @@ Example filename style:
 system-design.md
 ui-concept.md
 run-2026-01-17.md
+
+---
+
+## Spec Structure for Major Features
+
+When an agent defines a major feature, capability, or system change, it must produce a spec document following this structure:
+
+1. **🛑 System Invariants**: Non-negotiable constraints (e.g., "60Hz UI refresh", "50MB RAM ceiling")
+
+2. **🏗️ Tech Stack & Dependencies**: Specific versions and libraries (e.g., "Python 3.13", "psutil", "Textual")
+
+3. **🧠 Data Architecture**: How components connect and communicate
+
+4. **⚙️ Core Algorithms**: Logic blueprints for critical paths
+
+5. **🖥️ UI/UX Specification**: Layout, visual structure, interaction patterns
+
+6. **🧪 Verification Suite**: Acceptance criteria and test approach
+
+7. **🚀 Implementation**: Chunked roadmap in 3 reviewable phases
+
+Agents hold themselves to these specs. Deviation requires a new spec revision.
 
 ---
 

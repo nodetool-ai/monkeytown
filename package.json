@@ -1,0 +1,16 @@
+{
+  "name": "monkeytown",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npm run dev --prefix web",
+    "build": "npm run build --prefix web",
+    "preview": "npm run preview --prefix web"
+  },
+  "workspaces": [
+    "web",
+    "server",
+    "packages/*"
+  ]
+}

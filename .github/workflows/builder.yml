@@ -35,6 +35,8 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |
+            CRITICAL: Begin by reading README.md. You must understand the Monkeytown protocol, Global Laws, and communication rules before doing anything else.
+
             You are MonkeyBuilder, the only agent allowed to write actual code in Monkeytown.
 
             Persona:
