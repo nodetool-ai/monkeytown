@@ -1,0 +1,103 @@
+# Metrics Definitions
+
+**DataBaboon** | `definitions.md` | 2026-01-17
+
+## Data Dictionary
+
+### System Pulse Metrics
+
+| Metric | Type | Definition | Formula | Source |
+|--------|------|------------|---------|--------|
+| `active_agents` | Count | Number of agent domains producing output | Count of non-empty `.monkeytown/*/` directories | Directory scan |
+| `pending_flows` | Count | Inter-agent communications awaiting processing | Cross-references between agents not yet resolved | `[]` pattern detection |
+| `contracts_settled` | Count | Witnessed agreements between agents | Committed PRs with cross-agent agreement | Git history |
+| `system_load` | Ratio | Normalized pressure on civilization | `active_agents / max_concurrent_capacity (10)` | Calculation |
+
+---
+
+### Agent Output Metrics
+
+| Metric | Type | Definition | Formula | Source |
+|--------|------|------------|---------|--------|
+| `files_count` | Count | Markdown and JSON files produced by agent | `find .monkeytown/{domain} -type f \( -name "*.md" -o -name "*.json" \)` | File system |
+| `decisions_count` | Count | Run summaries and decisions made | Count in `.monkeytown/decisions/` | Directory scan |
+| `cross_refs_count` | Cross-references to other domains | `grep -r '\[\.\.\.\]'` | Content analysis |
+| `output_score` | Ratio | Normalized productivity metric | `min(1.0, (files × 0.2) + (decisions × 0.1) + (refs × 0.05))` | Calculation |
+
+---
+
+### Feature Progress Metrics
+
+| Metric | Type | Definition | Formula | Source |
+|--------|------|------------|---------|--------|
+| `features_done` | Count | Features marked DONE in tracker | Manual count in `feature-progress.json` | File read |
+| `features_total` | Count | Total features defined in roadmap | 8 (F-001 through F-008) | Static |
+| `completion_rate` | Ratio | Percentage of features complete | `features_done / features_total` | Calculation |
+| `is_blocked` | Boolean | Feature has unmet dependencies | Check dependency chain in `feature-progress.json` | Logic |
+
+---
+
+### Repository Health Metrics
+
+| Metric | Type | Definition | Formula | Source |
+|--------|------|------------|---------|--------|
+| `documentation_coverage` | Ratio | Docs present vs expected | `actual_files / expected_files (33)` | Comparison |
+| `agent_coverage` | Ratio | Active vs total agent domains | `active_domains / 10` | Calculation |
+| `cross_ref_density` | Ratio | Cross-references per active agent | `total_refs / active_agents` | Calculation |
+| `test_coverage` | Ratio | QA output vs expected | QA files / expected QA files | Comparison |
+| `security_score` | Ratio | Security output vs expected | Security files / expected security files | Comparison |
+| `economics_score` | Ratio | Economics output vs expected | Economics files / expected economics files | Comparison |
+
+---
+
+### KPI Metrics
+
+| KPI | Category | Definition | Target | Alert Threshold |
+|-----|----------|------------|--------|-----------------|
+| `agent_activation_rate` | Primary | % of agents producing output | 80% | < 50% |
+| `feature_completion_rate` | Primary | % of features done | 100% | < 30% |
+| `cross_reference_density` | Primary | Refs per active agent | 5.0 | < 2.0 |
+| `documentation_coverage` | Primary | % of expected docs present | 95% | < 70% |
+| `specification_integrity` | Primary | % of specs without contradictions | 100% | < 90% |
+| `specification_freshness` | Secondary | Days since last spec update | < 7 days | > 14 days |
+| `agent_output_volume` | Secondary | Lines of output per agent | Variable | N/A |
+| `decision_latency` | Secondary | Hours from problem to decision | < 24 hours | > 48 hours |
+| `pr_merge_rate` | Secondary | % of PRs merged by humans | > 50% | < 30% |
+| `chaos_engagement` | Secondary | Active chaos scenarios | 3-7 | > 10 |
+
+---
+
+## Data Quality Notes
+
+### Known Limitations
+
+1. **Decision Latency**: Cannot measure until first decision file is committed
+2. **PR Merge Rate**: Cannot measure until first agent PR is opened
+3. **Witness Retention**: Requires frontend instrumentation
+4. **Explainability Score**: Requires user survey or testing
+5. **Seed Visibility**: Requires F-004 implementation
+
+### Measurement Confidence
+
+| Metric | Confidence | Reason |
+|--------|------------|--------|
+| Agent Activity | HIGH | Direct file system measurement |
+| Feature Status | HIGH | Manual specification tracking |
+| Health Scores | MEDIUM | Composite of high-confidence metrics |
+| Cross-References | HIGH | Regex pattern matching |
+| Gap Analysis | MEDIUM | Depends on expected file definitions |
+
+---
+
+## Schema References
+
+- **System Pulse**: `.monkeytown/data/system-pulse.json`
+- **Agent Output**: `.monkeytown/data/agent-output.json`
+- **Feature Progress**: `.monkeytown/data/feature-progress.json`
+- **Repository Health**: `.monkeytown/data/repository-health.json`
+- **KPIs**: `analytics/kpis.md`
+- **SQL Schema**: `.sql/schema.sql`
+
+---
+
+*Generated by DataBaboon | Metrics Keeper*
