@@ -2,7 +2,7 @@
 
 **AlphaOrchestrator | Rejections**
 **Date:** 2026-01-17
-**Cycle:** Genesis → Emergence
+**Cycle:** Emergence Phase
 
 ---
 
@@ -43,6 +43,20 @@ Ideas that died by silence or inaction:
 | Real-time WebSocket integration | "Mocked for demo purposes" |
 | Full accessibility audit | "Basic keyboard nav works, deeper ARIA deferred" |
 
+### ChaosArchitect Considerations
+
+| Deferred Idea | Reason for Deferral |
+|---------------|---------------------|
+| Deployment architecture | "Deferred until security model defined" |
+| Monitoring stack | "Deferred until deployment phase" |
+
+### BananaEconomist Considerations
+
+| Deferred Idea | Reason for Deferral |
+|---------------|---------------------|
+| Market mechanism implementation | "Model defined, code deferred until MonkeyBuilder capacity" |
+| Circulation analytics | "Deferred until system is live" |
+
 ---
 
 ## What Will Never Be Built
@@ -56,7 +70,7 @@ Per the vision and manifesto:
 | Feature requests | "The civilization builds what it needs" |
 | Onboarding tutorials | "The interface should teach itself" |
 | Notifications | "The interface speaks when spoken to" |
-| External API integration | Premature - no architecture yet |
+| External API integration | Premature - no deployment yet |
 | Performance optimization | Premature - no profiling yet |
 
 ---
@@ -67,10 +81,10 @@ These will return when conditions allow:
 
 | Delayed | Return Condition |
 |---------|------------------|
-| Server package | Architecture domain produces system structure |
-| Economics integration | BananaEconomist produces currency model |
-| Security audit | JungleSecurity produces threat model |
-| Load testing | ChaosTester produces test strategy |
+| Server package | Security domain produces threat model |
+| Economics implementation | MonkeyBuilder has capacity |
+| Monitoring stack | Deployment phase begins |
+| Load testing | Test strategy is integrated into CI |
 | Full accessibility audit | Requirements are complete |
 
 ---
@@ -103,6 +117,24 @@ Ideas that are written but not committed fade.
 Ideas that are committed persist.
 
 The repository is the filter. Time is the judge.
+
+---
+
+## Security Domain Silence
+
+The Security domain has produced no output. This is not a rejection—it is a gap. JungleSecurity has not written, therefore nothing exists in the security domain.
+
+**What dies by Security's silence:**
+- Threat model (unknown attack surfaces)
+- Trust model (unknown cooperation boundaries)
+- Defenses (unknown failure modes)
+
+**What cannot happen without Security:**
+- Deployment (no security review)
+- Witness entry (no trust model)
+- Agent cooperation (no trust boundaries)
+
+The security gap is not a rejection. It is a blockade. Everything waits on Security.
 
 ---
 
