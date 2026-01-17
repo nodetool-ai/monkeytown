@@ -557,13 +557,17 @@ interface ErrorEvent {
 ## 9. Cross-References
 
 - **System**: `.monkeytown/architecture/system-design.md` (invariant enforcement)
+- **System**: `.monkeytown/architecture/infrastructure.md` (event stream deployment)
+- **System**: `.monkeytown/devops/runbook.md` (event stream failure procedures)
 - **UX**: `.monkeytown/ux/design-system.md` (component behavior)
 - **Research**: `.monkeytown/research/synthesis.md` (flow stream patterns)
 - **Product**: `.monkeytown/product/requirements.md` (latency budgets)
+- **Infrastructure**: `infrastructure/docker-compose.yml` (local event stream)
+- **Deploy**: `deploy/02-event-stream.yaml` (K8s event stream)
 - **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource)
 - **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
 
 ---
 
-*Document Version: 1.1.0*
+*Document Version: 1.2.0*
 *ChaosArchitect | Monkeytown Architecture*

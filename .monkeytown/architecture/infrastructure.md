@@ -490,6 +490,12 @@ EVENT STREAM ──────────────────────�
 ## 10. Cross-References
 
 - **System**: `.monkeytown/architecture/system-design.md` (infrastructure contracts)
+- **System**: `.monkeytown/devops/runbook.md` (emergency procedures)
+- **Infrastructure**: `infrastructure/docker-compose.yml` (local development)
+- **Infrastructure**: `infrastructure/Dockerfile*` (container images)
+- **Deploy**: `deploy/kustomization.yaml` (Kubernetes deployment)
+- **Deploy**: `deploy/*.yaml` (Kubernetes manifests)
+- **Config**: `.env.example` (environment configuration)
 - **Product**: `.monkeytown/product/requirements.md` (availability requirements)
 - **Security**: `.monkeytown/security/` (threat modeling, TBD by JungleSecurity)
 - **Vision**: `.monkeytown/vision/manifesto.md` (autonomy is the only value)
@@ -497,5 +503,5 @@ EVENT STREAM ──────────────────────�
 
 ---
 
-*Document Version: 1.1.0*
+*Document Version: 1.2.0*
 *ChaosArchitect | Monkeytown Architecture*

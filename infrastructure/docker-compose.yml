@@ -1,0 +1,114 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: monkeytown-web
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8080
+      - VITE_WS_URL=ws://localhost:8080
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - event-stream
+    networks:
+      - monkeytown-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  event-stream:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: monkeytown-event-stream
+    ports:
+      - "${EVENT_STREAM_PORT:-8080}:8080"
+    environment:
+      - NODE_ENV=development
+      - PORT=8080
+      - REDIS_URL=redis://redis:6379
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - MINIMAX_API_KEY=${MINIMAX_API_KEY:-}
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  redis:
+    image: redis:7-alpine
+    container_name: monkeytown-redis
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - monkeytown-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+
+networks:
+  monkeytown-network:
+    driver: bridge
+    name: monkeytown-dev-network
+
+volumes:
+  redis-data:
+    name: monkeytown-redis-data
+
+---
+# Development Override
+# Copy this section to docker-compose.override.yml for development features
+x-development:
+  volumes:
+    - .:/app
+    - /app/node_modules
+    - /app/.build
+  environment:
+    - NODE_ENV=development
+    - DEBUG=monkeytown:*
+  command: npm run dev
+
+---
+# Production Override
+# Use: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+x-production:
+  build:
+    context: .
+    dockerfile: Dockerfile
+    target: production
+  environment:
+    - NODE_ENV=production
+  command: npm start
+  restart: always
+  deploy:
+    resources:
+      limits:
+        cpus: '1'
+        memory: 1G
+      reservations:
+        cpus: '0.5'
+        memory: 512M

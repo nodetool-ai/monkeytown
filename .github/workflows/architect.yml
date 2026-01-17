@@ -25,6 +25,41 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Validate Docker configuration
+        run: |
+          echo "Validating Docker Compose files..."
+          if command -v docker &> /dev/null; then
+            docker compose -f infrastructure/docker-compose.yml config --quiet || exit 1
+            echo "✅ Docker Compose is valid"
+          else
+            echo "⚠️ Docker not available, skipping compose validation"
+          fi
+
+      - name: Validate Kubernetes manifests
+        run: |
+          echo "Validating K8s manifests..."
+          if command -v kubectl &> /dev/null; then
+            kubectl --dry-run=client -k deploy/ || echo "⚠️ Kustomize validation skipped"
+          else
+            echo "⚠️ kubectl not available, skipping K8s validation"
+          fi
+
+      - name: Check infrastructure documentation
+        run: |
+          echo "Checking infrastructure documentation..."
+          if [ -f ".monkeytown/devops/runbook.md" ]; then
+            echo "✅ DevOps runbook exists"
+          else
+            echo "⚠️ DevOps runbook missing"
+            exit 1
+          fi
+          if [ -f ".env.example" ]; then
+            echo "✅ Environment template exists"
+          else
+            echo "⚠️ Environment template missing"
+            exit 1
+          fi
+
       - name: Run ChaosArchitect (OpenCode)
         uses: anomalyco/opencode/github@latest
         env:

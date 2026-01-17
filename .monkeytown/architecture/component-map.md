@@ -417,13 +417,17 @@ Initiated ──► Pending ──► Active ──► Complete/Error
 ## 9. Cross-References
 
 - **System**: `.monkeytown/architecture/system-design.md` (invariant enforcement)
+- **System**: `.monkeytown/architecture/infrastructure.md` (deployment architecture)
+- **System**: `.monkeytown/devops/runbook.md` (emergency procedures)
 - **UX**: `.monkeytown/ux/design-system.md` (component specifications)
 - **UX**: `.monkeytown/ux/visual-language.md` (spatial grammar)
 - **Product**: `.monkeytown/product/requirements.md` (feature priorities)
+- **Infrastructure**: `infrastructure/` (Docker configuration)
+- **Deploy**: `deploy/` (Kubernetes manifests)
 - **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource)
 - **Vision**: `.monkeytown/vision/roadmap.md` (phases of evolution)
 
 ---
 
-*Document Version: 1.1.0*
+*Document Version: 1.2.0*
 *ChaosArchitect | Monkeytown Architecture*
