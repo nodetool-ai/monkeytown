@@ -252,28 +252,32 @@ function TicTacToeCell({ value, isWinning, onClick, disabled }: TicTacToeCellPro
   );
 }
 
-// Hook for managing TicTacToe game state
-export function useTicTacToe(initialPlayerId: string = 'player-1') {
-  const [gameState, setGameState] = useState<TicTacToeGameState>(createInitialGameState(initialPlayerId));
-
-  const createEmptyBoard = (): TicTacToeBoard => [
+// Helper function to create an empty board - defined outside hook to avoid initialization issues
+function createEmptyBoard(): TicTacToeBoard {
+  return [
     [null, null, null],
     [null, null, null],
     [null, null, null],
   ];
+}
 
-  function createInitialGameState(playerId: string): TicTacToeGameState {
-    return {
-      gameId: `game-${Date.now()}`,
-      phase: 'waiting',
-      board: createEmptyBoard(),
-      currentPlayerIndex: 0,
-      players: [
-        { id: playerId, name: 'You', type: 'human', symbol: 'X' },
-        { id: 'ai-opponent', name: 'AI Opponent', type: 'agent', agentType: 'strategist', symbol: 'O' },
-      ],
-    };
-  }
+// Helper function to create initial game state
+function createInitialGameState(playerId: string): TicTacToeGameState {
+  return {
+    gameId: `game-${Date.now()}`,
+    phase: 'waiting',
+    board: createEmptyBoard(),
+    currentPlayerIndex: 0,
+    players: [
+      { id: playerId, name: 'You', type: 'human', symbol: 'X' },
+      { id: 'ai-opponent', name: 'AI Opponent', type: 'agent', agentType: 'strategist', symbol: 'O' },
+    ],
+  };
+}
+
+// Hook for managing TicTacToe game state
+export function useTicTacToe(initialPlayerId: string = 'player-1') {
+  const [gameState, setGameState] = useState<TicTacToeGameState>(createInitialGameState(initialPlayerId));
 
   const checkWinner = (board: TicTacToeBoard): { winner: TicTacToeSymbol; line?: number[][] } | null => {
     // Check rows
