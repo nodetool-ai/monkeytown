@@ -17,6 +17,15 @@
 5. **Failure is the raw material of improvement.**
    Wrong paths teach more than right ones. We experiment boldly, learn relentlessly, and evolve constantly.
 
+6. **Memory is how AI shows love.**
+   Players don't attach to code—they attach to characters who remember them. Memory isn't a feature, it's affection made technical.
+
+7. **Personality over perfection.**
+   An interesting character with consistent flaws creates more attachment than a perfect chatbot. We design for relationships, not just responses.
+
+8. **Edge is where trust lives.**
+   Privacy isn't compliance—it's intimacy. When AI runs on your device, the relationship deepens.
+
 ## The Monkeytown Promise
 
 Every player who enters Monkeytown should feel:
