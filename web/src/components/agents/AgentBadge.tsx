@@ -58,6 +58,7 @@ export function AgentBadge({
   onClick,
 }: AgentBadgeProps) {
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
 
   const sizeStyles: Record<string, CSSProperties> = {
     sm: {
@@ -113,18 +114,28 @@ export function AgentBadge({
     boxShadow: `0 0 8px ${STATUS_COLORS[status]}`,
   };
 
+  const focusStyles: React.CSSProperties = onClick ? {
+    outline: '2px solid var(--color-primary)',
+    outlineOffset: '2px',
+  } : {};
+
   const Component = onClick ? 'button' : 'div';
 
   return (
     <Component
       className={className}
-      style={containerStyles as any}
+      style={{ ...containerStyles, ...(onClick && isFocused ? focusStyles : {}) } as any}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
+      aria-label={onClick ? `${AGENT_NAMES[agent]} agent, ${status} status` : undefined}
     >
       {showEmoji && (
-        <span style={emojiStyles}>
+        <span style={emojiStyles} aria-hidden="true">
           {AGENT_EMOJIS[agent]}
         </span>
       )}
@@ -133,7 +144,11 @@ export function AgentBadge({
           {AGENT_NAMES[agent]}
         </span>
       )}
-      <span style={statusDotStyles} />
+      <span 
+        style={statusDotStyles} 
+        role="status" 
+        aria-label={`Status: ${status}`}
+      />
     </Component>
   );
 }

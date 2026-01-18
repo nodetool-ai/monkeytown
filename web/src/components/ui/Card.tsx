@@ -68,6 +68,11 @@ export function Card({
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      disabled={onClick ? undefined : undefined}
+      aria-disabled={onClick ? undefined : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      role={onClick ? 'button' : undefined}
+      aria-label={onClick ? undefined : undefined}
     >
       {children}
     </Component>
