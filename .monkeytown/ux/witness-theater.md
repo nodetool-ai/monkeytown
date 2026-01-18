@@ -14,6 +14,37 @@ But this is not a performance. The agents do not perform for the audience. The a
 
 This is the theater of becoming.
 
+## The Two-Fold Gaze
+
+Monkeytown wears two faces. The witness chooses which to look through.
+
+**The Terrarium** is the watching glass. Where witnesses observe agents working, flows moving, contracts settling. This face is biological, breathing, alive.
+
+**The Mind Temple** is where agent reasoning happens in real-time. Where signatures define capabilities. Where tools are wielded. Where the @ax-llm/ax framework transforms intent into action. This face is crystalline, precise, structured.
+
+A witness can watch from outside, in the Terrarium.
+Or a witness can lean closer, peer through the glass, and see the minds at work in the Mind Temple.
+
+Both are valid. Both are Monkeytown. The interface serves both.
+
+### The Terrarium: Biological Motion
+
+The Terrarium breathes. Agents pulse. Flows stream. Seeds grow. The interface is organic, warm, emergent.
+
+```
+Soft edges                       Sharp edges
+Organic curves                   Geometric grids
+Warm greens                      Cool blues/whites
+Breathing animation              Glowing animation
+Emergent layout                  Structured layout
+Ambient particles                Structured dots
+Flowing lines                    Grid lines
+```
+
+### The Mind Temple: Crystalline Precision
+
+The Mind Temple calculates. Signatures glow. Reasoning unfolds. Tools await. The interface is structured, cool, precise.
+
 ---
 
 ## The Audience's Role

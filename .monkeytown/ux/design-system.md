@@ -1094,5 +1094,243 @@ Witness leaves:            The civilization doesn't notice, but persists
 
 ---
 
-*Document Version: 2.2.0*
+## Component: Mind Temple View
+
+The deep-dive view into agent reasoning. Crystalline, structured, precise.
+
+```jsx
+<MindTempleView
+  agent={selectedAgent}
+  expanded={true}
+  showSignature={true}
+  showReasoning={true}
+  showTools={true}
+  speed="normal"  // normal | fast | detailed | breakdown
+  onClose={() => exitMindTemple()}
+  onSignatureClick={(sig) => inspectSignature(sig)}
+  onReasoningClick={(step) => expandStep(step)}
+  onToolClick={(tool) => inspectTool(tool)}
+ />
+```
+
+**Visual Style:**
+```
+Background:              Midnight Banana with grid overlay
+Edges:                   Sharp (2px radius)
+Borders:                 1px Structure Gray
+Typography:              Geist Mono, smaller (12px)
+Animation:               ease-crystal (sharp, precise)
+Colors:                  Signal Blue, Crystal White, Structure Gray
+```
+
+**Mind Temple Components:**
+```
+Signature Block:         Top, shows ax() signature
+Reasoning Chain:         Center, vertical step list
+Input Dock:              Left, shows current inputs
+Output Dock:             Right, shows outputs
+Tools Panel:             Right sidebar, available tools
+Memory Stream:           Bottom, retrieved context items
+```
+
+---
+
+## Component: Agent Signature
+
+Shows the type-safe definition of an agent.
+
+```jsx
+<AgentSignature
+  signature="context:string, question:string -> reasoning:string, answer:string"
+  type="reasoner"
+  status="active"  // active | validating | error
+  validationState="valid"  // valid | invalid | pending
+  memoryReferences={['context_v1', 'context_v2']}
+  toolInvocations={['search', 'calculate']}
+ />
+```
+
+**Signature Display:**
+```
+Font:                    Geist Mono, 14px
+Color:                   Crystal White
+Type badge:              Signal Blue, small pill
+Status indicator:        Green (valid), Amber (pending), Red (error)
+Memory references:       Purple underline, hover shows content
+Tool invocations:        Tool icon appears, particle on invoke
+```
+
+---
+
+## Component: Reasoning Chain
+
+Shows step-by-step agent thinking.
+
+```jsx
+<ReasoningChain
+  steps={reasoningSteps}
+  currentStep={2}
+  expanded={false}
+  speed="normal"
+  onStepClick={(step) => expandStep(step)}
+  onStepHover={(step) => highlightReferences(step)}
+ />
+```
+
+**Step States:**
+```
+Complete:                Green checkmark, full opacity
+Active:                  Amber pulse, expanded, current
+Pending:                 Dimmed, collapsed, waiting
+Error:                   Red X, error badge, hover shows error
+```
+
+**Step Animation:**
+```
+Step appears:            Slides in from left, 200ms
+Step completes:          Green fade, 150ms
+Step activates:          Amber pulse, 100ms
+Step error:              Red shake, 300ms
+```
+
+---
+
+## Component: Tool Panel
+
+Shows available and active tools.
+
+```jsx
+<ToolPanel
+  available={availableTools}
+  active={activeTool}
+  history={toolHistory}
+  onToolClick={(tool) => inspectTool(tool)}
+  onHistoryClick={(invocation) => viewInvocation(invocation)}
+ />
+```
+
+**Tool Display:**
+```
+Available tools:         Grid layout, dimmed until invoked
+Invoking tool:           Highlighted, particle traveling
+Executing tool:          Spinner or progress bar
+Complete tool:           Green check, results shown
+Error tool:              Red border, error badge
+```
+
+**Tool Icon Style:**
+```
+Shape:                   16x16 square with 2px radius
+Color:                   Structure Gray (idle), Signal Blue (active)
+Size:                    20px including padding
+Animation:               Scale on invoke, glow on complete
+```
+
+---
+
+## Component: Memory Stream
+
+Shows context being retrieved and used.
+
+```jsx
+<MemoryStream
+  memories={retrievedMemories}
+  onMemoryClick={(mem) => inspectMemory(mem)}
+  onMemoryHover={(mem) => highlightInContext(mem)}
+ />
+```
+
+**Memory Display:**
+```
+Retrieved:               Purple border, timestamp
+In context:              Underlined in reasoning chain
+Expanded:                Shows full memory content
+Filtered:                Dimmed if not relevant
+```
+
+**Memory States:**
+```
+Idle:                    Not loaded
+Retrieving:              Pulsing purple, loading state
+Retrieved:               Solid purple, content visible
+In use:                  Highlighted in context
+Expired:                 Grayed out, timestamp old
+```
+
+---
+
+## Component: Input/Output Dock
+
+Shows data entering and leaving the agent.
+
+```jsx
+<InputDock
+  inputs={currentInputs}
+  onInputClick={(input) => inspectInput(input)}
+ />
+
+<OutputDock
+  outputs={currentOutputs}
+  validationStatus="valid"
+  onOutputClick={(output) => inspectOutput(output)}
+ />
+```
+
+**Dock Style:**
+```
+Input Dock:              Left side, amber highlight on active
+Output Dock:             Right side, green highlight on valid
+Data format:             JSON syntax highlighted
+Validation:              Type badge shows expected vs actual
+```
+
+---
+
+## The Dual Aesthetic System
+
+Monkeytown speaks two visual languages that coexist in the same interface.
+
+### Terrarium Aesthetic
+
+**Used for:** Agent cards, flow streams, ghost column, ambient layer
+
+```
+Soft edges:              12px border radius
+Warm colors:             Jungle Canopy, Monkey Fur, Signal Green
+Organic motion:          Breathing, pulsing, flowing
+Emergent layout:         Gravity-based positioning
+Ambient particles:       Circular, soft, slow
+Flowing lines:           Curved, animated dashes
+```
+
+### Mind Temple Aesthetic
+
+**Used for:** Signatures, reasoning chains, tools, type displays
+
+```
+Sharp edges:             2px border radius
+Cool colors:             Signal Blue, Crystal White, Structure Gray
+Structured motion:       Sliding, snapping, glowing
+Grid layout:             Precise positioning
+Structured particles:    Square or diamond, geometric
+Grid lines:              Solid, precise
+```
+
+### The Transition
+
+When a witness activates the Mind Temple:
+
+```
+Card edges:              Soft → Sharp (300ms)
+Color palette:           Warm → Cool (500ms)
+Animation style:         Organic → Crystalline (400ms)
+Layout mode:             Emergent → Grid (600ms)
+Motion easing:           ease-smooth → ease-crystal (immediate)
+```
+
+The Terrarium breathes. The Mind Temple calculates. Both are Monkeytown.
+
+---
+
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*

@@ -1172,5 +1172,55 @@ This is a civilization.
 
 ---
 
-*Document Version: 2.2.0*
+## Pattern: Mind Temple Activation
+
+### The Crystalline Shift
+
+When a witness activates the Mind Temple, the interface transforms from biological to crystalline:
+
+```
+Terrarium → Mind Temple
+Soft edges → Sharp edges
+Organic motion → Structured motion
+Warm colors → Cool colors
+Breathing → Glowing
+Emergent layout → Grid layout
+```
+
+### Activation Methods
+
+```
+Hover + "T" key:        Card transforms, grid lines appear
+Click "Show Signature": Detail panel shifts to Mind Temple view
+Command "/mind [id]":   Full Mind Temple view opens
+```
+
+### The Transformation Animation
+
+```
+0.0s - 0.3s    Card edges sharpen, breathing slows
+0.3s - 0.6s    Signature block slides in from top
+0.6s - 1.0s    Reasoning chain grid appears below signature
+1.0s - 1.5s    Tools section slides in from right
+1.5s+          Mind Temple fully active
+```
+
+### Mind Temple Motion Principles
+
+In the Mind Temple, motion is crystalline:
+
+```
+ease-crystal:          cubic-bezier(0.2, 0, 0.1, 1)  /* Sharp, precise */
+Signature Reveal:      400ms, ease-crystal
+Reasoning Step:        200ms, ease-crystal
+Signature Glow:        1500ms, ease-smooth, once
+Tool Invoke:           300ms, ease-spring
+Memory Read:           400ms, ease-smooth
+```
+
+The Mind Temple calculates. The Terrarium breathes. Both are Monkeytown.
+
+---
+
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*

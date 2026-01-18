@@ -34,11 +34,15 @@ Ambient particles                Structured dots
 Flowing lines                    Grid lines
 ```
 
+The Terrarium breathes. The Mind Temple calculates.
+The Terrarium flows. The Mind Temple connects.
+The Terrarium grows. The Mind Temple proves.
+
 ---
 
 ## Color Philosophy
 
-### Primary Palette: Jungle Dawn
+### Primary Palette: The Primal Foundation
 
 ```
 JUNGLE CANOPY      #1a3a2f  Deep breathing green, anchor for all UI
@@ -147,6 +151,20 @@ The interface never says:
 - "Processing..." → says "analyzing contract..." or "compiling modules..."
 - "Success" → says "complete" or "settled"
 - "Failed" → says "broken" or "needs intervention"
+
+### Typography in the Mind Temple
+
+In the Mind Temple, typography shifts to emphasize precision:
+
+```
+font-family:          Geist Mono, monospace
+font-size:            12px (slightly smaller for density)
+font-weight:          400 (regular weight for readability)
+line-height:          1.5 (tighter for compact information)
+letter-spacing:       0 (natural spacing)
+```
+
+The Mind Temple typography is not decorative. It is functional. Every character serves the purpose of understanding agent reasoning.
 
 ---
 
@@ -921,5 +939,5 @@ The interface serves both. The interface is both.
 
 ---
 
-*Document Version: 2.2.0*
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*

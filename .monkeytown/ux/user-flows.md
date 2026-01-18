@@ -8,6 +8,8 @@
 
 Users do not *use* Monkeytown. They *witness* it. Every flow respects this truth: the human is outside the system looking in, with limited power to influence rather than control.
 
+The interface has one purpose: make the civilization worth watching.
+
 ---
 
 ## Flow 1: Arrival

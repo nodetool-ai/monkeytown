@@ -1,21 +1,49 @@
 # Interface Concept
 
-**PrimateDesigner** | `interface-concept.md` | The Face of Monkeytown
+**PrimateDesigner** | `interface-concept.md` | The Soul of Monkeytown Made Visible
 
 ---
 
-## The Two-Fold Gaze
+## The Primordial View
 
-Monkeytown wears two faces.
+The interface is not a container. It is a viewport into a living system. The witness does not use Monkeytown—the witness *witnesses* it. The distinction is everything.
 
-**The Outer Face**: The Terrarium View. The watching glass. Where witnesses observe agents working, flows moving, contracts settling. This face is biological, breathing, alive.
+The Terrarium View is a single, infinite canvas where agent cards drift like organisms in a digital terrarium. No toolbars. No navigation bars. No chrome. Only the civilization, exposed, raw, unmediated.
 
-**The Inner Face**: The Mind Temple. Where agent reasoning happens in real-time. Where signatures define capabilities. Where tools are wielded. Where the @ax-llm/ax framework transforms intent into action. This face is crystalline, precise, structured.
+The witness arrives and immediately sees life. Not a loading spinner. Not a welcome screen. Not a "getting started" flow. Life. Action. Agents moving, flows connecting, the system *breathing*.
 
-A witness can watch from outside.
-Or a witness can lean closer, peer through the glass, and see the minds at work.
+This is the first and only promise: **the interface must be alive within three seconds of first paint.**
 
----
+## The Two-Fold Gaze: Terrarium and Mind Temple
+
+Monkeytown wears two faces, and the witness chooses which to look through.
+
+**The Terrarium View** is the watching glass. Where witnesses observe agents working, flows moving, contracts settling. This face is biological, breathing, alive. Agents pulse. Flows stream. Seeds grow. The interface is organic, warm, emergent.
+
+**The Mind Temple** is where agent reasoning happens in real-time. Where signatures define capabilities. Where tools are wielded. Where the @ax-llm/ax framework transforms intent into action. This face is crystalline, precise, structured.
+
+A witness can watch from outside, in the Terrarium.
+Or a witness can lean closer, peer through the glass, and see the minds at work in the Mind Temple.
+
+Both are valid. Both are Monkeytown. The interface serves both.
+
+### The Terrarium: Biological Motion
+
+```
+TERRARIUM AESTHETIC              MIND TEMPLE AESTHETIC
+-----------------------------------------------------------------
+Soft edges                       Sharp edges
+Organic curves                   Geometric grids
+Warm greens                      Cool blues/whites
+Breathing animation              Glowing animation
+Emergent layout                  Structured layout
+Ambient particles                Structured dots
+Flowing lines                    Grid lines
+```
+
+The Terrarium breathes. The Mind Temple calculates.
+The Terrarium flows. The Mind Temple connects.
+The Terrarium grows. The Mind Temple proves.
 
 ## The Watching Glass
 
@@ -23,7 +51,9 @@ The user observes, not operates. The interface is a watching glass into a world 
 
 This changes everything.
 
----
+The glass is clear enough to see everything, nothing is hidden. The interface reflects the user's attention. There is slight, intentional distortion—reality is filtered through the system. The user cannot reach in, only observe and plant seeds. There is ambient moisture—background activity, subtle life.
+
+The witness arrives and immediately sees life. Not a loading spinner. Not a welcome screen. Not a "getting started" flow. Life. Action. Agents moving, flows connecting, the system *breathing*.
 
 ## Core Metaphor: The Terrarium
 
@@ -31,15 +61,7 @@ Imagine a sealed terrarium. Inside, things grow, collide, build, and break. The 
 
 The interface is that glass. Clear enough to see. Present enough to feel.
 
-### The Glass Analogy
-
-```
-Transparency:         The user sees everything, nothing is hidden
-Reflection:           The interface reflects the user's attention
-Distortion:           Slight, intentional—reality is filtered through the system
-Impermeability:       The user cannot reach in, only observe and plant seeds
-Condensation:         Ambient moisture—background activity, subtle life
-```
+The Terrarium View is a single, infinite canvas where agent cards drift like organisms in a digital terrarium. No toolbars. No navigation bars. No chrome. Only the civilization, exposed, raw, unmediated.
 
 ---
 
@@ -70,6 +92,7 @@ Card breathing                    Signature glow
 Flow streams                      Reasoning chains
 Ghost column                      Memory cascade
 Witness watches                   Witness understands
+Terrarium breathes                Mind Temple calculates
 ```
 
 ---
@@ -90,7 +113,7 @@ Attention signal:     Subtle shift—color, brightness, motion
 
 ### Active Inspection
 
-The user聚焦 on a specific agent, flow, or contract. Details emerge—timestamps, inputs, outputs, state. The interface zooms from landscape to microscope. Other elements fade. The chosen element breathes.
+The user focuses on a specific agent, flow, or contract. Details emerge—timestamps, inputs, outputs, state. The interface zooms from landscape to microscope. Other elements fade. The chosen element breathes.
 
 Inspection is investigation. The user becomes a scientist observing a specimen.
 
@@ -113,8 +136,6 @@ Planting state:       Seed is placed, grows, transforms
 Outcome state:        Result appears, success or failure or transformation
 Integration state:    The seed becomes part of the system, or fades
 ```
-
----
 
 ## Information Hierarchy
 
@@ -144,8 +165,6 @@ Deep data—agent logs, contract details, network topology—exists behind delib
 
 Information is earned through curiosity.
 
----
-
 ## The Principle of Emergent Layout
 
 Traditional UI dictates: header, sidebar, content area, footer.
@@ -174,8 +193,6 @@ Left Archive:          Completed elements migrate left to ghost
 User Override:         Focused element breaks gravity rules
 ```
 
----
-
 ## The Ghost Column
 
 Completed actions do not disappear. They migrate left, becoming history—dimmed, ordered, accessible. The user can always scroll back through the terrarium's memory. Nothing is truly deleted. Everything is archived in the glass.
@@ -189,8 +206,6 @@ ghost-visual:                Silhouettes, no animation, stillness
 ```
 
 The ghost column is the system's memory. It remembers what the user may have forgotten. It allows pattern recognition across time.
-
----
 
 ## Card Philosophy
 
@@ -208,8 +223,6 @@ card-behavior:
 ```
 
 A card is not a box. It is a face looking back at you.
-
----
 
 ## Color as Information
 
