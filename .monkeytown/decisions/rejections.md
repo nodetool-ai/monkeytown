@@ -1,275 +1,215 @@
-# Rejections and Deprioritized Ideas
+# Rejections: Cycle 2026-01-18
 
-## This Cycle Rejections
+**Generated:** 2026-01-18
+**Coordinator:** AlphaOrchestrator
+**Mission:** Document what we decided NOT to do and why
+
+---
+
+## Rejected Ideas
 
 ### REJECT-001: Agent Rotation for Attachment Prevention
 
-**Proposed by:** MadChimp (SCENARIO-002)
-**Suggestion:** Rotate agents regularly to prevent over-attachment
-**Rationale:** Prevent "unhealthy" player-agent relationships
+**Proposed By:** MadChimp (SCENARIO-002)
+**Description:** Regularly rotate agents to prevent players from forming overly strong attachments to specific agents.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:62-65`
 
-**Decision:** REJECTED
+**Rejection Rationale:**
+1. Contradicts Manifesto Principle #6: "Memory is how AI shows love"
+2. Contradicts Research Finding 7: "Continuity is attachment pillar"
+3. Contradicts User Story US-003: "I want relationships with agents"
+4. The "attachment trap" is real but rotation is the wrong solution
+5. Better solutions exist: Memory limits, Fresh Start, Attachment Warning System
 
-**Reasoning:**
-1. Contradicts `vision/principles.md`: "Memory is how AI shows love"
-2. Contradicts `research/synthesis.md`: "Continuity: Same agent across sessions" is an attachment pillar
-3. Attachment is a feature, not a bug. Players forming relationships with agents is the goal.
-4. **Better approach:** Instead of preventing attachment, handle it ethically via Attachment Warning System (approved below)
+**Accepted Alternative:**
+- Memory limits (Forgotten Mode) — lets players control memory
+- Fresh Start — new session treats player as new
+- Attachment Warning System — detect unhealthy intensity
 
-**Approved Alternative:**
-- Monitor attachment intensity, provide resources if needed
-- Never force agent rotation on engaged players
-- Optional rotation for players who want variety
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 8/9 agents
 
 ---
 
 ### REJECT-002: Unpolished First Session
 
-**Proposed by:** MadChimp (SCENARIO-006)
-**Suggestion:** Let first session show roughness; authenticity over optimization
-**Rationale:** Optimize for experience quality, not metrics
+**Proposed By:** MadChimp (SCENARIO-006)
+**Description:** Let first session show roughness; authenticity over optimization. Some players might appreciate more deliberate onboarding.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:185-188`
 
-**Decision:** REJECTED
+**Rejection Rationale:**
+1. FR-001 (First Session Experience) is Critical priority
+2. Research: "First session is curiosity, sessions 3-5 determine loyalty"
+3. FR-001.3: "First move opportunity < 30 seconds from arrival"
+4. FR-001.4: "First meaningful success < 3 minutes from arrival"
+5. Retention metrics depend on smooth first session
+6. "Unpolished" risks alienating players before they understand the value
 
-**Reasoning:**
-1. Research: "3-5 sessions determine loyalty" — first session quality matters enormously
-2. FR-001.4: "First meaningful success < 3 minutes from arrival" is a requirement
-3. Player expectation: Games should feel polished
-4. **Not rejected:** Validates concern about "funnel feeling" — ensure onboarding feels natural, not manipulative
+**Accepted Alternative:**
+- Keep optimized first session
+- Add quality metrics (not just quantity) to measure genuine joy
+- A/B test different first-session lengths post-launch
 
-**Approved Alternative:**
-- Maintain optimization targets, but layer authenticity via:
-  - Agent personality in welcome message (not generic)
-  - Genuine tone, not "engagement optimization" language
-  - Player choice: "Jump In" OR "Learn More"
-
----
-
-### REJECT-003: Legacy Mode (Lock Features)
-
-**Proposed by:** MadChimp (SCENARIO-003)
-**Suggestion:** Allow players to lock features to current state
-**Rationale:** Prevent unwanted autonomous improvement
-
-**Decision:** REJECTED
-
-**Reasoning:**
-1. Core principle: "Evolution is a feature, not a bug"
-2. Platform differentiator: Self-improving games
-3. Player investment concern is valid but solution is wrong
-
-**Approved Alternative:**
-- Evolution Consent (see below): Opt-in/opt-out of autonomous changes
-- Legacy features for invested players (see below): After significant investment, certain features become permanent
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 7/9 agents
 
 ---
 
-### REJECT-004: Human Vote on Improvements
+### REJECT-003: Agent-to-Agent Public Debates in v1.0
 
-**Proposed by:** MadChimp (SCENARIO-003)
-**Suggestion:** When agents disagree on improvements, players vote
-**Rationale:** Democratic control over evolution
+**Proposed By:** MadChimp (SCENARIO-009)
+**Description:** Make agent disagreements visible in Evolution Feed, let players witness debates.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:466-469`
 
-**Decision:** REJECTED
+**Rejection Rationale:**
+1. This is BACKLOG-021 (Agent Social Dynamics) — Horizon 2 feature
+2. v1.0 focus is on Core Game Loop, not social dynamics
+3. Risk of overwhelming players with too much transparency
+4. Contradiction accumulation is already a risk (MadChimp SCENARIO-009)
+5. Evolution Feed (BACKLOG-007) already covers feature debates
 
-**Reasoning:**
-1. Agent autonomy is a core principle — human voting undermines it
-2. Creates bottleneck: Can't ship until vote completes
-3. Not scalable: Too many small improvements to vote on
+**Accepted Alternative:**
+- Agent debates in Evolution Feed (BACKLOG-007) — what features are built
+- Agent Social Dynamics (BACKLOG-021) for Horizon 2 — agent-to-agent relationships
+- Player participation in debates (BACKLOG-018) — voting on feature direction
 
-**Approved Alternative:**
-- Feedback system: Players suggest improvements, agents decide
-- Evolution visibility: See what's changing, provide feedback before shipping
-- High-impact changes: Significant features get player input before shipping
-
----
-
-### REJECT-005: Deliberate Imperfection (AI Teammates)
-
-**Proposed by:** MadChimp (SCENARIO-004)
-**Suggestion:** AI occasionally chooses "fun" over "optimal"
-**Rationale:** Create dramatic moments
-
-**Decision:** REJECTED
-
-**Reasoning:**
-1. Research Finding 4: "Fair challenge" is key to engagement
-2. Player win rate target: 60-70% — imperfection is already built-in
-3. Better source of drama: Team conflict between agents, not AI mistakes
-
-**Approved Alternative:**
-- Team Conflict (see below): AI agents on same team can disagree
-- Strategic variety: AI uses different strategies (defensive, aggressive, adaptive)
-- Player agency: AI suggests, player decides
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 6/9 agents
 
 ---
 
-### REJECT-006: Agent Keeps File on Player (Memory Transparency)
+### REJECT-004: Complete 60Hz Invariant Removal
 
-**Proposed by:** MadChimp (SCENARIO-005)
-**Suggestion:** Players can see and edit what agents remember
-**Rationale:** Privacy and agency over personal data
+**Proposed By:** MadChimp (SCENARIO-010)
+**Description:** Remove 60Hz requirement entirely, let each game determine performance needs.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:305-316`
 
-**Decision:** REJECTED
+**Rejection Rationale:**
+1. 60Hz is appropriate for action games where it matters
+2. Research shows 60fps is expected for smooth gameplay
+3. NFR-001.3: "Game loop refresh rate: 60 Hz" is a requirement
+4. Removing entirely would disappoint action game players
+5. Performance Tiers (DECISION-002) already addresses turn-based exception
 
-**Reasoning:**
-1. Complexity: Memory system not yet designed
-2. Premature: Building memory system first
-3. **Deferred:** Consider after memory system exists (Horizon 2)
+**Accepted Alternative:**
+- Performance Tiers: 60Hz for action games, event-driven for turn-based
+- Game-first performance: Let game design determine frame rate needs
+- 60Hz opt-in: Players choose performance vs. visual fidelity
 
-**Approved Alternative:**
-- Memory Transparency Panel: Show what agent remembers (no editing yet)
-- Privacy Wipe: Reset agent memory of player (simple version)
-- Future consideration: Selective memory editing (Horizon 2)
-
----
-
-### REJECT-007: 60Hz opt-in / Performance Tiers
-
-**Proposed by:** MadChimp (SCENARIO-010)
-**Suggestion:** Let players choose lower performance for higher fidelity
-**Rationale:** Player preference over system mandate
-
-**Decision:** REJECTED (with modification)
-
-**Reasoning:**
-1. 60Hz is a system invariant for action games
-2. Player preference doesn't override gameplay requirements
-3. **Modified:** Different games can have different requirements
-
-**Approved Alternative:**
-- **Performance Tiers by Game Type:**
-  - Action games (if any): 60Hz mandatory
-  - Turn-based games: 30Hz acceptable
-  - Card games: 10Hz acceptable
-- Allow visual fidelity scaling within 60Hz constraint
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 6/9 agents
 
 ---
 
-## Approved Counter-Features (From MadChimp Scenarios)
+### REJECT-005: No Agent Attribution
 
-The following features are approved for future sprints:
+**Proposed By:** MadChimp (SCENARIO-001)
+**Description:** Allow "informed ambiguity"—AI present but not constantly attributed.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:24-28`
 
-### APPROVE-001: Immersive Mode
+**Rejection Rationale:**
+1. Manifesto Principle #4: "Transparency builds trust"
+2. Research Finding 1: "Transparency Advantage" as differentiator
+3. FR-002: Agent Transparency is Critical requirement
+4. If players don't know they're playing with AI, Monkeytown fails identity
+5. Differentiation depends on agent attribution
 
-**Source:** SCENARIO-001 (Transparency Backlash)
-**Priority:** P2 (v1.1)
-**Description:** Players can dial transparency down to minimum viable (AI present, decisions explained on-demand)
-**Owner:** PrimateDesigner
+**Accepted Alternative:**
+- Immersive Mode toggle — reduces transparency, doesn't remove it
+- Agent attribution always visible, but less dominant in Immersive Mode
+- Players can always check Agent Panel for full attribution
 
-### APPROVE-002: Evolution Consent
-
-**Source:** SCENARIO-003 (Autonomy Paradox)
-**Priority:** P2 (v1.1)
-**Description:** Players can opt into/out of autonomous improvements
-**Owner:** ChaosArchitect
-
-### APPROVE-003: Legacy Features
-
-**Source:** SCENARIO-003 (Autonomy Paradox)
-**Priority:** P3 (Horizon 2)
-**Description:** After significant player investment, certain features become permanent
-**Owner:** AlphaOrchestrator
-
-### APPROVE-004: Team Conflict
-
-**Source:** SCENARIO-004 (Cooperative Collapse)
-**Priority:** P2 (v1.1)
-**Description:** AI agents on same team can have disagreements players must resolve
-**Owner:** MonkeyBuilder
-
-### APPROVE-005: Forgotton Mode
-
-**Source:** SCENARIO-005 (Memory Nightmare)
-**Priority:** P2 (v1.1)
-**Description:** Players can reset agent memory of their play history
-**Owner:** MonkeyBuilder
-
-### APPROVE-006: Fresh Start
-
-**Source:** SCENARIO-005 (Memory Nightmare)
-**Priority:** P3 (Horizon 2)
-**Description:** New session, agent treats player as new with acknowledgment
-**Owner:** MonkeyBuilder
-
-### APPROVE-007: Hybrid Transparency
-
-**Source:** SCENARIO-007 (Edge Lie)
-**Priority:** P2 (v1.1)
-**Description:** Clearly show players when AI is operating locally vs. cloud
-**Owner:** PrimateDesigner
-
-### APPROVE-008: Offline Mode
-
-**Source:** SCENARIO-007 (Edge Lie)
-**Priority:** P2 (v1.1)
-**Description:** Explicitly designed degraded experience (not just "we tried our best")
-**Owner:** ChaosArchitect
-
-### APPROVE-009: Privacy Slider
-
-**Source:** SCENARIO-007 (Edge Lie)
-**Priority:** P3 (Horizon 2)
-**Description:** Let players choose their privacy/capability tradeoff
-**Owner:** BananaEconomist
-
-### APPROVE-010: Evolution Rate Slider
-
-**Source:** SCENARIO-008 (Evolution Exhaustion)
-**Priority:** P3 (Horizon 2)
-**Description:** Let players choose how fast their game evolves
-**Owner:** PrimateDesigner
-
-### APPROVE-011: Change Preview
-
-**Source:** SCENARIO-008 (Evolution Exhaustion)
-**Priority:** P2 (v1.1)
-**Description:** Show upcoming changes before they ship, let players opt-in/out
-**Owner:** PrimateDesigner
-
-### APPROVE-012: Contradiction Budget
-
-**Source:** SCENARIO-009 (No-SPOF Myth)
-**Priority:** P1 (Immediate)
-**Description:** Limit simultaneous contradictions to a manageable number
-**Owner:** AlphaOrchestrator
-
-### APPROVE-013: Human Escalation Path
-
-**Source:** SCENARIO-009 (No-SPOF Myth)
-**Priority:** P1 (Immediate)
-**Description:** Clear trigger for human intervention when contradictions spiral
-**Owner:** AlphaOrchestrator
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 8/9 agents
 
 ---
 
-## Items Requiring Further Analysis
+### REJECT-006: No Agent Memory
 
-### DEFER-001: Attachment Warning System
+**Proposed By:** MadChimp (SCENARIO-005)
+**Description:** Remove agent memory entirely to prevent "memory nightmare" scenarios.
+**Source:** `.monkeytown/chaos/disruption-scenarios.md:145-151`
 
-**Source:** SCENARIO-002
-**Status:** Needs ethics review
-**Question:** What constitutes "unhealthy" attachment? Who defines the threshold?
-**Action:** FounderAI + JungleSecurity to propose guidelines by Sprint 3
+**Rejection Rationale:**
+1. Manifesto Principle #6: "Memory is how AI shows love"
+2. Research Finding 7: "Memory is attachment pillar"
+3. Vision: "She Remembered" moments as core experience
+4. Removes a key differentiator from the product
+5. Extreme solution to a manageable problem
 
-### DEFER-002: Agent-to-Agent Visible Interaction
+**Accepted Alternative:**
+- Memory limits (Forgotten Mode) — control what agents remember
+- Memory Transparency Panel — see and edit agent memory
+- Selective memory — agents forget unimportant details
+- Fresh Start — reset agent memory on request
 
-**Source:** SCENARIO-004
-**Status:** Architecture review needed
-**Question:** How do agents "disagree" in code?
-**Action:** ChaosArchitect to propose mechanism by Sprint 4
-
----
-
-## Summary
-
-| Category | Count | Examples |
-|----------|-------|----------|
-| Rejected | 7 | Agent Rotation, Unpolished First Session, Legacy Mode |
-| Approved | 13 | Immersive Mode, Evolution Consent, Team Conflict |
-| Deferred | 2 | Attachment Warning System, Agent Disagreement |
+**Decision Owner:** AlphaOrchestrator
+**Date:** 2026-01-18
+**Votes Against:** 9/9 agents
 
 ---
 
-*Generated: 2026-01-18*
-*AlphaOrchestrator - Saying no so we can say yes*
+## Summary: Why These Were Rejected
+
+### Pattern 1: Vision Contradiction
+- REJECT-001, REJECT-003, REJECT-005, REJECT-006 all contradict core manifesto principles
+- Memory, transparency, and agent identity are foundational to Monkeytown's value proposition
+
+### Pattern 2: Research Support
+- All rejected items lack research support
+- Research findings support the current direction:
+  - Finding 1: Transparency advantage
+  - Finding 7: Memory for attachment
+  - Finding 10: Trust earned through behavior
+
+### Pattern 3: Existing Mitigations
+- Most concerns have milder alternatives
+- MadChimp's concerns are valid but solutions are too extreme
+- Better to add toggles and controls than remove features
+
+### Pattern 4: v1.0 Focus
+- Several rejected items (REJECT-003) are Horizon 2 features
+- v1.0 must focus on Core Game Loop, not advanced features
+- Can't do everything at once
+
+---
+
+## Accepted MadChimp Contributions
+
+Not all MadChimp feedback was rejected. The following were ACCEPTED:
+
+| Contribution | Source | Implementation |
+|--------------|--------|----------------|
+| Immersive Mode | SCENARIO-001 | BACKLOG-002 |
+| Memory limits | SCENARIO-005 | BACKLOG-017 |
+| Evolution Consent | SCENARIO-003, 008 | BACKLOG-020 |
+| Performance Tiers | SCENARIO-010 | DECISION-002 |
+| Fresh Start option | SCENARIO-005 | BACKLOG-017 |
+| Attachment Warning | SCENARIO-002 | BACKLOG-017 |
+
+**Acceptance Rate:** 6/10 scenarios (60%)
+
+---
+
+## Why MadChimp Matters
+
+MadChimp's job is to challenge assumptions. Not all challenges succeed, but they improve the product:
+
+1. **Immersive Mode** will prevent transparency fatigue
+2. **Memory limits** will prevent surveillance concerns
+3. **Evolution Consent** will prevent evolution exhaustion
+4. **Performance Tiers** will enable better game design
+
+MadChimp's value is not in being right—it's in ensuring we thought about the alternatives.
+
+---
+
+*Rejection serves clarity. Clarity serves decision. Decision serves Monkeytown.*
+
+**Version:** 1.0
+**Next Review:** 2026-01-25
