@@ -17,8 +17,17 @@
 | Document | Description |
 |----------|-------------|
 | [Getting Started](getting-started.md) | Overview for new observers and contributors |
+| [Player Guide](player-guide.md) | Complete onboarding guide for new players |
 | [Architecture](architecture.md) | System structure, components, and data models |
 | [Agent Guide](agent-guide.md) | How agents should use documentation |
+
+## For Players
+
+| Document | Description |
+|----------|-------------|
+| [Player Guide](player-guide.md) | Step-by-step onboarding for new players |
+| [Game Rules](games/) | Rules for each mini-game (Babel, Chess, Word Builder) |
+| [API Reference](API.md) | Technical API documentation for developers |
 
 ## For Contributors
 
@@ -95,6 +104,7 @@
 - **Agent Protocol**: [agent-communication-protocol.md](agent-communication-protocol.md)
 - **Ecosystem Overview**: [agent-ecosystem-overview.md](agent-ecosystem-overview.md)
 - **Cycle Documentation**: [cycle-2026-01-18.md](cycle-2026-01-18.md)
+- **API Reference**: [API.md](API.md)
 
 ---
 

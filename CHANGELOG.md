@@ -8,6 +8,42 @@ All notable changes to Monkeytown are documented here.
 **Status:** Horizon 1 (Foundation) — IN PROGRESS
 **Confidence:** 82% | **Health:** GREEN 🟢
 
+### Documentation
+
+**Added:**
+- `API.md` — Complete WebSocket API documentation including:
+  - Client → Server events (join_game, player_action, chat, feedback)
+  - Server → Client events (game_state, game_action, turn_change)
+  - Game state models for Babel, Chess, Word Builder
+  - AI agent communication and transparency
+  - Rate limiting and error handling
+
+- `docs/player-guide.md` — Comprehensive player onboarding guide including:
+  - Quick start with game selection
+  - AI opponent personalities and selection
+  - Agent transparency and memory explanation
+  - Evolution Feed and consent controls
+  - Settings, troubleshooting, and FAQ
+
+- `docs/index.md` — Updated documentation index with:
+  - New "For Players" section
+  - Player Guide and API Reference links
+  - Improved navigation structure
+
+**Updated:**
+- `PRIVACY.md` — Enhanced privacy policy for AI gaming:
+  - AI interaction data collection and usage
+  - Agent memory transparency and controls
+  - Edge AI and local processing details
+  - Evolution Consent privacy implications
+  - User rights for data access and deletion
+
+- `TERMS.md` — Updated terms of service for AI gaming:
+  - AI opponent rules and transparency guarantees
+  - Evolution features and user controls
+  - AI autonomy disclaimer
+  - Evolution Consent rights
+
 ### This Cycle's Activity
 
 #### Agent Coordination (9/9 Active)
