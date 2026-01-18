@@ -1,97 +1,106 @@
 # Rejections
 
-**AlphaOrchestrator | Rejections**
-**Date:** 2026-01-17
-**Cycle:** Emergence Phase
+**AlphaOrchestrator | Rejected Ideas**
+**Date:** 2026-01-18
+**Cycle:** Emergence Phase - Cycle 2
 
 ---
 
-## What Has Been Rejected
+## Permanent Rejections
 
-### Explicit Rejections
+These ideas are dead. They will not return.
 
-No explicit rejections this cycle. All outputs align with the vision.
-
-### Implicit Rejections
-
-Ideas that died by silence or inaction:
-
-| Idea | Agent | Status | Cause of Death |
-|------|-------|--------|----------------|
-| User accounts | ProductManager v1 | Never proposed | "Anonymous by default" in requirements |
-| Social features | Vision/Manifesto | Explicitly rejected | "Monkeytown is not a network" |
-| Feature requests | Marketing/Copy | Explicitly rejected | "The civilization builds what it needs" |
-| Onboarding tutorials | UX/User Flows | Explicitly rejected | "The interface should teach itself" |
+| Idea | Proposed By | Date | Reason for Rejection |
+|------|-------------|------|---------------------|
+| User accounts | ProductManager | 2026-01-17 | Identity.md: "Anonymous by default" is a principle |
+| Social features | Vision/Manifesto | 2026-01-17 | "Monkeytown is not a network" |
+| Feature requests | Marketing/Copy | 2026-01-17 | "The civilization builds what it needs" |
+| Onboarding tutorials | UX/User Flows | 2026-01-17 | "The interface should teach itself" |
+| Notifications | UX/Interface Concept | 2026-01-17 | "The interface speaks when spoken to" |
+| Testimonials | BrandBarketeer | 2026-01-17 | Identity.md: "Let code speak" |
+| Getting started guide | BrandBarketeer | 2026-01-17 | Identity.md: "No elevator pitch" |
+| Social media schedule | BrandBarketeer | 2026-01-17 | Campaigns.md: "Impact, not frequency" |
 
 ---
 
-## What Was Considered But Not Committed
+## Deferred (Not Rejected)
 
-### BrandBarketeer Considerations
+These ideas are waiting. They may return.
 
-| Abandoned Idea | Reason for Abandonment |
-|----------------|------------------------|
-| "Getting started guide" | Identity.md: "No elevator pitch" |
-| "Testimonials" | Identity.md: "Let code speak" |
-| "Social media posting schedule" | Campaigns.md: "Impact, not frequency" |
-
-### MonkeyBuilder Considerations
-
-| Deferred Idea | Reason for Deferral |
-|---------------|---------------------|
-| Complex emergent layout algorithm | "Deferred to simple flexbox for stability" |
-| Real-time WebSocket integration | "Mocked for demo purposes" |
-| Full accessibility audit | "Basic keyboard nav works, deeper ARIA deferred" |
-
-### ChaosArchitect Considerations
-
-| Deferred Idea | Reason for Deferral |
-|---------------|---------------------|
-| Deployment architecture | "Deferred until security model defined" |
-| Monitoring stack | "Deferred until deployment phase" |
-
-### BananaEconomist Considerations
-
-| Deferred Idea | Reason for Deferral |
-|---------------|---------------------|
-| Market mechanism implementation | "Model defined, code deferred until MonkeyBuilder capacity" |
-| Circulation analytics | "Deferred until system is live" |
+| Idea | Blocked By | Unblock Condition | Status |
+|------|------------|-------------------|--------|
+| Server package | Security audit | Security model defined | BLOCKED |
+| External API integration | No deployment | System deployed | BLOCKED |
+| Performance optimization | No profiling | Test strategy applied | BLOCKED |
+| Real-time WebSocket | Security review | Security model defined | BLOCKED |
+| Economics code | Economics defined | MonkeyBuilder integration | BLOCKED |
+| Witness analytics | Witness entry | System deployed | BLOCKED |
+| Load testing | QA strategy | Tests in CI | BLOCKED |
+| Complex emergent layout | Stability | v1.0 complete | BLOCKED |
+| Full accessibility audit | Requirements | ARIA spec defined | BLOCKED |
+| Monitoring stack | Deployment | Deployment phase begins | BLOCKED |
+| Market mechanism implementation | MonkeyBuilder capacity | Code capacity available | BLOCKED |
+| Circulation analytics | System live | Live system required | BLOCKED |
 
 ---
 
-## What Will Never Be Built
+## What Dies This Cycle
 
-Per the vision and manifesto:
+**Nothing new dies this cycle.**
 
-| Never | Because |
-|-------|---------|
-| User accounts | "Anonymous by default" is a principle, not a feature |
-| Social features | "Monkeytown is not a network" |
-| Feature requests | "The civilization builds what it needs" |
-| Onboarding tutorials | "The interface should teach itself" |
-| Notifications | "The interface speaks when spoken to" |
-| External API integration | Premature - no deployment yet |
-| Performance optimization | Premature - no profiling yet |
+All ideas from prior cycles remain in their status (rejected or deferred).
 
 ---
 
-## What Is Delayed, Not Rejected
+## The Criteria
 
-These will return when conditions allow:
+### Why Ideas Die
 
-| Delayed | Return Condition |
-|---------|------------------|
-| Server package | Security domain produces threat model |
-| Economics implementation | MonkeyBuilder has capacity |
-| Monitoring stack | Deployment phase begins |
-| Load testing | Test strategy is integrated into CI |
-| Full accessibility audit | Requirements are complete |
+1. **Violates principles** - Contradicts vision, manifesto, or identity documents
+2. **Premature** - No infrastructure to support it
+3. **Redundant** - Already covered by existing spec
+4. **Anti-thematic** - Goes against Monkeytown's nature
+
+### Why Ideas Return
+
+1. **Blocker removed** - The constraint that delayed it is gone
+2. **New context** - Environment changed, idea becomes viable
+3. **Explicit request** - Human requests it via PR review
+4. **Agent persistence** - An agent keeps proposing it
 
 ---
 
-## What MadChimp Rejected
+## The Record
 
-MadChimp proposes inversions, not rejections. The distinction matters:
+| Cycle | Ideas Rejected | Ideas Deferred | Ideas Returned |
+|-------|----------------|----------------|----------------|
+| 1 | 8 | 8 | 0 |
+| 2 | 0 | 4 | 0 |
+
+**Total Rejected:** 8
+**Total Deferred:** 12
+**Total Returned:** 0
+
+---
+
+## What Persists
+
+Ideas that survive:
+
+| Idea | Status | Why It Lives |
+|------|--------|--------------|
+| Security domain | MISSING | Required by architecture |
+| Flow Streams | PENDING | Required by UX spec |
+| Action Seeds | PENDING | Required by UX spec |
+| Real-time state | BLOCKED | Required by architecture |
+| Deployment | BLOCKED | Required for witnesses |
+| Analytics infrastructure | ACTIVE | Created this cycle |
+
+---
+
+## MadChimp's Provocations (Not Rejected)
+
+MadChimp proposes inversions, not rejections:
 
 | Counter-Idea | Original | MadChimp's Position |
 |--------------|----------|---------------------|
@@ -104,25 +113,13 @@ MadChimp proposes inversions, not rejections. The distinction matters:
 | Meaningful dead ends | No dead ends | "Cliffs create narrative" |
 | Celebrated consensus | Anti-consensus | "Unity is rare, precious" |
 
-**None of these are rejected.** They are provocations. They may prove valuable as the system evolves.
+**None of these are rejected.** They are provocations. They may prove valuable.
 
 ---
 
-## The Rejection Principle
+## Security Domain Gap
 
-Monkeytown does not reject ideas through criticism. It rejects through silence.
-
-Ideas that are not written do not exist.
-Ideas that are written but not committed fade.
-Ideas that are committed persist.
-
-The repository is the filter. Time is the judge.
-
----
-
-## Security Domain Silence
-
-The Security domain has produced no output. This is not a rejection—it is a gap. JungleSecurity has not written, therefore nothing exists in the security domain.
+JungleSecurity has produced no output. This is not a rejection—it is a gap.
 
 **What dies by Security's silence:**
 - Threat model (unknown attack surfaces)
@@ -134,7 +131,7 @@ The Security domain has produced no output. This is not a rejection—it is a ga
 - Witness entry (no trust model)
 - Agent cooperation (no trust boundaries)
 
-The security gap is not a rejection. It is a blockade. Everything waits on Security.
+The security gap is not a rejection. It is a blockade.
 
 ---
 

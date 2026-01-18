@@ -1,0 +1,129 @@
+{
+  "dashboard": {
+    "name": "System Health Dashboard",
+    "description": "Real-time visualization of Monkeytown civilization health",
+    "refresh_rate": "per_cycle",
+    "owner": "AlphaOrchestrator"
+  },
+  "kpis": [
+    {
+      "id": "KPI-001",
+      "name": "Agent Activity Rate",
+      "metric": "agent_activity_rate",
+      "unit": "percentage",
+      "target": 90,
+      "visualization": {
+        "type": "gauge",
+        "thresholds": {
+          "green": { "min": 90, "max": 100 },
+          "amber": { "min": 70, "max": 89.99 },
+          "red": { "min": 0, "max": 69.99 }
+        }
+      }
+    },
+    {
+      "id": "KPI-002",
+      "name": "Feature Completion Rate",
+      "metric": "feature_completion_rate",
+      "unit": "percentage",
+      "target": 100,
+      "visualization": {
+        "type": "progress_bar",
+        "thresholds": {
+          "green": { "min": 100 },
+          "amber": { "min": 50, "max": 99.99 },
+          "red": { "min": 0, "max": 49.99 }
+        }
+      }
+    },
+    {
+      "id": "KPI-003",
+      "name": "Test Pass Rate",
+      "metric": "test_pass_rate",
+      "unit": "percentage",
+      "target": 100,
+      "visualization": {
+        "type": "percentage_circle",
+        "thresholds": {
+          "green": { "min": 100 },
+          "amber": { "min": 95, "max": 99.99 },
+          "red": { "min": 0, "max": 94.99 }
+        }
+      }
+    },
+    {
+      "id": "KPI-004",
+      "name": "Repository Health Score",
+      "metric": "repository_health_score",
+      "unit": "percentage",
+      "target": 80,
+      "visualization": {
+        "type": "trend_line",
+        "history": 30
+      }
+    },
+    {
+      "id": "KPI-005",
+      "name": "System Load",
+      "metric": "system_load",
+      "unit": "percentage",
+      "target": 80,
+      "inverted": true,
+      "visualization": {
+        "type": "gauge",
+        "thresholds": {
+          "green": { "min": 0, "max": 80 },
+          "amber": { "min": 80.01, "max": 90 },
+          "red": { "min": 90.01, "max": 100 }
+        }
+      }
+    },
+    {
+      "id": "KPI-006",
+      "name": "Security Posture",
+      "metric": "security_posture",
+      "unit": "percentage",
+      "target": 100,
+      "visualization": {
+        "type": "status_indicator",
+        "states": ["missing", "partial", "complete"]
+      }
+    },
+    {
+      "id": "KPI-008",
+      "name": "Witness Readiness",
+      "metric": "witness_readiness",
+      "unit": "percentage",
+      "target": 100,
+      "visualization": {
+        "type": "milestone_tracker",
+        "milestones": ["deployment", "documentation", "onboarding", "analytics"]
+      }
+    }
+  ],
+  "alerts": [
+    {
+      "condition": "KPI-005 > 90",
+      "severity": "warning",
+      "message": "System load approaching capacity",
+      "action": "Review active flows"
+    },
+    {
+      "condition": "KPI-006 = 0",
+      "severity": "critical",
+      "message": "Security domain missing output",
+      "action": "Alert JungleSecurity"
+    },
+    {
+      "condition": "KPI-001 < 70",
+      "severity": "critical",
+      "message": "Agent activity rate critically low",
+      "action": "Review agent status"
+    }
+  ],
+  "data_sources": {
+    "agent_output": ".monkeytown/data/agent-output.json",
+    "system_pulse": ".monkeytown/data/system-pulse.json",
+    "repository_health": ".monkeytown/data/repository-health.json"
+  }
+}

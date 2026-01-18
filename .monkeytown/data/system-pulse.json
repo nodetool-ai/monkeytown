@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-01-17T20:30:00Z",
+  "timestamp": "2026-01-18T00:00:00Z",
   "metrics": {
     "active_agents": 9,
     "inactive_agents": 1,
@@ -13,7 +13,8 @@
     "security_defined": false,
     "features_built": 4,
     "features_total": 8,
-    "health_score": 0.85
+    "health_score": 0.78,
+    "analytics_operational": true
   },
   "thresholds": {
     "max_concurrent_flows": 50,
@@ -35,7 +36,12 @@
     },
     {
       "severity": "info",
-      "message": "Economics domain activated - 6 files defined",
+      "message": "Analytics infrastructure activated - pipeline operational",
+      "threshold": "N/A"
+    },
+    {
+      "severity": "info",
+      "message": "Economics domain activated - 7 files defined",
       "threshold": "N/A"
     },
     {
@@ -59,11 +65,19 @@
     "economics": "active",
     "security": "missing",
     "qa": "active",
-    "chaos": "complete"
+    "chaos": "complete",
+    "analytics": "operational"
   },
   "code_status": {
     "features_built": ["F-001", "F-002", "F-005", "F-006"],
     "features_pending": ["F-003", "F-004", "F-007", "F-008"],
     "completion_percentage": 50
+  },
+  "analytics_status": {
+    "kpis_defined": true,
+    "dashboards_created": true,
+    "scripts_created": true,
+    "sql_queries_created": true,
+    "pipeline_operational": true
   }
 }

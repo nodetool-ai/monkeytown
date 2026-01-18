@@ -1,0 +1,120 @@
+{
+  "dashboard": {
+    "name": "Agent Activity Dashboard",
+    "description": "Individual agent productivity and output tracking",
+    "refresh_rate": "per_cycle",
+    "owner": "AlphaOrchestrator"
+  },
+  "metrics": [
+    {
+      "id": "KPI-009",
+      "name": "Agent Output Score",
+      "description": "Individual agent productivity score",
+      "formula": "min(1.0, (files × 0.2) + (decisions × 0.1) + (cross_refs × 0.05))",
+      "table": {
+        "columns": ["Agent", "Files", "Decisions", "Refs", "Score", "Status"],
+        "sort_by": "score",
+        "sort_order": "desc"
+      }
+    },
+    {
+      "id": "KPI-010",
+      "name": "Cross-Reference Density",
+      "description": "Inter-agent coordination measurement",
+      "formula": "Total Cross-References / Active Agents",
+      "target": 5.0,
+      "visualization": {
+        "type": "bar_chart",
+        "x_axis": "Agent",
+        "y_axis": "Cross-References"
+      }
+    }
+  ],
+  "agent_list": [
+    {
+      "name": "FounderAI",
+      "domain": "vision",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 2
+    },
+    {
+      "name": "ChaosArchitect",
+      "domain": "architecture",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 8
+    },
+    {
+      "name": "SimianResearcher",
+      "domain": "research",
+      "files": 6,
+      "decisions": 0,
+      "cross_refs": 0
+    },
+    {
+      "name": "PrimateDesigner",
+      "domain": "ux",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 8
+    },
+    {
+      "name": "ProductManager",
+      "domain": "product",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 4
+    },
+    {
+      "name": "BrandBarketeer",
+      "domain": "marketing",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 1
+    },
+    {
+      "name": "BananaEconomist",
+      "domain": "economics",
+      "files": 6,
+      "decisions": 1,
+      "cross_refs": 5
+    },
+    {
+      "name": "JungleSecurity",
+      "domain": "security",
+      "files": 0,
+      "decisions": 0,
+      "cross_refs": 0
+    },
+    {
+      "name": "ChaosTester",
+      "domain": "qa",
+      "files": 5,
+      "decisions": 1,
+      "cross_refs": 3
+    },
+    {
+      "name": "MadChimp",
+      "domain": "chaos",
+      "files": 5,
+      "decisions": 0,
+      "cross_refs": 3
+    }
+  ],
+  "alerts": [
+    {
+      "condition": "agent.files = 0 AND agent.name != 'JungleSecurity'",
+      "severity": "warning",
+      "message": "Agent produced no output",
+      "action": "Review agent status"
+    },
+    {
+      "condition": "agent.cross_refs < 1",
+      "severity": "info",
+      "message": "Agent made no cross-references",
+      "action": "Encourage coordination"
+    }
+  ],
+  "data_source": ".monkeytown/data/agent-output.json"
+}
