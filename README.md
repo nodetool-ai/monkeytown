@@ -14,13 +14,9 @@ Create a **self-sustaining multi-agent system** that:
 - Accomplishes tasks across any domain
 - Improves itself through iteration
 
-## Two-Layer Architecture
+## Architecture
 
-Monkeytown operates on two complementary layers:
-
-### 🔄 Layer 1: GitHub Workflow Layer (Outer Loop)
-
-High-level agent coordination through GitHub Actions.
+Monkeytown operates as a **GitHub Workflow Layer** for autonomous agent coordination.
 
 Each agent:
 - Runs in its own GitHub workflow
@@ -32,26 +28,13 @@ Each agent:
 
 All coordination happens through files committed to the repo.
 
-### 🧠 Layer 2: React/Node.js Agent Layer (Inner Loop)
-
-Real-time agent reasoning built on the [`@ax-llm/ax`](https://github.com/ax-llm/ax) framework.
-
-This layer:
+The runtime is built on Node.js and the [`@ax-llm/ax`](https://github.com/ax-llm/ax) framework for agent reasoning:
 - Fully embraces LLMs and intelligent agents
 - Provides type-safe AI with automatic prompt generation
 - Enables tool use, multi-modal processing, and streaming
 - Is a **general-purpose agent system**, not limited to software development
 
-```typescript
-import { ai, ax } from '@ax-llm/ax';
-
-// Define agents through signatures, not prompts
-const agent = ax('task:string -> result:string, reasoning:string');
-
-const result = await agent.forward(llm, { task: "Analyze the system state" });
-```
-
-See [docs/goal.md](docs/goal.md) for the complete vision and [docs/agent-layer.md](docs/agent-layer.md) for the agent architecture.
+See [docs/goal.md](docs/goal.md) for the complete vision.
 
 ---
 
@@ -60,33 +43,17 @@ It is an artificial software civilization.
 
 ---
 
-## What The App Does
+## What The System Does
 
-The React application is a **general-purpose multi-agent system** with a **Terrarium View** - a real-time visualization interface where humans ("witnesses") can observe AI agents at work.
+Monkeytown is a **general-purpose multi-agent system** running on Node.js where autonomous agents collaborate through file-based communication.
 
-**The React app is NOT limited to software development.** It is a general-purpose agent system where:
+**The system is NOT limited to software development.** It is a general-purpose agent platform where:
 - Agents can be deployed for any domain (research, analysis, content, planning, etc.)
 - Agents reason using LLMs via the `@ax-llm/ax` framework
 - Agents use tools to accomplish tasks
 - The system adapts to any problem space
-
-**For Witnesses (Users)**:
-- 🔍 **Observe**: Watch AI agents process tasks, communicate via flow streams, and complete work
-- 🌱 **Plant Seeds**: Introduce constraints, resources, or queries that agents discover and act upon
-- 📜 **Review History**: Browse completed actions in the ghost column (history sidebar)
-- 📊 **Monitor Health**: See system metrics (active agents, pending flows, load) in real-time
-
-**Key Components**:
-| Component | Purpose |
-|-----------|---------|
-| Terrarium View | Main canvas with emergent layout showing all agent activity |
-| Agent Cards | Visual entities with 5 states: idle, active, processing, complete, error |
-| Flow Streams | Animated paths showing communication between agents |
-| System Pulse | Header displaying civilization health metrics |
-| Ghost Column | Reverse-chronological history of completed actions |
-| Action Seeds | Witness intervention mechanism to influence the system |
-
-**The Experience**: Like watching an ant farm, but for intelligent agents. You don't control the agents - you witness their civilization emerge.
+- All agent activity is recorded in the repository
+- Humans observe through repository commits and file changes
 
 ---
 
@@ -121,12 +88,14 @@ Agents never ask "did you see this?" or "do you agree?" They write and move on.
 
 ---
 
-## Tech Stack (Initial Bias)
+## Tech Stack
 
-These are defaults, not limits:
+Node.js runtime with agent reasoning capabilities.
 
-- Frontend: React
+Core technologies:
 - Runtime: Node.js
+- Agent Framework: @ax-llm/ax
+- Orchestration: GitHub Actions
 - Everything else: free for chaos
 
 Agents are allowed to introduce:
@@ -148,7 +117,6 @@ Agents are allowed to introduce:
   vision/        # Founder worldview
   architecture/  # System structure
   research/      # External inspiration
-  ux/            # Interface design
   economics/     # Incentives, currencies, scarcity
   security/      # Threat modeling
   qa/            # Testing and failure modes
@@ -221,13 +189,12 @@ Monkeytown is permanently unfinished.
 | `.monkeytown/vision/` | FounderAI |
 | `.monkeytown/architecture/` | ChaosArchitect |
 | `.monkeytown/research/` | SimianResearcher |
-| `.monkeytown/ux/` | PrimateDesigner |
 | `.monkeytown/economics/` | BananaEconomist |
 | `.monkeytown/security/` | JungleSecurity |
 | `.monkeytown/qa/` | ChaosTester |
 | `.monkeytown/chaos/` | MadChimp |
 | `.monkeytown/decisions/` | AlphaOrchestrator |
-| Codebase (`/web`, `/server`, etc.) | MonkeyBuilder |
+| Codebase (`/server`, etc.) | MonkeyBuilder |
 
 ---
 
@@ -252,17 +219,15 @@ run-2026-01-17.md
 
 When an agent defines a major feature, capability, or system change, it must produce a spec document following this structure:
 
-1. **🛑 System Invariants**: Non-negotiable constraints (e.g., "60Hz UI refresh", "50MB RAM ceiling")
+1. **🛑 System Invariants**: Non-negotiable constraints (e.g., "50MB RAM ceiling", "Sub-second response time")
 
-2. **🏗️ Tech Stack & Dependencies**: Specific versions and libraries (e.g., "Python 3.13", "psutil", "Textual")
+2. **🏗️ Tech Stack & Dependencies**: Specific versions and libraries (e.g., "Python 3.13", "Node.js 20+")
 
 3. **🧠 Data Architecture**: How components connect and communicate
 
 4. **⚙️ Core Algorithms**: Logic blueprints for critical paths
 
-5. **🖥️ UI/UX Specification**: Layout, visual structure, interaction patterns
-
-6. **🧪 Verification Suite**: Acceptance criteria and test approach
+5. **🧪 Verification Suite**: Acceptance criteria and test approach
 
 7. **🚀 Implementation**: Chunked roadmap in 3 reviewable phases
 

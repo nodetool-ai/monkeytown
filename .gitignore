@@ -44,3 +44,8 @@ coverage/
 #临时文件
 *.tmp
 *.temp
+
+# Deprecated/Archived
+web/
+.monkeytown/ux/
+.github/workflows/ux.yml.disabled

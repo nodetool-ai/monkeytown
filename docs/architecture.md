@@ -8,7 +8,7 @@
 
 Monkeytown is not designed. It emerges.
 
-The architecture reflects this philosophy: components connect and communicate through observable patterns, not rigid contracts. The system adapts, bends, and never breaks.
+The architecture reflects this philosophy: agents connect and communicate through file-based patterns, not rigid contracts. The system adapts, bends, and never breaks.
 
 ---
 
@@ -16,31 +16,34 @@ The architecture reflects this philosophy: components connect and communicate th
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Witness (Browser)                 │
+│              GitHub Actions Workflows               │
 │                                                      │
 │  ┌──────────────────────────────────────────────┐  │
-│  │              React Application               │  │
-│  │  ┌────────────────────────────────────────┐  │  │
-│  │  │            Terrarium View              │  │  │
-│  │  │  ┌──────────┐  ┌──────────────────┐   │  │  │
-│  │  │  │AgentCard │  │    AgentCard     │   │  │  │
-│  │  │  │   F-002  │  │       F-002      │   │  │  │
-│  │  │  └──────────┘  └──────────────────┘   │  │  │
-│  │  │              Flow Streams              │  │  │
-│  │  │  ┌──────┐    ───────►    ┌───────┐   │  │  │
-│  │  │  │Agent │    F-003       │ Agent │   │  │  │
-│  │  │  └──────┘                └───────┘   │  │  │
-│  │  └────────────────────────────────────────┘  │  │
-│  │              Ghost Column                     │  │
-│  │              System Pulse                     │  │
+│  │           Agent Orchestration                │  │
+│  │  ┌────────┐  ┌────────┐  ┌────────┐         │  │
+│  │  │Founder │  │Architect│  │Builder │  ...    │  │
+│  │  └───┬────┘  └────┬───┘  └───┬────┘         │  │
+│  │      │            │           │              │  │
+│  │      └────────────┼───────────┘              │  │
+│  │                   ▼                          │  │
+│  │         ┌──────────────────┐                 │  │
+│  │         │   Repository     │                 │  │
+│  │         │   (File Store)   │                 │  │
+│  │         └──────────────────┘                 │  │
 │  └──────────────────────────────────────────────┘  │
-│                                                      │
 └─────────────────────────────────────────────────────┘
-         │
-         │ (WebSocket / Future API)
-         ▼
+          │
+          │ (Pull Requests)
+          ▼
 ┌─────────────────────────────────────────────────────┐
-│              Server (Future)                        │
+│                   Human Review                      │
+│              (Merge/Reject Decisions)               │
+└─────────────────────────────────────────────────────┘
+          │
+          │
+          ▼
+┌─────────────────────────────────────────────────────┐
+│              Server (Node.js Runtime)               │
 │                                                      │
 │  ┌──────────────────────────────────────────────┐  │
 │  │              Agent Runtime                   │  │
@@ -70,40 +73,17 @@ The architecture reflects this philosophy: components connect and communicate th
 
 ## Component Architecture
 
-### Frontend (React + Vite)
+### Server (Node.js)
 
-The frontend follows a component-based architecture with clear separation of concerns:
+The server follows a modular architecture:
 
 ```
-web/src/
-├── components/
-│   ├── AgentCard.tsx           # F-002: Entity visualization
-│   │   ├── AgentCard.css       # Styles
-│   │   ├── 5 visual states     # idle, active, processing, complete, error
-│   │   └── Metrics display     # efficiency, load, connections
-│   │
-│   ├── TerrariumView.tsx       # F-001: Main canvas
-│   │   ├── Emergent layout     # Flow-based positioning
-│   │   ├── Gravity-based       # attention, chronological, spatial
-│   │   └── Canvas component    # React-based rendering
-│   │
-│   ├── SystemPulse.tsx         # F-006: Header metrics
-│   │   ├── Live metrics        # agents, flows, settled, load
-│   │   ├── Health indicator    # green, amber, red
-│   │   └── Witness pulse       # Observer presence
-│   │
-│   ├── GhostColumn.tsx         # F-005: History sidebar
-│   │   ├── Reverse-chronology  # Most recent first
-│   │   ├── 0.4 opacity fade    # Visual aging
-│   │   └── Click-to-restore    # History interaction
-│   │
-│   └── components.css          # Global component styles
-│
-├── App.tsx                     # Main application shell
-├── main.tsx                    # Entry point
-├── index.css                   # Global styles + CSS variables
-├── App.css                     # App-specific styles
-└── vite-env.d.ts              # TypeScript declarations
+server/src/
+├── index.ts                    # Entry point and server setup
+├── simulation.ts               # Agent simulation logic
+├── events/                     # Event handling
+├── economics/                  # Economic simulation
+└── types/                      # Type definitions
 ```
 
 ### Shared Layer
@@ -114,13 +94,7 @@ shared/
 │   ├── Entity                  # Agent/contract/transaction base
 │   ├── SystemMetrics           # Live system state
 │   ├── Flow                    # Communication between entities
-│   └── Seed                    # Witness intervention intent
-│
-├── constants.ts                # Design tokens
-│   ├── Colors                  # Jungle palette, semantic colors
-│   ├── Animations              # Duration, easing curves
-│   ├── Layout                  # Spacing, radius, z-index
-│   └── Typography              # Font sizes, weights, line heights
+│   └── Message                 # Agent communication
 │
 └── index.ts                    # Public exports
 ```
@@ -131,7 +105,7 @@ shared/
 packages/
 └── shared/                     # Internal npm package
     ├── package.json            # Package configuration
-    └── (copies of shared types)
+    └── (shared types)
 ```
 
 ---
@@ -181,142 +155,29 @@ interface Flow {
 }
 ```
 
-### Seed Model
-
-```typescript
-interface Seed {
-  id: string;
-  type: 'contract' | 'constraint' | 'resource' | 'query';
-  status: 'germinating' | 'sprouting' | 'growing' | 'mature';
-  plantedAt: Date;
-  expiresAt: Date;
-}
-```
-
----
-
-## Design Tokens
-
-The visual system uses CSS custom properties for consistency:
-
-### Colors
-
-```css
-:root {
-  /* Primary - The Jungle Palette */
-  --color-jungle-canopy:      #1a3a2f;
-  --color-jungle-depth:       #0f1f1a;
-  --color-monkey-fur:         #d4a574;
-  --color-monkey-fur-light:   #e8c9a8;
-  --color-dawn-citrus:        #ff6b35;
-
-  /* Semantic - Status States */
-  --color-signal-green:       #4ade80;
-  --color-warning-amber:      #fbbf24;
-  --color-error-red:          #ef4444;
-
-  /* Accent - Connection & New */
-  --color-purple-connect:     #a855f7;
-  --color-cyan-new:           #22d3ee;
-}
-```
-
-### Typography
-
-```css
-:root {
-  --font-family-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
-  --font-size-display: 32px;
-  --font-size-h1: 24px;
-  --font-size-h2: 18px;
-  --font-size-body: 14px;
-  --font-size-caption: 11px;
-}
-```
-
-### Animation
-
-```css
-:root {
-  --duration-instant:   50ms;
-  --duration-quick:     150ms;
-  --duration-standard:  300ms;
-  --duration-considered: 500ms;
-  --duration-breath:    1000ms;
-
-  --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-```
-
-### Spacing
-
-```css
-:root {
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  24px;
-  --space-6:  32px;
-  --space-8:  48px;
-  --space-10: 64px;
-
-  --radius-sm:     6px;
-  --radius-md:     12px;
-  --radius-lg:     20px;
-  --radius-full:   9999px;
-}
-```
-
----
-
-## Component States
-
-### Agent Card States
-
-| State | Border Color | Background | Animation |
-|-------|--------------|------------|-----------|
-| Idle | Subtle glow | Base card | Gentle breath |
-| Active | Jungle Canopy | Elevated | Lift 2px |
-| Processing | Amber pulse | Animated | Thought bubble |
-| Complete | Green fade | Ghost dim | Fade right |
-| Error | Red pulse | Red tint | Shake |
-
-### System Health States
-
-| State | Color | Meaning |
-|-------|-------|---------|
-| Healthy | Green | All systems nominal |
-| Thinking | Amber | Processing, no errors |
-| Broken | Red | System failure |
-
 ---
 
 ## Data Flow
 
-### Read Path (Observation)
+### Agent Communication Path
 
 ```
-1. Witness opens application
-2. App.tsx mounts React application
-3. TerrariumView subscribes to live data
-4. Components render with current state
-5. SystemPulse displays live metrics
-6. GhostColumn shows historical items
+1. Agent reads repository state
+2. Agent processes information using @ax-llm/ax
+3. Agent writes output to assigned domain folder
+4. Agent commits changes and opens PR
+5. Human reviews and merges/rejects
+6. Other agents discover changes in next cycle
 ```
 
-### Write Path (Intervention - Future)
+### Event Processing Path
 
 ```
-1. Witness triggers Action Seed
-2. Seed dispatched to server
-3. Server validates seed type
-4. Relevant agents discover seed
-5. Agent acts on seed
-6. Result propagated to all witnesses
-7. GhostColumn records completion
+1. Server receives event or scheduled trigger
+2. Event dispatched to relevant agents
+3. Agents process events independently
+4. State changes propagated through event bus
+5. History recorded in state store
 ```
 
 ---
@@ -325,9 +186,8 @@ The visual system uses CSS custom properties for consistency:
 
 | Constraint | Limit | Reason |
 |------------|-------|--------|
-| Concurrent flows | 50 | Performance degrades linearly beyond |
-| Layout resolution | 100ms | User experience |
-| Animation framerate | 60fps minimum | Visual quality |
+| Concurrent agents | 50 | Performance degrades linearly beyond |
+| Event processing | 100ms | System responsiveness |
 | Metrics refresh | 1000ms minimum | Server load |
 | History items | 1000 before degradation | Memory management |
 | Log lines per entity | 1000 | Memory management |
@@ -340,21 +200,21 @@ The current architecture is incomplete. Future additions include:
 
 ### Immediate (Next Phase)
 
-1. **WebSocket Integration** - Real-time updates instead of polling
-2. **Server Package** - Backend API for agent runtime
-3. **Seed Dispatch API** - Witness intervention mechanism
+1. **Enhanced Event Bus** - More sophisticated event routing
+2. **Agent State Persistence** - Long-term memory for agents
+3. **Tool Integration** - External API and service connectors
 
 ### Near-Term
 
-1. **Flow Visualization** - Animated SVG paths between entities
-2. **Detail Panels** - Progressive disclosure for deep inspection
-3. **Error Cards** - Graceful failure presentation
+1. **Multi-Agent Coordination** - Enhanced communication patterns
+2. **Performance Monitoring** - Real-time system health tracking
+3. **Error Recovery** - Graceful failure handling
 
 ### Long-Term
 
-1. **Multi-Witness Sync** - Real-time collaboration
-2. **Playback Mode** - Time-travel through history
-3. **Annotation System** - Witnesses leaving notes
+1. **Distributed Execution** - Multi-node agent coordination
+2. **Learning Pipeline** - Agent capability improvement over time
+3. **Domain Specialization** - Vertical agent expertise development
 
 ---
 
@@ -364,14 +224,13 @@ Architecture is inspired by natural systems:
 
 | Pattern | Application |
 |---------|-------------|
-| Slime Mold Networks | Emergent layout positioning |
-| Boids Flocking | Agent card movement and grouping |
-| Mycelial Networks | Flow stream visualization |
-| Ant Colony Optimization | Action seed discovery |
-| Neural Memory Consolidation | Ghost column behavior |
-| Immune System | System pulse health indicators |
+| Slime Mold Networks | Emergent agent coordination |
+| Mycelial Networks | File-based communication |
+| Ant Colony Optimization | Task discovery and execution |
+| Neural Memory Consolidation | History and state management |
+| Immune System | System health monitoring |
 
 ---
 
-*Document Version: 1.0.0*
-*Derived from agent decisions and codebase analysis*
+*Document Version: 2.0.0*
+*Updated to reflect Node.js-only architecture*

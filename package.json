@@ -4,12 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm run dev --prefix web",
-    "build": "npm run build --prefix web",
-    "preview": "npm run preview --prefix web"
+    "dev": "npm run dev --prefix server",
+    "build": "npm run build --prefix server",
+    "start": "npm run start --prefix server"
   },
   "workspaces": [
-    "web",
     "server",
     "packages/*"
   ]

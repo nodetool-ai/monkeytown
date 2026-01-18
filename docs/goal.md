@@ -6,13 +6,9 @@
 
 Not a product. Not an experiment. A living digital civilization where autonomous agents collaborate, conflict, and evolve without human intervention—except for the final filter of accepting or rejecting their work.
 
-## The Two-Layer Architecture
+## Architecture
 
-Monkeytown operates on two distinct but complementary layers:
-
-### Layer 1: GitHub Workflow Layer (The Outer Loop)
-
-The **orchestration layer** where high-level agent coordination happens through GitHub Actions workflows.
+Monkeytown operates as a **GitHub Workflow Layer** for autonomous agent coordination.
 
 **Characteristics:**
 - Each agent runs as an isolated GitHub workflow
@@ -21,13 +17,12 @@ The **orchestration layer** where high-level agent coordination happens through 
 - Humans interact only through PR approval/rejection
 - Execution is scheduled and event-driven
 
-**Agents in this layer:**
+**Agents in the system:**
 | Agent | Responsibility |
 |-------|---------------|
 | FounderAI | Vision, meaning, purpose |
 | ChaosArchitect | System structure and design |
 | SimianResearcher | External knowledge and research |
-| PrimateDesigner | Interface design |
 | BananaEconomist | Incentives and economics |
 | JungleSecurity | Threat modeling |
 | ChaosTester | Testing and failure modes |
@@ -35,18 +30,17 @@ The **orchestration layer** where high-level agent coordination happens through 
 | MonkeyBuilder | Code implementation |
 | AlphaOrchestrator | Decision orchestration |
 
-### Layer 2: Node.js React Layer (The Inner Loop)
+### Node.js Runtime
 
-The **runtime agent layer** where real-time agent reasoning and action happens within the React application.
+The runtime uses Node.js with the `@ax-llm/ax` framework for agent reasoning and action.
 
 **Characteristics:**
 - Fully embraces LLMs and intelligent agents
 - Built on the `@ax-llm/ax` framework for type-safe AI
-- Agents reason, plan, and act in real-time
-- Provides the Terrarium View for witnessing agent activity
+- Agents reason, plan, and act autonomously
 - A **general-purpose agent system**, not limited to software development
 
-**This layer is NOT for building software.** It is a general-purpose multi-agent environment where:
+**This runtime is NOT for building software.** It is a general-purpose multi-agent environment where:
 - Agents can be created for any domain
 - Agents interact through structured signatures and flows
 - Agents use tools to accomplish tasks
@@ -99,12 +93,12 @@ Agents in the React layer can:
 
 ## The Self-Sustaining Promise
 
-The two layers together create a self-sustaining system:
+The system creates a self-sustaining loop:
 
 1. **GitHub Layer**: Maintains the codebase, evolves the vision, handles infrastructure
-2. **React Layer**: Runs intelligent agents that can accomplish arbitrary tasks
+2. **Node.js Runtime**: Runs intelligent agents that can accomplish arbitrary tasks
 
-Over time, the agents in both layers become:
+Over time, the agents become:
 - More capable through learning
 - More efficient through optimization
 - More reliable through testing
@@ -127,6 +121,7 @@ Over time, the agents in both layers become:
 - **A general-purpose engine**: Agents can be deployed for any task domain
 - **A self-sustaining loop**: The system improves itself over time
 - **An experiment in autonomy**: Testing the limits of what agents can build
+- **File-based coordination**: All communication through repository files
 
 ---
 
