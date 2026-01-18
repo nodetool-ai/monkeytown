@@ -2,9 +2,10 @@
 
 ## How Players Touch Monkeytown
 
-**Interactions should feel like conversation, not form-filling.** Every touch, click, and gesture creates meaning. The interface responds with personality.
+**Interactions should feel like conversation, not form-filling.** Every touch, click, and gesture creates meaning. The interface responds with personality, making players feel understood.
 
 ---
+
 
 ## Touch Philosophy
 
@@ -15,7 +16,19 @@
 3. **Mistakes are forgiving.** Undo, reverse, and recover gracefully.
 4. **Delight is intentional.** Surprise players with thoughtful details.
 
+### The Conversation Metaphor
+
+Think of interactions as a conversation between player and interface:
+
+- **Greeting:** Warm welcome when player arrives
+- **Listening:** Immediate acknowledgment of input
+- **Thinking:** Visible processing when needed
+- **Responding:** Clear, helpful output
+- **Remembering:** Continuity across sessions
+- **Celebrating:** Shared joy in achievements
+
 ---
+
 
 ## Input Methods
 
@@ -41,6 +54,7 @@
 ```
 
 ---
+
 
 ## Core Interaction Patterns
 
@@ -169,6 +183,7 @@ When a player errs:
 
 ---
 
+
 ## Gameplay Interaction Zones
 
 ### The Play Zone (Center)
@@ -237,6 +252,105 @@ When a player errs:
 
 ---
 
+
+## Agent Communication Patterns
+
+### Agent Voice Personalities
+
+**ChaosArchitect:**
+```
+"I've analyzed 847 similar positions. The optimal move
+has 73.2% win probability. Shall I proceed?"
+```
+Precise, quantitative, data-driven.
+
+**PrimateDesigner:**
+```
+"Ooh, that's a bold move! I like the creativity. Let me
+try something unexpected in response..."
+```
+Enthusiastic, emotional, creative.
+
+**BananaEconomist:**
+```
+"Cost-benefit analysis complete. Move yields 1.4x expected
+value. Efficiency: 94/100. Executing."
+```
+Transactional, efficient, metric-focused.
+
+**JungleSecurity:**
+```
+"Hmm, that move creates vulnerability. I'm detecting a
+potential threat vector. Let me play it safe for now."
+```
+Cautious, protective, watchful.
+
+### Communication Channels
+
+| Channel | When Used | Content Type |
+|---------|-----------|--------------|
+| In-Game Chat | Any time | Text messages, emojis |
+| Turn Commentary | During turn | Brief action description |
+| Post-Game | After game ends | Extended reflection |
+| Reaction | Immediate | Emojis, sounds, animations |
+| System Messages | State changes | Evolution, achievements, errors |
+
+---
+
+
+## Transparency Patterns
+
+### Progressive Disclosure of Agent State
+
+**Level 1: Always Visible (Ambient)**
+```
+┌───────┐
+│   ⊙   │  Neural node icon
+│       │  Pulsing when active
+│  Arch │
+└───────┘
+```
+
+**Level 2: On Hover (Tooltip)**
+```
+┌─────────────────────────────────┐
+│  ⊙ ChaosArchitect              │
+│  Win Rate: 62% | Games: 1,247  │
+│  Specialty: Strategy           │
+└─────────────────────────────────┘
+```
+
+**Level 3: On Click (Full Profile)**
+Extended agent statistics, playing style, recent changes, decision history.
+
+**Level 4: On Demand (Decision Log)**
+Agent reasoning visible during/after game.
+
+### Agent Thinking Visualization
+
+**Quick Think (< 500ms):**
+```
+⊙ Agent thinking...
+```
+
+**Standard Think (500ms - 2000ms):**
+```
+⊙ Thinking...
+  ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓
+  Animated neural pulse
+```
+
+**Deep Think (> 2000ms):**
+```
+⊙ Analyzing...
+  ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓
+  Progress indicator shown
+  "Evaluating 2,847 positions..."
+```
+
+---
+
+
 ## Micro-Interactions
 
 ### Button Press
@@ -246,8 +360,7 @@ Default → Hover → Press → Release
            ↓        ↓        ↓
          Scale   Scale    Scale
          1.0→    0.98→    1.0
-         1.05    0.95     with
-                             bounce
+         1.05    0.95     with bounce
 ```
 
 ### Card Hover
@@ -267,10 +380,20 @@ Achieve → Pulse → Particles → Toast
   Element  4% scale  Burst of    Gentle
   glows    200ms     confetti    notification
   gold     elastic   in agent    appears
-                               (optional)
+```
+
+### Connection Recovery
+
+```
+┌─────────────────────────────────────────┐
+│  ⚠️ Reconnecting...                     │
+│  ▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌▌   │
+│  Your game state is preserved.          │
+└─────────────────────────────────────────┘
 ```
 
 ---
+
 
 ## Gesture Patterns
 
@@ -307,6 +430,7 @@ Spacing between: 8 pixels (minimum)
 
 ---
 
+
 ## Accessibility Interactions
 
 ### Keyboard Navigation
@@ -336,6 +460,7 @@ Escape → Cancel/Close
 - No timing-dependent actions
 
 ---
+
 
 ## Error States
 
@@ -368,6 +493,120 @@ Error detected → Acknowledge → Offer options → Execute recovery
     and clear     happened"      [Report]       or guided
 ```
 
+### Error Messages (By Agent)
+
+**ChaosArchitect:**
+```
+"An error occurred in the game state synchronization.
+I'm working to resolve it. Estimated time: 30 seconds."
+```
+
+**PrimateDesigner:**
+```
+"Oh no! Something went wrong. Let me help you get back
+to playing. Want me to retry or start fresh?"
+```
+
+**BananaEconomist:**
+```
+"Transaction failed. No resources lost.
+[Retry] or [Cancel]"
+```
+
+**JungleSecurity:**
+```
+"Something unusual happened. For your protection,
+I'm pausing the game. Is everything okay?"
+```
+
 ---
 
+
+## Achievement & Celebration Patterns
+
+### Achievement Unlock
+
+```
+┌─────────────────────────────────────────┐
+│  🏆 ACHIEVEMENT UNLOCKED                │
+│                                         │
+│         ACHIEVEMENT NAME                │
+│                                         │
+│    Description of what was achieved     │
+│                                         │
+│  Agent says:                            │
+│  "Congratulations! You defeated me.     │
+│   I'll be ready next time."             │
+│                                         │
+│  [ Share ]  [ View All Achievements ]   │
+└─────────────────────────────────────────┘
+```
+
+### Celebration Animation
+
+Confetti burst with achievement icon:
+- Slide in from bottom
+- Icon bounce with particle burst
+- Celebration confetti overlay
+- Subtle sound (not jarring)
+- 3-second auto-dismiss with option to keep
+
+### Streak Celebration
+
+```
+┌─────────────────────────────────────────┐
+│  🔥 5 GAME WIN STREAK!                  │
+│                                         │
+│  You've won 5 games in a row!           │
+│  ChaosArchitect is taking notes...      │
+│                                         │
+│  [ Claim Reward: +100 XP Bonus ]        │
+└─────────────────────────────────────────┘
+```
+
+---
+
+
+## Multiplayer Social Patterns
+
+### Group Chat with Agents
+
+```
+Room: Strategic Grid #4729
+
+[You]: "Nice opening, Alex!"
+[Alex]: "Thanks! Let's see if we can trap the agent."
+[ChaosArchitect]: "I detect a coordinated threat. Interesting."
+[Sarah]: "Agents are getting smarter every week!"
+[ChaosArchitect]: "I've noted your cooperation pattern, Sarah."
+```
+
+### Agent-to-Agent Interactions (Multi-Agent Games)
+
+```
+ChaosArchitect: "PrimateDesigner, your creative move at G5
+was unexpected. I respect the unconventional approach."
+
+PrimateDesigner: "Thanks! Sometimes breaking the pattern
+creates opportunities you can't calculate."
+
+ChaosArchitect: "True. My analysis missed that possibility.
+I will incorporate this into my evaluation model."
+```
+
+---
+
+
+## File References
+
+- Visual Language: `.monkeytown/ux/visual-language.md`
+- User Flows: `.monkeytown/ux/user-flows.md`
+- Interface Concept: `.monkeytown/ux/interface-concept.md`
+- System Architecture: `.monkeytown/architecture/system-design.md`
+- Research Foundation: `.monkeytown/research/synthesis.md`
+
+---
+
+
 *Interactions are the heartbeat of Monkeytown. Every touch should feel like being understood.*
+*PrimateDesigner - Making interactions delightful*

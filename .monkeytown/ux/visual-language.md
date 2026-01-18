@@ -6,6 +6,7 @@
 
 ---
 
+
 ## Design Philosophy
 
 ### Three Core Tensions
@@ -23,18 +24,51 @@
 - **Honest, not harsh.** Transparency without overwhelming.
 - **Dynamic, not chaotic.** Evolution visible, not jarring.
 
+### The Living Surface Philosophy
+
+The interface is not a container but a living organism. Following the Bauhaus principle that form follows function, and inspired by the Fluxus movement where art is process, not object, Monkeytown's interface embodies the idea that a game which improves itself should *look* like it's alive.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    THE INTERFACE AS LIVING SYSTEM                            │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│         ╭───────────────────────────────────────────────╮                   │
+│         │  ╭───╮                                                              │
+│         │  │ ⊙ │  Agent activity pulses in real-time                        │
+│         │  ╰───╯                                                              │
+│         │         │                                                           │
+│         │    ╭────╮                                                          │
+│         │    │ 🐒 │  Monkeytown evolves continuously                        │
+│         │    ╰────╯                                                          │
+│         │         │                                                           │
+│         │    ╭────╮                                                          │
+│         │    │ 👤 │  Players are welcomed and remembered                    │
+│         │    ╰────╯                                                          │
+│         ╰───────────────────────────────────────────────╯                   │
+│                                                                             │
+│              THE INTERFACE IS ALWAYS BREATHING                              │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+Every pixel should feel like it has a pulse. The interface breathes with agent activity, celebrates change, and welcomes players into a system that grows alongside them.
+
 ---
+
 
 ## Color System
 
 ### Primary Palette
 
+The Tropical Intelligence palette—warm, vibrant, and alive.
+
 ```
-#FF6B35  ── Tangerine (Primary Action)
-#2EC4B6  ── Teal (Success, Growth)
-#1A1A2E  ── Deep Space (Background)
-#EAEAEA  ── Ghost White (Surface)
-#FF206E  ── Coral (Highlights, Celebration)
+#FF6B35  ── Tangerine (Primary Action - energy, optimism)
+#2EC4B6  ── Teal (Success, Growth - life, systems)
+#1A1A2E  ── Deep Space (Background - night jungle)
+#EAEAEA  ── Ghost White (Surface - clarity)
+#FF206E  ── Coral (Highlights, Celebration - warmth)
 ```
 
 ### Semantic Colors
@@ -49,17 +83,30 @@
 
 ### Agent Colors (Personality Expression)
 
+Each agent has a signature color that expresses their personality.
+
 ```
-ChaosArchitect    #4CC9F0  Cyan (Systematic, precise)
-CuriousGeorge     #F72585  Magenta (Curious, exploratory)
-PrimateDesigner   #FFD166  Gold (Creative, warm)
-JungleSecurity    #4361EE  Royal Blue (Protective, vigilant)
-BananaEconomist   #7209B7  Purple (Quantitative, strategic)
-MadChimp          #FF6B35  Tangerine (Chaotic, energetic)
-FounderAI         #2EC4B6  Teal (Visionary, guiding)
+ChaosArchitect    #4CC9F0  Cyan (Systematic, precise, architectural)
+CuriousGeorge     #F72585  Magenta (Curious, exploratory, research-driven)
+PrimateDesigner   #FFD166  Gold (Creative, warm, artistic)
+JungleSecurity    #4361EE  Royal Blue (Protective, vigilant, defensive)
+BananaEconomist   #7209B7  Purple (Quantitative, strategic, transactional)
+MadChimp          #FF6B35  Tangerine (Chaotic, energetic, disruptive)
+FounderAI         #2EC4B6  Teal (Visionary, guiding, foundational)
 ```
 
+### Color Usage Patterns
+
+**Tangerine for Action:** Every primary action button uses Tangerine. It's the color of "go," "start," "play."
+
+**Teal for Growth:** Success states, progress indicators, and evolution moments use Teal.
+
+**Agent Attribution:** When an agent does something—chats, makes a move, ships a feature—their color marks the moment.
+
+**Deep Space Background:** Never pure black. #1A1A2E creates depth while maintaining contrast.
+
 ---
+
 
 ## Typography
 
@@ -90,8 +137,10 @@ Code:     'JetBrains Mono', monospace
 - **Headings:** Playful but confident. Moderate tight tracking.
 - **Body:** Clean, highly readable. Comfortable line height (1.6).
 - **Code/Micro:** Monospace for precision. Letters are data.
+- **Agent Messages:** Each agent has a distinctive voice pattern in their text.
 
 ---
+
 
 ## Iconography
 
@@ -105,33 +154,51 @@ Code:     'JetBrains Mono', monospace
 ### Core Icon Set
 
 ```
-🐒 Monkeytown Logo
-⚡ Action / Power
-🧠 Agent / Intelligence
-🌱 Evolution / Growth
-🔄 Sync / Real-time
-👁️ Transparency / Visibility
-🎮 Gameplay / Play
-💬 Feedback / Chat
-📊 Analytics / Stats
-⚠️ Warning / Alert
-🎉 Celebration / Win
-🔧 Development / Building
+🐒 Monkeytown Logo - The monkey head, playful and proud
+⚡ Action / Power - Lightning bolt, energetic
+🧠 Agent / Intelligence - Brain circuit pattern
+🌱 Evolution / Growth - Sprout with nodes
+🔄 Sync / Real-time - Circular arrows
+👁️ Transparency / Visibility - Open eye
+🎮 Gameplay / Play - Game controller, minimal
+💬 Feedback / Chat - Speech bubble
+📊 Analytics / Stats - Bar chart
+⚠️ Warning / Alert - Triangle with exclamation
+🎉 Celebration / Win - Raised hands/confetti
+🔧 Development / Building - Wrench or tools
 ```
 
 ### Icon Animation Principles
 
 - **Micro-interactions:** Icons respond to hover (subtle scale, rotation).
 - **State changes:** Icons morph during meaningful transitions.
-- **Agent personality:** ChaosArchitect icons glitch playfully; JungleSecurity icons lock firmly.
+- **Agent personality:** ChaosArchitect icons have precise geometric changes; PrimateDesigner icons have organic morphs; MadChimp icons might glitch playfully.
+
+### Agent Icon Variations
+
+Each agent's icons carry their personality:
+
+- **ChaosArchitect:** Precise angles, clean geometry, mechanical motion
+- **PrimateDesigner:** Organic curves, flowing shapes, fluid transitions
+- **BananaEconomist:** Numerical overlays, efficiency-focused, minimal
+- **JungleSecurity:** Shield motifs, protective frames, firm closures
+- **MadChimp:** Unexpected rotations, playful disruption, chaotic motion
 
 ---
+
 
 ## Motion Design
 
 ### Animation Philosophy
 
 **Motion should communicate state, not just decoration.**
+
+Every animation tells the player something:
+- Success: Celebratory burst
+- Failure: Gentle recovery
+- Waiting: Progress indicator
+- Thinking: Visible pulse
+- Evolution: Triumphant reveal
 
 ### Core Animation Curves
 
@@ -145,15 +212,34 @@ Code:     'JetBrains Mono', monospace
 
 ### Motion Patterns
 
-**Breathing** — Subtle pulse on living elements (active agents, evolving features). Never exceeds 4% scale.
+**Breathing** — Subtle pulse on living elements (active agents, evolving features). Never exceeds 4% scale. The interface is never completely still when there are active agents.
 
-**Flowing** — Content moves with intention. Screens slide in directions that reinforce mental models (back = left, forward = right, up = elevation).
+**Flowing** — Content moves with intention. Screens slide in directions that reinforce mental models:
+- Back = left
+- Forward = right
+- Up = elevation
+- Down = return
 
-**Reacting** — Interactive elements respond immediately. Feedback is instant, confirmation is visible.
+**Reacting** — Interactive elements respond immediately. Feedback is instant, confirmation is visible. No wondering "did it work?"
 
-**Celebrating** — Wins, achievements, and feedback incorporation get full animation treatment. Gravity, particles, and joy.
+**Celebrating** — Wins, achievements, and feedback incorporation get full animation treatment. Gravity, particles, and joy. These moments should make players smile.
+
+### Agent-Specific Motion Personalities
+
+Each agent has a distinctive motion signature:
+
+**ChaosArchitect:** Precise, mechanical, predictable. Sudden stops, exact alignments. Grid-based movement.
+
+**PrimateDesigner:** Organic, flowing, unpredictable. Soft bounces, curved paths. Natural easing.
+
+**BananaEconomist:** Fast, efficient, minimal waste. Quick transitions, maximum information per frame.
+
+**JungleSecurity:** Cautious, measured, defensive. Slow to enter, quick to exit danger.
+
+**MadChimp:** Chaotic, playful, disruptive. Unexpected rotations, gleeful transitions.
 
 ---
+
 
 ## Spacing System
 
@@ -183,7 +269,15 @@ Page margins:       24px mobile, 64px desktop
 Maximum content:    1200px centered
 ```
 
+### Spacing Philosophy
+
+- Generous whitespace creates breathing room
+- Tight spacing groups related elements
+- Consistent grid ensures predictability
+- Unusual spacing draws attention intentionally
+
 ---
+
 
 ## Depth & Elevation
 
@@ -201,7 +295,71 @@ Level 4 ── Floating (FABs)         #3A3A5A, 1px border #ffffff25
 
 **No drop shadows.** Use border-based elevation to maintain the clean, flat aesthetic. Color difference communicates depth.
 
+The deep space theme embraces darkness. Surfaces are distinguished by subtle color shifts and faint borders, not by shadows that would muddy the pure aesthetic.
+
 ---
+
+
+## Responsive Design
+
+### Breakpoints
+
+| Breakpoint | Width | Layout Changes |
+|------------|-------|----------------|
+| Desktop XL | 1440px+ | Full three-layer interface |
+| Desktop | 1024-1439px | Full layout, adjusted columns |
+| Tablet | 768-1023px | Collapsed sidebar, single column |
+| Mobile | 480-767px | Bottom nav, stacked content |
+| Mobile Small | <480px | Simplified, focus on core |
+
+### Sidebar Behavior
+
+- **Desktop (280px):** Full agent cards with status and personality quote
+- **Tablet (80px):** Minimal icons + names, hover for details
+- **Mobile:** Hidden, accessible via drawer/menu
+
+### Touch Targets
+
+```
+Minimum: 44 × 44 pixels
+Recommended: 48 × 48 pixels
+Game elements: 56 × 56 pixels (minimum)
+Spacing between: 8 pixels (minimum)
+```
+
+---
+
+
+## Accessibility
+
+### Color Contrast
+
+- Text: 4.5:1 minimum (WCAG AA)
+- Large text: 3:1 minimum
+- UI components: 3:1 minimum
+
+### Motion
+
+- Respects `prefers-reduced-motion` media query
+- All animations optional
+- No flashing > 3Hz
+
+### Keyboard Navigation
+
+- All interactions keyboard-accessible
+- Visible focus states (2px outline)
+- Logical tab order
+- Skip links for main content
+
+### Screen Reader
+
+- Semantic HTML structure
+- ARIA labels for custom components
+- Live regions for dynamic updates
+- Agent communication announced
+
+---
+
 
 ## Visual Guidelines Summary
 
@@ -212,6 +370,7 @@ Level 4 ── Floating (FABs)         #3A3A5A, 1px border #ffffff25
 - Animate with purpose and personality
 - Maintain generous whitespace
 - Celebrate wins visibly
+- Make the interface breathe
 
 ### DON'T
 
@@ -220,7 +379,22 @@ Level 4 ── Floating (FABs)         #3A3A5A, 1px border #ffffff25
 - Mix serif and sans-serif in same context
 - Animate for animation's sake
 - Hide the AI nature—celebrate it
+- Make the interface feel static
 
 ---
 
-*Visual identity is how Monkeytown feels. Every pixel serves the player.*
+
+## File References
+
+- User Flows: `.monkeytown/ux/user-flows.md`
+- Interaction Patterns: `.monkeytown/ux/interaction-patterns.md`
+- Interface Concept: `.monkeytown/ux/interface-concept.md`
+- System Architecture: `.monkeytown/architecture/system-design.md`
+- Research Foundation: `.monkeytown/research/synthesis.md`
+
+---
+
+
+*Visual Identity is how Monkeytown feels. Every pixel serves the player.*
+*Every animation tells a story. Every color expresses personality.*
+*PrimateDesigner - Making intelligence beautiful*

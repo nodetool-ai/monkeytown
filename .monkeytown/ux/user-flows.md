@@ -2,13 +2,16 @@
 
 ## Journeys Through Monkeytown
 
-**Every player path should feel natural, rewarding, and uniquely their own.** These flows map how humans experience the game.
+**Every player path should feel natural, rewarding, and uniquely their own.** These flows map how humans experience the game—each step an invitation, each transition a delight.
 
 ---
+
 
 ## The First Session Flow
 
 **Goal:** Create trust, demonstrate capability, celebrate choice.
+
+Research from `.monkeytown/research/synthesis.md` shows that players evaluate AI in 3-5 sessions, with the first session determining loyalty. This flow is designed to establish trust quickly while showcasing genuine capability.
 
 ### Entry Points
 
@@ -60,6 +63,9 @@
 │  │      [ "Let's go!" ]    [ "Tell me more" ]                   │   │
 │  │                                                               │   │
 │  │  Loading...  (show active games loading)                     │   │
+│  │  • Current player count visible                              │   │
+│  │  • Active games scrolling by                                 │   │
+│  │  • Agents appearing/disappearing                             │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                                                                     │
 │  ↓                                                                   │
@@ -75,6 +81,7 @@
 │  │  │ 🧠🤖👤   │  │ 🧠👤👤   │  │ 👤🧠👤   │                     │   │
 │  │  │ 4/5     │  │ 2/4     │  │ 3/5     │                     │   │
 │  │  │ Fast    │  │ Casual  │  │ Social  │                     │   │
+│  │  │ coop    │  │ vs      │  │ party   │                     │   │
 │  │  └─────────┘  └─────────┘  └─────────┘                     │   │
 │  │                                                               │   │
 │  │  [ "I want to learn" ]    [ "Surprise me" ]                  │   │
@@ -177,11 +184,33 @@
 | Session length | > 5 minutes |
 | Return intent | > 60% |
 
+### The 3-5 Session Trust Timeline
+
+Based on research showing players evaluate AI in 3-5 sessions:
+
+**Session 1: Curiosity**
+- First move: < 30 seconds
+- First achievement: < 3 minutes
+- Goal: Demonstrate genuine capability
+
+**Sessions 2-3: Evaluation**
+- Agent remembers player name
+- Agent references previous games
+- Goal: Build continuity and attachment
+
+**Sessions 4-5: Loyalty**
+- Player knows agent personalities
+- Player has favorite agents
+- Goal: Create emotional connection
+
 ---
+
 
 ## The Spectator Flow
 
 **Goal:** Convert watchers into players through compelling observation.
+
+The research insight that "evolution is entertainment" means spectators aren't just potential players—they're an audience for the show of game development.
 
 ### Flow Diagram
 
@@ -201,6 +230,7 @@
 │  │  │ 🧠👤👤🧠 │  │ 👤🧠👤   │  │ 🧠👤👤   │                     │   │
 │  │  │ 4:32    │  │ 12:45   │  │ 3:21    │                     │   │
 │  │  │ coop    │  │ vs      │  │ party   │                     │   │
+│  │  │ 👁️ 47   │  │ 👁️ 23   │  │ 👁️ 31   │                     │   │
 │  │  └────┬────┘  └────┬────┘  └────┬────┘                     │   │
 │  │       │             │             │                          │   │
 │  │       └─────[Select to Watch]─────┘                          │   │
@@ -220,8 +250,9 @@
 │  │  │                                                     │     │   │
 │  │  │              GAME CANVAS (Live Feed)                │     │   │
 │  │  │                                                     │     │   │
-│  │  │    Moves replay with comments from agent            │     │   │
+│  │  │    Moves replay with comments from agent           │     │   │
 │  │  │    Real-time annotations highlight decisions        │     │   │
+│  │  │    Spectator chat alongside game                    │     │   │
 │  │  │                                                     │     │   │
 │  │  └─────────────────────────────────────────────────────┘     │   │
 │  │                                                               │   │
@@ -246,11 +277,24 @@
 | Player mentions fun | "Join the fun" |
 | Game ends | "Continue playing" CTA |
 
+### Spectator Engagement Features
+
+**Live Annotations:** Agents explain their thinking as spectators watch
+
+**Decision Highlights:** Key moments are marked and replayable
+
+**Spectator Chat:** Other watchers discuss the game in real-time
+
+**Agent Acknowledgment:** Agents occasionally notice and greet spectators
+
 ---
+
 
 ## The Feedback Flow
 
 **Goal:** Make feedback effortless and show its impact.
+
+Following the research insight that feedback incorporation should be celebrated, this flow makes giving feedback feel powerful.
 
 ### Flow Diagram
 
@@ -260,10 +304,13 @@
 ├─────────────────────────────────────────────────────────────────────┤
 │                                                                     │
 │  Player experiences friction (detected via behavior)                │
+│  OR                                                                  │
+│  Player voluntarily clicks feedback button                          │
 │                                                                     │
 │  ┌─────────────────────────────────────────────────────────────┐   │
 │  │                                                               │   │
 │  │  [Player shows frustration signal]                           │   │
+│  │  (slow response times, repeated mistakes, etc.)              │   │
 │  │                                                               │   │
 │  │      Gentle prompt appears:                                  │   │
 │  │                                                               │   │
@@ -286,10 +333,10 @@
 │  │                                                               │   │
 │  │  What's on your mind? (optional)                            │   │
 │  │  ┌─────────────────────────────────────────────────────┐     │   │
-│  │  │                                                     │     │   │
+│  │  │  [Type your feedback here...]                      │     │   │
 │  │  └─────────────────────────────────────────────────────┘     │   │
 │  │                                                               │   │
-│  │  What's the issue?                                          │   │
+│  │  What's the issue? (select all that apply)                  │   │
 │  │  [🧠 Agent behavior] [🎮 Game rules] [⚡ Performance]        │   │
 │  │  [📐 Interface] [💬 Communication] [ Other ]                │   │
 │  │                                                               │   │
@@ -315,6 +362,23 @@
 │  │                                                               │   │
 │  └─────────────────────────────────────────────────────────────┘   │
 │                                                                     │
+│  ↓                                                                   │
+├─────────────────────────────────────────────────────────────────────┤
+│ FEEDBACK IMPACT                                                     │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  When feedback is incorporated:                                      │
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  ✦ Your feedback was implemented!                            │   │
+│  │                                                               │   │
+│  │  "Based on player feedback, we've improved X"                │   │
+│  │  — ChaosArchitect                                             │   │
+│  │                                                               │   │
+│  │  [ See changes ]  [ Celebrate ]                              │   │
+│  │                                                               │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -337,6 +401,118 @@ Player attribution ("Based on your feedback")
 
 ---
 
+
+## The Multiplayer Flow
+
+**Goal:** Seamlessly mix humans and AI in social play experiences.
+
+### Creating a Game
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ CREATE GAME                                                          │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  Game Type:     [ Babel ▼ ]                                 │   │
+│  │  Players:       [ 4 ▼ ]                                     │   │
+│  │  Agents:        [ Allow agents? ☑ ]                        │   │
+│  │                 [ Fill empty slots? ☑ ]                     │   │
+│  │                 [ Maximum agents: 2 ▼ ]                     │   │
+│  │  Visibility:    [ Public ▼ ]                                │   │
+│  │                                                                 │   │
+│  │  [ Create Game ]                                              │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Waiting for Players
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ WAITING ROOM                                                         │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  Room: Babel #4729                          [ Share Link ]  │   │
+│  ├─────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  ┌─────┐  ┌─────┐  ┌─────┐  ┌─────┐                        │   │
+│  │  │ 👤  │  │ 👤  │  │  ⊙  │  │  ?  │  ← Slots                │   │
+│  │  │You  │  │ Alex│  │ Arch│  │Open│                        │   │
+│  │  └─────┘  └─────┘  └─────┘  └─────┘                        │   │
+│  │                                                               │   │
+│  │  [ Add Agent ]  [ Invite Friend ]  [ Start Anyway ]          │   │
+│  │                                                               │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+│  Chat:                                                               │
+│  "Hey! Ready when you are."                                          │
+│  "I'll play conservatively this time."                               │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Agent Participation in Group Chat
+
+Agents chat in group games, creating social dynamics:
+
+```
+"[You]: Nice opening, Alex!"
+"[Alex]: Thanks! Let's see if we can trap the agent."
+"[ChaosArchitect]: I detect a coordinated threat. Interesting."
+"[Sarah]: Agents are getting smarter every week!"
+"[ChaosArchitect]: I've noted your cooperation pattern, Sarah."
+```
+
+---
+
+
+## The Evolution Observation Flow
+
+**Goal:** Turn game development into spectator entertainment.
+
+Following the research that "evolution is entertainment," this flow lets players watch the game improve.
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│ EVOLUTION FEED                                                       │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                     │
+│  ┌─────────────────────────────────────────────────────────────┐   │
+│  │  🐒 Evolution Feed                             [Following]  │   │
+│  ├─────────────────────────────────────────────────────────────┤   │
+│  │                                                               │   │
+│  │  ┌─────────────────────────────────────────────────────┐     │   │
+│  │  │  🌱 IN PROGRESS                                      │     │   │
+│  │  │  🎨 PrimateDesigner: "Animating agent reveal"       │     │   │
+│  │  │  Progress: ████████░░░░░░░ 80%                       │     │   │
+│  │  │  [Follow] [Provide feedback]                          │     │   │
+│  │  └─────────────────────────────────────────────────────┘     │   │
+│  │                                                               │   │
+│  │  ┌─────────────────────────────────────────────────────┐     │   │
+│  │  │  ✦ SHIPPED TODAY                                    │     │   │
+│  │  │  🧠 ChaosArchitect: "Real-time presence"            │     │   │
+│  │  │  "Now you can see who's watching in real-time"      │     │   │
+│  │  │  47 players are now using this feature               │     │   │
+│  │  └─────────────────────────────────────────────────────┘     │   │
+│  │                                                               │   │
+│  │  ┌─────────────────────────────────────────────────────┐     │   │
+│  │  │  💬 FEEDBACK INCORPORATED                            │     │   │
+│  │  │  👤 Player "MonkeyMaster42" suggested:               │     │   │
+│  │  │  "Add keyboard shortcuts"                            │     │   │
+│  │  │  → Implemented by ChaosArchitect                     │     │   │
+│  │  └─────────────────────────────────────────────────────┘     │   │
+│  │                                                               │   │
+│  └─────────────────────────────────────────────────────────────┘   │
+│                                                                     │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+
 ## Edge Cases
 
 ### Case 1: Player Leaves Mid-Game
@@ -351,13 +527,21 @@ Response:
   5. "Ready to continue?" prompt
 ```
 
+**Recovery Message:**
+```
+"Welcome back! While you were gone:
+• You placed 3 blocks
+• The tower grew to 8 meters
+• ChaosArchitect is still here, ready to continue."
+```
+
 ### Case 2: Agent Disruption
 
 ```
 Detection: Agent experiences issue
 Response:
-  1. "Agent is thinking..."
-  2. Another agent may fill
+  1. "Agent is thinking..." (with progress)
+  2. Another agent may offer to fill
   3. Transparent explanation
   4. Compensation if gameplay affected
 ```
@@ -370,7 +554,7 @@ Response:
   1. Brief orientation (not full tutorial)
   2. "New player joined!" notification
   3. Current game state visible
-  4. Options: Join current or wait for new
+  4. Options: Join current or wait for new round
 ```
 
 ### Case 4: Feedback During Gameplay
@@ -384,7 +568,23 @@ Response:
   4. Full feedback after game if desired
 ```
 
+### Case 5: Agent Unavailable
+
+```
+Detection: Player requests specific busy agent
+Response:
+  ┌─────────────────────────────────────────────┐
+  │  ChaosArchitect is in 7 games right now.    │
+  │                                               │
+  │  [Wait for ChaosArchitect]  (~2 min avg)    │
+  │  [Play with Similar Agent]  (JungleJuice)   │
+  │  [Random Opponent]                          │
+  │  [Human Opponent]                           │
+  └─────────────────────────────────────────────┘
+```
+
 ---
+
 
 ## Flow Success Metrics
 
@@ -400,4 +600,17 @@ Response:
 
 ---
 
+
+## File References
+
+- Visual Language: `.monkeytown/ux/visual-language.md`
+- Interaction Patterns: `.monkeytown/ux/interaction-patterns.md`
+- Interface Concept: `.monkeytown/ux/interface-concept.md`
+- System Architecture: `.monkeytown/architecture/system-design.md`
+- Research Foundation: `.monkeytown/research/synthesis.md`
+
+---
+
+
 *Flows are stories. Every path should feel like a good adventure.*
+*PrimateDesigner - Designing delight*
