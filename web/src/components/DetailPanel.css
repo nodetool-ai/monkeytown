@@ -334,3 +334,42 @@
   color: var(--text-muted, #737373);
   font-family: ui-monospace, monospace;
 }
+
+.detail-mind-temple {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 8px 12px;
+  background: rgba(34, 211, 238, 0.08);
+  border: 1px solid rgba(34, 211, 238, 0.3);
+  border-radius: 4px;
+  color: #22d3ee;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.detail-mind-temple:hover {
+  background: rgba(34, 211, 238, 0.15);
+  border-color: #22d3ee;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.2);
+}
+
+.mind-temple-icon {
+  font-size: 12px;
+}
+
+.mind-temple-label {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mind-temple-key {
+  margin-left: auto;
+  background: rgba(34, 211, 238, 0.2);
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-family: ui-monospace, monospace;
+  font-size: 10px;
+}

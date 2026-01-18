@@ -3,6 +3,10 @@ import { COLORS } from '@monkeytown/shared/constants';
 import { FlowType, FlowStreamProps, FlowStatus } from '@monkeytown/shared/types';
 import './FlowStream.css';
 
+const AnimateMotion = (props: { dur: string; repeatCount: string; path: string }) => (
+  <animateMotion {...props} />
+);
+
 const FLOW_TYPE_CONFIG: Record<FlowType, { dashArray: string; icon: string }> = {
   message: { dashArray: '5,5', icon: '💬' },
   resource: { dashArray: '10,5', icon: '📦' },
@@ -141,7 +145,7 @@ export function FlowStream({ flow, sourcePos, targetPos, onComplete, onError }: 
           fill={COLORS.cyan}
           className="flow-active-particle"
         >
-          <animateMotion
+          <AnimateMotion
             dur="2s"
             repeatCount="indefinite"
             path={calculatePath()}

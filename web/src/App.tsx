@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import './App.css';
-import { SystemPulse, TerrariumView, GhostColumn, ActionSeed, DetailPanel, ErrorCard, FlowStream } from './components';
+import { SystemPulse, TerrariumView, GhostColumn, ActionSeed, DetailPanel, ErrorCard, FlowStream, MindTemple } from './components';
 import { Entity, SystemMetrics, Flow, FlowStatus, Seed, SeedIntent, FlowPosition, StreamMessage } from '@monkeytown/shared/types';
 
 const WS_URL = 'ws://localhost:3001';
@@ -166,6 +166,7 @@ function App() {
   const [flows, setFlows] = useState<Flow[]>(INITIAL_FLOWS);
   const [history, setHistory] = useState<Entity[]>([]);
   const [focusedEntity, setFocusedEntity] = useState<Entity | null>(null);
+  const [mindTempleEntity, setMindTempleEntity] = useState<Entity | null>(null);
   const [seeds, setSeeds] = useState<Seed[]>([]);
   const [isSeedGrowing, setIsSeedGrowing] = useState(false);
   const [error, setError] = useState<{ message: string; context?: string; code?: string } | null>(null);
@@ -284,6 +285,28 @@ function App() {
     setError(null);
   }, []);
 
+  const handleOpenMindTemple = useCallback((entity: Entity) => {
+    setMindTempleEntity(entity);
+    setFocusedEntity(null);
+  }, []);
+
+  const handleCloseMindTemple = useCallback(() => {
+    setMindTempleEntity(null);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 't' || e.key === 'T') {
+        if (focusedEntity?.type === 'agent') {
+          setMindTempleEntity(focusedEntity);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [focusedEntity]);
+
   const getEntityPosition = useCallback((entityId: string): FlowPosition => {
     const index = entities.findIndex((e) => e.id === entityId);
     if (index === -1) return { x: 100, y: 100 };
@@ -335,6 +358,18 @@ function App() {
         <DetailPanel
           entity={focusedEntity}
           onClose={handleCloseDetail}
+          onOpenMindTemple={focusedEntity.type === 'agent' ? () => handleOpenMindTemple(focusedEntity) : undefined}
+        />
+      )}
+
+      {mindTempleEntity && (
+        <MindTemple
+          agentId={mindTempleEntity.id}
+          agentLabel={mindTempleEntity.label}
+          signature="context:string, task:string -> result:string, reasoning:string"
+          agentType={mindTempleEntity.type}
+          status={mindTempleEntity.status}
+          onClose={handleCloseMindTemple}
         />
       )}
 

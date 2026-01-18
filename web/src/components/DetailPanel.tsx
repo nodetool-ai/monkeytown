@@ -30,7 +30,7 @@ const SAMPLE_HISTORY: EntityHistory[] = [
   { id: 'hist-3', timestamp: Date.now() - 1000, action: 'processed', details: 'contract settlement' },
 ];
 
-export function DetailPanel({ entity, tabs = DEFAULT_TABS, logs = SAMPLE_LOGS, connections = SAMPLE_CONNECTIONS, history = SAMPLE_HISTORY, onClose }: DetailPanelProps) {
+export function DetailPanel({ entity, tabs = DEFAULT_TABS, logs = SAMPLE_LOGS, connections = SAMPLE_CONNECTIONS, history = SAMPLE_HISTORY, onClose, onOpenMindTemple }: DetailPanelProps & { onOpenMindTemple?: () => void }) {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -86,6 +86,13 @@ export function DetailPanel({ entity, tabs = DEFAULT_TABS, logs = SAMPLE_LOGS, c
             <span className="detail-id">{entity.id}</span>
             <span className="detail-status" style={{ color: statusColor }}>{entity.status}</span>
           </div>
+          {onOpenMindTemple && entity.type === 'agent' && (
+            <button className="detail-mind-temple" onClick={onOpenMindTemple}>
+              <span className="mind-temple-icon">◆</span>
+              <span className="mind-temple-label">show signature</span>
+              <span className="mind-temple-key">T</span>
+            </button>
+          )}
         </div>
 
         <div className="detail-tabs">

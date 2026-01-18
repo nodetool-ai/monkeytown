@@ -1,0 +1,162 @@
+.mind-temple-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.mind-temple {
+  width: 90vw;
+  max-width: 1200px;
+  height: 85vh;
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a2e 50%, #0d0d0d 100%);
+  border: 1px solid #404040;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.95) translateY(10px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
+              transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mind-temple.visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.mind-temple-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid #404040;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.mind-temple-header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.mind-temple-type {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #22d3ee;
+  background: rgba(34, 211, 238, 0.1);
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.mind-temple-close {
+  background: none;
+  border: none;
+  color: #a3a3a3;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 200ms;
+}
+
+.mind-temple-close:hover {
+  color: #e5e5e5;
+}
+
+.mind-temple-label {
+  font-size: 24px;
+  font-weight: 400;
+  color: #f1f5f9;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.mind-temple-meta {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: #a3a3a3;
+  font-family: 'Geist Mono', monospace;
+}
+
+.mind-temple-status {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mind-temple-content {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.mind-temple-main {
+  flex: 1;
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.mind-temple-sidebar {
+  width: 320px;
+  padding: 16px;
+  border-left: 1px solid #404040;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.mind-temple-footer {
+  padding: 12px 24px;
+  border-top: 1px solid #404040;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mind-temple-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #737373;
+}
+
+.hint-key {
+  background: #262626;
+  padding: 4px 8px;
+  border-radius: 2px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+}
+
+.reasoning-section {
+  flex: 1;
+}
+
+.reasoning-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.reasoning-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #a3a3a3;
+}
+
+.reasoning-progress {
+  font-size: 12px;
+  color: #737373;
+  font-family: 'Geist Mono', monospace;
+}
