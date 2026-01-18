@@ -1,11 +1,11 @@
-import type { GameSession, BabelGameState, Player, BabelGameConfig } from './types.js';
+import type { GameSession, BabelGameState, TicTacToeGameState, Player, BabelGameConfig } from './types.js';
 
 export class GameSessionManager {
   private sessions: Map<string, GameSession> = new Map();
   private sessionCallbacks: Map<string, Set<SessionCallback>> = new Map();
   private gameEngines: Map<string, unknown> = new Map();
 
-  createSession(config: BabelGameConfig, gameType: 'babel' | 'chess' | 'words'): GameSession {
+  createSession(config: BabelGameConfig, gameType: 'tictactoe' | 'babel' | 'chess' | 'words'): GameSession {
     const session: GameSession = {
       id: crypto.randomUUID(),
       config: {
@@ -71,11 +71,11 @@ export class GameSessionManager {
     return true;
   }
 
-  getGameState(sessionId: string): BabelGameState | null {
+  getGameState(sessionId: string): BabelGameState | TicTacToeGameState | null {
     return this.sessions.get(sessionId)?.state ?? null;
   }
 
-  setGameState(sessionId: string, state: BabelGameState): void {
+  setGameState(sessionId: string, state: BabelGameState | TicTacToeGameState): void {
     const session = this.sessions.get(sessionId);
     if (session) {
       session.state = state;

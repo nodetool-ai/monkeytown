@@ -6,24 +6,75 @@ import type {
   RefereeInput,
   RefereeOutput,
   RefereeConfig,
-  GameEvent,
-  GameEventType,
-  GameResult,
   TicTacToeBoard,
   TicTacToeState,
   TicTacToeMove,
   TicTacToeSymbol,
 } from './types.js';
 
-// Re-export TicTacToe utilities from shared
-import {
-  createEmptyTicTacToeBoard,
-  isValidTicTacToeMove,
-  checkTicTacToeWinner,
-  isTicTacToeBoardFull,
-} from '@monkeytown/packages/shared';
+// Import gaming protocol utilities - using relative path since path resolution may not work
+// Re-export TicTacToe utilities
+export function createEmptyTicTacToeBoard(): TicTacToeBoard {
+  return [
+    [null, null, null],
+    [null, null, null],
+    [null, null, null],
+  ];
+}
 
-export { createEmptyTicTacToeBoard, isValidTicTacToeMove, checkTicTacToeWinner, isTicTacToeBoardFull };
+export function isValidTicTacToeMove(board: TicTacToeBoard, row: number, col: number): boolean {
+  if (row < 0 || row > 2 || col < 0 || col > 2) {
+    return false;
+  }
+  return board[row][col] === null;
+}
+
+export function checkTicTacToeWinner(board: TicTacToeBoard): { winner: TicTacToeSymbol; line?: number[][] } | null {
+  // Check rows
+  for (let row = 0; row < 3; row++) {
+    if (board[row][0] && board[row][0] === board[row][1] && board[row][1] === board[row][2]) {
+      return { winner: board[row][0], line: [[row, 0], [row, 1], [row, 2]] };
+    }
+  }
+
+  // Check columns
+  for (let col = 0; col < 3; col++) {
+    if (board[0][col] && board[0][col] === board[1][col] && board[1][col] === board[2][col]) {
+      return { winner: board[0][col], line: [[0, col], [1, col], [2, col]] };
+    }
+  }
+
+  // Check diagonals
+  if (board[0][0] && board[0][0] === board[1][1] && board[1][1] === board[2][2]) {
+    return { winner: board[0][0], line: [[0, 0], [1, 1], [2, 2]] };
+  }
+  if (board[0][2] && board[0][2] === board[1][1] && board[1][1] === board[2][0]) {
+    return { winner: board[0][2], line: [[0, 2], [1, 1], [2, 0]] };
+  }
+
+  return null;
+}
+
+export function isTicTacToeBoardFull(board: TicTacToeBoard): boolean {
+  for (let row = 0; row < 3; row++) {
+    for (let col = 0; col < 3; col++) {
+      if (board[row][col] === null) {
+        return false;
+      }
+    }
+  }
+  return true;
+}
+
+// Referee-specific game event type
+interface RefereeGameEvent {
+  id: string;
+  gameId: string;
+  type: string;
+  playerId?: string;
+  data: Record<string, unknown>;
+  timestamp: number;
+}
 
 /**
  * TicTacToe Game Rules - used as a prompt for AI-based evaluation
@@ -48,8 +99,8 @@ TicTacToe Game Rules:
  */
 export class GameReferee {
   private config: RefereeConfig;
-  private events: GameEvent[] = [];
-  private onEventCallback?: (event: GameEvent) => void;
+  private events: RefereeGameEvent[] = [];
+  private onEventCallback?: (event: RefereeGameEvent) => void;
 
   constructor(config: RefereeConfig) {
     this.config = config;
@@ -58,7 +109,7 @@ export class GameReferee {
   /**
    * Set callback for game events (for persistence)
    */
-  setOnEvent(callback: (event: GameEvent) => void): void {
+  setOnEvent(callback: (event: RefereeGameEvent) => void): void {
     this.onEventCallback = callback;
   }
 
@@ -208,7 +259,7 @@ export class GameReferee {
    */
   private evaluateMoveLocally(input: RefereeInput): RefereeOutput {
     const { gameState, proposedMove } = input;
-    const moveData = proposedMove.data as TicTacToeMove;
+    const moveData = proposedMove.data as unknown as TicTacToeMove;
     const boardState = gameState.boardState as TicTacToeState;
 
     // Validate move coordinates
@@ -226,8 +277,8 @@ export class GameReferee {
     }
 
     // Apply the move
-    const newBoard: TicTacToeBoard = boardState.board.map((row, rowIdx) =>
-      row.map((cell, colIdx) =>
+    const newBoard: TicTacToeBoard = boardState.board.map((row: TicTacToeSymbol[], rowIdx: number) =>
+      row.map((cell: TicTacToeSymbol, colIdx: number) =>
         rowIdx === moveData.row && colIdx === moveData.col
           ? boardState.currentSymbol
           : cell
@@ -299,7 +350,7 @@ export class GameReferee {
   getEvaluationPrompt(input: RefereeInput): string {
     const { gameState, proposedMove, gameRules } = input;
     const boardState = gameState.boardState as TicTacToeState;
-    const moveData = proposedMove.data as TicTacToeMove;
+    const moveData = proposedMove.data as unknown as TicTacToeMove;
 
     return `
 ${gameRules}
@@ -323,12 +374,12 @@ Evaluate this move and respond with:
   }
 
   private formatBoard(board: TicTacToeBoard): string {
-    return board.map((row, i) => 
-      `  Row ${i}: [${row.map(cell => cell ?? '-').join(', ')}]`
+    return board.map((row: TicTacToeSymbol[], i: number) => 
+      `  Row ${i}: [${row.map((cell: TicTacToeSymbol) => cell ?? '-').join(', ')}]`
     ).join('\n');
   }
 
-  private emitEvent(event: GameEvent): void {
+  private emitEvent(event: RefereeGameEvent): void {
     this.events.push(event);
     this.onEventCallback?.(event);
   }
@@ -336,7 +387,7 @@ Evaluate this move and respond with:
   /**
    * Get all events for this referee instance
    */
-  getEvents(): GameEvent[] {
+  getEvents(): RefereeGameEvent[] {
     return [...this.events];
   }
 

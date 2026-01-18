@@ -27,7 +27,7 @@ export class AIOpponent {
   }
 
   private getAgentConfig(agentType: AgentType, difficulty: 'easy' | 'medium' | 'hard'): StrategyConfig {
-    const baseConfigs: Record<AgentType, Omit<StrategyConfig, 'difficulty'>> = {
+    const baseConfigs: Partial<Record<AgentType, Omit<StrategyConfig, 'difficulty'>>> = {
       chaos: {
         personality: 'chaos',
         riskTolerance: 0.8,
@@ -63,6 +63,42 @@ export class AIOpponent {
         riskTolerance: 0.5,
         adaptability: 0.85,
       },
+      // Player agent types with default behaviors
+      strategist: {
+        personality: 'curious',
+        riskTolerance: 0.5,
+        adaptability: 0.7,
+      },
+      trickster: {
+        personality: 'chaos',
+        riskTolerance: 0.7,
+        adaptability: 0.8,
+      },
+      speedster: {
+        personality: 'economist',
+        riskTolerance: 0.6,
+        adaptability: 0.9,
+      },
+      guardian: {
+        personality: 'security',
+        riskTolerance: 0.3,
+        adaptability: 0.4,
+      },
+      wildcard: {
+        personality: 'madchimp',
+        riskTolerance: 0.9,
+        adaptability: 0.5,
+      },
+      mentor: {
+        personality: 'designer',
+        riskTolerance: 0.4,
+        adaptability: 0.6,
+      },
+      champion: {
+        personality: 'founder',
+        riskTolerance: 0.5,
+        adaptability: 0.8,
+      },
     };
 
     const difficultyModifiers = {
@@ -71,8 +107,11 @@ export class AIOpponent {
       hard: 0.7,
     };
 
-    const base = baseConfigs[agentType];
-    const modifier = difficultyModifiers[difficulty];
+    const base = baseConfigs[agentType] || {
+      personality: 'curious' as AgentType,
+      riskTolerance: 0.5,
+      adaptability: 0.5,
+    };
 
     return {
       ...base,

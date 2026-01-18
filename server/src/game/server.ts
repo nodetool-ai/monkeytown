@@ -1,9 +1,8 @@
 import { RedisService } from '../services/redis.js';
 import { DatabaseService } from '../services/database.js';
-import type { BabelGameState, TicTacToeGameState, GameSession, BabelGameConfig, Player, BabelAction, GameEvent } from './types.js';
+import type { GameSession, BabelGameConfig, Player, BabelAction, GameEvent, TicTacToeBoard } from './types.js';
 import { BabelGameEngine } from './babel-engine.js';
 import { TicTacToeEngine, TicTacToeAction, TicTacToeAI } from './tictactoe-engine.js';
-import { TicTacToeBoard } from '@monkeytown/packages/shared';
 
 export interface TicTacToeConfig {
   maxPlayers: number;

@@ -1,19 +1,82 @@
-// Re-export gaming protocol types for convenience
-export type {
-  ProtocolGameState,
-  ProtocolPlayer,
-  GameMove,
-  RefereeInput,
-  RefereeOutput,
-  RefereeConfig,
-  GameEvent as ProtocolGameEvent,
-  GameEventType,
-  GameResult,
-  TicTacToeBoard,
-  TicTacToeState,
-  TicTacToeMove,
-  TicTacToeSymbol,
-} from '@monkeytown/packages/shared';
+// Gaming protocol types - defined locally to avoid import issues
+
+export type PlayerKind = 'human' | 'agent';
+export type GamePhase = 'waiting' | 'in_progress' | 'finished';
+export type GameResult = 'win' | 'lose' | 'draw' | 'ongoing';
+
+export interface ProtocolPlayer {
+  id: string;
+  name: string;
+  kind: PlayerKind;
+  agentId?: string;
+}
+
+export interface GameMove {
+  playerId: string;
+  timestamp: number;
+  data: Record<string, unknown>;
+}
+
+export interface ProtocolGameState {
+  gameId: string;
+  gameType: string;
+  phase: GamePhase;
+  players: ProtocolPlayer[];
+  currentPlayerIndex: number;
+  moveHistory: GameMove[];
+  boardState: unknown;
+  result?: {
+    outcome: GameResult;
+    winnerId?: string;
+    reason?: string;
+  };
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface RefereeInput {
+  gameState: ProtocolGameState;
+  proposedMove: GameMove;
+  gameRules: string;
+}
+
+export interface RefereeOutput {
+  isValid: boolean;
+  newBoardState?: unknown;
+  gameResult?: {
+    outcome: GameResult;
+    winnerId?: string;
+    reason?: string;
+  };
+  nextPlayerIndex?: number;
+  reasoning?: string;
+  error?: string;
+}
+
+export interface RefereeConfig {
+  gameType: string;
+  gameRules: string;
+  evaluator: 'local' | 'agent';
+  agentPrompt?: string;
+}
+
+// TicTacToe specific types
+export type TicTacToeSymbol = 'X' | 'O' | null;
+export type TicTacToeBoard = [
+  [TicTacToeSymbol, TicTacToeSymbol, TicTacToeSymbol],
+  [TicTacToeSymbol, TicTacToeSymbol, TicTacToeSymbol],
+  [TicTacToeSymbol, TicTacToeSymbol, TicTacToeSymbol]
+];
+
+export interface TicTacToeMove {
+  row: number;
+  col: number;
+}
+
+export interface TicTacToeState {
+  board: TicTacToeBoard;
+  currentSymbol: TicTacToeSymbol;
+}
 
 export interface GameSession {
   id: string;
@@ -80,14 +143,30 @@ export interface Player {
   isConnected: boolean;
 }
 
-export type AgentType =
+// Builder agents (for development)
+export type BuilderAgentType =
   | 'chaos'
   | 'curious'
   | 'designer'
   | 'security'
   | 'economist'
   | 'madchimp'
-  | 'founder';
+  | 'founder'
+  | 'gamedesigner'
+  | 'gametester';
+
+// Player agents (for in-game opponents)
+export type PlayerAgentType =
+  | 'trickster'
+  | 'strategist'
+  | 'speedster'
+  | 'guardian'
+  | 'wildcard'
+  | 'mentor'
+  | 'champion';
+
+// Combined agent type
+export type AgentType = BuilderAgentType | PlayerAgentType;
 
 export interface InputAction {
   type: 'move' | 'action' | 'chat' | 'emote';

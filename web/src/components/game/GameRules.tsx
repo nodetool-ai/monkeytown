@@ -10,6 +10,23 @@ import { Button } from '../ui/Button';
  * Each game has quick tips and detailed rules
  */
 export const GAME_RULES: Record<GameType, GameRulesData> = {
+  tictactoe: {
+    name: 'TicTacToe',
+    emoji: '❌',
+    objective: 'Get 3 of your symbols in a row (horizontally, vertically, or diagonally) to win!',
+    quickTips: [
+      'X always goes first',
+      'Take the center if available',
+      'Block your opponent\'s winning moves',
+      'Look for opportunities to create forks',
+      'Corner squares are strategically valuable',
+    ],
+    actions: [
+      { name: 'Place Symbol', description: 'Click an empty cell to place your X or O' },
+      { name: 'Forfeit', description: 'Give up the game - opponent wins' },
+    ],
+    tips: 'Control the center and corners for the best chances of winning!',
+  },
   babel: {
     name: 'Babel Tower',
     emoji: '🗼',

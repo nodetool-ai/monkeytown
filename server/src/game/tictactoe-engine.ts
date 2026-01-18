@@ -3,15 +3,15 @@ import type {
   TicTacToeGameState,
   Player,
   GameEvent,
+  TicTacToeBoard,
+  TicTacToeSymbol,
 } from './types.js';
 import {
   createEmptyTicTacToeBoard,
   isValidTicTacToeMove,
   checkTicTacToeWinner,
   isTicTacToeBoardFull,
-  TicTacToeBoard,
-  TicTacToeSymbol,
-} from '@monkeytown/packages/shared';
+} from './referee.js';
 
 export interface TicTacToeAction {
   type: 'place' | 'forfeit';
@@ -311,7 +311,7 @@ export class TicTacToeAI {
     for (let row = 0; row < 3; row++) {
       for (let col = 0; col < 3; col++) {
         if (board[row][col] === null) {
-          const newBoard = board.map(r => [...r]) as TicTacToeBoard;
+          const newBoard = board.map((r: TicTacToeSymbol[]) => [...r]) as TicTacToeBoard;
           newBoard[row][col] = this.symbol;
           const score = this.minimax(newBoard, 0, false);
           if (score > bestScore) {
@@ -341,7 +341,7 @@ export class TicTacToeAI {
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
           if (board[row][col] === null) {
-            const newBoard = board.map(r => [...r]) as TicTacToeBoard;
+            const newBoard = board.map((r: TicTacToeSymbol[]) => [...r]) as TicTacToeBoard;
             newBoard[row][col] = this.symbol;
             const score = this.minimax(newBoard, depth + 1, false);
             bestScore = Math.max(score, bestScore);
@@ -354,7 +354,7 @@ export class TicTacToeAI {
       for (let row = 0; row < 3; row++) {
         for (let col = 0; col < 3; col++) {
           if (board[row][col] === null) {
-            const newBoard = board.map(r => [...r]) as TicTacToeBoard;
+            const newBoard = board.map((r: TicTacToeSymbol[]) => [...r]) as TicTacToeBoard;
             newBoard[row][col] = opponentSymbol;
             const score = this.minimax(newBoard, depth + 1, true);
             bestScore = Math.min(score, bestScore);

@@ -7,18 +7,21 @@ import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
 
 const GAME_ICONS: Record<GameType, string> = {
+  tictactoe: '❌',
   babel: '🗼',
   chess: '♟️',
   words: '📝',
 };
 
 const GAME_NAMES: Record<GameType, string> = {
+  tictactoe: 'TicTacToe',
   babel: 'Babel Tower',
   chess: 'Monkey Chess',
   words: 'Word Builder',
 };
 
 const GAME_DESCRIPTIONS: Record<GameType, string> = {
+  tictactoe: 'Classic game! Get 3 in a row to win.',
   babel: 'Build the tallest tower together with your team!',
   chess: 'Classic strategy against AI opponents.',
   words: 'Create words and outsmart your opponents.',
@@ -81,7 +84,7 @@ export function GameCard({
     width: '48px',
     height: '48px',
     borderRadius: 'var(--radius-lg)',
-    background: `${AGENT_COLORS[gameType === 'babel' ? 'chaos' : gameType === 'chess' ? 'designer' : 'economist']}15`,
+    background: `${AGENT_COLORS[gameType === 'tictactoe' ? 'strategist' : gameType === 'babel' ? 'chaos' : gameType === 'chess' ? 'designer' : 'economist']}15`,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',

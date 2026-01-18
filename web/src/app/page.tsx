@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel, useChat } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -339,7 +339,7 @@ export default function LobbyPage() {
 }
 
 function GameDemo({ onBack }: { onBack: () => void }) {
-  const { messages, sendMessage } = useChat();
+  const { messages, sendMessage } = useLocalChat();
 
   React.useEffect(() => {
     // Welcome message from AI opponent
@@ -430,7 +430,7 @@ function GameDemo({ onBack }: { onBack: () => void }) {
   );
 }
 
-function useChat() {
+function useLocalChat() {
   const [messages, setMessages] = React.useState<any[]>([]);
 
   const addMessage = (message: any) => {

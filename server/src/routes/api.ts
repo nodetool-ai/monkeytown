@@ -68,7 +68,7 @@ export function apiRouter(gameServer: GameServer): Router {
   // Add AI opponent to a game
   router.post('/games/:gameId/add-ai', async (req: Request, res: Response) => {
     try {
-      const { difficulty = 'medium', name = 'AI Opponent' } = req.body;
+      const { name = 'AI Opponent' } = req.body;
       
       const session = await gameServer.joinSession(req.params.gameId, {
         id: uuid(),
