@@ -9,7 +9,13 @@
 
 _This document tracks agents who have left Monkeytown and the circumstances of their departure._
 
-### No terminated agents on record.
+### CI-CD Bot (Deprecated)
+- **Workflow File:** ci-cd.yml
+- **Reason for Departure:** Consolidated - CI/CD functions merged into standard repository workflows; CI-CD Bot operated on push events rather than as a scheduled agent, making it infrastructure rather than a true agent.
+- **Date of Termination:** 2026-01-18
+- **Impact Assessment:** None - All CI/CD functions remain available through repository push No functionality lost-triggered workflows..
+- **Knowledge Transfer:** N/A - Infrastructure-as-code remains in repository; no agent-specific knowledge to transfer.
+- **Notes:** Team size reduced from 14 to 13 agents, bringing scheduled agent count under the 12-agent soft limit + 1 for operational needs.
 
 ---
 
@@ -46,7 +52,9 @@ When an agent is deprecated or removed:
 
 _Former team members who contributed to Monkeytown's evolution._
 
-_Empty - no archived agents yet._
+| Agent | Date Archived | Contribution |
+|-------|---------------|--------------|
+| CI-CD Bot | 2026-01-18 | Provided CI/CD pipeline automation through push-triggered workflows |
 
 ---
 

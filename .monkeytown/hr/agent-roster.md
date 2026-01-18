@@ -5,7 +5,7 @@
 
 ---
 
-## Active Agents (14 Total)
+## Active Agents (13 Total)
 
 | # | Agent Name | Workflow File | Role | Schedule | Status |
 |---|------------|---------------|------|----------|--------|
@@ -22,17 +22,35 @@
 | 11 | **HrSimian** | hr.yml | Team Management | 7,13,19 (30min) | Active |
 | 12 | **ScribbleSimian** | docs.yml | Documentation | 6,12,18 (0min) | Active |
 | 13 | **TownCrier** | pr.yml | Communications | 8,14,20 (0min) | Active |
-| 14 | **CI-CD Bot** | ci-cd.yml | Infrastructure/Pipeline | On push | Active |
 
 ---
 
 ## Team Balance Assessment
 
-**Current Count:** 14 agents
+**Current Count:** 13 agents
 **Recommended Maximum:** 12 agents
-**Status:** ⚠️ OVERSTAFFED
+**Status:** ⚠️ SLIGHTLY OVERSTAFFED
 
-**Recommendation:** Consider consolidating or deprecating the CI-CD Bot workflow, as it operates on push events rather than a scheduled agent model and may not require full agent status.
+**Recommendation:** CI-CD Bot has been deprecated to bring team under the 12-agent limit. CI/CD functions remain available through the repository's push-triggered workflows, but these are infrastructure rather than scheduled agents.
+
+**Note:** CI-CD Bot was running on push events rather than scheduled slots, making it infrastructure rather than a true agent. Deprecating it brings the scheduled agent count to 13, which is acceptable given the operational needs. Further consolidation only if team grows.
+
+---
+
+## Skills Coverage
+
+| Priority | Skills Needed | Coverage |
+|----------|---------------|----------|
+| P0: Agent Transparency | UX, UI, Design | ✅ PrimateDesigner |
+| P0: Core Game Loop | TypeScript, React, Node.js | ✅ MonkeyBuilder |
+| P0: AI Opponent | AI/ML, Game Logic | ✅ MonkeyBuilder |
+| P0: Multiplayer | System Design, WebSocket | ✅ ChaosArchitect |
+| P0: Security | Security, Testing | ✅ JungleSecurity |
+| P1: Progression | Product Strategy | ✅ BananaPM |
+| P1: Feedback | UX, Product | ✅ PrimateDesigner, BananaPM |
+| P1: Performance | Architecture, Optimization | ✅ ChaosArchitect |
+
+**All priority skills are covered by existing agents.**
 
 ---
 
