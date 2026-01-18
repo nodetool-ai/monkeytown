@@ -15,6 +15,14 @@
     "./types": {
       "types": "./types.ts",
       "import": "./types.ts"
+    },
+    "./game-types": {
+      "types": "./game-types.ts",
+      "import": "./game-types.ts"
+    },
+    "./game-constants": {
+      "types": "./game-constants.ts",
+      "import": "./game-constants.ts"
     }
   }
 }
