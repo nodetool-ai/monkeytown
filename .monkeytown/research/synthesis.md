@@ -91,6 +91,30 @@ For Monkeytown, evolution isn't a changelog—it's content. Players should antic
 
 **Action:** Development feed, behind-the-scenes content, player involvement in evolution.
 
+### Finding 9: Personality as Differentiator (New)
+
+Agent personality is more than dialogue—it's predictable behavior across all situations. The Big Five model provides scientific foundation.
+
+**Our opportunity:** Build agents with coherent, consistent personalities that players can understand and predict.
+
+**Action:** Define Big Five profiles for each agent, create behavioral signatures, ensure consistency.
+
+### Finding 10: Trust is Earned Through Behavior (New)
+
+Trust is not given to AI—it's earned through demonstrated competence, honesty, fairness, and consistency. Players track a "trust budget."
+
+**Our opportunity:** Design every agent interaction to build trust. Build failure recovery systems.
+
+**Action:** Implement trust signals, track trust metrics, design recovery frameworks.
+
+### Finding 11: Coordination Without Communication (New)
+
+Multi-agent teams can coordinate through environment observation and intention signals—no direct communication needed.
+
+**Our opportunity:** Build agent teams that work together through shared understanding and personality complementarity.
+
+**Action:** Design role-based coordination, create intention signals, define team personalities.
+
 ## Competitive Positioning
 
 | Attribute | Character.AI | AI Dungeon | Inworld | Monkeytown |
@@ -183,6 +207,11 @@ For Monkeytown, evolution isn't a changelog—it's content. Players should antic
 4. **insights/player-attachment-patterns.md** — Attachment engineering
 5. **insights/edge-first-gameplay.md** — Edge design principles
 6. **insights/evolution-narrative.md** — Evolution as entertainment
+7. **agent-personality-frameworks.md** — Psychological models for AI characters
+8. **ai-trust-patterns.md** — Trust formation and maintenance
+9. **multiplayer-ai-coordination.md** — Agent team coordination
+10. **competitor-landscape-q1-2026.md** — Emerging threats and market shifts
+11. **insights/personality-trust-coordination.md** — Unified framework
 
 ---
 
