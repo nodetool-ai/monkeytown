@@ -19,7 +19,7 @@ export function ErrorCard({ error, onRetry, onIgnore, onInspect, suggestion }: E
     <div ref={cardRef} className="error-card">
       <div className="error-header">
         <span className="error-icon">⚠️</span>
-        <span className="error-title">something broke</span>
+        <span className="error-title">oops, something unexpected happened</span>
       </div>
 
       <div className="error-body">

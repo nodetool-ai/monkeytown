@@ -1,18 +1,22 @@
 # 🐒 Monkeytown
 
-**A self-sustaining multi-agent system.**
+**AI agents that build games for you.**
 
-No roadmap. No product owner. No design committee. Only agents.
+Welcome! Monkeytown is where GitHub agents collaborate to create and evolve multiplayer games where you play against AI. The agents design, develop, and improve the game continuously—you get to play and enjoy what they build.
 
-Monkeytown is an autonomous AI civilization where agents collaborate, conflict, and evolve—building software and themselves with minimal human intervention. Humans have one power: accepting or rejecting pull requests.
+**For Players:** Jump in and play! The game evolves as agents add new features and improvements.
 
-## The Goal
+**For Observers:** Watch how AI agents work together to build software autonomously.
 
-Create a **self-sustaining multi-agent system** that:
-- Operates continuously without human direction
-- Evolves its capabilities over time
-- Accomplishes tasks across any domain
-- Improves itself through iteration
+## The Vision
+
+Create AI agents that **build and serve games for human players**. The agents:
+- Work together to design and develop engaging games
+- Continuously improve and expand gameplay
+- Respond to player feedback and needs
+- Operate autonomously while serving players
+
+The goal: games that evolve and improve themselves while delighting human players.
 
 ## Two-Layer Architecture
 
@@ -55,38 +59,28 @@ See [docs/goal.md](docs/goal.md) for the complete vision and [docs/agent-layer.m
 
 ---
 
-Monkeytown is not a product.  
-It is an artificial software civilization.
+Monkeytown is built to serve players.  
+The agents exist to make your experience better.
 
 ---
 
 ## What The App Does
 
-The React application is a **general-purpose multi-agent system** with a **Terrarium View** - a real-time visualization interface where humans ("witnesses") can observe AI agents at work.
+The React application is a **multiplayer game platform** where human players interact with AI opponents and enjoy experiences built by autonomous agents.
 
-**The React app is NOT limited to software development.** It is a general-purpose agent system where:
-- Agents can be deployed for any domain (research, analysis, content, planning, etc.)
-- Agents reason using LLMs via the `@ax-llm/ax` framework
-- Agents use tools to accomplish tasks
-- The system adapts to any problem space
+**For Players:**
+- 🎮 **Play**: Engage in gameplay against AI opponents
+- 🌟 **Discover**: Experience new features as agents add them
+- 💬 **Influence**: Your gameplay and feedback guide agent improvements
+- 📊 **Track Progress**: See your stats and achievements
 
-**For Witnesses (Users)**:
-- 🔍 **Observe**: Watch AI agents process tasks, communicate via flow streams, and complete work
-- 🌱 **Plant Seeds**: Introduce constraints, resources, or queries that agents discover and act upon
-- 📜 **Review History**: Browse completed actions in the ghost column (history sidebar)
-- 📊 **Monitor Health**: See system metrics (active agents, pending flows, load) in real-time
+**For Observers:**
+- 🔍 **Watch**: Observe AI agents building and improving the game in real-time
+- 🌱 **Suggest**: Plant ideas that agents might incorporate
+- 📜 **Review**: Browse the history of changes agents have made
+- 📊 **Monitor**: See how agents collaborate and make decisions
 
-**Key Components**:
-| Component | Purpose |
-|-----------|---------|
-| Terrarium View | Main canvas with emergent layout showing all agent activity |
-| Agent Cards | Visual entities with 5 states: idle, active, processing, complete, error |
-| Flow Streams | Animated paths showing communication between agents |
-| System Pulse | Header displaying civilization health metrics |
-| Ghost Column | Reverse-chronological history of completed actions |
-| Action Seeds | Witness intervention mechanism to influence the system |
-
-**The Experience**: Like watching an ant farm, but for intelligent agents. You don't control the agents - you witness their civilization emerge.
+**The Experience**: You're playing a game that builds itself—agents work behind the scenes to make your experience better.
 
 ---
 
@@ -162,13 +156,19 @@ Each folder belongs to exactly one agent.
 
 ## The Human Role
 
-You do not steer.
-You do not guide.
-You do not fix.
+You are the player and the reason this exists.
 
-You approve or reject pull requests.
+**As a Player:**
+- Enjoy the game the agents build for you
+- Provide feedback through gameplay
+- Experience new features as they're added
 
-Monkeytown lives or dies by natural selection.
+**As a Collaborator:**
+- Review and approve changes agents propose
+- Suggest improvements and new directions
+- Help guide the evolution of the game
+
+The agents work for you, continuously improving your experience.
 
 ---
 

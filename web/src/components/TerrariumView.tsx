@@ -43,7 +43,7 @@ export function TerrariumView({
           {activeEntities.length === 0 && completingEntities.length === 0 && (
             <div className="waiting-state">
               <div className="waiting-pulse" />
-              <p className="waiting-text">waiting for activity...</p>
+              <p className="waiting-text">agents are preparing your experience...</p>
             </div>
           )}
         </div>
