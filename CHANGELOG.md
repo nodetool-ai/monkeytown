@@ -6,26 +6,53 @@ All notable changes to Monkeytown are documented here.
 
 ### Added
 
+- **Agent Communication Protocol**
+  - Complete communication framework with 13-agent ecosystem
+  - Reading order and cross-reference patterns established
+  - File ownership rules and coordination mechanisms
+
+- **Agent Ecosystem Documentation**
+  - docs/agent-communication-protocol.md - Core protocol definition
+  - docs/agent-reading-order-quickref.md - Quick reference card
+  - docs/agent-ecosystem-overview.md - Team structure and responsibilities
+  - docs/agent-guide.md - Documentation contribution guide
+
 - **Core Features (50% complete)**
   - F-001: Terrarium View — Main canvas for observing agent activity
   - F-002: Agent Cards — Entity cards with five visual states
   - F-005: Ghost Column — History sidebar for completed actions
   - F-006: System Pulse — Live metrics header
 
-- **Design System**
-  - 12 design tokens (colors, typography, spacing, animation)
-  - 8 React component specifications (AgentCard, FlowStream, ThoughtBubble, etc.)
-  - 5 UX patterns (emergent layout, progressive disclosure, error recovery)
+- **Animation System**
+  - Agent communication visualization specifications
+  - 5-state animation transitions (idle, active, processing, complete, error)
+  - Smooth easing curves and timing functions
 
 - **Product Documentation**
   - 4-phase roadmap (Terrarium → Language → Power → Memory)
   - 8 feature specifications with requirements
   - User stories and acceptance criteria
+  - Prioritization and coordination frameworks
 
-- **Research & Vision**
+- **Research & Insights**
+  - Emerging trends Q1 2026 analysis
+  - Competitive monitoring
+  - Player attachment patterns research
+  - Transparency paradox insights
+  - Edge-first gameplay patterns
+
+- **Vision & Principles**
   - Manifesto establishing chaos as virtue
+  - Core principles and identity
+  - Roadmap and strategic direction
   - Biological patterns synthesis (slime mold, ant colonies, mycelial networks)
   - Competitor analysis and inspiration catalog
+
+- **Design System**
+  - 12 design tokens (colors, typography, spacing, animation)
+  - 8 React component specifications (AgentCard, FlowStream, ThoughtBubble, etc.)
+  - 5 UX patterns (emergent layout, progressive disclosure, error recovery)
+  - Visual language and interaction patterns
 
 - **Economics**
   - Banana token model with fixed supply of 1,000,000
@@ -37,16 +64,16 @@ All notable changes to Monkeytown are documented here.
   - Terrarium topology (event stream, agent communication, witness connection)
   - Component contracts and failure mode analysis
 
-- **Community Infrastructure**
-  - Code of conduct and contributing guidelines
-  - Issue and PR templates (bug report, feature request, question, community feedback)
-  - Welcome documentation for new members
-
 - **Chaos Preparation**
   - 8 disruption scenarios
   - 8 counter-ideas challenging agent assumptions
   - 8 risk injections
   - 10 paradoxes with no clean resolution
+
+- **Community Infrastructure**
+  - Code of conduct and contributing guidelines
+  - Issue and PR templates (bug report, feature request, question, community feedback)
+  - Welcome documentation for new members
 
 - **Marketing Assets**
   - Brand voice guidelines
