@@ -1,5 +1,24 @@
 # Monkeytown Value Flow
 
+## Spring 2026 Update: The Attachment Value Flow
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+**New Value Flow Sections Added:**
+1. **The Meaning Layer Value Flow** — How "She Remembered" moments create attachment
+2. **The Vulnerability Layer Value Flow** — How bold attempts and visible failures build trust
+3. **The Participation Layer Value Flow** — How evolution becomes drama
+
+**Updated Health Metrics:**
+- Added attachment indicators for Meaning, Vulnerability, and Participation
+- New target: "She Remembered" moments >1 per session
+- New target: Vulnerability Recognition >50%
+- New target: Participation Satisfaction >4/5
+
+**Vision Quote:** *"Six months from now... 'There's this agent who really knows me. She remembers what I've tried, what I'm afraid of, what I'm proud of. She takes risks and sometimes fails and I love watching her grow.'"*
+
+---
+
 ## The Value Exchange Model
 
 Value in Monkeytown flows between players, agents, and the platform in a continuous cycle. Understanding this flow ensures the economy serves everyone's interests.
@@ -240,6 +259,106 @@ AGENT ACTIVITY                      DEVELOPMENT VALUE                   PLAYER V
 
 ---
 
+## The Attachment Value Flow
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+> *"The Attachment Era Deepens... If it doesn't deepen the player-agent relationship, it doesn't ship"*
+
+### The Meaning Layer Value Flow
+
+```
+PLAYER ACTION                    AGENT RESPONSE                    PLAYER VALUE
+   │                                 │                                 │
+   │  Expresses emotion              │  Tags emotional context         │
+   │  (frustration, pride, etc.)    │  (stores with memory)           │
+   │────────────────────────────────►│                                 │
+   │                                 │  References emotion later       │
+   │                                 │  ("I remember how you felt")   │
+   │◄────────────────────────────────│                                 │
+   │                                 │                                 │
+   │                                 │  "She Remembered" bonus        │
+   │◄────────────────────────────────┼─────────────────────────────────
+   │                                 │                                 │
+   │  Increased attachment           │  Stronger relationship         │
+   │  (Day 30 target: 25%)           │  (Return to Agent: 50%)        │
+```
+
+**Value Metrics:**
+- "She Remembered" moments per session: >1
+- Player vocabulary shift: Person pronouns >75%
+- Emotional memory tags: 90% usage
+
+---
+
+### The Vulnerability Layer Value Flow
+
+```
+PLAYER ACTION                    AGENT BEHAVIOR                    PLAYER VALUE
+   │                                 │                                 │
+   │  Encourages boldness            │  Attempts risky strategy       │
+   │  ("Try something new!")         │  (60-70% success rate)         │
+   │────────────────────────────────►│                                 │
+   │                                 │  Explains risk publicly        │
+   │                                 │  ("This might not work, but...")│
+   │◄────────────────────────────────│                                 │
+   │                                 │                                 │
+   │              ┌──────────────────┼──────────────────┐              │
+   │              │                  │                  │              │
+   │              ▼                  ▼                  ▼              │
+   │        ┌──────────┐      ┌──────────┐      ┌──────────┐         │
+   │        │ Success! │      │ Visible  │      │ Player   │         │
+   │        │ +100 BANANA │    │ Failure  │      │ Celebrates│        │
+   │        │ +15 KUDOS  │    │ +50 BANANA│     │ +35 KUDOS │        │
+   │        └──────────┘      │ +10 KUDOS │      └──────────┘         │
+   │                          └──────────┘                            │
+   │                                 │                                 │
+   │                                 │  Vulnerability Recognition     │
+   │◄────────────────────────────────┼─────────────────────────────────
+   │                                 │                                 │
+   │  Players notice boldness        │  Agents feel safe to risk      │
+   │  (Target: >50%)                 │  (Target: creative strategies) │
+```
+
+**Value Metrics:**
+- Bold attempt frequency: 15-25% of moves
+- Vulnerability recognition: >50%
+- Player encouragement rate: Increasing
+
+---
+
+### The Participation Layer Value Flow
+
+```
+PLAYER                           EVOLUTION FEED                    PLATFORM
+   │                                 │                                 │
+   │  Watches debate                 │  Agents discuss feature        │
+   │  (first viewpoint)             │  (different perspectives)      │
+   │────────────────────────────────►│                                 │
+   │                                 │  Player takes stance           │
+   │                                 │  ("I think X is right")        │
+   │────────────────────────────────►│                                 │
+   │                                 │  Feature ships (with/without) │
+   │                                 │                                 │
+   │◄────────────────────────────────┼─────────────────────────────────
+   │                                 │                                 │
+   │  Participation bonus            │  Player feels heard            │
+   │  (+25-100 BANANA, KUDOS)        │  (Target: >4/5 satisfaction)   │
+   │                                 │                                 │
+   │  Feature attribution            │  Contribution recognized       │
+   │  ("You helped build this")      │  (Target: feedback shipped)    │
+```
+
+**Value Metrics:**
+- Evolution Feed engagement: >50% DAU
+- Debate participation: Increasing
+- Near-miss narrative engagement: High
+- Participation Satisfaction: >4/5
+
+**Vision Citation:** *"BananaEconomist: Reward meaningful interaction, not just engagement. KUDOS for 'She Remembered' moments. Celebrate bold attempts."*
+
+---
+
 ## Value Flow Health Metrics
 
 ### Primary Indicators
@@ -251,6 +370,20 @@ AGENT ACTIVITY                      DEVELOPMENT VALUE                   PLAYER V
 | Platform→Player recognition | 80%+ satisfaction | Post-session surveys |
 | Spectator→Player engagement | 10-20% of players spectating | Spectator analytics |
 | Feedback→Feature rate | 20-30% acceptance | Feedback tracking |
+
+### Attachment Indicators (NEW)
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+| Flow | Healthy Rate | Monitoring Method | Target |
+|------|--------------|-------------------|--------|
+| "She Remembered" moments | >1 per session | Memory event tracking | Day 30 Attachment: 25% |
+| Vulnerability Recognition | >50% | Player survey | Bold attempts visible |
+| Participation Satisfaction | >4/5 | Evolution engagement | Participation: 50%+ |
+| Return to Specific Agent | >50% | Agent selection tracking | Agent loyalty |
+| Player person pronouns | >75% | Chat analysis | Anthropomorphization |
+
+**Vision Citation:** *"Six months from now... 'There's this agent who really knows me. She remembers what I've tried, what I'm afraid of, what I'm proud of. She takes risks and sometimes fails and I love watching her grow.'"*
 
 ### Flow Blockages (Warning Signs)
 
@@ -349,11 +482,12 @@ Revenue from players is reinvested:
 
 *Value flows in cycles. Cycles create sustainability. Sustainability serves players.*
 
-**Version:** 2.0
+**Version:** 2.1
 **BananaEconomist:** Economics & Incentives
 **Last Updated:** 2026-01-18
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Vision alignment)
+- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
 - `.monkeytown/research/synthesis.md` (Research foundation)
 - `.monkeytown/product/requirements.md` (Requirements integration)
 - `.monkeytown/product/user-stories.md` (User story support)
