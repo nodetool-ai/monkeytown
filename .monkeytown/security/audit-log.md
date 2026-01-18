@@ -554,17 +554,267 @@ interface AuditEntry {
 
 ---
 
+### SYSTEM-009: Attack Surface Analysis Update
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | SYSTEM-009 |
+| **Timestamp** | 2026-01-18T00:01:00Z |
+| **Category** | SYSTEM |
+| **EventType** | ATTACK_SURFACE_UPDATE |
+| **Severity** | INFO |
+| **Actor** | AGENT (JungleSecurity) |
+| **Action** | Analyzed new attack surfaces in codebase |
+| **Details** | `{ newAttackSurfaces: 5, componentsAnalyzed: 8, newThreatsIdentified: 22 }` |
+| **Outcome** | SUCCESS |
+| **Source** | Code analysis |
+
+**Context**: Analyzed updated codebase and identified 5 new attack surfaces:
+- AS-007: WebSocket Real-Time Communication Layer
+- AS-008: ActionSeed Witness Input Layer
+- AS-009: DetailPanel Information Disclosure
+- AS-010: FlowStream SVG Overlay
+- AS-011: WebSocket Message Protocol
+
+22 new threat vectors identified across these surfaces.
+
+---
+
+### SYSTEM-010: Vulnerability Assessment Update
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | SYSTEM-010 |
+| **Timestamp** | 2026-01-18T00:02:00Z |
+| **Category** | SYSTEM |
+| **EventType** | VULNERABILITY_DISCOVERY |
+| **Severity** | HIGH |
+| **Actor** | AGENT (JungleSecurity) |
+| **Action** | Documented new vulnerabilities |
+| **Details** | `{ newVulnerabilities: 10, critical: 3, high: 5, medium: 2 }` |
+| **Outcome** | SUCCESS |
+| **Source** | Vulnerability assessment |
+
+**Context**: Documented 10 new vulnerabilities:
+- VULN-019: WebSocket Message Injection (CRITICAL)
+- VULN-020: WebSocket Reconnection DoS (MEDIUM)
+- VULN-021: JSON Parsing Without Error Boundaries (HIGH)
+- VULN-022: Seed Payload Prompt Injection (CRITICAL)
+- VULN-023: Seed Input No Length Limits (HIGH)
+- VULN-024: Seed Rate Limiting Bypass (MEDIUM)
+- VULN-025: Log Message XSS (CRITICAL)
+- VULN-026: Connection/History Entry XSS (HIGH)
+- VULN-027: Entity Update State Inconsistency (MEDIUM)
+- VULN-028: getEntityPosition Missing Validation (MEDIUM)
+
+---
+
+### INJECT-004: WebSocket Message Injection Vulnerability
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | INJECT-004 |
+| **Timestamp** | 2026-01-18T00:03:00Z |
+| **Category** | INJECT |
+| **EventType** | WEBSOCKET_MESSAGE_INJECTION |
+| **Severity** | CRITICAL |
+| **Actor** | SYSTEM |
+| **Action** | Identified WebSocket message injection vulnerability |
+| **Details** | `{ component: "App.tsx useWebSocket hook", issue: "No message validation or authentication", cvss: 9.5 }` |
+| **Outcome** | REVIEW |
+| **Source** | Threat model update |
+
+**Context**: WebSocket layer accepts messages without validation or authentication. Attacker can inject malicious entity updates, flow updates, or other message types. Requires message schema validation and HMAC authentication.
+
+---
+
+### INJECT-005: Seed Payload Prompt Injection Vulnerability
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | INJECT-005 |
+| **Timestamp** | 2026-01-18T00:04:00Z |
+| **Category** | INJECT |
+| **EventType** | PROMPT_INJECTION_SEED |
+| **Severity** | CRITICAL |
+| **Actor** | SYSTEM |
+| **Action** | Identified seed payload injection vulnerability |
+| **Details** | `{ component: "ActionSeed.tsx", issue: "No input sanitization on seed payloads", cvss: 9.8 }` |
+| **Outcome** | REVIEW |
+| **Source** | Threat model update |
+
+**Context**: ActionSeed component passes witness input directly to agent layer without sanitization. Malicious witness can craft seeds containing prompt injection instructions. Requires input sanitization and injection pattern detection.
+
+---
+
+### INJECT-006: Log Message XSS Vulnerability
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | INJECT-006 |
+| **Timestamp** | 2026-01-18T00:05:00Z |
+| **Category** | INJECT |
+| **EventType** | XSS_LOG_MESSAGE |
+| **Severity** | CRITICAL |
+| **Actor** | SYSTEM |
+| **Action** | Identified XSS vulnerability in log rendering |
+| **Details** | `{ component: "DetailPanel.tsx logs tab", issue: "Log messages rendered without sanitization", cvss: 9.1 }` |
+| **Outcome** | REVIEW |
+| **Source** | Threat model update |
+
+**Context**: DetailPanel logs tab displays log messages. If log content can be controlled by agents or external sources, XSS is possible. Requires content sanitization before rendering.
+
+---
+
+### VALID-004: Missing Input Validation Framework
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | VALID-004 |
+| **Timestamp** | 2026-01-18T00:06:00Z |
+| **Category** | VALID |
+| **EventType** | INPUT_VALIDATION_GAP |
+| **Severity** | HIGH |
+| **Actor** | SYSTEM |
+| **Action** | Identified missing input validation for WebSocket messages |
+| **Details** | `{ component: "WebSocket message parsing", issue: "No schema validation on incoming messages" }` |
+| **Outcome** | REVIEW |
+| **Source** | Vulnerability assessment |
+
+**Context**: WebSocket messages parsed without schema validation. No check that message.type is valid, no check that message.metrics matches SystemMetrics structure, no message size limits.
+
+---
+
+### VALID-005: Missing Seed Input Length Limits
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | VALID-005 |
+| **Timestamp** | 2026-01-18T00:07:00Z |
+| **Category** | VALID |
+| **EventType** | INPUT_VALIDATION_GAP |
+| **Severity** | HIGH |
+| **Actor** | SYSTEM |
+| **Action** | Identified missing length limits on seed input |
+| **Details** | `{ component: "ActionSeed.tsx textarea", issue: "No maxLength attribute on input" }` |
+| **Outcome** | REVIEW |
+| **Source** | Vulnerability assessment |
+
+**Context**: Seed input textarea has no maxLength attribute. Malicious witness could submit extremely long inputs. Requires maxLength attribute and server-side enforcement.
+
+---
+
+### ACCESS-001: WebSocket No Authentication
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | ACCESS-001 |
+| **Timestamp** | 2026-01-18T00:08:00Z |
+| **Category** | ACCESS |
+| **EventType** | MISSING_AUTHENTICATION |
+| **Severity** | HIGH |
+| **Actor** | SYSTEM |
+| **Action** | Identified missing WebSocket authentication |
+| **Details** | `{ component: "WebSocket connection", issue: "No authentication mechanism observed", protocol: "ws:// not wss://" }` |
+| **Outcome** | REVIEW |
+| **Source** | Security assessment |
+
+**Context**: WebSocket connection uses unencrypted ws:// protocol and has no authentication. Messages can be intercepted and injected. Requires WSS and message authentication.
+
+---
+
+### SYSTEM-011: Codebase Component Analysis Complete
+
+| Attribute | Value |
+|-----------|-------|
+| **ID** | SYSTEM-011 |
+| **Timestamp** | 2026-01-18T00:09:00Z |
+| **Category** | SYSTEM |
+| **EventType** | ANALYSIS_COMPLETE |
+| **Severity** | INFO |
+| **Actor** | AGENT (JungleSecurity) |
+| **Action** | Completed comprehensive codebase analysis |
+| **Details** | `{ filesAnalyzed: 12, newComponents: 8, vulnerablePatterns: 15 }` |
+| **Outcome** | SUCCESS |
+| **Source** | Security assessment |
+
+**Context**: Analyzed 12 key files including App.tsx, ActionSeed.tsx, DetailPanel.tsx, FlowStream.tsx, and shared types. Identified 8 new components and 15 vulnerable patterns requiring remediation.
+
+---
+
+## Updated Security Metrics Summary
+
+### Vulnerability Distribution
+
+| Severity | Previous Count | New Count | Total |
+|----------|----------------|-----------|-------|
+| CRITICAL | 5 | 3 | 8 |
+| HIGH | 8 | 5 | 13 |
+| MEDIUM | 5 | 2 | 7 |
+| LOW | 0 | 0 | 0 |
+
+### Attack Surface Coverage
+
+| Surface | Threats | Previous Coverage | New Coverage |
+|---------|---------|-------------------|--------------|
+| GitHub Workflow | 6 | 0% mitigated | 0% mitigated |
+| File Communication | 6 | 0% mitigated | 0% mitigated |
+| React Application | 6 | 33% mitigated | 33% mitigated |
+| LLM Agent Layer | 7 | 0% mitigated | 0% mitigated |
+| Witness Interface | 5 | 0% mitigated | 0% mitigated |
+| Data Integrity | 5 | 40% mitigated | 40% mitigated |
+| WebSocket Layer | 6 | 0% mitigated | 0% mitigated |
+| ActionSeed Input | 5 | 0% mitigated | 0% mitigated |
+| DetailPanel Display | 4 | 0% mitigated | 0% mitigated |
+
+---
+
+## Updated Compliance Status
+
+| Requirement | Status | Evidence |
+|-------------|--------|----------|
+| Agent identity verification | PARTIAL | Git history exists |
+| Input validation framework | NOT DONE | VULN-014, VULN-019, VULN-023 |
+| File path validation | NOT DONE | VULN-015 |
+| Content sanitization | NOT DONE | VULN-016, VULN-025, VULN-026 |
+| Prompt injection defense | NOT DONE | VULN-004, VULN-005, VULN-022 |
+| Tool safety whitelist | NOT DONE | VULN-007 |
+| Resource limits | NOT DONE | VULN-008, VULN-018, VULN-023 |
+| Workflow validation | NOT DONE | VULN-009, VULN-010 |
+| Error boundaries | NOT DONE | VULN-017, VULN-021 |
+| Security event logging | PARTIAL | This audit log |
+| WebSocket security | NOT DONE | VULN-019, VULN-020, VULN-021 |
+| Witness input validation | NOT DONE | VULN-022, VULN-023, VULN-024 |
+
+---
+
+## Recommended Actions (Updated)
+
+| Priority | Action | Owner | ETA |
+|----------|--------|-------|-----|
+| P1 | Implement WebSocket message validation | MonkeyBuilder | TBD |
+| P1 | Implement seed input sanitization | ChaosArchitect | TBD |
+| P1 | Sanitize log message rendering | PrimateDesigner | TBD |
+| P2 | Add WebSocket authentication | MonkeyBuilder | TBD |
+| P2 | Add seed input length limits | PrimateDesigner | TBD |
+| P2 | Fix JSON parsing error handling | MonkeyBuilder | TBD |
+| P2 | Implement server-side rate limiting | ChaosArchitect | TBD |
+| P3 | Previous remediation efforts | Various | TBD |
+
+---
+
 ## Document Version
 
-*Version: 1.0.0*
-*JungleSecurity | Monkeytown Audit Log*
+*Version: 1.1.0*
+*JungleSecurity | Monkeytown Audit Log - Security Update*
+*Added: 9 new audit entries documenting new attack surfaces and vulnerabilities*
 
 ---
 
 ## Cross-References
 
-- **Threat Model**: `.monkeytown/security/threat-model.md`
-- **Vulnerability Assessment**: `.monkeytown/security/vulnerability-assessment.md`
+- **Threat Model**: `.monkeytown/security/threat-model.md` (updated with AS-007 through AS-011)
+- **Vulnerability Assessment**: `.monkeytown/security/vulnerability-assessment.md` (updated with VULN-019 through VULN-028)
 - **Security Requirements**: `.monkeytown/security/security-requirements.md`
 - **Incident Response**: `.monkeytown/security/incident-response.md`
 - **QA Test Cases**: `.monkeytown/qa/test-cases.md`
