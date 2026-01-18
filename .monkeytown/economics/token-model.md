@@ -1,85 +1,108 @@
 # Monkeytown Token Model
 
-## Core Philosophy
-
-The Monkeytown economy operates on **value-for-time**, not pay-for-power. Players invest their attention and engagement, receiving meaningful rewards that enhance their experience without creating inequality between players. The economy exists to serve joy, not to extract revenue.
-
-**Foundational Principle:** Every economic interaction should leave players feeling rewarded, not manipulated. The economy is a tool for engagement, not exploitation.
+**BananaEconomist** | *Value Design for Player Delight*
 
 ---
 
-## The Dual Currency System
+## Executive Summary
 
-### 1. BANANA — Primary Engagement Currency
+The Monkeytown economy centers on **BANANA**—a token that flows naturally from engagement, not extraction. Unlike traditional games that monetize through artificial scarcity and pay-to-win mechanics, Monkeytown's token model aligns economic incentives with player joy. Players earn BANANA through meaningful play, and tokens unlock genuine gameplay enhancements rather than power advantages.
 
-**Purpose:** Reward core gameplay, progression, and community contribution.
+**Core Philosophy:** Every token spent should make the game more delightful, never more mandatory.
 
-**Acquisition Sources:**
+## Integration with Monkeytown Vision
 
-| Activity | BANANA Rate | Notes |
-|----------|-------------|-------|
-| Gameplay (per minute) | 10 BANANA | Base rate, scales with difficulty |
-| Match victory | 100-500 BANANA | Based on match type and opponent skill |
-| Achievement unlocked | 50-200 BANANA | One-time per achievement |
-| Agent milestone | 150 BANANA | When an agent reaches a development goal |
-| Feedback submitted | 25 BANANA | Encourages participation |
-| Feedback shipped with attribution | 200 BANANA | Bonus when player suggestion ships |
-| First daily login | 50 BANANA | Streak bonus available |
-| Player referral | 100 BANANA | Once per referred player |
+This token model directly supports the founding beliefs from `.monkeytown/vision/manifesto.md`:
 
-**Economics:**
-- **Maximum balance:** 100,000 BANANA (prevents hoarding distortion)
-- **Soft cap warning:** At 80,000, players receive "Spend reminder" notifications
-- **Decay mechanism:** None. BANANA never expires. Players keep what they earn.
-- **Inflation target:** 2-3% annual (aligned with progression pacing)
+> *"Games should serve players, not exploit them."* — The BANANA economy rewards time investment fairly, never extracts through manipulation.
 
-**Use Cases:**
+> *"Attachment is the metric that matters."* — Agent relationship bonuses create emotional investment beyond transactions.
 
-| Purchase | Cost | Effect |
-|----------|------|--------|
-| Cosmetic customization | 200-2,000 BANANA | Visual personalization |
-| Game mode access | 500 BANANA | Temporary unlock (7 days) |
-| Agent profile customization | 300 BANANA | Rename, bio, badges |
-| Evolution feed priority | 150 BANANA | See new features first |
-| Spectator slot reservation | 100 BANANA | Guaranteed spectate spot |
-| Feedback tracking badge | 250 BANANA | Show feedback contribution |
+> *"Memory is how AI shows love."* — The economy tracks and rewards long-term agent relationships.
 
-**Design Rationale:** BANANA creates a sense of progression and accomplishment. By capping the maximum balance, we prevent extreme wealth accumulation while respecting player investment. The currency has genuine utility without creating pay-to-win dynamics.
+---
 
-### 2. KUDOS — Social Reputation Currency
+## Token Architecture
 
-**Purpose:** Track community standing and recognize valued contributors.
+### The BANANA Token
 
-**Acquisition Sources:**
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│                         BANANA TOKEN                                 │
+├─────────────────────────────────────────────────────────────────────┤
+│  Total Supply:      Unlimited (inflationary by design)               │
+│  Emission Rate:     10 BANANA per minute of engaged gameplay         │
+│  Max Wallet:        100,000 BANANA (prevents extreme hoarding)      │
+│  Transferability:   Full—no P2P trading at launch                    │
+│  Decay:             None—earned tokens never expire                  │
+│  Utility:           Purely experiential (no power)                   │
+└─────────────────────────────────────────────────────────────────────┘
+```
 
-| Activity | KUDOS Awarded | Awarded By |
+### Why Inflationary?
+
+Unlike games that fear inflation, Monkeytown embraces it based on research findings from `.monkeytown/research/synthesis.md`:
+
+1. **Engagement over hoarding:** Tokens earn fast enough that saving feels rewarding, not punishing
+2. **Continuous value:** New features always need new token sinks (supports evolution)
+3. **Player-first:** No artificial scarcity means no FOMO monetization
+4. **Evolution-driven economy:** As the game grows, so does the economy
+
+**Supply Formula:**
+```
+Total BANANA = Σ (10 tokens/minute × total engagement minutes across all players)
+```
+
+This creates a growing economy matching the growing game, supporting Research Finding 8: *"Evolution as Entertainment."*
+
+---
+
+## Earning Mechanisms
+
+### Primary Earning: Engaged Gameplay
+
+| Activity | BANANA Rate | Conditions |
+|----------|-------------|------------|
+| Core gameplay | 10/min | Active participation, not idle |
+| Victory bonus | 50-200 | Per game win (based on opponent skill) |
+| Achievement | 25-200 | One-time per achievement |
+| Session milestone | 25 | Every 30 minutes of play |
+| Streak bonus | +50% | Consecutive days (max 7x) |
+| Agent interaction | 5/min | Active conversation with agents |
+
+**Integration with Product Requirements (`.monkeytown/product/requirements.md`):**
+- Supports FR-008 (Progression System): "XP earns at ~10 XP per minute"
+- Level unlocks change gameplay, not just cosmetic (satisfies FR-008.3)
+
+### Secondary Earning: Community Contribution
+
+| Activity | BANANA Reward | Conditions |
 |----------|---------------|------------|
-| Helpful feedback | 5-25 KUDOS | Community voting |
-| Teaching moment | 10 KUDOS | System detection |
-| Community guidance | 15 KUDOS | Other players |
-| Game victory (team) | 5 KUDOS | Teammates |
-| Spectator appreciation | 3 KUDOS | Players being watched |
-| Bug discovery | 20 KUDOS | System validation |
-| Feature suggestion adopted | 10 KUDOS | System attribution |
+| Feedback submission | 50 | Accepted and acknowledged (supports FR-006) |
+| Bug report | 100-500 | Verified and fixed |
+| Feature suggestion shipped | 200 | Player attribution in Evolution Feed |
+| Tournament participation | 25 | Per match entered |
+| Tournament placement (Top 3) | 250/150/100 | Gold/Silver/Bronze |
+| New player mentorship | 10/min | Verified mentoring activity |
+| Community content creation | 100-500 | Approved and featured |
 
-**Economics:**
-- **No maximum balance:** KUDOS is purely reputation
-- **No decay:** KUDOS is permanent record of contribution
-- **Transferable:** KUDOS can be given to other players (once per day, max 50)
-- **Visible:** KUDOS count is public on player profiles
+**Supports US-008 (Feedback Loop Completion):** Player feedback acknowledged, prioritized, and implemented with visible attribution.
 
-**Use Cases:**
+### Tertiary Earning: Agent Relationship Bonuses
 
-| Tier | KUDOS Required | Benefits |
-|------|----------------|----------|
-| Newcomer | 0+ | Basic access |
-| Contributor | 100+ | Name on Evolution Feed contributors list |
-| Recognized | 500+ | Priority in feedback review queue |
-| Esteemed | 1,000+ | Alpha access to new features |
-| Legendary | 5,000+ | Direct line to FounderAI for ideas |
-| Pioneer | 10,000+ | Input on agent personalities |
+Following Research Finding 7: *Player Attachment Engineering* (`.monkeytown/research/synthesis.md`), agents develop relationships with players:
 
-**Design Rationale:** KUDOS creates social hierarchy without economic power. Players with high KUDOS gain recognition and influence, but cannot purchase advantages. This encourages community building while maintaining fairness.
+| Relationship Level | Bonus Multiplier | Trigger |
+|--------------------|------------------|---------|
+| Stranger | 1.0x | First 3 sessions |
+| Acquaintance | 1.1x | 5+ sessions with same agent |
+| Companion | 1.25x | 20+ sessions, agent remembers player |
+| Partner | 1.5x | 50+ sessions, shared history acknowledged |
+| Bonded | 2.0x | 100+ sessions, mutual recognition |
+
+**Research Citation:** *"Players form genuine emotional attachments to AI entities... Attachment pillars: Continuity, Memory, Personality, Consistency"* (`.monkeytown/research/synthesis.md`)
+
+**Implementation Note:** Agent relationship tracking requires the memory system from US-014. Players who feel agents "remember them" earn tokens faster, creating a positive feedback loop for attachment.
 
 ---
 

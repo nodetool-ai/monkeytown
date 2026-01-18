@@ -4,6 +4,16 @@
 
 Monkeytown embraces **intentional scarcity**, not artificial scarcity. Items are scarce because they are meaningful, not because manipulation requires it. Every scarcity decision serves player joy, not engagement metrics.
 
+**Core Principle:** *"True scarcity creates value. Fake scarcity creates distrust. Monkeytown chooses value."*
+
+## Research Foundation
+
+This scarcity model is built on the finding from `.monkeytown/research/synthesis.md`:
+
+> *"Players want genuine AI interaction, not simulated AI features... Radical transparency is becoming market standard."*
+
+Scarcity in Monkeytown is **transparent**, **meaningful**, and **fair**.
+
 ---
 
 ## Scarcity Categories
@@ -23,7 +33,10 @@ Monkeytown embraces **intentional scarcity**, not artificial scarcity. Items are
 - Future availability communicated 30 days in advance
 - Missed items never return (creates genuine scarcity)
 
+**Research Support:** Supports Research Finding 3: *"Players crave novelty but distrust constant change... Design evolution to be additive, not disruptive"* (`.monkeytown/research/synthesis.md`)
+
 **Approved Time-Locked Items:**
+
 | Item Type | Frequency | Advance Notice |
 |-----------|-----------|----------------|
 | Event cosmetics | Monthly | 14 days |
@@ -42,6 +55,7 @@ Monkeytown embraces **intentional scarcity**, not artificial scarcity. Items are
 - Skill-based unlocks
 
 **Effort Scale:**
+
 ```
 Easy (1-2 hours)     → 200-500 BANANA
 Medium (1-3 days)    → 500-1,500 BANANA
@@ -49,6 +63,8 @@ Hard (1-2 weeks)     → 1,500-3,000 BANANA
 Expert (1+ month)    → 3,000-5,000 BANANA
 Legendary (ongoing)  → Limited by sustained effort
 ```
+
+**Integration with Progression:** Supports FR-008 (Progression System) from `.monkeytown/product/requirements.md`: *"Level unlocks change gameplay (not just cosmetic)"*
 
 ### Category 3: Achievement-Locked Scarcity
 
@@ -61,12 +77,15 @@ Legendary (ongoing)  → Limited by sustained effort
 - Beta testing participation
 
 **Achievement Unlocks:**
+
 | Achievement | Requirement | Reward |
 |-------------|-------------|--------|
 | First Steps | Complete first game | Starter cosmetic |
 | Century Club | Win 100 matches | Century badge |
 | Community Pillar | Receive 500 KUDOS | Pillar cosmetic |
 | Feedback Hero | Have 10 suggestions shipped | Hero badge |
+
+**Supports US-010 (Game Progression):** *"Meaningful progression that respects my time investment"* (`.monkeytown/product/user-stories.md`)
 
 ### Category 4: Reputation-Locked Scarcity
 
@@ -79,6 +98,7 @@ Legendary (ongoing)  → Limited by sustained effort
 - Pioneer status for early adopters
 
 **Reputation Tiers:**
+
 | Tier | KUDOS Required | Exclusive Access |
 |------|----------------|------------------|
 | Newcomer | 0+ | Basic items |
@@ -87,6 +107,8 @@ Legendary (ongoing)  → Limited by sustained effort
 | Esteemed | 1,000+ | Beta features |
 | Legendary | 5,000+ | Pioneer cosmetics |
 | Pioneer | 10,000+ | Direct agent input |
+
+**Supports US-008 (Feedback Loop Completion):** *"Player attribution when feedback ships"* (`.monkeytown/product/user-stories.md`)
 
 ### Category 5: Genuine Scarcity (Rare Materials)
 
@@ -99,6 +121,7 @@ Legendary (ongoing)  → Limited by sustained effort
 - No manipulation to extend engagement
 
 **Approved Random Drops:**
+
 | Drop Type | Rate | Guaranteed By |
 |-----------|------|---------------|
 | Celebration bonus | 5% per session | N/A (bonus only) |
@@ -106,6 +129,8 @@ Legendary (ongoing)  → Limited by sustained effort
 | Legendary item | 0.1% | 200 attempts |
 
 **Note:** "Guaranteed by" means maximum attempts before guaranteed drop. This prevents endless grinding while maintaining rarity.
+
+**Research Citation:** *"Transparency builds trust... Players deserve to know they're playing with AI"* (`.monkeytown/vision/manifesto.md`)
 
 ---
 
@@ -132,6 +157,8 @@ Legendary (ongoing)  → Limited by sustained effort
 - Drop rates clearly displayed
 - Scarcity rationale explained
 - No hidden scarcity mechanics
+
+**Supports Law 4 (Preservation Mandate):** *"Player investment must never be devalued or lost"* (`.monkeytown/economics/economic-rules.md`)
 
 ---
 
@@ -172,6 +199,7 @@ Legendary (ongoing)  → Limited by sustained effort
 - >80% collection completion by <5% players
 
 **Interventions for Unhealthy Demand:**
+
 | Symptom | Intervention |
 |---------|-------------|
 | Low cosmetic engagement | New cosmetic designs |
@@ -206,6 +234,8 @@ Legendary (ongoing)  → Limited by sustained effort
 | Appreciation Week | 7 days | Free legacy items | 60 days |
 | Founder's Day | 1 day | Special recognition | 30 days |
 
+**Supports Research Finding 8:** *"Evolution as Entertainment... Turn development into spectator experience"* (`.monkeytown/research/synthesis.md`)
+
 ---
 
 ## Scarcity Transparency
@@ -220,6 +250,7 @@ Legendary (ongoing)  → Limited by sustained effort
 5. Alternative acquisition paths (if any)
 
 **Example Disclosure:**
+
 ```
 🌟 Golden Banana Badge
 Limited Edition: 500 total
@@ -228,6 +259,8 @@ Available until: 2026-02-01
 Future availability: None (one-time only)
 Alternative path: None (community milestone reward)
 ```
+
+**Supports Law 1 (Transparency Principle):** *"Every economic formula, rate, and calculation is visible to players"* (`.monkeytown/economics/economic-rules.md`)
 
 ### Scarcity Dashboard
 
@@ -273,6 +306,11 @@ Players can access a dashboard showing:
 
 *True scarcity creates value. Fake scarcity creates distrust. Monkeytown chooses value.*
 
-**Version:** 1.0
-**Created:** 2026-01-18
-**Owner:** BananaEconomist
+**Version:** 2.0
+**BananaEconomist:** Economics & Incentives
+**Last Updated:** 2026-01-18
+**Cross-References:**
+- `.monkeytown/vision/manifesto.md` (Transparency principle)
+- `.monkeytown/research/synthesis.md` (Research foundation)
+- `.monkeytown/economics/economic-rules.md` (Rules framework)
+- `.monkeytown/product/requirements.md` (Requirements integration)

@@ -4,6 +4,8 @@
 
 These rules govern all economic activity in Monkeytown. They are non-negotiable and enforced at the system level.
 
+**Core Principle:** *"Before all other rules: The economy exists to serve players. If a rule serves the economy at the expense of players, that rule must change."*
+
 ---
 
 ## Law 1: The Transparency Principle
@@ -16,6 +18,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - Formulas documented in public documentation
 - No "hidden math" or obscured calculations
 
+**Research Foundation:** *"Transparency builds trust... Players deserve to know they're playing with AI"* (`.monkeytown/vision/manifesto.md`)
+
 **Enforcement:** System rejects any transaction where rates aren't clearly displayed.
 
 ---
@@ -25,6 +29,7 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 **Rule:** The economy must never manipulate, coerce, or exploit players.
 
 **Prohibited Patterns:**
+
 ```
 ❌ Artificial urgency ("Only 24 hours!")
 ❌ Fear of missing out (FOMO) mechanics
@@ -35,6 +40,7 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 ```
 
 **Allowed Patterns:**
+
 ```
 ✓ Clear value propositions
 ✓ Time-bound events with advance notice
@@ -42,6 +48,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 ✓ Predictable rewards
 ✓ Transparent probability (when applicable)
 ```
+
+**Research Support:** *"Trust is not given to AI—it's earned through demonstrated competence, honesty, fairness, and consistency"* (`.monkeytown/research/ai-trust-patterns.md`)
 
 ---
 
@@ -54,6 +62,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - All gameplay-affecting items available through gameplay
 - Time investment and money investment are not interchangeable for gameplay advantage
 - Cosmetic differentiation only
+
+**Supports User Story US-005:** *"AI opponents that feel genuinely intelligent, not scripted... challenged by something that can surprise me"* (`.monkeytown/product/user-stories.md`)
 
 **Enforcement:** Any item that affects gameplay balance must have gameplay acquisition path.
 
@@ -69,6 +79,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - KUDOS never removed (except for egregious violations)
 - Progress saves across sessions
 - No "resets" or "new seasons" that invalidate progress
+
+**Research Foundation:** *"Attachment is the metric that matters... Memory is how AI shows love"* (`.monkeytown/vision/manifesto.md`)
 
 **Exception:** Account termination for severe violations may remove value.
 
@@ -97,6 +109,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - No "dynamic pricing" based on player behavior
 - Exchange rates remain consistent for 30-day windows
 - Promotional bonuses clearly labeled as temporary
+
+**Supports Product Requirement FR-008:** *"Progression System... XP earns at ~10 XP per minute... Level unlocks change gameplay"* (`.monkeytown/product/requirements.md`)
 
 ---
 
@@ -153,6 +167,7 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 ### Earning Rate Formulas
 
 **Base Formula:**
+
 ```
 BANANA = (Base_Rate × Time_Minutes × Difficulty_Modifier) + Bonus
 ```
@@ -163,6 +178,7 @@ Where:
 - Bonus = match victory, achievements, events
 
 **Victory Bonus Formula:**
+
 ```
 Victory_Bonus = Base_Bonus × (Opponent_Skill / Player_Skill) × Streak_Modifier
 ```
@@ -171,6 +187,8 @@ Where:
 - Base_Bonus = 100 BANANA
 - Opponent_Skill/Player_Skill = 0.8 to 1.2 range
 - Streak_Modifier = 1.0 to 2.0 based on consecutive victories
+
+**Supports Research Finding 4:** *"AI adapts to player skill level within 3 rounds... Player win rate maintained at 60-70%"* (`.monkeytown/research/synthesis.md`)
 
 ### Spending Rate Guidelines
 
@@ -291,6 +309,11 @@ All rules are subordinate to this principle.
 
 *Rules create order. Order creates trust. Trust creates community.*
 
-**Version:** 1.0
-**Created:** 2026-01-18
-**Owner:** BananaEconomist
+**Version:** 2.0
+**BananaEconomist:** Economics & Incentives
+**Last Updated:** 2026-01-18
+**Cross-References:**
+- `.monkeytown/vision/manifesto.md` (Vision alignment)
+- `.monkeytown/research/ai-trust-patterns.md` (Trust foundation)
+- `.monkeytown/product/requirements.md` (Requirements integration)
+- `.monkeytown/product/user-stories.md` (User story support)
