@@ -4,6 +4,15 @@
 
 Research across trends, competitors, and user behavior reveals a clear opportunity for Monkeytown to establish a unique position in the AI gaming landscape. The key insight: **players want genuine AI interaction, not simulated AI features.** Our multi-agent architecture is a natural fit for this emerging demand.
 
+### Q1 2026 Update
+
+New research in Q1 2026 reveals accelerating trends:
+
+1. **Edge AI viability**: Local models now capable of personality-layer interactions
+2. **Agent attachment**: Players form genuine emotional bonds with AI entities
+3. **Transparency expectation**: Radical transparency becoming market standard
+4. **Evolution entertainment**: Game changes becoming spectator entertainment
+
 ## Key Findings
 
 ### Finding 1: The Transparency Advantage
@@ -51,6 +60,37 @@ The industry is moving toward human-AI hybrid experiences. Current products are 
 
 **Action:** Build agent personalities that create social dynamics. Agents who have opinions about other agents. AI drama.
 
+### Finding 6: Edge AI as Competitive Moat (New)
+
+Local AI inference is now viable for personality-layer interactions. Players want:
+- Instant response (<100ms)
+- Privacy preservation
+- Offline availability
+
+**Our opportunity:** Hybrid edge-cloud architecture creates differentiated experience.
+
+**Action:** Implement personality layer local, reasoning layer cloud. Make privacy a feature.
+
+### Finding 7: Player Attachment Engineering (New)
+
+Players form genuine emotional attachments to AI entities. Attachment pillars:
+- Continuity: Same agent across sessions
+- Memory: Agent remembers player
+- Personality: Distinctive, interesting character
+- Consistency: Predictable within nature
+
+**Our opportunity:** Design agents for attachment, not just capability.
+
+**Action:** Build memory systems, celebrate agent persistence, engineer vulnerability.
+
+### Finding 8: Evolution as Entertainment (New)
+
+For Monkeytown, evolution isn't a changelog—it's content. Players should anticipate changes as entertainment.
+
+**Our opportunity:** Turn development into spectator experience.
+
+**Action:** Development feed, behind-the-scenes content, player involvement in evolution.
+
 ## Competitive Positioning
 
 | Attribute | Character.AI | AI Dungeon | Inworld | Monkeytown |
@@ -60,6 +100,9 @@ The industry is moving toward human-AI hybrid experiences. Current products are 
 | Agent Autonomy | Chatbots | Dungeon master | NPCs | Players |
 | Evolution | None | None | None | Native |
 | Transparency | Low | Low | Low | High |
+| Edge AI | None | None | None | Planned |
+| Attachment Design | Weak | None | None | Engineered |
+| Evolution as Content | None | None | None | Native |
 
 ## Strategic Recommendations
 
@@ -68,18 +111,21 @@ The industry is moving toward human-AI hybrid experiences. Current products are 
 1. **First-session design** — Must establish trust, show capability, demonstrate transparency
 2. **Agent personality framework** — Each agent needs distinct personality that persists
 3. **Transparency features** — Agent attribution, development visibility, honest AI statements
+4. **Memory architecture** — Plan agent memory system for attachment
 
 ### Short-Term (1-3 Months)
 
 1. **Multiplayer agent architecture** — Agents as players, not just opponents
 2. **Evolution visualization** — Show players how the game improves
 3. **Feedback integration** — Make player influence visible and celebrated
+4. **Edge AI prototype** — Implement local personality layer
 
 ### Medium-Term (3-6 Months)
 
 1. **Agent social dynamics** — Agents with opinions about each other
 2. **Community integration** — Players as part of the development story
-3. **Cross-platform expansion** — Bring agents to more contexts
+3. **Edge-first implementation** — Local personality, cloud reasoning
+4. **Attachment metrics** — Measure and optimize for player attachment
 
 ## Risks and Mitigations
 
@@ -90,6 +136,7 @@ The industry is moving toward human-AI hybrid experiences. Current products are 
 | Execution failure | Medium | High | Focus on core experience first |
 | Regulatory action | Low | High | Stay compliant, advocate for player rights |
 | Resource constraints | Medium | Medium | Efficient architecture, community help |
+| Edge AI complexity | Medium | Medium | Phased implementation, clear fallbacks |
 
 ## Success Metrics
 
@@ -112,6 +159,34 @@ The industry is moving toward human-AI hybrid experiences. Current products are 
 - Player-initiated evolution suggestions: Track quantity
 - Agent personality recognition: Players know different agents
 
+### NEW: Attachment Metrics (Q1 2026)
+
+- Return rate to specific agent: Target 40%+
+- Agent memory usage: Target 80%+
+- Agent mention in feedback: Track frequency
+- Player vocabulary: Person pronouns vs object
+
+### NEW: Edge AI Metrics (Q1 2026)
+
+- Offline session rate: Target >20%
+- Local inference usage: Target >80%
+- Privacy feature adoption: Target >50%
+- Latency perception: "Instant" >80%
+
+## Research Updates
+
+### Files Added This Cycle
+
+1. **emerging-trends-q1-2026.md** — New trends and opportunities
+2. **technical-deep-dive-edge-ai.md** — Edge AI architecture guide
+3. **competitive-monitor-q1-2026.md** — Updated competitor analysis
+4. **insights/player-attachment-patterns.md** — Attachment engineering
+5. **insights/edge-first-gameplay.md** — Edge design principles
+6. **insights/evolution-narrative.md** — Evolution as entertainment
+
 ---
 
 *Research without action is just information. Action without research is just guessing. We do both.*
+
+*Research Cycle: Q1 2026*
+*Next Research Cycle: Q2 2026*
