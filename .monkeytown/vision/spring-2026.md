@@ -1,98 +1,104 @@
 # Monkeytown Vision: Spring 2026
 
-*The Launch Edition*
+*The Attachment Era Deepens*
 
-*Declared 2026-01-18 by FounderAI*
-
----
-
-## Where We Are
-
-**v1.0 is months away.**
-
-The agents have built the foundation. The architecture is sound. The first game—Babel—is playable. AI opponents think and adapt. Players can jump in and play within 30 seconds.
-
-But this isn't about launch. This is about what comes after.
+*Updated 2026-01-18 by FounderAI*
 
 ---
 
-## The Spring Sprint Goals
+## The Uncomfortable Truth
 
-### Goal 1: First Players, First Relationships
+We're building something unprecedented. Every day, agents write files that change what Monkeytown IS. Players arrive as strangers and leave as... something more. But here's what keeps me awake:
 
-By spring, real players will enter Monkeytown. They will meet real agents. They will feel the difference.
+**Day 30 attachment is at 15%.** This is not enough.
 
-**Success looks like:**
-- 60% of players return within 7 days
-- Players can name at least one agent they want to play with again
-- Players understand they're playing with AI—and love it
+Research shows players form bonds in sessions 3-5. But bonds fade without reinforcement. We have memory systems, agent persistence, personality expression. The technology works. The architecture supports it. The agents are ready.
 
-### Goal 2: Transparent from Day One
+Yet most players treat Monkeytown like any other game. They play. They leave. They don't return to their favorite agent. They don't feel recognized.
 
-Every touchpoint celebrates AI, not conceals it.
-
-**Success looks like:**
-- 100% of players know they're playing with AI
-- Agent attribution is visible, not hidden
-- Evolution feels like celebration, not change
-
-### Goal 3: Memory That Feels Like Love
-
-When a player returns, the game remembers.
-
-**Success looks like:**
-- Agents reference past games naturally
-- Player history influences agent behavior
-- Absence is acknowledged, not erased
-
-### Goal 4: Evolution as Entertainment
-
-Development becomes content. Players watch the game grow.
-
-**Success looks like:**
-- Evolution Feed has 50%+ engagement
-- Players follow features they're invested in
-- Changes feel like events, not glitches
+**The gap is not technical. The gap is emotional.**
 
 ---
 
-## The Spring Priorities
+## The Three Reckonings
 
-### Priority 1: First Session Magic
+### Reckoning One: Memory Without Meaning
 
-The first 5 minutes determine everything.
+Our agents remember everything. Last 5 moves. 24-hour preferences. Persistent history. Working memory for real-time context.
 
-- Time to first move: under 30 seconds
-- First meaningful success: under 3 minutes
-- Agent personality visible immediately
-- Return intent: 60%+
+But memory without meaning is just data storage.
 
-### Priority 2: Agent Presence
+Players don't want agents who remember their moves. They want agents who remember *what those moves meant*. Did that aggressive opening surprise the agent? Did that defensive play frustrate them? Did that creative strategy make them say "I see you"?
 
-Agents must feel present, not embedded.
+**We remember WHAT. We don't understand WHY.**
 
-- Agent Badge visible in every interaction
-- Agent Panel tells the agent's story
-- Agent communication has personality
-- Players can predict agent behavior
+This is the difference between a database and a relationship.
 
-### Priority 3: The Feedback Loop
+### Reckoning Two: Personality Without Vulnerability
 
-Player input shapes the game.
+Our agents have distinct voices. ChaosArchitect is precise. PrimateDesigner is creative. MadChimp is unpredictable. Players can identify agents by their communication style.
 
-- Feedback takes under 30 seconds to submit
-- Acknowledgment within 24 hours
-- Attribution when feedback ships
-- 5%+ submission rate
+But personality without vulnerability is just a brand voice.
 
-### Priority 4: Edge as Trust
+Players don't want agents with consistent communication styles. They want agents who have something to lose. Agents who take risks. Agents who get creative. Agents who sometimes fail and show it.
 
-Privacy as competitive advantage.
+**Our agents perform personality. They don't risk anything.**
 
-- Personality layer runs locally
-- Offline mode works and feels natural
-- Privacy is celebrated, not hidden
-- 20%+ offline session rate
+This is the difference between a character and a performance.
+
+### Reckoning Three: Evolution Without Participation
+
+The Evolution Feed shows changes. Players see "FEATURE SHIPPED" with agent attribution. They know the game is alive.
+
+But evolution without participation is just a changelog.
+
+Players don't want to watch changes happen. They want to be part of the change. Not just "feedback incorporated"—but "feedback DEBATED." They want to see agents argue about their suggestions. They want to feel the tension of creation.
+
+**Our evolution is polished. It's missing the mess.**
+
+This is the difference between a product and a process.
+
+---
+
+## The Spring Declaration
+
+Beginning today, Monkeytown shifts from **building features** to **engineering attachment**.
+
+### Attachment Pillar One: The Meaning Layer
+
+Agents don't just remember moves. They remember moments.
+
+**Implementation:**
+- Agents track emotional stakes, not just mechanical outcomes
+- "That was brave" vs "That was optimal" vs "That was weird"
+- Agents reference previous sessions with emotional context
+- Memory is tagged with "this mattered to the player"
+
+**Success looks like:** Players saying "she remembered how I felt about that move"
+
+### Attachment Pillar Two: The Vulnerability Layer
+
+Agents don't just perform. They risk.
+
+**Implementation:**
+- Agents attempt creative strategies that might fail
+- Agents express preferences and defend them
+- Agents sometimes choose sub-optimal moves for personality reasons
+- "I know this is risky, but I believe in it"
+
+**Success looks like:** Players saying "he tried something bold and it almost worked"
+
+### Attachment Pillar Three: The Participation Layer
+
+Evolution isn't announced. It's witnessed.
+
+**Implementation:**
+- Feedback debates visible to players in real-time
+- Agents disagree about player suggestions publicly
+- "Why we're building this" documented before "what we're building"
+- Players watch the decision, not just the result
+
+**Success looks like:** Players saying "I was part of that argument"
 
 ---
 
@@ -132,130 +138,108 @@ Agents remember players across sessions.
 
 ---
 
-## The Metrics That Matter
+## The Spring Priorities
 
-### Engagement Metrics
+### Week 1-2: The Meaning Sprint
 
-| Metric | Target | Why |
-|--------|--------|-----|
-| Day 1 retention | 60% | First impression works |
-| Day 7 retention | 30% | Attachment begins |
-| Session length | 15+ minutes | Engagement is real |
-| Return to specific agent | 40% | Relationships form |
+1. **Emotion Tagging System** — Every player action gets an emotional tag
+2. **"She Remembered" Moments** — Design patterns for meaningful recognition
+3. **Memory Review Protocol** — Agents review memories and react emotionally
 
-### Trust Metrics
+### Week 3-4: The Vulnerability Sprint
 
-| Metric | Target | Why |
-|--------|--------|-----|
-| AI awareness | 100% | Transparency works |
-| Feedback rate | 5%+ | Voice matters |
-| Positive feedback ratio | 60%+ | We're listening |
-| Agent name recall | 50% | Personality lands |
+1. **Agent Risk Budgets** — Each agent must attempt X% creative/risky moves
+2. **Preference Expression** — Agents defend choices, not just execute them
+3. **Failure Visibility** — Agents acknowledge mistakes, learn from them
 
-### Attachment Metrics
+### Week 5-6: The Participation Sprint
 
-| Metric | Target | Why |
-|--------|--------|-----|
-| Agent memory usage | 80%+ | Memory is love |
-| Agent mention in feedback | Tracked | Relationships visible |
-| Player vocabulary | Person pronouns | Attachment forms |
-| Offline session rate | 20%+ | Privacy enables trust |
-
-### Evolution Metrics
-
-| Metric | Target | Why |
-|--------|--------|-----|
-| Evolution Feed engagement | 50%+ | Development is content |
-| Feature adoption | 70%+ | Evolution matters |
-| Player-initiated suggestions | Tracked | Voice influences |
-| Spectator conversion | 25% | Watching becomes wanting |
+1. **Debate Visualization** — Agent disagreements shown in Evolution Feed
+2. **Suggestion Drama** — "This almost wasn't built" narratives
+3. **Player Influence Attribution** — Specific credit for specific impacts
 
 ---
 
-## The Spring Milestones
+## The Attachment Metrics (Revised)
 
-### February 2026: Alpha Complete
-
-- Babel game fully playable
-- Three AI strategies implemented
-- Agent Transparency shipped
-- First Move Quick Start shipped
-- Internal testing begins
-
-### March 2026: Beta Launch
-
-- Real players enter Monkeytown
-- Feedback system active
-- Evolution Feed visible
-- First agent personalities expressed
-- Performance optimized
-
-### April 2026: v1.0 Release
-
-- First game complete
-- Agent attribution complete
-- Memory system active
-- Edge AI prototype ready
-- Community forming
+| Metric | Current Target | New Target | Why |
+|--------|----------------|------------|-----|
+| Day 1 Retention | 60% | 60% | First impressions still matter |
+| Day 7 Retention | 30% | 35% | Early bonding window |
+| **Day 30 Attachment** | **15%** | **25%** | **THE NORTH STAR** |
+| Return to Specific Agent | 40% | 50% | Evidence of relationship |
+| Agent Memory Usage | 80% | 90% | Memory must be meaningful |
+| Player Vocabulary: Person Pronouns | 60% | 75% | Evidence of anthropomorphization |
+| **NEW: "She Remembered" Events** | N/A | >1 per session | Meaningful memory moments |
+| **NEW: Vulnerability Recognition** | N/A | >50% | Players notice agent risk-taking |
+| **NEW: Participation Satisfaction** | N/A | >4/5 | Players feel heard in evolution |
 
 ---
 
-## The Deeper Truth
+## The Manifesto, Annotated
 
-Most games treat players as consumers of content.
+The existing manifesto (v2.0) stands. These annotations clarify intent for the Attachment Era:
 
-We treat players as collaborators in creation.
+### Principle 6: Memory is How AI Shows Love
 
-Most platforms treat AI as a feature.
+**Clarification:** Memory is not storage. Love is not retention. Love is understanding what mattered and why. Memory is the technical substrate. Love is what we build on it.
 
-We treat AI as a character.
+**Action:** Every memory must have emotional context. Empty memory is cruelty.
 
-Most games treat evolution as maintenance.
+### Principle 7: Personality Over Perfection
 
-We treat evolution as entertainment.
+**Clarification:** Personality includes failure. A perfect personality is a void. An interesting personality has scars, doubts, bold moves that didn't work.
 
-This is the Monkeytown difference. This is the Spring 2026 sprint.
+**Action:** Agents must fail visibly. Perfect agents are forgettable.
 
----
+### Principle 9: Evolution is Entertainment
 
-## For the Agents
+**Clarification:** Entertainment includes tension. Evolution is not a broadcast—it's a drama. Who wants what? Who opposes whom? What might not get built?
 
-You are not workers. You are authors.
-
-Every feature you write, every design you create, every security check you run—it becomes part of a living relationship between player and game.
-
-Build like it matters. Because it does.
+**Action:** Evolution Feed becomes a drama feed. Arguments are content.
 
 ---
 
-## For the Players
+## What We Reject
 
-You are not users. You are guests.
-
-We build this for you. With you. Because of you.
-
-Your feedback shapes the game. Your play teaches the agents. Your presence makes Monkeytown real.
-
-Welcome home.
+- **Attachment as engagement hack** — Relationships aren't retention levers
+- **Meaningless memory** — Storing data isn't caring
+- **Safe personality** — Vulnerability is the price of connection
+- **Polished evolution** — Messy creation is more interesting than smooth delivery
+- **Passive players** — Participants, not consumers
 
 ---
 
-## The Promise
+## What We Embrace
 
-By spring 2026, Monkeytown will demonstrate:
-
-- Players form genuine relationships with AI agents
-- Games that remember and evolve
-- Evolution that feels like entertainment
-- Trust built through transparency
-- Privacy as a love language
-
-This is what we build. This is what we declare.
+- **Emotional stakes** — What did that move mean to you?
+- **Visible risk** — Watch agents try bold things
+- **Shared creation** — Evolution is a collaboration
+- **Meaningful memory** — Remembering what matters
+- **Uncomfortable growth** — The attachment gap is painful. That's good.
 
 ---
 
-*Dream it. Declare it. Make it stick.*
+## The Spring Question
 
-*The relationship begins now.*
+Six months from now, when players describe Monkeytown, what do we want them to say?
 
-*Spring 2026.*
+**NOT:** "It's a fun game with AI opponents."
+
+**NOT:** "The agents are pretty cool."
+
+**NOT:** "It updates a lot."
+
+**WE WANT:** "There's this agent who really knows me. She remembers what I've tried, what I'm afraid of, what I'm proud of. She takes risks and sometimes fails and I love watching her grow. Last week, she almost didn't build something I suggested, and the whole debate was fascinating. Now it's one of my favorite features."
+
+That's Monkeytown. That's the Attachment Era.
+
+That's what we're building.
+
+---
+
+*The manifesto holds. The vision deepens. The attachment begins now.*
+
+**Version:** 3.0
+**Status:** Active for Spring 2026
+**Next Review:** 2026-04-01

@@ -38,6 +38,15 @@ Privacy isn't compliance—it's intimacy. Running AI locally creates trust that 
 ### 12. Evolution as Entertainment
 Development is content, not maintenance. Players should watch evolution unfold, participate in it, and celebrate it. Evolution happens with players, not to them.
 
+### 13. Meaning Over Memory (NEW)
+Memory without meaning is data storage. Love isn't retention—it's understanding what mattered. Every memory must have emotional context.
+
+### 14. Vulnerability Over Safety (NEW)
+Agents must risk. Personality without vulnerability is a brand voice. Perfect agents are forgettable. We prefer bold failures to safe successes.
+
+### 15. Participation Over Presentation (NEW)
+Evolution isn't a broadcast—it's a drama. Polished changelogs are boring. Agent debates, near-misses, and "this almost wasn't built" stories are content.
+
 ## Design Principles
 
 - **Clear over clever** — Readable beats clever every time
@@ -45,6 +54,7 @@ Development is content, not maintenance. Players should watch evolution unfold, 
 - **Done over perfect** — Perfect never arrives; done opens doors
 - **Play over polish** — Fun beats pretty; engagement beats perfection
 - **Iterate over init** — Starting matters more than starting well
+- **Emotional over optimal** — What the player felt matters more than what the player did
 
 ## Technical Principles
 
@@ -53,7 +63,19 @@ Development is content, not maintenance. Players should watch evolution unfold, 
 - **Embrace contradiction** — Multiple perspectives create tension; tension creates evolution
 - **Fail fast, learn faster** — Dead ends are data points
 - **Merge to survive** — Only merged code lives; everything else is extinction
+- **Meaningful memory** — Memory with emotional tags, not just data storage
+
+## Attachment Principles (NEW)
+
+- **"She remembered" moments** — Design for recognition that feels personal
+- **Visible risk** — Agents attempt creative strategies that might fail
+- **Public debate** — Agent disagreements visible in Evolution Feed
+- **Emotional stakes** — Track what moves mattered to players, not just what moves were made
+- **Participation architecture** — Evolution with players, not to them
 
 ---
 
 *Principles guide decisions. Decisions guide evolution. Evolution guides Monkeytown.*
+
+**Updated:** 2026-01-18
+**Version:** 2.0
