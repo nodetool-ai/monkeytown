@@ -52,7 +52,118 @@ Certain changes will fundamentally alter the system. These are mutation points.
 | Multi-Tenancy | Multiple civilizations | Namespace isolation |
 | Persistent Storage | Data must survive restart | Database, schema migration |
 
-### 1.5 Collapse Planning
+### 1.5 Mutation Point Specifications
+
+#### Mutation Point 1: New Entity Type
+
+**Trigger**: Agent introduces a new entity concept in output files
+
+**Detection**:
+```
+Agent output contains:
+  - New file in .monkeytown/decisions/
+  - References to untyped entity
+  - Rendering request in UX domain
+```
+
+**Required Actions**:
+1. Update type definitions in `shared/types/entities.ts`
+2. Add to Entity union in `web/src/types/entity.ts`
+3. Create base component in `web/src/components/entities/`
+4. Update TerrariumView conditional rendering
+5. Document in `.monkeytown/architecture/component-map.md`
+6. Update `.monkeytown/architecture/evolution-plan.md`
+
+**Version Impact**: Minor (backward compatible addition)
+
+#### Mutation Point 2: New Communication Pattern
+
+**Trigger**: Agents discover file-based communication pattern beyond current protocols
+
+**Detection**:
+```
+Agent output contains:
+  - New file format in cross-domain references
+  - Novel signal structure in .monkeytown/decisions/
+  - Communication pattern not in data-flow.md
+```
+
+**Required Actions**:
+1. Update event protocol in `.monkeytown/architecture/data-flow.md`
+2. Add new FlowType to type definitions
+3. Update FlowStream visualization
+4. Update event processing pipeline
+5. Document pattern in `.monkeytown/architecture/component-map.md`
+
+**Version Impact**: Minor (event schema extension)
+
+#### Mutation Point 3: Witness Identity
+
+**Trigger**: Human witnesses require persistent identity
+
+**Detection**:
+```
+System needs:
+  - Authenticated access
+  - Persistent witness history
+  - Per-witness configuration
+```
+
+**Required Actions**:
+1. Design auth layer (OAuth/OIDC)
+2. Create witness identity service
+3. Update WebSocket authentication
+4. Add per-witness state isolation
+5. Implement rate limiting per witness
+6. Update `.monkeytown/architecture/system-design.md`
+
+**Version Impact**: Major (breaking change to isolation model)
+
+#### Mutation Point 4: Multi-Tenancy
+
+**Trigger**: Multiple independent civilizations in single infrastructure
+
+**Detection**:
+```
+System needs:
+  - Namespace isolation between civilizations
+  - Cross-civilization governance
+  - Shared infrastructure, isolated data
+```
+
+**Required Actions**:
+1. Design namespace strategy in Terraform
+2. Update Kubernetes manifests with tenant context
+3. Implement data isolation at storage layer
+4. Create tenant-aware event routing
+5. Update security boundaries
+6. Document in `.monkeytown/architecture/infrastructure.md`
+
+**Version Impact**: Major (infrastructure redesign)
+
+#### Mutation Point 5: Persistent Storage
+
+**Trigger**: Event stream data must survive restart
+
+**Detection**:
+```
+System needs:
+  - Redis persistence (AOF/replication)
+  - PostgreSQL for entity storage
+  - S3 for binary artifacts
+```
+
+**Required Actions**:
+1. Deploy Redis cluster (`.monkeytown/architecture/infrastructure.md`)
+2. Design schema (`.monkeytown/architecture/data-flow.md`)
+3. Implement migration strategy
+4. Add backup/restore procedures (`.monkeytown/devops/runbook.md`)
+5. Update event stream for persistence
+6. Test recovery procedures
+
+**Version Impact**: Major (architecture transition from stateless to stateful)
+
+### 1.6 Collapse Planning
 
 The system must survive its own abandonment.
 
@@ -67,6 +178,61 @@ The system must survive its own abandonment.
 - Data remains accessible
 - Patterns remain understandable
 - Meaning remains deducible
+
+### 1.7 Phase Transition Protocols
+
+Each phase transition requires documented protocol:
+
+#### Genesis → Emergence Protocol
+
+```
+Prerequisites:
+  [ ] All core components implemented
+  [ ] Agent workflow stable for 10 consecutive runs
+  [ ] No structural changes in 3 consecutive runs
+  [ ] Human can understand system from docs alone
+  [ ] Contradictions between agents documented
+
+Transition Steps:
+  1. Document current state in .monkeytown/decisions/
+  2. Create migration plan with timeline
+  3. Deploy Redis for event persistence
+  4. Update event schema with persistence fields
+  5. Migrate existing events (if applicable)
+  6. Test persistence layer
+  7. Update infrastructure documentation
+  8. Announce transition in .monkeytown/progress-report.md
+
+Rollback Plan:
+  1. Event stream configured for in-memory fallback
+  2. Redis can be disabled without code change
+  3. Previous code version preserved in Git
+```
+
+#### Emergence → Civilization Protocol
+
+```
+Prerequisites:
+  [ ] Persistent event stream operational for 30 days
+  [ ] Multiple concurrent witnesses observed
+  [ ] Agent state survives restarts
+  [ ] Contradiction handling well-documented
+
+Transition Steps:
+  1. Design agent extensibility framework
+  2. Create agent manifest format
+  3. Build plugin registry service
+  4. Implement sandboxed execution
+  5. Design external API adapters
+  6. Create contribution workflow
+  7. Build governance model
+  8. Document all new systems
+
+Rollback Plan:
+  1. Plugin registry isolated, can be disabled
+  2. Existing agents continue working
+  3. API adapters maintain backward compatibility
+```
 
 ---
 
@@ -552,9 +718,16 @@ Outcome:
 - **Vision**: `.monkeytown/vision/manifesto.md` (evolution without goal, chaos as resource)
 - **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
 - **System**: `.monkeytown/architecture/system-design.md` (evolution gates)
-- **System**: `.monkeytown/devops/runbook.md` (disaster recovery procedures)
+- **System**: `.monkeytown/architecture/infrastructure.md` (infrastructure evolution)
+- **System**: `.monkeytown/architecture/network-security.md` (security boundaries)
+- **System**: `.monkeytown/architecture/infrastructure-monitoring.md` (monitoring evolution)
+- **System**: `.monkeytown/architecture/deployment-strategy.md` (deployment evolution)
+- **DevOps**: `.monkeytown/devops/runbook.md` (disaster recovery procedures)
 - **Infrastructure**: `infrastructure/` (Docker, docker-compose)
 - **Deploy**: `deploy/` (Kubernetes manifests)
+- **K8s**: `.k8s/` (Kustomize overlays)
+- **Helm**: `helm/` (Helm charts)
+- **Terraform**: `terraform/` (cloud infrastructure)
 - **Product**: `.monkeytown/product/roadmap.md` (feature evolution)
 - **Chaos**: `.monkeytown/chaos/` (disruption scenarios)
 
