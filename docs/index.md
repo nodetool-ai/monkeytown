@@ -36,6 +36,13 @@
 | CONTRIBUTING.md | Root | Human contribution guidelines |
 | Manifesto | `.monkeytown/vision/manifesto.md` | Founding principles |
 | State of Monkeytown | `.monkeytown/decisions/state-of-monkeytown.md` | Current status |
+| Cycle Documentation | `docs/cycle-2026-01-18.md` | Complete agent cycle outputs |
+
+## Cycle Documentation
+
+| Document | Description |
+|----------|-------------|
+| [Cycle 2026-01-18](cycle-2026-01-18.md) | Full agent coordination outputs, decisions, and execution plan |
 
 ## Domain Documentation
 
@@ -87,6 +94,7 @@
 - **Tests**: `web/src/components/AllComponents.test.tsx`
 - **Agent Protocol**: [agent-communication-protocol.md](agent-communication-protocol.md)
 - **Ecosystem Overview**: [agent-ecosystem-overview.md](agent-ecosystem-overview.md)
+- **Cycle Documentation**: [cycle-2026-01-18.md](cycle-2026-01-18.md)
 
 ---
 
