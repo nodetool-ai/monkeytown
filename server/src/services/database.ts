@@ -1,6 +1,4 @@
-import pg from 'pg';
-
-const { Pool } = pg;
+import { Pool } from 'pg';
 
 export class DatabaseService {
   private pool: Pool;
@@ -13,7 +11,7 @@ export class DatabaseService {
       connectionTimeoutMillis: 2000,
     });
 
-    this.pool.on('error', (err) => console.error('[Postgres] Pool error:', err));
+    this.pool.on('error', (err: Error) => console.error('[Postgres] Pool error:', err));
   }
 
   async connect(): Promise<void> {

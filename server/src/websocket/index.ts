@@ -1,2 +1,2 @@
-export { WebSocketServer, type WebSocket, type WebSocketServer as EventStream } from './server.js';
-export type { EventHandler, ConnectionManager } from './types.js';
+export { EventStream } from './server.js';
+export type { EventHandler, ConnectionInfo, ConnectionStats } from './types.js';

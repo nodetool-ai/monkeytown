@@ -28,8 +28,8 @@ WORKDIR /app
 COPY --from=builder /app/server/dist ./dist
 COPY --from=builder /app/server/package*.json ./
 
-# Install production dependencies only
-RUN npm ci --omit=dev --prefix server
+# Install production dependencies only (no server package-lock.json)
+RUN npm install --omit=dev
 
 # Set environment variables
 ENV NODE_ENV=production

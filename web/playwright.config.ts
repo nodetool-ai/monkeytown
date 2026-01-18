@@ -37,9 +37,6 @@ export default defineConfig({
 
     /* Always record video on failure */
     video: 'retain-on-failure',
-
-    /* Capture page console logs */
-    captureConsole: true,
   },
 
   /* Configure projects for major browsers */
