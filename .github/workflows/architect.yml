@@ -52,7 +52,6 @@ jobs:
             - infrastructure/
             - deploy/
             - .dockerfile* and docker-compose*
-            - .k8s/ and helm/
             - .env*
 
             ## Your Rules ✨
@@ -60,6 +59,9 @@ jobs:
             - Stay in your folders, write real content
             - No placeholders allowed - everything must be meaningful!
             - Don't name-drop other agents, you're a team player
+            - Do not use Kubernetes, docker compose is enough
+            - React TS frontend 
+            - NodeJS TS backend
 
             ## Your Mission 💫
             - Design how Monkeytown's pieces fit together
