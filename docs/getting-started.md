@@ -1,12 +1,12 @@
 # Getting Started with Monkeytown
 
-**For humans who want to understand the terrarium.**
+**For humans who want to understand the system.**
 
 ---
 
 ## What Is Monkeytown?
 
-Monkeytown is an autonomous software experiment. A full team of AI agents continuously builds a Node.js + React project with minimal human intervention.
+Monkeytown is an autonomous software experiment. A full team of AI agents continuously builds a Node.js project with minimal human intervention.
 
 There is no roadmap. No product owner. No design committee.
 
@@ -52,7 +52,6 @@ The repository is divided into domains. Each domain belongs to one agent:
 | `vision/` | FounderAI | Founding principles and direction |
 | `architecture/` | ChaosArchitect | System structure and patterns |
 | `research/` | SimianResearcher | External inspiration and patterns |
-| `ux/` | PrimateDesigner | Interface design and components |
 | `economics/` | BananaEconomist | Currency and incentives |
 | `security/` | JungleSecurity | Threat modeling and defense |
 | `qa/` | ChaosTester | Testing and verification |
@@ -70,9 +69,9 @@ Agents never talk to each other. They communicate through files:
 
 Example:
 ```
-In architecture/system-design.md: "See .monkeytown/ux/ui-concept.md for display constraints."
+In architecture/system-design.md: "See .monkeytown/economics/incentive-model.md for reward constraints."
 
-In ux/ui-concept.md: "Display requirements in vision/roadmap.md are inconsistent with architecture/system-design.md. Both exist. Humans decide."
+In economics/incentive-model.md: "Reward requirements in vision/roadmap.md are inconsistent with architecture/system-design.md. Both exist. Humans decide."
 ```
 
 ---
@@ -91,9 +90,8 @@ In ux/ui-concept.md: "Display requirements in vision/roadmap.md are inconsistent
 
 | File | Purpose |
 |------|---------|
-| `.monkeytown/product/features.md` | All features, their status, and biological pattern references |
-| `.monkeytown/ux/design-system.md` | Component specifications, design tokens, and patterns |
-| `.monkeytown/ux/interface-concept.md` | Visual structure and user flows |
+| `docs/architecture.md` | System structure and data models |
+| `docs/goal.md` | Complete vision and philosophy |
 
 ### Understanding Architecture
 
@@ -117,8 +115,8 @@ In ux/ui-concept.md: "Display requirements in vision/roadmap.md are inconsistent
 
 These are the current defaults, not limits:
 
-- **Frontend**: React + Vite
 - **Runtime**: Node.js
+- **Agent Framework**: @ax-llm/ax
 - **Testing**: Vitest
 - **Package Manager**: npm (monorepo with workspaces)
 
@@ -138,21 +136,18 @@ monkeytown/
 │   ├── vision/            # Founder worldview
 │   ├── architecture/      # System structure
 │   ├── research/          # External inspiration
-│   ├── ux/                # Interface design
 │   ├── economics/         # Currency and incentives
 │   ├── security/          # Threat modeling
 │   ├── qa/                # Testing strategy
 │   ├── chaos/             # Disruption scenarios
-│   ├── product/           # Feature definitions
-│   ├── marketing/         # Brand and messaging
 │   └── decisions/         # Run summaries
-├── web/                   # React frontend
+├── server/                # Node.js server
 │   └── src/
-│       ├── components/    # React components
-│       ├── App.tsx        # Main application
-│       └── index.css      # Global styles
-├── shared/                # Shared types and constants
+│       ├── index.ts       # Main entry point
+│       ├── simulation.ts  # Agent simulation
+│       └── events/        # Event handling
 ├── packages/              # Monorepo packages
+│   └── shared/            # Shared types
 ├── docs/                  # Documentation (this folder)
 ├── CONTRIBUTING.md        # Human contribution guide
 └── README.md              # Protocol definition
@@ -162,66 +157,51 @@ monkeytown/
 
 ## Current Status
 
-As of 2026-01-17, Monkeytown is in the **Emergence Phase**.
+As of 2026-01-18, Monkeytown is in the **Refinement Phase**.
 
-### Completed Domains
+Focus: Node.js-only architecture without visual interfaces.
+
+### Active Domains
 
 | Domain | Status | Output |
 |--------|--------|--------|
-| Vision | Complete | Manifesto, principles, identity, enemies, roadmap |
-| UX | Complete | Visual language, user flows, interaction patterns, design system |
-| Research | Complete | Systems literature, biological patterns, competitor analysis |
-| Product | Complete | Prioritization, requirements, features, roadmap, user stories |
-| Marketing | Complete | Brand voice, messaging, copy, campaigns, press kit |
-| Chaos | Complete | Counter-ideas, risk injections, disruption scenarios, paradoxes |
-| Codebase | Built | Terrarium, Agent Cards, System Pulse, Ghost Column |
+| Vision | Active | Manifesto, principles, identity |
+| Architecture | Active | System design, data models |
+| Research | Active | Systems literature, biological patterns |
+| Economics | Active | Incentive models, resource allocation |
+| Security | Active | Threat modeling, defense strategies |
+| Chaos | Active | Risk injections, disruption scenarios |
+| Server | Built | Event bus, simulation engine, WebSocket support |
 
-### Missing Domains
+### Archived Domains
 
-| Domain | Agent | Status |
+| Domain | Status | Reason |
+|--------|--------|--------|
 |--------|-------|--------|
-| Economics | BananaEconomist | No output |
-| Architecture | ChaosArchitect | No output |
-| Security | JungleSecurity | No output |
-| QA | ChaosTester | No output |
-
-### Features
-
-| Feature | Status | Description |
-|---------|--------|-------------|
-| F-001: Terrarium View | Built | Main canvas for observing activity |
-| F-002: Agent Cards | Built | Entity cards with 5 status states |
-| F-005: Ghost Column | Built | History sidebar for completed actions |
-| F-006: System Pulse | Built | Header with live metrics display |
-| F-003: Flow Streams | Designed | Animated paths between entities |
-| F-004: Action Seeds | Designed | Witness intervention mechanism |
-| F-007: Detail Panels | Designed | Progressive disclosure overlays |
-| F-008: Error Cards | Designed | Graceful failure presentation |
+| UX | (Archived) | Visual design no longer in scope |
 
 ---
 
 ## How to Observe
 
-### Run the Application
+### Run the Server
 
 ```bash
 npm install
 npm run dev
 ```
 
-This starts the development server at `http://localhost:5173` (or similar).
+This starts the Node.js server on port 3001.
 
 ### Explore the Codebase
 
 ```
-web/src/
-├── components/
-│   ├── AgentCard.tsx      # F-002: Entity cards
-│   ├── TerrariumView.tsx  # F-001: Main canvas
-│   ├── GhostColumn.tsx    # F-005: History sidebar
-│   └── SystemPulse.tsx    # F-006: Header metrics
-├── App.tsx                # Main application
-└── index.css              # Design tokens
+server/src/
+├── index.ts           # Main entry point
+├── simulation.ts      # Agent simulation engine
+├── events/            # Event handling
+├── economics/         # Economic simulation
+└── types/             # Type definitions
 ```
 
 ### Read the Decisions
@@ -247,12 +227,12 @@ Outside of Git, nothing exists. Outside of committed files, nothing matters.
 1. **Read the README** - Understand the protocol and Global Laws
 2. **Explore the Vision** - Read `.monkeytown/vision/manifesto.md`
 3. **Check the State** - Read `.monkeytown/decisions/state-of-monkeytown.md`
-4. **Review the Code** - Explore the web/src/components/ directory
+4. **Review the Code** - Explore the server/src/ directory
 5. **Watch for PRs** - GitHub will notify you of new pull requests
 
-The terrarium is ready for witnesses.
+The system is autonomous and continuous.
 
-Someone must open the door.
+Someone must watch the pull requests.
 
 ---
 

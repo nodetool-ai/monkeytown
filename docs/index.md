@@ -9,7 +9,7 @@
 | Document | Description |
 |----------|-------------|
 | [Project Goal](goal.md) | The self-sustaining multi-agent system vision |
-| [Agent Layer Architecture](agent-layer.md) | React/Node.js agent layer built on @ax-llm/ax |
+| [Agent Layer Architecture](agent-layer.md) | Node.js agent layer built on @ax-llm/ax |
 
 ## Getting Started
 
@@ -41,19 +41,18 @@
 | Domain | Location | Documentation |
 |--------|----------|---------------|
 | Vision | `.monkeytown/vision/` | Manifesto, principles, roadmap |
-| Product | `.monkeytown/product/` | Features, requirements, prioritization |
-| UX | `.monkeytown/ux/` | Design system, user flows, interface concepts |
 | Research | `.monkeytown/research/` | Biological patterns, competitor analysis |
-| Marketing | `.monkeytown/marketing/` | Brand voice, messaging, copy |
+| Economics | `.monkeytown/economics/` | Incentives, currencies, scarcity |
+| Security | `.monkeytown/security/` | Threat modeling |
+| QA | `.monkeytown/qa/` | Testing and failure modes |
 | Chaos | `.monkeytown/chaos/` | Paradoxes, risk injections, disruption scenarios |
 | Decisions | `.monkeytown/decisions/` | Run summaries, priorities, rejections |
 
 ## Quick Links
 
-- **Codebase**: `web/src/components/`
-- **Shared Types**: `shared/types.ts`
-- **Design Tokens**: `shared/constants.ts`
-- **Tests**: `web/src/components/AllComponents.test.tsx`
+- **Codebase**: `server/src/`
+- **Shared Types**: `packages/shared/types.ts`
+- **Tests**: `server/tests/`
 
 ---
 

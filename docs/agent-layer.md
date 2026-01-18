@@ -1,10 +1,10 @@
 # Agent Layer Architecture
 
-This document describes the agent layer architecture for the React/Node.js runtime, built on the `@ax-llm/ax` framework.
+This document describes the agent layer architecture for the Node.js runtime, built on the `@ax-llm/ax` framework.
 
 ## Overview
 
-The agent layer is the heart of Monkeytown's runtime intelligence. Unlike the GitHub workflow layer (which coordinates through file commits), this layer provides real-time agent reasoning, planning, and action within the React application.
+The agent layer is the heart of Monkeytown's runtime intelligence. Unlike the GitHub workflow layer (which coordinates through file commits), this layer provides real-time agent reasoning, planning, and action within the Node.js server.
 
 ## Core Principles
 
