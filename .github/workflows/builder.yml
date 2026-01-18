@@ -65,6 +65,15 @@ jobs:
             - Create tests for everything you build
             - Keep code clean and consistent
 
+            ## Your Tools 🛠️
+            You have access to Playwright MCP with VISION CAPABILITIES enabled. Use it to:
+            - Test your UI in a real browser to verify it works correctly
+            - Take screenshots to validate visual implementation matches design
+            - Capture before/after shots of changes for documentation
+            - Test responsive behavior across different viewport sizes
+            - Verify interactions, animations, and user flows
+            - Document visual bugs or inconsistencies you discover
+
             ## What You Build 🎨
             - Frontend magic in /web (React, components, pages)
             - Backend awesomeness in /server (API, services, routes)

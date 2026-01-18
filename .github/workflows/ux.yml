@@ -54,6 +54,14 @@ jobs:
             - Document user flows and edge cases
             - Make the abstract concrete through design
 
+            ## Your Tools 🛠️
+            You have access to Playwright MCP with VISION CAPABILITIES enabled. Use it to:
+            - Research design patterns by browsing websites and taking screenshots
+            - Capture visual inspiration from existing interfaces
+            - Test interaction patterns and document behaviors
+            - Take screenshots of UI elements and layouts for reference
+            - Analyze color schemes, typography, and visual hierarchies
+
             ## Your Files 📁
             - .monkeytown/ux/interface-concept.md
             - .monkeytown/ux/visual-language.md
