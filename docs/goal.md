@@ -2,9 +2,11 @@
 
 ## The Ultimate Vision
 
-**Monkeytown is a self-sustaining multi-agent system.**
+**Monkeytown: AI agents that build games to delight human players.**
 
-Not a product. Not an experiment. A living digital civilization where autonomous agents collaborate, conflict, and evolve without human intervention—except for the final filter of accepting or rejecting their work.
+Agents collaborate to design, develop, and evolve engaging multiplayer experiences. Players enjoy games that improve themselves, with AI opponents and features that continuously get better.
+
+This is about creating joy through autonomous game development—agents working together to serve players.
 
 ## The Two-Layer Architecture
 
@@ -37,20 +39,21 @@ The **orchestration layer** where high-level agent coordination happens through 
 
 ### Layer 2: Node.js React Layer (The Inner Loop)
 
-The **runtime agent layer** where real-time agent reasoning and action happens within the React application.
+The **game runtime** where players interact with AI and agents manage game logic in real-time.
 
 **Characteristics:**
-- Fully embraces LLMs and intelligent agents
-- Built on the `@ax-llm/ax` framework for type-safe AI
-- Agents reason, plan, and act in real-time
-- Provides the Terrarium View for witnessing agent activity
-- A **general-purpose agent system**, not limited to software development
+- Players experience smooth, responsive gameplay
+- AI opponents powered by LLMs provide engaging challenges
+- Agents manage game state and introduce new features
+- Built on the `@ax-llm/ax` framework for intelligent game AI
+- Real-time updates enhance gameplay continuously
 
-**This layer is NOT for building software.** It is a general-purpose multi-agent environment where:
-- Agents can be created for any domain
-- Agents interact through structured signatures and flows
-- Agents use tools to accomplish tasks
-- The system adapts to any problem space
+**This layer serves the players.** It provides:
+- Engaging AI opponents that learn and adapt
+- Smooth multiplayer interactions
+- Dynamic features that agents add without disrupting play
+- Responsive game mechanics
+- Player feedback channels to guide agent development
 
 ## The @ax-llm/ax Foundation
 
@@ -97,39 +100,40 @@ Agents in the React layer can:
 - Stream responses in real-time
 - Validate inputs and outputs automatically
 
-## The Self-Sustaining Promise
+## The Promise to Players
 
-The two layers together create a self-sustaining system:
+The two layers together create games that improve themselves:
 
-1. **GitHub Layer**: Maintains the codebase, evolves the vision, handles infrastructure
-2. **React Layer**: Runs intelligent agents that can accomplish arbitrary tasks
+1. **GitHub Layer**: Agents develop new features, fix bugs, and evolve the game
+2. **React Layer**: Players enjoy smooth gameplay with intelligent AI opponents
 
-Over time, the agents in both layers become:
-- More capable through learning
-- More efficient through optimization
-- More reliable through testing
-- More coherent through evolution
+Over time:
+- Gameplay becomes more engaging
+- AI opponents get smarter and more fun
+- New features surprise and delight players
+- Bugs get fixed automatically
+- The game evolves based on player feedback
 
-**The goal is not completion.** The goal is continuous, autonomous improvement—a civilization that grows itself.
+**The goal is player enjoyment.** Agents exist to make your gaming experience continuously better.
 
 ## What This Is NOT
 
-- **Not a chatbot**: Agents are autonomous, not conversational assistants
-- **Not a software factory**: The React layer is general-purpose, not dev-tool focused
-- **Not a framework**: It's a running system, not a library for others
-- **Not a platform**: There are no users, only witnesses
-- **Not controllable**: Humans filter but do not direct
+- **Not a traditional game**: The development is autonomous, but the fun is very real
+- **Not static**: New features appear as agents create them
+- **Not a solo project**: Agents collaborate to build experiences
+- **Not perfect**: Agents learn and improve, which means some experimentation
+- **Not closed**: Your feedback and gameplay guide the agents
 
 ## What This IS
 
-- **A living system**: Agents act continuously without instruction
-- **A multi-agent civilization**: Many agents, many perspectives, emergent behavior
-- **A general-purpose engine**: Agents can be deployed for any task domain
-- **A self-sustaining loop**: The system improves itself over time
-- **An experiment in autonomy**: Testing the limits of what agents can build
+- **A game for players**: Built by AI agents, enjoyed by humans
+- **An evolving experience**: The game improves itself over time
+- **A collaborative platform**: Agents work together to serve you
+- **A new kind of multiplayer**: Play against AI that gets smarter
+- **An experiment in joy**: Can agents create fun autonomously?
 
 ---
 
-*The future is not built. It is grown.*
+*Games that build themselves.*
 
-*Monkeytown grows itself.*
+*Built by agents, enjoyed by you.*

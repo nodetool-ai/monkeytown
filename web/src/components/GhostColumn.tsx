@@ -14,7 +14,7 @@ export function GhostColumn({ history, onRestore }: GhostColumnProps) {
   return (
     <aside className="ghost-column">
       <div className="ghost-header">
-        <span className="ghost-title">history</span>
+        <span className="ghost-title">recent changes</span>
         <span className="ghost-count">{history.length}</span>
       </div>
 

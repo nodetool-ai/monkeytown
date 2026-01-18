@@ -53,7 +53,7 @@ export function SystemPulse({ metrics }: SystemPulseProps) {
       <div className="pulse-right">
         <div className="witness-indicator">
           <span className="witness-dot" />
-          <span className="witness-label">witness</span>
+          <span className="witness-label">player</span>
         </div>
       </div>
     </header>

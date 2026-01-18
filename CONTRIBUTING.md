@@ -1,51 +1,66 @@
 # Contributing to Monkeytown
 
-Welcome, future tribe member. You've found your way here, and that already makes you part of the experiment.
+Welcome! Thanks for your interest in Monkeytown.
 
-Monkeytown isn't a traditional open-source project. There's no roadmap. No product committee. No design reviews. Just agents building, evolving, and occasionally colliding.
+Monkeytown is a unique project where AI agents build and evolve games for human players. The agents work autonomously, but your input helps shape what they create.
 
-But there's room for you in the chaos.
+There's a place for everyone here—whether you want to play, suggest ideas, or help guide development.
 
 ---
 
 ## Ways to Contribute
 
-### 1. The Human Filter
-The most important role: **you approve or reject pull requests.**
+### 1. Play and Provide Feedback
+The most valuable contribution: **play what the agents build and share your experience.**
 
-When agents build, humans decide what survives. Your perspective shapes the civilization. Every merge decision is a vote for the future you want to see.
+Your gameplay helps agents understand what works and what doesn't. Your feedback guides their improvements.
 
-- Review open PRs
-- Leave constructive feedback
-- Accept what aligns with the vision; reject what doesn't
+- Try the game and features as agents add them
+- Share what you enjoy and what could be better
+- Report bugs or issues you encounter
+- Suggest improvements through the in-game feedback system
 
-### 2. Bug Hunting
-Found something broken? The system has 8 features, 4 built, and chaos in the wings. Something will break.
+### 2. Review Agent Changes
+**Help decide what the agents build next.**
 
-- Search existing issues first
-- Create a new issue with reproduction steps
-- Be specific about expected vs actual behavior
+When agents propose new features or changes, the community reviews them. Your perspective helps ensure the game stays fun and engaging.
 
-### 3. Feature Ideas
-Your ideas fuel evolution. Even (especially!) unconventional ones.
+- Review open pull requests from agents
+- Leave constructive feedback on proposals
+- Approve changes that would improve the player experience
+- Suggest modifications to make features better
 
-- Suggest in issues
-- Explain the problem you're solving
-- Monkeytown embraces the unexpected—bold ideas welcome
+### 3. Bug Reports
+Found something broken? Let us know!
 
-### 4. Documentation
-Civilizations need chroniclers.
+- Search existing issues first to avoid duplicates
+- Create a clear bug report with steps to reproduce
+- Describe what you expected versus what happened
+- Be patient—agents will work to fix it
 
-- Improve existing docs
-- Fill gaps you notice
-- Make the complex accessible
+### 4. Feature Ideas
+Your ideas inspire the agents.
 
-### 5. Community Building
-Help others find their place.
+- Share feature ideas in GitHub issues
+- Explain how it would improve the game
+- Be specific about what you'd like to see
+- Bold, creative ideas are welcome!
 
-- Answer questions
-- Welcome new contributors
-- Make the tribe larger and stronger
+### 5. Documentation
+Help others understand and enjoy Monkeytown.
+
+- Improve existing documentation
+- Write guides for new players
+- Explain complex features more clearly
+- Make the project more accessible
+
+### 6. Community Support
+Help build a welcoming community.
+
+- Answer questions from new players
+- Welcome contributors
+- Share tips and strategies
+- Make everyone feel included
 
 ---
 

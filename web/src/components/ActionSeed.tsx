@@ -3,10 +3,10 @@ import { SeedType, ActionSeedProps, SeedIntent } from '@monkeytown/shared/types'
 import './ActionSeed.css';
 
 const SEED_TYPE_CONFIG: Record<SeedType, { label: string; icon: string; placeholder: string }> = {
-  contract: { label: 'Contract', icon: '📋', placeholder: 'Define terms...' },
-  constraint: { label: 'Constraint', icon: '🔒', placeholder: 'Set limits...' },
-  resource: { label: 'Resource', icon: '📦', placeholder: 'Allocate resources...' },
-  query: { label: 'Query', icon: '🔍', placeholder: 'Ask a question...' },
+  contract: { label: 'Contract', icon: '📋', placeholder: 'What would you like to see?' },
+  constraint: { label: 'Constraint', icon: '🔒', placeholder: 'Set a guideline...' },
+  resource: { label: 'Resource', icon: '📦', placeholder: 'What do you need?' },
+  query: { label: 'Query', icon: '🔍', placeholder: 'Ask the agents...' },
 };
 
 export function ActionSeed({ onPlant, isGrowing = false, pendingCount = 0 }: ActionSeedProps) {
@@ -81,7 +81,7 @@ export function ActionSeed({ onPlant, isGrowing = false, pendingCount = 0 }: Act
       {!isOpen && !isGrowing && (
         <button className="seed-trigger" onClick={handleOpen} disabled={!canPlant}>
           <span className="seed-icon">🌱</span>
-          <span className="seed-label">plant something</span>
+          <span className="seed-label">share an idea</span>
           {pendingCount > 0 && (
             <span className="seed-count">{pendingCount}</span>
           )}
@@ -96,7 +96,7 @@ export function ActionSeed({ onPlant, isGrowing = false, pendingCount = 0 }: Act
               <div className="growing-progress" />
             </div>
           </div>
-          <span className="growing-text">seed growing...</span>
+          <span className="growing-text">agents are reviewing your idea...</span>
         </div>
       )}
 
@@ -104,7 +104,7 @@ export function ActionSeed({ onPlant, isGrowing = false, pendingCount = 0 }: Act
         <div className="seed-form-container">
           <div className="seed-form">
             <div className="seed-form-header">
-              <span className="seed-form-label">plant a seed</span>
+              <span className="seed-form-label">share your idea with the agents</span>
               <button className="seed-form-close" onClick={handleCancel}>×</button>
             </div>
 
@@ -141,7 +141,7 @@ export function ActionSeed({ onPlant, isGrowing = false, pendingCount = 0 }: Act
                   onClick={handleSubmit}
                   disabled={!inputValue.trim()}
                 >
-                  plant
+                  share
                 </button>
               </div>
             )}
