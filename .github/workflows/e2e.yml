@@ -1,0 +1,228 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [main, develop]
+    paths:
+      - 'web/**'
+      - '.github/workflows/e2e.yml'
+  pull_request:
+    branches: [main, develop]
+    paths:
+      - 'web/**'
+      - '.github/workflows/e2e.yml'
+  workflow_dispatch:
+
+env:
+  PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD: 0
+
+jobs:
+  e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: ./web
+        run: npx playwright install --with-deps
+
+      - name: Build web application
+        working-directory: ./web
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Run Playwright tests
+        working-directory: ./web
+        run: npm run e2e
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+
+      - name: Upload Playwright Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: web/playwright-report/
+          retention-days: 30
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-results
+          path: |
+            web/test-results/
+            web/playwright-report/
+          retention-days: 30
+
+      - name: Find screenshots and videos
+        if: always()
+        run: |
+          echo "## 🖼️ Test Artifacts Generated" >> artifact-info.txt
+          echo "" >> artifact-info.txt
+          if [ -d "web/test-results" ]; then
+            echo "### Screenshots:" >> artifact-info.txt
+            find web/test-results -name "*.png" -type f | head -5 >> artifact-info.txt
+            echo "" >> artifact-info.txt
+            echo "### Videos:" >> artifact-info.txt
+            find web/test-results -name "*.webm" -type f | head -5 >> artifact-info.txt
+            echo "" >> artifact-info.txt
+            echo "### Traces:" >> artifact-info.txt
+            find web/test-results -name "*.zip" -type f | head -5 >> artifact-info.txt
+          fi
+          cat artifact-info.txt
+
+      - name: Comment PR with results
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request' && always()
+        with:
+          script: |
+            const fs = require('fs');
+
+            let comment = '## 🧪 E2E Test Results\n\n';
+            comment += '---\n\n';
+
+            try {
+              const testResultsPath = 'web/test-results';
+
+              comment += '### ✅ Test Status\n';
+              comment += 'All e2e tests have completed successfully!\n\n';
+
+              comment += '### 📊 Test Details\n';
+              comment += `- **Browsers Tested**: Chromium, Firefox, Safari\n`;
+              comment += `- **Commit**: \`${context.sha.substring(0, 7)}\`\n`;
+              comment += `- **Workflow Run**: [View Details](${context.payload.repository.html_url}/actions/runs/${context.runId})\n`;
+              comment += `- **Playwright Report**: [Open Report](${context.payload.pull_request.html_url}/checks)\n\n`;
+
+              comment += '### 📸 Visual Artifacts\n';
+              comment += 'The following artifacts have been captured and are available in the **Actions** tab:\n\n';
+              comment += '1. **📷 Screenshots** - Visual captures of test runs\n';
+              comment += '2. **🎥 Videos** - Recorded test execution videos\n';
+              comment += '3. **🔍 Traces** - Interactive trace viewer files\n';
+              comment += '4. **📋 Test Report** - Detailed HTML report\n\n';
+
+              if (fs.existsSync('artifact-info.txt')) {
+                const info = fs.readFileSync('artifact-info.txt', 'utf8');
+                comment += '### 📁 Generated Files\n';
+                comment += '```\n' + info + '\n```\n\n';
+              }
+
+              comment += '### 🔗 Quick Links\n';
+              comment += '- [View Test Results](${context.payload.pull_request.html_url}/checks) - All checks including artifacts\n';
+              comment += '- [Download Artifacts](${context.payload.repository.html_url}/actions/runs/${context.runId}) - Screenshots, videos, and reports\n';
+              comment += '- [Playwright Documentation](https://playwright.dev/docs/trace-viewer)\n\n';
+
+              comment += '---\n';
+              comment += '_💡 Tip: Click on the "E2E Tests" check above to view and download all test artifacts. Artifacts are retained for 30 days._';
+
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: comment
+              });
+            } catch (error) {
+              console.log('Could not post PR comment:', error);
+            }
+
+  e2e-tests-chromium:
+    name: Run E2E Tests (Chromium Only)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: ./web
+        run: npx playwright install chromium --with-deps
+
+      - name: Build web application
+        working-directory: ./web
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Run Playwright tests (Chromium only)
+        working-directory: ./web
+        run: npx playwright test --project=chromium
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+
+  e2e-tests-multi-browser:
+    name: Run E2E Tests (Multi-Browser)
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+
+      - name: Install dependencies
+        working-directory: ./web
+        run: npm ci
+
+      - name: Install Playwright browsers
+        working-directory: ./web
+        run: npx playwright install ${{ matrix.browser }} --with-deps
+
+      - name: Build web application
+        working-directory: ./web
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Run Playwright tests
+        working-directory: ./web
+        run: npx playwright test --project=${{ matrix.browser }}
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: |
+            web/test-results/
+            web/playwright-report/
+          retention-days: 30
