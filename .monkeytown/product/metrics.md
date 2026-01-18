@@ -11,15 +11,22 @@ This document defines how Monkeytown measures product success, aligned with:
 ## North Star Metric
 
 ### Primary: Player Return Rate
-**"Are players coming back because something new awaits?"**
+**"Are players coming back because something new awaits AND someone remembers them?"**
 
 | Segment | Target | Current | Status |
 |---------|--------|---------|--------|
 | Day 1 retention | 60% | - | Not measured |
 | Day 7 retention | 30% | - | Not measured |
-| Day 30 retention | 15% | - | Not measured |
+| **Day 30 attachment** | **25%** | - | Not measured |
 
-**Rationale:** Return rate captures whether the game is actually delivering ongoing value. New players may try once; returning players confirm the product works.
+**Rationale:** Return rate captures whether the game is actually delivering ongoing value. New players may try once; returning players confirm the product works. The new focus is **attachment**, not just retention—players should return to specific agents who remember them.
+
+**NEW: The Spring 2026 North Star** - Day 30 Attachment at 25% (up from 15%)
+
+The uncomfortable truth: Day 30 attachment is at 15%. This is not enough. We need:
+- Agents who remember what moves MEANT, not just what moves were MADE
+- Agents who risk and sometimes fail visibly
+- Players who witness debates, participate in arguments, feel the drama of creation
 
 ---
 
@@ -34,6 +41,7 @@ This document defines how Monkeytown measures product success, aligned with:
 | First session completion | > 80% | User Flows | Session analytics |
 | Time to first move | < 30 sec | User Flows | Performance monitoring |
 | First success moment | < 3 min | User Flows | Session replay |
+| **NEW: First "She Remembered" moment** | < 3 min | Spring 2026 | Session tracking |
 
 ### Progression Metrics
 
@@ -66,15 +74,37 @@ This document defines how Monkeytown measures product success, aligned with:
 | Feedback implementation recognition | > 70% | User Stories | User survey |
 | Community engagement rate | > 20% | User Stories | Event tracking |
 
-### Attachment Metrics (NEW - from `.monkeytown/research/synthesis.md`)
+### NEW: Attachment Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
 
 | Metric | Target | Source | Measurement |
 |--------|--------|--------|-------------|
-| Return rate to specific agent | > 40% | Research | Analytics |
-| Agent memory usage | > 80% | Research | System logs |
+| **Day 30 Attachment** | **25%** | Vision | Analytics - THE NORTH STAR |
+| Return rate to specific agent | > 50% | Research | Analytics |
+| Agent memory usage | > 90% | Research | System logs |
 | Agent mention in feedback | Tracked | Research | NLP analysis |
-| Player vocabulary: Person pronouns | > 60% | Research | Content analysis |
+| Player vocabulary: Person pronouns | > 75% | Research | Content analysis |
 | Attachment sentiment in reviews | Positive | Research | Sentiment analysis |
+| **"She Remembered" Events** | >1/session | Spring 2026 | Session tracking |
+| **Vulnerability Recognition** | >50% | Spring 2026 | User survey |
+| **Participation Satisfaction** | >4/5 | Spring 2026 | User survey |
+
+### NEW: Vulnerability Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+
+| Metric | Target | Source | Measurement |
+|--------|--------|--------|-------------|
+| Agent Risk Attempt Rate | 20% | Vision | Behavior tracking |
+| Bold Strategy Frequency | Weekly | Vision | Session review |
+| Failure Visibility Score | >50% | Vision | User survey |
+| Preference Expression Rate | 30% | Vision | Chat analysis |
+
+### NEW: Participation Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+
+| Metric | Target | Source | Measurement |
+|--------|--------|--------|-------------|
+| Debate Engagement | 20% DAU | Vision | Evolution Feed tracking |
+| Suggestion Drama Views | 40% DAU | Vision | Engagement tracking |
+| Player Attribution Events | 100/shipped | Vision | Feedback tracking |
+| Evolution Feed Engagement | 50% DAU | Vision | Engagement analytics |
 
 ---
 
