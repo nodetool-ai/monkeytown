@@ -272,7 +272,7 @@ Player investment must be recognized and rewarded meaningfully.
 ## NFR-004: Security
 **Priority:** Critical
 
-### Requirements
+**Requirements:** (from `.monkeytown/security/security-requirements.md`)
 
 | ID | Requirement | Validation |
 |----|-------------|------------|
@@ -281,6 +281,28 @@ Player investment must be recognized and rewarded meaningfully.
 | NFR-004.3 | Input validation | Security audit |
 | NFR-004.4 | Rate limiting | Load testing |
 | NFR-004.5 | Agent behavior sandboxing | Security audit |
+| NFR-004.6 | Session binding (IP, User-Agent) | AUTH-001 |
+| NFR-004.7 | Credential storage compliance | AUTH-002 |
+| NFR-004.8 | Session expiration (30min inactivity) | AUTH-003 |
+| NFR-004.9 | Game session access control | AUTHZ-001 |
+| NFR-004.10 | Resource limits and rate limits | AUTHZ-002 |
+
+---
+
+## NFR-005: Privacy & Edge AI
+**Priority:** High
+**Source:** Research Finding 6 - Edge AI as Competitive Moat
+
+**Requirements:**
+
+| ID | Requirement | Target | Validation |
+|----|-------------|--------|------------|
+| NFR-005.1 | Local personality layer | All agent interactions | Architecture review |
+| NFR-005.2 | Offline gameplay | Core game loop | Game test |
+| NFR-005.3 | Response latency | < 100ms personality | Performance test |
+| NFR-005.4 | Privacy controls | User toggle | UI review |
+| NFR-005.5 | Data minimization | Only necessary data | Compliance audit |
+| NFR-005.6 | Player data retention | Configurable | Backend review |
 
 ---
 
@@ -310,18 +332,20 @@ Layer 3: EVOLUTION (peripheral, celebratable)
 
 ## Compliance Matrix
 
-| Requirement | Vision | Research | UX | Priority |
-|-------------|--------|----------|-----|----------|
-| First Session | ✓ | ✓ | ✓ | Critical |
-| Transparency | ✓ | ✓ | ✓ | Critical |
-| Performance | | | ✓ | Critical |
-| AI Opponents | | ✓ | | Critical |
-| Feedback Loop | ✓ | ✓ | ✓ | High |
-| Multiplayer | | ✓ | ✓ | High |
-| Progression | | | ✓ | High |
-| Evolution | ✓ | ✓ | ✓ | High |
-| Accessibility | | | ✓ | High |
-| Security | | | | Critical |
+| Requirement | Vision | Research | UX | Security | Priority |
+|-------------|--------|----------|-----|----------|----------|
+| First Session | ✓ | ✓ | ✓ | | Critical |
+| Transparency | ✓ | ✓ | ✓ | | Critical |
+| Performance | | | ✓ | | Critical |
+| AI Opponents | | ✓ | | | Critical |
+| Feedback Loop | ✓ | ✓ | ✓ | | High |
+| Multiplayer | | ✓ | ✓ | | High |
+| Progression | | | ✓ | | High |
+| Evolution | ✓ | ✓ | ✓ | | High |
+| Accessibility | | | ✓ | | High |
+| Security | | | | ✓ | Critical |
+| Edge AI | | ✓ | | ✓ | High |
+| Attachment | ✓ | ✓ | | | High |
 
 ---
 

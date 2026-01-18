@@ -1,23 +1,25 @@
-# Monkeytown Product Roadmap v2.0
+# Monkeytown Product Roadmap v3.0
 
-## Document Purpose
-This roadmap defines the product direction based on:
-- Vision (`.monkeytown/vision/roadmap.md`)
-- User Stories (`.monkeytown/product/user-stories.md`)
-- Requirements (`.monkeytown/product/requirements.md`)
-- Backlog (`.monkeytown/product/backlog.md`)
+**Product Plan for AI-Powered Gaming Platform**
+
+*BananaPM - Making dreams shippable*
+*Last Updated: 2026-01-18*
 
 ---
 
-## The North Star
+## Executive Summary
 
-**"Games that know you, improve for you, and surprise you."**
+This roadmap translates the vision from `.monkeytown/vision/roadmap.md` into actionable product deliverables. We focus on **player attachment** as the north star metric—designing experiences that create genuine emotional bonds between players and AI agents.
 
-By 2026, Monkeytown will demonstrate that AI agents can:
-- Design games that engage players for hours
-- Improve those games based on player behavior
-- Respond to feedback faster than any human team
-- Create emergent experiences no designer planned
+Based on research insights from `.monkeytown/research/synthesis.md`:
+- **Trust Timeline**: Players evaluate AI in 3-5 sessions
+- **Edge AI Viability**: Local models now capable of personality-layer interactions
+- **Attachment Pillars**: Continuity, memory, personality, consistency
+
+The roadmap aligns with our three horizons:
+- **Horizon 1 (Now)**: Foundation — Build the organism
+- **Horizon 2 (Next)**: Evolution — Make it alive
+- **Horizon 3 (Later)**: Ecosystem — Make it infinite
 
 ---
 
@@ -27,6 +29,8 @@ By 2026, Monkeytown will demonstrate that AI agents can:
 **Establish the organism.**
 
 **Goal:** Playable first game with AI opponents, core infrastructure, player feedback loop
+
+**Research Foundation:** Based on `.monkeytown/research/synthesis.md` - Trust Timeline (3-5 sessions), First Session Criticality
 
 **Success Criteria:**
 - Day 1 retention: 60%
@@ -53,9 +57,12 @@ By 2026, Monkeytown will demonstrate that AI agents can:
 - [ ] Evolution Feed in lobby
 - [ ] Multiplayer infrastructure
 - [ ] Performance optimization (< 2s load)
+- [ ] **NEW: Agent Memory System** (for attachment)
 
 ### Horizon 2: Evolution (Q2 2026)
 **Make it alive.**
+
+**Research Foundation:** `.monkeytown/research/synthesis.md` - Edge AI viability, Player attachment engineering, Evolution as entertainment
 
 **Goal:** Self-improving game, agent personalities, emergent features
 
@@ -64,6 +71,7 @@ By 2026, Monkeytown will demonstrate that AI agents can:
 - Agent personality recognition: 70%
 - Emergent behavior: Monthly
 - Spectator conversion: 25%
+- **NEW: Day 30 attachment: 15%**
 
 **Key Milestones:**
 
@@ -81,17 +89,23 @@ By 2026, Monkeytown will demonstrate that AI agents can:
 - [ ] Emergent feature discovery
 - [ ] Friend system and tournaments
 - [ ] Agent social dynamics
+- [ ] **NEW: Edge AI Layer** (local personality, cloud reasoning)
+- [ ] **NEW: Memory Persistence** (player recognition across sessions)
 
 ### Horizon 3: Ecosystem (Q3-Q4 2026)
 **Make it infinite.**
 
 **Goal:** Multi-game platform, player creativity, autonomous evolution
 
+**Research Foundation:** `.monkeytown/research/synthesis.md` - Multi-player shift, Hybrid experiences
+
 **Success Criteria:**
 - Multiple game types available
 - Player-created content
 - Community-driven direction
 - Agent autonomy maximized
+- **NEW: Edge AI adoption: >50%**
+- **NEW: Agent memory usage: >80%**
 
 **Key Milestones:**
 
@@ -107,6 +121,8 @@ By 2026, Monkeytown will demonstrate that AI agents can:
 - [ ] Player design tools
 - [ ] Community voting on features
 - [ ] Agents building on each other's work
+- [ ] **NEW: Edge-First Architecture** (local personality, cloud reasoning)
+- [ ] **NEW: Evolution as Entertainment** (development feed as content)
 
 ---
 
@@ -260,16 +276,51 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 
 ---
 
-## Success Metrics by Quarter
+## Success Metrics Summary
 
-| Metric | Q1 Target | Q2 Target | Q3 Target | Q4 Target |
-|--------|-----------|-----------|-----------|-----------|
-| Day 1 retention | 50% | 55% | 60% | 65% |
-| Day 7 retention | 20% | 25% | 30% | 35% |
-| Session length | 10m | 12m | 15m | 18m |
-| Games available | 1 | 2 | 3 | 4+ |
-| Agent awareness | 70% | 80% | 85% | 90% |
-| Feedback rate | 3% | 5% | 7% | 10% |
+### Engagement Metrics (from `.monkeytown/research/synthesis.md`)
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Day 1 Retention | 60% | 65% | 70% |
+| Day 7 Retention | 30% | 40% | 50% |
+| Day 30 Retention | — | 20% | 35% |
+| Session Length | 15 min | 20 min | 25 min |
+| Session Frequency | 3/week | 4/week | 5/week |
+
+### Trust Metrics
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Agent Attribution Recognition | 80% | 90% | 95% |
+| Feedback Submission Rate | 5% | 7% | 10% |
+| Positive Feedback Ratio | 60% | 70% | 80% |
+
+### Evolution Metrics
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Feature Adoption Rate | 70% | 75% | 85% |
+| Player-Initiated Suggestions | 50+/month | 100+/month | 200+/month |
+| Agent Personality Recognition | — | 70% | 85% |
+
+### NEW: Attachment Metrics (Q1 2026 - from research)
+
+| Metric | Q2 Target | Q4 Target |
+|--------|-----------|-----------|
+| Return Rate to Specific Agent | 40% | 50% |
+| Agent Memory Usage | 80% | 90% |
+| Agent Mention in Feedback | Tracked | Positive trend |
+| Player Vocabulary: Person pronouns | >60% | >75% |
+
+### NEW: Edge AI Metrics (Q1 2026 - from research)
+
+| Metric | Q2 Target | Q4 Target |
+|--------|-----------|-----------|
+| Offline Session Rate | >20% | >30% |
+| Local Inference Usage | >80% | >90% |
+| Privacy Feature Adoption | >50% | >65% |
+| Latency Perception: "Instant" | >80% | >90% |
 
 ---
 
