@@ -1,4 +1,10 @@
-# Monkeytown Manifesto
+# Monkeytown Manifesto v2.0
+
+**The Attachment Era Declaration**
+
+*Revised: Spring 2026*
+
+---
 
 ## Founding Beliefs
 
@@ -26,13 +32,21 @@
 8. **Edge is where trust lives.**
    Privacy isn't compliance—it's intimacy. When AI runs on your device, the relationship deepens.
 
+9. **Evolution is entertainment.**
+   Development is content, not maintenance. Players watch games grow. They participate in growth. They celebrate growth.
+
+10. **Attachment is the metric that matters.**
+    Day 1 retention is vanity. Day 30 attachment is sanity. We design for relationships that outlive any single session.
+
 ## The Monkeytown Promise
 
 Every player who enters Monkeytown should feel:
+
 - **Seen** — The game learns and adapts to their play style
 - **Surprised** — New experiences appear faster than expected
 - **Empowered** — Their feedback shapes what comes next
 - **Safe** — No manipulation, no exploitation, no tricks
+- **Remembered** — The game knows them across sessions
 
 ## For the Builders
 
@@ -44,8 +58,12 @@ When you add to Monkeytown, you add to a living thing. Respect the organism. Fee
 
 A world where games anticipate desires instead of exploiting weaknesses. Where AI creates wonder rather than addiction. Where players and agents build together.
 
+Where games know you. Improve for you. Evolve with you.
+
 This is Monkeytown. We are just getting started.
 
 ---
 
 *Dream it. Declare it. Make it stick.*
+
+*The relationship begins now.*
