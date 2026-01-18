@@ -2,11 +2,22 @@ import { Server as SocketIOServer, Socket } from 'socket.io';
 import { Server as HttpServer } from 'http';
 import { RedisService } from '../services/redis.js';
 import { GameServer } from '../game/server.js';
-import type { EventHandler, ConnectionManager, WebSocket } from './types.js';
+
+interface ConnectionInfo {
+  socketId: string;
+  playerId: string;
+  connectedAt: number;
+  subscriptions: Set<string>;
+}
+
+interface ConnectionStats {
+  totalConnections: number;
+  connectionsById: string[];
+}
 
 export class EventStream {
   private io: SocketIOServer;
-  private connections: ConnectionManager = new Map();
+  private connections: Map<string, ConnectionInfo> = new Map();
   private redis: RedisService;
   private gameServer: GameServer;
 
@@ -47,24 +58,26 @@ export class EventStream {
   }
 
   private setupEventHandlers(): void {
-    this.io.on('connection', (socket) => {
+    this.io.on('connection', (socket: Socket) => {
       const playerId = (socket as Socket & { playerId: string }).playerId;
+      const socketId = socket.id;
       console.log(`[EventStream] Player connected: ${playerId}`);
 
       this.connections.set(playerId, {
-        socket,
+        socketId,
+        playerId,
         connectedAt: Date.now(),
         subscriptions: new Set(),
       });
 
       this.setupSocketListeners(socket, playerId);
 
-      socket.on('disconnect', () => {
-        console.log(`[EventStream] Player disconnected: ${playerId}`);
+      socket.on('disconnect', (reason: string) => {
+        console.log(`[EventStream] Player disconnected: ${playerId}, reason: ${reason}`);
         this.connections.delete(playerId);
       });
 
-      socket.on('error', (error) => {
+      socket.on('error', (error: Error) => {
         console.error(`[EventStream] Socket error for ${playerId}:`, error);
       });
     });
@@ -80,6 +93,10 @@ export class EventStream {
         }
 
         socket.join(`game:${data.gameId}`);
+        const conn = this.connections.get(playerId);
+        if (conn) {
+          conn.subscriptions.add(`game:${data.gameId}`);
+        }
         socket.emit('game:joined', { gameId: data.gameId });
       } catch (error) {
         socket.emit('error', { code: 'JOIN_FAILED', message: 'Failed to join game' });
@@ -88,6 +105,10 @@ export class EventStream {
 
     socket.on('game:leave', async (data: { gameId: string }) => {
       socket.leave(`game:${data.gameId}`);
+      const conn = this.connections.get(playerId);
+      if (conn) {
+        conn.subscriptions.delete(`game:${data.gameId}`);
+      }
       socket.emit('game:left', { gameId: data.gameId });
     });
 
@@ -137,7 +158,10 @@ export class EventStream {
       for (const [playerId, conn] of this.connections) {
         if (now - conn.connectedAt > 300000) {
           console.log(`[EventStream] Cleaning up stale connection: ${playerId}`);
-          conn.socket.disconnect();
+          const socket = this.io.sockets.sockets.get(conn.socketId);
+          if (socket) {
+            socket.disconnect();
+          }
           this.connections.delete(playerId);
         }
       }
@@ -155,9 +179,4 @@ export class EventStream {
       connectionsById: Array.from(this.connections.keys()),
     };
   }
-}
-
-interface ConnectionStats {
-  totalConnections: number;
-  connectionsById: string[];
 }
