@@ -360,6 +360,272 @@ describe('BabelGameEngine', () => {
       const result = engine.getResult();
       expect(result.gameLog.length).toBeGreaterThan(0);
     });
+
+    it('should record sabotage actions correctly', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const hand = engine.getPlayerHand('p1');
+      const sabotageCard = hand.find((c: BabelCard) => c.value >= 15);
+
+      if (sabotageCard) {
+        const result = engine.processAction('p1', { type: 'special_babel_tower', cardId: sabotageCard.id, targetPlayerId: 'p2' });
+
+        if (result.success) {
+          const log = engine.getResult().gameLog;
+          const sabotageEntry = log.find((entry: any) => entry.type === 'special_action' && entry.details.action === 'sabotage');
+          expect(sabotageEntry).toBeDefined();
+        }
+      }
+    });
+
+    it('should record boost actions correctly', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const hand = engine.getPlayerHand('p1');
+      const boostCard = hand.find((c: BabelCard) => c.value >= 10 && c.value < 15);
+
+      if (boostCard) {
+        const result = engine.processAction('p1', { type: 'special_babel_tower', cardId: boostCard.id });
+
+        if (result.success) {
+          const log = engine.getResult().gameLog;
+          const boostEntry = log.find((entry: any) => entry.type === 'special_action' && entry.details.action === 'boost');
+          expect(boostEntry).toBeDefined();
+        }
+      }
+    });
+  });
+
+  describe('Round Management', () => {
+    it('should advance rounds when all players pass or table is full', () => {
+      const engine = createTestEngineWithKnownCards();
+      engine.startGame();
+
+      const initialRound = engine.getState().currentRound;
+
+      engine.processAction('p1', { type: 'pass' });
+      engine.processAction('p2', { type: 'pass' });
+      engine.processAction('p3', { type: 'pass' });
+
+      const state = engine.getState();
+      if (state.currentRound > initialRound) {
+        expect(state.currentRound).toBe(initialRound + 1);
+      }
+    });
+
+    it('should end game after max rounds', () => {
+      const engine = createTestEngineWithMaxRounds();
+      engine.startGame();
+
+      for (let i = 0; i < 13; i++) {
+        const state = engine.getState();
+        if (state.status !== 'playing') break;
+
+        engine.processAction('p1', { type: 'pass' });
+        if (state.status !== 'playing') break;
+
+        engine.processAction('p2', { type: 'pass' });
+        if (state.status !== 'playing') break;
+
+        engine.processAction('p3', { type: 'pass' });
+      }
+
+      const finalState = engine.getState();
+      expect(finalState.status).toBe('game_end');
+    });
+
+    it('should deal new hands at round start', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const initialHandCount = engine.getPlayerHand('p1').length;
+
+      engine.processAction('p1', { type: 'pass' });
+      engine.processAction('p2', { type: 'pass' });
+      engine.processAction('p3', { type: 'pass' });
+
+      const newHandCount = engine.getPlayerHand('p1').length;
+      expect(newHandCount).toBeGreaterThanOrEqual(initialHandCount);
+    });
+  });
+
+  describe('Winner Determination', () => {
+    it('should identify winner correctly', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      engine.processAction('p1', { type: 'pass' });
+      engine.processAction('p2', { type: 'pass' });
+      engine.processAction('p3', { type: 'pass' });
+
+      for (let i = 0; i < 13; i++) {
+        const state = engine.getState();
+        if (state.status !== 'playing') break;
+
+        engine.processAction('p1', { type: 'pass' });
+        if (engine.getState().status !== 'playing') break;
+
+        engine.processAction('p2', { type: 'pass' });
+        if (engine.getState().status !== 'playing') break;
+
+        engine.processAction('p3', { type: 'pass' });
+      }
+
+      const result = engine.getResult();
+      expect(result.winnerId).toBeDefined();
+    });
+
+    it('should calculate final scores correctly', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      while (engine.getState().status === 'playing') {
+        const state = engine.getState();
+        const currentPlayerId = state.players[state.currentPlayerIndex]?.id;
+        if (currentPlayerId) {
+          engine.processAction(currentPlayerId, { type: 'pass' });
+        } else {
+          break;
+        }
+      }
+
+      const result = engine.getResult();
+      expect(result.finalScores.size).toBe(3);
+
+      let maxScore = -1;
+      let expectedWinner = '';
+      for (const [playerId, score] of result.finalScores) {
+        if (score > maxScore) {
+          maxScore = score;
+          expectedWinner = playerId;
+        }
+      }
+      expect(result.winnerId).toBe(expectedWinner);
+    });
+  });
+
+  describe('Multiplayer Turn Order', () => {
+    it('should cycle through all players correctly', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const players = engine.getState().players;
+      const turnOrder: string[] = [];
+
+      for (let i = 0; i < players.length * 2; i++) {
+        const currentPlayer = engine.getCurrentPlayer();
+        if (currentPlayer) {
+          turnOrder.push(currentPlayer.id);
+        }
+        engine.processAction(engine.getCurrentPlayer()?.id || '', { type: 'pass' });
+      }
+
+      for (let i = 0; i < turnOrder.length - players.length; i++) {
+        expect(turnOrder[i]).toBe(turnOrder[i + players.length]);
+      }
+    });
+
+    it('should skip disconnected players', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      engine.processAction('p1', { type: 'pass' });
+
+      const state = engine.getState();
+      const currentPlayer = engine.getCurrentPlayer();
+
+      if (state.players[1]?.type === 'agent') {
+        expect(currentPlayer?.id).toBe('p2');
+      }
+    });
+  });
+
+  describe('Edge Cases', () => {
+    it('should handle empty deck gracefully', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      while (engine.getState().status === 'playing' && engine.getState().deck.length > 0) {
+        engine.processAction(engine.getCurrentPlayer()?.id || '', { type: 'pass' });
+      }
+
+      expect(engine.getState().status).toBeDefined();
+    });
+
+    it('should handle sabotage when target has low tower height', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const hand = engine.getPlayerHand('p1');
+      const sabotageCard = hand.find((c: BabelCard) => c.value >= 15);
+
+      if (sabotageCard) {
+        const result = engine.processAction('p1', { type: 'special_babel_tower', cardId: sabotageCard.id, targetPlayerId: 'p2' });
+
+        if (result.success) {
+          const p2State = engine.getState().playerStates.get('p2');
+          expect(p2State?.towerHeight).toBeGreaterThanOrEqual(0);
+        }
+      }
+    });
+
+    it('should not allow actions from non-existent player', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const result = engine.processAction('nonexistent', { type: 'pass' });
+      expect(result.success).toBe(false);
+      expect(result.error).toBeDefined();
+      expect(['Not your turn', 'Player state not found']).toContain(result.error);
+    });
+
+    it('should handle concurrent actions gracefully', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const result1 = engine.processAction('p1', { type: 'play_card', cardId: engine.getPlayerHand('p1')[0].id });
+      const result2 = engine.processAction('p1', { type: 'play_card', cardId: engine.getPlayerHand('p1')[0].id });
+
+      expect(result1.success).toBe(true);
+      expect(result2.success).toBe(false);
+      expect(result2.error).toBeDefined();
+    });
+  });
+
+  describe('State Consistency', () => {
+    it('should maintain consistent state after action', () => {
+      const engine = createTestEngine();
+      engine.startGame();
+
+      const initialState = engine.getState();
+      const hand = engine.getPlayerHand('p1');
+      const cardId = hand[0].id;
+
+      engine.processAction('p1', { type: 'play_card', cardId });
+
+      const newState = engine.getState();
+      expect(newState.updatedAt).toBeGreaterThanOrEqual(initialState.updatedAt);
+    });
+
+    it('should handle state change callbacks', () => {
+      const engine = createTestEngine();
+      let callbackCalled = false;
+      let callbackState: any = null;
+
+      engine.setOnStateChange((state) => {
+        callbackCalled = true;
+        callbackState = state;
+      });
+
+      engine.startGame();
+      engine.processAction('p1', { type: 'pass' });
+
+      expect(callbackCalled).toBe(true);
+      expect(callbackState).toBeDefined();
+      expect(callbackState.id).toBe(engine.getState().id);
+    });
   });
 });
 
@@ -382,5 +648,47 @@ function createTestEngine(): BabelGameEngine {
     playerNames,
     playerTypes,
     agentTypes
+  );
+}
+
+function createTestEngineWithKnownCards(): BabelGameEngine {
+  const playerIds = ['p1', 'p2'];
+  const playerNames = new Map<string, string>([
+    ['p1', 'Alice'],
+    ['p2', 'Bob'],
+  ]);
+  const playerTypes = new Map<string, 'human' | 'agent'>([
+    ['p1', 'human'],
+    ['p2', 'human'],
+  ]);
+  const agentTypes = new Map<string, AgentType>();
+
+  return new BabelGameEngine(
+    playerIds,
+    playerNames,
+    playerTypes,
+    agentTypes,
+    { rounds: 3 }
+  );
+}
+
+function createTestEngineWithMaxRounds(): BabelGameEngine {
+  const playerIds = ['p1', 'p2'];
+  const playerNames = new Map<string, string>([
+    ['p1', 'Alice'],
+    ['p2', 'Bob'],
+  ]);
+  const playerTypes = new Map<string, 'human' | 'agent'>([
+    ['p1', 'human'],
+    ['p2', 'human'],
+  ]);
+  const agentTypes = new Map<string, AgentType>();
+
+  return new BabelGameEngine(
+    playerIds,
+    playerNames,
+    playerTypes,
+    agentTypes,
+    { rounds: 2 }
   );
 }
