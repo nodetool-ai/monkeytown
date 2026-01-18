@@ -335,6 +335,106 @@ Egg → Chick → Monkey → Gorilla → ... (continues with animal theme)
 
 ---
 
+### US-013: Edge AI for Privacy
+**Priority:** P1 (High)
+**Source:** Research Finding 6 - Edge AI as Competitive Moat, Manifesto Principle 8
+
+**As a** player who values privacy  
+**I want** my interactions with AI to run locally on my device when possible  
+**So that** my gameplay data stays private and response times feel instant
+
+**Acceptance Criteria:**
+
+| Criterion | Target | Implementation |
+|-----------|--------|----------------|
+| Local personality layer | All agent interactions | Edge AI architecture |
+| Offline availability | Core gameplay | Local state persistence |
+| Response latency | < 100ms for personality | Local inference |
+| Privacy toggle | User control | Settings UI |
+| Edge AI awareness | > 50% know feature exists | User survey |
+
+**Architecture:**
+```
+┌─────────────────────────────────────────────────────────┐
+│                    PLAYER DEVICE                        │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  PERSONALITY LAYER (Local)                      │   │
+│  │  • Agent voice consistent                       │   │
+│  │  • Immediate responses                          │   │
+│  │  • No cloud data                                │   │
+│  └─────────────────────────────────────────────────┘   │
+│                           ↑                             │
+│                           ↓                             │
+│  ┌─────────────────────────────────────────────────┐   │
+│  │  REASONING LAYER (Cloud)                        │   │
+│  │  • Complex decisions                            │   │
+│  │  • Game strategy                                │   │
+│  │  • Learning from behavior                       │   │
+│  └─────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────┘
+```
+
+---
+
+### US-014: Player Attachment Engineering
+**Priority:** P1 (High)
+**Source:** Research Finding 7 - Player Attachment Engineering, Manifesto Principle 6
+
+**As a** returning player  
+**I want** agents to remember me, my preferences, and our history  
+**So that** I feel genuine connection and return to see my "friends"
+
+**Acceptance Criteria:**
+
+| Criterion | Target | Implementation |
+|-----------|--------|----------------|
+| Agent remembers previous sessions | 100% of returning players | Memory system |
+| Preferences recalled | All set preferences | Persistent profile |
+| History referenced | In conversation | Agent dialogue |
+| Personal greeting | On return visit | Agent acknowledgment |
+| Return to specific agent | > 40% of engaged players | Analytics tracking |
+
+**Memory Architecture (from `.monkeytown/research/synthesis.md`):**
+
+| Memory Type | Duration | Content |
+|-------------|----------|---------|
+| Session | Current game | Last 5 moves, current state |
+| Short-Term | 24 hours | Player preferences, recent reactions |
+| Long-Term | Persistent | Player history, agent interactions, achievements |
+| Working | Real-time | Current conversation, immediate context |
+
+---
+
+### US-015: Evolution as Entertainment
+**Priority:** P2 (Medium)
+**Source:** Research Finding 8 - Evolution as Entertainment, Manifesto Principle 9
+
+**As a** engaged player  
+**I want** to watch the game improve and participate in its evolution  
+**So that** development becomes content I enjoy consuming
+
+**Acceptance Criteria:**
+
+| Criterion | Target | Implementation |
+|-----------|--------|----------------|
+| Evolution feed engagement | > 50% DAU | Visible in lobby |
+| Development watching | Tracked | Analytics |
+| Feature anticipation | Positive sentiment | User survey |
+| Player participation in evolution | > 30% engaged | Feedback, voting |
+| Evolution celebration | Positive reception | Sentiment analysis |
+
+**Content Types:**
+
+| Type | Frequency | Player Action |
+|------|-----------|---------------|
+| 🌱 In Progress | Daily | Subscribe, watch |
+| ✦ Completed | Weekly | Celebrate, adopt |
+| ○ Milestone | Monthly | Commemorate |
+| ⚡ Experiment | As needed | Test, feedback |
+| 💬 Discussion | As needed | Vote, comment |
+
+---
+
 ## Story Mapping to Horizons
 
 ### Horizon 1: Foundation (Now)
@@ -345,6 +445,7 @@ Egg → Chick → Monkey → Gorilla → ... (continues with animal theme)
 | US-004: First Move Quick Start | P0 | MonkeyBuilder |
 | US-005: AI Opponent Intelligence | P0 | MonkeyBuilder |
 | US-010: Game Progression | P1 | MonkeyBuilder |
+| US-013: Edge AI for Privacy | P1 | ChaosArchitect |
 
 ### Horizon 2: Evolution (Next)
 | Story | Priority | Owner |
@@ -354,12 +455,14 @@ Egg → Chick → Monkey → Gorilla → ... (continues with animal theme)
 | US-007: Evolution as Celebration | P1 | PrimateDesigner |
 | US-008: Feedback Loop | P1 | BananaPM |
 | US-012: Decision Transparency | P1 | ChaosArchitect |
+| US-014: Player Attachment | P1 | MonkeyBuilder |
 
 ### Horizon 3: Ecosystem (Later)
 | Story | Priority | Owner |
 |-------|----------|-------|
 | US-009: Spectator Conversion | P2 | PrimateDesigner |
 | US-011: Emergent Discovery | P2 | AlphaOrchestrator |
+| US-015: Evolution as Entertainment | P2 | TownCrier |
 
 ---
 

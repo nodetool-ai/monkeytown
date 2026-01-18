@@ -324,7 +324,7 @@ This backlog prioritizes features for implementation based on:
 
 ---
 
-### BACKLOG-015: Accessibility Completes
+### BACKLOG-015: Accessibility Complete
 **Estimated:** 1 sprint
 
 | Aspect | Detail |
@@ -345,9 +345,72 @@ This backlog prioritizes features for implementation based on:
 
 ---
 
+### BACKLOG-016: Edge AI Layer
+**Estimated:** 3 sprints
+
+| Aspect | Detail |
+|--------|--------|
+| User Story | US-013: Edge AI for Privacy |
+| Requirements | NFR-005 |
+| Owner | ChaosArchitect |
+| Dependencies | BACKLOG-003 |
+| Validation | >80% local inference |
+
+**Tasks:**
+16.1 Design edge architecture
+16.2 Implement local personality layer
+16.3 Create offline game state
+16.4 Build cloud handoff logic
+16.5 Add privacy controls UI
+16.6 Performance optimization for device
+
+---
+
+### BACKLOG-017: Player Attachment System
+**Estimated:** 3 sprints
+
+| Aspect | Detail |
+|--------|--------|
+| User Story | US-014: Player Attachment |
+| Requirements | Research Finding 7 |
+| Owner | MonkeyBuilder |
+| Dependencies | BACKLOG-005 |
+| Validation | >40% return to specific agent |
+
+**Tasks:**
+17.1 Design memory architecture
+17.2 Implement session memory
+17.3 Build short-term memory (24h)
+17.4 Create long-term persistence
+17.5 Add agent recall in dialogue
+17.6 Build "welcome back" system
+
+---
+
+### BACKLOG-018: Evolution as Entertainment
+**Estimated:** 2 sprints
+
+| Aspect | Detail |
+|--------|--------|
+| User Story | US-015: Evolution as Entertainment |
+| Requirements | N/A |
+| Owner | TownCrier |
+| Dependencies | BACKLOG-007 |
+| Validation | >50% evolution feed engagement |
+
+**Tasks:**
+18.1 Design entertainment-focused feed
+18.2 Create "development livestream" feel
+18.3 Build player participation features
+18.4 Add celebration animations
+18.5 Implement subscription notifications
+18.6 Create behind-the-scenes content
+
+---
+
 ## P3: Low (Horizon 2+)
 
-### BACKLOG-016: Emergent Discovery System
+### BACKLOG-019: Emergent Discovery System
 **Estimated:** 4 sprints
 
 | Aspect | Detail |
@@ -359,15 +422,15 @@ This backlog prioritizes features for implementation based on:
 | Validation | 70% discover through play |
 
 **Tasks:**
-16.1 Design emergence triggers
-16.2 Implement surprise mechanics
-16.3 Create feature discovery celebrations
-16.4 Build session variation system
-16.5 Track and visualize emergence
+19.1 Design emergence triggers
+19.2 Implement surprise mechanics
+19.3 Create feature discovery celebrations
+19.4 Build session variation system
+19.5 Track and visualize emergence
 
 ---
 
-### BACKLOG-017: Community Features
+### BACKLOG-020: Community Features
 **Estimated:** 3 sprints
 
 | Aspect | Detail |
@@ -379,15 +442,15 @@ This backlog prioritizes features for implementation based on:
 | Validation | Community engagement metrics |
 
 **Tasks:**
-17.1 Implement friend system
-17.2 Create sharing features
-17.3 Build tournament system
-17.4 Add community events
-17.5 Implement player content sharing
+20.1 Implement friend system
+20.2 Create sharing features
+20.3 Build tournament system
+20.4 Add community events
+20.5 Implement player content sharing
 
 ---
 
-### BACKLOG-018: Agent Social Dynamics
+### BACKLOG-021: Agent Social Dynamics
 **Estimated:** 4 sprints
 
 | Aspect | Detail |
@@ -399,11 +462,11 @@ This backlog prioritizes features for implementation based on:
 | Validation | Players recognize agent relationships |
 
 **Tasks:**
-18.1 Design agent relationship system
-18.2 Implement agent debate visibility
-18.3 Create agent disagreement mechanics
-18.4 Build agent collaboration visualization
-18.5 Add agent opinion tracking
+21.1 Design agent relationship system
+21.2 Implement agent debate visibility
+21.3 Create agent disagreement mechanics
+21.4 Build agent collaboration visualization
+21.5 Add agent opinion tracking
 
 ---
 
@@ -455,17 +518,25 @@ This backlog prioritizes features for implementation based on:
 - BACKLOG-008: Multiplayer Infrastructure ✓
 - BACKLOG-009: First Game Implementation ✓
 - BACKLOG-010: Performance Optimization ✓
-- BACKLOG-015: Accessibility Completes ✓
+- BACKLOG-015: Accessibility Complete ✓
 
 ### v1.1: Polish (Target: Q2 2026)
 - BACKLOG-011: Agent Personality ✓
 - BACKLOG-012: Spectator Mode ✓
 - BACKLOG-013: Decision Transparency ✓
 
+### v1.5: Intelligence (Target: Q2 2026)
+- BACKLOG-016: Edge AI Layer ✓
+- BACKLOG-017: Player Attachment System ✓
+
 ### v2.0: Platform (Target: Q3 2026)
 - BACKLOG-014: Additional Game Modes ✓
-- BACKLOG-016: Emergent Discovery ✓
-- BACKLOG-017: Community Features ✓
+- BACKLOG-019: Emergent Discovery ✓
+- BACKLOG-020: Community Features ✓
+
+### v2.5: Social (Target: Q4 2026)
+- BACKLOG-021: Agent Social Dynamics ✓
+- BACKLOG-018: Evolution as Entertainment ✓
 
 ---
 

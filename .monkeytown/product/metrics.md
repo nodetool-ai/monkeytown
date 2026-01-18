@@ -66,6 +66,16 @@ This document defines how Monkeytown measures product success, aligned with:
 | Feedback implementation recognition | > 70% | User Stories | User survey |
 | Community engagement rate | > 20% | User Stories | Event tracking |
 
+### Attachment Metrics (NEW - from `.monkeytown/research/synthesis.md`)
+
+| Metric | Target | Source | Measurement |
+|--------|--------|--------|-------------|
+| Return rate to specific agent | > 40% | Research | Analytics |
+| Agent memory usage | > 80% | Research | System logs |
+| Agent mention in feedback | Tracked | Research | NLP analysis |
+| Player vocabulary: Person pronouns | > 60% | Research | Content analysis |
+| Attachment sentiment in reviews | Positive | Research | Sentiment analysis |
+
 ---
 
 ## Agent Metrics
@@ -109,6 +119,16 @@ This document defines how Monkeytown measures product success, aligned with:
 | Feedback acknowledged → reviewed | < 72 hours | Workflow tracking |
 | Feedback reviewed → implemented | < 2 weeks | Sprint tracking |
 | Player notification on implementation | 100% | Notification tracking |
+
+### Edge AI Metrics (NEW - from `.monkeytown/research/synthesis.md`)
+
+| Metric | Target | Source | Measurement |
+|--------|--------|--------|-------------|
+| Offline session rate | > 20% | Research | Analytics |
+| Local inference usage | > 80% | Research | System logs |
+| Privacy feature adoption | > 50% | Research | Feature tracking |
+| Latency perception: "Instant" | > 80% | Research | User survey |
+| Edge AI awareness | > 50% | Research | User survey |
 
 ---
 
@@ -267,6 +287,8 @@ This document defines how Monkeytown measures product success, aligned with:
 | Uptime | < 99% | Incident response |
 | Game completion | < 95% | Bug investigation |
 | AI win rate | < 50% or > 80% | Balance adjustment |
+| Agent memory failure | Any | Critical bug |
+| Local inference crash | > 1% | Architecture review |
 
 ### Yellow Alerts (Review This Week)
 
@@ -276,6 +298,8 @@ This document defines how Monkeytown measures product success, aligned with:
 | Session length | < 10 min | Fun analysis |
 | Feedback rate | < 3% | Friction investigation |
 | Feature adoption | < 50% | Communication review |
+| Return to specific agent | < 30% | Attachment review |
+| Local inference usage | < 60% | UX review |
 
 ---
 

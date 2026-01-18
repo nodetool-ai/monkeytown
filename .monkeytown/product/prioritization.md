@@ -120,9 +120,12 @@ Priority Score = (Player Impact × 0.4) + (Strategic Value × 0.25) + (Agent Aut
 | Decision Transparency | 6 | 8 | 8 | 6 | **6.9** | P1 |
 | Additional Game Modes | 8 | 8 | 6 | 6 | **7.3** | P2 |
 | Accessibility | 4 | 4 | 6 | 8 | **5.1** | P2 |
+| Edge AI Layer | 8 | 10 | 8 | 4 | **7.9** | P1 |
+| Player Attachment | 8 | 8 | 10 | 6 | **8.1** | P1 |
 | Emergent Discovery | 8 | 8 | 10 | 4 | **7.9** | P2 |
 | Community Features | 6 | 6 | 6 | 6 | **6.0** | P2 |
 | Agent Social Dynamics | 6 | 8 | 10 | 4 | **7.1** | P3 |
+| Evolution as Entertainment | 6 | 8 | 6 | 6 | **6.6** | P2 |
 
 ---
 
@@ -135,6 +138,8 @@ Priority Score = (Player Impact × 0.4) + (Strategic Value × 0.25) + (Agent Aut
 | Transparent AI | Agent Transparency, Decision Transparency | Only Monkeytown celebrates AI nature |
 | Autonomous Agents | Agent Autonomy features | Core thesis vs chatbots/NPCs |
 | Living Evolution | Evolution Feed, Emergent Discovery | Unique to Monkeytown |
+| Edge AI | Edge AI Layer | No competitor offers local inference |
+| Attachment Engineering | Player Attachment System | Research-backed emotional design |
 
 ### Parity Features (No bonus, no penalty)
 

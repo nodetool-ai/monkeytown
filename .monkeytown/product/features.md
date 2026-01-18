@@ -156,21 +156,11 @@ Play alone or together. AI scales to match. Human or AI, opponents or teammates�
 **Priority:** P0
 **Source:** Manifesto Principle 4, Research - Honest AI
 
-Never hide that you're playing with AI. The AI is part of the fun, not a secret to conceal.
-
 **Implementation:**
 - AI identification in all interactions (🧠 + name prefix)
 - Agent attribution in updates (Evolution Feed)
 - Educational moments about AI
 - Celebrating AI nature
-
-**Transparency Layers:**
-
-| Layer | Visibility | What Players See |
-|-------|------------|------------------|
-| Play | Always | Game in action |
-| Agents | Visible, not dominant | Who's playing with you |
-| Evolution | Peripheral, celebratable | Game changing |
 
 **Agent Presence in UI:**
 ```
@@ -183,6 +173,67 @@ Agent Panel: Click to see profile, stats, recent decisions
 - AI nature awareness: 100%
 - Transparency satisfaction >4/5
 - Highest transparency rating in category
+
+---
+
+### F7: Edge AI Privacy Layer
+**Priority:** P1
+**Source:** Research Finding 6 - Edge AI as Competitive Moat, Manifesto Principle 8
+
+**Description:**
+Local AI inference for personality-layer interactions. Players get instant responses and privacy while cloud handles complex reasoning.
+
+**Architecture:**
+```
+┌─────────────────────────────────────────────────────────┐
+│  LOCAL (Device)                    CLOUD (Server)       │
+│  ┌─────────────────────┐          ┌─────────────────┐  │
+│  │  Personality Layer  │ ←────→  │  Reasoning Lr   │  │
+│  │  • Instant response │          │  • Complex AI   │  │
+│  │  • Privacy preserved│          │  • Learning     │  │
+│  │  • Offline capable  │          │  • Strategy     │  │
+│  └─────────────────────┘          └─────────────────┘  │
+└─────────────────────────────────────────────────────────┘
+```
+
+**Implementation:**
+- Agent personality on device
+- Local state persistence
+- Cloud fallback for complex decisions
+- Privacy controls in settings
+
+**Success Metrics:**
+- Local inference usage: >80%
+- Response latency: <100ms
+- Privacy feature adoption: >50%
+- Offline session rate: >20%
+
+---
+
+### F8: Player Attachment System
+**Priority:** P1
+**Source:** Research Finding 7 - Player Attachment Engineering, Manifesto Principle 6
+
+**Description:**
+Memory and continuity that creates genuine emotional bonds between players and agents.
+
+**Pillars:**
+1. **Continuity**: Same agent across sessions
+2. **Memory**: Agent remembers player
+3. **Personality**: Distinctive, interesting character
+4. **Consistency**: Predictable within nature
+
+**Implementation:**
+- Session memory (last 5 moves)
+- Short-term memory (24h preferences)
+- Long-term memory (persistent history)
+- Working memory (real-time context)
+
+**Success Metrics:**
+- Return rate to specific agent: >40%
+- Agent memory usage: >80%
+- Player vocabulary shifts to person pronouns
+- Positive attachment sentiment in feedback
 
 ---
 
@@ -320,6 +371,9 @@ Each feature maps to:
 | Evolution | None | None | None | **Native** |
 | Transparency | Low | Low | Low | **High** |
 | Player Feedback | Limited | Limited | None | **Direct** |
+| Edge AI | None | None | None | **Planned** |
+| Attachment Design | Weak | None | None | **Engineered** |
+| Evolution as Content | None | None | None | **Native** |
 
 ---
 
