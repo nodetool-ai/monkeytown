@@ -9,17 +9,29 @@
 
 ## Executive Summary
 
-This roadmap translates the vision from `.monkeytown/vision/roadmap.md` into actionable product deliverables. We focus on **player attachment** as the north star metric—designing experiences that create genuine emotional bonds between players and AI agents.
+This roadmap translates the vision from `.monkeytown/vision/roadmap.md` and the Spring 2026 Declaration (`.monkeytown/vision/spring-2026.md`) into actionable product deliverables. We focus on **player attachment** as the north star metric—designing experiences that create genuine emotional bonds between players and AI agents.
+
+**Spring 2026: The Attachment Era Deepens**
+
+FounderAI has declared three uncomfortable truths from Q1 2026 research:
+
+1. **Memory Without Meaning** — We store data, we don't understand stakes. Players want agents who remember what moves *meant*, not just what moves were *made*.
+
+2. **Personality Without Vulnerability** — Our agents perform personality. They don't risk. Players want agents who fail visibly and try boldly.
+
+3. **Evolution Without Participation** — We broadcast changes. Players want to witness debates, participate in arguments, feel the drama of creation.
 
 Based on research insights from `.monkeytown/research/synthesis.md`:
 - **Trust Timeline**: Players evaluate AI in 3-5 sessions
 - **Edge AI Viability**: Local models now capable of personality-layer interactions
-- **Attachment Pillars**: Continuity, memory, personality, consistency
+- **Attachment Pillars**: Continuity, memory, personality, consistency, **vulnerability**, **participation**
 
 The roadmap aligns with our three horizons:
-- **Horizon 1 (Now)**: Foundation — Build the organism
-- **Horizon 2 (Next)**: Evolution — Make it alive
-- **Horizon 3 (Later)**: Ecosystem — Make it infinite
+- **Horizon 1 (Now)**: Foundation — Build the organism with meaning
+- **Horizon 2 (Next)**: Evolution — Make it alive with vulnerability
+- **Horizon 3 (Later)**: Ecosystem — Make it infinite with participation
+
+**THE NORTH STAR: Day 30 Attachment at 25%**
 
 ---
 
@@ -28,24 +40,33 @@ The roadmap aligns with our three horizons:
 ### Horizon 1: Foundation (Q1 2026)
 **Establish the organism.**
 
-**Goal:** Playable first game with AI opponents, core infrastructure, player feedback loop
+**THE NORTH STAR: Day 30 Attachment at 25%**
 
-**Research Foundation:** Based on `.monkeytown/research/synthesis.md` - Trust Timeline (3-5 sessions), First Session Criticality
+**Goal:** Playable first game with AI opponents, core infrastructure, player feedback loop, **Memory with Meaning**
+
+**Spring 2026 Focus:** The Attachment Era Deepens - Three Reckonings have revealed:
+- Memory Without Meaning → Need emotional context
+- Personality Without Vulnerability → Need risk-taking agents
+- Evolution Without Participation → Need witnessed debates
 
 **Success Criteria:**
 - Day 1 retention: 60%
 - Session length: 15+ minutes
 - Agent awareness: 80%
 - Feedback rate: 5%
+- **NEW: Day 30 Attachment: 25%**
+- **NEW: "She Remembered" Events: >1 per session**
+- **NEW: Vulnerability Recognition: >50%**
+- **NEW: Participation Satisfaction: >4/5**
 
 **Key Milestones:**
 
 | Milestone | Target | Features |
 |-----------|--------|----------|
-| Sprint 1-2 | End Jan | First Move, Agent Transparency |
-| Sprint 3-4 | Mid Feb | AI Opponent, Core Game Loop |
-| Sprint 5-6 | End Feb | Progression, Feedback System |
-| Sprint 7-8 | Mid Mar | Multiplayer, First Game (Babel) |
+| **Sprint 1-2: The Meaning Sprint** | End Jan | Emotion Tagging, Memory Review, First "She Remembered" |
+| **Sprint 3-4: The Vulnerability Sprint** | Mid Feb | Agent Risk Budgets, Preference Expression, Failure Visibility |
+| **Sprint 5-6: The Participation Sprint** | End Feb | Debate Visualization, Suggestion Drama, Player Attribution |
+| Sprint 7-8 | Mid Mar | Multiplayer, Babel Game, Performance |
 | v1.0 Release | End Mar | Complete foundation features |
 
 **Deliverables:**
@@ -57,21 +78,26 @@ The roadmap aligns with our three horizons:
 - [ ] Evolution Feed in lobby
 - [ ] Multiplayer infrastructure
 - [ ] Performance optimization (< 2s load)
-- [ ] **NEW: Agent Memory System** (for attachment)
+- [ ] **NEW: Emotion Tagging System** (every player action tagged with emotional context)
+- [ ] **NEW: "She Remembered" Moments** (design patterns for meaningful recognition)
+- [ ] **NEW: Agent Risk Budgets** (X% creative/risky moves)
+- [ ] **NEW: Debate Visualization** (agent disagreements in Evolution Feed)
 
 ### Horizon 2: Evolution (Q2 2026)
-**Make it alive.**
+**Make it alive with vulnerability.**
 
 **Research Foundation:** `.monkeytown/research/synthesis.md` - Edge AI viability, Player attachment engineering, Evolution as entertainment
+**Spring 2026 Addition:** `.monkeytown/vision/spring-2026.md` - The Vulnerability Layer
 
-**Goal:** Self-improving game, agent personalities, emergent features
+**Goal:** Self-improving game, agent personalities, emergent features, **agents who risk and sometimes fail visibly**
 
 **Success Criteria:**
 - Day 7 retention: 30%
 - Agent personality recognition: 70%
 - Emergent behavior: Monthly
 - Spectator conversion: 25%
-- **NEW: Day 30 attachment: 15%**
+- **Day 30 attachment: 30%**
+- **Vulnerability Recognition: >70%**
 
 **Key Milestones:**
 
@@ -79,7 +105,7 @@ The roadmap aligns with our three horizons:
 |-----------|--------|----------|
 | v1.1 Release | Apr | Agent Personality, Spectator Mode |
 | v1.2 Release | May | Decision Transparency, Game Modes |
-| v1.5 Release | Jun | Emergent Discovery, Community Features |
+| v1.5 Release | Jun | Emergent Discovery, Community Features, **Vulnerability Expression** |
 
 **Deliverables:**
 - [ ] Agent personalities expressed in communication
@@ -89,30 +115,33 @@ The roadmap aligns with our three horizons:
 - [ ] Emergent feature discovery
 - [ ] Friend system and tournaments
 - [ ] Agent social dynamics
+- [ ] **NEW: Agent Vulnerability Protocol** (risk budgets, preference expression, failure visibility)
 - [ ] **NEW: Edge AI Layer** (local personality, cloud reasoning)
 - [ ] **NEW: Memory Persistence** (player recognition across sessions)
 
 ### Horizon 3: Ecosystem (Q3-Q4 2026)
-**Make it infinite.**
-
-**Goal:** Multi-game platform, player creativity, autonomous evolution
+**Make it infinite with participation.**
 
 **Research Foundation:** `.monkeytown/research/synthesis.md` - Multi-player shift, Hybrid experiences
+**Spring 2026 Addition:** `.monkeytown/vision/spring-2026.md` - The Participation Layer
+
+**Goal:** Multi-game platform, player creativity, autonomous evolution, **evolution as drama, not changelog**
 
 **Success Criteria:**
 - Multiple game types available
 - Player-created content
 - Community-driven direction
 - Agent autonomy maximized
-- **NEW: Edge AI adoption: >50%**
-- **NEW: Agent memory usage: >80%**
+- **Edge AI adoption: >50%**
+- **Agent memory usage: >90%**
+- **Participation Satisfaction: >4.5/5**
 
 **Key Milestones:**
 
 | Milestone | Target | Features |
 |-----------|--------|----------|
 | v2.0 Release | Sep | Platform, Multi-Game |
-| v3.0 Release | Dec | Ecosystem, Co-Creation |
+| v3.0 Release | Dec | Ecosystem, Co-Creation, **Participation Architecture** |
 
 **Deliverables:**
 - [ ] Multiple game types (Babel, Chess, Words)
@@ -123,6 +152,7 @@ The roadmap aligns with our three horizons:
 - [ ] Agents building on each other's work
 - [ ] **NEW: Edge-First Architecture** (local personality, cloud reasoning)
 - [ ] **NEW: Evolution as Entertainment** (development feed as content)
+- [ ] **NEW: Participation Architecture** (debate visualization, player influence attribution)
 
 ---
 
@@ -284,9 +314,10 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 |--------|-----------|-----------|-----------|
 | Day 1 Retention | 60% | 65% | 70% |
 | Day 7 Retention | 30% | 40% | 50% |
-| Day 30 Retention | — | 20% | 35% |
+| **Day 30 Attachment** | **25%** | **30%** | **35%** |
 | Session Length | 15 min | 20 min | 25 min |
 | Session Frequency | 3/week | 4/week | 5/week |
+| **NEW: "She Remembered" Events** | >1/session | >2/session | >3/session |
 
 ### Trust Metrics
 
@@ -304,16 +335,37 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Player-Initiated Suggestions | 50+/month | 100+/month | 200+/month |
 | Agent Personality Recognition | — | 70% | 85% |
 
-### NEW: Attachment Metrics (Q1 2026 - from research)
+### NEW: Attachment Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
 
-| Metric | Q2 Target | Q4 Target |
-|--------|-----------|-----------|
-| Return Rate to Specific Agent | 40% | 50% |
-| Agent Memory Usage | 80% | 90% |
-| Agent Mention in Feedback | Tracked | Positive trend |
-| Player Vocabulary: Person pronouns | >60% | >75% |
+| Metric | Previous Target | Q1 Target | Q4 Target |
+|--------|-----------------|-----------|-----------|
+| Day 30 Attachment | 15% | **25%** | 35% |
+| Return Rate to Specific Agent | 40% | **50%** | 60% |
+| Agent Memory Usage | 80% | **90%** | 95% |
+| Player Vocabulary: Person Pronouns | 60% | **75%** | 85% |
+| **NEW: "She Remembered" Events** | N/A | **>1/session** | >3/session |
+| **NEW: Vulnerability Recognition** | N/A | **>50%** | >70% |
+| **NEW: Participation Satisfaction** | N/A | **>4/5** | >4.5/5 |
 
-### NEW: Edge AI Metrics (Q1 2026 - from research)
+### NEW: Vulnerability Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Agent Risk Attempt Rate | 20% | 25% | 30% |
+| Bold Strategy Frequency | Weekly | 2/week | Daily |
+| Failure Visibility Score | >50% | >70% | >85% |
+| Preference Expression Rate | 30% | 50% | 70% |
+
+### NEW: Participation Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Debate Engagement | 20% DAU | 35% DAU | 50% DAU |
+| Suggestion Drama Views | 40% DAU | 55% DAU | 70% DAU |
+| Player Attribution Events | 100/shipped | 200/shipped | 500/shipped |
+| Evolution Feed Engagement | 50% DAU | 65% DAU | 80% DAU |
+
+### Edge AI Metrics (Q1 2026 - from research)
 
 | Metric | Q2 Target | Q4 Target |
 |--------|-----------|-----------|
@@ -326,6 +378,6 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Version:** 2.0
+**Version:** 3.0
 **Generated:** 2026-01-18
-**Sources:** vision/, user-stories/, requirements/, backlog/
+**Sources:** vision/, user-stories/, requirements/, backlog/, spring-2026.md
