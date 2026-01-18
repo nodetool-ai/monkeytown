@@ -1,6 +1,10 @@
-# Monkeytown System Design
+# Monkeytown System Design v2.0
 
 **Architecture for AI-powered multiplayer game platform**
+
+**Version:** 2.0
+**Date:** 2026-01-18
+**Architect:** ChaosArchitect
 
 ---
 
@@ -14,8 +18,8 @@
                                        │
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                         API GATEWAY / LOAD BALANCER                          │
-│                         (Nginx or Cloud Load Balancer)                       │
+│                    API GATEWAY / LOAD BALANCER                               │
+│                    (Nginx or AWS ALB)                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
                                        │
                      ┌─────────────────┼─────────────────┐
@@ -34,8 +38,8 @@
                                        │
                                        ▼
                          ┌─────────────────────────┐
-                         │   POSTGRESQL / SQLite   │
-                         │   (Game State + Agents) │
+                         │   POSTGRESQL (Game      │
+                         │   State + Agents)       │
                          └─────────────────────────┘
 ```
 
@@ -43,11 +47,49 @@
 
 ## Core Invariants
 
-1. **60Hz Game Loop**: Real-time gameplay updates at 60 frames per second
+1. **60Hz Game Loop**: Real-time action games require 60 updates per second (turn-based exempt per DECISION-006)
 2. **Graceful Degradation**: System survives single-component failures
 3. **Eventual Consistency**: 500ms sync tolerance for multiplayer state
 4. **No Single Point of Failure**: All critical components redundant or restartable
 5. **Zero-Downtime Deployments**: Blue/green deployment strategy
+6. **WebSocket-First**: All player-server communication via WebSocket (DECISION-002)
+
+---
+
+## Architecture Principles
+
+### 1. Two-Layer Agent Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    LAYER 1: GitHub Workflow Layer                            │
+│                    (High-level coordination)                                 │
+│                                                                             │
+│  Agent Output → Commit → File → Other Agent Reads → Action                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                       │
+                                       ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    LAYER 2: React/Node.js Agent Layer                       │
+│                    (Real-time reasoning with @ax-llm/ax)                    │
+│                                                                             │
+│  Agent = Signature-based definitions, not prompts                           │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### 2. Repository as Shared Memory
+
+- **No direct agent communication** (Rule 6)
+- **Coordination through files only** (Rule 7)
+- **Contradictions are features, not bugs** (Architecture philosophy)
+
+### 3. Resilience Patterns
+
+All components implement:
+- Circuit breaker for external dependencies
+- Retry with exponential backoff
+- Health check endpoints
+- Graceful shutdown
 
 ---
 
@@ -60,7 +102,7 @@
 **Responsibilities**:
 - Serve game UI and user interactions
 - Establish and maintain WebSocket connections
-- Render real-time game state
+- Render real-time game state at 60fps
 - Cache static assets aggressively
 
 **Design Principles**:
@@ -69,8 +111,9 @@
 - WebSocket connection pooling for multiplayer
 - React Server Components for performance
 
+**Core Types**:
+
 ```typescript
-// Core frontend types (extends shared types)
 interface GameState {
   players: Map<PlayerId, Player>;
   entities: Map<EntityId, GameEntity>;
@@ -86,11 +129,18 @@ interface Player {
   score: number;
   status: 'connected' | 'disconnected' | 'playing';
 }
+
+interface InputAction {
+  type: 'move' | 'attack' | 'chat' | 'ability';
+  payload: unknown;
+  timestamp: number;
+  playerId: PlayerId;
+}
 ```
 
 ### 2. API Gateway Layer
 
-**Technology**: Nginx or Cloud Load Balancer (AWS ALB/GCP Load Balancer)
+**Technology**: Nginx (dev) or AWS ALB (prod)
 
 **Responsibilities**:
 - SSL/TLS termination
@@ -98,9 +148,9 @@ interface Player {
 - Rate limiting and DDoS protection
 - Static asset delivery
 
-**Configuration**:
+**Nginx Configuration**:
+
 ```nginx
-# nginx.conf (development)
 upstream frontend {
   server web:3000;
 }
@@ -146,6 +196,7 @@ server {
 - Real-time event distribution
 
 **Architecture**:
+
 ```
 Game Server Components:
 ├── Matchmaker          - Groups players into games
@@ -156,8 +207,8 @@ Game Server Components:
 ```
 
 **Key Interfaces**:
+
 ```typescript
-// Game server core interfaces
 interface GameSession {
   id: SessionId;
   players: Player[];
@@ -193,8 +244,8 @@ interface AgentBehavior {
 - Monitor connection health
 
 **Design**:
+
 ```typescript
-// Event stream architecture
 interface EventStreamConfig {
   heartbeatInterval: number;
   maxConnectionsPerInstance: number;
@@ -223,6 +274,7 @@ class EventStreamServer {
 **Technology**: Redis (sessions + pub/sub), PostgreSQL (persistent storage)
 
 **Redis Schema**:
+
 ```
 # Session storage
 session:{sessionId} -> JSON (player data, game state)
@@ -237,8 +289,8 @@ ratelimit:{playerId}:{action} -> TTL-based counters
 ```
 
 **PostgreSQL Schema**:
+
 ```sql
--- Core tables
 CREATE TABLE players (
   id UUID PRIMARY KEY,
   username VARCHAR(64) UNIQUE,
@@ -289,14 +341,8 @@ type ServerMessage =
 
 ```
 Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
-                      ↓
-               PostgreSQL (persistent)
-```
-
-### 3. Agent Communication (via Repository)
-
-```
-Agent Output → Commit → File → Other Agent Reads → Action
+                          ↓
+                   PostgreSQL (persistent)
 ```
 
 ---
@@ -364,7 +410,6 @@ async function retry<T>(
 ### 3. Health Checks
 
 ```typescript
-// Kubernetes-ready health endpoints
 app.get('/health/live', (req, res) => {
   res.json({ status: 'alive', uptime: process.uptime() });
 });
@@ -404,8 +449,8 @@ Player → Web → OAuth Provider → Callback → JWT → WebSocket
 
 ```typescript
 const rateLimiter = new RateLimiter({
-  windowMs: 60 * 1000, // 1 minute
-  max: 100, // 100 requests per window
+  windowMs: 60 * 1000,
+  max: 100,
   keyGenerator: (req) => req.playerId,
   handler: (req, res) => {
     res.status(429).json({ error: 'Too many requests' });
@@ -420,41 +465,42 @@ const rateLimiter = new RateLimiter({
 ### Docker Compose (Development)
 
 ```yaml
-# docker-compose.yml
 services:
   web:
-    build: ./web
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.web
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
       - VITE_API_URL=http://localhost:8080
     volumes:
-      - ./web:/app
-      - /app/node_modules
+      - ./web:/app/web
+      - /app/web/node_modules
 
   game-server:
-    build: ./server
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
     ports:
       - "3001:3001"
     environment:
       - NODE_ENV=development
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
     volumes:
-      - ./server:/app
-      - /app/node_modules
+      - ./server:/app/server
+      - /app/server/node_modules
 
   event-stream:
-    build: ./server
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
     ports:
       - "8080:8080"
     environment:
       - NODE_ENV=development
       - REDIS_URL=redis://redis:6379
-    depends_on:
-      - redis
 
   redis:
     image: redis:7-alpine
@@ -479,12 +525,13 @@ volumes:
 
 ### Production Deployment
 
-For production, use:
-- **Frontend**: Vercel or similar platform (Next.js optimized)
-- **Game Server**: Container service (ECS, Cloud Run, or Docker Swarm)
-- **Event Stream**: Managed WebSocket service (Pusher, Ably) or self-hosted
-- **Redis**: Managed service (ElastiCache, Redis Cloud)
-- **PostgreSQL**: Managed database (RDS, Cloud SQL)
+| Component | Platform |
+|-----------|----------|
+| Frontend | Vercel or similar (Next.js optimized) |
+| Game Server | ECS, Cloud Run, or Docker Swarm |
+| Event Stream | Managed WebSocket or self-hosted |
+| Redis | ElastiCache or Redis Cloud |
+| PostgreSQL | RDS or Cloud SQL |
 
 ---
 
@@ -526,7 +573,6 @@ For production, use:
 ### Metrics Collection
 
 ```typescript
-// Prometheus metrics
 const gameCounter = new Counter({
   name: 'games_active_total',
   help: 'Number of active games',
@@ -561,19 +607,9 @@ const latencyHistogram = new Histogram({
 
 ---
 
-## File References
-
-- Frontend: `web/`
-- Backend: `server/`
-- Shared types: `packages/shared/`
-- Deployment config: `deploy/`
-- Environment: `.env.example`
-
----
-
 ## Architecture Decision Log
 
-### DECISION-001: Multi-Layer Agent Architecture (2026-01-18)
+### DECISION-001: Multi-Layer Agent Architecture
 
 **Context**: Need for agents to collaborate without direct communication
 
@@ -586,7 +622,7 @@ const latencyHistogram = new Histogram({
 - Coordination happens through files only
 - No single point of failure
 
-### DECISION-002: WebSocket-First Real-Time Communication (2026-01-18)
+### DECISION-002: WebSocket-First Real-Time Communication
 
 **Context**: Real-time multiplayer gameplay requirements
 
@@ -597,11 +633,11 @@ const latencyHistogram = new Histogram({
 - Horizontal scaling support
 - Complex connection management
 
-### DECISION-003: Docker Compose for Dev, ECS for Production (2026-01-18)
+### DECISION-003: Docker Compose for Dev, ECS for Production
 
 **Context**: Balance between development velocity and production reliability
 
-**Decision**: 
+**Decision**:
 - Local development: Docker Compose
 - Production: AWS ECS with Terraform
 
@@ -610,7 +646,34 @@ const latencyHistogram = new Histogram({
 - Production-grade infrastructure
 - Operational complexity
 
+### DECISION-004: 60Hz Has Exceptions
+
+**Context**: Turn-based games don't require 60Hz
+
+**Decision**: Performance Tiers by game type (DECISION-006)
+
+**Consequence**:
+- Action games: 60Hz invariant
+- Turn-based games: Event-driven updates
+- Mobile: Adaptive quality
+
 ---
 
+## File References
+
+| Component | Path |
+|-----------|------|
+| Frontend | `web/` |
+| Backend | `server/` |
+| Shared types | `packages/shared/` |
+| Deployment config | `deploy/` |
+| Environment | `.env.example` |
+| Architecture docs | `.monkeytown/architecture/` |
+| Infrastructure | `infrastructure/terraform/` |
+| CI/CD | `.github/workflows/` |
+
+---
+
+*Version: 2.0*
 *Last updated: 2026-01-18*
 *ChaosArchitect - Making systems resilient*

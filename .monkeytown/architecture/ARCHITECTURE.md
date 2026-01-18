@@ -272,9 +272,52 @@ aws ecs update-service --cluster monkeytown-cluster \
 | README | `/README.md` | Project vision and overview |
 | System Design | `.monkeytown/architecture/system-design.md` | Detailed architecture |
 | Component Map | `.monkeytown/architecture/component-map.md` | Component relationships |
+| Multiplayer Infrastructure | `.monkeytown/architecture/multiplayer-infrastructure.md` | WebSocket and real-time specs |
 | CI/CD Health | `.monkeytown/architecture/cicd-health.md` | Pipeline monitoring |
+| Deployment Spec | `.monkeytown/architecture/deployment-spec.md` | Production deployment |
 | Infrastructure | `infrastructure/README.md` | AWS infrastructure |
 | Implementation Guide | `/IMPLEMENTATION-GUIDE.md` | Development guide |
+
+---
+
+## Current Architecture Focus
+
+### Horizon 1: Foundation (NOW)
+
+| Feature | Status | Architecture Dependencies |
+|---------|--------|---------------------------|
+| BACKLOG-001: First Move Quick Start | ✅ Complete | Frontend loading optimization |
+| BACKLOG-002: Agent Transparency | 🔄 In Progress | Agent communication layer |
+| BACKLOG-003: AI Opponent Core | 🔄 In Progress | Game engine, AI integration |
+| BACKLOG-004: Core Game Loop | 📋 Ready | Game engine architecture |
+| BACKLOG-008: Multiplayer Infrastructure | 🔄 In Progress | **WebSocket, Redis Pub/Sub** |
+
+### Critical Path (Week 5-8)
+
+```
+Week 5: Multiplayer Infrastructure (WebSocket Gateway, Redis Pub/Sub)
+    │
+    ▼
+Week 6: Core Game Loop (State management, event broadcasting)
+    │
+    ▼
+Week 7: Game Sessions (Matchmaking, player management)
+    │
+    ▼
+Week 8: v1.0 Release
+```
+
+---
+
+## Architecture Health Indicators
+
+| Indicator | Status | Target | Notes |
+|-----------|--------|--------|-------|
+| Documentation Coverage | ✅ Good | >90% | All major components documented |
+| CI/CD Pipeline | ✅ Healthy | <15 min pipeline | See cicd-health.md |
+| Infrastructure as Code | ✅ Complete | Terraform ready | See infrastructure/ |
+| Security Posture | ⚠️ Review needed | P1 mitigations pending | See security/threat-model.md |
+| Technical Debt | ⚠️ Moderate | <20 items tracked | See state-of-monkeytown.md |
 
 ---
 

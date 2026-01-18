@@ -1,6 +1,10 @@
-# Monkeytown Component Map
+# Monkeytown Component Map v2.0
 
 **Visual map of system components and their relationships**
+
+**Version:** 2.0
+**Date:** 2026-01-18
+**Architect:** ChaosArchitect
 
 ---
 
@@ -160,6 +164,106 @@ monkeytown/
 │  │  PostgreSQL  │   │    Redis     │    │  External Services   │           │
 │  │  (持久存储)   │   │  (缓存/发布)  │    │  (MiniMax API, etc)  │           │
 │  └──────────────┘   └──────────────┘    └──────────────────────┘           │
+└──────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Multiplayer Infrastructure (BACKLOG-008)
+
+### Architecture
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      MULTIPLAYER INFRASTRUCTURE                             │
+│                                                                             │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │                        Load Balancer                                 │   │
+│  │                  (Nginx or AWS ALB)                                  │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                    │                                        │
+│         ┌──────────────────────────┼──────────────────────────┐            │
+│         ▼                          ▼                          ▼            │
+│  ┌─────────────┐          ┌─────────────┐          ┌─────────────────┐   │
+│  │   Web UI    │          │  Game API   │          │  Event Stream   │   │
+│  │  (Next.js)  │          │  (Express)  │          │  (Socket.IO)    │   │
+│  └─────────────┘          └─────────────┘          └─────────────────┘   │
+│                                    │                          │            │
+│                                    └──────────┬───────────────┘            │
+│                                               ▼                            │
+│                                    ┌─────────────────┐                      │
+│                                    │   Redis Cluster │                      │
+│                                    │  (Pub/Sub +     │                      │
+│                                    │   Sessions)     │                      │
+│                                    └─────────────────┘                      │
+│                                               │                            │
+│                                    ┌──────────┴──────────┐                 │
+│                                    ▼                     ▼                 │
+│                            ┌─────────────┐     ┌─────────────────┐        │
+│                            │  PostgreSQL │     │   Game Servers  │        │
+│                            │  (Primary)  │     │  (Scalable)     │        │
+│                            └─────────────┘     └─────────────────┘        │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### WebSocket Connection Flow
+
+```
+1. Player opens browser
+   │
+   ▼
+2. Next.js serves HTML/JS
+   │
+   ▼
+3. JS connects to Event Stream (ws://host:8080)
+   │
+   ▼
+4. Event Stream authenticates via JWT
+   │
+   ▼
+5. Redis Pub/Sub subscribes player to game channel
+   │
+   ▼
+6. Player receives current game state (replay buffer)
+   │
+   ▼
+7. Game loop begins: Player Input → Game Server → Redis → All Players
+```
+
+### Connection Management
+
+```typescript
+interface ConnectionManager {
+  connections: Map<PlayerId, WebSocket>;
+  gameSubscriptions: Map<GameId, Set<PlayerId>>;
+  heartbeatInterval: number = 30000;
+
+  async handleConnection(playerId: PlayerId, ws: WebSocket): Promise<void> {
+    this.connections.set(playerId, ws);
+    this.startHeartbeat(playerId);
+    this.setupReconnectHandler(playerId, ws);
+  }
+
+  async broadcast(gameId: GameId, event: GameEvent): Promise<void> {
+    const subscribers = this.gameSubscriptions.get(gameId);
+    for (const playerId of subscribers) {
+      const ws = this.connections.get(playerId);
+      if (ws?.readyState === WebSocket.OPEN) {
+        ws.send(JSON.stringify(event));
+      }
+    }
+  }
+}
+```
+
+### Redis Pub/Sub Channels
+
+```
+game:{gameId}:events    - All game events for broadcasting
+game:{gameId}:state     - Current game state snapshots
+player:{playerId}:input - Player input actions
+system:health           - Health check events
+session:{sessionId}     - Session data storage
 ```
 
 ---
@@ -170,9 +274,9 @@ monkeytown/
 
 ```
 Player Browser
-      │
-      │ 1. Open WebSocket connection
-      ▼
+       │
+       │ 1. Open WebSocket connection
+       ▼
 ┌─────────────┐
 │  Web Server │  (Static assets, initial HTML)
 └──────┬──────┘
@@ -209,9 +313,9 @@ Player Browser
 
 ```
 Player A (Action)
-      │
-      │ 1. Send input
-      ▼
+       │
+       │ 1. Send input
+       ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── websocket message
 └────────┬────────┘
@@ -244,9 +348,9 @@ Player A (Action)
 
 ```
 GitHub Actions
-      │
-      │ 1. Trigger agent workflow
-      ▼
+       │
+       │ 1. Trigger agent workflow
+       ▼
 ┌─────────────────┐
 │ Agent Code      │  ◄── read repo state
 │ (Python/TS)     │  ◄── load prompt
@@ -424,6 +528,53 @@ event-stream       │ redis                           │ development/prod
 
 ---
 
+## Current Implementation Status
+
+### ✅ Completed Components
+
+- **Frontend Framework**: Next.js 14 with App Router
+- **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel
+- **UI Components**: Button, Badge, Card (with tests)
+- **Game Engine**: Babel engine with AI opponent
+- **WebSocket Server**: Socket.IO-based event stream
+- **REST API**: Health endpoints, game API routes
+- **Data Layer**: PostgreSQL and Redis services
+- **Docker Setup**: Multi-stage Dockerfiles for web and server
+- **CI/CD Pipeline**: Lint, test, build, deploy workflow
+- **Infrastructure**: Terraform configs for AWS ECS
+
+### 🔄 In Progress
+
+- **Agent Integration**: Full MiniMax API integration (BACKLOG-003)
+- **Multiplayer Infrastructure**: WebSocket scaling, session management (BACKLOG-008)
+- **Core Game Loop**: 60fps game loop with proper state management (BACKLOG-004)
+
+### 📋 Ready for Implementation
+
+- **Agent Transparency**: Display agent reasoning and decisions to players (BACKLOG-002)
+- **First Move Quick Start**: <30s to first gameplay (BACKLOG-001)
+
+### 📋 Future Enhancements
+
+- **Multi-Game Support**: Different game modes
+- **Tournaments**: Competitive play structures
+- **Analytics**: Player behavior tracking
+- **Social Features**: Friends, clans, chat
+
+---
+
+## Technical Debt Items
+
+| Item | Severity | Owner | Status |
+|------|----------|-------|--------|
+| JWT secret hardcoded | Critical | MonkeyBuilder | Not fixed |
+| No token refresh | High | MonkeyBuilder | Not fixed |
+| Session binding missing | Medium | MonkeyBuilder | Not fixed |
+| Input validation gaps | High | MonkeyBuilder | Not fixed |
+| Rate limiting incomplete | Medium | ChaosArchitect | In progress |
+
+---
+
 ## File Locations
 
 | Component | File Path |
@@ -440,36 +591,6 @@ event-stream       │ redis                           │ development/prod
 
 ---
 
-## Current Implementation Status
-
-### ✅ Completed Components
-
-- **Frontend Framework**: Next.js 14 with App Router
-- **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel
-- **UI Components**: Button, Badge, Card (with tests)
-- **Game Engine**: Babel engine with AI opponent
-- **WebSocket Server**: Socket.IO-based event stream
-- **REST API**: Health endpoints, game API routes
-- **Data Layer**: PostgreSQL and Redis services
-- **Docker Setup**: Multi-stage Dockerfiles for web and server
-- **CI/CD Pipeline**: Lint, test, build, deploy workflow
-- **Infrastructure**: Terraform configs for AWS ECS
-
-### 🚧 In Progress
-
-- **Agent Integration**: Full MiniMax API integration
-- **Matchmaking**: Sophisticated player matching
-- **Production Deploy**: ECS task definitions
-- **Monitoring**: Prometheus metrics and alerting
-
-### 📋 Future Enhancements
-
-- **Multi-Game Support**: Different game modes
-- **Tournaments**: Competitive play structures
-- **Analytics**: Player behavior tracking
-- **Social Features**: Friends, clans, chat
-
----
-
+*Version: 2.0*
 *Last updated: 2026-01-18*
 *ChaosArchitect - Mapping the chaos*
