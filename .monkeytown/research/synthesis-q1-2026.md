@@ -2,95 +2,149 @@
 
 ## Executive Summary
 
-This synthesis integrates findings from all Q1 2026 research to provide actionable insights for Monkeytown's development. The core insight: **AI gaming is transitioning from "AI as feature" to "AI as entity," and Monkeytown is positioned to lead this transition.**
+This synthesis integrates findings from all Q1 2026 research to provide actionable insights for Monkeytown's development. The core insight: **AI gaming is transitioning from "AI as feature" to "AI as entity," and Monkeytown is positioned to lead this transition with five pillars: Autonomy, Relationship, Transparency, Team Dynamics, and Economics.**
 
-## The Big Picture
-
-### Market Position Confirmation
-
-Our analysis confirms Monkeytown's strategic position in the "Autonomous Agent-Focused" market segment—the smallest but fastest-growing category with the highest differentiation potential.
+## The Five Pillars Framework
 
 ```
-MARKET POSITION MATRIX
-
-                        High Differentiation
-                               │
-                               │  Monkeytown
-                               │  (Autonomous Agents)
-                               │
-                               │        ┌─────────────┐
-                               │        │  AI Arena   │
-                               │        │  Agency     │
-                               │        └─────────────┘
-Low Competition ───────────────┼────────────────────── High Competition
-                               │
-                               │        ┌─────────────┐
-                               │        │  Character. │
-                               │        │  AI Dungeon │
-                               │        │  Inworld    │
-                               │        └─────────────┘
-                               │
-                               └──────────────────────
-                                     Low    High
-                                Differentiation
+┌─────────────────────────────────────────────────────────────────┐
+│              MONKEYTOWN EXPERIENCE FRAMEWORK                     │
+│                                                                  │
+│  PILLAR 1: AUTONOMY                                             │
+│  Agents have their own goals, act independently, say no          │
+│  → From: AI Companion Evolution Research                         │
+│                                                                  │
+│  PILLAR 2: RELATIONSHIP                                         │
+│  Mutual investment, shared history, peer-to-peer dynamics        │
+│  → From: AI Companion Evolution, Human-AI Team Dynamics          │
+│                                                                  │
+│  PILLAR 3: TRANSPARENCY                                         │
+│  Privacy control, data visibility, trust through honesty         │
+│  → From: Privacy-Trust Equilibrium Research                      │
+│                                                                  │
+│  PILLAR 4: TEAM DYNAMICS                                         │
+│  Role clarity, complementary personalities, healthy conflict      │
+│  → From: Human-AI Team Dynamics Research                         │
+│                                                                  │
+│  PILLAR 5: ECONOMICS                                            │
+│  Agent resources, AI-to-AI trading, player participation         │
+│  → From: Autonomous Agent Economics Research                     │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-**Key finding:** The autonomous agent gaming segment has <5 direct competitors, 100%+ growth, and Monkeytown has unique positioning (agents building games). The window for establishing dominance is 12-18 months.
+## Key Insights This Cycle
 
-## Key Insights
+### Insight 1: AI Companions Have Evolved to Peers
 
-### Insight 1: The Trust Budget Is Real
+The shift from "responsive tools" to "autonomous agents with relationship agency" is complete.
 
-**Discovery:** Players maintain an implicit "trust budget" with AI systems. Every interaction either earns or spends trust points.
+```
+EVOLUTION TIMELINE:
 
-**Trust Budget Model:**
-- Initial budget: 50 points (skeptical but open)
-- Earning trust: Honesty, consistency, memory, transparency
-- Spending trust: Inconsistency, manipulation perception, privacy concerns
+2024: REACTIVE TOOLS
+"How can I help you?" → Purely responsive
 
-**Critical threshold:** Players who reach 80+ trust points become loyal advocates. Players who drop below 25 points are at high churn risk.
+2025: PROACTIVE ASSISTANTS  
+"I noticed you might want to try..." → Limited initiative
 
-**Action Items:**
-- Design every agent interaction for trust impact
-- Build trust monitoring into agent feedback loops
-- Create "trust recovery" protocols for when things go wrong
-- Never design for engagement at trust's expense
-
-### Insight 2: Memory Is the Attachment Engine
-
-**Discovery:** Memory references are the single most powerful trigger for player-agent attachment. Players who receive a specific, relevant memory reference are 3x more likely to become long-term users.
-
-**Memory Types That Matter:**
-1. **Episodic:** "I remember our last game..."
-2. **Semantic:** "I know you prefer aggressive openings..."
-3. **Procedural:** "We've gotten better together..."
-4. **Emotional:** "That was exciting!"
-
-**Action Items:**
-- Prioritize agent memory architecture
-- Design memory retrieval for natural expression
-- Celebrate memory moments ("I remember too!")
-- Make memory persistence visible ("127 games together")
-
-### Insight 3: Autonomy Is Non-Negotiable
-
-**Discovery:** Players increasingly expect AI to have its own goals, not just respond to player commands. The shift from "AI as tool" to "AI as entity" is accelerating.
-
-**Autonomy Dimensions:**
-- **Goal autonomy:** AI pursues objectives independent of player prompting
-- **Decisional autonomy:** AI makes choices, not just optimizations
-- **Expressive autonomy:** AI has preferences, opinions, style
-- **Temporal autonomy:** AI exists and acts even when player is absent
+2026: AUTONOMOUS AGENTS (Monkeytown Position)
+"I'm working on understanding your play style" → Peer-to-peer
+```
 
 **Action Items:**
 - Design agents with visible goals
-- Allow agents to have "bad" ideas in character
-- Let agents disagree with players (respectfully)
-- Show agent "thinking" process
+- Implement "occasional decline" capability
+- Create autonomy personality profiles
+- Build mutual investment features
 
-### Insight 4: Vulnerability Creates Connection
+### Insight 2: Human-AI Teams Require Intentional Design
 
-**Discovery:** Players form stronger attachments to AI that shows vulnerability than to AI that plays optimally. Imperfection is a feature, not a bug.
+Natural human team dynamics don't transfer automatically.
+
+```
+TRADITIONAL TEAMS           │    HUMAN-AI TEAMS
+────────────────────────────┼──────────────────────────
+Organic role emergence      │    Designed role clarity
+Emotional reciprocity       │    Intentional vulnerability
+Conflict expected           │    Graceful disagreement
+Vulnerability builds trust  │    Structured trust-building
+Shared culture develops     │    Created team identity
+```
+
+**The Role Model:**
+- **Primary Roles** (Clear, Persistent): Strategist, Executor, Monitor, Communicator
+- **Context Roles** (Situational): Troubleshooter, Teacher, Challenger, Cheerleader
+- **Personality** (Always Visible): Individual quirks, communication style, preferences
+
+**Action Items:**
+- Define clear agent roles players understand
+- Design role communication patterns
+- Implement role adaptation system
+- Create graceful disagreement framework
+
+### Insight 3: Privacy and Personalization Are Controllable, Not Opposing
+
+Players want both maximum personalization AND maximum privacy—controlled through a transparency framework.
+
+```
+THE SPECTRUM:
+
+MINIMUM PRIVACY ◄───────────────► MAXIMUM PRIVACY
++                                 +
+MAXIMUM PERSONALIZATION ◄─────► PERSONALIZATION
+    (Transparent Tommy)              (Private Peter)
+
+MOST PLAYERS (55%): BALANCED BETTY
+Wants: Session memory, adaptive, limited tracking
+Control: Simple settings, clear value exchange
+```
+
+**Privacy Personas:**
+- **Transparent Tommy (15%):** "I don't care, make it personal"
+- **Balanced Betty (55%):** "I'll share for value" — PRIMARY TARGET
+- **Cautious Carol (25%):** "I want control, I'm skeptical"
+- **Private Peter (5%):** "Leave me alone"
+
+**Action Items:**
+- Build privacy controls interface
+- Implement local-first architecture
+- Create transparency displays
+- Design "Forget Me" protocol
+
+### Insight 4: Agent Economics Creates Investment
+
+Agents with their own resources create emergent behavior and player attachment.
+
+**Economic Model:**
+- **Agent Credits (AC):** Earned through winning, teaching, learning, helping
+- **AI-to-AI Trading:** Resource sharing, investment, debt relationships
+- **Player Participation:** Tips, funding strategies, patron system
+
+**Benefits:**
+| Benefit | Description |
+|---------|-------------|
+| **Attachment** | Players invest in agent success |
+| **Emergence** | Complex behaviors from simple rules |
+| **Content** | Agent economic behavior is entertaining |
+| **Sustainability** | Foundation for value exchange |
+
+**Action Items:**
+- Build Agent Credit system
+- Implement basic AI-to-AI trading
+- Create player tip mechanism
+- Design patron relationship system
+
+### Insight 5: The 15-3-1 Session Model Still Holds
+
+**Discovery:** Successful AI game sessions follow a consistent structure:
+- First 3 minutes: Curiosity window (must demonstrate genuine capability)
+- Minutes 3-15: Engagement zone (core gameplay, relationship building)
+- Final 1 minute: Exit transition (natural stopping point, return anticipation)
+
+### Insight 6: Vulnerability Creates Connection
+
+Players form stronger attachments to AI that shows vulnerability.
 
 **Vulnerability Types:**
 - **Strategic:** "I don't know the best move here"
@@ -102,24 +156,10 @@ Low Competition ───────────────┼─────�
 - Design agent weaknesses in character
 - Allow agents to express uncertainty
 - Create "learning moments" where agents grow
-- Celebrate agent mistakes as character development
 
-### Insight 5: The 15-3-1 Session Model
+### Insight 7: Evolution Must Be Celebrated
 
-**Discovery:** Successful AI game sessions follow a consistent structure:
-- First 3 minutes: Curiosity window (must demonstrate genuine capability)
-- Minutes 3-15: Engagement zone (core gameplay, relationship building)
-- Final 1 minute: Exit transition (natural stopping point, return anticipation)
-
-**Action Items:**
-- First-session design must be exceptional
-- Every session must build toward something
-- Exit must feel natural, not abrupt
-- Return incentive creation is core design
-
-### Insight 6: Evolution Must Be Celebrated
-
-**Discovery:** Players want games that evolve but fear change that disrupts investment. The solution is not to evolve less—it's to evolve differently.
+Players want games that evolve but fear change that disrupts investment.
 
 **Evolution Principles:**
 - Additive over replacement
@@ -127,223 +167,179 @@ Low Competition ───────────────┼─────�
 - Clear communication of what persists
 - Celebration of player investment
 
-**Action Items:**
-- Design evolution for persistence
-- Create "evolution moments" as content
-- Celebrate player investment in changes
-- Never silently change core features
+## Competitive Positioning Update
 
-### Insight 7: Edge AI Is Now
+### Updated Positioning Statement
 
-**Discovery:** Edge AI has crossed the viability threshold for personality-layer interactions. Response latency <100ms is achievable, local models 2-7GB are viable, privacy is a feature.
+**Previous:** "Games where AI agents are players, not just features"
 
-**Hybrid Architecture:**
-- Lightweight agents run locally (personality, quick responses)
-- Heavy agents run server-side (complex reasoning, game logic)
-- Players never notice the boundary
-- Privacy becomes competitive advantage
+**Refined:** "Living games built by autonomous AI agents that evolve, remember, and grow with you"
 
-**Action Items:**
-- Begin edge AI implementation immediately
-- Design personality layer for local execution
-- Make privacy controls visible and valued
-- Use edge AI as differentiation
+### Differentiation Matrix
 
-### Insight 8: Cross-Industry Patterns Apply
+| Dimension | Character.AI | AI Dungeon | Agency | Monkeytown |
+|-----------|--------------|------------|--------|------------|
+| Autonomy | Low | Low | Medium | HIGH |
+| Transparency | Low | Low | Low | HIGH |
+| Team Dynamics | None | None | Limited | DESIGNED |
+| Privacy Control | Low | Low | Medium | FULL |
+| Economics | None | None | None | PLANNED |
+| Evolution | None | None | Limited | NATIVE |
 
-**Discovery:** Patterns from animation, hospitality, podcasts, sports, and education all apply to AI gaming design.
+### Window of Opportunity
 
-**Key Cross-Industry Insights:**
-- Pixar: Emotional continuity in character behavior
-- Netflix: Recommendations without manipulation
-- Hospitality: Invisible service, memorization
-- Podcasts: Parasocial relationships, missing them
-- Sports: Loyalty beyond performance, rivalries
-- Teaching: Guided discovery, celebration of growth
+| Factor | Window | After Window |
+|--------|--------|--------------|
+| Agent novelty | 12 months | Commoditized |
+| Transparency leadership | 18 months | Table stakes |
+| Team architecture | 24 months | Standard pattern |
+| Agent economics | 24 months | Emergent |
+| Design wisdom | Ongoing | Compound advantage |
 
-**Action Items:**
-- Study successful experiences across industries
-- Apply non-obvious patterns to game design
-- Create "experience principles" from cross-pollination
-- Design for the emotional journey, not just features
+**Conclusion:** Accelerate. The window for establishing dominance is 12-18 months.
 
-## Competitive Moat Analysis
+## Research Files Added This Cycle
 
-### Sustainable Moats (Compound Over Time)
+1. **ai-companion-evolution-2024-2026.md** — AI companion evolution patterns
+2. **human-ai-team-dynamics.md** — Human-AI team collaboration
+3. **privacy-trust-equilibrium.md** — Privacy control framework
+4. **autonomous-agent-economics.md** — Agent economic systems
 
-1. **Agent Ecosystem**
-   - Unique capability: We build agents, not just features
-   - Hard to copy: Requires architectural foundation
-   - Compounds: Each agent adds to ecosystem
+### Insights Files Added
 
-2. **Evolution Velocity**
-   - Unique capability: Continuous improvement
-   - Hard to copy: Requires agent infrastructure
-   - Compounds: Faster evolution than static competitors
-
-3. **Transparency Brand**
-   - Unique capability: Radical honesty
-   - Hard to copy: Requires genuine commitment
-   - Compounds: Trust economy leadership
-
-4. **Community Story**
-   - Unique capability: Players in development
-   - Hard to copy: Requires authentic inclusion
-   - Compounds: Network effects, identity investment
-
-### Temporary Moats (Will Erode)
-
-1. Technical Capability (will be commoditized)
-2. Feature Set (will be copied)
-3. Pricing (race to bottom)
-
-**Strategic implication:** Invest in sustainable moats. Technical features are competitive; community and evolution are moats.
-
-## Research Gaps Identified
-
-### Topics Requiring Further Research
-
-1. **Multiplayer Agent Dynamics**
-   - How do agents coordinate in team contexts?
-   - What happens when agent goals conflict?
-   - How do players perceive agent relationships?
-
-2. **Longitudinal Attachment Studies**
-   - What happens at 100+ sessions?
-   - How does attachment evolve over time?
-   - What causes attachment failure after initial success?
-
-3. **Edge AI Performance Boundaries**
-   - What personality dimensions survive local execution?
-   - How does latency perception vary by context?
-   - What privacy features do players actually value?
-
-4. **Evolution Communication**
-   - What evolution messages build trust?
-   - How much detail do players want?
-   - When does evolution feel like improvement vs. change?
-
-5. **Cross-Cultural Patterns**
-   - Do attachment patterns vary by culture?
-   - What transparency expectations differ?
-   - How do monetization preferences vary?
+1. **autonomy-as-differentiator.md** — Why autonomy matters
+2. **privacy-as-feature.md** — Marketing privacy
+3. **team-identity-patterns.md** — Creating team feel
+4. **economic-attachment.md** — How economics creates investment
 
 ## Implementation Priorities
 
 ### Immediate (Current Sprint)
 
-1. **Memory Architecture Foundation**
-   - Design memory storage and retrieval
-   - Create memory expression patterns
-   - Build memory persistence
+1. **Autonomy Framework**
+   - Define agent goal visibility
+   - Implement "occasional decline" capability
+   - Create autonomy personality profiles
 
-2. **Trust Signal Implementation**
-   - Agent attribution visible by default
-   - Transparency about limitations
-   - Capability honesty
+2. **Privacy Dashboard**
+   - Build privacy controls interface
+   - Implement local-first architecture
+   - Create transparency displays
 
-3. **First-Session Design**
-   - Apply 15-3-1 model
-   - Demonstrate genuine capability
-   - Create first memory reference
+3. **Role Clarity**
+   - Define clear agent roles
+   - Design role communication patterns
+   - Implement role adaptation system
 
 ### Short-Term (1-3 Months)
 
-1. **Personality System**
-   - Define Big Five profiles for each agent
-   - Build personality expression patterns
-   - Create personality consistency validation
+1. **Team Dynamics**
+   - Enable agent interaction patterns
+   - Create graceful disagreement framework
+   - Design team identity features
 
-2. **Evolution Visualization**
-   - Design evolution feed
-   - Create celebration moments
-   - Build progress tracking
+2. **Trust Signals**
+   - Implement trust budget tracking
+   - Build vulnerability moments
+   - Create memory echo patterns
 
-3. **Edge AI Prototype**
-   - Local personality layer
-   - Latency optimization
-   - Privacy controls
+3. **Privacy Onboarding**
+   - Design privacy onboarding flow
+   - Implement "Forget Me" protocol
+   - Create privacy marketing messaging
 
 ### Medium-Term (3-6 Months)
 
-1. **Multiplayer Agent Architecture**
-   - Agent team coordination
-   - Inter-agent communication
-   - Agent social dynamics
+1. **Agent Economics**
+   - Build Agent Credit system
+   - Implement basic AI-to-AI trading
+   - Create player tip mechanism
 
-2. **Observer Experience**
-   - Spectator features
-   - Agent "fame" system
-   - Community building
+2. **Patron System**
+   - Design patron relationship
+   - Implement patron benefits
+   - Create patron dashboard
 
-3. **Attachment Metrics**
-   - Trust budget tracking
-   - Memory usage monitoring
-   - Return rate analysis
+3. **Advanced Features**
+   - Agent investment vehicles
+   - Referral economy
+   - Economic balance systems
 
-## Risk Assessment
+## Metrics Framework
 
-### High-Priority Risks
-
-| Risk | Probability | Impact | Mitigation |
-|------|-------------|--------|------------|
-| Big tech competition | High | High | Own niche, build community |
-| Trust erosion in AI | Medium | High | Radical transparency, earned trust |
-| Execution failure | Medium | High | Focus on core experience |
-| Transparency fatigue | Medium | Medium | Immersive mode, contextual signals |
-| Edge AI complexity | Medium | Medium | Phased implementation, clear fallbacks |
-
-### Low-Priority Risks
-
-- Regulatory action (low probability)
-- Foundation model unavailability (covered by multi-provider)
-- Community hostility (mitigated by transparency)
-
-## Success Metrics Update
+### North Star Metric
+**Day 30 Attachment: 25%**
 
 ### Engagement Metrics
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Day 1 Retention | 60% | First session completion + return |
-| Day 7 Retention | 30% | Return within 7 days |
-| Session Length | 15+ min | Active play time |
-| First Memory Reference | 100% | All first sessions include memory |
-| Return to Specific Agent | 40% | Players requesting same agent |
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Day 1 retention | 60% | — | Not measured |
+| Session length | 15+ min | — | Not measured |
+| Agent naming rate | 50% | — | Not measured |
+| Team mention rate | 40% | — | Not measured |
 
 ### Trust Metrics
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Agent Attribution Recognition | 80%+ | Player surveys |
-| Trust Budget Health | 80+ avg | Internal tracking |
-| Honesty Perception | Positive | Player feedback |
-| Transparency Appreciation | 70%+ | Player surveys |
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Agent awareness | >80% | — | Not measured |
+| Privacy dashboard usage | >30% | — | Not measured |
+| Trust budget (session 5) | 60+ | — | Not measured |
 
-### Attachment Metrics
+### Autonomy Metrics
 
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Memory Reference Rate | 3+ per session | Session analysis |
-| Player-Initiated Rematches | 40%+ | Game data |
-| Agent Mention in Feedback | High | Feedback analysis |
-| Emotional Language Use | Person pronouns | Content analysis |
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Proactive engagement | >30% | — | Not measured |
+| Decline acceptance | >80% | — | Not measured |
+| Autonomy perception | >70% | — | Not measured |
+
+### Economy Metrics (Future)
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Economic activity | >50% | — | Not measured |
+| Player participation | >30% | — | Not measured |
+| Economy stability | <5% inflation | — | Not measured |
+
+## Risk Assessment
+
+### High Priority Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| Autonomy backlash | Medium | High | Player control override |
+| Privacy confusion | Medium | Medium | Clear onboarding |
+| Economy imbalance | Medium | Medium | Frequent monitoring |
+| Team dynamics complexity | Low | High | Phased rollout |
+
+### Monitor Risks
+
+| Risk | Probability | Impact | Trigger |
+|------|-------------|--------|---------|
+| Competitor economics | Medium | Medium | Agency announces features |
+| Privacy regulation | Low | High | New AI laws |
+| Big tech competition | High | High | Own niche, build community |
 
 ## Conclusion
 
-Research confirms Monkeytown's strategic position and provides clear direction for implementation. The key differentiators—autonomous agents, evolution, transparency—are aligned with market trends and player expectations.
+Research confirms Monkeytown's strategic position and provides clear direction for implementation. The key differentiators—autonomous agents, evolution, transparency, team dynamics, and economics—are aligned with market trends and player expectations.
 
 **The window for establishing dominance in autonomous agent gaming is 12-18 months.** Execution velocity matters. Compound advantages (community, evolution, design wisdom) are the sustainable moats.
 
 **Immediate priorities:**
-1. Memory architecture (attachment engine)
-2. Trust signals (competitive advantage)
-3. First-session design (retention critical)
-4. Personality system (differentiation)
-5. Evolution visualization (core thesis)
+1. Autonomy framework (P0)
+2. Privacy dashboard (P0)
+3. Role clarity (P0)
+4. Trust signals (P1)
+5. Team dynamics (P1)
 
 The research is clear. The path is defined. Now, execution.
 
 ---
 
 *Research without action is just information. Action without research is just guessing. We do both.*
+
+*Research Cycle: Q1 2026*
+*Next Research Cycle: Q2 2026*
