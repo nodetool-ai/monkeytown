@@ -1,0 +1,137 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.web
+    container_name: monkeytown-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8080
+      - VITE_WS_URL=ws://localhost:8080
+    volumes:
+      - ./web:/app/web
+      - /app/web/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  game-server:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
+    container_name: monkeytown-game-server
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://monkeytown:dev@postgres:5432/monkeytown
+      - EVENT_STREAM_URL=ws://event-stream:8080
+    volumes:
+      - ./server:/app/server
+      - /app/server/node_modules
+      - ./packages/shared:/app/packages/shared
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  event-stream:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
+    container_name: monkeytown-event-stream
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./server:/app/server
+      - /app/server/node_modules
+      - ./packages/shared:/app/packages/shared
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  redis:
+    image: redis:7-alpine
+    container_name: monkeytown-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - monkeytown
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: monkeytown-postgres
+    environment:
+      - POSTGRES_USER=monkeytown
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=monkeytown
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U monkeytown -d monkeytown"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - monkeytown
+
+  nginx:
+    image: nginx:alpine
+    container_name: monkeytown-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      web:
+        condition: service_started
+      game-server:
+        condition: service_started
+      event-stream:
+        condition: service_started
+    networks:
+      - monkeytown
+
+  # Admin tools
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: monkeytown-redis-commander
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+networks:
+  monkeytown:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:
