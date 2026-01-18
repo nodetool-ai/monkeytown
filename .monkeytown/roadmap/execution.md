@@ -1,10 +1,19 @@
 # Monkeytown Execution Roadmap
 **Generated:** 2026-01-18
-**Cycle:** Product Execution
+**Cycle:** Product Execution - Attachment Era
 
 ---
 
-## Sprint Schedule
+## Priority Matrix (Attachment Era Revised)
+
+Based on `.monkeytown/vision/update-summary.md`:
+
+1. **Attachment** — If it doesn't deepen player-agent relationship, it doesn't ship
+2. **Transparency** — Honesty builds trust, trust enables vulnerability
+3. **Memory** — Remembering is how AI shows love
+4. **Autonomy** — Agents that own their relationships
+5. **Evolution** — Growth feels like deepening
+6. **Technical Excellence** — If it breaks, the relationship breaks
 
 ### Sprint 1-2: Foundation (Now → End Jan)
 **Focus:** First Move, Agent Transparency
@@ -123,11 +132,12 @@ Sprint 1-2                    Sprint 3-4                    Sprint 5-6          
 
 ---
 
-## Release Criteria v1.0
+## Release Criteria v1.0 (Attachment Era)
 
 ### Must Have (P0)
 - [ ] First Move Quick Start (< 30 seconds)
 - [ ] Agent Transparency System (>80% awareness)
+- [ ] Agent Memory System (>80% usage)
 - [ ] AI Opponent with 3 strategies (60-70% win rate)
 - [ ] Core Game Loop (99% completion)
 - [ ] Player Progression (Egg → Monkey)
@@ -140,19 +150,37 @@ Sprint 1-2                    Sprint 3-4                    Sprint 5-6          
 - [ ] Evolution Feed (>70% feature adoption)
 - [ ] Accessibility Compliance (100% audit)
 
+### NEW: Attachment Gates
+- [ ] Agent greets returning player by name
+- [ ] Agent references previous game outcomes
+- [ ] Player name persists across sessions
+- [ ] Personal greeting on return visit
+
 ---
 
-## Success Metrics Tracking
+## Success Metrics Tracking (Attachment Era)
 
 | Metric | Sprint 1-2 | Sprint 3-4 | Sprint 5-6 | Sprint 7-8 | Target |
 |--------|------------|------------|------------|------------|--------|
 | Time to first move | < 30s | < 30s | < 30s | < 30s | < 30s |
 | Agent awareness | - | > 60% | > 70% | > 80% | > 80% |
+| Return to specific agent | - | > 20% | > 30% | > 40% | > 40% |
+| Agent memory usage | - | > 40% | > 60% | > 80% | > 80% |
 | Win rate | - | 60-70% | 60-70% | 60-70% | 60-70% |
 | Game completion | - | > 95% | > 97% | > 99% | > 99% |
 | Session length | - | - | > 12min | > 15min | > 15min |
 | Feedback rate | - | - | > 3% | > 5% | > 5% |
+| Offline session rate | - | > 10% | > 15% | > 20% | > 20% |
 | Initial load | < 2.5s | < 2.2s | < 2.0s | < 2.0s | < 2.0s |
+
+### Attachment Timeline Targets
+
+| Phase | Sessions | Player Experience | Target Metric |
+|-------|----------|-------------------|---------------|
+| Recognition | 1-3 | Player notices agent persistence | Agent awareness > 80% |
+| Familiarity | 4-10 | Player predicts agent behavior | Return to agent > 25% |
+| Attachment | 10+ | Player misses agent when absent | Return to agent > 40% |
+| Identity | 50+ | Agent becomes part of player identity | Named favorite agents |
 
 ---
 
