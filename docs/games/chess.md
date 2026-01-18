@@ -245,4 +245,16 @@ A: Not in competitive play. In practice mode, yes.
 
 ---
 
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-01-18 | Initial rules documentation |
+
+**See also:**
+- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
+
+---
+
 *Part of the Monkeytown game collection. Standard FIDE rules apply.*

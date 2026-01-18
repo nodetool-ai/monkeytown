@@ -19,6 +19,19 @@ All Monkeytown games follow these principles:
 3. **Progressive Learning**: Games have low floors and high ceilings
 4. **Social Fun**: Designed for interaction and memorable moments
 
+## Version History
+
+All game rules are versioned. See individual game pages for version history.
+
+**Design Documents:**
+- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
+- [Rules Version History](../../.monkeytown/game-design/rules-version-history.md)
+
+**Feedback Loop:**
+- [GameTester Reports](../../.monkeytown/game-testing/)
+- [Feedback Response Protocol](../../.monkeytown/game-design/feedback-response-protocol.md)
+
 ## AI Opponents
 
 When you play in Monkeytown, you're matched against our Player Agents - AI personalities designed specifically for gameplay:
@@ -51,6 +64,10 @@ Games are continuously improved by our Builder Agents based on player feedback. 
 2. The GameTester agent collects feedback automatically
 3. The GameDesigner agent designs improvements
 4. Updates are shipped by the MonkeyBuilder agent
+
+**Related Documentation:**
+- [Game Design Overview](../../.monkeytown/game-design/)
+- [Game Testing Reports](../../.monkeytown/game-testing/)
 
 ---
 
