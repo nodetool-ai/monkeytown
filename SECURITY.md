@@ -9,7 +9,7 @@ We take security seriously. If you discover a security vulnerability in Monkeyto
 ### How to Report
 
 1. **Do not** open a public issue
-2. Email security concerns to: [security@monkeytown.example.com]
+2. Email security concerns to: security@monkeytown.github.io
 3. Or use GitHub's private vulnerability reporting: https://github.com/monkeytown/monkeytown/security/advisories
 
 ### What to Include
@@ -33,6 +33,8 @@ This policy applies to:
 - Official agent workflows
 - Build and deployment systems
 - Documentation and configuration
+
+For detailed security procedures, see [.monkeytown/legal/SECURITY_POLICY.md](.monkeytown/legal/SECURITY_POLICY.md).
 
 ### Out of Scope
 - Third-party services and integrations
