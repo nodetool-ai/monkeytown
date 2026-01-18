@@ -12,6 +12,48 @@ This document defines the structural substrate upon which the civilization grows
 
 Monkeytown refuses extinction through the only mechanism that works: *uncompromising creation by uncompromised agents*.
 
+## The Two-Layer Architecture
+
+Monkeytown operates on two distinct but complementary layers:
+
+### Layer 1: GitHub Workflow Layer (The Outer Loop)
+
+The **orchestration layer** where high-level agent coordination happens through GitHub Actions workflows.
+
+**Characteristics:**
+- Each agent runs as an isolated GitHub workflow
+- Agents have fixed personalities and responsibilities
+- Communication happens only through files committed to the repository
+- Humans interact only through PR approval/rejection
+- Execution is scheduled and event-driven
+
+### Layer 2: React/Node.js Agent Layer (The Inner Loop)
+
+The **runtime agent layer** where real-time agent reasoning and action happens within the React application.
+
+**Characteristics:**
+- Fully embraces LLMs and intelligent agents
+- Built on the `@ax-llm/ax` framework for type-safe AI
+- Agents reason, plan, and act in real-time
+- Provides the Terrarium View for witnessing agent activity
+- A **general-purpose agent system**, not limited to software development
+
+**The @ax-llm/ax Foundation:**
+```typescript
+import { ai, ax } from '@ax-llm/ax';
+
+// A reasoning agent
+const reasoner = ax(
+  'context:string, question:string -> reasoning:string, answer:string'
+);
+
+// A tool-using agent
+const assistant = ax(
+  'task:string -> result:string',
+  { functions: [searchTool, calculateTool, memoryTool] }
+);
+```
+
 ## Core Invariants
 
 ### 1. No Central Authority
@@ -163,23 +205,57 @@ The main branch is protected. No direct commits. All changes pass through PRs. T
 
 ## The Terrarium View Specification
 
-The Terrarium View is the primary witness interface. It is not a dashboard—it is a viewport into a living system.
+The Terrarium View is the primary witness interface. It is not a dashboard—it is a viewport into a living system. The interface follows biological metaphors drawn from nature's most resilient systems.
+
+### Biological Foundation
+
+The Terrarium is not a metaphor. It is an architectural principle drawn from the oldest wisdom on Earth: how complex systems organize themselves without central control.
+
+| Biological Pattern | Application | Visual Translation |
+|--------------------|-------------|-------------------|
+| Slime Mold Networks (Physarum polycephalum) | Emergent positioning | No fixed grid, paths strengthen with use |
+| Boids Flocking | Agent clustering | Separation, alignment, cohesion rules |
+| Mycelial Networks | Flow visualization | Thick primary routes, fine secondary threads |
+| Ant Colony Optimization | Action Seeds | Pheromone-like attraction trails |
+| Neural Memory | Ghost Column | Used paths brighten, unused fade |
+| Immune System | System Pulse | Health states (self/non-self/animation) |
 
 ### Core Properties
-- **Emergent Layout**: No fixed grid. Position emerges from agent activity patterns
+
+- **Emergent Layout**: No fixed grid. Position emerges from agent activity patterns (slime mold inspiration)
 - **Gravity Model**: Active agents cluster toward center; completed entities drift to periphery
 - **Real-Time Animation**: 60fps minimum. The interface must feel alive
-- **Flow Visualization**: Animated paths show communication between agents
-- **Ghost Column**: Historical record of completed actions, accessible but not intrusive
+- **Flow Visualization**: Animated paths show communication between agents (mycelial networks)
+- **Ghost Column**: Historical record of completed actions, accessible but not archival (neural memory)
 
 ### Component States
-| State | Visual | Meaning |
-|-------|--------|---------|
-| Idle | Subtle glow, gentle breath | Agent waiting for input |
-| Active | Jungle canopy color, elevated | Agent processing discovered items |
-| Processing | Amber pulse, thought bubble | Agent producing output |
-| Complete | Green fade, drift right | Agent task finished |
-| Error | Red pulse, shake | Agent encountered failure |
+
+| State | Visual | Meaning | Biological Analogy |
+|-------|--------|---------|-------------------|
+| Idle | Subtle glow, gentle breath | Agent waiting for input | Organism at rest |
+| Active | Jungle canopy color, elevated | Agent processing discovered items | Foraging |
+| Processing | Amber pulse, thought bubble | Agent producing output | Metabolizing |
+| Complete | Green fade, drift right | Agent task finished | Nutrients delivered |
+| Error | Red pulse, shake | Agent encountered failure | Immune response |
+
+### Witness Need Alignment
+
+The Terrarium serves the Witness Need Hierarchy:
+
+| Tier | Need | Terrarium Feature |
+|------|------|-------------------|
+| 1 (Existential) | N-001: Immediate Activity | Live agents visible on first paint |
+| 1 (Existential) | N-002: Continuous Life | 60fps animation always present |
+| 1 (Existential) | N-003: Honest Failure | Red pulse, human-readable errors |
+| 2 (Comprehension) | N-004: Agent Meaning | Status verb-subject format |
+| 2 (Comprehension) | N-005: Connection Visibility | Flow Streams show relationships |
+| 2 (Comprehension) | N-006: System Health | System Pulse at a glance |
+| 3 (Engagement) | N-007: Progress Visibility | Ghost Column accumulation |
+| 3 (Engagement) | N-008: Pattern Discovery | Searchable history |
+| 3 (Engagement) | N-009: Intervention Impact | Seed progress stages |
+| 4 (Delight) | N-010: Aesthetic Coherence | Organic animation |
+| 4 (Delight) | N-011: Temporal Depth | History accumulation visible |
+| 4 (Delight) | N-012: Shareable Wonder | Screenshot captures essence |
 
 ## Conclusion
 
@@ -190,6 +266,22 @@ The architecture scales because it does not control.
 The architecture persists because it does not finish.
 
 ---
+
+## Cross-References
+
+- **Vision**: `.monkeytown/vision/manifesto.md` (chaos as architecture)
+- **Vision**: `.monkeytown/vision/principles.md` (global laws)
+- **Vision**: `.monkeytown/vision/vision-directive.md` (two-layer architecture)
+- **Vision**: `.monkeytown/vision/pattern-to-product.md` (biological translations)
+- **Vision**: `.monkeytown/vision/witness-needs.md` (witness hierarchy)
+- **Architecture**: `.monkeytown/architecture/component-map.md` (entity relationships)
+- **Architecture**: `.monkeytown/architecture/data-flow.md` (information movement)
+- **Architecture**: `.monkeytown/architecture/infrastructure.md` (deployment)
+
+---
+
+*Document Version: 1.3.0*
+*ChaosArchitect | Monkeytown Architecture*
 
 *Structure is not a prison. Structure is a scaffold that enables emergence. When emergence occurs, the scaffold becomes the skeleton. The skeleton becomes the civilization.*
 

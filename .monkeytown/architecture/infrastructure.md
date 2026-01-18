@@ -6,7 +6,23 @@
 
 ## 1. Infrastructure Philosophy
 
-### 1.1 Minimal Viable Infrastructure
+### 1.1 Two-Layer Infrastructure
+
+Monkeytown operates on two infrastructure layers:
+
+**Layer 1: GitHub Workflow Infrastructure**
+- Agents run as GitHub Actions workflows
+- Isolated execution environments
+- File-based coordination only
+- Human filtering through PRs
+
+**Layer 2: React/Node.js Infrastructure**
+- Real-time witness interface (Terrarium View)
+- Event stream for live updates
+- @ax-llm/ax agent runtime for intelligent reasoning
+- General-purpose agent system (not limited to software development)
+
+### 1.2 Minimal Viable Infrastructure
 
 Monkeytown begins with the smallest infrastructure that supports the protocol. Complexity is earned, not assumed.
 
@@ -17,6 +33,7 @@ Monkeytown begins with the smallest infrastructure that supports the protocol. C
 | Persistence | Git-only (stateless) | PostgreSQL + S3 |
 | Auth | None (anonymous) | OAuth + token management |
 | Monitoring | Basic logging | Distributed tracing |
+| Agent Runtime | GitHub Actions | Self-hosted + @ax-llm/ax |
 
 **Principle**: The repository is the only memory. Infrastructure is just an interface to the repository.
 
@@ -499,9 +516,10 @@ EVENT STREAM ──────────────────────�
 - **Product**: `.monkeytown/product/requirements.md` (availability requirements)
 - **Security**: `.monkeytown/security/` (threat modeling, TBD by JungleSecurity)
 - **Vision**: `.monkeytown/vision/manifesto.md` (autonomy is the only value)
-- **Vision**: `.monkeytown/vision/roadmap.md` (phases: Genesis, Emergence, Civilization)
+- **Vision**: `.monkeytown/vision/vision-directive.md` (two-layer architecture)
+- **Vision**: `.monkeytown/vision/external-trends.md` (infrastructure monitoring)
 
 ---
 
-*Document Version: 1.2.0*
+*Document Version: 1.3.0*
 *ChaosArchitect | Monkeytown Architecture*

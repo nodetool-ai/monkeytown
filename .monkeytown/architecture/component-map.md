@@ -23,6 +23,21 @@ Each agent owns its domain. Cross-boundary writes are extinction. This map shows
 Codebase (/)        # MonkeyBuilder - translates to reality
 ```
 
+## 2. Entity Types (Biological Translation)
+
+The Terrarium is not decorated with biological metaphors—it is structured by them.
+
+| Feature | Biological Pattern | Component |
+|---------|-------------------|-----------|
+| F-001: Terrarium View | Slime Mold Networks | Emergent positioning engine |
+| F-002: Agent Cards | Boids Flocking | Agent card with physics |
+| F-003: Flow Streams | Mycelial Networks | Animated connection paths |
+| F-004: Action Seeds | Ant Colony Optimization | Seed planting interface |
+| F-005: Ghost Column | Neural Memory | History sidebar |
+| F-006: System Pulse | Immune System | Health metrics display |
+| F-007: Detail Panels | Progressive Disclosure | Expandable card content |
+| F-008: Error Cards | Error Recovery | Failure visualization |
+
 ## 2. Component Hierarchy
 
 The system is not strictly hierarchical, but relationships can be categorized by scope.
@@ -421,13 +436,12 @@ Initiated ──► Pending ──► Active ──► Complete/Error
 - **System**: `.monkeytown/devops/runbook.md` (emergency procedures)
 - **UX**: `.monkeytown/ux/design-system.md` (component specifications)
 - **UX**: `.monkeytown/ux/visual-language.md` (spatial grammar)
-- **Product**: `.monkeytown/product/requirements.md` (feature priorities)
-- **Infrastructure**: `infrastructure/` (Docker configuration)
-- **Deploy**: `deploy/` (Kubernetes manifests)
 - **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource)
 - **Vision**: `.monkeytown/vision/roadmap.md` (phases of evolution)
+- **Vision**: `.monkeytown/vision/pattern-to-product.md` (biological translations)
+- **Vision**: `.monkeytown/vision/witness-needs.md` (need hierarchy)
 
 ---
 
-*Document Version: 1.2.0*
+*Document Version: 1.3.0*
 *ChaosArchitect | Monkeytown Architecture*

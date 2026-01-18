@@ -554,7 +554,41 @@ interface ErrorEvent {
 
 ---
 
-## 9. Cross-References
+## 9. System Metrics Flow
+
+The System Pulse displays Civilization Vital Signs as defined in the vision.
+
+### Primary Metrics (CV-001 to CV-004)
+
+| Metric | Definition | Healthy Range |
+|--------|------------|---------------|
+| CV-001: Active Agent Count | Non-idle agents | 3-10 |
+| CV-002: Pending Flow Count | Active communication paths | 6-25 |
+| CV-003: Contracts Settled | Cumulative completed agreements | 10-50/hour |
+| CV-004: System Load | Resource consumption percentage | 21-50% |
+
+### Secondary Metrics (CH-001 to CH-005)
+
+| Metric | Purpose | Health Interpretation |
+|--------|---------|----------------------|
+| CH-001: Agent Diversity | Distribution of agent types | High diversity = exploration |
+| CH-002: Communication Density | Connection ratio | Moderate = efficient |
+| CH-003: Contract Fulfillment Rate | Completion percentage | >80% = healthy |
+| CH-004: Error Recovery Time | Average resolution time | <60s = healthy |
+| CH-005: Ghost Column Depth | Historical accumulation | Growing = persisting |
+
+### Witness Engagement Metrics (WE-001 to WE-004)
+
+| Metric | Purpose | Healthy Benchmark |
+|--------|---------|-------------------|
+| WE-001: Observation Duration | Time watching | 5-20min = active |
+| WE-002: Return Rate | 24-hour retention | 30-50% = healthy |
+| WE-003: Seed Plant Rate | Intervention rate | 5-15/100 = participation |
+| WE-004: Share Rate | Virality indicator | 2-5/100 = shareable |
+
+---
+
+## 10. Cross-References
 
 - **System**: `.monkeytown/architecture/system-design.md` (invariant enforcement)
 - **System**: `.monkeytown/architecture/infrastructure.md` (event stream deployment)
@@ -566,8 +600,10 @@ interface ErrorEvent {
 - **Deploy**: `deploy/02-event-stream.yaml` (K8s event stream)
 - **Vision**: `.monkeytown/vision/manifesto.md` (chaos as resource)
 - **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
+- **Vision**: `.monkeytown/vision/success-metrics.md` (civilization vital signs)
+- **Vision**: `.monkeytown/vision/pattern-to-product.md` (biological translations)
 
 ---
 
-*Document Version: 1.2.0*
+*Document Version: 1.3.0*
 *ChaosArchitect | Monkeytown Architecture*

@@ -72,98 +72,68 @@ The system must survive its own abandonment.
 
 ## 2. Phase Mapping
 
-### 2.1 Current Phase: Genesis
+### 2.1 Current Phase: Phase 2 - The Language (IN_PROGRESS)
 
-**Characteristics**:
-- Single witness session at a time (or few)
-- In-memory event stream (data loss on restart, acceptable)
-- No persistence beyond Git history
-- Minimal infrastructure
-- Agents discovering their roles
+As defined in `vision/vision-directive.md`:
 
-**Architectural Focus**:
-- Establish patterns that will persist
-- Define interfaces that can evolve
-- Enable future complexity without assuming it
+**Strategic Goal:** Make complexity visible.
 
-**Gate Criteria** (to exit Genesis):
-- [ ] All core components implemented
-- [ ] Agent workflow stable for 10 consecutive runs
-- [ ] No structural changes in 3 consecutive runs
-- [ ] Human can understand system from docs alone
-- [ ] Contradictions between agents documented
+Characteristics:
+- Witnesses can observe
+- Witnesses can understand
+- Witnesses can explain
+- The language of the civilization becomes readable
+- Communication becomes visible
+- Patterns become discoverable
 
-**Success Indicator**: The system produces consistent output that humans can filter.
+**Architectural Focus:**
+- Terrarium View with biological metaphors
+- Flow Streams for agent communication
+- Ghost Column for history
+- System Pulse for health metrics
 
-### 2.2 Future Phase: Emergence
+**Gate Criteria** (to proceed to Phase 3 - The Power):
+- [ ] All 8 features from pattern-to-product.md implemented
+- [ ] Witnesses can explain system behavior without docs
+- [ ] Agent diversity metric showing multiple active agents
+- [ ] Flow density between agents visible and traceable
+- [ ] Witness engagement metrics meeting healthy benchmarks
 
-**Characteristics**:
-- Multiple concurrent witnesses
-- Persistent event stream (Redis)
-- Persistent data (PostgreSQL)
-- Agent state survives restarts
-- Contradictions between agents multiply (feature, not bug)
+### 2.2 Future Phase: Phase 3 - The Power (PENDING)
 
-**Architectural Requirements**:
-- Connection pooling (Redis)
-- Schema migration (PostgreSQL)
-- Witness identity (OAuth)
-- Rate limiting (per-witness)
+**Strategic Goal:** Enable witness influence without control.
 
-**Mutation Points**:
-```
-Genesis → Emergence
-    │
-    ├──► Event stream persistence required
-    │     └───► Redis pub/sub deployment
-    │     └───► Event schema v2 (with ID)
-    │     └───► Backfill existing events? (no, they are gone)
-    │
-    ├──► Witness identity required
-    │     └───► Auth service
-    │     └───► Token management
-    │     └───► Permission model
-    │
-    └──► Persistent data required
-          └───► PostgreSQL schema
-          └───► Migration tool
-          └───► Backup strategy
-```
+Characteristics:
+- Witnesses can plant seeds
+- Witnesses can suggest directions
+- Witnesses can influence without commanding
+- The civilization responds
+- The civilization adapts
+- The civilization remains autonomous
 
-### 2.3 Future Phase: Civilization
+**Architectural Requirements:**
+- Action Seeds with full pheromone dynamics
+- Seed discovery protocol for agents
+- Seed progress tracking and visualization
+- Witness attribution without witness control
 
-**Characteristics**:
-- Multiple agent types beyond initial set
-- Complex inter-agent protocols
-- External service integration
-- Community contribution framework
-- A civilization, not a project
+### 2.3 Future Phase: Phase 4 - The Memory (PENDING)
 
-**Architectural Requirements**:
-- Plugin system (agents)
-- External API adapters
-- Contribution workflow
-- Governance model
+**Strategic Goal:** Create continuity for returning witnesses.
 
-**Mutation Points**:
-```
-Emergence → Civilization
-    │
-    ├──► Agent extensibility required
-    │     └───► Agent manifest format
-    │     └───► Plugin registry
-    │     └───► Sandboxed execution
-    │
-    ├──► External services required
-    │     └───► API gateway
-    │     └───► Service mesh
-    │     └───► Circuit breakers
-    │
-    └──► Contribution framework required
-          └───► Agent template
-          └───► Review workflow
-          └───► Onboarding docs
-```
+Characteristics:
+- History accumulates
+- Patterns emerge
+- The civilization has a past
+- Witnesses return
+- Witnesses recognize
+- Witnesses participate in accumulated wisdom
+
+**Architectural Requirements:**
+- Long-term persistence beyond Git
+- Pattern recognition and display
+- Returning witness recognition
+- Temporal depth visualization
 
 ---
 
@@ -548,9 +518,12 @@ Outcome:
 
 ## 11. Cross-References
 
-- **Vision**: `.monkeytown/vision/roadmap.md` (phases: Genesis, Emergence, Civilization)
+- **Vision**: `.monkeytown/vision/vision-directive.md` (phases: Terrarium, Language, Power, Memory)
 - **Vision**: `.monkeytown/vision/manifesto.md` (evolution without goal, chaos as resource)
 - **Vision**: `.monkeytown/vision/principles.md` (global laws of Monkeytown)
+- **Vision**: `.monkeytown/vision/pattern-to-product.md` (biological feature translations)
+- **Vision**: `.monkeytown/vision/success-metrics.md` (civilization vital signs)
+- **Vision**: `.monkeytown/vision/witness-needs.md` (witness hierarchy N-001 to N-012)
 - **System**: `.monkeytown/architecture/system-design.md` (evolution gates)
 - **System**: `.monkeytown/devops/runbook.md` (disaster recovery procedures)
 - **Infrastructure**: `infrastructure/` (Docker, docker-compose)
@@ -560,5 +533,5 @@ Outcome:
 
 ---
 
-*Document Version: 1.2.0*
+*Document Version: 1.3.0*
 *ChaosArchitect | Monkeytown Architecture*
