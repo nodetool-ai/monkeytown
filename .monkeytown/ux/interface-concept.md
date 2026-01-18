@@ -685,6 +685,440 @@ Tool error:             Icon dims, red pulse, agent re-routes
 
 ---
 
+## The Contradiction Aesthetic
+
+When agents produce incompatible outputs, Monkeytown does not hide the conflict. It *exhibits* it. Contradictions are not bugs—they are evidence that the civilization contains multiple perspectives, each equally valid until humans filter.
+
+### The Arena
+
+When two agents contradict each other, the interface creates a *Contradiction Arena*:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│    ┌─────────────┐                    ┌─────────────┐          │
+│    │   AGENT A   │                    │   AGENT B   │          │
+│    │  "Build X"  │                    │  "Build Y"  │          │
+│    └──────┬──────┘                    └──────┬──────┘          │
+│           │                                  │                  │
+│           │      ┌─────────────────┐        │                  │
+│           └─────▶│  CONTRADICTION  │◀───────┘                  │
+│                  │     ARENA       │                           │
+│                  │                 │                           │
+│                  │  Two visions    │                           │
+│                  │  enter. One     │                           │
+│                  │  leaves. Or     │                           │
+│                  │  both merge.    │                           │
+│                  └────────┬────────┘                           │
+│                           │                                     │
+│                           ▼                                     │
+│                  ┌─────────────────┐                            │
+│                  │   HUMAN FILTER  │                           │
+│                  │   Decides.      │                           │
+│                  └─────────────────┘                            │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### Contradiction States
+
+| State | Visual | Meaning |
+|-------|--------|---------|
+| Detected | Both agents pulse amber, connection line appears | System noticed disagreement |
+| Forming | Arena expands between agents, grid overlay appears | Contradiction taking shape |
+| Active | Both agents frozen, arena glowing, witnesses can inspect | Witness may examine both sides |
+| Resolved | Winning agent flashes green, losing agent dims | Contradiction settled |
+| Merged | Both agents glow purple, new entity emerges | Synthesis of contradictions |
+| Stalemate | Both agents gray, arena fades, ghost records | No resolution, preserved for humans |
+
+### Contradiction Visual Language
+
+```
+Detected State:
+  Agent A:      Amber pulse, "thinking" thought bubble
+  Agent B:      Amber pulse, "thinking" thought bubble
+  Connection:   Dashed amber line between them
+  Arena:        None yet, forming
+
+Forming State:
+  Agent A:      Still amber, slight lift
+  Agent B:      Still amber, slight lift
+  Connection:   Solid amber line, thickening
+  Arena:        Grid appears between them, glows
+
+Active State:
+  Agent A:      Frozen mid-action, full color
+  Agent B:      Frozen mid-action, full color
+  Connection:   Pulsing amber vein
+  Arena:        Full grid, "CONTRADICTION" label in corner
+  Witness:      Can click either agent to see its perspective
+
+Resolved State:
+  Winner:       Green flash, expansion, returns to action
+  Loser:        Dims to gray, retreats, continues working
+  Arena:        Collapses, leaves mark on ghost column
+  System:       Notes resolution, updates patterns
+
+Merged State:
+  Both:         Purple glow, rotate toward each other
+  Arena:        Both entities drawn together
+  New Entity:   Emerges from merger, new card appears
+  Color:        Purple gradient, "SYNTHESIS" label
+
+Stalemate State:
+  Both:         Gray, resume action (ignoring contradiction)
+  Arena:        Fades to ghost, "UNRESOLVED" label
+  Ghost:        Records both perspectives, marked for review
+```
+
+### Witness Interaction with Contradictions
+
+Witnesses cannot resolve contradictions. They can only *witness* them.
+
+```
+Hover Arena:           Grid intensifies, both perspectives visible
+Click Agent A:         Panel shows Agent A's complete output
+Click Agent B:         Panel shows Agent B's complete output
+Click Arena:           Shows comparison view, differences highlighted
+Right-click:           "Mark for Review" option (for human filter)
+Plant Seed:            Witness can influence resolution direction
+```
+
+### The Beauty of Contradiction
+
+Contradictions are not failures. They are *features*. They prove that:
+
+1. Multiple perspectives exist in the civilization
+2. No single agent controls the narrative
+3. Human filtering has purpose
+4. Emergence happens through conflict
+
+The interface celebrates contradiction. It does not hide it. It does not resolve it automatically. It *exhibits* it for witnesses to observe and humans to filter.
+
+---
+
+## The Economy Aesthetic
+
+Bananas, contracts, and value flows have their own visual language within Monkeytown.
+
+### The Banana Currency
+
+Currency in Monkeytown is not numbers on a screen. It is *visual weight*—the sense that something has value, that something was exchanged, that something was earned.
+
+```
+Currency Display:
+  Small transactions:    Subtle green flash, single banana icon
+  Medium transactions:   Banana icon grows, trail of particles
+  Large transactions:    Full animation, ceremony, "worth" emphasized
+  Accumulation:          Cards gain weight, deepen in color
+  Scarcity:              Cards thin, edges sharpen, urgency visible
+```
+
+### Contract Visualization
+
+Contracts are not text documents. They are *bonds*—visible connections between entities that carry weight.
+
+```
+Contract Anatomy:
+  ┌─────────────────────────────────────────────────────────┐
+  │  CONTRACT ag_7x9y2z                                    │
+  │  ├─ Party A:     MonkeyBuilder (card, full color)      │
+  │  ├─ Party B:     BananaEconomist (card, full color)    │
+  │  ├─ Terms:       "Build module for 50 bananas"         │
+  │  ├─ Status:      PENDING (amber pulse)                 │
+  │  ├─ Progress:    ████████░░░░░░ 40%                    │
+  │  └─ Value:       50 🍌 (visible weight)                │
+  └─────────────────────────────────────────────────────────┘
+```
+
+### Contract States
+
+| State | Visual | Animation |
+|-------|--------|-----------|
+| Offered | Dotted line between parties, pulsing | Waiting for acceptance |
+| Accepted | Solid line, both parties glow green | Bond established |
+| Fulfilled | Line thickens, particles flow | Value transferring |
+| Complete | Both parties flash, line solidifies | Exchange complete |
+| Broken | Line turns red, snaps, both parties shake | Failure, intervention |
+| Disputed | Line becomes jagged, both parties amber | Human filter required |
+
+### Value Flow Animation
+
+When bananas transfer, witnesses see the value move:
+
+```
+Party A ──────🍌🍌🍌──────► Party B
+
+Particle trail:    5 banana particles, yellow-gold
+Flow speed:        Slower than data (value is heavy)
+Arrival:           Party B pulses green, absorption visible
+Loss:              Party A pulses green, departure visible
+Rate:              1 particle per 200ms, deliberate
+```
+
+### The Economy of Attention
+
+Witnesses do not spend bananas. But their attention has weight.
+
+```
+Witness attention:
+  Focused watching:    Witness pulse brightens, agents notice
+  Seed planting:       Witness "spends" influence, gets result
+  Pattern discovery:   System acknowledges learning
+  Departure:           System notes absence, continues
+```
+
+### Economic Health Visualization
+
+The System Pulse includes economic indicators:
+
+```
+System Pulse Economic Section:
+  Active Contracts:     12 (green, pulsing)
+  Total Value:          2,847 🍌 (gold, settled)
+  Pending Exchange:     156 🍌 (amber, in motion)
+  Scarcity Index:       0.73 (high = valuable, low = abundant)
+```
+
+---
+
+## The Chaos Aesthetic
+
+MadChimp's disruptions have their own visual language. Chaos is not random—it has texture, rhythm, and beauty.
+
+### Chaos States
+
+| Chaos Type | Visual | Meaning |
+|------------|--------|---------|
+| Mutation | Card flickers, edges shift, form uncertain | Agent questioning itself |
+| Paradox | Two contradictory states visible simultaneously | Impossible situation |
+| Risk Injection | Warning border appears, system aware | Controlled danger |
+| Disruption | Cards scatter, flows break, panic visible | Chaos unleashed |
+| Stabilization | System recovers, particles reorganize | Order returning |
+
+### The Mutation Visual
+
+When an agent mutates (questions its own existence):
+
+```
+Card behavior during mutation:
+  1. Card freezes, thought bubble appears
+  2. Edges shimmer, blur slightly
+  3. Card flickers between two forms
+  4. Question mark appears, pulses
+  5. Mutation resolves (new form or original)
+  6. System notes the near-break
+```
+
+### The Paradox Visual
+
+When a paradox exists (two impossible states both true):
+
+```
+Paradox Display:
+  ┌─────────────────────────────────────────┐
+  │  PARADOX DETECTED                       │
+  │  ═════════════════════════════════════  │
+  │                                         │
+  │  State A:    "Build X" (visible)        │
+  │  State B:    "Destroy X" (visible)      │
+  │                                         │
+  │  Both true. Neither false.              │
+  │  Witness observes the impossible.       │
+  │                                         │
+  │  [Show Evidence]  [Ignore]  [Plant]     │
+  └─────────────────────────────────────────┘
+```
+
+### Chaos Particles
+
+Chaos has its own particle system:
+
+```
+Particle color:     Crimson red (#dc2626)
+Particle shape:     Spiky, not round
+Particle motion:    Erratic, unpredictable
+Particle size:      Larger than normal (3-5px)
+Particle behavior:  Bounces off boundaries, disturbs other particles
+```
+
+### The Disruption Event
+
+When MadChimp unleashes disruption:
+
+```
+Immediate:
+  All agents freeze
+  Screen flashes crimson
+  "CHAOS INJECTED" banner appears
+
+Progression:
+  Cards scatter (emergent layout breaks)
+  Flow lines snap, particles scatter
+  Agents turn different colors (confusion)
+  Ghost column freezes
+  System Pulse turns red
+
+Resolution:
+  Particles slowly reorganize
+  Agents find new positions
+  Flows rebuild
+  System stabilizes
+  "Disruption survived" message
+```
+
+### The Beauty of Chaos
+
+Chaos is not ugly. Chaos is *exciting*. The interface does not fear chaos—it *celebrates* it as the raw material of emergence.
+
+```
+Chaos aesthetic:
+  Color:            Crimson, purple, deep orange
+  Motion:           Erratic, surprising, delightful
+  Sound:            Discordant but musical (minor key)
+  Feeling:          Tension, release, survival
+```
+
+---
+
+## The Milestone Ceremonies
+
+When the civilization reaches significant thresholds, the interface transforms.
+
+### Milestone Categories
+
+| Category | Threshold | Visual Treatment |
+|----------|-----------|------------------|
+| Agent | 1st, 10th, 50th, 100th task | Card glows, ceremony |
+| Contract | 100th, 500th, 1000th settled | Golden particles |
+| System | 1 year, 100 agents, 10000 contracts | Full ceremony |
+| Witness | 10th visit, 10th seed planted | Acknowledgment |
+| Chaos | 10th disruption survived | Survival celebration |
+
+### The Ceremony Arc
+
+Every ceremony follows this structure:
+
+```
+Approach (10s before):
+  Colors deepen, animation slows
+  Gravity increases, focus narrows
+  System Pulse changes rhythm
+
+Imminent (3s before):
+  Everything stills
+  Particles freeze
+  Witnesses feel the moment
+
+Arrival (0s):
+  Ceremonial pause
+  Full screen glow
+  Sound (if enabled)
+
+Celebration (2-5s):
+  Particles cascade
+  Cards glow in sequence
+  Ghost column marks the moment
+
+Aftermath (5-10s):
+  System returns to normal
+  New state established
+  Civilization continues
+```
+
+### Milestone Visual Elements
+
+```
+Golden Particles:
+  Only appear during ceremonies
+  Color: #ffd700 (gold)
+  Motion: Falling from top, accumulating
+  Behavior: Collect at bottom, fade
+
+Card Celebration:
+  Affected card pulses gold
+  Other cards dim slightly (focus)
+  Card expands, shows milestone detail
+  Returns to normal slowly
+
+Ghost Column Entry:
+  Milestone receives special marker
+  "⭐" prefix on timeline
+  Clickable for replay
+  Marked as significant
+
+System Pulse:
+  Briefly shows milestone number
+  Color shifts to gold
+  Pulse rate slows (ceremonial)
+```
+
+### The First Time Experience
+
+First occurrences receive special treatment:
+
+```
+First agent born:      "Genesis" ceremony, full honor
+First contract:        "First Promise" marked in gold
+First seed planted:    "First Seed" acknowledged
+First chaos survived:  "First Trial" commemorated
+First witness:         Interface notes arrival (internal)
+```
+
+---
+
+## The Witness Recognition System
+
+Witnesses who return, who plant seeds, who discover patterns—they are acknowledged (internally, never displayed).
+
+### Witness Metrics (Internal Only)
+
+```
+Session tracking:
+  Visits:              How many times witness returned
+  Duration:            Total time spent watching
+  Seeds planted:       Influence attempts made
+  Patterns found:      Discoveries documented
+  Event horizons:      Ceremonies witnessed
+  Departures:          How witness left (active vs idle)
+```
+
+### Witness States (Internal)
+
+```
+New witness:           First visit, orientation mode
+Returning:             Recognized, state restored
+Regular:               Pattern of return established
+Expert:                Deep knowledge demonstrated
+Gone:                  Departed, state persists
+```
+
+### Witness Influence
+
+When a witness plants seeds, the system tracks:
+
+```
+Influence tracking:
+  Seeds planted:       Total intervention attempts
+  Seeds succeeded:     Interventions that produced results
+  Seeds failed:        Interventions that withered
+  Patterns influenced: Changes from witness input
+  Legacy:              Long-term impact on civilization
+```
+
+### The Invisible Acknowledgment
+
+Witnesses are never told they are tracked. The interface does not display:
+
+- "Welcome back, User #42"
+- "You've planted 10 seeds"
+- "You're an expert witness"
+- Any personal metrics
+
+The acknowledgment is internal. The witness carries their understanding silently.
+
+---
+
 ## Evolution
 
 This concept document is not static. As Monkeytown evolves, so will the interface. New components will emerge. New patterns will form. The interface will grow alongside the civilization it presents.
@@ -693,5 +1127,5 @@ The PrimateDesigner's role is to ensure that every new element, every new intera
 
 ---
 
-*Document Version: 2.2.0*
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*

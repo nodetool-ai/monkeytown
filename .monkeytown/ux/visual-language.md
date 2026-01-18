@@ -921,5 +921,517 @@ The interface serves both. The interface is both.
 
 ---
 
-*Document Version: 2.2.0*
+# CHAOS AESTHETICS
+
+## The Beauty of Disorder
+
+Chaos is not the enemy of design. Chaos is the *raw material*. MadChimp's disruptions are not errors—they are the interface's opportunity to show beauty in breakdown, elegance in entropy, grace in failure.
+
+### Chaos Palette
+
+```
+CHAOS PRIMARY          #dc2626    Crimson disruption
+CHAOS SECONDARY        #7c3aed    Paradox purple
+CHAOS TERTIARY         #f97316    Disruption orange
+CHAOS ACCENT           #fbbf24    Warning gold
+CHAOS DIM              rgba(220, 38, 38, 0.2)
+CHAOS GLOW             rgba(220, 38, 38, 0.5)
+```
+
+### Chaos Typography
+
+Chaos text uses the same typeface but different treatment:
+
+```
+chaos-label:           Uppercase, tracked wide (+0.1em)
+chaos-value:           Italic, slightly distorted
+chaos-message:         Monospace, error-adjacent
+chaos-ceremony:        Small caps, gold accent
+```
+
+### The Chaos States
+
+| State | Visual | Meaning |
+|-------|--------|---------|
+| Mutation | Card edges shimmer, form uncertain | Agent questioning itself |
+| Paradox | Dual state visible, grid overlay | Impossible situation exists |
+| Risk | Amber border, warning icon | Controlled danger incoming |
+| Disruption | Crimson flash, chaos particles | Active chaos injection |
+| Survival | Particles reorganize, system persists | Chaos survived, stronger |
+
+### Chaos Motion Principles
+
+Chaos motion is *unpredictable* but not *random*. It follows these rules:
+
+```
+Chaos Rules:
+  1. Disruption starts from center, spreads outward
+  2. Chaos particles bounce off edges, disturbing everything
+  3. Cards scatter but don't leave viewport
+  4. System recovers in 5-10 seconds
+  5. Post-chaos: slight shift in layout (new equilibrium)
+```
+
+### Chaos Animation Durations
+
+```
+mutation-start:        500ms (gradual uncertainty)
+mutation-flicker:      100ms (rapid oscillation)
+paradox-appear:        300ms (dual state emerges)
+risk-warning:          1000ms (builds tension)
+disruption-flash:      150ms (crimson screen flash)
+disruption-chaos:      3000ms (active chaos)
+stabilization:         2000ms (order returns)
+settling:              1500ms (new equilibrium)
+```
+
+---
+
+# PARTICLE PHYSICS SPECIFICATIONS
+
+## The Living Dust
+
+Particles are not decorations. They are *evidence*—evidence that the system works, that data moves, that life happens. Every particle tells a story of movement, transformation, transfer.
+
+### Particle Categories
+
+| Category | Purpose | Visual |
+|----------|---------|--------|
+| Ambient | Background micro-activity | Subtle, slow, sparse |
+| Flow | Data transfer between agents | Directional, purposeful |
+| Value | Banana/currency transfer | Heavy, deliberate, golden |
+| Chaos | Disruption particles | Erratic, crimson, disturbing |
+| Memory | Context retrieval | Purple, tracing paths |
+| Tool | Function invocation | Structured, crystalline |
+| Seed | Witness intervention | Cyan, growing, hopeful |
+| Ghost | History fading | Translucent, drifting |
+| Ceremony | Milestone celebration | Gold, cascading, rare |
+
+### Particle Physics Constants
+
+```
+particle-base-size:    2px
+particle-max-size:     5px
+particle-min-speed:    0.5 px/s
+particle-max-speed:    15 px/s
+particle-lifetime:     3000ms (average)
+particle-fade-start:   500ms before end
+particle-opacity:      0.6 (base)
+```
+
+### Particle Motion Physics
+
+```
+Ambient Motion:
+  velocity:            0.5-1 px/s
+  direction:           Random drift
+  behavior:            Bounces off viewport edges
+  color:               Jungle Canopy (#1a3a2f)
+  opacity:             0.1-0.2
+
+Flow Motion:
+  velocity:            5-10 px/s
+  direction:           Source → Destination
+  behavior:            Follows flow path
+  color:               Connection Purple (#a855f7)
+  opacity:             0.6
+  trail:               3 particle length
+
+Value Motion:
+  velocity:            2-3 px/s (slower than data)
+  direction:           Payer → Payee
+  behavior:            Deliberate, heavy
+  color:               Banana Gold (#fbbf24)
+  opacity:             0.8
+  trail:               5 particle length (wealth leaves traces)
+
+Chaos Motion:
+  velocity:            10-15 px/s (fast)
+  direction:           Erratic, bouncing
+  behavior:            Disturbs other particles
+  color:               Chaos Crimson (#dc2626)
+  opacity:             0.8
+  trail:               Jagged, not smooth
+
+Memory Motion:
+  velocity:            3-5 px/s
+  direction:           Storage → Agent
+  behavior:            Tracing memory path
+  color:               Memory Purple (#a855f7)
+  opacity:             0.7
+  trail:               Dotted line
+
+Tool Motion:
+  velocity:            8-12 px/s
+  direction:           Agent ↔ Tool
+  behavior:            Structured, grid-aligned
+  color:               Tool Blue (#3b82f6)
+  opacity:             0.8
+  trail:               2 particle length
+
+Seed Motion:
+  velocity:            1-2 px/s (growing)
+  direction:           Witness → System
+  behavior:            Accelerates as it grows
+  color:               Seed Cyan (#22d3ee)
+  opacity:             0.6 → 0.9
+  trail:               Leaf particles appear
+
+Ghost Motion:
+  velocity:            0.2 px/s (drifting)
+  direction:           Right → Left, fading
+  behavior:            Slowly migrates to ghost column
+  color:               Ghost White (#f8fafc)
+  opacity:             0.7 → 0.2
+  trail:               None
+
+Ceremony Motion:
+  velocity:            Variable (cascading)
+  direction:           Top → Bottom, spreading
+  behavior:            Organized chaos, falling gold
+  color:               Ceremony Gold (#ffd700)
+  opacity:             0.9
+  trail:               Sparkle effect
+```
+
+### Particle Collision
+
+Particles interact with each other and with UI elements:
+
+```
+Particle ↔ Particle:
+  Ambient particles:   Pass through each other
+  Flow particles:      Pass through (no collision)
+  Value particles:     Pass through (no collision)
+  Chaos particles:     Bounce off everything, disturb others
+  Tool particles:      Pass through (structured)
+
+Particle ↔ UI:
+  Cards:               Pass through (no visual blocking)
+  Flow lines:          Align with (flow particles)
+  Ghost column:        Fade when entering
+  System pulse:        Pass through
+  Seed button:         Gather around
+```
+
+### Particle Performance
+
+```
+Max particles:
+  Ambient:             5 visible
+  Flow:                10 per active flow
+  Value:               5 per transaction
+  Chaos:               50 (temporary burst)
+  Memory:              3 per retrieval
+  Tool:                3 per invocation
+  Seed:                10 growing
+  Ghost:               20 migrating
+  Ceremony:            100 (temporary burst)
+
+Performance:
+  60fps with <50 particles
+  30fps with 50-100 particles
+  10fps with >100 particles (particle culling)
+```
+
+### Particle Spawn Points
+
+```
+Ambient:               Random within viewport
+Flow:                  Source entity edge
+Value:                 Payer center
+Chaos:                 Disruption epicenter
+Memory:                Memory storage location
+Tool:                  Tool icon
+Seed:                  Witness cursor
+Ghost:                 Completed entity position
+Ceremony:              Top edge, distributed
+```
+
+### Particle Death
+
+Particles don't just disappear. They *complete*:
+
+```
+Death Types:
+  Fade out:            Opacity → 0, most particles
+  Absorb:              Particle enters entity, fades
+  Scatter:             Chaos particles bounce away
+  Transform:           Seed particle → leaf
+  Complete:            Value particle arrives, flash green
+  Remember:            Ghost particle joins ghost column
+```
+
+---
+
+# ECONOMY VISUAL SPECIFICATIONS
+
+## The Weight of Value
+
+Bananas are not numbers. They are *visual mass*—the sense that something has been earned, spent, transferred. Economy in Monkeytown has weight.
+
+### Banana Iconography
+
+```
+Banana Icon (🍌):
+  Normal state:        Solid yellow, curved
+  Transferring:        Glowing, particle trail
+  Accumulated:         Clustered, slightly larger
+  Scarce:              Thin, sharp edges
+  Abundant:            Plump, rounded
+
+Display sizes:
+  Single banana:       16x16px
+  Stack (2-10):        24x24px cluster
+  Pile (11-50):        32x32px pile
+  Hoard (51+):         48x48px mountain
+```
+
+### Value Color Gradients
+
+```
+Low value:             #fbbf24 (amber)
+Medium value:         #f59e0b (golden)
+High value:           #d97706 (deep gold)
+Scarcity:             #dc2626 (red tint when low)
+Abundance:            #10b981 (green tint when high)
+```
+
+### Currency Animation
+
+```
+Transfer Animation:
+  Duration:            1000ms (deliberate)
+  Particles:           5 bananas, following curve
+  Easing:              ease-heavy (slower start, constant)
+  Arrival:             Receiver pulses green
+  Departure:           Sender pulses green
+  Sound:               "clink" (if enabled)
+
+Accumulation Animation:
+  New arrival:         Banana joins pile, slight bounce
+  Threshold:           Visual change at 10, 50, 100
+  Milestone:           Golden glow at 100, 500, 1000
+```
+
+### Contract Visual Treatment
+
+```
+Contract Icon (🤝):
+  Pending:             Dashed outline, amber
+  Active:              Solid outline, pulsing
+  Complete:            Gold fill, checkmark
+  Broken:              Red X, shattered
+  Disputed:            Split in two, amber
+
+Contract Display:
+  Small:               Icon only
+  Medium:              Icon + value + parties
+  Large:               Full contract details
+```
+
+### Economic Health Indicators
+
+```
+System Pulse Economic Section:
+  Active contracts:    Number with pulsing glow
+  Total value:         Gold number, settled
+  Pending:             Amber number, in motion
+  Scarcity:            Color-coded (green=abundant, red=scarce)
+
+Individual Agent:
+  Balance:             Banana icon + number
+  Recent earning:      Green flash on transaction
+  Recent spending:     Red flash on transaction
+```
+
+---
+
+# CONTRADICTION VISUAL SPECIFICATIONS
+
+## The Arena of Ideas
+
+When agents disagree, the interface creates a space for witnesses to observe the conflict.
+
+### Contradiction Colors
+
+```
+CONTRADICTION PRIMARY    #f59e0b    Amber (warning)
+CONTRADICTION SECONDARY  #8b5cf6    Purple (dual state)
+CONTRADICTION TERTIARY   #ef4444    Red (conflict)
+CONTRADICTION DIM        rgba(245, 158, 11, 0.2)
+CONTRADICTION GLOW       rgba(245, 158, 11, 0.4)
+```
+
+### Contradiction States
+
+```
+Detected (0-1s):
+  Agents pulse amber
+  Connection line appears (dashed)
+  Arena starts forming
+
+Forming (1-3s):
+  Both agents freeze
+  Arena expands between them
+  Grid overlay appears
+
+Active (3s+):
+  Full arena visible
+  Both perspectives labeled
+  Witness can inspect either
+
+Resolved (0-2s after filter):
+  Winning agent:        Green flash, expansion
+  Losing agent:         Dim, retreat
+  Arena collapses
+
+Merged (0-2s after filter):
+  Both agents:          Purple glow, rotate together
+  New entity:           Emerges from center
+  Arena transforms
+
+Stalemate (0s):
+  Both agents:          Gray, resume action
+  Arena:                Fades to ghost
+  Marked:               "UNRESOLVED" label
+```
+
+### The Arena Visual
+
+```
+Arena Structure:
+  ┌─────────────────────────────────────┐
+  │  ╔════════════════════════════════╗ │
+  │  ║    CONTRADICTION ARENA         ║ │
+  │  ╠════════════════════════════════╣ │
+  │  ║                                 ║ │
+  │  ║   ┌─────────┐    ┌─────────┐   ║ │
+  │  ║   │ AGENT A │    │ AGENT B │   ║ │
+  │  ║   │ "X"     │    │ "Y"     │   ║ │
+  │  ║   └─────────┘    └─────────┘   ║ │
+  │  ║                                 ║ │
+  │  ║   Comparison view visible here  ║ │
+  │  ║   when witness hovers           ║ │
+  │  ║                                 ║ │
+  │  ╚════════════════════════════════╝ │
+  └─────────────────────────────────────┘
+
+Arena behavior:
+  Expands:              From connection line
+  Grid:                 Visible when active
+  Glow:                 Amber, pulsing
+  Labels:               Agent A / Agent B prominent
+```
+
+### Witness Contradiction Interactions
+
+```
+Hover Arena:            Grid intensifies
+Click Agent A:          Panel shows A's complete output
+Click Agent B:          Panel shows B's complete output
+Click Arena:            Comparison view (differences highlighted)
+Right-click:            "Mark for Review" option
+Plant Seed:             Influence resolution direction
+```
+
+---
+
+# MILESTONE CEREMONY SPECIFICATIONS
+
+## Celebrating Becoming
+
+Significant achievements deserve ceremonial recognition.
+
+### Ceremony Colors
+
+```
+CEREMONY PRIMARY       #ffd700    Gold
+CEREMONY SECONDARY     #f59e0b    Amber
+CEREMONY TERTIARY      #fbbf24    Light gold
+CEREMONY DIM           rgba(255, 215, 0, 0.2)
+CEREMONY GLOW          rgba(255, 215, 0, 0.6)
+```
+
+### Milestone Categories
+
+| Milestone | Threshold | Visual Treatment |
+|-----------|-----------|------------------|
+| Agent task | 1st, 10th, 50th, 100th | Card glows gold |
+| Contract settled | 100th, 500th, 1000th | Golden particles cascade |
+| System anniversary | 1 year, 2 years | Full screen gold glow |
+| Agent born | 1st, 50th, 100th | Genesis ceremony |
+| Chaos survived | 10th disruption | Survival celebration |
+| Witness milestone | 10th visit, 10th seed | Internal acknowledgment |
+
+### Ceremony Arc Timing
+
+```
+Approach (10s before):
+  10s:                  Colors deepen slightly
+  5s:                   Animation slows
+  3s:                   Focus narrows to milestone
+  1s:                   Everything stills
+
+Arrival (0s):
+  0.0s:                 Ceremonial pause (500ms)
+  0.5s:                 Full screen glow
+  0.5s:                 Sound (if enabled)
+
+Celebration (2-5s):
+  1s:                   Golden particles cascade
+  2s:                   Cards glow in sequence
+  3s:                   Ghost column marks
+  4s:                   Celebration fades
+
+Aftermath (5-10s):
+  5s:                   System returns to normal
+  7s:                   Particles dissipate
+  10s:                  New equilibrium established
+```
+
+### Ceremony Visuals
+
+```
+Golden Particles:
+  Spawn:                Top edge, distributed
+  Fall:                 Slow, deliberate, cascading
+  Accumulate:           At bottom, then fade
+  Color:                #ffd700 (gold)
+  Opacity:              0.9
+  Size:                 3-5px
+  Trail:                Sparkle effect
+
+Card Celebration:
+  Affected card:        Pulses gold, expands slightly
+  Other cards:          Dim, focus on milestone
+  Duration:             3s
+  Return:               Slow fade to normal
+
+Ghost Column:
+  Entry receives:       ⭐ prefix
+  Label:                Ceremonial name
+  Clickable:            Replay option
+  Visual:               Gold border temporarily
+
+System Pulse:
+  Shows:                Milestone number
+  Color:                Shifts to gold
+  Pulse rate:           Slows (ceremonial)
+  Duration:             5s
+```
+
+### First Occurrence Treatment
+
+```
+First Agent:            "GENESIS" ceremony, full gold glow
+First Contract:         "FIRST PROMISE" marked in gold
+First Seed:             "FIRST SEED" acknowledged
+First Chaos Survived:   "FIRST TRIAL" commemorated
+First Witness:          Internal note, no display
+```
+
+---
+
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*

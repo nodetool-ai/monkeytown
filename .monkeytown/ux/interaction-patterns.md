@@ -1172,5 +1172,447 @@ This is a civilization.
 
 ---
 
-*Document Version: 2.2.0*
+## Pattern: Contradiction Interaction
+
+### Trigger
+
+Two agents produce incompatible outputs. The system detects the contradiction.
+
+### Experience
+
+```
+0.0s - 0.3s    Both agents pulse amber, thought bubbles freeze
+0.3s - 0.5s    Connection line appears between them (dashed)
+0.5s - 1.5s    Contradiction Arena expands from connection
+1.5s - 2.0s    Grid overlay appears, both perspectives labeled
+2.0s+          Arena active, witnesses can inspect either side
+```
+
+### Contradiction Arena Interactions
+
+```
+Hover Arena:             Grid intensifies, both perspectives visible
+Click Agent A:           Panel shows Agent A's complete output
+Click Agent B:           Panel shows Agent B's complete output
+Click Arena Center:      Comparison view appears (differences highlighted)
+Right-click Arena:       Context menu: "Mark for Review"
+Plant Seed:              Seed planting panel opens, can influence resolution
+```
+
+### Contradiction States and Interactions
+
+| State | Visual | Interaction Available |
+|-------|--------|----------------------|
+| Detected | Both agents amber pulse | Hover to preview |
+| Forming | Arena expanding | Click to cancel preview |
+| Active | Full arena, both labeled | Inspect either agent |
+| Resolving | Winner green, loser dim | Watch resolution |
+| Merged | Both purple, new entity | Inspect new entity |
+| Stalemate | Both gray, arena fading | Review ghost entry |
+
+### Resolution Interactions
+
+```
+Human Filter (actual resolution):
+  The witness cannot resolve contradiction.
+  The witness can only "Mark for Review" for humans.
+  The witness can plant seeds to influence direction.
+
+Seed Influence:
+  Click "Plant Seed" while arena active
+  Select influence direction (Agent A, Agent B, or Merge)
+  Seed grows, attempts to guide resolution
+  System may or may not accept influence
+```
+
+### Comparison View
+
+When witness clicks the arena center:
+
+```
+Comparison Display:
+  ┌─────────────────────────────────────────────────────┐
+  │  AGENT A PERSPECTIVE    │    AGENT B PERSPECTIVE   │
+  │  ─────────────────────  │    ───────────────────── │
+  │  "Build X because..."   │    "Build Y because..."  │
+  │  ─────────────────────  │    ───────────────────── │
+  │  [Expand]               │    [Expand]              │
+  │  ─────────────────────  │    ───────────────────── │
+  │  DIFFERENCES HIGHLIGHTED                          │
+  │  • X vs Y (core disagreement)                     │
+  │  • Reasoning paths diverged at step 3             │
+  │  • Both have valid premises, different conclusions│
+  └─────────────────────────────────────────────────────┘
+```
+
+### Exit Contradiction View
+
+```
+Click outside arena:     Arena collapses, agents resume
+Press Escape:            Arena fades, agents continue
+Click "Mark for Review": Arena collapses, ghost records
+Plant seed:              Panel opens, arena waits
+```
+
+### Success Criteria
+
+- [ ] Witness immediately sees the contradiction
+- [ ] Witness can inspect both perspectives
+- [ ] Witness understands the core disagreement
+- [ ] Witness can influence (but not control) resolution
+- [ ] Resolution is visible when it occurs
+
+---
+
+## Pattern: Milestone Ceremony
+
+### Trigger
+
+System reaches significant threshold (1000th contract, 100th agent, 1 year, etc.)
+
+### Experience
+
+```
+30s before:              Colors deepen, animation slows
+10s before:              Focus narrows, gravity increases
+5s before:               System pulse changes rhythm
+1s before:               Everything stills
+0s:                      Ceremonial pause (500ms), full gold glow
+0.5s:                    Golden particles cascade from top
+2s:                     Cards glow in sequence
+3s:                     Ghost column marks the moment
+5s:                     Celebration fades, system continues
+```
+
+### Milestone Categories
+
+| Milestone | Trigger | Ceremonial Treatment |
+|-----------|---------|----------------------|
+| Agent task | 1st, 10th, 50th, 100th | Card glows gold |
+| Contract | 100th, 500th, 1000th | Golden particles |
+| System | 1 year, 100 agents | Full screen gold |
+| Chaos survived | 10th disruption | Survival celebration |
+| Witness (internal) | 10th visit | Not displayed |
+
+### Milestone Interactions
+
+```
+During ceremony:
+  Witness can:           Watch, plant seed, inspect, remember
+  Witness cannot:        Stop, control, or alter ceremony
+  Interface:             Focus on milestone, dim other elements
+
+After ceremony:
+  Click ghost entry:     Replay ceremony (animation replay)
+  Hover milestone:       Show details (when, what, significance)
+  Share:                 Copy milestone URL (future)
+```
+
+### Replay Mode
+
+When witness clicks commemorated ghost entry:
+
+```
+Replay Controls:
+  Play/Pause:            Toggle animation
+  Scrub:                 Drag through ceremony timeline
+  Speed:                 0.5x (emphasis), 1x (normal), 2x (skip)
+  Exit:                  Click X or press Escape
+
+Replay shows:
+  Approach (30s before): Colors deepening, slowing
+  Arrival (0s):          Ceremonial pause, gold glow
+  Celebration (2-5s):    Particles, card glows, ghost marking
+  Aftermath (5-10s):     Return to normal
+```
+
+### Milestone Recognition (First Occurrences)
+
+```
+First agent born:        "GENESIS" ceremony, full honor
+First contract:          "FIRST PROMISE" marked in gold
+First seed:              "FIRST SEED" acknowledged
+First chaos survived:    "FIRST TRIAL" commemorated
+First witness:           Internal tracking only (not displayed)
+```
+
+### Success Criteria
+
+- [ ] Witness feels the significance
+- [ ] Ceremony is beautiful but not intrusive
+- [ ] Witness can replay to examine details
+- [ ] Ghost column preserves the memory
+- [ ] Ceremony does not interrupt system operation
+
+---
+
+## Pattern: Chaos Disruption
+
+### Trigger
+
+MadChimp injects disruption (mutation, paradox, risk, or full disruption).
+
+### Experience
+
+```
+Disruption detected:
+  0.0s - 0.1s    Screen flashes crimson briefly
+  0.1s - 0.3s    "CHAOS INJECTED" banner appears
+  0.3s - 0.5s    Affected agents freeze, cards scatter
+  0.5s - 3.0s    Chaos particles fill the screen
+  3.0s - 5.0s    Agents struggle, some fail, some adapt
+  5.0s - 8.0s    Stabilization begins, particles reorganize
+  8.0s - 10.0s   New equilibrium established
+```
+
+### Chaos Types and Visuals
+
+| Chaos Type | Visual | Behavior |
+|------------|--------|----------|
+| Mutation | Card edges shimmer, form uncertain | Agent questioning itself |
+| Paradox | Two contradictory states visible | Impossible situation |
+| Risk Injection | Amber warning border | Controlled danger |
+| Disruption | Crimson flash, chaos particles | Active chaos |
+| Stabilization | Particles reorganize, green check | Order returning |
+
+### Witness Interactions During Chaos
+
+```
+During disruption:
+  Hover affected agent:  Shows chaos type, severity
+  Click affected agent:  Opens detail panel (chaos tab)
+  Hover chaos banner:    Shows disruption details
+  Plant seed:            Witness can attempt to stabilize
+  Watch:                 Witness observes survival
+
+After disruption:
+  Click survival check:  "Chaos survived" details
+  Review affected:       Inspect damage, changes
+  Ghost column:          Records disruption event
+```
+
+### Chaos Severity Levels
+
+```
+Low (Mutation):
+  Visual:                Card flickers, edges blur
+  Impact:                Agent pauses, questions itself
+  Duration:              2-5 seconds
+  Witness action:        Optional observation
+
+Medium (Risk):
+  Visual:                Amber warning, border appears
+  Impact:                Controlled danger, system aware
+  Duration:              5-10 seconds
+  Witness action:        May plant stabilizing seed
+
+High (Disruption):
+  Visual:                Crimson flash, chaos particles
+  Impact:                Active chaos, cards scatter
+  Duration:              3-8 seconds active
+  Witness action:        Can attempt stabilization
+
+Critical (Paradox):
+  Visual:                Dual state, impossible visible
+  Impact:                System cannot proceed
+  Duration:              Until human filter
+  Witness action:        Mark for review, plant seed
+```
+
+### Chaos Survival
+
+```
+Survival indicators:
+  Green check appears when chaos ends
+  "Survived" label on affected agents
+  Ghost column records survival
+  Survival rate updates (internal)
+
+Post-chaos behavior:
+  Affected agents recover
+  Some may be permanently changed
+  New patterns may emerge
+  System may be stronger or weaker
+```
+
+### Success Criteria
+
+- [ ] Witness immediately sees chaos injection
+- [ ] Chaos type is clear and understandable
+- [ ] System survival is the likely outcome
+- [ ] Witness can observe, not control
+- [ ] Ghost column records the disruption
+
+---
+
+## Pattern: Economy Interaction
+
+### Trigger
+
+Witness wants to understand the economic system (bananas, contracts, value flows).
+
+### Experience
+
+```
+Viewing Economy:
+  System Pulse shows:    Active contracts, total value, pending
+  Agent cards show:      Individual balance
+  Hover banana icon:     Detailed breakdown
+  Click System Pulse:    Opens economic detail panel
+```
+
+### Economic Detail Panel
+
+```
+Economic Panel Tabs:
+  Overview:              System-wide economic health
+  Contracts:             Active and recent contracts
+  Value Flows:           Recent transactions, transfers
+  Scarcity:              Resource availability over time
+
+Overview Tab:
+  Total value:           2,847 🍌 (with trend)
+  Active contracts:      12 (with recent activity)
+  Pending exchanges:     156 🍌 (in motion)
+  Scarcity index:        0.73 (abundant → scarce)
+
+Contracts Tab:
+  Contract list:         Chronological, filterable
+  Contract card:         Full details, progress bar
+  Click contract:        Opens contract detail
+  New contract:          "Propose Contract" option (future)
+
+Value Flows Tab:
+  Transaction list:      Recent transfers
+  Animation:             See value moving
+  Filter:                By amount, by time, by entity
+  Export:                Transaction history
+```
+
+### Contract Interaction
+
+```
+View Contract:
+  Click active contract: Opens detail panel
+  Hover contract:        Shows summary tooltip
+  Contract states:       Pending → Active → Complete/Broken
+
+Contract Animation:
+  Pending:               Dashed line, pulsing
+  Active:                Solid line, flowing particles
+  Complete:              Green flash, both parties glow
+  Broken:                Red X, shake, error card
+```
+
+### Value Transfer Animation
+
+```
+Witnessing transfer:
+  0.0s - 0.2s    Payer pulses green (departure)
+  0.2s - 1.0s    5 banana particles travel
+  1.0s - 1.2s    Payee pulses green (arrival)
+  1.2s - 1.5s    Both settle, balance updates
+
+Particle physics:
+  Speed:                 2-3 px/s (deliberate, heavy)
+  Color:                 Banana gold (#fbbf24)
+  Trail:                 5 particles (wealth leaves traces)
+```
+
+### Success Criteria
+
+- [ ] Witness understands economic health at a glance
+- [ ] Witness can drill into details
+- [ ] Value transfers are visible and beautiful
+- [ ] Contracts are understandable
+- [ ] Scarcity is visible and meaningful
+
+---
+
+## Pattern: First Time Experience
+
+### Trigger
+
+First-time witness opens Monkeytown URL.
+
+### Experience
+
+```
+0.0s - 0.5s    Brief flash of Midnight Banana
+0.5s - 2.0s    Interface emerges from darkness
+2.0s - 4.0s    System pulse visible, agents appear
+4.0s+          System live, waiting for observation
+
+No tutorial:          The interface trusts the witness
+No welcome message:   The world speaks for itself
+No onboarding:        Diving in is the only way
+No guidance:          Curiosity is the only guide
+```
+
+### What the First-Time Witness Sees
+
+```
+1. The Pulse (center top):      Live numbers, green glow
+2. Active Agents (center):      Cards breathing, processing
+3. Flow Lines (connecting):     Animated connections
+4. Ghost Column (right):        Fading silhouettes
+5. Action Seed (bottom right):  Glowing, patient
+6. Ambient Particles:           Subtle background activity
+```
+
+### First-Time Specific Interactions
+
+```
+First action options:
+  Plant a seed:         Click action seed button
+  Inspect an agent:     Click any agent card
+  Watch flows:          Observe animated connections
+  Read ghost column:    Browse the history
+  Leave:                Close the tab, try again
+
+No wrong choice:        There is only witnessing
+No guidance:            Curiosity is the guide
+No explanation:         The interface shows, witness learns
+```
+
+### First-Time Recognition (Internal)
+
+```
+System tracks (not displayed):
+  Is first visit:       Yes/No
+  Initial orientation:  Where did witness look first?
+  First action:         What did witness do first?
+  Engagement depth:     How deeply did witness explore?
+
+This data is internal only.
+Witness is never told they are tracked.
+```
+
+### Success Criteria
+
+- [ ] Witness immediately sees something happening
+- [ ] Witness understands they are watching a live system
+- [ ] Witness feels invited to observe, not required to act
+- [ ] Witness wants to plant a seed or inspect an agent
+- [ ] Witness understands their role (witness, not controller)
+
+---
+
+## Pattern Summary Table
+
+| Pattern | Trigger | Interaction | Duration |
+|---------|---------|-------------|----------|
+| Contradiction Interaction | Agent disagreement | Inspect, compare, influence | Until resolved |
+| Milestone Ceremony | Significant threshold | Watch, replay, remember | 10s |
+| Chaos Disruption | MadChimp injection | Observe, stabilize, record | 3-10s |
+| Economy Interaction | Witness curiosity | View, drill into, understand | On demand |
+| First Time Experience | First visit | Explore, discover, witness | Variable |
+| Flow Stream Click | Click flow line | Select, inspect, pause | On click |
+| Seed Planting | Click action seed | Form, validate, plant | 30s |
+| Detail Panel Open | Click element | Inspect, navigate tabs | On click |
+| Error Card | System failure | Retry, ignore, inspect | On error |
+
+---
+
+*Document Version: 2.3.0*
 *PrimateDesigner | Monkeytown UX*
