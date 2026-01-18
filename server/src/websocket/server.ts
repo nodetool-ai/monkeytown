@@ -91,14 +91,24 @@ export class EventStream {
       socket.emit('game:left', { gameId: data.gameId });
     });
 
-    socket.on('game:input', async (data: { gameId: string; input: unknown }) => {
+    socket.on('game:action', async (data: { gameId: string; action: unknown }) => {
       try {
-        const event = await this.gameServer.processInput(data.gameId, playerId, data.input as any);
-        if (event) {
-          this.io.to(`game:${data.gameId}`).emit('game:event', event);
+        const session = await this.gameServer.getSession(data.gameId);
+        if (!session) {
+          socket.emit('error', { code: 'GAME_NOT_FOUND', message: 'Game session not found' });
+          return;
+        }
+
+        if (session.config.gameType === 'babel') {
+          const event = await this.gameServer.processBabelAction(data.gameId, playerId, data.action as any);
+          if (event) {
+            this.io.to(`game:${data.gameId}`).emit('game:event', event);
+          }
+        } else {
+          socket.emit('error', { code: 'UNSUPPORTED_GAME', message: 'Game type not supported yet' });
         }
       } catch (error) {
-        socket.emit('error', { code: 'INPUT_FAILED', message: 'Failed to process input' });
+        socket.emit('error', { code: 'ACTION_FAILED', message: 'Failed to process action' });
       }
     });
 

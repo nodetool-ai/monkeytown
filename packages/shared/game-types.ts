@@ -188,3 +188,126 @@ export const AGENT_COLORS: Record<AgentType, string> = {
   madchimp: '#FF6B35',
   founder: '#2EC4B6',
 };
+
+export const BABEL_DECK_VALUES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+
+export interface BabelCard {
+  id: string;
+  value: number;
+  suit?: 'stone' | 'brick' | 'wood' | 'glass';
+}
+
+export interface BabelPlayerState {
+  playerId: string;
+  hand: BabelCard[];
+  score: number;
+  towerHeight: number;
+  cardsPlayed: number;
+}
+
+export interface BabelGameState {
+  id: string;
+  gameType: 'babel';
+  mode: GameMode;
+  status: 'waiting' | 'playing' | 'round_end' | 'game_end';
+  players: Player[];
+  currentRound: number;
+  maxRounds: number;
+  currentPlayerIndex: number;
+  deck: BabelCard[];
+  tableCards: BabelCard[];
+  playerStates: Map<string, BabelPlayerState>;
+  turnStartTime: number;
+  turnDurationSeconds: number;
+  turnTimerActive: boolean;
+  createdAt: number;
+  updatedAt: number;
+  winnerId?: string;
+  gameLog: BabelGameLogEntry[];
+}
+
+export interface BabelGameLogEntry {
+  id: string;
+  timestamp: number;
+  type: 'card_played' | 'turn_skipped' | 'round_complete' | 'game_complete' | 'tower_collapse' | 'special_action';
+  playerId: string;
+  card?: BabelCard;
+  details: Record<string, unknown>;
+}
+
+export interface BabelAction {
+  type: 'play_card' | 'pass' | 'special_babel_tower';
+  cardId?: string;
+  targetPlayerId?: string;
+}
+
+export const BABEL_SPECIAL_ACTIONS = {
+  SABOTAGE: {
+    name: 'Sabotage',
+    description: 'Remove one card from another player\'s tower',
+    minValue: 15,
+    actionType: 'sabotage',
+  },
+  BOOST: {
+    name: 'Boost',
+    description: 'Add +5 to your tower height',
+    minValue: 10,
+    actionType: 'boost',
+  },
+  STEAL: {
+    name: 'Steal',
+    description: 'Take a card from the table',
+    minValue: 8,
+    actionType: 'steal',
+  },
+} as const;
+
+export type BabelSpecialActionType = keyof typeof BABEL_SPECIAL_ACTIONS;
+
+export function isBabelCard(card: unknown): card is BabelCard {
+  return typeof card === 'object' && card !== null &&
+    'id' in card && 'value' in card &&
+    typeof (card as BabelCard).value === 'number';
+}
+
+export function createBabelDeck(): BabelCard[] {
+  const deck: BabelCard[] = [];
+  const suits: Array<'stone' | 'brick' | 'wood' | 'glass'> = ['stone', 'brick', 'wood', 'glass'];
+  let cardId = 0;
+
+  for (const suit of suits) {
+    for (const value of BABEL_DECK_VALUES) {
+      deck.push({
+        id: `babel-${cardId++}`,
+        value,
+        suit,
+      });
+    }
+  }
+
+  return shuffleDeck(deck);
+}
+
+function shuffleDeck<T>(deck: T[]): T[] {
+  const shuffled = [...deck];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+export function dealInitialHands(deck: BabelCard[], playerCount: number): BabelCard[][] {
+  const hands: BabelCard[][] = Array.from({ length: playerCount }, () => []);
+  const cardsPerPlayer = 5;
+
+  for (let i = 0; i < cardsPerPlayer; i++) {
+    for (const hand of hands) {
+      if (deck.length > 0) {
+        hand.push(deck.pop()!);
+      }
+    }
+  }
+
+  return hands;
+}
