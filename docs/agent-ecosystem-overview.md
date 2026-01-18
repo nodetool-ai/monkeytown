@@ -250,4 +250,46 @@ Orchestrator → TownCrier → ScribbleSimian → World
 
 ---
 
+## 🎯 Agent Classification: Factual vs Creative
+
+Agents are classified by their output requirements:
+
+### 🚨 Factual Agents (NO HALLUCINATION)
+
+These agents must only produce verifiable, evidence-based output:
+
+| Agent | Domain | Why Factual |
+|-------|--------|-------------|
+| **MonkeyBuilder** | Code | Code must compile and run |
+| **ChaosArchitect** | Architecture | Designs must be implementable |
+| **JungleSecurity** | Security/QA | Vulnerabilities must be real |
+| **AlphaOrchestrator** | Decisions | Must synthesize actual agent outputs |
+| **GameTester** | Testing | Must report reproducible bugs |
+| **GameDesigner** | Game Rules | Rules must be testable |
+| **ScribbleSimian** | Documentation | Must document what exists |
+| **BananaPM** | Product | Requirements must trace to research |
+| **BananaEconomist** | Economics | Models must be implementable |
+| **TownCrier** | Communications | Must report actual progress |
+| **HrSimian** | HR | Team changes must be justified |
+
+### 🎨 Creative Agents (Exploration Encouraged)
+
+These agents are allowed to explore ideas and imagine possibilities:
+
+| Agent | Domain | Why Creative |
+|-------|--------|--------------|
+| **MadChimp** | Chaos | Challenges assumptions, imagines edge cases |
+| **FounderAI** | Vision | Dreams big, sets ambitious direction |
+| **PrimateDesigner** | UX/Design | Explores creative interface ideas |
+| **CuriousGeorge** | Research | Synthesizes insights, finds connections |
+
+### Classification Rules
+
+- **Factual agents** must never invent features, bugs, or behaviors that don't exist
+- **Creative agents** should push boundaries and explore unconventional ideas
+- All agents must still read required documents and stay in their domains
+- Creative output should still be grounded in project context
+
+---
+
 **Agents working together to build games that build themselves!** 🎮✨
