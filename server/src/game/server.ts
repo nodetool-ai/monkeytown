@@ -1,11 +1,20 @@
 import { RedisService } from '../services/redis.js';
 import { DatabaseService } from '../services/database.js';
-import type { BabelGameState, GameSession, BabelGameConfig, Player, BabelAction, GameEvent } from './types.js';
+import type { BabelGameState, TicTacToeGameState, GameSession, BabelGameConfig, Player, BabelAction, GameEvent } from './types.js';
 import { BabelGameEngine } from './babel-engine.js';
+import { TicTacToeEngine, TicTacToeAction, TicTacToeAI } from './tictactoe-engine.js';
+import { TicTacToeBoard } from '@monkeytown/packages/shared';
+
+export interface TicTacToeConfig {
+  maxPlayers: number;
+  aiDifficulty: 'easy' | 'medium' | 'hard';
+}
 
 export class GameServer {
   private sessions: Map<string, GameSession> = new Map();
-  private gameEngines: Map<string, BabelGameEngine> = new Map();
+  private babelEngines: Map<string, BabelGameEngine> = new Map();
+  private tictactoeEngines: Map<string, TicTacToeEngine> = new Map();
+  private tictactoeAIs: Map<string, TicTacToeAI> = new Map();
   private redis: RedisService;
   private db: DatabaseService;
 
@@ -14,19 +23,20 @@ export class GameServer {
     this.db = db;
   }
 
-  async createSession(config: BabelGameConfig, gameType: 'babel' | 'chess' | 'words'): Promise<GameSession> {
+  async createSession(config: BabelGameConfig | TicTacToeConfig, gameType: 'tictactoe' | 'babel' | 'chess' | 'words'): Promise<GameSession> {
     const session: GameSession = {
       id: crypto.randomUUID(),
       config: {
-        ...config,
+        maxPlayers: config.maxPlayers,
         gameType,
-        duration: config.rounds * 60 * 1000,
+        duration: 'rounds' in config ? config.rounds * 60 * 1000 : 0,
         rules: {
           allowChat: true,
           allowSpectators: true,
           friendlyFire: false,
-          winCondition: 'score',
+          winCondition: gameType === 'tictactoe' ? 'elimination' : 'score',
         },
+        aiDifficulty: config.aiDifficulty,
       },
       state: null,
       players: [],
@@ -64,14 +74,100 @@ export class GameServer {
     return session;
   }
 
+  // TicTacToe action processing
+  async processTicTacToeAction(sessionId: string, playerId: string, action: TicTacToeAction): Promise<GameEvent | null> {
+    const session = await this.getSession(sessionId);
+    if (!session) return null;
+
+    let engine = this.tictactoeEngines.get(sessionId);
+    if (!engine) {
+      engine = this.createTicTacToeEngine(session);
+      this.tictactoeEngines.set(sessionId, engine);
+    }
+
+    const result = engine.processAction(playerId, action);
+
+    if (result.success && result.newState) {
+      session.state = result.newState;
+      await this.redis.cacheSession(sessionId, session);
+
+      // Persist event to database
+      const event: GameEvent = {
+        id: crypto.randomUUID(),
+        type: action.type,
+        playerId,
+        timestamp: Date.now(),
+        data: { action, result: result.newState },
+      };
+
+      await this.persistGameEvent(sessionId, event);
+
+      // Check if it's AI's turn and process AI move
+      const currentPlayer = result.newState.players[result.newState.currentPlayerIndex];
+      if (result.newState.phase === 'in_progress' && currentPlayer?.type === 'agent') {
+        await this.processAIMove(sessionId, currentPlayer.id);
+      }
+
+      return event;
+    }
+
+    return null;
+  }
+
+  private async processAIMove(sessionId: string, aiPlayerId: string): Promise<void> {
+    const engine = this.tictactoeEngines.get(sessionId);
+    if (!engine) return;
+
+    const state = engine.getState();
+    if (state.phase !== 'in_progress') return;
+
+    // Get or create AI for this game
+    let ai = this.tictactoeAIs.get(sessionId);
+    if (!ai) {
+      const session = await this.getSession(sessionId);
+      const difficulty = session?.config.aiDifficulty || 'medium';
+      ai = new TicTacToeAI(difficulty, state.currentSymbol);
+      this.tictactoeAIs.set(sessionId, ai);
+    }
+
+    // Add a small delay to make it feel more natural
+    await new Promise(resolve => setTimeout(resolve, 500 + Math.random() * 1000));
+
+    const move = ai.getMove(state.board as TicTacToeBoard);
+    if (move) {
+      await this.processTicTacToeAction(sessionId, aiPlayerId, {
+        type: 'place',
+        row: move.row,
+        col: move.col,
+      });
+    }
+  }
+
+  private createTicTacToeEngine(session: GameSession): TicTacToeEngine {
+    const engine = new TicTacToeEngine(session.players, {
+      aiDifficulty: session.config.aiDifficulty,
+    });
+
+    engine.setOnStateChange(async (state) => {
+      session.state = state;
+      await this.redis.cacheSession(session.id, session);
+    });
+
+    engine.setOnEvent(async (event) => {
+      await this.persistGameEvent(session.id, event);
+    });
+
+    return engine;
+  }
+
   async processBabelAction(sessionId: string, playerId: string, action: BabelAction): Promise<GameEvent | null> {
     const session = await this.getSession(sessionId);
     if (!session) return null;
 
-    let engine = this.gameEngines.get(sessionId);
+    let engine = this.babelEngines.get(sessionId);
     if (!engine) {
       engine = this.createBabelEngine(session);
-      this.gameEngines.set(sessionId, engine);
+      this.babelEngines.set(sessionId, engine);
     }
 
     const result = engine.processAction(playerId, action);
@@ -87,6 +183,8 @@ export class GameServer {
         timestamp: Date.now(),
         data: { action, result: result.newState },
       };
+
+      await this.persistGameEvent(sessionId, event);
 
       return event;
     }
@@ -125,11 +223,27 @@ export class GameServer {
     const session = await this.getSession(sessionId);
     if (!session) throw new Error('Session not found');
 
-    if (session.config.gameType === 'babel') {
-      let engine = this.gameEngines.get(sessionId);
+    if (session.config.gameType === 'tictactoe') {
+      let engine = this.tictactoeEngines.get(sessionId);
+      if (!engine) {
+        engine = this.createTicTacToeEngine(session);
+        this.tictactoeEngines.set(sessionId, engine);
+      }
+
+      engine.startGame();
+      session.state = engine.getState();
+      session.status = 'active';
+
+      // If first player is AI, make their move
+      const currentPlayer = session.state.players[session.state.currentPlayerIndex];
+      if (currentPlayer?.type === 'agent') {
+        await this.processAIMove(sessionId, currentPlayer.id);
+      }
+    } else if (session.config.gameType === 'babel') {
+      let engine = this.babelEngines.get(sessionId);
       if (!engine) {
         engine = this.createBabelEngine(session);
-        this.gameEngines.set(sessionId, engine);
+        this.babelEngines.set(sessionId, engine);
       }
 
       session.state = engine.getState();
@@ -148,14 +262,26 @@ export class GameServer {
 
     session.status = 'completed';
     await this.redis.cacheSession(sessionId, session);
-    this.gameEngines.delete(sessionId);
+    this.babelEngines.delete(sessionId);
+    this.tictactoeEngines.delete(sessionId);
+    this.tictactoeAIs.delete(sessionId);
+  }
+
+  private async persistGameEvent(gameId: string, event: GameEvent): Promise<void> {
+    try {
+      await this.db.saveGameEvent(gameId, event);
+    } catch (error) {
+      console.error('[GameServer] Failed to persist game event:', error);
+    }
   }
 
   async cleanup(): Promise<void> {
     for (const [id, session] of this.sessions) {
       if (session.status === 'completed' && Date.now() - session.createdAt > 3600000) {
         this.sessions.delete(id);
-        this.gameEngines.delete(id);
+        this.babelEngines.delete(id);
+        this.tictactoeEngines.delete(id);
+        this.tictactoeAIs.delete(id);
         await this.redis.deleteSession(id);
       }
     }

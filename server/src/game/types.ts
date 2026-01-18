@@ -1,7 +1,24 @@
+// Re-export gaming protocol types for convenience
+export type {
+  ProtocolGameState,
+  ProtocolPlayer,
+  GameMove,
+  RefereeInput,
+  RefereeOutput,
+  RefereeConfig,
+  GameEvent as ProtocolGameEvent,
+  GameEventType,
+  GameResult,
+  TicTacToeBoard,
+  TicTacToeState,
+  TicTacToeMove,
+  TicTacToeSymbol,
+} from '@monkeytown/packages/shared';
+
 export interface GameSession {
   id: string;
   config: GameConfig;
-  state: BabelGameState | null;
+  state: BabelGameState | TicTacToeGameState | null;
   players: Player[];
   status: 'waiting' | 'active' | 'completed';
   createdAt: number;
@@ -12,7 +29,26 @@ export interface GameConfig {
   duration: number;
   rules: GameRules;
   aiDifficulty: 'easy' | 'medium' | 'hard';
-  gameType: 'babel' | 'chess' | 'words';
+  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
+}
+
+/**
+ * TicTacToe game state for session management
+ */
+export interface TicTacToeGameState {
+  id: string;
+  gameType: 'tictactoe';
+  phase: 'waiting' | 'in_progress' | 'finished';
+  players: Player[];
+  currentPlayerIndex: number;
+  board: Array<Array<'X' | 'O' | null>>;
+  currentSymbol: 'X' | 'O';
+  winnerId?: string;
+  winningLine?: number[][];
+  isDraw?: boolean;
+  moveCount: number;
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface GameRules {

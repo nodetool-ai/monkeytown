@@ -42,7 +42,12 @@ export type GameMode = 'fast' | 'casual' | 'social' | 'competitive';
 
 export type GameStatus = 'waiting' | 'live' | 'ended';
 
-export type GameType = 'babel' | 'chess' | 'words';
+/**
+ * Available game types
+ * Primary: tictactoe (the main implemented game)
+ * Legacy: babel, chess, words (kept for backwards compatibility but not implemented)
+ */
+export type GameType = 'tictactoe' | 'babel' | 'chess' | 'words';
 
 export interface Agent {
   id: string;
@@ -288,6 +293,13 @@ export const AGENT_CONFIG: Record<AgentType, Omit<Agent, 'id' | 'status' | 'winR
 };
 
 export const GAME_CONFIGS: Record<GameType, GameConfig> = {
+  tictactoe: {
+    gameType: 'tictactoe',
+    maxPlayers: 2,
+    minPlayers: 2,
+    rounds: 1,
+    turnDurationSeconds: 30,
+  },
   babel: {
     gameType: 'babel',
     maxPlayers: 5,

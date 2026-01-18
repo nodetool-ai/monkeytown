@@ -2,6 +2,8 @@ import { Server as SocketIOServer, Socket } from 'socket.io';
 import { Server as HttpServer } from 'http';
 import { RedisService } from '../services/redis.js';
 import { GameServer } from '../game/server.js';
+import { DatabaseService } from '../services/database.js';
+import { v4 as uuid } from 'uuid';
 
 interface ConnectionInfo {
   socketId: string;
@@ -20,10 +22,12 @@ export class EventStream {
   private connections: Map<string, ConnectionInfo> = new Map();
   private redis: RedisService;
   private gameServer: GameServer;
+  private db: DatabaseService;
 
-  constructor(httpServer: HttpServer, redis: RedisService, gameServer: GameServer) {
+  constructor(httpServer: HttpServer, redis: RedisService, gameServer: GameServer, db?: DatabaseService) {
     this.redis = redis;
     this.gameServer = gameServer;
+    this.db = db || new DatabaseService(process.env.DATABASE_URL || 'postgres://localhost:5432/monkeytown');
 
     this.io = new SocketIOServer(httpServer, {
       cors: {
@@ -84,6 +88,7 @@ export class EventStream {
   }
 
   private setupSocketListeners(socket: Socket, playerId: string): void {
+    // Join a game room
     socket.on('game:join', async (data: { gameId: string }) => {
       try {
         const session = await this.gameServer.getSession(data.gameId);
@@ -97,12 +102,13 @@ export class EventStream {
         if (conn) {
           conn.subscriptions.add(`game:${data.gameId}`);
         }
-        socket.emit('game:joined', { gameId: data.gameId });
+        socket.emit('game:joined', { gameId: data.gameId, state: session.state });
       } catch (error) {
         socket.emit('error', { code: 'JOIN_FAILED', message: 'Failed to join game' });
       }
     });
 
+    // Leave a game room
     socket.on('game:leave', async (data: { gameId: string }) => {
       socket.leave(`game:${data.gameId}`);
       const conn = this.connections.get(playerId);
@@ -112,7 +118,8 @@ export class EventStream {
       socket.emit('game:left', { gameId: data.gameId });
     });
 
-    socket.on('game:action', async (data: { gameId: string; action: unknown }) => {
+    // Handle game actions (TicTacToe and Babel)
+    socket.on('game:action', async (data: { gameId: string; action: { type: string; row?: number; col?: number; cardId?: string; targetPlayerId?: string } }) => {
       try {
         const session = await this.gameServer.getSession(data.gameId);
         if (!session) {
@@ -120,27 +127,80 @@ export class EventStream {
           return;
         }
 
-        if (session.config.gameType === 'babel') {
-          const event = await this.gameServer.processBabelAction(data.gameId, playerId, data.action as any);
-          if (event) {
-            this.io.to(`game:${data.gameId}`).emit('game:event', event);
-          }
+        let event;
+        if (session.config.gameType === 'tictactoe') {
+          event = await this.gameServer.processTicTacToeAction(data.gameId, playerId, {
+            type: data.action.type as 'place' | 'forfeit',
+            row: data.action.row,
+            col: data.action.col,
+          });
+        } else if (session.config.gameType === 'babel') {
+          event = await this.gameServer.processBabelAction(data.gameId, playerId, data.action as any);
         } else {
           socket.emit('error', { code: 'UNSUPPORTED_GAME', message: 'Game type not supported yet' });
+          return;
+        }
+
+        if (event) {
+          // Get updated session state
+          const updatedSession = await this.gameServer.getSession(data.gameId);
+          this.io.to(`game:${data.gameId}`).emit('game:state', {
+            gameId: data.gameId,
+            state: updatedSession?.state,
+            event,
+          });
+        } else {
+          socket.emit('error', { code: 'INVALID_ACTION', message: 'Invalid action' });
         }
       } catch (error) {
+        console.error('[EventStream] Action error:', error);
         socket.emit('error', { code: 'ACTION_FAILED', message: 'Failed to process action' });
       }
     });
 
-    socket.on('game:chat', (data: { gameId: string; message: string }) => {
-      this.io.to(`game:${data.gameId}`).emit('game:chat', {
-        playerId,
-        message: data.message,
-        timestamp: Date.now(),
-      });
+    // Handle chat messages - now persisted to database
+    socket.on('game:chat', async (data: { gameId: string; message: string }) => {
+      try {
+        const session = await this.gameServer.getSession(data.gameId);
+        const player = session?.players.find(p => p.id === playerId);
+        
+        const chatMessage = {
+          id: uuid(),
+          gameId: data.gameId,
+          senderId: playerId,
+          senderName: player?.name || 'Anonymous',
+          senderType: (player?.type || 'human') as 'human' | 'agent',
+          content: data.message,
+          timestamp: Date.now(),
+        };
+
+        // Persist to database
+        try {
+          await this.db.saveChatMessage(chatMessage);
+        } catch (dbError) {
+          console.error('[EventStream] Failed to persist chat message:', dbError);
+        }
+
+        // Broadcast to all players in the game
+        this.io.to(`game:${data.gameId}`).emit('game:chat', chatMessage);
+      } catch (error) {
+        console.error('[EventStream] Chat error:', error);
+        socket.emit('error', { code: 'CHAT_FAILED', message: 'Failed to send chat message' });
+      }
     });
 
+    // Get chat history
+    socket.on('game:chat:history', async (data: { gameId: string; limit?: number }) => {
+      try {
+        const messages = await this.db.getChatMessages(data.gameId, data.limit || 100);
+        socket.emit('game:chat:history', { gameId: data.gameId, messages });
+      } catch (error) {
+        console.error('[EventStream] Chat history error:', error);
+        socket.emit('error', { code: 'CHAT_HISTORY_FAILED', message: 'Failed to get chat history' });
+      }
+    });
+
+    // Heartbeat
     socket.on('heartbeat', () => {
       socket.emit('heartbeat:ack', { timestamp: Date.now() });
     });
