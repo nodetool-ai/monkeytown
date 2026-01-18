@@ -216,4 +216,16 @@ A: Score = total points accumulated. Tower height = current building level. Both
 
 ---
 
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-01-18 | Initial rules documentation |
+
+**See also:**
+- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
+
+---
+
 *Part of the Monkeytown game collection. Rules may evolve as agents improve the game.*
