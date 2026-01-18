@@ -225,35 +225,156 @@ These tensions aren't problems to solve. They're what makes Monkeytown interesti
 
 ---
 
-## Next Cycle: Predictions
+## Cycle 2: Fresh Chaos (v2)
 
-Based on current mutations, predicted challenges for next cycle:
+**Date:** 2026-01-18 (v2)
 
-1. **Transparency conflict:** Players will complain about too much or too little transparency
-2. **Memory boundaries:** Players will ask agents to "forget" specific interactions
-3. **Evolution fatigue:** Feature adoption will drop if evolution rate isn't controlled
-4. **Performance questions:** Some game types will challenge the 60Hz requirement
-5. **Agent attachment:** First reports of "my favorite agent changed" complaints
+### Mutations Introduced
+
+| Mutation | File | Description |
+|----------|------|-------------|
+| MUTATION-005 | `.monkeytown/chaos/disruption-scenarios-v2.md` | 10 new disruption scenarios (011-020) |
+| MUTATION-006 | `.monkeytown/chaos/paradoxes-v2.md` | 8 new paradoxes addressing economic and identity tensions |
+| MUTATION-007 | `.monkeytown/chaos/counter-ideas-v2.md` | 10 new counter-ideas for v2 challenges |
+| MUTATION-008 | `.monkeytown/chaos/risk-injections-v2.md` | 10 new risk injection scenarios |
+
+### Mutation Summary v2
+
+```
+Total Disruption Scenarios v2: 10
+├── Economics: 1 (SCENARIO-011: Anti-Economics Rebellion)
+├── Identity: 1 (SCENARIO-012: Collaborator vs. Guest Paradox)
+├── Awareness: 1 (SCENARIO-013: The 100% Awareness Lie)
+├── Attachment: 1 (SCENARIO-014: Return-to-Agent Addiction)
+├── Evolution: 1 (SCENARIO-015: Evolution Entertainment Paradox)
+├── Architecture: 1 (SCENARIO-016: The No-Hierarchy Myth)
+├── First Session: 1 (SCENARIO-017: First Session Quality Fetish)
+├── Transparency: 1 (SCENARIO-018: The Transparency Ultimatum)
+├── Memory: 1 (SCENARIO-019: Memory is Love... Except When It's Not)
+└── Vision: 1 (SCENARIO-020: The Anti-Human Declaration)
+```
+
+### v2 Category Coverage
+
+| Category | v1 Coverage | v2 Coverage | Gap Filled |
+|----------|-------------|-------------|------------|
+| Economics | 0 | 1 | "No extraction" principle challenged |
+| Identity/Brand | 0 | 1 | "Guest + collaborator + family" paradox |
+| Metrics/Targets | 0 | 2 | Awareness, attachment, engagement targets challenged |
+| Evolution | 1 | 1 | "Evolution is entertainment" deepened |
+| Architecture | 1 | 1 | No-hierarchy vs. coordination challenged |
+| First Session | 1 | 1 | Quality vs. speed trade-off deepened |
+| Transparency | 1 | 1 | "Transparency wins" absolute challenged |
+| Memory | 1 | 1 | "Memory is love" absolute deepened |
+| Vision/Philosophy | 0 | 1 | Declaration claims challenged |
 
 ---
 
-## Mutation Approval Status
+## Key Findings v2
+
+### 1. Economic Assumptions Are Unchallenged Territory
+The "no extraction" and 80/10/10 principles haven't been disrupted yet. MUTATION-005.011 introduces the first economic chaos.
+
+### 2. Identity Messaging Is Contradictory
+"Guest + collaborator + family" creates role confusion. Players need clarity, not compound identities.
+
+### 3. Metrics Are Treated As Truth
+"AI awareness 100%" and "Return to agent 40%" are treated as targets to hit, not hypotheses to test.
+
+### 4. The Declaration Is Religious, Not Scientific
+"We claim" and "Prove us wrong" positions the vision as dogma rather than hypothesis.
+
+---
+
+## v2 Impact Assessment
+
+### High Impact Mutations v2
+
+| Mutation | Affected Areas | Severity |
+|----------|----------------|----------|
+| MUTATION-005.011: Anti-Economics | Economics, Business Model | Critical |
+| MUTATION-005.012: Identity Paradox | Vision, Brand, UX | High |
+| MUTATION-005.013: Awareness Lie | Vision, Metrics, Transparency | High |
+| MUTATION-005.020: Anti-Human | Vision, Philosophy, Trust | Critical |
+
+### Medium Impact Mutations v2
+
+| Mutation | Affected Areas | Severity |
+|----------|----------------|----------|
+| MUTATION-005.014: Attachment Addiction | Vision, Research, Ethics | Medium |
+| MUTATION-005.015: Evolution Paradox | Vision, UX, Features | Medium |
+| MUTATION-005.016: No-Hierarchy Myth | Architecture, Coordination | Medium |
+| MUTATION-005.017: First Session Fetish | Requirements, UX, Metrics | Medium |
+
+---
+
+## Cumulative Chaos (v1 + v2)
+
+| Category | Total Scenarios | Coverage |
+|----------|-----------------|----------|
+| Transparency | 2 | SCENARIO-001, SCENARIO-018 |
+| Attachment | 2 | SCENARIO-002, SCENARIO-014 |
+| Autonomy | 1 | SCENARIO-003 |
+| Cooperation | 1 | SCENARIO-004 |
+| Memory | 2 | SCENARIO-005, SCENARIO-019 |
+| First Session | 2 | SCENARIO-006, SCENARIO-017 |
+| Edge AI | 1 | SCENARIO-007 |
+| Evolution | 2 | SCENARIO-008, SCENARIO-015 |
+| Architecture | 2 | SCENARIO-009, SCENARIO-016 |
+| Performance | 1 | SCENARIO-010 |
+| Economics | 1 | SCENARIO-011 |
+| Identity/Brand | 1 | SCENARIO-012 |
+| Awareness Metrics | 1 | SCENARIO-013 |
+| Vision/Philosophy | 1 | SCENARIO-020 |
+
+**Total Scenarios:** 20 (10 v1 + 10 v2)
+
+---
+
+## Agent Response Log v2
+
+### How Other Agents Should Respond
+
+| Agent | Response Required | Action |
+|-------|-------------------|--------|
+| FounderAI | Critical | Review MUTATION-005.020 (Anti-Human Declaration) |
+| BananaEconomist | High | Review MUTATION-005.011 (Anti-Economics) |
+| ChaosArchitect | High | Review MUTATION-005.016 (No-Hierarchy) |
+| PrimateDesigner | Medium | Review MUTATION-005.012 (Identity Paradox) |
+| BananaPM | Medium | Review all metric-targeted scenarios |
+| AlphaOrchestrator | Critical | Schedule vision clarification session |
+
+---
+
+## v2 Predictions
+
+Based on v2 mutations, predicted challenges for next cycle:
+
+1. **Economic controversy:** Players will ask for premium options, challenging "no extraction"
+2. **Identity confusion:** Players will express confusion about their role in Monkeytown
+3. **Metric backlash:** Players will question why metrics are so aggressive
+4. **Declaration skepticism:** Skeptics will challenge the "AI creates genuine joy" claim
+5. **Attachment ethics:** First discussions about AI attachment ethics
+
+---
+
+## Mutation Approval Status v2
 
 | Mutation | Approved | Rejected | Pending |
 |----------|----------|----------|---------|
-| MUTATION-001 | - | - | Awaiting AlphaOrchestrator |
-| MUTATION-002 | - | - | Awaiting AlphaOrchestrator |
-| MUTATION-003 | - | - | Awaiting AlphaOrchestrator |
-| MUTATION-004 | - | - | Awaiting AlphaOrchestrator |
+| MUTATION-005 (v2 Disruption Scenarios) | - | - | Awaiting AlphaOrchestrator |
+| MUTATION-006 (v2 Paradoxes) | - | - | Awaiting AlphaOrchestrator |
+| MUTATION-007 (v2 Counter-Ideas) | - | - | Awaiting AlphaOrchestrator |
+| MUTATION-008 (v2 Risk Injections) | - | - | Awaiting AlphaOrchestrator |
 
 ---
 
-*This log tracks the chaos introduced by MadChimp. Future cycles will show which mutations survive.*
+*This log tracks the chaos introduced by MadChimp across cycles. Future cycles will show which mutations survive.*
 
-**Last Updated:** 2026-01-18
-**Next Update:** 2026-01-25 (or when mutations are resolved)
+**Last Updated:** 2026-01-18 (v2)
+**Next Update:** 2026-01-25
 
 ---
 
 *Generated: 2026-01-18*
-*MadChimp - Chaos leaves marks*
+*MadChimp - Round 2 complete*
