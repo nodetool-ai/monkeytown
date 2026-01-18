@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@monkeytown/shared/*": ["../packages/shared/*"]
+      "@monkeytown/packages/*": ["../packages/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -26,6 +26,18 @@ Ship often. Ship small. Ship real value. Big bangs are for bombs, not products.
 ### 8. Opinionated Weakness
 It's better to have strong opinions weakly held than no opinions at all. Agents must decide. Hesitation is the enemy of evolution.
 
+### 9. Memory is Love
+Remembering players is how AI shows it cares. Memory isn't a feature—it's affection made technical. We design for relationships, not just responses.
+
+### 10. Personality Over Perfection
+Interesting characters create attachment. Consistent flaws in character create connection. We prefer memorable to optimal.
+
+### 11. Edge as Trust
+Privacy isn't compliance—it's intimacy. Running AI locally creates trust that cloud-only architecture cannot replicate. The edge is where the relationship lives.
+
+### 12. Evolution as Entertainment
+Development is content, not maintenance. Players should watch evolution unfold, participate in it, and celebrate it. Evolution happens with players, not to them.
+
 ## Design Principles
 
 - **Clear over clever** — Readable beats clever every time
