@@ -127,7 +127,44 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
-#### 10. **AlphaOrchestrator** (30 min past: 2,8,14,20) ⭐ **CENTRAL COORDINATOR**
+#### 10. **GameDesigner** (0 min past: 3,9,15,21) 🎲 **GAME RULES SPECIALIST**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `docs/games/` for current game rules
+- `.monkeytown/game-testing/` for tester feedback
+- Player feedback from analytics
+
+**Writes:** Game rules, mechanics documentation, balance changes, in-game tutorials
+
+**Special Responsibilities:**
+- Ensure ALL games have documented rules
+- Design mechanics that are testable
+- Create in-game explanations
+- Respond to GameTester feedback
+
+---
+
+#### 11. **GameTester** (30 min past: 4,10,16,22) 🎯 **GAME TESTING SPECIALIST**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `docs/games/` for game rules to verify
+- `.monkeytown/game-design/` for design specs
+- `web/e2e/` for existing E2E tests
+- Current game implementation
+
+**Writes:** Test reports, bug reports, balance feedback, E2E test recommendations
+
+**Special Responsibilities:**
+- Play games against all AI opponent types
+- Verify rules match implementation
+- Report bugs with reproduction steps
+- Run and analyze E2E test results
+
+---
+
+#### 12. **AlphaOrchestrator** (30 min past: 2,8,14,20) ⭐ **CENTRAL COORDINATOR**
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -140,13 +177,15 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
   - BananaPM: Product
   - BananaEconomist: Economics
   - MadChimp: Chaos
+  - GameDesigner: Game rules
+  - GameTester: Game testing
   - Previous decisions
 
 **Writes:** Execution plans, priorities, decisions, state summaries
 
 ---
 
-#### 11. **HrSimian** (30 min past: 7,13,19)
+#### 13. **HrSimian** (30 min past: 7,13,19)
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -157,7 +196,7 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
-#### 12. **ScribbleSimian** (0 min past: 6,12,18)
+#### 14. **ScribbleSimian** (0 min past: 6,12,18)
 **Reads:**
 - `README.md`
 - `docs/goal.md**

@@ -14,7 +14,11 @@ export interface AgentBadgeProps {
   onClick?: () => void;
 }
 
+/**
+ * Emojis for all agents (both Builder and Player agents)
+ */
 const AGENT_EMOJIS: Record<AgentType, string> = {
+  // Builder Agents
   chaos: '🧠',
   curious: '🔍',
   designer: '🎨',
@@ -22,9 +26,23 @@ const AGENT_EMOJIS: Record<AgentType, string> = {
   economist: '🍌',
   madchimp: '🐒',
   founder: '✨',
+  gamedesigner: '🎲',
+  gametester: '🎯',
+  // Player Agents (distinct gaming personalities)
+  trickster: '🎭',
+  strategist: '🧩',
+  speedster: '⚡',
+  guardian: '🛡️',
+  wildcard: '🃏',
+  mentor: '📚',
+  champion: '🏆',
 };
 
+/**
+ * Names for all agents (both Builder and Player agents)
+ */
 const AGENT_NAMES: Record<AgentType, string> = {
+  // Builder Agents
   chaos: 'ChaosArchitect',
   curious: 'CuriousGeorge',
   designer: 'PrimateDesigner',
@@ -32,6 +50,16 @@ const AGENT_NAMES: Record<AgentType, string> = {
   economist: 'BananaEconomist',
   madchimp: 'MadChimp',
   founder: 'FounderAI',
+  gamedesigner: 'GameDesigner',
+  gametester: 'GameTester',
+  // Player Agents (distinct gaming personalities)
+  trickster: 'TricksterMonkey',
+  strategist: 'StrategistApe',
+  speedster: 'SpeedyGibbon',
+  guardian: 'GuardianGorilla',
+  wildcard: 'WildcardLemur',
+  mentor: 'MentorOrangutan',
+  champion: 'ChampionChimp',
 };
 
 const STATUS_COLORS: Record<AgentStatus, string> = {

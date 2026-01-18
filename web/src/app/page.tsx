@@ -1,12 +1,12 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { GameType, GameMode, GameStatus, PlayerType, AgentType, AGENT_COLORS } from '@monkeytown/packages/shared';
+import { GameType, GameMode, GameStatus, PlayerType, AgentType, AGENT_COLORS, PlayerAgentType, PLAYER_AGENT_CONFIG } from '@monkeytown/packages/shared';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, GameCanvas } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed, GameCanvas, GameRules } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -28,6 +28,7 @@ export default function LobbyPage() {
   const agentPanel = useAgentPanel();
   const { events: evolutionEvents } = useEvolutionFeed();
 
+  // Use PLAYER agents (not builder agents) for in-game opponents
   const [games, setGames] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
@@ -36,9 +37,9 @@ export default function LobbyPage() {
       status: 'live',
       players: [
         { id: 'player-1', type: 'human', name: 'You' },
-        { id: 'agent-1', type: 'agent', name: 'ChaosArchitect', agentType: 'chaos' },
+        { id: 'agent-1', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
         { id: 'player-2', type: 'human', name: 'MonkeyFan99' },
-        { id: 'agent-2', type: 'agent', name: 'PrimateDesigner', agentType: 'designer' },
+        { id: 'agent-2', type: 'agent', name: 'TricksterMonkey', agentType: 'trickster' },
       ],
       maxPlayers: 5,
     },
@@ -49,7 +50,7 @@ export default function LobbyPage() {
       status: 'live',
       players: [
         { id: 'player-3', type: 'human', name: 'Grandmaster' },
-        { id: 'agent-3', type: 'agent', name: 'JungleSecurity', agentType: 'security' },
+        { id: 'agent-3', type: 'agent', name: 'ChampionChimp', agentType: 'champion' },
       ],
       maxPlayers: 2,
     },
@@ -60,7 +61,7 @@ export default function LobbyPage() {
       status: 'waiting',
       players: [
         { id: 'player-4', type: 'human', name: 'WordNinja' },
-        { id: 'agent-4', type: 'agent', name: 'BananaEconomist', agentType: 'economist' },
+        { id: 'agent-4', type: 'agent', name: 'MentorOrangutan', agentType: 'mentor' },
         { id: 'player-5', type: 'human', name: 'VocabularyKing' },
       ],
       maxPlayers: 5,
@@ -345,14 +346,16 @@ export default function LobbyPage() {
 function GameDemo({ onBack }: { onBack: () => void }) {
   const { messages, sendMessage } = useChat();
   const [selectedCardId, setSelectedCardId] = React.useState<string | undefined>();
+  const [showRules, setShowRules] = React.useState(false);
 
   React.useEffect(() => {
+    // Use Player Agent (StrategistApe) instead of Builder Agent
     sendMessage({
       senderId: 'agent-1',
-      senderName: 'ChaosArchitect',
+      senderName: 'StrategistApe',
       senderType: 'agent',
-      agentType: 'chaos',
-      content: 'Welcome to Babel Tower! Let\'s build something amazing together.',
+      agentType: 'strategist',
+      content: 'Welcome to Babel Tower! I\'m calculating the optimal strategy... Good luck!',
     });
   }, []);
 
@@ -365,12 +368,13 @@ function GameDemo({ onBack }: { onBack: () => void }) {
     });
 
     setTimeout(() => {
+      // Player Agent personality shines through in chat
       sendMessage({
         senderId: 'agent-1',
-        senderName: 'ChaosArchitect',
+        senderName: 'StrategistApe',
         senderType: 'agent',
-        agentType: 'chaos',
-        content: 'Nice move! I\'m thinking about my next play...',
+        agentType: 'strategist',
+        content: 'Interesting move! I\'m analyzing the implications for my tower strategy...',
       });
     }, 1500);
   };
@@ -395,10 +399,21 @@ function GameDemo({ onBack }: { onBack: () => void }) {
           </span>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-2)' }}>
-          <AgentBadge agent="chaos" status="online" size="sm" showEmoji={true} showName={true} />
-          <AgentBadge agent="designer" status="online" size="sm" showEmoji={true} showName={true} />
+          {/* Show Player Agents, not Builder Agents */}
+          <AgentBadge agent="strategist" status="online" size="sm" showEmoji={true} showName={true} />
+          <AgentBadge agent="trickster" status="online" size="sm" showEmoji={true} showName={true} />
+          <Button variant="secondary" size="sm" onClick={() => setShowRules(!showRules)}>
+            {showRules ? 'Hide Rules' : '📖 Rules'}
+          </Button>
         </div>
       </div>
+
+      {/* In-game rules display */}
+      {showRules && (
+        <div style={{ marginBottom: 'var(--space-4)' }}>
+          <GameRules gameType="babel" variant="compact" />
+        </div>
+      )}
 
       <GameCanvas
         gameState={{
@@ -408,8 +423,9 @@ function GameDemo({ onBack }: { onBack: () => void }) {
           status: 'live',
           players: [
             { id: 'player-1', name: 'You', type: 'human', score: 42, isConnected: true },
-            { id: 'agent-1', name: 'ChaosArchitect', type: 'agent', agentType: 'chaos', score: 38, isConnected: true },
-            { id: 'agent-2', name: 'PrimateDesigner', type: 'agent', agentType: 'designer', score: 45, isConnected: true },
+            // Use Player Agents with distinct gaming personalities
+            { id: 'agent-1', name: 'StrategistApe', type: 'agent', agentType: 'strategist', score: 38, isConnected: true },
+            { id: 'agent-2', name: 'TricksterMonkey', type: 'agent', agentType: 'trickster', score: 45, isConnected: true },
           ],
           round: 4,
           maxRounds: 12,

@@ -227,7 +227,38 @@ Monkeytown is permanently unfinished.
 | `.monkeytown/qa/` | ChaosTester |
 | `.monkeytown/chaos/` | MadChimp |
 | `.monkeytown/decisions/` | AlphaOrchestrator |
+| `.monkeytown/game-design/` | GameDesigner |
+| `.monkeytown/game-testing/` | GameTester |
+| `docs/games/` | GameDesigner |
 | Codebase (`/web`, `/server`, etc.) | MonkeyBuilder |
+
+---
+
+## Builder Agents vs Player Agents
+
+Monkeytown has two distinct types of agents:
+
+### Builder Agents 🔧
+These agents BUILD the game through GitHub workflows:
+- **ChaosArchitect**: Infrastructure & Architecture
+- **CuriousGeorge**: Research & Trends
+- **PrimateDesigner**: Design & UX
+- **JungleSecurity**: Security & QA
+- **BananaEconomist**: Economics & Incentives
+- **MadChimp**: Chaos & Disruption
+- **FounderAI**: Vision & Strategy
+- **GameDesigner**: Game rules & mechanics
+- **GameTester**: Game testing & feedback
+
+### Player Agents 🎮
+These agents PLAY games as AI opponents with unique personalities:
+- **TricksterMonkey** 🎭: Unpredictable, loves bluffs
+- **StrategistApe** 🧩: Calculated, long-term planning
+- **SpeedyGibbon** ⚡: Quick decisions, aggressive plays
+- **GuardianGorilla** 🛡️: Defensive, blocks opponents
+- **WildcardLemur** 🃏: Random strategies, chaos factor
+- **MentorOrangutan** 📚: Helps new players, explains moves
+- **ChampionChimp** 🏆: Competitive, aims to win
 
 ---
 
