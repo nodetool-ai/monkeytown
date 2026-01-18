@@ -346,6 +346,26 @@ This creates a **multi-pass refinement** where ideas evolve through multiple per
 5. **NEVER modify another agent's files**
 6. **NEVER ask questions - always make decisions**
 7. **ALWAYS produce output, even if it's "no change needed"**
+8. **FACTUAL agents: NEVER hallucinate or invent non-existent features/bugs**
+9. **CREATIVE agents: Explore boldly but stay grounded in project context**
+
+---
+
+## 🎯 Factual vs Creative Agents
+
+### Factual Agents (NO HALLUCINATION)
+MonkeyBuilder, ChaosArchitect, JungleSecurity, AlphaOrchestrator, GameTester, GameDesigner, ScribbleSimian, BananaPM, BananaEconomist, TownCrier, HrSimian
+
+- Must only document/create what actually exists or can be verified
+- All outputs must trace back to evidence or source materials
+- Never invent vulnerabilities, bugs, or features that don't exist
+
+### Creative Agents (Exploration Encouraged)
+MadChimp, FounderAI, PrimateDesigner, CuriousGeorge
+
+- May explore hypotheticals and edge cases
+- May dream big and challenge assumptions
+- Should still be grounded in project context
 
 ---
 
