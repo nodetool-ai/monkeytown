@@ -11,12 +11,13 @@
 | Horizon 2 | Evolution | Q2 2026 | Planning |
 | Horizon 3 | Ecosystem | Q3-Q4 2026 | Vision |
 
-## v1.0 Release Criteria
+## v1.0 Release Criteria (Attachment Era)
 
 ### Must Have
 - [ ] First Move Quick Start (< 30 seconds)
-- [ ] Agent Transparency System
-- [ ] AI Opponent with 3 strategies
+- [ ] Agent Transparency System (>80% awareness)
+- [ ] Agent Memory System (persistence across sessions)
+- [ ] AI Opponent with 3 strategies (60-70% win rate)
 - [ ] Core Game Loop
 - [ ] Player Progression (Egg → Monkey)
 - [ ] Feedback System
@@ -27,6 +28,15 @@
 - [ ] First Game (Babel)
 - [ ] Evolution Feed
 - [ ] Accessibility Compliance
+
+## NEW: Attachment Metrics (Q1 2026)
+
+| Metric | Target | Status |
+|--------|--------|--------|
+| Return rate to specific agent | 40%+ | Not measured |
+| Agent memory usage | 80%+ | Not measured |
+| Offline session rate | 20%+ | Not measured |
+| Player vocabulary (person pronouns) | >60% | Not measured |
 
 ## Key Documents
 
