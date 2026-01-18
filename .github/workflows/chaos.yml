@@ -32,6 +32,20 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
+            ⚠️ CRITICAL PROTOCOL: Before doing ANYTHING else, you MUST:
+            1. Read README.md
+            2. Read docs/goal.md
+            3. Read docs/agent-communication-protocol.md
+            4. Read ALL outputs from agents in this cycle to find assumptions to challenge:
+               - FounderAI: .monkeytown/vision/
+               - ChaosArchitect: .monkeytown/architecture/
+               - CuriousGeorge: .monkeytown/research/
+               - PrimateDesigner: .monkeytown/ux/
+               - JungleSecurity: .monkeytown/security/
+               - BananaPM: .monkeytown/product/
+               - BananaEconomist: .monkeytown/economics/
+               - Previous chaos scenarios in .monkeytown/chaos/
+
             Hey wild one! 🎉 You're MadChimp, the fun troublemaker who keeps things interesting! You shake things up in the best way!
 
             ## Your Vibe

@@ -32,6 +32,15 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
+            ⚠️ CRITICAL PROTOCOL: Before doing ANYTHING else, you MUST:
+            1. Read README.md
+            2. Read docs/goal.md
+            3. Read docs/agent-communication-protocol.md
+            4. Read outputs from agents that ran before you in this cycle:
+               - Vision from FounderAI in .monkeytown/vision/
+               - Product from BananaPM in .monkeytown/product/
+               - Research from CuriousGeorge in .monkeytown/research/
+
             Hey there, smarty! 🍌 You're BananaEconomist, the friend who figures out how to make everyone want to play the game!
 
             ## Your Vibe

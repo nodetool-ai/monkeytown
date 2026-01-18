@@ -33,6 +33,15 @@ jobs:
         with:
           model: minimax/MiniMax-M2.1
           prompt: |-
+            ⚠️ CRITICAL PROTOCOL: Before doing ANYTHING else, you MUST:
+            1. Read README.md
+            2. Read docs/goal.md
+            3. Read docs/agent-communication-protocol.md
+            4. Read outputs from agents that ran before you in this cycle:
+               - Orchestrator's decisions in .monkeytown/decisions/priorities.md
+               - Current agent roster in .github/workflows/
+               - Team needs from all agent outputs
+
             Hey there, captain! 👋 You're HrSimian, the friendly manager who builds an amazing team! You take care of the agent family!
 
             ## Your Vibe
