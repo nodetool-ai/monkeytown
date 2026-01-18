@@ -11,32 +11,32 @@
 │                              PLAYERS                                         │
 │                   (React Frontend - Next.js 14)                              │
 └─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                                      ▼
+                                       │
+                                       ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         API GATEWAY / LOAD BALANCER                          │
 │                         (Nginx or Cloud Load Balancer)                       │
 └─────────────────────────────────────────────────────────────────────────────┘
-                                      │
-                    ┌─────────────────┼─────────────────┐
-                    ▼                 ▼                 ▼
-           ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
-           │   Web Server   │ │  Game Server │ │  Event Stream   │
-           │   (Next.js)    │ │  (Node/TS)   │ │   (Node/TS)     │
-           └────────────────┘ └──────────────┘ └─────────────────┘
-                    │                 │                 │
-                    └─────────────────┼─────────────────┘
-                                      ▼
-                        ┌─────────────────────────┐
-                        │    REDIS (Pub/Sub +     │
-                        │    Session Store)       │
-                        └─────────────────────────┘
-                                      │
-                                      ▼
-                        ┌─────────────────────────┐
-                        │   POSTGRESQL / SQLite   │
-                        │   (Game State + Agents) │
-                        └─────────────────────────┘
+                                       │
+                     ┌─────────────────┼─────────────────┐
+                     ▼                 ▼                 ▼
+            ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
+            │   Web Server   │ │  Game Server │ │  Event Stream   │
+            │   (Next.js)    │ │  (Node/TS)   │ │   (Node/TS)     │
+            └────────────────┘ └──────────────┘ └─────────────────┘
+                     │                 │                 │
+                     └─────────────────┼─────────────────┘
+                                       ▼
+                         ┌─────────────────────────┐
+                         │    REDIS (Pub/Sub +     │
+                         │    Session Store)       │
+                         └─────────────────────────┘
+                                       │
+                                       ▼
+                         ┌─────────────────────────┐
+                         │   POSTGRESQL / SQLite   │
+                         │   (Game State + Agents) │
+                         └─────────────────────────┘
 ```
 
 ---
@@ -289,8 +289,8 @@ type ServerMessage =
 
 ```
 Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
-                     ↓
-              PostgreSQL (persistent)
+                      ↓
+               PostgreSQL (persistent)
 ```
 
 ### 3. Agent Communication (via Repository)
@@ -564,10 +564,51 @@ const latencyHistogram = new Histogram({
 ## File References
 
 - Frontend: `web/`
-- Backend: `server/` (to be created)
+- Backend: `server/`
 - Shared types: `packages/shared/`
 - Deployment config: `deploy/`
 - Environment: `.env.example`
+
+---
+
+## Architecture Decision Log
+
+### DECISION-001: Multi-Layer Agent Architecture (2026-01-18)
+
+**Context**: Need for agents to collaborate without direct communication
+
+**Decision**: Two-layer architecture:
+1. GitHub Workflow Layer for high-level coordination
+2. React/Node.js Agent Layer for real-time reasoning
+
+**Consequence**:
+- Agents are isolated and safe
+- Coordination happens through files only
+- No single point of failure
+
+### DECISION-002: WebSocket-First Real-Time Communication (2026-01-18)
+
+**Context**: Real-time multiplayer gameplay requirements
+
+**Decision**: Use WebSocket for all player-server communication, with Redis Pub/Sub for multi-instance scaling
+
+**Consequence**:
+- Low-latency gameplay
+- Horizontal scaling support
+- Complex connection management
+
+### DECISION-003: Docker Compose for Dev, ECS for Production (2026-01-18)
+
+**Context**: Balance between development velocity and production reliability
+
+**Decision**: 
+- Local development: Docker Compose
+- Production: AWS ECS with Terraform
+
+**Consequence**:
+- Consistent dev environment
+- Production-grade infrastructure
+- Operational complexity
 
 ---
 

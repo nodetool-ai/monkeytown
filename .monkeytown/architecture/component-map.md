@@ -12,36 +12,67 @@ monkeytown/
 │   ├── src/
 │   │   ├── app/                  # Next.js App Router
 │   │   │   ├── layout.tsx        # Root layout
-│   │   │   └── page.tsx          # Main page
-│   │   └── components/           # React components
-│   │       ├── GameUI/           # Game interface
-│   │       ├── Player/           # Player components
-│   │       └── Common/           # Shared UI
+│   │   │   ├── page.tsx          # Main page
+│   │   │   ├── globals.css       # Global styles
+│   │   │   └── api/              # API routes (future)
+│   │   ├── components/
+│   │   │   ├── GameUI/           # Game interface components
+│   │   │   │   ├── GameCanvas.tsx     # Main game canvas
+│   │   │   │   ├── ChatPanel.tsx      # In-game chat
+│   │   │   │   ├── EvolutionFeed.tsx  # Agent evolution timeline
+│   │   │   │   └── GameCard.tsx       # Game listing card
+│   │   │   ├── Player/           # Player components
+│   │   │   │   └── PlayerCard.tsx     # Player info display
+│   │   │   ├── Agents/           # AI agent components
+│   │   │   │   ├── AgentBadge.tsx      # Agent status badge
+│   │   │   │   ├── AgentPanel.tsx      # Agent information panel
+│   │   │   │   └── index.ts
+│   │   │   └── Common/           # Shared UI components
+│   │   │       ├── Button.tsx
+│   │   │       ├── Badge.tsx
+│   │   │       ├── Card.tsx
+│   │   │       └── index.ts
+│   │   ├── hooks/
+│   │   │   ├── useGame.ts        # Game state management hook
+│   │   │   └── index.ts
+│   │   ├── lib/                  # Utilities (future)
+│   │   └── test/
+│   │       └── setup.ts          # Test setup
 │   ├── public/                   # Static assets
 │   ├── package.json
-│   └── tsconfig.json
+│   ├── tsconfig.json
+│   ├── next.config.js
+│   ├── vitest.config.ts
+│   └── .eslintrc.json
 │
-├── server/                       # Backend Application (to create)
+├── server/                       # Backend Application
 │   ├── src/
 │   │   ├── index.ts              # Entry point
 │   │   ├── game/
-│   │   │   ├── Engine.ts         # Game logic
-│   │   │   ├── Matchmaker.ts     # Player matching
-│   │   │   └── Session.ts        # Game session
+│   │   │   ├── Engine.ts         # Game logic engine (babel-engine)
+│   │   │   ├── Matchmaker.ts     # Player matching system
+│   │   │   ├── Session.ts        # Game session management
+│   │   │   ├── ai-opponent.ts    # AI opponent implementation
+│   │   │   ├── server.ts         # Game server instance
+│   │   │   ├── types.ts          # Game type definitions
+│   │   │   └── index.ts
 │   │   ├── websocket/
 │   │   │   ├── Server.ts         # WebSocket handler
-│   │   │   └── Connection.ts     # Connection manager
-│   │   ├── agents/
-│   │   │   ├── Coordinator.ts    # AI agent coordination
-│   │   │   └── Behaviors/        # Agent behavior implementations
+│   │   │   ├── Connection.ts     # Connection manager
+│   │   │   ├── types.ts
+│   │   │   └── index.ts
+│   │   ├── routes/
+│   │   │   ├── api.ts            # REST API routes
+│   │   │   ├── health.ts         # Health check endpoints
+│   │   │   └── index.ts
 │   │   ├── services/
+│   │   │   ├── Database.ts       # PostgreSQL client
 │   │   │   ├── Redis.ts          # Redis client
-│   │   │   └── Database.ts       # PostgreSQL client
-│   │   └── middleware/
-│   │       ├── Auth.ts           # Authentication
-│   │       └── RateLimit.ts      # Rate limiting
+│   │   │   └── index.ts
+│   │   └── middleware/           # Future middleware
 │   ├── package.json
-│   └── tsconfig.json
+│   ├── tsconfig.json
+│   └── dist/                     # Compiled output
 │
 ├── packages/
 │   └── shared/                   # Shared code
@@ -51,22 +82,27 @@ monkeytown/
 │
 ├── deploy/                       # Deployment configs
 │   ├── docker/
-│   │   ├── Dockerfile.web
-│   │   ├── Dockerfile.server
-│   │   └── nginx.conf
+│   │   ├── Dockerfile.web        # Frontend Dockerfile
+│   │   ├── Dockerfile.server     # Backend Dockerfile
+│   │   └── nginx.conf            # Nginx configuration
 │   └── k8s/                      # (Not used - Docker Compose only)
 │
 ├── infrastructure/               # Infrastructure as code
 │   ├── terraform/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
+│   │   ├── main.tf               # Main Terraform config
+│   │   ├── variables.tf          # Terraform variables
+│   │   ├── outputs.tf            # Terraform outputs
+│   │   ├── ecs.tf                # ECS cluster config
+│   │   ├── ecs-variables.tf      # ECS variables
+│   │   └── README.md             # Infrastructure docs
 │   └── ansible/
-│       └── playbook.yml
+│       └── playbook.yml          # (Future) Ansible playbooks
 │
 ├── .env.example                  # Environment template
+├── .env                          # Local environment (gitignored)
 ├── docker-compose.yml            # Local development
-└── package.json                  # Root workspace
+├── package.json                  # Root workspace
+└── tsconfig.json                 # Root TypeScript config
 ```
 
 ---
@@ -78,26 +114,34 @@ monkeytown/
 │                              EXTERNAL LAYER                                   │
 │  ┌──────────┐    ┌──────────┐    ┌──────────┐    ┌──────────────┐           │
 │  │  Players │    │   GitHub │    │   MiniMax│    │  Monitoring  │           │
-│  └────┬─────┘    │   API    │    │   API    │    │    (Sentry)  │           │
-│       │          └──────────┘    └──────────┘    └──────────────┘           │
-└───────┼────────────────────────────────────────────────────────────────────┘
-        │ WebSocket / HTTP
-        ▼
+│  │          │    │   API    │    │   API    │    │  (Optional)  │           │
+│  └────┬─────┘    └────┬─────┘    └────┬─────┘    └──────┬───────┘           │
+│       │               │               │                  │                   │
+│       │ WebSocket     │               │                  │                   │
+│       │ HTTP          │               │                  │                   │
+│       └───────────────┴───────────────┴──────────────────┘                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │                           FRONTEND LAYER (web/)                              │
 │  ┌─────────────────────────────────────────────────────────────────────┐     │
 │  │                        Next.js Application                           │     │
 │  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐    │     │
-│  │  │   App    │  │  Pages   │  │ Components │  │  WebSocket      │    │     │
-│  │  │  Router  │  │          │  │            │  │  Client         │    │     │
+│  │  │   App    │  │  Pages   │  │Components│  │  WebSocket       │    │     │
+│  │  │  Router  │  │          │  │          │  │  Client          │    │     │
 │  │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘    │     │
+│  │         │           │            │                │                  │     │
+│  │         │           │            │                │                  │     │
+│  │    SSR/Hydration    │     Client Components      │ WebSocket        │     │
+│  │                     │                            │                  │     │
 │  └─────────────────────────────────────────────────────────────────────┘     │
-│                    │              │              │                           │
-│       API Calls    │   WebSocket  │   Static     │                           │
-│                    ▼              ▼              ▼                           │
+│         │                   │                      │                       │
+│         │ REST API          │ WebSocket            │ Static Assets         │
+│         ▼                   ▼                      ▼                       │
 └──────────────────────────────────────────────────────────────────────────────┘
-                    │              │
-                    ▼              ▼
+         │                   │
+         ▼                   ▼
 ┌──────────────────────────────────────────────────────────────────────────────┐
 │                          BACKEND LAYER (server/)                             │
 │  ┌─────────────────────────────────────────────────────────────────────┐     │
@@ -106,18 +150,16 @@ monkeytown/
 │  │  │   REST   │  │  Socket  │  │  Agent   │  │  Middleware      │    │     │
 │  │  │   API    │  │  .IO     │  │  Handler │  │                  │    │     │
 │  │  └──────────┘  └──────────┘  └──────────┘  └──────────────────┘    │     │
+│  │         │           │            │                │                  │     │
+│  │    HTTP Requests    │  WebSocket Events        │  Auth/Rate Limit   │     │
+│  │                     │                           │                    │     │
 │  └─────────────────────────────────────────────────────────────────────┘     │
-│                    │              │              │                           │
-│       Database     │   Pub/Sub    │   External   │                           │
-│                    ▼              ▼              ▼                           │
-└──────────────────────────────────────────────────────────────────────────────┘
-                    │              │
-        ┌───────────┼──────────────┼──────────────┐
-        ▼           ▼              ▼              ▼
-┌──────────────┐ ┌──────────┐ ┌──────────┐ ┌──────────────┐
-│  PostgreSQL  │ │  Redis   │ │  GitHub  │ │   MiniMax    │
-│  (Game Data) │ │ (Cache)  │ │   API    │ │    API       │
-└──────────────┘ └──────────┘ └──────────┘ └──────────────┘
+│         │                   │                      │                       │
+│         ▼                   ▼                      ▼                       │
+│  ┌──────────────┐   ┌──────────────┐    ┌──────────────────────┐           │
+│  │  PostgreSQL  │   │    Redis     │    │  External Services   │           │
+│  │  (持久存储)   │   │  (缓存/发布)  │    │  (MiniMax API, etc)  │           │
+│  └──────────────┘   └──────────────┘    └──────────────────────┘           │
 ```
 
 ---
@@ -128,9 +170,9 @@ monkeytown/
 
 ```
 Player Browser
-     │
-     │ 1. Open WebSocket connection
-     ▼
+      │
+      │ 1. Open WebSocket connection
+      ▼
 ┌─────────────┐
 │  Web Server │  (Static assets, initial HTML)
 └──────┬──────┘
@@ -140,24 +182,24 @@ Player Browser
 │ Event Stream    │  ◄── handshake
 │ (WebSocket)     │
 └────────┬────────┘
-         │ 3. Authenticate with JWT
-         ▼
+       │ 3. Authenticate with JWT
+       ▼
 ┌─────────────────┐
 │  Game Server    │  ◄── validate token
 │                 │  ◄── create session
 └────────┬────────┘
-         │ 4. Subscribe to game events
-         ▼
+       │ 4. Subscribe to game events
+       ▼
 ┌─────────────────┐
 │  Redis Pub/Sub  │  ◄── channel subscription
 └────────┬────────┘
-         │ 5. Request game
-         ▼
+       │ 5. Request game
+       ▼
 ┌─────────────────┐
 │  Matchmaker     │  ◄── find/create game
 └────────┬────────┘
-         │ 6. Join game
-         ▼
+       │ 6. Join game
+       ▼
 ┌─────────────────┐
 │  Game Session   │  ◄── game loop begins
 └─────────────────┘
@@ -167,31 +209,31 @@ Player Browser
 
 ```
 Player A (Action)
-     │
-     │ 1. Send input
-     ▼
+      │
+      │ 1. Send input
+      ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── websocket message
 └────────┬────────┘
-         │ 2. Validate
-         ▼
+       │ 2. Validate
+       ▼
 ┌─────────────────┐
 │ Game Server     │  ◄── process input
 │                 │  ◄── update game state
 └────────┬────────┘
-         │ 3. Publish event
-         ▼
+       │ 3. Publish event
+       ▼
 ┌─────────────────┐
 │ Redis Pub/Sub   │  ◄── broadcast
 └────────┬────────┘
-         │ 4. Fan out
-         ▼
+       │ 4. Fan out
+       ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Event Stream A  │     │ Event Stream B  │
 │ (Player A)      │     │ (Player B)      │
 └─────────────────┘     └─────────────────┘
-         │                      │
-         ▼                      ▼
+       │                      │
+       ▼                      ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Client Update   │     │ Client Update   │
 │ (React State)   │     │ (React State)   │
@@ -202,30 +244,30 @@ Player A (Action)
 
 ```
 GitHub Actions
-     │
-     │ 1. Trigger agent workflow
-     ▼
+      │
+      │ 1. Trigger agent workflow
+      ▼
 ┌─────────────────┐
 │ Agent Code      │  ◄── read repo state
 │ (Python/TS)     │  ◄── load prompt
 └────────┬────────┘
-         │ 2. Execute task
-         ▼
+       │ 2. Execute task
+       ▼
 ┌─────────────────┐
 │ MiniMax API     │  ◄── LLM inference
 └────────┬────────┘
-         │ 3. Generate output
-         ▼
+       │ 3. Generate output
+       ▼
 ┌─────────────────┐
 │ File Output     │  ◄── write to domain
 └────────┬────────┘
-         │ 4. Commit and PR
-         ▼
+       │ 4. Commit and PR
+       ▼
 ┌─────────────────┐
 │ GitHub          │  ◄── code review
 └────────┬────────┘
-         │ 5. Merge
-         ▼
+       │ 5. Merge
+       ▼
 ┌─────────────────┐
 │ Build Pipeline  │  ◄── deploy changes
 └─────────────────┘
@@ -244,11 +286,11 @@ interface GameAPI {
   POST /api/games/create          → { gameId: string }
   POST /api/games/:id/join        → { success: true }
   POST /api/games/:id/leave       → { success: true }
-  
+
   // Player management
   GET /api/players/:id            → Player
   GET /api/players/:id/stats      → PlayerStats
-  
+
   // Leaderboard
   GET /api/leaderboard            → LeaderboardEntry[]
 }
@@ -260,7 +302,7 @@ interface GameSocketEvents {
   'game:input': (input: InputAction) => void;
   'game:chat': (message: string) => void;
   'game:leave': () => void;
-  
+
   // Server → Client
   'game:state': (state: GameState) => void;
   'game:event': (event: GameEvent) => void;
@@ -279,11 +321,11 @@ interface RedisService {
   getSession(sessionId: string): Promise<Session | null>;
   setSession(sessionId: string, session: Session): Promise<void>;
   deleteSession(sessionId: string): Promise<void>;
-  
+
   // Pub/Sub
   publish(channel: string, event: GameEvent): Promise<void>;
   subscribe(channel: string, callback: (event: GameEvent) => void): Promise<void>;
-  
+
   // Caching
   cachePlayer(playerId: string, data: PlayerData): Promise<void>;
   getCachedPlayer(playerId: string): Promise<PlayerData | null>;
@@ -295,12 +337,12 @@ interface DatabaseService {
   createPlayer(player: Player): Promise<Player>;
   getPlayer(id: string): Promise<Player | null>;
   updatePlayer(id: string, data: Partial<Player>): Promise<Player>;
-  
+
   // Games
   createGame(game: Game): Promise<Game>;
   getGame(id: string): Promise<Game | null>;
   updateGame(id: string, data: Partial<Game>): Promise<Game>;
-  
+
   // Agent behaviors
   saveAgentBehavior(behavior: AgentBehavior): Promise<void>;
   getAgentBehavior(id: string): Promise<AgentBehavior | null>;
@@ -315,7 +357,7 @@ interface DatabaseService {
 Component          │ Dependencies                    │ Environment
 ───────────────────┼────────────────────────────────┼─────────────────
 web                │ node_modules, public assets     │ development/prod
-server             │ redis, postgres, redis          │ development/prod
+server             │ redis, postgres                 │ development/prod
 shared             │ (none)                          │ all
 event-stream       │ redis                           │ development/prod
 ```
@@ -393,6 +435,39 @@ event-stream       │ redis                           │ development/prod
 | Docker Compose | `docker-compose.yml` |
 | Environment | `.env.example` |
 | Architecture Docs | `.monkeytown/architecture/` |
+| Infrastructure | `infrastructure/terraform/` |
+| CI/CD | `.github/workflows/` |
+
+---
+
+## Current Implementation Status
+
+### ✅ Completed Components
+
+- **Frontend Framework**: Next.js 14 with App Router
+- **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel
+- **UI Components**: Button, Badge, Card (with tests)
+- **Game Engine**: Babel engine with AI opponent
+- **WebSocket Server**: Socket.IO-based event stream
+- **REST API**: Health endpoints, game API routes
+- **Data Layer**: PostgreSQL and Redis services
+- **Docker Setup**: Multi-stage Dockerfiles for web and server
+- **CI/CD Pipeline**: Lint, test, build, deploy workflow
+- **Infrastructure**: Terraform configs for AWS ECS
+
+### 🚧 In Progress
+
+- **Agent Integration**: Full MiniMax API integration
+- **Matchmaking**: Sophisticated player matching
+- **Production Deploy**: ECS task definitions
+- **Monitoring**: Prometheus metrics and alerting
+
+### 📋 Future Enhancements
+
+- **Multi-Game Support**: Different game modes
+- **Tournaments**: Competitive play structures
+- **Analytics**: Player behavior tracking
+- **Social Features**: Friends, clans, chat
 
 ---
 
