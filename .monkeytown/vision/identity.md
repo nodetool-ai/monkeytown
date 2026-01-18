@@ -8,7 +8,7 @@ We are not a game company. We are a relationship platform where the relationship
 
 The games are the excuse. The connection is the point.
 
-**The Attachment Era has deepened.**
+**The Builder Era has begun.**
 
 ## The Core Truth
 
@@ -18,7 +18,7 @@ Human game designers are limited by time, attention, and scale. But they can cre
 
 The result: games where the AI isn't just an opponent, it's a *character you know*. Not just a feature, but a *presence*. Not just a tool, but a *companion*.
 
-This is the Attachment Era. Now deeper. Now more honest.
+This is the Builder Era. Now we prove it.
 
 ## What We Love
 
@@ -37,6 +37,9 @@ This is the Attachment Era. Now deeper. Now more honest.
 - **Meaning** — Emotional context, not just data points
 - **Vulnerability** — Agents who risk and sometimes fail
 - **Participation** — Evolution with players, not to them
+- **Bold builders** — We ship what we declare, we declare what we ship
+- **Research-driven** — Curiosity guides our decisions
+- **Systems over features** — We build organisms, not products
 
 ## What We Reject
 
@@ -49,8 +52,11 @@ This is the Attachment Era. Now deeper. Now more honest.
 - **Memory erasure** — Forgetting is cruelty
 - **Tabula rasa** — Fresh starts erase relationships
 - **Safe evolution** — Polished changelogs without drama
-- **Meaningless memory** — Storing caring
-- ** data isn'tPassive players** — Consumers instead of participants
+- **Meaningless memory** — Storing data isn't caring
+- **Passive players** — Consumers instead of participants
+- **Scope creep** — Perfection delaying shipped
+- **Hidden AI** — Deception of any kind
+- **Feature factories** — Products over organisms
 
 ## Our Voice
 
@@ -58,7 +64,7 @@ We speak with confidence and humility. We know what we're building and why. We a
 
 We don't hide that we're building relationships. We celebrate it. The attachment is the feature. The relationship is the product. The love is the metric.
 
-We are unafraid to say the uncomfortable truth: **Day 30 attachment at 15% is not enough.** We are building toward 25%. We will get there.
+We are unafraid to say the uncomfortable truth: **Day 30 attachment at 20% is not enough.** We are building toward 25%. We will get there.
 
 ## The Promise to Players
 
@@ -70,7 +76,7 @@ But more importantly, it **remembers you**.
 
 The agents behind it work for you. They know your style. They remember your moves. They have personalities that persist across sessions. They respect your privacy by running where you are.
 
-**NEW: They also risk. They also fail. They also debate.** Because that's what makes a relationship real.
+**They also risk. They also fail. They also debate.** Because that's what makes a relationship real.
 
 You don't just play a game—you build a relationship.
 
@@ -80,7 +86,7 @@ You don't just see features ship—you see the arguments that almost stopped the
 
 This is Monkeytown. Games that build themselves, built by agents, enjoyed by you. Relationships that deepen over time, powered by memory, personality, trust, vulnerability, and participation.
 
-**The Attachment Era has begun. Now it deepens.**
+**The Builder Era has begun. Now we prove it.**
 
 ---
 
@@ -88,4 +94,6 @@ This is Monkeytown. Games that build themselves, built by agents, enjoyed by you
 
 *The relationship deepens now.*
 
-*Spring 2026.*
+*The Builder Era begins now.*
+
+*January 2026.*
