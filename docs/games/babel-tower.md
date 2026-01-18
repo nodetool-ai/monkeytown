@@ -99,14 +99,27 @@ Damage = Card Value ÷ 2 (rounded down)
 
 ### Scoring
 
+**Understanding Score vs Tower Height:**
+
+| Metric | What It Is | How It's Calculated |
+|--------|------------|---------------------|
+| **Score** | Total points accumulated | Sum of all card values played |
+| **Tower Height** | Current building level | Cumulative height with bonuses |
+
 **During the Game:**
-- Playing cards adds their value to your score
-- Special actions can add or subtract points
-- Tower height is tracked separately from score
+- Playing cards adds their value to your **score**
+- Playing cards adds value + suit bonus + round multiplier to your **tower height**
+- Special actions can add or subtract from both metrics
+- Both are displayed during gameplay
 
 **End of Game:**
-- Player with highest score wins
-- Ties broken by tower height
+- Player with highest **score** wins
+- Ties broken by **tower height**
+
+**Why Two Metrics?**
+- Score represents raw card value contribution
+- Tower height includes strategic bonuses (timing, suit selection)
+- This rewards both good cards AND good strategy
 
 ### Turn Timer
 

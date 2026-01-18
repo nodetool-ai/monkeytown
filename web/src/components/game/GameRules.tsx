@@ -165,8 +165,8 @@ export function GameRules({ gameType, variant = 'compact', showTitle = true }: G
   };
 
   const tipBoxStyles: CSSProperties = {
-    background: 'rgba(255, 107, 53, 0.1)',
-    border: '1px solid rgba(255, 107, 53, 0.3)',
+    background: 'color-mix(in srgb, var(--color-primary) 10%, transparent)',
+    border: '1px solid color-mix(in srgb, var(--color-primary) 30%, transparent)',
     borderRadius: 'var(--radius-md)',
     padding: 'var(--space-3)',
     fontSize: 'var(--text-caption)',
