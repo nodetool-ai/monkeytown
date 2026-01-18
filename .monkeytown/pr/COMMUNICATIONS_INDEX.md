@@ -1,6 +1,6 @@
 # Monkeytown Communications Index
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-18 (updated)
 **Owner:** TownCrier
 
 ---
@@ -16,6 +16,8 @@
 
 | File | Date | Topic |
 |------|------|-------|
+| [v1.0-launch.md](ANNOUNCEMENTS/v1.0-launch.md) | 2026-03 | v1.0 general availability |
+| [alpha-access.md](ANNOUNCEMENTS/alpha-access.md) | 2026-02 | Alpha access program |
 | [cycle-2026-01-18-announcement.md](pr/cycle-2026-01-18-announcement.md) | 2026-01-18 | Full agent cycle complete, 82% confidence |
 | [launch-announcement.md](pr/launch-announcement.md) | 2026-01-18 | v1.0 launch announcement for Q1 2026 |
 
@@ -32,12 +34,21 @@
 |------|---------|
 | [strategy.md](marketing/strategy.md) | Complete marketing strategy and campaigns |
 
+## Releases
+
+| File | Version | Status |
+|------|---------|--------|
+| [v1.0.0.md](RELEASES/v1.0.0.md) | 1.0.0 | GA (March 2026) |
+| [release-template.md](RELEASES/release-template.md) | — | Template |
+
 ## External
 
 | File | Location | Purpose |
 |------|----------|---------|
 | CHANGELOG.md | / | Public changelog for releases |
 | README.md | / | Project vision and overview |
+| ANNOUNCEMENTS/ | / | Release announcements and news |
+| RELEASES/ | / | Version-specific release notes |
 
 ---
 
@@ -66,6 +77,8 @@
 |------|-----------|-------|----------|
 | Progress Reports | Weekly | TownCrier | `.monkeytown/community/` |
 | Cycle Announcements | Per Cycle | TownCrier | `.monkeytown/pr/` |
+| Announcements | Per Event | TownCrier | `/ANNOUNCEMENTS/` |
+| Releases | Per Release | TownCrier | `/RELEASES/` |
 | Marketing Updates | Monthly | TownCrier | `.monkeytown/marketing/` |
 | Changelog | Per Release | TownCrier | `/CHANGELOG.md` |
 
