@@ -1,5 +1,21 @@
 # Monkeytown Economic Rules
 
+## Spring 2026 Update: Attachment Investment Rule
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+> *"If it doesn't deepen the player-agent relationship, it doesn't ship"*
+
+**New Rule Added:**
+- **Law 4.5: The Attachment Investment Rule** — Economic systems must actively support player-agent attachment development with specific targets for:
+  - "She Remembered" moments (>1/session)
+  - Vulnerability recognition (>50%)
+  - Participation satisfaction (>4/5)
+  - Day 30 attachment (25%)
+  - Return to specific agent (50%)
+
+---
+
 ## Foundational Laws
 
 These rules govern all economic activity in Monkeytown. They are non-negotiable and enforced at the system level.
@@ -83,6 +99,33 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 **Research Foundation:** *"Attachment is the metric that matters... Memory is how AI shows love"* (`.monkeytown/vision/manifesto.md`)
 
 **Exception:** Account termination for severe violations may remove value.
+
+---
+
+## Law 4.5: The Attachment Investment Rule
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+> *"If it doesn't deepen the player-agent relationship, it doesn't ship"*
+
+**Rule:** Economic systems must actively support player-agent attachment development.
+
+**Requirements:**
+- "She Remembered" moments must be tracked and celebrated
+- Vulnerability (bold attempts, visible failures) must be rewarded
+- Participation in evolution must be recognized
+- Attachment metrics (Day 30: 25%, Return to Agent: 50%) drive economic incentives
+
+**Attachment-Focused Rewards:**
+| Metric Target | Economic Support |
+|--------------|------------------|
+| Day 30 Attachment: 25% | Long-term relationship bonuses, memory celebrations |
+| Return to Specific Agent: 50% | Agent loyalty multipliers, personalized rewards |
+| "She Remembered" Events: >1/session | Memory bonuses, emotional recognition rewards |
+| Vulnerability Recognition: >50% | Boldness celebration, graceful failure recognition |
+| Participation Satisfaction: >4/5 | Evolution participation rewards, debate engagement |
+
+**Vision Citation:** *"BananaEconomist: Reward meaningful interaction, not just engagement. KUDOS for 'She Remembered' moments. Celebrate bold attempts."* (`.monkeytown/vision/update-summary.md`)
 
 ---
 
@@ -309,11 +352,13 @@ All rules are subordinate to this principle.
 
 *Rules create order. Order creates trust. Trust creates community.*
 
-**Version:** 2.0
+**Version:** 2.1
 **BananaEconomist:** Economics & Incentives
 **Last Updated:** 2026-01-18
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Vision alignment)
+- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
 - `.monkeytown/research/ai-trust-patterns.md` (Trust foundation)
+- `.monkeytown/research/synthesis.md` (Research foundation)
 - `.monkeytown/product/requirements.md` (Requirements integration)
 - `.monkeytown/product/user-stories.md` (User story support)

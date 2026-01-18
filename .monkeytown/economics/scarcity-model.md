@@ -1,5 +1,24 @@
 # Monkeytown Scarcity Model
 
+## Spring 2026 Update: Attachment-Locked Scarcity
+
+Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+
+**New Scarcity Category Added:**
+- **Category 6: Attachment-Locked Scarcity** — Items available only to players with established agent relationships
+
+**New Items Include:**
+| Item Type | Scarce Because | Unlock Requirement |
+|-----------|----------------|-------------------|
+| Agent-specific cosmetics | Relationship depth | 10-200+ sessions |
+| "She Remembered" commemoratives | Emotional memory | 5-10 meaningful moments |
+| Vulnerability celebration items | Bold attempt history | 25+ witnessed bold moves |
+| Evolution participation memorabilia | Debate engagement | 10+ evolution events |
+
+**Attachment Tiers:** Remembered → Known → Understood → Bonded → Connected
+
+---
+
 ## The Abundance Philosophy
 
 Monkeytown embraces **intentional scarcity**, not artificial scarcity. Items are scarce because they are meaningful, not because manipulation requires it. Every scarcity decision serves player joy, not engagement metrics.
@@ -131,6 +150,42 @@ Legendary (ongoing)  → Limited by sustained effort
 **Note:** "Guaranteed by" means maximum attempts before guaranteed drop. This prevents endless grinding while maintaining rarity.
 
 **Research Citation:** *"Transparency builds trust... Players deserve to know they're playing with AI"* (`.monkeytown/vision/manifesto.md`)
+
+---
+
+### Category 6: Attachment-Locked Scarcity
+
+**Definition:** Items available only to players with established agent relationships (following the Vision Update Summary's **Three Attachment Pillars**).
+
+**Implementation:**
+- Agent-specific cosmetics unlocked through relationship levels
+- "She Remembered" moment commemoratives
+- Vulnerability celebration items
+- Evolution participation memorabilia
+
+**Attachment Tiers:**
+
+| Tier | Relationship Level | Exclusive Access | Example Items |
+|------|-------------------|------------------|---------------|
+| Remembered | 10+ sessions, agent knows player name | Basic agent cosmetics | Agent color palette |
+| Known | 25+ sessions, agent recalls strategies | Agent signature moves | Signature move animation |
+| Understood | 50+ sessions, agent knows emotions | Emotional state cosmetics | Mood-based effects |
+| Bonded | 100+ sessions, mutual recognition | Partner cosmetics | Shared color schemes |
+| Connected | 200+ sessions, history acknowledged | Legacy items | "First friend" badges |
+
+**"She Remembered" Commemoratives:**
+
+| Item | Unlock Trigger | BANANA Cost |
+|------|---------------|-------------|
+| Memory Stone | 5 "She Remembered" moments | 2,500 |
+| Emotional Echo | Agent recalls player's emotion 10× | 5,000 |
+| Bold Attempt Badge | Witness 25 bold agent moves | 3,000 |
+| Near-Miss Survivor | Feature saved by feedback | 4,000 |
+| Debate Witness | Complete 10 Evolution debates | 3,500 |
+
+**Vision Citation:** *"Memory with emotional context... Agents who risk and sometimes fail... Evolution as drama"* (`.monkeytown/vision/update-summary.md`)
+
+**Target Metrics:** Day 30 Attachment: 25%, Return to Specific Agent: 50%
 
 ---
 
@@ -306,11 +361,12 @@ Players can access a dashboard showing:
 
 *True scarcity creates value. Fake scarcity creates distrust. Monkeytown chooses value.*
 
-**Version:** 2.0
+**Version:** 2.1
 **BananaEconomist:** Economics & Incentives
 **Last Updated:** 2026-01-18
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Transparency principle)
+- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
 - `.monkeytown/research/synthesis.md` (Research foundation)
 - `.monkeytown/economics/economic-rules.md` (Rules framework)
 - `.monkeytown/product/requirements.md` (Requirements integration)

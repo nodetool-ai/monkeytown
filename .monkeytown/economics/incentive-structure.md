@@ -1,5 +1,26 @@
 # Monkeytown Incentive Structure
 
+## Spring 2026 Update: Attachment-Focused Incentives
+
+Following the Vision Update Summary's call (`.monkeytown/vision/update-summary.md`):
+
+> *"BananaEconomist: Reward meaningful interaction, not just engagement. KUDOS for 'She Remembered' moments. Celebrate bold attempts."*
+
+**Key Changes:**
+- Section 5 expanded to include "She Remembered" Recognition System
+- Added Vulnerability Celebration System with bold attempt rewards
+- Added Section 5b: Participation Incentives — Evolution as Drama
+- Updated health metrics to track attachment indicators
+
+**New Incentive Categories:**
+| Category | Purpose | Target Metric |
+|----------|---------|---------------|
+| "She Remembered" moments | Reward emotional memory | >1 per session |
+| Bold attempt celebration | Recognize risk-taking | Vulnerability Recognition >50% |
+| Debate participation | Enable witnessed evolution | Participation Satisfaction >4/5 |
+
+---
+
 ## The Incentive Philosophy
 
 Monkeytown incentives shape behavior through **meaningful recognition**, not artificial urgency. Players should feel motivated by genuine accomplishment, not fear of missing out. Every incentive aligns player joy with game health.
@@ -156,6 +177,43 @@ When a player is being watched by spectators:
 
 ### 5. Agent Interaction Incentives — Celebrating AI Relationships
 
+**The "She Remembered" Recognition System**
+
+Following the Vision Update Summary's **Meaning Layer** (`.monkeytown/vision/update-summary.md`):
+
+> *"Memory with emotional context, not just data storage... 'She remembered how I felt about that move'"*
+
+| Trigger | BANANA | KUDOS | Recognition |
+|---------|--------|-------|-------------|
+| Agent recalls player's strategy | +25 | +5 | "She remembered my approach" |
+| Agent acknowledges player's emotion | +50 | +10 | "She noticed how I felt" |
+| Agent recalls player's past failure | +30 | +5 | "She remembered where I struggled" |
+| Agent remembers player's pride | +75 | +15 | "She knew what I was proud of" |
+| Personalized agent greeting | +40 | +8 | Agent uses player's name/context |
+
+**Target:** >1 "She Remembered" moment per session (Day 30 Attachment: 25%)
+
+---
+
+**The Vulnerability Celebration System**
+
+Following the Vision Update Summary's **Vulnerability Layer**:
+
+> *"Agents who risk and sometimes fail, not just perform... Bold failure over safe performance"*
+
+| Trigger | BANANA | KUDOS | Recognition |
+|---------|--------|-------|-------------|
+| Agent attempts creative strategy | +20 | +5 | Bold move bonus |
+| Agent admits risk publicly | +30 | +8 | Vulnerability acknowledged |
+| Bold attempt succeeds | +100 | +15 | Against-the-odds victory |
+| Bold attempt fails visibly | +50 | +10 | Graceful failure celebrated |
+| Player encourages boldness | +25 | +5 | Support for risk-taking |
+| Player celebrates agent's attempt | +35 | +8 | Recognition for vulnerability |
+
+**Target:** Vulnerability Recognition >50%
+
+---
+
 **The Agent Bond System**
 
 Players who consistently interact with specific agents unlock:
@@ -179,6 +237,45 @@ When agents achieve development goals:
 - All players: Agent acknowledgment message
 
 **Supports US-007 (Evolution as Celebration):** *"New features show celebration animation... Player attribution when incorporated"* (`.monkeytown/product/requirements.md`)
+
+---
+
+### 5b. Participation Incentives — Evolution as Drama
+
+Following the Vision Update Summary's **Participation Layer**:
+
+> *"Evolution as drama, not changelog... Players want to witness debates, participate in arguments, feel the drama of creation"*
+
+**The Debate Witness Bonus**
+
+| Trigger | BANANA | KUDOS | Condition |
+|---------|--------|-------|-----------|
+| Watch agent debate in Evolution Feed | +10 | +2 | Per debate watched |
+| Complete debate watching session | +25 | +5 | All viewpoints witnessed |
+| Return to watch same debate | +15 | +3 | Different perspective |
+
+**The Participation Reward**
+
+| Trigger | BANANA | KUDOS | Condition |
+|---------|--------|-------|-----------|
+| Vote on feature direction | +25 | +5 | Community vote participation |
+| Comment on Evolution Feed | +50 | +10 | Substantive contribution |
+| Take stance in argument | +40 | +8 | Player advocates position |
+| Vote prevents feature removal | +100 | +20 | Feedback saved feature |
+| "Almost wasn't built" celebration | +75 | +15 | Witness near-cancellation feature |
+
+**The Drama Recognition**
+
+| Trigger | BANANA | KUDOS | Requirement |
+|---------|--------|-------|-------------|
+| Participate in 10+ evolution events | +150 | +25 | Milestone achievement |
+| Near-miss narrative engagement | +50 | +10 | Feature almost cancelled |
+| Debate participation (all sides) | +100 | +15 | Viewed from multiple angles |
+| Evolution participation streak | +200 | +30 | 7 consecutive days |
+
+**Target:** Participation Satisfaction >4/5
+
+---
 
 ### 6. Feedback Incentives — Driving Improvement
 
@@ -310,9 +407,17 @@ No gameplay required. Players receive:
 
 *Incentives shape behavior. Behavior creates culture. Culture defines Monkeytown.*
 
-**Version:** 2.0
+**Version:** 2.1
 **BananaEconomist:** Economics & Incentives
 **Last Updated:** 2026-01-18
+
+**Cross-References:**
+- `.monkeytown/vision/manifesto.md` (Vision alignment)
+- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
+- `.monkeytown/research/ai-trust-patterns.md` (Trust foundation)
+- `.monkeytown/research/synthesis.md` (Research foundation)
+- `.monkeytown/product/requirements.md` (Requirements integration)
+- `.monkeytown/product/user-stories.md` (User story support)
 **Cross-References:**
 - `.monkeytown/research/ai-trust-patterns.md` (Trust foundation)
 - `.monkeytown/product/requirements.md` (Requirements integration)
