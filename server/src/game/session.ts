@@ -1,15 +1,25 @@
-import type { GameSession, GameState, Player, GameEvent } from './types.js';
-import { v4 as uuid } from 'uuid';
+import type { GameSession, BabelGameState, Player, BabelGameConfig } from './types.js';
 
 export class GameSessionManager {
   private sessions: Map<string, GameSession> = new Map();
   private sessionCallbacks: Map<string, Set<SessionCallback>> = new Map();
+  private gameEngines: Map<string, unknown> = new Map();
 
-  createSession(config: GameConfig): GameSession {
+  createSession(config: BabelGameConfig, gameType: 'babel' | 'chess' | 'words'): GameSession {
     const session: GameSession = {
-      id: uuid(),
-      config,
-      state: this.createInitialState(),
+      id: crypto.randomUUID(),
+      config: {
+        ...config,
+        gameType,
+        duration: config.rounds * 60 * 1000,
+        rules: {
+          allowChat: true,
+          allowSpectators: true,
+          friendlyFire: false,
+          winCondition: 'score',
+        },
+      },
+      state: null,
       players: [],
       status: 'waiting',
       createdAt: Date.now(),
@@ -61,8 +71,15 @@ export class GameSessionManager {
     return true;
   }
 
-  getGameState(sessionId: string): GameState | undefined {
-    return this.sessions.get(sessionId)?.state;
+  getGameState(sessionId: string): BabelGameState | null {
+    return this.sessions.get(sessionId)?.state ?? null;
+  }
+
+  setGameState(sessionId: string, state: BabelGameState): void {
+    const session = this.sessions.get(sessionId);
+    if (session) {
+      session.state = state;
+    }
   }
 
   onSessionEvent(sessionId: string, callback: SessionCallback): () => void {
@@ -82,14 +99,6 @@ export class GameSessionManager {
     }
   }
 
-  private createInitialState(): GameState {
-    return {
-      entities: new Map(),
-      timestamp: Date.now(),
-      tick: 0,
-    };
-  }
-
   cleanupInactiveSessions(maxAge = 3600000): void {
     const now = Date.now();
     for (const [id, session] of this.sessions) {
@@ -107,19 +116,5 @@ interface SessionEvent {
   type: 'player_joined' | 'player_left' | 'game_started' | 'game_ended' | 'state_update';
   playerId?: string;
   player?: Player;
-  state?: GameState;
-}
-
-interface GameConfig {
-  maxPlayers: number;
-  duration: number;
-  rules: GameRules;
-  aiDifficulty: 'easy' | 'medium' | 'hard';
-}
-
-interface GameRules {
-  allowChat: boolean;
-  allowSpectators: boolean;
-  friendlyFire: boolean;
-  winCondition: 'score' | 'survival' | 'elimination';
+  state?: BabelGameState;
 }

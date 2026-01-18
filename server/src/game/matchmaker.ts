@@ -1,5 +1,4 @@
-import { v4 as uuid } from 'uuid';
-import type { GameConfig, GameSession } from './types.js';
+import type { BabelGameConfig, GameSession } from './types.js';
 import { GameServer } from './server.js';
 
 export class Matchmaker {
@@ -29,21 +28,18 @@ export class Matchmaker {
   }
 
   private async createNewGame(playerId: string, preferences: PlayerPreferences): Promise<GameSession> {
-    const config: GameConfig = {
+    const gameType = (preferences.gameType as 'babel' | 'chess' | 'words') || 'babel';
+
+    const config: BabelGameConfig = {
       maxPlayers: 4,
-      duration: preferences.duration || 300,
-      rules: {
-        allowChat: true,
-        allowSpectators: true,
-        friendlyFire: false,
-        winCondition: 'score',
-      },
+      rounds: gameType === 'babel' ? 12 : gameType === 'chess' ? 1 : 6,
+      turnDurationSeconds: gameType === 'babel' ? 60 : gameType === 'chess' ? 120 : 90,
       aiDifficulty: preferences.aiDifficulty || 'medium',
     };
 
-    const session = await this.gameServer.createSession(config);
-    
-    this.pendingPlayers.set(uuid(), {
+    const session = await this.gameServer.createSession(config, gameType);
+
+    this.pendingPlayers.set(crypto.randomUUID(), {
       playerId,
       session,
       preferences,

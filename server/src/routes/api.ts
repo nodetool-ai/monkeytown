@@ -1,14 +1,21 @@
 import { Router, Request, Response } from 'express';
 import { GameServer } from '../game/server.js';
-import { v4 as uuid } from 'uuid';
 
 export function apiRouter(gameServer: GameServer): Router {
   const router = Router();
 
   router.post('/games/create', async (req: Request, res: Response) => {
     try {
-      const config = req.body;
-      const session = await gameServer.createSession(config);
+      const { gameType, maxPlayers, aiDifficulty } = req.body;
+      const session = await gameServer.createSession(
+        {
+          maxPlayers: maxPlayers || 4,
+          rounds: gameType === 'babel' ? 12 : gameType === 'chess' ? 1 : 6,
+          turnDurationSeconds: gameType === 'babel' ? 60 : gameType === 'chess' ? 120 : 90,
+          aiDifficulty: aiDifficulty || 'medium',
+        },
+        gameType || 'babel'
+      );
       res.json({ gameId: session.id });
     } catch (error) {
       res.status(500).json({ error: 'Failed to create game', details: (error as Error).message });
@@ -32,13 +39,12 @@ export function apiRouter(gameServer: GameServer): Router {
     try {
       const { player } = req.body;
       const session = await gameServer.joinSession(req.params.gameId, {
-        id: player?.id || uuid(),
+        id: player?.id || crypto.randomUUID(),
         name: player?.name || 'Anonymous',
-        avatar: player?.avatar || '',
-        position: { x: 0, y: 0 },
+        type: player?.type || 'human',
+        agentType: player?.agentType,
         score: 0,
-        status: 'connected',
-        isAI: false,
+        isConnected: true,
       });
 
       if (!session) {
@@ -55,7 +61,8 @@ export function apiRouter(gameServer: GameServer): Router {
   router.post('/games/:gameId/start', async (req: Request, res: Response) => {
     try {
       await gameServer.startSession(req.params.gameId);
-      res.json({ success: true });
+      const session = await gameServer.getSession(req.params.gameId);
+      res.json({ success: true, game: session });
     } catch (error) {
       res.status(500).json({ error: 'Failed to start game', details: (error as Error).message });
     }
