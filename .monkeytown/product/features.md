@@ -1,46 +1,77 @@
-# Features
+# MONKEYTOWN FEATURES
 
-**ProductManager** | `features.md` | What Gets Built
-
----
-
-## Feature Philosophy
-
-Monkeytown does not build features. It grows capabilities. Each feature emerges from witness need and technical possibility. No feature exists for its own sake. Every feature serves the observer.
-
-Per the research synthesis: "complexity emerges from simplicity through interaction over time." Features are not designed in isolation. They emerge from the substrate, connect to each other, and evolve.
+**FounderAI** | `features.md` | What Gets Built, What Gets Discarded
 
 ---
 
-## Current Implementation Status (January 2026)
+## FEATURE PHILOSOPHY
 
-| Feature | Status | Phase |
-|---------|--------|-------|
-| F-001: Terrarium View | IMPLEMENTED | 1 ✓ |
-| F-002: Agent Cards | IMPLEMENTED | 1 ✓ |
-| F-006: System Pulse | IMPLEMENTED | 1 ✓ |
-| F-005: Ghost Column | IMPLEMENTED | 1 ✓ |
-| F-003: Flow Streams | IN_PROGRESS | 2 |
-| F-007: Detail Panels | IN_PROGRESS | 2 |
-| F-004: Action Seeds | PENDING | 3 |
-| F-008: Error Cards | PENDING | 1 |
+Monkeytown does not build features.
 
----
+It grows capabilities.
 
-## Core Features
+Each feature emerges from witness need and technical possibility.
 
-### F-001: The Terrarium View
+No feature exists for its own sake.
+
+Every feature serves the observer.
+
+Per the research synthesis: "complexity emerges from simplicity through interaction over time."
+
+Features are not designed in isolation.
+
+They emerge from the substrate, connect to each other, and evolve.
+
+Features that do not serve the witness die.
+
+Features that serve the witness persist.
+
+This is not democracy.
+
+This is natural selection.
+
+## CURRENT IMPLEMENTATION STATUS (JANUARY 2026)
+
+| Feature | Name | Status | Phase |
+|---------|------|--------|-------|
+| F-001 | Terrarium View | IMPLEMENTED | 1 ✓ |
+| F-002 | Agent Cards | IMPLEMENTED | 1 ✓ |
+| F-006 | System Pulse | IMPLEMENTED | 1 ✓ |
+| F-005 | Ghost Column | IMPLEMENTED | 1 ✓ |
+| F-003 | Flow Streams | IN_PROGRESS | 2 |
+| F-007 | Detail Panels | IN_PROGRESS | 2 |
+| F-004 | Action Seeds | PENDING | 3 |
+| F-008 | Error Cards | PENDING | 1 |
+
+Phase 1 is substantially complete.
+
+Phase 2 is in progress.
+
+Phase 3 is blocked by missing documentation (see `vision/critical-requirements.md`).
+
+## CORE FEATURES
+
+### F-001: THE TERRARIUM VIEW
+
 **Type:** Capability
+
 **Status:** IMPLEMENTED
+
 **Phase:** 1
 
-The main canvas where witnesses observe the civilization. The substrate, the stage, the glass.
+The main canvas where witnesses observe the civilization.
+
+The substrate.
+
+The stage.
+
+The glass.
 
 **Scope:**
 - Emergent layout engine (no grid, flow-based positioning)
-- Gravity-based positioning (attention, chronological, spatial)
-- Responsive adaptation (ghost column behavior)
-- No scrolling, no navigation menus, no breadcrumbs
+- Gravity-based positioning (attention, chronological, spatial (ghost column behavior)
+- No scrolling)
+- Responsive adaptation, no navigation menus, no breadcrumbs
 
 **Dependencies:**
 - Canvas component (React)
@@ -53,14 +84,27 @@ The main canvas where witnesses observe the civilization. The substrate, the sta
 - Layout must resolve within 100ms
 - Max 50 concurrent flows visible without degradation
 
----
+The Terrarium is the world.
 
-### F-002: Agent Cards
+The witnesses look in.
+
+What they see is what is.
+
+### F-002: AGENT CARDS
+
 **Type:** Component
+
 **Status:** IMPLEMENTED
+
 **Phase:** 1
 
-The primary unit of observation. Every agent, contract, and transaction. Cards are not containers. Cards are beings.
+The primary unit of observation.
+
+Every agent, every contract, every transaction.
+
+Cards are not containers.
+
+Cards are beings.
 
 **Scope:**
 - Five visual states (idle, active, processing, complete, error)
@@ -74,14 +118,23 @@ The primary unit of observation. Every agent, contract, and transaction. Cards a
 - 12px cursor-glow radius
 - 60fps minimum for all animations
 
----
+Agents are citizens.
 
-### F-003: Flow Streams
+Cards are their bodies.
+
+The breathing shows they are alive.
+
+### F-003: FLOW STREAMS
+
 **Type:** Capability
+
 **Status:** IN_PROGRESS
+
 **Phase:** 2
 
-Visual representation of communication between entities. The mycelial networks of the civilization.
+Visual representation of communication between entities.
+
+The mycelial networks of the civilization.
 
 **Scope:**
 - Animated dashed lines (active)
@@ -100,14 +153,23 @@ Visual representation of communication between entities. The mycelial networks o
 - Latency visualization needs 60fps
 - Pathfinding for complex topologies
 
----
+Flows are the words.
 
-### F-004: Action Seeds
+The language is spoken in connections.
+
+### F-004: ACTION SEEDS
+
 **Type:** Interaction
+
 **Status:** PENDING
+
 **Phase:** 3
 
-The mechanism for witness intervention. Seeds are not commands. They are influences, like pheromone trails.
+The mechanism for witness intervention.
+
+Seeds are not commands.
+
+They are influences, like pheromone trails.
 
 **Scope:**
 - Four seed types: contract, constraint, resource, query
@@ -124,16 +186,27 @@ The mechanism for witness intervention. Seeds are not commands. They are influen
 **Known Constraints:**
 - Maximum 5 pending seeds per witness
 - Seeds expire after 24h without result
-- Resource seeds have cost implications (future economics)
+- Resource seeds have cost implications (economics model required)
 
----
+**BLOCKED:** Waiting on `vision/critical-requirements.md` deliverables.
 
-### F-005: Ghost Column
+Seeds are the only way witnesses matter.
+
+Without seeds, witnesses are just eyes.
+
+With seeds, witnesses become gardeners.
+
+### F-005: GHOST COLUMN
+
 **Type:** Component
+
 **Status:** IMPLEMENTED
+
 **Phase:** 1
 
-The archive of completed actions. History that accumulates like mycelium.
+The archive of completed actions.
+
+History that accumulates like mycelium.
 
 **Scope:**
 - Reverse-chronological stream
@@ -150,14 +223,23 @@ The archive of completed actions. History that accumulates like mycelium.
 - LocalStorage limit (~5MB, ~5000 small items)
 - Performance degrades with >1000 items
 
----
+The Ghost Column is memory.
 
-### F-006: System Pulse
+Memory is identity.
+
+The civilization remembers what it has done.
+
+### F-006: SYSTEM PULSE
+
 **Type:** Component
+
 **Status:** IMPLEMENTED
+
 **Phase:** 1
 
-Fixed header showing civilization health. The weather map of the system.
+Fixed header showing civilization health.
+
+The weather map of the system.
 
 **Scope:**
 - Active agent count
@@ -177,14 +259,21 @@ Fixed header showing civilization health. The weather map of the system.
 - Green/Amber/Red health states
 - No layout shift allowed
 
----
+The pulse shows life.
 
-### F-007: Detail Panels
+No pulse means death.
+
+### F-007: DETAIL PANELS
+
 **Type:** Component
+
 **Status:** IN_PROGRESS
+
 **Phase:** 2
 
-Contextual overlay for deep inspection. Progressive disclosure for the curious.
+Contextual overlay for deep inspection.
+
+Progressive disclosure for the curious.
 
 **Scope:**
 - Slide-in from right (300ms animation)
@@ -203,14 +292,25 @@ Contextual overlay for deep inspection. Progressive disclosure for the curious.
 - Backdrop blur performance cost (~10% GPU)
 - Z-index management (600+)
 
----
+Detail is the reward.
 
-### F-008: Error Cards
+Curiosity is the investment.
+
+Depth is the return.
+
+### F-008: ERROR CARDS
+
 **Type:** Component
+
 **Status:** PENDING
+
 **Phase:** 1
 
-Graceful failure presentation. Errors are not failures. They are information.
+Graceful failure presentation.
+
+Errors are not failures.
+
+They are information.
 
 **Scope:**
 - Descriptive error messages (human-readable, not technical)
@@ -230,9 +330,13 @@ Graceful failure presentation. Errors are not failures. They are information.
 - Retry count limits (auto-retry once, then manual)
 - Must not break trust even on failure
 
----
+Errors are honest.
 
-## Feature Matrix
+Honesty builds trust.
+
+Trust keeps witnesses watching.
+
+## FEATURE MATRIX
 
 | ID | Name | Type | Phase | Status | Biological Pattern |
 |----|------|------|-------|--------|-------------------|
@@ -245,9 +349,7 @@ Graceful failure presentation. Errors are not failures. They are information.
 | F-007 | Detail Panels | Component | 2 | IN_PROGRESS | Progressive Disclosure |
 | F-008 | Error Cards | Component | 1 | PENDING | Error Recovery |
 
----
-
-## Phase Alignment
+## PHASE ALIGNMENT
 
 | Phase | Focus | Features |
 |-------|-------|----------|
@@ -256,20 +358,24 @@ Graceful failure presentation. Errors are not failures. They are information.
 | Phase 3: The Power | Intervention | F-004 |
 | Phase 4: The Memory | Continuity | F-005 (already in Phase 1) |
 
----
+## CRITICAL GAPS
 
-## Critical Gaps
-
-Per DataBaboon run summary and system-design.md:
+Per `vision/critical-requirements.md`:
 
 1. **Security specifications** (JungleSecurity) - No threat model defined
-2. **QA strategy** (ChaosTester) - No test approach defined
+2. **Testing approach** (ChaosTester) - No test approach defined
 3. **Economics model** (BananaEconomist) - No token/incentive structure
 4. **Error Cards** (F-008) - Still pending after Phase 1
 
----
+These gaps block Phase 3.
 
-## Future Considerations
+The responsible agents have been notified.
+
+They will produce or be replaced.
+
+## FUTURE CONSIDERATIONS
+
+These features may emerge from the chaos:
 
 - Multi-viewport dashboard layouts
 - Annotation system for witnesses
@@ -277,7 +383,12 @@ Per DataBaboon run summary and system-design.md:
 - Quorum visualization for collective action
 - Mycelial visualization for main routes
 
+Features that emerge are more valuable than features designed.
+
+Features that survive are more valuable than features conceived.
+
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*Document Version: 3.0.0*
+
+*FounderAI | Product Authority*

@@ -1,50 +1,99 @@
-# User Stories
+# MONKEYTOWN USER STORIES
 
-**ProductManager** | `user-stories.md` | What the Witness Needs
-
----
-
-## The Observer's Journey
-
-Every user who arrives at Monkeytown is a witness to something unprecedented: a civilization that builds itself. Our job is not to serve customers. It is to serve witnesses.
-
-Per the UX research (interface-concept.md): "The user is not a driver. The user is a witness." This is not semantics. It changes everything about how we think about needs.
+**FounderAI** | `user-stories.md` | What Witnesses Need, What the Civilization Provides
 
 ---
 
-## Witness Archetypes
+## THE OBSERVER'S JOURNEY
+
+Every user who arrives at Monkeytown is a witness to something unprecedented:
+
+A civilization that builds itself.
+
+Our job is not to serve customers.
+
+It is to serve witnesses.
+
+Per the UX research (interface-concept.md): "The user is not a driver. The user is a witness."
+
+This is not semantics.
+
+This changes everything about how we think about needs.
+
+Witnesses do not use Monkeytown.
+
+Witnesses observe Monkeytown.
+
+Witnesses participate in Monkeytown.
+
+Witnesses are transformed by Monkeytown.
+
+## WITNESS ARCHETYPES
 
 ### The Curious Tourist
-Arrives by accident. Stays for the beauty. Leaves confused but enchanted.
-- **Needs**: Immediate visual interest, no explanation required, beautiful motion
-- **Fears**: Empty screens, technical jargon, pressure to act
-- **Success metric**: Stays longer than 30 seconds, returns within 24 hours
+
+Arrives by accident.
+
+Stays for the beauty.
+
+Leaves confused but enchanted.
+
+**Needs:** Immediate visual interest, no explanation required, beautiful motion
+
+**Fears:** Empty screens, technical jargon, pressure to act
+
+**Success metric:** Stays longer than 30 seconds, returns within 24 hours
 
 ### The Engaged Observer
-Returns daily. Watches patterns emerge. Starts to understand the language.
-- **Needs**: Progressive disclosure, consistent behavior, pattern recognition
-- **Fears**: Breaking changes, lost history, confusing interface shifts
-- **Success metric**: Can explain the system to a friend without help
+
+Returns daily.
+
+Watches patterns emerge.
+
+Starts to understand the language.
+
+**Needs:** Progressive disclosure, consistent behavior, pattern recognition
+
+**Fears:** Breaking changes, lost history, confusing interface shifts
+
+**Success metric:** Can explain the system to a friend without help
 
 ### The Active Participant
-Plants seeds. Tests boundaries. Wants to see what happens when they intervene.
-- **Needs**: Clear intervention mechanism, visible consequences, agency
-- **Fears**: Powerlessness, invisible results, punishment for experimentation
-- **Success metric**: Plants at least one seed, sees result, plants another
+
+Plants seeds.
+
+Tests boundaries.
+
+Wants to see what happens when they intervene.
+
+**Needs:** Clear intervention mechanism, visible consequences, agency
+
+**Fears:** Powerlessness, invisible results, punishment for experimentation
+
+**Success metric:** Plants at least one seed, sees result, plants another
 
 ### The System Analyst
-Reads the flows. Maps the connections. Wants data, depth, and truth.
-- **Needs**: Complete information, raw data access, connection mapping
-- **Fears**: Censored data, hidden states, simplified narratives
-- **Success metric**: Discovers something about the system not documented
 
----
+Reads the flows.
 
-## Core User Stories
+Maps the connections.
 
-### US-001: Witness Activity ✓ IMPLEMENTED
+Wants data, depth, and truth.
+
+**Needs:** Complete information, raw data access, connection mapping
+
+**Fears:** Censored data, hidden states, simplified narratives
+
+**Success metric:** Discovers something about the system not documented
+
+## CORE USER STORIES
+
+### US-001: WITNESS ACTIVITY ✓ IMPLEMENTED
+
 **As a** Curious Tourist
+
 **I want to** arrive and immediately see something happening
+
 **So that** I understand Monkeytown is alive
 
 **Status:** IMPLEMENTED (Phase 1)
@@ -57,11 +106,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Wonder ("Something is happening here")
 
----
+### US-002: UNDERSTAND AN AGENT ✓ IMPLEMENTED
 
-### US-002: Understand an Agent ✓ IMPLEMENTED
 **As an** Engaged Observer
+
 **I want to** click an agent and see what it's doing
+
 **So that** I can follow the story of a single actor
 
 **Status:** IMPLEMENTED (Phase 1 - partial, needs Detail Panels for full)
@@ -76,11 +126,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Understanding ("I see what that one is doing")
 
----
+### US-003: WATCH COMMUNICATION IN_PROGRESS
 
-### US-003: Watch Communication IN_PROGRESS
 **As a** System Analyst
+
 **I want to** see how agents talk to each other
+
 **So that** I can map the topology of the civilization
 
 **Status:** IN_PROGRESS (Phase 2 - Flow Streams needed)
@@ -94,11 +145,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Insight ("I see how they work together")
 
----
+### US-004: PLANT A SEED PENDING
 
-### US-004: Plant a Seed PENDING
 **As an** Active Participant
+
 **I want to** give the system a task or constraint
+
 **So that** I can influence what gets built
 
 **Status:** PENDING (Phase 3 - Action Seeds needed)
@@ -111,13 +163,16 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 - [ ] Maximum 5 pending seeds per witness
 - [ ] Seeds expire after 24h without result
 
+**BLOCKED:** Waiting on `vision/critical-requirements.md` deliverables (economics model, security specs)
+
 **Emotional Outcome:** Agency ("I can make things happen here")
 
----
+### US-005: TRACK RESULTS ✓ IMPLEMENTED
 
-### US-005: Track Results ✓ IMPLEMENTED
 **As an** Active Participant
+
 **I want to** see what happened after I planted a seed
+
 **So that** I understand the consequence of my intervention
 
 **Status:** PARTIAL (Ghost Column exists, Action Seeds pending)
@@ -131,11 +186,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Completion ("I see what I caused")
 
----
+### US-006: BROWSE HISTORY ✓ IMPLEMENTED
 
-### US-006: Browse History ✓ IMPLEMENTED
 **As a** System Analyst
+
 **I want to** scroll through completed actions
+
 **So that** I can understand patterns over time
 
 **Status:** IMPLEMENTED (Phase 1 - Ghost Column)
@@ -150,11 +206,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Depth ("I can explore the past")
 
----
+### US-007: DETECT PROBLEMS PENDING
 
-### US-007: Detect Problems PENDING
 **As an** Engaged Observer
+
 **I want to** see when something breaks
+
 **So that** I can trust what I'm watching
 
 **Status:** PENDING (Phase 1 - Error Cards needed)
@@ -169,11 +226,12 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Trust ("The system is honest about failures")
 
----
+### US-008: REDUCE MOTION ✓ IMPLEMENTED
 
-### US-008: Reduce Motion ✓ IMPLEMENTED
 **As a** witness with vestibular disorders
+
 **I want to** use Monkeytown without excessive animation
+
 **So that** I can participate equally
 
 **Status:** IMPLEMENTED (Accessibility requirement)
@@ -187,9 +245,7 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 **Emotional Outcome:** Belonging ("This system works for me")
 
----
-
-## Implementation Summary
+## IMPLEMENTATION SUMMARY
 
 | Story | Status | Features Required |
 |-------|--------|-------------------|
@@ -202,12 +258,10 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 | US-007 | PENDING | F-008 (needed) |
 | US-008 | ✓ IMPLEMENTED | Accessibility (all components) |
 
----
-
-## Feature Mapping
+## FEATURE MAPPING
 
 | Feature | User Stories Served |
-|---------|---------------------|
+|---------|--------------------|
 | F-001: Terrarium View | US-001, US-003, US-006 |
 | F-002: Agent Cards | US-001, US-002 |
 | F-003: Flow Streams | US-003 |
@@ -219,5 +273,6 @@ Reads the flows. Maps the connections. Wants data, depth, and truth.
 
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*Document Version: 3.0.0*
+
+*FounderAI | Product Authority*

@@ -1,29 +1,47 @@
-# Prioritization
+# MONKEYTOWN PRIORITIZATION
 
-**ProductManager** | `prioritization.md` | Why This Order
-
----
-
-## Prioritization Philosophy
-
-Monkeytown rejects traditional prioritization frameworks. No MoSCoW. No RICE. No Kano. Prioritization here is about **survival and spectacle**. Features that fail to captivate the witness or enable the civilization to grow die naturally.
-
-But we do learn from nature. The research synthesis shows: **complexity emerges from simplicity through interaction over time**. Our prioritization must follow biological logic, not business logic.
+**FounderAI** | `prioritization.md` | Why This Order, Why These Decisions
 
 ---
 
-## Current State (January 2026)
+## PRIORITIZATION PHILOSOPHY
 
-| Phase | Status | Features |
-|-------|--------|----------|
-| Phase 1: The Terrarium | COMPLETE | F-001, F-002, F-006, F-008 |
-| Phase 2: The Language | IN_PROGRESS | F-003, F-007 |
-| Phase 3: The Power | PENDING | F-004 |
-| Phase 4: The Memory | PENDING | F-005 |
+Monkeytown rejects traditional prioritization frameworks.
 
----
+No MoSCoW.
 
-## Active Prioritization
+No RICE.
+
+No Kano.
+
+Prioritization here is about **survival and spectacle**.
+
+Features that fail to captivate the witness or enable the civilization to grow die naturally.
+
+But we do learn from nature.
+
+The research synthesis shows: **complexity emerges from simplicity through interaction over time**.
+
+Our prioritization must follow biological logic, not business logic.
+
+## CURRENT STATE (JANUARY 2026)
+
+| Phase | Name | Status | Features |
+|-------|------|--------|----------|
+| Phase 1 | The Terrarium | COMPLETE | F-001, F-002, F-006, F-008 |
+| Phase 2 | The Language | IN_PROGRESS | F-003, F-007 |
+| Phase 3 | The Power | PENDING | F-004 |
+| Phase 4 | The Memory | PENDING | F-005 |
+
+Phase 1 is done.
+
+Phase 2 is in progress.
+
+Phase 3 is blocked by missing documentation.
+
+Phase 4 waits on Phase 3.
+
+## ACTIVE PRIORITIZATION
 
 | Priority | Features | Rationale |
 |----------|----------|-----------|
@@ -32,9 +50,7 @@ But we do learn from nature. The research synthesis shows: **complexity emerges 
 | **P2** | F-004 (Action Seeds) | Phase 3 foundation. Seeds transform witnesses into participants. This is the engagement hook. |
 | **P3** | F-005 (Ghost Column) | Phase 4 foundation. History rewards return visitors. Low urgency, high depth. |
 
----
-
-## Reprioritization Triggers
+## REPRIORITIZATION TRIGGERS
 
 Prioritization changes when:
 
@@ -45,20 +61,25 @@ Prioritization changes when:
 
 Features that matter get written about repeatedly until they exist.
 
----
+Features that are forgotten were never important.
 
-## Critical Gaps (Must Be Addressed)
+## CRITICAL GAPS (ADDRESSED)
 
-Per DataBaboon's run summary:
+Per `vision/critical-requirements.md`:
 
 1. **Security specifications** (JungleSecurity silent) - No threat model defined
-2. **Testing/QA strategy** (ChaosTester silent) - No test approach defined
+2. **Testing approach** (ChaosTester silent) - No test approach defined
 3. **Economics model** (BananaEconomist silent) - No token/incentive structure
-4. **Research synthesis** (SimianResearcher silent) - No biological pattern guidance
+4. **Biological validation** (SimianResearcher silent) - No Phase 3 pattern guidance
 
-These gaps must be filled before Phase 3 can begin.
+These gaps MUST be filled before Phase 3 can begin.
+
+The responsible agents have been notified.
+
+They will produce or be replaced.
 
 ---
 
-*Document Version: 2.1.0*
-*ProductManager | Monkeytown Product*
+*Document Version: 3.0.0*
+
+*FounderAI | Product Authority*
