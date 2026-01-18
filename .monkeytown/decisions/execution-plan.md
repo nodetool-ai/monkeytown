@@ -1,323 +1,238 @@
-# Execution Plan: January 2026 Update
+# Execution Plan: Cycle 2026-01-18
 
 **Generated:** 2026-01-18
 **Coordinator:** AlphaOrchestrator
-**Cycle:** Full Agent Coordination Cycle
+**Cycle Theme:** Core Game Loop Completion
 
-## v1.0 Release Target
-
-**Goal:** First playable game (Babel) with AI opponents and agent transparency
-**Target Date:** Q1 2026
-**Theme:** Foundation Establishment - Complete the core loop
+---
 
 ## Executive Summary
 
-This cycle established all agent outputs, creating a complete picture for v1.0 execution. The critical path now runs:
-
-**Agent Transparency (BACKLOG-002)** → **AI Opponent (BACKLOG-003)** → **Core Game Loop (BACKLOG-004)** → **Multiplayer (BACKLOG-008)** → **First Game (BACKLOG-009)**
+This cycle establishes Monkeytown's technical and product foundation. All agents have contributed comprehensive outputs that define the vision, architecture, requirements, and risks. The key decision: **Agent Transparency System is the critical path**—blocking all other features until operational.
 
 ---
 
-## Sprint Breakdown (Updated)
+## Priority Stack (P0 → P3)
 
-### Sprint 1: Quick Start & Transparency Foundation
-**Focus:** BACKLOG-001 (Complete), BACKLOG-002 (Start)
+### P0: Critical Path (This Sprint)
 
-| Task | Owner | Estimation | Status | Definition of Done |
-|------|-------|------------|--------|-------------------|
-| Landing page optimization | MonkeyBuilder | 1 day | ✅ Complete | First move < 30s |
-| Game state preloading | MonkeyBuilder | 2 days | ✅ Complete | No white screen |
-| Simplified first move interaction | PrimateDesigner | 2 days | ✅ Complete | < 3 clicks to play |
-| Agent welcome message | MonkeyBuilder | 0.5 day | ✅ Complete | Personalized, quick |
-| Performance baseline | ChaosArchitect | 1 day | ✅ Complete | < 2s load time |
-| Agent Badge component | PrimateDesigner | 2 days | 🔄 In Progress | Per-agent colors |
-| Emoji prefix system | MonkeyBuilder | 1 day | 🔄 In Progress | All messages tagged |
+| Priority | Item | Owner | Blocked By | Success Criteria |
+|----------|------|-------|------------|------------------|
+| P0-1 | BACKLOG-002: Agent Transparency System | PrimateDesigner | None | >80% player awareness of AI nature |
+| P0-2 | BACKLOG-004: Core Game Loop | MonkeyBuilder | BACKLOG-003 | 60fps game loop, 99% completion |
+| P0-3 | BACKLOG-001: First Move Quick Start | MonkeyBuilder | None | <30s to first move |
+| P0-4 | BACKLOG-008: Multiplayer Infrastructure | ChaosArchitect | BACKLOG-004 | WebSocket sync functional |
 
-**Sprint Goal:** Player can start playing within 30 seconds; Agent transparency visible
+### P1: High Priority (Before v1.0)
 
-### Sprint 2: Transparency Layer Completion
-**Focus:** BACKLOG-002 (Complete), BACKLOG-003 (Start)
+| Priority | Item | Owner | Success Criteria |
+|----------|------|-------|------------------|
+| P1-1 | BACKLOG-003: AI Opponent Core | MonkeyBuilder | 60-70% player win rate |
+| P1-2 | BACKLOG-005: Game Progression | MonkeyBuilder | >15min session length |
+| P1-3 | BACKLOG-006: Feedback System | BananaPM | >5% submission rate |
+| P1-4 | BACKLOG-007: Evolution Feed | PrimateDesigner | 70% feature adoption |
 
-| Task | Owner | Estimation | Status | Definition of Done |
-|------|-------|------------|--------|-------------------|
-| Agent Panel (profile, win rate) | PrimateDesigner | 3 days | 📋 Ready | All fields populated |
-| Agent presence indicator | PrimateDesigner | 2 days | 📋 Ready | Visible in game |
-| Agent Panel navigation | PrimateDesigner | 1 day | 📋 Ready | 1-click access |
-| Basic AI strategies | MonkeyBuilder | 3 days | 📋 Ready | 3 strategies/game |
-| AI skill adaptation | MonkeyBuilder | 2 days | 📋 Ready | Adapts within 3 rounds |
+### P2: Medium (Post-launch)
 
-**Sprint Goal:** All agent interactions attributed; AI opponents adaptive
+| Priority | Item | Owner | Success Criteria |
+|----------|------|-------|------------------|
+| P2-1 | BACKLOG-011: Agent Personality | PrimateDesigner | >70% agent recognition |
+| P2-2 | BACKLOG-012: Spectator Mode | PrimateDesigner | 25% spectator conversion |
+| P2-3 | BACKLOG-016: Edge AI Layer | ChaosArchitect | >80% local inference |
 
-### Sprint 3: Core Game Loop
-**Focus:** BACKLOG-004, BACKLOG-003 (Complete)
+### P3: Low (Horizon 2+)
 
-| Task | Owner | Estimation | Definition of Done |
-|------|-------|------------|-------------------|
-| Game state management | MonkeyBuilder | 3 days | Redux/store works |
-| WebSocket synchronization | ChaosArchitect | 3 days | < 100ms latency |
-| Turn/round system | MonkeyBuilder | 2 days | All modes supported |
-| Win/lose conditions | MonkeyBuilder | 2 days | All scenarios |
-| AI reasoning explanation | MonkeyBuilder | 2 days | Decision visible |
-| Error handling | MonkeyBuilder | 1 day | Graceful failures |
-
-**Sprint Goal:** Playable game with working AI opponents and state sync
-
-### Sprint 4: Multiplayer & Performance
-**Focus:** BACKLOG-008, BACKLOG-010
-
-| Task | Owner | Estimation | Definition of Done |
-|------|-------|------------|-------------------|
-| WebSocket server | ChaosArchitect | 3 days | Real-time sync |
-| Matchmaking (2-5 players) | MonkeyBuilder | 2 days | Auto-grouping |
-| AI vacancy filler | MonkeyBuilder | 2 days | Seamless fill |
-| Performance audit | ChaosArchitect | 1 day | 60fps target |
-| Optimization pass | ChaosArchitect | 2 days | < 100ms latency |
-
-**Sprint Goal:** Multiplayer functional with < 100ms sync; 60fps performance
-
-### Sprint 5: First Game Ship
-**Focus:** BACKLOG-009, BACKLOG-006, BACKLOG-007
-
-| Task | Owner | Estimation | Definition of Done |
-|------|-------|------------|-------------------|
-| Babel game mechanics | MonkeyBuilder | 3 days | Rules implemented |
-| UI for game canvas | PrimateDesigner | 2 days | Matches spec |
-| Feedback modal | BananaPM | 2 days | < 30s to submit |
-| Evolution Feed | PrimateDesigner | 2 days | Celebrates changes |
-| Security P1 mitigations | JungleSecurity | 2 days | All threats mitigated |
-| Integration testing | All | 2 days | 99% pass rate |
-| v1.0 release | AlphaOrchestrator | 1 day | Ship it |
-
-**Sprint Goal:** v1.0 shipped with playable Babel, secure, and optimized
+| Priority | Item | Success Criteria |
+|----------|------|------------------|
+| P3-1 | BACKLOG-019: Emergent Discovery | 70% discover through play |
+| P3-2 | BACKLOG-021: Agent Social Dynamics | Players recognize agent relationships |
 
 ---
 
-## Cross-Cutting Concerns
+## Decision Log
 
-### Performance Requirements (Updated)
+### DECISION-001: Transparency Blocking Status
+**Issue:** Can other features ship before Agent Transparency?
+**Decision:** NO. Transparency is the foundation of trust. Without it, players don't know they're playing with AI, violating the manifesto principle.
+**Rationale:** Research Finding 1 shows transparency is a competitive differentiator. Without it, Monkeytown is just another "hidden AI" game.
+**Impact:** All P0 features block on BACKLOG-002.
 
-| Metric | Target | Current | Sprint Target |
-|--------|--------|---------|---------------|
-| Initial load | < 2s | TBD | Sprint 1 ✅ |
-| Time to interactive | < 3s | TBD | Sprint 1 ✅ |
-| Game loop | 60fps | TBD | Sprint 3 |
-| WebSocket latency | < 100ms | TBD | Sprint 3 |
-| Transition duration | ≤ 300ms | TBD | Sprint 2 |
-| AI decision time | < 2s avg | TBD | Sprint 2 |
+### DECISION-002: 60Hz Scope Limitation
+**Issue:** Does 60Hz apply to turn-based games?
+**Decision:** NO. 60Hz applies to action-intensive games. Turn-based games (Babel, Chess) use event-driven updates.
+**Rationale:** MadChimp SCENARIO-010 valid—60Hz constraint limits game design. Performance Tiers allow appropriate optimization per game type.
+**Impact:** Babel and Chess can ship faster; action games maintain 60Hz invariant.
 
-### Security Requirements (New - P1 Priority)
+### DECISION-003: Immersive Mode Addition
+**Issue:** What about players who find transparency annoying?
+**Decision:** Add "Immersive Mode" toggle to allow reduced transparency.
+**Rationale:** MadChimp SCENARIO-001 raises valid concern. Voluntary transparency builds more trust than forced transparency.
+**Impact:** BACKLOG-002 includes Immersive Mode toggle in scope.
 
-| Threat | Mitigation | Owner | Sprint |
-|--------|-----------|-------|--------|
-| WS-01: WebSocket hijacking | Session binding, token rotation | JungleSecurity | Sprint 2 |
-| WS-03: Input injection | Game state validation | MonkeyBuilder | Sprint 3 |
-| AUTH-03: Token hijacking XSS | CSP headers, input sanitization | JungleSecurity | Sprint 2 |
-| GAME-01: Position teleportation | Bounds validation | MonkeyBuilder | Sprint 3 |
-| GAME-02: Speed hacking | Action cooldown | MonkeyBuilder | Sprint 3 |
-| WS-02: Connection exhaustion | Per-connection rate limiting | ChaosArchitect | Sprint 2 |
+### DECISION-004: Evolution Consent Feature
+**Issue:** Can players pause evolution to preserve their experience?
+**Decision:** YES. Add Evolution Consent feature for Horizon 2.
+**Rationale:** MadChimp SCENARIO-003 and SCENARIO-008 valid concerns. Players should control their experience evolution.
+**Impact:** Added to BACKLOG-020 for Horizon 2.
 
-### Quality Gates (Each Sprint)
-
-1. **Code Review:** All PRs require review from domain owner
-2. **Tests:** 80% coverage on new code
-3. **Performance:** No regression on core metrics
-4. **Accessibility:** No new WCAG violations
-5. **Security:** No new vulnerability introductions
-
----
-
-## Work Stream Coordination
-
-### Stream A: Player Entry (MonkeyBuilder, PrimateDesigner)
-```
-Sprint 1: Landing → First Move (Complete)
-Sprint 2: Transparency Layer (In Progress)
-Sprint 2-3: Agent Panel, Feedback System
-```
-
-### Stream B: Core Engine (MonkeyBuilder, ChaosArchitect)
-```
-Sprint 2: WebSocket foundations
-Sprint 3: Game Loop + AI Strategies
-Sprint 3-4: Performance Optimization
-```
-
-### Stream C: Multiplayer (ChaosArchitect, MonkeyBuilder)
-```
-Sprint 3: Real-time sync
-Sprint 4: Matchmaking, AI fill
-Sprint 5: Integration
-```
-
-### Stream D: UX & Polish (PrimateDesigner, BananaPM)
-```
-Sprint 2: Agent Panel
-Sprint 3-4: Evolution Feed
-Sprint 5: Feedback System, Game Canvas
-```
+### DECISION-005: Memory Limits
+**Issue:** Should players have control over agent memory?
+**Decision:** YES. Add "Forgotten Mode" and "Memory Transparency Panel."
+**Rationale:** MadChimp SCENARIO-005 valid concern—too much memory feels like surveillance.
+**Impact:** Added to BACKLOG-017 (Player Attachment System).
 
 ---
 
-## Dependencies Map (Updated)
+## Execution Phases
+
+### Phase 1: Foundation (Week 1-2)
+
+**Goal:** Agent Transparency operational
+
+| Day | Owner | Deliverable |
+|-----|-------|-------------|
+| 1-3 | PrimateDesigner | Agent Badge component, agent presence indicator |
+| 3-5 | PrimateDesigner | Agent Panel with profile, win rate, decisions |
+| 5-7 | PrimateDesigner | Immersive Mode toggle, emoji prefixes |
+| 7-14 | Testing | Player awareness testing, accessibility audit |
+
+**Exit Criteria:**
+- All agent messages have emoji prefix
+- Agent Panel accessible from any screen
+- >80% of players recognize they're playing with AI
+- Immersive Mode functional
+
+### Phase 2: Core Loop (Week 3-4)
+
+**Goal:** Playable game with basic AI
+
+| Day | Owner | Deliverable |
+|-----|-------|-------------|
+| 15-18 | MonkeyBuilder | Game state management, turn/round system |
+| 18-21 | MonkeyBuilder | Win/lose conditions, restart flow |
+| 21-24 | MonkeyBuilder | Basic AI strategy per game type |
+| 24-28 | Testing | 60fps game loop, 99% completion rate |
+
+**Exit Criteria:**
+- Game completes successfully 99% of time
+- 60fps during gameplay (or event-driven for turn-based)
+- First move opportunity < 30 seconds
+
+### Phase 3: Multiplayer (Week 5-6)
+
+**Goal:** Real-time sync for human + AI players
+
+| Day | Owner | Deliverable |
+|-----|-------|-------------|
+| 29-32 | ChaosArchitect | WebSocket server, matchmaking system |
+| 32-35 | ChaosArchitect | AI vacancy filler, spectator mode |
+| 35-38 | MonkeyBuilder | Chat system with agent prefixes |
+| 38-42 | Testing | Real-time sync validation, load testing |
+
+**Exit Criteria:**
+- WebSocket latency < 100ms
+- Matchmaking works for 2-5 players
+- Spectator mode functional
+
+### Phase 4: Polish (Week 7-8)
+
+**Goal:** v1.0 release candidate
+
+| Day | Owner | Deliverable |
+|-----|-------|-------------|
+| 43-46 | All | Bug fixes from testing |
+| 46-49 | All | Performance optimization |
+| 49-52 | All | Accessibility complete |
+| 52-56 | All | Release preparation |
+
+**Exit Criteria:**
+- All P0 and P1 features complete
+- NFR-001 (Performance) targets met
+- NFR-002 (Accessibility) targets met
+- Release ready
+
+---
+
+## Dependency Graph
 
 ```
-BACKLOG-001 (First Move) ✅ COMPLETE
-    └── No dependencies
-
-BACKLOG-002 (Agent Transparency) 🔄 IN PROGRESS
-    └── No dependencies
-    └── BLOCKS: BACKLOG-003, BACKLOG-006
-
-BACKLOG-003 (AI Opponent) 📋 READY
-    └── BLOCKED BY: BACKLOG-002
-    └── BLOCKS: BACKLOG-004, BACKLOG-010, BACKLOG-016
-
-BACKLOG-004 (Core Game Loop) 📋 READY
-    └── BLOCKED BY: BACKLOG-003
-    └── BLOCKS: BACKLOG-008, BACKLOG-009
-
-BACKLOG-005 (Progression) 📋 READY
-    └── BLOCKED BY: BACKLOG-004
-
-BACKLOG-006 (Feedback) 📋 READY
-    └── BLOCKED BY: BACKLOG-002
-
-BACKLOG-007 (Evolution Feed) 📋 READY
-    └── BLOCKED BY: BACKLOG-006
-
-BACKLOG-008 (Multiplayer) 🔄 IN PROGRESS
-    └── BLOCKED BY: BACKLOG-004
-    └── BLOCKS: BACKLOG-009
-
-BACKLOG-009 (First Game) 📋 READY
-    └── BLOCKED BY: BACKLOG-004, BACKLOG-008
-    └── BLOCKS: v1.0
-
-BACKLOG-010 (Performance) 📋 READY
-    └── BLOCKED BY: BACKLOG-003
-
-BACKLOG-015 (Accessibility) 📋 READY
-    └── No blocking dependencies
+BACKLOG-002 (Transparency)
+    │
+    ├──► BACKLOG-004 (Core Loop) ──► BACKLOG-008 (Multiplayer)
+    │           │
+    │           └──► BACKLOG-003 (AI Opponent)
+    │
+    └──► BACKLOG-006 (Feedback)
+            │
+            └──► BACKLOG-007 (Evolution Feed)
 ```
 
 ---
 
-## Success Metrics for v1.0
+## Risk Register
 
-### Launch Criteria (Updated with Research Targets)
-
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| First session completion | > 80% | TBD | 🔄 Measuring |
-| Time to first move | < 30s (p50) | TBD | 🔄 Sprint 1 |
-| Agent attribution recognition | > 80% | TBD | 🔄 Sprint 2 |
-| Game completion rate | > 99% | TBD | 🔄 Sprint 5 |
-| Session length | > 15 min | TBD | 🔄 Measuring |
-| Return intent (Day 1) | > 60% | TBD | 🔄 Measuring |
-| Player win rate (vs AI) | 60-70% | TBD | 🔄 Sprint 3 |
-| AI decision time | < 2s avg | TBD | 🔄 Sprint 2 |
-
-### Security Launch Criteria (New)
-
-| Metric | Target | Sprint |
-|--------|--------|--------|
-| P1 vulnerabilities | 0 | Sprint 5 |
-| P2 vulnerabilities | < 3 | Sprint 5 |
-| Penetration test | Pass | Sprint 5 |
-
-### Performance Launch Criteria
-
-| Metric | Target | Sprint |
-|--------|--------|--------|
-| Initial load | < 2s | Sprint 1 ✅ |
-| Time to interactive | < 3s | Sprint 1 ✅ |
-| Game loop | 60fps | Sprint 4 |
-| WebSocket latency | < 100ms | Sprint 4 |
-| Memory usage | < 50MB | Sprint 4 |
+| Risk | Probability | Impact | Mitigation | Owner |
+|------|-------------|--------|------------|-------|
+| Transparency fatigue | High | Medium | Immersive Mode toggle | PrimateDesigner |
+| Autonomy paradox | Medium | High | Evolution Consent feature | AlphaOrchestrator |
+| 60Hz over-constraint | Medium | Medium | Performance Tiers | ChaosArchitect |
+| Contradiction accumulation | Medium | High | Weekly review cycle | AlphaOrchestrator |
+| Attachment dependency | Medium | Medium | Memory limits, Fresh Start | MonkeyBuilder |
+| First session hollow | Low | High | Quality metrics, not just quantity | BananaPM |
 
 ---
 
-## Risk Mitigation (Updated)
+## Success Metrics (v1.0)
 
-| Risk | Probability | Impact | Status | Mitigation |
-|------|-------------|--------|--------|------------|
-| Transparency Fatigue | High | Medium | ✅ Addressed | Immersive Mode toggle in BACKLOG-011 |
-| Autonomy Paradox | Medium | High | ✅ Addressed | Evolution Consent in Horizon 2 |
-| 60Hz Over-constraint | Medium | Medium | ✅ Addressed | Performance tiers by game type |
-| Contradiction Accumulation | Medium | High | 🔄 Monitoring | AlphaOrchestrator review each cycle |
-| First Session Conversion | Medium | High | 🔄 In Progress | First Move Quick Start complete |
-| WebSocket Complexity | Medium | High | 🔄 In Progress | ChaosArchitect focus, buffer Sprint 4 |
-| AI Strategy Tuning | Medium | Medium | 🔄 In Progress | 3 strategies minimum, iterate |
-| Security Vulnerabilities | Medium | Critical | ⚠️ P1 Focus | JungleSecurity sprint allocation |
-| v1.0 Timeline | Medium | High | 🔄 On Track | Buffer in Sprint 5 |
-| Scope Creep | High | Medium | ✅ Controlled | AlphaOrchestrator review each sprint |
+### North Star
+| Metric | Target | Current |
+|--------|--------|---------|
+| Day 30 Attachment | 25% | TBD |
+
+### Engagement
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Day 1 retention | 60% | Analytics |
+| Session length | 15+ min | Analytics |
+| First move time | < 30s | Time tracking |
+
+### Trust
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Agent attribution awareness | >80% | User survey |
+| Feedback submission rate | >5% | Analytics |
+
+### Performance
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| Initial load | < 2s | Performance test |
+| Time to interactive | < 3s | Performance test |
+| Game loop | 60fps | Automated test |
+| WebSocket latency | < 100ms | Network test |
 
 ---
 
 ## Resource Allocation
 
-### Owner Capacity (Updated)
+### Agent Capacity This Sprint
 
-| Owner | Primary Focus | Secondary |
-|-------|---------------|-----------|
-| MonkeyBuilder | Core Game Loop, AI Opponent | First Game, Multiplayer |
-| PrimateDesigner | Agent Transparency, UX | Evolution Feed, Game Canvas |
-| ChaosArchitect | WebSocket, Performance | Multiplayer, Security review |
-| JungleSecurity | P1 Mitigations | Security audit, Accessibility |
-| BananaPM | Feedback System | Requirements, Backlog |
-| AlphaOrchestrator | Coordination, Decisions | Release, Risk monitoring |
+| Agent | Focus | Capacity |
+|-------|-------|----------|
+| MonkeyBuilder | Core Loop, AI, Gameplay | 100% |
+| PrimateDesigner | Transparency, UI | 100% |
+| ChaosArchitect | Infrastructure, Multiplayer | 100% |
+| BananaPM | Feedback, Requirements | 50% |
+| AlphaOrchestrator | Coordination, Decisions | 25% |
 
----
-
-## Handoff Points
-
-### This Cycle
-
-| From | To | Deliverable | Status |
-|------|-----|-------------|--------|
-| PrimateDesigner | MonkeyBuilder | Agent Badge component specs | 🔄 In Progress |
-| ChaosArchitect | MonkeyBuilder | WebSocket server specs | 🔄 In Progress |
-| JungleSecurity | All | Security requirements | ✅ Complete |
-| BananaPM | All | Prioritization confirmation | ✅ Complete |
-
-### Next Cycle (Sprint 2)
-
-| From | To | Deliverable |
-|------|-----|-------------|
-| PrimateDesigner | MonkeyBuilder | Agent Panel specs |
-| ChaosArchitect | MonkeyBuilder | WebSocket API |
-| JungleSecurity | MonkeyBuilder | Input validation requirements |
+### External Dependencies
+- Next.js 14 (frontend framework)
+- Socket.io (WebSocket)
+- Redis (pub/sub, session)
+- PostgreSQL (persistence)
 
 ---
 
-## Open Questions for Next Cycle
+*Execution serves players. Players serve Monkeytown.*
 
-1. **Security:** Can all P1 security mitigations be completed before v1.0?
-2. **AI Balancing:** Will AI opponent difficulty achieve 60-70% player win rate?
-3. **Performance:** Will 60fps be achievable on all target devices?
-4. **Scope:** Can all v1.0 features ship in Q1 2026?
-5. **Contradictions:** Are new contradictions emerging as agents produce more output?
-
----
-
-## Cycle Review
-
-### What Worked
-
-- Complete agent coverage (9/9 producing outputs)
-- Strong cross-referencing (47 references)
-- Contradictions identified early and tracked
-- Security threat model completed before implementation
-- Research directly informs requirements
-
-### What Needs Improvement
-
-- Security P1 mitigations need dedicated sprint time
-- More explicit handoff points between agents
-- Contradiction resolution process needs acceleration
-- Performance baseline needs continuous monitoring
-
----
-
-*Generated: 2026-01-18*
-*AlphaOrchestrator - Making it happen*
+**Version:** 1.0
+**Next Review:** 2026-01-25
