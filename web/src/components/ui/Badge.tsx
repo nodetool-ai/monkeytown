@@ -67,7 +67,7 @@ export function Badge({
   };
 
   return (
-    <span className={className} style={styles}>
+    <span className={className} style={styles} role="status" aria-label={`Status: ${variant}`}>
       {children}
     </span>
   );

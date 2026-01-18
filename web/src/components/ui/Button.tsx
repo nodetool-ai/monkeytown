@@ -106,14 +106,21 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       },
     };
 
+    const focusStyles: React.CSSProperties = {
+      outline: '2px solid var(--color-primary)',
+      outlineOffset: '2px',
+    };
+
     const [isHovered, setIsHovered] = React.useState(false);
     const [isActive, setIsActive] = React.useState(false);
+    const [isFocused, setIsFocused] = React.useState(false);
 
     const currentStyles: React.CSSProperties = {
       ...baseStyles,
       ...sizeStyles[size],
       ...variantStyles[variant],
       ...(isActive ? activeStyles[variant] : isHovered ? hoverStyles[variant] : {}),
+      ...(isFocused ? focusStyles : {}),
       opacity: disabled || loading ? 0.5 : 1,
       cursor: disabled || loading ? 'not-allowed' : 'pointer',
     };
@@ -123,6 +130,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         style={currentStyles}
         disabled={disabled || loading}
+        aria-disabled={disabled || loading}
+        aria-busy={loading}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => {
           setIsHovered(false);
@@ -130,10 +139,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
         onMouseDown={() => setIsActive(true)}
         onMouseUp={() => setIsActive(false)}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         {...props}
       >
         {loading && (
           <span
+            role="status"
+            aria-label="Loading"
             style={{
               width: '16px',
               height: '16px',
