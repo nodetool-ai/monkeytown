@@ -1,6 +1,7 @@
 'use client';
 
 import React, { CSSProperties, useCallback, useEffect, useState } from 'react';
+import { AgentType } from '@monkeytown/packages/shared';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -125,7 +126,7 @@ export function TicTacToeCanvas({
           </span>
           {opponentPlayer?.type === 'agent' && opponentPlayer.agentType ? (
             <AgentBadge
-              agent={opponentPlayer.agentType as any}
+              agent={opponentPlayer.agentType as AgentType}
               status="online"
               size="md"
               showEmoji={true}

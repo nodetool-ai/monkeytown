@@ -17,6 +17,18 @@ interface ConnectionStats {
   connectionsById: string[];
 }
 
+// Game action message interface
+interface GameActionMessage {
+  gameId: string;
+  action: {
+    type: string;
+    row?: number;
+    col?: number;
+    cardId?: string;
+    targetPlayerId?: string;
+  };
+}
+
 export class EventStream {
   private io: SocketIOServer;
   private connections: Map<string, ConnectionInfo> = new Map();
@@ -119,7 +131,7 @@ export class EventStream {
     });
 
     // Handle game actions (TicTacToe and Babel)
-    socket.on('game:action', async (data: { gameId: string; action: { type: string; row?: number; col?: number; cardId?: string; targetPlayerId?: string } }) => {
+    socket.on('game:action', async (data: GameActionMessage) => {
       try {
         const session = await this.gameServer.getSession(data.gameId);
         if (!session) {

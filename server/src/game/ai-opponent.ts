@@ -108,14 +108,19 @@ export class AIOpponent {
     };
 
     const base = baseConfigs[agentType] || {
-      personality: 'curious' as AgentType,
+      personality: 'strategist' as AgentType,
       riskTolerance: 0.5,
       adaptability: 0.5,
     };
 
+    // Apply difficulty modifier to risk tolerance and adaptability
+    const modifier = difficultyModifiers[difficulty];
+    
     return {
       ...base,
       difficulty,
+      riskTolerance: base.riskTolerance * (0.5 + modifier),
+      adaptability: base.adaptability * (0.5 + modifier),
     };
   }
 

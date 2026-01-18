@@ -129,7 +129,7 @@ export class DatabaseService {
       `INSERT INTO games (id, game_type, config, result, started_at)
        VALUES ($1, $2, $3, $4, NOW())
        RETURNING *`,
-      [game.id, game.gameType || 'tictactoe', JSON.stringify(game.config), JSON.stringify(game.result)]
+      [game.id, game.gameType, JSON.stringify(game.config), JSON.stringify(game.result)]
     );
     return rows[0];
   }
@@ -357,7 +357,7 @@ interface CreateAgentInput {
 
 interface Game {
   id: string;
-  gameType?: string;
+  gameType: string;
   config: Record<string, unknown>;
   result?: Record<string, unknown>;
   started_at?: Date;
