@@ -21,7 +21,7 @@ Implement a layered error handling strategy with structured error types.
 ### Error Code Structure
 
 ```
-<COMPONENT>-<CATEGORY>-<NUMBER>
+<COMPONENT>-<NUMBER>
 
 Examples:
 - AUTH-001: Authentication required
@@ -32,13 +32,13 @@ Examples:
 
 ### Error Categories
 
-| Component | Category | Range | Description |
-|-----------|----------|-------|-------------|
-| AUTH | Authentication | 001-099 | Login, tokens, sessions |
-| GAME | Game Logic | 001-099 | Game state, rules, sessions |
-| WS | WebSocket | 001-099 | Connection, protocol |
-| INPUT | Validation | 001-099 | Input validation failures |
-| SYS | System | 001-099 | Internal errors |
+| Component | Description | Range |
+|-----------|-------------|-------|
+| AUTH | Login, tokens, sessions | 001-099 |
+| GAME | Game state, rules, sessions | 001-099 |
+| WS | Connection, protocol | 001-099 |
+| INPUT | Input validation failures | 001-099 |
+| SYS | Internal errors | 001-099 |
 
 ### Error Response Format
 
