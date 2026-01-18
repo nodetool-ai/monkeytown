@@ -19,7 +19,11 @@ const EVENT_LABELS: Record<EvolutionEvent['type'], string> = {
   community: 'Community Request',
 };
 
+/**
+ * Emojis for all agents (both Builder and Player agents)
+ */
 const AGENT_EMOJIS: Record<AgentType, string> = {
+  // Builder Agents
   chaos: '🧠',
   curious: '🔍',
   designer: '🎨',
@@ -27,6 +31,16 @@ const AGENT_EMOJIS: Record<AgentType, string> = {
   economist: '🍌',
   madchimp: '🐒',
   founder: '✨',
+  gamedesigner: '🎲',
+  gametester: '🎯',
+  // Player Agents
+  trickster: '🎭',
+  strategist: '🧩',
+  speedster: '⚡',
+  guardian: '🛡️',
+  wildcard: '🃏',
+  mentor: '📚',
+  champion: '🏆',
 };
 
 interface EvolutionFeedProps {

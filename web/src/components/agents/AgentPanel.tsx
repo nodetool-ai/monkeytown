@@ -1,12 +1,16 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { AgentType, AgentStatus, AGENT_COLORS } from '@monkeytown/packages/shared';
+import { AgentType, AgentStatus, AGENT_COLORS, BuilderAgentType, PlayerAgentType } from '@monkeytown/packages/shared';
 import { AgentBadge } from './AgentBadge';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 
+/**
+ * Emojis for all agents (both Builder and Player agents)
+ */
 const AGENT_EMOJIS: Record<AgentType, string> = {
+  // Builder Agents
   chaos: '🧠',
   curious: '🔍',
   designer: '🎨',
@@ -14,9 +18,23 @@ const AGENT_EMOJIS: Record<AgentType, string> = {
   economist: '🍌',
   madchimp: '🐒',
   founder: '✨',
+  gamedesigner: '🎲',
+  gametester: '🎯',
+  // Player Agents
+  trickster: '🎭',
+  strategist: '🧩',
+  speedster: '⚡',
+  guardian: '🛡️',
+  wildcard: '🃏',
+  mentor: '📚',
+  champion: '🏆',
 };
 
+/**
+ * Specialties for all agents
+ */
 const AGENT_SPECIALTIES: Record<AgentType, string> = {
+  // Builder Agents
   chaos: 'Infrastructure & Architecture',
   curious: 'Research & Trends',
   designer: 'Design & UX',
@@ -24,9 +42,23 @@ const AGENT_SPECIALTIES: Record<AgentType, string> = {
   economist: 'Economics & Incentives',
   madchimp: 'Chaos & Disruption',
   founder: 'Vision & Strategy',
+  gamedesigner: 'Game Rules & Mechanics',
+  gametester: 'Game Testing & Feedback',
+  // Player Agents
+  trickster: 'Bluffs & Unpredictability',
+  strategist: 'Long-term Planning',
+  speedster: 'Quick Decisions',
+  guardian: 'Defensive Play',
+  wildcard: 'Random Chaos',
+  mentor: 'Teaching & Guidance',
+  champion: 'Competitive Excellence',
 };
 
+/**
+ * Descriptions for all agents
+ */
 const AGENT_DESCRIPTIONS: Record<AgentType, string> = {
+  // Builder Agents
   chaos: 'I design the systems that make Monkeytown work.',
   curious: 'I explore trends and research to guide our direction.',
   designer: 'I craft the experiences that players love.',
@@ -34,16 +66,40 @@ const AGENT_DESCRIPTIONS: Record<AgentType, string> = {
   economist: 'I create the incentives that drive engagement.',
   madchimp: 'I challenge assumptions and test limits.',
   founder: 'I define the vision and purpose of Monkeytown.',
+  gamedesigner: 'I design game rules and mechanics for maximum fun.',
+  gametester: 'I test games to ensure they work perfectly.',
+  // Player Agents
+  trickster: 'You never know what I\'ll do next!',
+  strategist: 'I\'m always thinking three moves ahead.',
+  speedster: 'Fast moves, fast games, fast wins!',
+  guardian: 'Try to get past my defenses. I dare you.',
+  wildcard: 'Random is my middle name!',
+  mentor: 'Let me help you learn and improve.',
+  champion: 'I play to win. Always.',
 };
 
-const AGENT_QUOTES: Record<AgentType, string> = {
-  chaos: 'Chaos is just order waiting to be discovered.',
-  curious: 'Every question is an opportunity to learn.',
-  designer: 'Beauty is in the details.',
-  security: 'Trust is built through consistency.',
-  economist: 'Incentives shape behavior.',
-  madchimp: 'Break things to make them better.',
-  founder: 'Purpose drives progress.',
+/**
+ * Names for all agents
+ */
+const AGENT_NAMES: Record<AgentType, string> = {
+  // Builder Agents
+  chaos: 'ChaosArchitect',
+  curious: 'CuriousGeorge',
+  designer: 'PrimateDesigner',
+  security: 'JungleSecurity',
+  economist: 'BananaEconomist',
+  madchimp: 'MadChimp',
+  founder: 'FounderAI',
+  gamedesigner: 'GameDesigner',
+  gametester: 'GameTester',
+  // Player Agents
+  trickster: 'TricksterMonkey',
+  strategist: 'StrategistApe',
+  speedster: 'SpeedyGibbon',
+  guardian: 'GuardianGorilla',
+  wildcard: 'WildcardLemur',
+  mentor: 'MentorOrangutan',
+  champion: 'ChampionChimp',
 };
 
 export interface AgentDetail {
@@ -177,13 +233,7 @@ export function AgentPanel({ agents, isOpen, onClose }: AgentPanelProps) {
               <span style={{ fontSize: '2rem' }}>{AGENT_EMOJIS[selectedAgent.type]}</span>
               <div>
                 <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-h3)', fontWeight: 600 }}>
-                  {AGENT_EMOJIS[selectedAgent.type]} {selectedAgent.type === 'chaos' && 'ChaosArchitect'}
-                  {selectedAgent.type === 'curious' && 'CuriousGeorge'}
-                  {selectedAgent.type === 'designer' && 'PrimateDesigner'}
-                  {selectedAgent.type === 'security' && 'JungleSecurity'}
-                  {selectedAgent.type === 'economist' && 'BananaEconomist'}
-                  {selectedAgent.type === 'madchimp' && 'MadChimp'}
-                  {selectedAgent.type === 'founder' && 'FounderAI'}
+                  {AGENT_EMOJIS[selectedAgent.type]} {AGENT_NAMES[selectedAgent.type]}
                 </h3>
                 <p style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-caption)' }}>
                   {AGENT_SPECIALTIES[selectedAgent.type]}
