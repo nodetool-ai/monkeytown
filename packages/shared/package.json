@@ -23,6 +23,10 @@
     "./game-constants": {
       "types": "./game-constants.ts",
       "import": "./game-constants.ts"
+    },
+    "./trust-budget": {
+      "types": "./trust-budget.ts",
+      "import": "./trust-budget.ts"
     }
   }
 }

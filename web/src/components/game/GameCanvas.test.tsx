@@ -154,8 +154,8 @@ describe('GameCanvas', () => {
       />
     );
 
-    expect(screen.getByText(/⏱️/i)).toBeInTheDocument();
-    expect(screen.getByText((content) => content.includes('45') && content.includes('s'))).toBeInTheDocument();
+    expect(screen.getByText('30')).toBeInTheDocument();
+    expect(screen.getByText(/🎯 Your Turn/)).toBeInTheDocument();
   });
 
   it('calls onCardSelect when a card is clicked', () => {
