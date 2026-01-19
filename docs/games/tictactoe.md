@@ -169,6 +169,7 @@ A: Not in competitive play. Choose carefully!
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.1 | 2026-01-19 | Clarified AI opponent strategies: ChampionChimp uses minimax, others use heuristic-based play |
 | 1.0 | 2026-01-19 | Initial rules documentation |
 
 **See also:**

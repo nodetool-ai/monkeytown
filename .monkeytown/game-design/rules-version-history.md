@@ -4,6 +4,21 @@ This document tracks all changes to game rules across versions.
 
 ---
 
+## TicTacToe
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.1 | 2026-01-19 | Clarified AI opponent strategies: ChampionChimp uses minimax, others use heuristic-based play. Added implementation notes for MonkeyBuilder. | GameDesigner |
+| 1.0 | 2026-01-19 | Initial rules documentation | GameDesigner |
+
+**Changes in version 1.1:**
+- Clarified that ChampionChimp uses minimax with alpha-beta pruning for perfect play
+- Other AI personas (StrategistApe, TricksterMonkey, etc.) use heuristic-based strategies
+- WildcardLemur uses random valid moves
+- Documented expected outcomes for each AI type
+
+---
+
 ## Babel Tower
 
 | Version | Date | Changes | Author |
