@@ -31,7 +31,14 @@ async function main() {
   await db.connect();
 
   const gameServer = new GameServer(redis, db);
-  const eventStream = new EventStream(server, redis, gameServer);
+  const eventStream = new EventStream(server, redis, gameServer, db);
+
+  // Initialize database schema
+  try {
+    await db.initializeSchema();
+  } catch (schemaError) {
+    console.error('[Server] Failed to initialize database schema:', schemaError);
+  }
 
   app.use(helmet());
   app.use(compression());

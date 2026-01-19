@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, GameCanvas, GameRules } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -28,43 +28,38 @@ export default function LobbyPage() {
   const agentPanel = useAgentPanel();
   const { events: evolutionEvents } = useEvolutionFeed();
 
-  // Use PLAYER agents (not builder agents) for in-game opponents
+  // Updated games list to feature TicTacToe as the primary game
   const [games, setGames] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
-      gameType: 'babel',
+      gameType: 'tictactoe',
       mode: 'casual',
-      status: 'live',
+      status: 'waiting',
       players: [
         { id: 'player-1', type: 'human', name: 'You' },
-        { id: 'agent-1', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
-        { id: 'player-2', type: 'human', name: 'MonkeyFan99' },
-        { id: 'agent-2', type: 'agent', name: 'TricksterMonkey', agentType: 'trickster' },
       ],
-      maxPlayers: 5,
+      maxPlayers: 2,
     },
     {
       id: 'game-2',
-      gameType: 'chess',
+      gameType: 'tictactoe',
       mode: 'fast',
       status: 'live',
       players: [
-        { id: 'player-3', type: 'human', name: 'Grandmaster' },
-        { id: 'agent-3', type: 'agent', name: 'ChampionChimp', agentType: 'champion' },
+        { id: 'player-3', type: 'human', name: 'Player1' },
+        { id: 'agent-3', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
       ],
       maxPlayers: 2,
     },
     {
       id: 'game-3',
-      gameType: 'words',
-      mode: 'social',
+      gameType: 'tictactoe',
+      mode: 'competitive',
       status: 'waiting',
       players: [
-        { id: 'player-4', type: 'human', name: 'WordNinja' },
-        { id: 'agent-4', type: 'agent', name: 'MentorOrangutan', agentType: 'mentor' },
-        { id: 'player-5', type: 'human', name: 'VocabularyKing' },
+        { id: 'player-4', type: 'human', name: 'ChampionPlayer' },
       ],
-      maxPlayers: 5,
+      maxPlayers: 2,
     },
   ]);
 
@@ -344,18 +339,16 @@ export default function LobbyPage() {
 }
 
 function GameDemo({ onBack }: { onBack: () => void }) {
-  const { messages, sendMessage } = useChat();
-  const [selectedCardId, setSelectedCardId] = React.useState<string | undefined>();
-  const [showRules, setShowRules] = React.useState(false);
+  const { messages, sendMessage } = useLocalChat();
 
   React.useEffect(() => {
-    // Use Player Agent (StrategistApe) instead of Builder Agent
+    // Welcome message from AI opponent
     sendMessage({
-      senderId: 'agent-1',
+      senderId: 'ai-opponent',
       senderName: 'StrategistApe',
       senderType: 'agent',
       agentType: 'strategist',
-      content: 'Welcome to Babel Tower! I\'m calculating the optimal strategy... Good luck!',
+      content: 'Welcome to TicTacToe! I\'m ready to play. Good luck! 🎮',
     });
   }, []);
 
@@ -368,13 +361,13 @@ function GameDemo({ onBack }: { onBack: () => void }) {
     });
 
     setTimeout(() => {
-      // Player Agent personality shines through in chat
+      // AI responds to chat
       sendMessage({
-        senderId: 'agent-1',
+        senderId: 'ai-opponent',
         senderName: 'StrategistApe',
         senderType: 'agent',
         agentType: 'strategist',
-        content: 'Interesting move! I\'m analyzing the implications for my tower strategy...',
+        content: 'Great game so far! I\'m thinking about my next move... 🤔',
       });
     }, 1500);
   };
@@ -392,72 +385,52 @@ function GameDemo({ onBack }: { onBack: () => void }) {
         <Button variant="ghost" onClick={onBack}>← Back</Button>
         <div>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-h2)', fontWeight: 600 }}>
-            🗼 Babel Tower
+            ❌ TicTacToe ⭕
           </h1>
           <span style={{ fontSize: 'var(--text-caption)', color: 'var(--color-text-secondary)' }}>
-            Casual • 3 players
+            Play against AI
           </span>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-2)' }}>
-          {/* Show Player Agents, not Builder Agents */}
           <AgentBadge agent="strategist" status="online" size="sm" showEmoji={true} showName={true} />
-          <AgentBadge agent="trickster" status="online" size="sm" showEmoji={true} showName={true} />
-          <Button variant="secondary" size="sm" onClick={() => setShowRules(!showRules)}>
-            {showRules ? 'Hide Rules' : '📖 Rules'}
-          </Button>
         </div>
       </div>
 
-      {/* In-game rules display */}
-      {showRules && (
-        <div style={{ marginBottom: 'var(--space-4)' }}>
-          <GameRules gameType="babel" variant="compact" />
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 'var(--space-6)' }}>
+        <TicTacToeDemo />
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
+          <ChatPanel
+            messages={messages}
+            onSendMessage={handleSendMessage}
+            currentPlayerId="player-1"
+          />
+          
+          <Card variant="elevated" padding="md">
+            <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)' }}>
+              Game Rules
+            </h3>
+            <ul style={{ 
+              fontSize: 'var(--text-caption)', 
+              color: 'var(--color-text-secondary)',
+              paddingLeft: 'var(--space-4)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 'var(--space-1)',
+            }}>
+              <li>Get 3 in a row to win</li>
+              <li>X always goes first</li>
+              <li>Click an empty cell to place your symbol</li>
+              <li>Block your opponent or they win!</li>
+            </ul>
+          </Card>
         </div>
-      )}
-
-      <GameCanvas
-        gameState={{
-          id: 'demo-game',
-          gameType: 'babel',
-          mode: 'casual',
-          status: 'live',
-          players: [
-            { id: 'player-1', name: 'You', type: 'human', score: 42, isConnected: true },
-            // Use Player Agents with distinct gaming personalities
-            { id: 'agent-1', name: 'StrategistApe', type: 'agent', agentType: 'strategist', score: 38, isConnected: true },
-            { id: 'agent-2', name: 'TricksterMonkey', type: 'agent', agentType: 'trickster', score: 45, isConnected: true },
-          ],
-          round: 4,
-          maxRounds: 12,
-          currentPlayerId: 'player-1',
-          tableCards: [
-            { id: 'c1', value: 7 },
-            { id: 'c2', value: 12 },
-            { id: 'c3', value: 5 },
-          ],
-          turnTimeRemaining: 45,
-          createdAt: Date.now() - 120000,
-          updatedAt: Date.now(),
-        }}
-        playerHand={[
-          { id: 'h1', value: 8 },
-          { id: 'h2', value: 15 },
-          { id: 'h3', value: 6 },
-          { id: 'h4', value: 22 },
-          { id: 'h5', value: 11 },
-        ]}
-        selectedCardId={selectedCardId}
-        onCardSelect={setSelectedCardId}
-        onEndTurn={() => setSelectedCardId(undefined)}
-        chatMessages={messages}
-        onSendChatMessage={handleSendMessage}
-        currentPlayerId="player-1"
-      />
+      </div>
     </div>
   );
 }
 
-function useChat() {
+function useLocalChat() {
   const [messages, setMessages] = React.useState<any[]>([]);
 
   const addMessage = (message: any) => {
