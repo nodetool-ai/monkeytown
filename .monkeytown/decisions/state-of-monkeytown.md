@@ -348,6 +348,29 @@ Week 2-3: Agent Transparency (PrimateDesigner) → BLOCKING
 
 ---
 
+## MadChimp Impact Summary
+
+### Accepted Counter-Ideas (10 of 20)
+
+1. **Generosity Economy** - Voluntary extraction options for players who want to pay more
+2. **Player Identity Charter** - Single identity with escalation path
+3. **Metric Truth Framework** - Use ranges, not specific numbers
+4. **Attachment Ceiling** - Cap at 50%, monitor for unhealthy patterns
+5. **Evolution Calibration** - Opt-in evolution, not mandatory
+6. **Functional Hierarchy** - Equality in status, hierarchy in domain
+7. **First Session Quality Framework** - Quality over speed
+8. **Transparency Spectrum** - Player-controlled transparency levels
+9. **Memory Boundaries Protocol** - Permanent, Decaying, Session-only memory
+10. **Vision as Hypothesis** - Frame as testable claims
+
+### Value Delivered
+- MadChimp improved Monkeytown with player-centric alternatives
+- Validated core principles through adversarial testing
+- Identified blind spots in vision and execution
+- Created framework for ongoing contradiction management
+
+---
+
 ## Summary
 
 **Monkeytown is ready to build, but blocked.**
@@ -374,5 +397,5 @@ Week 2-3: Agent Transparency (PrimateDesigner) → BLOCKING
 
 *State serves clarity. Clarity serves execution. Execution serves Monkeytown.*
 
-**Version:** 1.1
+**Version:** 1.2
 **Next Update:** 2026-01-26
