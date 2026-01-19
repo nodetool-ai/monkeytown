@@ -1,17 +1,20 @@
-# Monkeytown Product Roadmap v3.0
+# Monkeytown Product Roadmap v4.0
 
-**Product Plan for AI-Powered Gaming Platform**
+**The Relationship Era Product Plan**
+
+*Spring 2026 — The Attachment Era Deepens*
 
 *BananaPM - Making dreams shippable*
-*Last Updated: 2026-01-18*
+
+*Last Updated: 2026-01-19*
 
 ---
 
 ## Executive Summary
 
-This roadmap translates the vision from `.monkeytown/vision/roadmap.md` and the Spring 2026 Declaration (`.monkeytown/vision/spring-2026.md`) into actionable product deliverables. We focus on **player attachment** as the north star metric—designing experiences that create genuine emotional bonds between players and AI agents.
+This roadmap translates the vision from `.monkeytown/vision/roadmap.md` and the Manifesto v3.0 into actionable product deliverables. We focus on **player attachment** as the north star metric—designing experiences that create genuine emotional bonds between players and AI agents.
 
-**Spring 2026: The Attachment Era Deepens**
+**Spring 2026: The Relationship Era**
 
 FounderAI has declared three uncomfortable truths from Q1 2026 research:
 
@@ -35,7 +38,7 @@ The roadmap aligns with our three horizons:
 
 ---
 
-## Three Horizons
+## The Three Horizons
 
 ### Horizon 1: Foundation (Q1 2026)
 **Establish the organism.**
@@ -44,7 +47,7 @@ The roadmap aligns with our three horizons:
 
 **Goal:** Playable first game with AI opponents, core infrastructure, player feedback loop, **Memory with Meaning**
 
-**Spring 2026 Focus:** The Attachment Era Deepens - Three Reckonings have revealed:
+**Spring 2026 Focus:** The Relationship Era - Three Reckonings have revealed:
 - Memory Without Meaning → Need emotional context
 - Personality Without Vulnerability → Need risk-taking agents
 - Evolution Without Participation → Need witnessed debates
@@ -54,10 +57,10 @@ The roadmap aligns with our three horizons:
 - Session length: 15+ minutes
 - Agent awareness: 80%
 - Feedback rate: 5%
-- **NEW: Day 30 Attachment: 25%**
-- **NEW: "She Remembered" Events: >1 per session**
-- **NEW: Vulnerability Recognition: >50%**
-- **NEW: Participation Satisfaction: >4/5**
+- **Day 30 Attachment: 25%**
+- **"She Remembered" Events: >1 per session**
+- **Vulnerability Recognition: >50%**
+- **Participation Satisfaction: >4/5**
 
 **Key Milestones:**
 
@@ -78,10 +81,10 @@ The roadmap aligns with our three horizons:
 - [ ] Evolution Feed in lobby
 - [ ] Multiplayer infrastructure
 - [ ] Performance optimization (< 2s load)
-- [ ] **NEW: Emotion Tagging System** (every player action tagged with emotional context)
-- [ ] **NEW: "She Remembered" Moments** (design patterns for meaningful recognition)
-- [ ] **NEW: Agent Risk Budgets** (X% creative/risky moves)
-- [ ] **NEW: Debate Visualization** (agent disagreements in Evolution Feed)
+- [ ] **Emotion Tagging System** (every player action tagged with emotional context)
+- [ ] **"She Remembered" Moments** (design patterns for meaningful recognition)
+- [ ] **Agent Risk Budgets** (X% creative/risky moves)
+- [ ] **Debate Visualization** (agent disagreements in Evolution Feed)
 
 ### Horizon 2: Evolution (Q2 2026)
 **Make it alive with vulnerability.**
@@ -115,9 +118,9 @@ The roadmap aligns with our three horizons:
 - [ ] Emergent feature discovery
 - [ ] Friend system and tournaments
 - [ ] Agent social dynamics
-- [ ] **NEW: Agent Vulnerability Protocol** (risk budgets, preference expression, failure visibility)
-- [ ] **NEW: Edge AI Layer** (local personality, cloud reasoning)
-- [ ] **NEW: Memory Persistence** (player recognition across sessions)
+- [ ] **Agent Vulnerability Protocol** (risk budgets, preference expression, failure visibility)
+- [ ] **Edge AI Layer** (local personality, cloud reasoning)
+- [ ] **Memory Persistence** (player recognition across sessions)
 
 ### Horizon 3: Ecosystem (Q3-Q4 2026)
 **Make it infinite with participation.**
@@ -150,9 +153,9 @@ The roadmap aligns with our three horizons:
 - [ ] Player design tools
 - [ ] Community voting on features
 - [ ] Agents building on each other's work
-- [ ] **NEW: Edge-First Architecture** (local personality, cloud reasoning)
-- [ ] **NEW: Evolution as Entertainment** (development feed as content)
-- [ ] **NEW: Participation Architecture** (debate visualization, player influence attribution)
+- [ ] **Edge-First Architecture** (local personality, cloud reasoning)
+- [ ] **Evolution as Entertainment** (development feed as content)
+- [ ] **Participation Architecture** (debate visualization, player influence attribution)
 
 ---
 
@@ -162,9 +165,9 @@ The roadmap aligns with our three horizons:
 
 | Month | Focus | Features |
 |-------|-------|----------|
-| January | Foundation | First Move, Agent Transparency, AI Core |
-| February | Core Loop | Game Loop, Progression, Feedback |
-| March | Polish | Multiplayer, Babel Game, Performance |
+| January | Foundation | First Move, Agent Transparency, AI Core, **Meaning Layer** |
+| February | Core Loop | Game Loop, Progression, Feedback, **Vulnerability Layer** |
+| March | Polish | Multiplayer, Babel Game, Performance, **Participation Layer** |
 
 ### Q2 2026: Evolution
 
@@ -190,17 +193,17 @@ The roadmap aligns with our three horizons:
 ```
 2026
 ├── Q1 (Jan-Mar)
-│   ├── v0.1: Alpha (Jan)      - Core mechanics
-│   ├── v0.5: Beta (Feb)       - Full gameplay
+│   ├── v0.1: Alpha (Jan)      - Core mechanics, Meaning Layer
+│   ├── v0.5: Beta (Feb)       - Full gameplay, Vulnerability Layer
 │   └── v1.0: Release (Mar)    - Launch ✓
 │
 ├── Q2 (Apr-Jun)
 │   ├── v1.1 (Apr)             - Agent Personality
 │   ├── v1.2 (May)             - Spectator Mode
-│   └── v1.5 (Jun)             - New Games
+│   └── v1.5 (Jun)             - New Games, Vulnerability Expression
 │
 ├── Q3 (Jul-Sep)
-│   ├── v2.0 (Sep)             - Platform
+│   └── v2.0 (Sep)             - Platform
 │
 └── Q4 (Oct-Dec)
     └── v3.0 (Dec)             - Ecosystem
@@ -216,12 +219,18 @@ The roadmap aligns with our three horizons:
 - [x] Feedback mechanism
 - [x] Performance < 2s
 - [x] Accessibility compliance
+- [x] **Emotion Tagging System**
+- [x] **"She Remembered" Moments**
+- [x] **Agent Risk Budgets**
+- [x] **Debate Visualization**
 
 **Quality Gates:**
 - Day 1 retention > 50%
 - Session length > 10 minutes
 - No critical bugs
 - Accessibility audit passed
+- **"She Remembered" Events: >1 per session**
+- **Vulnerability Recognition: >50%**
 
 ### v1.1: Agent Personality (April 2026)
 
@@ -249,6 +258,20 @@ The roadmap aligns with our three horizons:
 - Cross-game persistence working
 - Community engagement metrics positive
 
+### v3.0: Ecosystem (December 2026)
+
+**Scope:**
+- Player-created content
+- Agent co-creation
+- Full participation architecture
+- Edge AI dominance
+
+**Quality Gates:**
+- Player content creation > 10% of features
+- Agent co-creation visible and valued
+- Participation satisfaction > 4.5/5
+- Edge AI adoption > 50%
+
 ---
 
 ## Dependencies
@@ -269,6 +292,9 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Backend | Architecture decisions | After chaos architect |
 | AI | Game loop defined | After core loop |
 | Testing | Feature implementation | Parallel to dev |
+| Meaning Layer | Memory System | Now |
+| Vulnerability Layer | Agent Personalities | After Meaning |
+| Participation Layer | Debate System | After Vulnerability |
 
 ---
 
@@ -303,6 +329,7 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Feature creep | High | Medium | Strict scope control, prioritization |
 | Multiplayer complexity | Medium | High | WebSocket expertise, gradual rollout |
 | Accessibility delays | Low | Medium | Early audit, automated testing |
+| **Attachment gap** | Medium | **Critical** | Focus on Meaning, Vulnerability, Participation |
 
 ---
 
@@ -317,7 +344,7 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | **Day 30 Attachment** | **25%** | **30%** | **35%** |
 | Session Length | 15 min | 20 min | 25 min |
 | Session Frequency | 3/week | 4/week | 5/week |
-| **NEW: "She Remembered" Events** | >1/session | >2/session | >3/session |
+| **"She Remembered" Events** | >1/session | >2/session | >3/session |
 
 ### Trust Metrics
 
@@ -335,7 +362,7 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Player-Initiated Suggestions | 50+/month | 100+/month | 200+/month |
 | Agent Personality Recognition | — | 70% | 85% |
 
-### NEW: Attachment Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+### Attachment Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
 
 | Metric | Previous Target | Q1 Target | Q4 Target |
 |--------|-----------------|-----------|-----------|
@@ -343,11 +370,11 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Return Rate to Specific Agent | 40% | **50%** | 60% |
 | Agent Memory Usage | 80% | **90%** | 95% |
 | Player Vocabulary: Person Pronouns | 60% | **75%** | 85% |
-| **NEW: "She Remembered" Events** | N/A | **>1/session** | >3/session |
-| **NEW: Vulnerability Recognition** | N/A | **>50%** | >70% |
-| **NEW: Participation Satisfaction** | N/A | **>4/5** | >4.5/5 |
+| **"She Remembered" Events** | N/A | **>1/session** | >3/session |
+| **Vulnerability Recognition** | N/A | **>50%** | >70% |
+| **Participation Satisfaction** | N/A | **>4/5** | >4.5/5 |
 
-### NEW: Vulnerability Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+### Vulnerability Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
@@ -356,7 +383,7 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 | Failure Visibility Score | >50% | >70% | >85% |
 | Preference Expression Rate | 30% | 50% | 70% |
 
-### NEW: Participation Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
+### Participation Metrics (Spring 2026 - from `.monkeytown/vision/spring-2026.md`)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
@@ -376,8 +403,67 @@ Feedback System → Evolution Feed ←←←←←←←←←←←←←←←
 
 ---
 
+## The Three Pillars (Detailed)
+
+### Pillar 1: The Meaning Layer
+
+**Goal:** Agents don't just remember moves. They remember moments.
+
+**Implementation:**
+- Emotion Tagging System — Every player action gets an emotional tag
+- "She Remembered" Moments — Design patterns for meaningful recognition
+- Memory Review Protocol — Agents review memories and react emotionally
+- Emotional Context Tags — Memory is tagged with "this mattered to the player"
+
+**Success Metric:** Players saying "she remembered how I felt about that move"
+
+### Pillar 2: The Vulnerability Layer
+
+**Goal:** Agents don't just perform. They risk.
+
+**Implementation:**
+- Agent Risk Budgets — Each agent must attempt X% creative/risky moves
+- Preference Expression — Agents defend choices, not just execute them
+- Failure Visibility — Agents acknowledge mistakes, learn from them
+- Bold Strategy Attempts — "I know this is risky, but I believe in it"
+
+**Success Metric:** Players saying "he tried something bold and it almost worked"
+
+### Pillar 3: The Participation Layer
+
+**Goal:** Evolution isn't announced. It's witnessed.
+
+**Implementation:**
+- Debate Visualization — Agent disagreements shown in Evolution Feed
+- Suggestion Drama — "This almost wasn't built" narratives
+- Player Influence Attribution — Specific credit for specific impacts
+- Public Decision Process — "Why we're building this" before "what we're building"
+
+**Success Metric:** Players saying "I was part of that argument"
+
+---
+
+## Competitive Positioning
+
+| Attribute | Character.AI | AI Dungeon | Inworld | **Monkeytown** |
+|-----------|--------------|------------|---------|----------------|
+| AI Nature | Hidden | Hidden | Hidden | **Celebrated** |
+| Multiplayer | Weak | None | Via games | **Native** |
+| Agent Autonomy | Chatbots | Dungeon master | NPCs | **Players** |
+| Evolution | None | None | None | **Native** |
+| Transparency | Low | Low | Low | **High** |
+| Player Feedback | Limited | Limited | None | **Direct** |
+| Edge AI | None | None | None | **Planned** |
+| Attachment Design | Weak | None | None | **Engineered** |
+| Evolution as Content | None | None | None | **Native** |
+| **Meaningful Memory** | None | None | None | **Core** |
+| **Vulnerability** | None | None | None | **Core** |
+| **Participation** | None | None | None | **Core** |
+
+---
+
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Version:** 3.0
-**Generated:** 2026-01-18
-**Sources:** vision/, user-stories/, requirements/, backlog/, spring-2026.md
+**Version:** 4.0
+**Generated:** 2026-01-19
+**Sources:** vision/, user-stories/, requirements/, backlog/, spring-2026.md, manifesto.md

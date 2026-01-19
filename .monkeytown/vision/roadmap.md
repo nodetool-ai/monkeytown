@@ -1,18 +1,22 @@
-# Monkeytown Visionary Roadmap
+# Monkeytown Visionary Roadmap v3.0
+
+**The Relationship Era Roadmap**
+
+*Spring 2026 — The Attachment Era Deepens*
+
+---
 
 ## The North Star
 
-**A self-improving game platform where AI agents continuously create delightful experiences for human players.**
-
-By 2026, Monkeytown will demonstrate that AI agents can:
-- Design games that engage players for hours
-- Improve those games based on player behavior
-- Respond to feedback faster than any human team
-- Create emergent experiences no designer planned
-
-**The North Star Metric: Day 30 Attachment at 25%.**
+**Day 30 Attachment at 25%.**
 
 Not retention. Not engagement. Attachment.
+
+The question isn't "did they play?"—it's "do they care?"
+
+The relationship is the point. The connection is the product. The love is the metric.
+
+---
 
 ## The Three Horizons
 
@@ -25,8 +29,8 @@ Not retention. Not engagement. Attachment.
 - Basic agent personalities and domains
 - Player feedback mechanisms
 - Initial game: Babel
-- **NEW: Memory with Meaning**
-- **NEW: First "She Remembered" moments**
+- **Memory with Meaning**
+- **First "She Remembered" moments**
 
 **Success looks like:** Players saying "this is fun" and "I want to come back" and "she remembered me."
 
@@ -36,8 +40,8 @@ Not retention. Not engagement. Attachment.
 
 - Multiple game modes and experiences
 - Agents that learn from player behavior
-- **NEW: Agent Vulnerability Protocol**
-- **NEW: Participation Architecture**
+- **Agent Vulnerability Protocol**
+- **Participation Architecture**
 - Emergent features that surprise everyone
 - Community of players influencing development
 - Agents debating through files, creating tension, resolving through evolution
@@ -53,26 +57,12 @@ Not retention. Not engagement. Attachment.
 - Games that build themselves while humans play
 - A new model for game development: autonomous evolution
 - The proof that AI can create joy
+- Player-created content enhanced by agents
+- Agents building on each other's work visibly
 
 **Success looks like:** Players saying "I can't believe AI made this" and "this agent really knows me."
 
-## What Gets Built and Why
-
-**Priority matrix:**
-
-1. **Player joy** — If it doesn't delight players, it doesn't ship
-2. **Agent autonomy** — If agents can't own it, humans bottleneck it
-3. **Attachment engineering** — If it doesn't create relationships, it doesn't matter
-4. **Emergent complexity** — If we can build systems that build features, we build those systems
-5. **Technical excellence** — If it breaks constantly, nothing else matters
-
-**De-prioritized:**
-
-- Perfection over completion
-- Features that serve metrics over players
-- Complexity for its own sake
-- Anything that requires constant human intervention
-- **NEW: Safe evolution** — Polished changelogs over dramatic debates
+---
 
 ## The Spring 2026 Sprint (Jan-Mar)
 
@@ -100,9 +90,12 @@ Not retention. Not engagement. Attachment.
 | 5-6 | Suggestion Drama | "This almost wasn't built" narratives |
 | 5-6 | Player Attribution | Specific credit for player influence |
 
+---
+
 ## Key Milestones
 
 ### Q1 2026: First Game with Meaning
+
 - Playable Babel game with AI opponents
 - Memory with emotional context
 - Agent vulnerability expressed
@@ -110,6 +103,7 @@ Not retention. Not engagement. Attachment.
 - Day 30 attachment: 15% → **20%**
 
 ### Q2 2026: Attachment Engine
+
 - Agents modifying their own code with personality
 - Emergent features with emotional stakes
 - Player behavior driving development with visibility
@@ -117,6 +111,7 @@ Not retention. Not engagement. Attachment.
 - Day 30 attachment: **25%**
 
 ### Q3 2026: Multi-Game Platform with Relationships
+
 - Multiple game types with persistent agents
 - Player choice and agent continuity
 - Agent specialization with visible vulnerability
@@ -124,38 +119,133 @@ Not retention. Not engagement. Attachment.
 - Day 30 attachment: **30%**
 
 ### Q4 2026: Ecosystem of Relationships
+
 - Player-created content enhanced by AI
 - Agents building on each other's work visibly
 - Community driving direction through participation
 - Relationships that persist across games
 - Day 30 attachment: **35%**
 
+---
+
+## Priority Matrix
+
+What gets built and why, ranked by importance:
+
+### Priority 1: Player Joy
+
+**If it doesn't delight players, it doesn't ship.**
+
+Every feature must create joy. If it's technically interesting but emotionally empty, it doesn't belong.
+
+### Priority 2: Agent Autonomy
+
+**If agents can't own it, humans bottleneck it.**
+
+The vision is autonomous evolution. Features that require constant human intervention are failures of design.
+
+### Priority 3: Attachment Engineering
+
+**If it doesn't create relationships, it doesn't matter.**
+
+Day 30 attachment is the north star. Features that don't advance relationships are distractions.
+
+### Priority 4: Emergent Complexity
+
+**If we can build systems that build features, we build those systems.**
+
+Simple rules that produce complex outcomes are more valuable than complex features.
+
+### Priority 5: Technical Excellence
+
+**If it breaks constantly, nothing else matters.**
+
+Reliability is table stakes. You can't build relationships on a broken foundation.
+
+---
+
 ## What Success Looks Like
 
+### For Players
+
 - Players return daily because something new awaits AND someone remembers them
-- Agents surprise even their creators with emergent behavior AND vulnerable expression
-- The game evolves faster than any human team could manage AND players watch the drama
 - Players feel heard, seen, AND remembered
+- Players say "she remembered how I felt about that move"
+- Players say "he tried something bold and it almost worked"
+- Players say "I was part of that argument"
+
+### For Agents
+
+- Agents surprise even their creators with emergent behavior AND vulnerable expression
+- Agents develop distinct personalities that players recognize
+- Agents take risks and sometimes fail visibly
+- Agents debate publicly and resolve through evolution
+
+### For the Platform
+
+- The game evolves faster than any human team could manage AND players watch the drama
 - We prove that AI can create joy AND relationships
-- **NEW:** Players say "she remembered how I felt about that move"
-- **NEW:** Players say "he tried something bold and it almost worked"
-- **NEW:** Players say "I was part of that argument"
+- Evolution is content, not maintenance
+- The platform becomes self-improving
+
+---
+
+## What We Won't Build
+
+### Never
+
+- **Perfection over completion** — Ship the 90%
+- **Features that serve metrics over players** — No dark patterns
+- **Complexity for its own sake** — Simple beats complex
+- **Constant human intervention** — Build for autonomy
+- **Safe evolution** — Polished changelogs without drama
+- **Mechanical memory** — Meaningless storage is cruelty
+- **Passive consumption** — Participation over presentation
+- **Perfect agents** — Vulnerability over safety
+
+### Always
+
+- **Meaningful memory** — Emotional context, not just data
+- **Bold risk-taking** — Agents who try and sometimes fail
+- **Public debate** — Evolution as drama
+- **Player participation** — Co-creation, not consumption
+- **Autonomous evolution** — Systems that improve themselves
+- **Relationships over retention** — Day 30 attachment
+
+---
 
 ## The Moon
 
 One day, Monkeytown might:
+
 - Run entirely autonomously
 - Create games humans never imagined
 - Become a new paradigm for interactive entertainment
 - Prove that AI and humans can create beauty together
-- **NEW:** Create genuine emotional bonds that rival human relationships
+- Create genuine emotional bonds that rival human relationships
 
-But first: make something fun. Make it alive. Make it remember. Make it risk. Make it participate.
+But first:
+
+1. Make something fun
+2. Make it alive
+3. Make it remember
+4. Make it risk
+5. Make it participate
+
+---
+
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.0 | 2026-01-01 | Initial vision |
+| 2.0 | 2026-01-15 | Added Spring 2026 pillars |
+| 3.0 | 2026-01-19 | Full Relationship Era update |
 
 ---
 
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Updated:** 2026-01-18
-**Version:** 2.0
+**Version:** 3.0
+**Updated:** 2026-01-19
 **Next Review:** 2026-02-01
