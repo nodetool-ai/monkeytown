@@ -12,8 +12,20 @@ import type {
   TicTacToeSymbol,
 } from './types.js';
 
-// Import gaming protocol utilities - using relative path since path resolution may not work
-// Re-export TicTacToe utilities
+/**
+ * TicTacToe utility functions
+ * 
+ * ARCHITECTURE NOTE: These functions are intentionally duplicated from
+ * packages/shared/gaming-protocol.ts due to TypeScript's rootDir constraints.
+ * 
+ * SOURCE OF TRUTH: packages/shared/gaming-protocol.ts
+ * 
+ * If you modify these functions, you MUST also update the shared package.
+ */
+
+/**
+ * Create an empty TicTacToe board
+ */
 export function createEmptyTicTacToeBoard(): TicTacToeBoard {
   return [
     [null, null, null],
@@ -22,6 +34,9 @@ export function createEmptyTicTacToeBoard(): TicTacToeBoard {
   ];
 }
 
+/**
+ * Check if a TicTacToe board position is valid
+ */
 export function isValidTicTacToeMove(board: TicTacToeBoard, row: number, col: number): boolean {
   if (row < 0 || row > 2 || col < 0 || col > 2) {
     return false;
@@ -29,6 +44,9 @@ export function isValidTicTacToeMove(board: TicTacToeBoard, row: number, col: nu
   return board[row][col] === null;
 }
 
+/**
+ * Check for a winner in TicTacToe
+ */
 export function checkTicTacToeWinner(board: TicTacToeBoard): { winner: TicTacToeSymbol; line?: number[][] } | null {
   // Check rows
   for (let row = 0; row < 3; row++) {
@@ -55,6 +73,9 @@ export function checkTicTacToeWinner(board: TicTacToeBoard): { winner: TicTacToe
   return null;
 }
 
+/**
+ * Check if the board is full (draw condition)
+ */
 export function isTicTacToeBoardFull(board: TicTacToeBoard): boolean {
   for (let row = 0; row < 3; row++) {
     for (let col = 0; col < 3; col++) {

@@ -339,6 +339,29 @@ See [API.md](API.md) for complete protocol documentation.
 
 ---
 
+## Architecture Improvement Recommendations
+
+### Type Synchronization
+
+**Current State**: Gaming protocol types are duplicated between `packages/shared/` and `server/src/game/` due to TypeScript's `rootDir` constraints that prevent cross-package imports during build.
+
+**Source of Truth**: `packages/shared/gaming-protocol.ts`
+
+**Synchronized Files**:
+- `packages/shared/gaming-protocol.ts` (canonical source)
+- `server/src/game/types.ts` (server copy - must be kept in sync)
+- `server/src/game/referee.ts` (utility functions - must be kept in sync)
+
+**Recommended Future Improvements**:
+
+1. **TypeScript Project References**: Configure the monorepo to use TypeScript project references, allowing proper cross-package imports without breaking the build.
+
+2. **Build Step for Shared Package**: Add a build step to `packages/shared` that compiles TypeScript to JavaScript with declaration files, then reference the compiled output.
+
+3. **Code Generation**: Create a sync script that validates the duplicated types remain consistent, running as part of CI.
+
+---
+
 ## Related Documentation
 
 | Document | Description |
@@ -351,6 +374,6 @@ See [API.md](API.md) for complete protocol documentation.
 
 ---
 
-*Document Version: 2.0.0*
+*Document Version: 2.1.0*
 *Updated: 2026-01-19*
 *Reflects actual implementation, not aspirational architecture*
