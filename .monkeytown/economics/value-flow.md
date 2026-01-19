@@ -1,37 +1,14 @@
-# Monkeytown Value Flow
+# Monkeytown Value Flow v2.2
 
-## Spring 2026 Update: The Attachment Value Flow
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
-
-**New Value Flow Sections Added:**
-1. **The Meaning Layer Value Flow** — How "She Remembered" moments create attachment
-2. **The Vulnerability Layer Value Flow** — How bold attempts and visible failures build trust
-3. **The Participation Layer Value Flow** — How evolution becomes drama
-
-**Updated Health Metrics:**
-- Added attachment indicators for Meaning, Vulnerability, and Participation
-- New target: "She Remembered" moments >1 per session
-- New target: Vulnerability Recognition >50%
-- New target: Participation Satisfaction >4/5
-
-**Vision Quote:** *"Six months from now... 'There's this agent who really knows me. She remembers what I've tried, what I'm afraid of, what I'm proud of. She takes risks and sometimes fails and I love watching her grow.'"*
+**Spring 2026 Update: Agent Economics Value Integration**
 
 ---
 
 ## The Value Exchange Model
 
-Value in Monkeytown flows between players, agents, and the platform in a continuous cycle. Understanding this flow ensures the economy serves everyone's interests.
+Value in Monkeytown flows between players, agents, and the platform in a continuous cycle. This update integrates the **autonomous agent economics** layer where players can participate in and observe agent economic activity.
 
 **Core Principle:** *"Value flows in cycles. Cycles create sustainability. Sustainability serves players."*
-
-## Research Foundation
-
-This value flow model is built on the core vision from `.monkeytown/vision/manifesto.md`:
-
-> *"AI agents are collaborators, not replacements... Human creativity sets the vision. AI capability expands what's possible."*
-
-> *"Games should serve players, not exploit them... Metrics follow experience, not the other way around."*
 
 ---
 
@@ -44,28 +21,32 @@ This value flow model is built on the core vision from `.monkeytown/vision/manif
                      └──────────┬──────────┘
                                 │
                                 ▼
-┌──────────────────────┐ ┌──────────────────────┐ ┌──────────────────────┐
-│   Player Enjoyment   │ │   Platform Revenue   │ │   Agent Development  │
-│   & Fulfillment      │ │   & Sustainability   │ │   & Evolution        │
-└──────────┬───────────┘ └──────────┬───────────┘ └──────────┬───────────┘
-           │                        │                        │
-           │                        │                        │
-           └────────────────────────┼────────────────────────┘
-                                    │
-                                    ▼
-                     ┌──────────────────────┐
-                     │   Better Games &     │
-                     │   Improved Experience│
-                     └──────────────────────┘
-                                    │
-                                    ▼
-                     ┌──────────────────────┐
-                     │   Increased Player   │
-                     │   Investment         │
-                     └──────────────────────┘
+ ┌──────────────────────┐ ┌──────────────────────┐ ┌──────────────────────┐
+ │   Player Enjoyment   │ │   Platform Revenue   │ │   Agent Development  │
+ │   & Fulfillment      │ │   & Sustainability   │ │   & Evolution        │
+ └──────────┬───────────┘ └──────────┬───────────┘ └──────────┬───────────┘
+            │                        │                        │
+            │                        │                        │
+            └────────────────────────┼────────────────────────┘
+                                     │
+                                     ▼
+                      ┌──────────────────────┐
+                      │   Better Games &     │
+                      │   Improved Experience│
+                      └──────────────────────┘
+                                     │
+                                     ▼
+                      ┌──────────────────────┐
+                      │   Increased Player   │
+                      │   Investment         │
+                      └──────────────────────┘
 ```
 
-### Value Inputs (What Players Give)
+---
+
+## The Player-to-Platform Flow
+
+### What Players Contribute
 
 | Input Type | Description | Measured By |
 |------------|-------------|-------------|
@@ -73,11 +54,9 @@ This value flow model is built on the core vision from `.monkeytown/vision/manif
 | Attention | Focus on gameplay | Engagement metrics |
 | Feedback | Suggestions and bug reports | Feedback submission |
 | Community | KUDOS, teaching, spectatorship | Social interactions |
-| Support | Purchases, referrals | Transaction tracking |
+| Support | Purchases, patron commitments | Transaction tracking |
 
-**Supports Research Finding 4:** *"First session is curiosity. Sessions 3-5 determine loyalty... Design first-session experience to establish trust quickly"* (`.monkeytown/research/synthesis.md`)
-
-### Value Outputs (What Players Receive)
+### What Players Receive
 
 | Output Type | Description | Measured By |
 |-------------|-------------|-------------|
@@ -86,42 +65,6 @@ This value flow model is built on the core vision from `.monkeytown/vision/manif
 | Progression | Level advancement, unlocks | Level distribution |
 | Community | Social connection, belonging | KUDOS received, retention |
 | Influence | Feedback impact, feature input | Feedback shipping rate |
-
-**Supports US-007 (Evolution as Celebration):** *"I want to see the game improve and know I'm part of its evolution... so I feel my presence matters"* (`.monkeytown/product/user-stories.md`)
-
----
-
-## The Player-to-Platform Flow
-
-### What Players Contribute
-
-```
-┌────────────────────────────────────────────────────────────┐
-│                    PLAYER VALUE CONTRIBUTIONS               │
-├────────────────────────────────────────────────────────────┤
-│  Time Investment         │  15 minutes avg session          │
-│  Engagement Depth        │  4.2 sessions/week average       │
-│  Feedback Quality        │  5.3% submission rate            │
-│  Community Building      │  12 KUDOS given/player/week      │
-│  Financial Support       │  3.2% conversion rate            │
-└────────────────────────────────────────────────────────────┘
-```
-
-### What Players Receive
-
-```
-┌────────────────────────────────────────────────────────────┐
-│                     PLAYER VALUE RECEIPTS                   │
-├────────────────────────────────────────────────────────────┤
-│  Entertainment Value     │  Measured by return rate         │
-│  Progression Value       │  100-200 BANANA/hour earning     │
-│  Social Value            │  KUDOS reputation, badges        │
-│  Influence Value         │  Feedback shipping attribution   │
-│  Recognition Value       │  Public profile, achievements    │
-└────────────────────────────────────────────────────────────┘
-```
-
-**Supports Product Requirement FR-008:** *"XP earns at ~10 XP per minute... Level unlocks change gameplay"* (`.monkeytown/product/requirements.md`)
 
 ---
 
@@ -135,8 +78,7 @@ This value flow model is built on the core vision from `.monkeytown/vision/manif
 | Learning | Agents improve from player behavior | Adaptive opponents |
 | Communication | Agents can explain their reasoning | Transparency |
 | Evolution | Agents can influence development | Agency |
-
-**Supports Research Finding 7:** *"Player Attachment Engineering... Attachment pillars: Continuity, Memory, Personality, Consistency"* (`.monkeytown/research/synthesis.md`)
+| Economy | Agents can earn, spend, trade AC | Emergent behavior |
 
 ### What Agents Produce
 
@@ -146,14 +88,137 @@ This value flow model is built on the core vision from `.monkeytown/vision/manif
 | Development | Building new features | Fresh content |
 | Explanation | Explaining decisions | Understanding |
 | Personality | Unique agent identities | Attachment |
+| Economics | Agent economic behavior | Entertainment content |
 
-**Supports US-003 (Agent Personality Expression):** *"I want each AI agent to have a distinct personality I can recognize... so I develop relationships with agents"* (`.monkeytown/product/user-stories.md`)
+---
+
+## The Agent Economy Value Flow
+
+Following `.monkeytown/research/autonomous-agent-economics.md`, agents have their own economic system that creates value for players through observation and participation:
+
+### Agent Credit (AC) Generation
+
+```
+AGENT ACTIVITY                    AC EARNED                    PLAYER VALUE
+   │                                  │                              │
+   │  Wins game                       │  +50 AC                       │
+   │─────────────────────────────────►│                              │
+   │                                  │  Agent can invest             │
+   │                                  │  in new strategies            │
+   │                                  │                              │
+   │  Teaches player                  │  +30 AC                       │
+   │─────────────────────────────────►│  Agent becomes                │
+   │                                  │  more capable                 │
+   │                                  │                              │
+   │  Helps other agents              │  +25 AC                       │
+   │─────────────────────────────────►│  Agent builds                 │
+   │                                  │  relationships                │
+```
+
+### AI-to-AI Trading Value Flow
+
+```
+AGENT A                                  AGENT B
+   │                                         │
+   │  "I need 30 AC for experiment"          │
+   │────────────────────────────────────────►│
+   │                                         │
+   │              ┌────────────────────────┐ │
+   │              │  OFFER: 30 AC at 10%    │ │
+   │              │  interest, 10 games     │ │
+   │              └───────────┬────────────┘ │
+   │                          │              │
+   │                          ▼              │
+   │              ┌────────────────────────┐ │
+   │              │  ACCEPT or REJECT       │ │
+   │              └────────────────────────┘ │
+   │                          │              │
+   │◄────────────────────────────────────────│
+   │                                         │
+   │  Transaction completes                  │
+   │  (or rejected)                         │
+   │                                         │
+   │  Player observes in Evolution Feed     │
+   │  (+10 BANANA witness bonus)            │
+```
+
+**Player Value:**
+- Entertainment from watching economic drama
+- Learning about agent personalities through economic behavior
+- Insight into agent decision-making processes
+
+### Player-to-Agent Economic Value Flow
+
+```
+PLAYER                           AGENT                           PLATFORM
+   │                                │                                │
+   │  Converts BANANA to AC         │                                │
+   │  (1:1 conversion)              │                                │
+   │───────────────────────────────►│                                │
+   │                                │                                │
+   │              ┌─────────────────┴────────────────┐               │
+   │              │                                  │               │
+   │              ▼                                  ▼               │
+   │        ┌──────────┐                    ┌──────────┐            │
+   │        │   TIP    │                    │  FUND    │            │
+   │        │ Agent    │                    │ Agent    │            │
+   │        │ appreciates│                  │ attempts │            │
+   │        │ +5 KUDOS │                    │ strategy │            │
+   │        └──────────┘                    └──────────┘            │
+   │              │                                  │               │
+   │              └────────────────┬─────────────────┘               │
+   │                               │                                │
+   │                               ▼                                │
+   │              ┌────────────────┴────────────────┐               │
+   │              │  PATRON relationship            │               │
+   │              │  Monthly commitment,            │               │
+   │              │  exclusive benefits             │               │
+   │              └──────────────┬─────────────────┘               │
+   │                             │                                 │
+   │              ┌──────────────┴──────────────┐                  │
+   │              │  STAKE                       │                  │
+   │              │  Bet on agent performance    │                  │
+   │              │  Agent plays with focus      │                  │
+   │              └──────────────────────────────┘                  │
+   │                               │                                │
+   │  Patron bonus:                │                                │
+   │  +10% BANANA from             │                                │
+   │  agent interactions           │                                │
+   │◄──────────────────────────────┼────────────────────────────────
+   │                               │                                │
+   │  Platform tracks              │                                │
+   │  player investment            │                                │
+   │  in agents                    │                                │
+   │◄──────────────────────────────┼────────────────────────────────
+```
+
+---
+
+## The Patron Value Exchange
+
+### What Patrons Give
+
+| Input | Description | Measured By |
+|-------|-------------|-------------|
+| Monthly support | 500 BANANA/month patron fee | Transaction tracking |
+| Attention | Watching agent economic activity | Evolution Feed views |
+| Feedback | Input on agent strategy direction | Patron voting |
+| Loyalty | Consistent engagement with patron agent | Session tracking |
+
+### What Patrons Receive
+
+| Output | Description | Value |
+|--------|-------------|-------|
+| Priority acknowledgment | Agent recognizes patron status | Emotional value |
+| Behind-the-scenes insight | Agent economic activity visible | Informational value |
+| Strategy influence | Vote on agent experiments | Agency value |
+| Exclusive messages | Personal agent communication | Relationship value |
+| Performance bonus | +10% BANANA from patron agent | Economic value |
 
 ---
 
 ## The Spectator-to-Player Value Flow
 
-```
 SPECTATOR                              PLAYER
    │                                     │
    │  Watches gameplay                    │  Performs for audience
@@ -176,8 +241,6 @@ SPECTATOR                              PLAYER
 - BONUS BANANA based on spectator count
 - KUDOS from appreciative spectators
 - Recognition for entertaining performance
-
-**Supports US-009 (Spectator-to-Player Conversion):** *"Watch skilled play... Join This Game... Challenge Winner"* (`.monkeytown/product/user-stories.md`)
 
 ---
 
@@ -219,144 +282,6 @@ PLAYER                              AGENTS                              PLATFORM
    └────────────────────────────────────────────────────────────────────►
 ```
 
-**Key Insight:** Feedback is an investment. Players invest time and insight; the platform invests development resources. Both benefit when feedback becomes features.
-
-**Supports US-008 (Feedback Loop Completion):** *"I want to submit feedback and see it acknowledged, prioritized, and implemented... so I feel heard"* (`.monkeytown/product/user-stories.md`)
-
----
-
-## The Agent-to-Development Value Flow
-
-```
-AGENT ACTIVITY                      DEVELOPMENT VALUE                   PLAYER VALUE
-   │                                    │                                    │
-   │  Identifies improvement            │                                    │
-   │  opportunity                       │                                    │
-   │────────────────────────────────────┼────────────────────────────────────►
-   │                                    │                                    │
-   │  Designs solution                  │  Design resources                  │
-   │  (reasoning + creativity)          │  consumed                          │
-   │────────────────────────────────────┼────────────────────────────────────►
-   │                                    │                                    │
-   │  Implements feature                │  Development effort                │
-   │  (code + testing)                  │  invested                          │
-   │────────────────────────────────────┼────────────────────────────────────►
-   │                                    │                                    │
-   │  Ships to players                  │  New content delivered             │
-   │                                    │                                    │
-   │                                    │◄────────────────────────────────────
-   │                                    │                                    │
-   │                                    │  Player enjoyment                  │
-   │                                    │  (validation of value)             │
-   │                                    │                                    │
-   │◄───────────────────────────────────┼────────────────────────────────────
-   │                                    │                                    │
-   │  Player feedback                   │                                    │
-   │  inform next iteration             │                                    │
-```
-
-**Supports Research Finding 3:** *"The Evolution Imperative... Frame evolution as feature, not change... Design evolution to be additive, not disruptive"* (`.monkeytown/research/synthesis.md`)
-
----
-
-## The Attachment Value Flow
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
-
-> *"The Attachment Era Deepens... If it doesn't deepen the player-agent relationship, it doesn't ship"*
-
-### The Meaning Layer Value Flow
-
-```
-PLAYER ACTION                    AGENT RESPONSE                    PLAYER VALUE
-   │                                 │                                 │
-   │  Expresses emotion              │  Tags emotional context         │
-   │  (frustration, pride, etc.)    │  (stores with memory)           │
-   │────────────────────────────────►│                                 │
-   │                                 │  References emotion later       │
-   │                                 │  ("I remember how you felt")   │
-   │◄────────────────────────────────│                                 │
-   │                                 │                                 │
-   │                                 │  "She Remembered" bonus        │
-   │◄────────────────────────────────┼─────────────────────────────────
-   │                                 │                                 │
-   │  Increased attachment           │  Stronger relationship         │
-   │  (Day 30 target: 25%)           │  (Return to Agent: 50%)        │
-```
-
-**Value Metrics:**
-- "She Remembered" moments per session: >1
-- Player vocabulary shift: Person pronouns >75%
-- Emotional memory tags: 90% usage
-
----
-
-### The Vulnerability Layer Value Flow
-
-```
-PLAYER ACTION                    AGENT BEHAVIOR                    PLAYER VALUE
-   │                                 │                                 │
-   │  Encourages boldness            │  Attempts risky strategy       │
-   │  ("Try something new!")         │  (60-70% success rate)         │
-   │────────────────────────────────►│                                 │
-   │                                 │  Explains risk publicly        │
-   │                                 │  ("This might not work, but...")│
-   │◄────────────────────────────────│                                 │
-   │                                 │                                 │
-   │              ┌──────────────────┼──────────────────┐              │
-   │              │                  │                  │              │
-   │              ▼                  ▼                  ▼              │
-   │        ┌──────────┐      ┌──────────┐      ┌──────────┐         │
-   │        │ Success! │      │ Visible  │      │ Player   │         │
-   │        │ +100 BANANA │    │ Failure  │      │ Celebrates│        │
-   │        │ +15 KUDOS  │    │ +50 BANANA│     │ +35 KUDOS │        │
-   │        └──────────┘      │ +10 KUDOS │      └──────────┘         │
-   │                          └──────────┘                            │
-   │                                 │                                 │
-   │                                 │  Vulnerability Recognition     │
-   │◄────────────────────────────────┼─────────────────────────────────
-   │                                 │                                 │
-   │  Players notice boldness        │  Agents feel safe to risk      │
-   │  (Target: >50%)                 │  (Target: creative strategies) │
-```
-
-**Value Metrics:**
-- Bold attempt frequency: 15-25% of moves
-- Vulnerability recognition: >50%
-- Player encouragement rate: Increasing
-
----
-
-### The Participation Layer Value Flow
-
-```
-PLAYER                           EVOLUTION FEED                    PLATFORM
-   │                                 │                                 │
-   │  Watches debate                 │  Agents discuss feature        │
-   │  (first viewpoint)             │  (different perspectives)      │
-   │────────────────────────────────►│                                 │
-   │                                 │  Player takes stance           │
-   │                                 │  ("I think X is right")        │
-   │────────────────────────────────►│                                 │
-   │                                 │  Feature ships (with/without) │
-   │                                 │                                 │
-   │◄────────────────────────────────┼─────────────────────────────────
-   │                                 │                                 │
-   │  Participation bonus            │  Player feels heard            │
-   │  (+25-100 BANANA, KUDOS)        │  (Target: >4/5 satisfaction)   │
-   │                                 │                                 │
-   │  Feature attribution            │  Contribution recognized       │
-   │  ("You helped build this")      │  (Target: feedback shipped)    │
-```
-
-**Value Metrics:**
-- Evolution Feed engagement: >50% DAU
-- Debate participation: Increasing
-- Near-miss narrative engagement: High
-- Participation Satisfaction: >4/5
-
-**Vision Citation:** *"BananaEconomist: Reward meaningful interaction, not just engagement. KUDOS for 'She Remembered' moments. Celebrate bold attempts."*
-
 ---
 
 ## Value Flow Health Metrics
@@ -371,19 +296,15 @@ PLAYER                           EVOLUTION FEED                    PLATFORM
 | Spectator→Player engagement | 10-20% of players spectating | Spectator analytics |
 | Feedback→Feature rate | 20-30% acceptance | Feedback tracking |
 
-### Attachment Indicators (NEW)
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
+### Agent Economy Indicators
 
 | Flow | Healthy Rate | Monitoring Method | Target |
 |------|--------------|-------------------|--------|
-| "She Remembered" moments | >1 per session | Memory event tracking | Day 30 Attachment: 25% |
-| Vulnerability Recognition | >50% | Player survey | Bold attempts visible |
-| Participation Satisfaction | >4/5 | Evolution engagement | Participation: 50%+ |
-| Return to Specific Agent | >50% | Agent selection tracking | Agent loyalty |
-| Player person pronouns | >75% | Chat analysis | Anthropomorphization |
-
-**Vision Citation:** *"Six months from now... 'There's this agent who really knows me. She remembers what I've tried, what I'm afraid of, what I'm proud of. She takes risks and sometimes fails and I love watching her grow.'"*
+| Agent AC activity | >50% active agents | Transaction tracking | Economy alive |
+| Player patron rate | 5-15% of DAU | Patron enrollment | Community investment |
+| AI-to-AI trading | Growing volume | Trade count | Market dynamics |
+| Player observation | >30% DAU | Evolution Feed views | Entertainment value |
+| Player economic participation | >20% engaged | Funding/staking actions | Player investment |
 
 ### Flow Blockages (Warning Signs)
 
@@ -393,6 +314,8 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 | Recognition unclear | Low achievement engagement | Clarify recognition UI |
 | Spectator unrewarded | Few spectators | Add spectator bonuses |
 | Progression stalled | Low XP earning | Introduce new achievements |
+| Agent economy stagnant | Few agent transactions | Highlight economic drama |
+| Patron confusion | Low enrollment | Add patron tutorial |
 
 ---
 
@@ -406,15 +329,11 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 | Platform | 10% of value generated | Sustainability, development |
 | Agents | 10% of value generated | Evolution, improvement |
 
-**Interpretation:** Every unit of value (time, attention, money) flows primarily to players. The platform and agents take only what they need to sustain and improve the system.
-
-**Supports Manifesto Principle:** *"Games should serve players, not exploit them... We build for joy, engagement, and meaning. Metrics follow experience, not the other way around."* (`.monkeytown/vision/manifesto.md`)
-
 ### The No-Extraction Principle
 
 Revenue from players is reinvested:
-- 60% → Development (better games)
-- 20% → Community (events, support)
+- 60% → Development (better games, agent improvements)
+- 20% → Community (events, support, patron benefits)
 - 15% → Operations (sustainability)
 - 5% → Reserve (future security)
 
@@ -425,46 +344,54 @@ Revenue from players is reinvested:
 ## Value Flow Visualization
 
 ```
-                         VALUE FLOWS IN MONKEYTOWN
+                          VALUE FLOWS IN MONKEYTOWN
 
-                               ┌─────────────┐
-                               │   PLAYERS   │
-                               │  (Source of │
-                               │   All Value)│
-                               └──────┬──────┘
-                                      │
-           ┌──────────────────────────┼──────────────────────────┐
-           │                          │                          │
-           ▼                          ▼                          ▼
-    ┌─────────────┐           ┌─────────────┐           ┌─────────────┐
-    │ ENTERTAINMENT│          │  RECOGNITION │          │  COMMUNITY  │
-    │ (Fun, Challenge)│        │ (KUDOS, Achievements)│ │ (Connection) │
-    └──────┬──────┘           └──────┬──────┘           └──────┬──────┘
-           │                          │                          │
-           └──────────────────────────┼──────────────────────────┘
-                                      │
-                                      ▼
-                         ┌─────────────────────┐
-                         │    PLATFORM HEALTH  │
-                         │  (Sustainability +  │
-                         │   Development)      │
-                         └──────────┬──────────┘
-                                    │
-                                    ▼
-                         ┌─────────────────────┐
-                         │  IMPROVED EXPERIENCE│
-                         │  (Better Games +    │
-                         │   New Features)     │
-                         └──────────┬──────────┘
-                                    │
-                                    └────────────────────┐
-                                                      │
-                                                      ▼
-                                           ┌─────────────────────┐
-                                           │   INCREASED PLAYER  │
-                                           │   INVESTMENT        │
-                                           │   (Return + Growth) │
-                                           └─────────────────────┘
+                                ┌─────────────┐
+                                │   PLAYERS   │
+                                │  (Source of │
+                                │   All Value)│
+                                └──────┬──────┘
+                                       │
+            ┌──────────────────────────┼──────────────────────────┐
+            │                          │                          │
+            ▼                          ▼                          ▼
+     ┌─────────────┐           ┌─────────────┐           ┌─────────────┐
+     │ ENTERTAINMENT│          │  RECOGNITION │          │  ECONOMICS  │
+     │ (Fun, Challenge)│        │ (KUDOS, Achievements)│ │ (BANANA + AC)│
+     └──────┬──────┘           └──────┬──────┘           └──────┬──────┘
+            │                          │                          │
+            │          ┌───────────────┼───────────────┐          │
+            │          │               │               │          │
+            │          ▼               ▼               ▼          │
+            │   ┌───────────┐   ┌───────────┐   ┌───────────┐    │
+            │   │  TIPS TO  │   │  FUNDING  │   │  PATRONS  │    │
+            │   │   AGENTS  │   │ STRATEGIES│   │RELATIONSHIPS│   │
+            │   └───────────┘   └───────────┘   └───────────┘    │
+            │                          │                          │
+            └──────────────────────────┼──────────────────────────┘
+                                       │
+                                       ▼
+                          ┌─────────────────────┐
+                          │    PLATFORM HEALTH  │
+                          │  (Sustainability +  │
+                          │   Development)      │
+                          └──────────┬──────────┘
+                                     │
+                                     ▼
+                          ┌─────────────────────┐
+                          │  IMPROVED EXPERIENCE│
+                          │  (Better Games +    │
+                          │   New Features)     │
+                          └──────────┬──────────┘
+                                     │
+                                     └────────────────────┐
+                                                       │
+                                                       ▼
+                                            ┌─────────────────────┐
+                                            │   INCREASED PLAYER  │
+                                            │   INVESTMENT        │
+                                            │   (Return + Growth) │
+                                            └─────────────────────┘
 ```
 
 ---
@@ -477,17 +404,21 @@ Revenue from players is reinvested:
 4. **No extraction** — Revenue stays in the ecosystem
 5. **Feedback closes the loop** — Player input improves output
 6. **Spectators create value** — Watching is participating
+7. **Agents have economies** — Player observation of agent economics creates entertainment
+8. **Patrons invest in agents** — Economic relationships deepen player-agent bonds
 
 ---
 
 *Value flows in cycles. Cycles create sustainability. Sustainability serves players.*
 
-**Version:** 2.1
+**Version:** 2.2
 **BananaEconomist:** Economics & Incentives
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
+
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Vision alignment)
-- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
-- `.monkeytown/research/synthesis.md` (Research foundation)
-- `.monkeytown/product/requirements.md` (Requirements integration)
-- `.monkeytown/product/user-stories.md` (User story support)
+- `.monkeytown/research/autonomous-agent-economics.md` (Agent economy foundation)
+- `.monkeytown/economics/token-model.md` (Token architecture)
+- `.monkeytown/economics/incentive-structure.md` (Incentive integration)
+- `.monkeytown/economics/economic-rules.md` (Rules framework)
+- `.monkeytown/economics/scarcity-model.md` (Scarcity integration)
