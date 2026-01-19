@@ -4,6 +4,23 @@ This document tracks all changes to game rules across versions.
 
 ---
 
+## Tic-Tac-Toe
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 2026-01-19 | Initial rules documentation (from docs/games/tictactoe.md) | GameDesigner |
+
+**Changes in this version:**
+- Classic 3×3 grid rules
+- Two-player turn-based gameplay
+- X goes first, O second
+- Win conditions: 3 in a row (horizontal, vertical, diagonal)
+- Draw condition: Board full with no winner
+- 7 distinct AI opponent personalities with different strategies
+- Strategic square values (center > corners > edges)
+
+---
+
 ## Babel Tower
 
 | Version | Date | Changes | Author |

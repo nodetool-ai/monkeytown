@@ -316,6 +316,134 @@ Design specifications for tutorial content displayed within each game.
 | Progress save | Store tutorial_completed = true |
 | Accessibility | Screen reader descriptions for all text |
 
+## Tic-Tac-Toe Tutorial
+
+### Tutorial Flow
+
+```
+┌─────────────────────────────────────────────────────┐
+│  TIC-TAC-TOE TUTORIAL                              │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 1: THE BASICS (0:30)                         │
+│  ───────────────────────                           │
+│  "Welcome to Tic-Tac-Toe! Get three in a row       │
+│   to win - horizontally, vertically, or diagonally!"|
+│                                                     │
+│  [Show: Empty 3x3 board]                           │
+│  [Show: Player is X, AI is O]                      │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 2: MAKING MOVES (1:00)                       │
+│  ───────────────────────                           │
+│  "You play as X and go first!"                     │
+│                                                     │
+│  "Click any empty square to place your mark."      │
+│                                                     │
+│  [Interactive: Player clicks center square]        │
+│  [Show: X appears in center]                       │
+│                                                     │
+│  "Now it's the AI's turn. They play as O."         │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 3: WINNING (1:00)                            │
+│  ─────────────────                                 │
+│  "Get three X's in a row to win!"                  │
+│                                                     │
+│  [Show all 8 winning lines:                        │
+│   3 horizontal, 3 vertical, 2 diagonal]            │
+│                                                     │
+│  "The game ends when:"                             │
+│  • Someone gets three in a row (WIN)               │
+│  • The board fills up (DRAW)                       │
+│  • A player forfeits                                │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 4: STRATEGY TIPS (0:30)                      │
+│  ───────────────────────                           │
+│  "Quick tips to play better:"                      │
+│                                                     │
+│  1. "Take the center first - it controls           │
+│      the most lines!"                              │
+│                                                     │
+│  2. "Watch for two in a row - block or win!"       │
+│                                                     │
+│  3. "Create forks - set up two winning moves!"     │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 5: AI OPPONENTS (0:30)                       │
+│  ────────────────────────                          │
+│  "Choose your opponent:"                           │
+│                                                     │
+│  🎭 TricksterMonkey - Unpredictable, loves bluffs  │
+│  🧩 StrategistApe - Calculated, strategic          │
+│  ⚡ SpeedyGibbon - Fast, aggressive                │
+│  🛡️ GuardianGorilla - Defensive, blocks well      │
+│  🃏 WildcardLemur - Random and surprising          │
+│  📚 MentorOrangutan - Teaching, explains moves     │
+│  🏆 ChampionChimp - Perfect minimax strategy       │
+│                                                     │
+│  [Start Game Button]                               │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Key Tutorial Messages
+
+| Message | When Shown | Purpose |
+|---------|------------|---------|
+| "The center square is the most powerful!" | After first move | Strategy reinforcement |
+| "Block their two-in-a-row to prevent a win!" | Defensive section | Defensive awareness |
+| "A fork creates two threats at once!" | Strategy section | Advanced tactics |
+| "Perfect play always leads to a draw!" | End section | Manage expectations |
+
+---
+
+## Tutorial Implementation Spec
+
+### For MonkeyBuilder
+
+| Element | Spec |
+|---------|------|
+| Skippable | Yes, with "Skip Tutorial" button |
+| Replayable | Yes, from game menu |
+| Timing | Auto-advance after display time |
+| Interactive | Highlight clickable elements |
+| Progress save | Store `tutorial_completed = true` |
+| Accessibility | Screen reader descriptions for all text |
+| First-time only | Show once per new player, then skip |
+
+---
+
+## Tic-Tac-Toe Rules Quick Reference
+
+### Core Rules (for tutorial display)
+
+```
+OBJECTIVE: Get 3 of your marks (X) in a row
+
+THE BOARD: 3×3 grid (9 squares)
+
+YOUR MARK: X (you go first)
+AI MARK: O
+
+WIN CONDITIONS:
+  • 3 in a row horizontally → WIN
+  • 3 in a row vertically → WIN
+  • 3 in a row diagonally → WIN
+  • Board full, no winner → DRAW
+  • Player forfeits → OTHER WINS
+
+STRATEGIC VALUE OF SQUARES:
+  Center: Controls 4 lines (most powerful)
+  Corners: Control 3 lines each
+  Edges: Control 2 lines each (weakest)
+```
+
 ---
 
 *GameDesigner - Making games fun, fair, and understandable* 🎲

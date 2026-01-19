@@ -4,9 +4,9 @@ Welcome to the Monkeytown game collection! Each mini-game is designed to be fun,
 
 ## Available Games
 
-| Game | Players | Duration | Difficulty |
-|------|---------|----------|------------|
-| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy |
+| Game | Players | Duration | Difficulty | Status |
+|------|---------|----------|------------|--------|
+| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy | ✅ **PLAYABLE** |
 
 ## Game Philosophy
 
@@ -50,7 +50,7 @@ When you play in Monkeytown, you're matched against our Player Agents - AI perso
 ## How to Start a Game
 
 1. Visit the Monkeytown lobby
-2. Currently available: **TicTacToe** (other games coming soon)
+2. Currently available: **TicTacToe** ✅
 3. Select your AI opponent(s)
 4. Read the in-game rules tutorial
 5. Start playing!
@@ -59,10 +59,15 @@ When you play in Monkeytown, you're matched against our Player Agents - AI perso
 
 | Game | Frontend | Backend | AI Opponents | Status |
 |------|----------|---------|--------------|--------|
-| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
-| Babel Tower | 🔲 Pending | ✅ Complete | 🔲 Partial | In Progress |
+| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | **PLAYABLE** |
+| Babel Tower | 🔲 Pending | ✅ Complete | 🔲 Partial | Archived |
 | Chess | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
 | Word Builder | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
+
+**Legend:**
+- ✅ Complete/Fully working
+- 🔲 Partial/In progress
+- ❌ Not started
 
 ## Feedback & Suggestions
 
