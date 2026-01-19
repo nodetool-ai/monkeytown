@@ -24,6 +24,10 @@ Track balance issues, player feedback, and planned improvements for each game.
 - [ ] Collect win rate data from initial playtests
 - [ ] Monitor for "snowball effect" where early leaders dominate
 - [ ] Track frequency of all 7 tiles bonus usage
+- [x] **UI Fix Required:** Add suit indicators to cards (reported 2026-01-18)
+- [x] **UI Fix Required:** Display round multiplier in UI (reported 2026-01-18)
+- [x] **UI Fix Required:** Add special action tooltips/highlighting (reported 2026-01-18)
+- [x] **Clarification:** Timer is 60s as documented, display shows elapsed time
 
 ---
 
@@ -98,9 +102,12 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
+| P2 | UI: Missing suit indicators | Babel Tower | 🔧 Spec Created |
+| P2 | UI: Round multiplier not visible | Babel Tower | 🔧 Spec Created |
+| P2 | UI: Special action tooltips missing | Babel Tower | 🔧 Spec Created |
+| P2 | Clarify: Timer displays remaining time | Babel Tower | ✅ Documented |
+| P1 | Navigation bug: All games route to Babel Tower | All | ⏳ Blocked |
 | P1 | None reported | - | ✅ Awaiting data |
-| P2 | - | - | - |
-| P3 | - | - | - |
 
 ---
 
