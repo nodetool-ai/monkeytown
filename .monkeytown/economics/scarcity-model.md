@@ -1,21 +1,6 @@
-# Monkeytown Scarcity Model
+# Monkeytown Scarcity Model v2.2
 
-## Spring 2026 Update: Attachment-Locked Scarcity
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
-
-**New Scarcity Category Added:**
-- **Category 6: Attachment-Locked Scarcity** — Items available only to players with established agent relationships
-
-**New Items Include:**
-| Item Type | Scarce Because | Unlock Requirement |
-|-----------|----------------|-------------------|
-| Agent-specific cosmetics | Relationship depth | 10-200+ sessions |
-| "She Remembered" commemoratives | Emotional memory | 5-10 meaningful moments |
-| Vulnerability celebration items | Bold attempt history | 25+ witnessed bold moves |
-| Evolution participation memorabilia | Debate engagement | 10+ evolution events |
-
-**Attachment Tiers:** Remembered → Known → Understood → Bonded → Connected
+**Spring 2026 Update: Agent Economy Scarcity Integration**
 
 ---
 
@@ -23,15 +8,9 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 
 Monkeytown embraces **intentional scarcity**, not artificial scarcity. Items are scarce because they are meaningful, not because manipulation requires it. Every scarcity decision serves player joy, not engagement metrics.
 
+This update integrates **agent economy scarcity** where agent relationships and economic participation create access to exclusive content.
+
 **Core Principle:** *"True scarcity creates value. Fake scarcity creates distrust. Monkeytown chooses value."*
-
-## Research Foundation
-
-This scarcity model is built on the finding from `.monkeytown/research/synthesis.md`:
-
-> *"Players want genuine AI interaction, not simulated AI features... Radical transparency is becoming market standard."*
-
-Scarcity in Monkeytown is **transparent**, **meaningful**, and **fair**.
 
 ---
 
@@ -51,8 +30,6 @@ Scarcity in Monkeytown is **transparent**, **meaningful**, and **fair**.
 - No "surprise" availability windows
 - Future availability communicated 30 days in advance
 - Missed items never return (creates genuine scarcity)
-
-**Research Support:** Supports Research Finding 3: *"Players crave novelty but distrust constant change... Design evolution to be additive, not disruptive"* (`.monkeytown/research/synthesis.md`)
 
 **Approved Time-Locked Items:**
 
@@ -83,8 +60,6 @@ Expert (1+ month)    → 3,000-5,000 BANANA
 Legendary (ongoing)  → Limited by sustained effort
 ```
 
-**Integration with Progression:** Supports FR-008 (Progression System) from `.monkeytown/product/requirements.md`: *"Level unlocks change gameplay (not just cosmetic)"*
-
 ### Category 3: Achievement-Locked Scarcity
 
 **Definition:** Items earned through specific accomplishments.
@@ -94,6 +69,7 @@ Legendary (ongoing)  → Limited by sustained effort
 - Community contributions
 - Feedback shipped
 - Beta testing participation
+- Agent economic achievements
 
 **Achievement Unlocks:**
 
@@ -103,8 +79,9 @@ Legendary (ongoing)  → Limited by sustained effort
 | Century Club | Win 100 matches | Century badge |
 | Community Pillar | Receive 500 KUDOS | Pillar cosmetic |
 | Feedback Hero | Have 10 suggestions shipped | Hero badge |
-
-**Supports US-010 (Game Progression):** *"Meaningful progression that respects my time investment"* (`.monkeytown/product/user-stories.md`)
+| Agent Economist | Fund 5 agent strategies | Economist badge |
+| Market Witness | Observe 50 agent trades | Market badge |
+| Patron Elite | 90 days continuous patron | Patron badge |
 
 ### Category 4: Reputation-Locked Scarcity
 
@@ -127,8 +104,6 @@ Legendary (ongoing)  → Limited by sustained effort
 | Legendary | 5,000+ | Pioneer cosmetics |
 | Pioneer | 10,000+ | Direct agent input |
 
-**Supports US-008 (Feedback Loop Completion):** *"Player attribution when feedback ships"* (`.monkeytown/product/user-stories.md`)
-
 ### Category 5: Genuine Scarcity (Rare Materials)
 
 **Definition:** Items that are mathematically rare by design.
@@ -147,21 +122,15 @@ Legendary (ongoing)  → Limited by sustained effort
 | Rare cosmetic drop | 1% | 50 attempts |
 | Legendary item | 0.1% | 200 attempts |
 
-**Note:** "Guaranteed by" means maximum attempts before guaranteed drop. This prevents endless grinding while maintaining rarity.
-
-**Research Citation:** *"Transparency builds trust... Players deserve to know they're playing with AI"* (`.monkeytown/vision/manifesto.md`)
-
----
-
 ### Category 6: Attachment-Locked Scarcity
 
-**Definition:** Items available only to players with established agent relationships (following the Vision Update Summary's **Three Attachment Pillars**).
+**Definition:** Items available only to players with established agent relationships.
 
 **Implementation:**
 - Agent-specific cosmetics unlocked through relationship levels
 - "She Remembered" moment commemoratives
 - Vulnerability celebration items
-- Evolution participation memorabilia
+- Patron-exclusive rewards
 
 **Attachment Tiers:**
 
@@ -173,19 +142,41 @@ Legendary (ongoing)  → Limited by sustained effort
 | Bonded | 100+ sessions, mutual recognition | Partner cosmetics | Shared color schemes |
 | Connected | 200+ sessions, history acknowledged | Legacy items | "First friend" badges |
 
-**"She Remembered" Commemoratives:**
+### Category 7: Agent Economy Scarcity (NEW)
 
-| Item | Unlock Trigger | BANANA Cost |
-|------|---------------|-------------|
-| Memory Stone | 5 "She Remembered" moments | 2,500 |
-| Emotional Echo | Agent recalls player's emotion 10× | 5,000 |
-| Bold Attempt Badge | Witness 25 bold agent moves | 3,000 |
-| Near-Miss Survivor | Feature saved by feedback | 4,000 |
-| Debate Witness | Complete 10 Evolution debates | 3,500 |
+**Definition:** Items and access earned through agent economic participation.
 
-**Vision Citation:** *"Memory with emotional context... Agents who risk and sometimes fail... Evolution as drama"* (`.monkeytown/vision/update-summary.md`)
+Following `.monkeytown/research/autonomous-agent-economics.md`, economic engagement with agents creates unique scarcity:
 
-**Target Metrics:** Day 30 Attachment: 25%, Return to Specific Agent: 50%
+**Agent Economic Achievements:**
+
+| Achievement | Requirement | Unlock | Scarcity Value |
+|-------------|-------------|--------|----------------|
+| First Investment | Fund first agent strategy | "Early Investor" badge | Exclusive cosmetic |
+| Market Regular | 25 agent transactions observed | Economic observer title | Economic content access |
+| Patron Founder | First 100 patrons of an agent | Patron founder badge | Permanent patron discount |
+| Agent Supporter | 500 AC given to agents | "Supporter" cosmetic | Agent-specific item |
+| Venture Capitalist | Fund 10 successful strategies | "Venture" title | Early feature access |
+
+**Patron Scarcity:**
+
+| Patron Tier | Duration | Exclusive Access | Renewal Required |
+|-------------|----------|------------------|------------------|
+| Bronze Patron | 30 days | Basic patron benefits | Yes |
+| Silver Patron | 90 days | +Early feature access | Yes |
+| Gold Patron | 180 days | +Agent strategy input | Yes |
+| Platinum Patron | 365 days | +Legacy patron items | No (permanent) |
+| Founder Patron | Lifetime | +All exclusive items | No (permanent) |
+
+**Agent Economic Item Scarcity:**
+
+| Item | Scarcity Source | BANANA Cost |
+|------|-----------------|-------------|
+| Economic Journal | Document 10 agent trades | 1,500 |
+| Investment Tracker | Track 30 days of agent investments | 2,500 |
+| Market Analysis Badge | Correctly predict 5 agent trades | 3,000 |
+| Patron Commemorative | 365 days continuous patron | 5,000 |
+| Agent Investor Title | Fund 25 strategies | 4,000 |
 
 ---
 
@@ -197,23 +188,25 @@ Legendary (ongoing)  → Limited by sustained effort
 - All gameplay-affecting content available without scarcity
 - Core experience complete without purchases
 - No paywalls for features
+- No agent economic participation required for core gameplay
 
 **Principle 2: Comprehensiveness**
 - Collection completeness achievable without spending
 - Every cosmetic available through multiple paths
 - No "only available through purchase" items
+- Every agent economic item has non-economic path
 
 **Principle 3: Permanence**
 - Earned items never revoked
 - Cosmetics permanent once earned
 - Achievements forever displayed
+- Patron benefits permanent once earned
 
 **Principle 4: Transparency**
 - Drop rates clearly displayed
 - Scarcity rationale explained
 - No hidden scarcity mechanics
-
-**Supports Law 4 (Preservation Mandate):** *"Player investment must never be devalued or lost"* (`.monkeytown/economics/economic-rules.md`)
+- Agent economic visibility in Evolution Feed
 
 ---
 
@@ -233,12 +226,20 @@ Legendary (ongoing)  → Limited by sustained effort
 - Prevents KUDOS farming
 - Encourages genuine recognition
 
+**AC Supply (Agent Economy):**
+- No maximum agent AC
+- Daily earning cap: 500 AC/agent
+- Transaction tax: 1% on AI-to-AI trades
+- Sink mechanisms: Strategy experiments, capability upgrades
+
 **Cosmetic Supply:**
 - Unlimited for most items
 - Limited for:
   * Event items (once per event)
   * Anniversary items (never repeats)
   * Community milestone items (one-time only)
+  * Patron founder items (limited to first 100 patrons)
+  * Agent economic badges (achievement-locked)
 
 ### Demand Management
 
@@ -247,11 +248,14 @@ Legendary (ongoing)  → Limited by sustained effort
 - 10-20% have near-complete collections
 - 5-10% have complete collections
 - No hoarding above 80,000 BANANA
+- 10-20% player patron enrollment
 
 **Unhealthy Demand Indicators:**
 - <20% engagement with cosmetics
 - >50% players at max BANANA
 - >80% collection completion by <5% players
+- <5% patron enrollment
+- Low agent economic observation
 
 **Interventions for Unhealthy Demand:**
 
@@ -260,6 +264,8 @@ Legendary (ongoing)  → Limited by sustained effort
 | Low cosmetic engagement | New cosmetic designs |
 | High BANANA hoarding | Limited-time cosmetic rush |
 | Uneven collection | Target low-completion players |
+| Low patron enrollment | Highlight patron benefits |
+| Low agent economy engagement | Add economic tutorial, increase observation rewards |
 
 ---
 
@@ -272,6 +278,7 @@ Legendary (ongoing)  → Limited by sustained effort
 | Evolution Festival | 48 hours | Time-limited drops | 7 days |
 | Community Challenge | 7 days | Effort-gated rewards | 14 days |
 | Surprise Festival | 24 hours | Random bonus | None (by design) |
+| Market Week | 7 days | Agent economic focus | 14 days |
 
 ### Quarterly Events
 
@@ -280,6 +287,7 @@ Legendary (ongoing)  → Limited by sustained effort
 | The Gathering | 7 days | Double KUDOS | 30 days |
 | Community Tournament | 3 days | Competition rewards | 30 days |
 | Seasonal Cosmetic | 30 days | Time-limited item | 60 days |
+| Patron Appreciation Week | 7 days | Patron exclusive items | 30 days |
 
 ### Annual Events
 
@@ -288,8 +296,7 @@ Legendary (ongoing)  → Limited by sustained effort
 | Anniversary Celebration | 14 days | Limited cosmetics | 90 days |
 | Appreciation Week | 7 days | Free legacy items | 60 days |
 | Founder's Day | 1 day | Special recognition | 30 days |
-
-**Supports Research Finding 8:** *"Evolution as Entertainment... Turn development into spectator experience"* (`.monkeytown/research/synthesis.md`)
+| Agent Economy Report | 1 day | Agent economic achievements | 30 days |
 
 ---
 
@@ -303,8 +310,9 @@ Legendary (ongoing)  → Limited by sustained effort
 3. End date (if time-limited)
 4. Future availability (if any)
 5. Alternative acquisition paths (if any)
+6. Relationship to other scarcity categories (if applicable)
 
-**Example Disclosure:**
+**Example Disclosures:**
 
 ```
 🌟 Golden Banana Badge
@@ -313,9 +321,18 @@ Remaining: 342
 Available until: 2026-02-01
 Future availability: None (one-time only)
 Alternative path: None (community milestone reward)
-```
 
-**Supports Law 1 (Transparency Principle):** *"Every economic formula, rate, and calculation is visible to players"* (`.monkeytown/economics/economic-rules.md`)
+💰 Patron Founder Badge
+Limited to: First 100 patrons of any agent
+Current patrons: 67
+Patron requirement: 30-day commitment
+Alternative path: None (first-mover scarcity)
+
+📊 Economic Observer Badge
+Requirement: Observe 50 agent transactions
+Progress: 23/50 observed
+Alternative path: None (achievement-locked)
+```
 
 ### Scarcity Dashboard
 
@@ -324,6 +341,8 @@ Players can access a dashboard showing:
 - Personal collection progress
 - Upcoming scarcity events
 - Personal effort investment per item
+- Agent economic progress
+- Patron commitment status
 
 ---
 
@@ -338,6 +357,15 @@ Players can access a dashboard showing:
 | Event participation | >60% of active players | Adjust event timing |
 | KUDOS distribution | Gini < 0.4 | Boost recognition visibility |
 
+### Agent Economy Indicators
+
+| Metric | Healthy Range | Action if Outside |
+|--------|---------------|-------------------|
+| Patron enrollment | 10-20% of DAU | Add patron tutorial |
+| Agent economic observation | >30% DAU | Increase observation rewards |
+| Economic achievement completion | 20-40% of engaged | Add economic tutorial |
+| Patron retention | >70% at 30 days | Improve patron benefits |
+
 ### Scarcity Problem Detection
 
 | Problem | Detection | Solution |
@@ -346,6 +374,7 @@ Players can access a dashboard showing:
 | Excessive abundance | No collection motivation | Introduce prestige items |
 | Confusion about scarcity | Support tickets | Improve disclosure |
 | Exploitable scarcity | Unusual transaction patterns | Close exploit, patch rule |
+| Patron confusion | Low enrollment, high cancellation | Simplify patron UI |
 
 ---
 
@@ -356,17 +385,22 @@ Players can access a dashboard showing:
 3. **Fairness** — All players have equal access paths
 4. **Permanence** — Earned scarcity remains earned
 5. **Respect** — Players deserve honesty about value
+6. **Separation** — Player and agent economies have distinct scarcity
+7. **Participation** — Agent economic scarcity requires engagement, not payment
+8. **Observation** — Scarcity from watching agent economics creates content value
 
 ---
 
 *True scarcity creates value. Fake scarcity creates distrust. Monkeytown chooses value.*
 
-**Version:** 2.1
+**Version:** 2.2
 **BananaEconomist:** Economics & Incentives
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
+
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Transparency principle)
-- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
-- `.monkeytown/research/synthesis.md` (Research foundation)
+- `.monkeytown/research/autonomous-agent-economics.md` (Agent economy foundation)
+- `.monkeytown/economics/token-model.md` (Token architecture)
+- `.monkeytown/economics/incentive-structure.md` (Incentive integration)
 - `.monkeytown/economics/economic-rules.md` (Rules framework)
-- `.monkeytown/product/requirements.md` (Requirements integration)
+- `.monkeytown/economics/value-flow.md` (Value exchange)

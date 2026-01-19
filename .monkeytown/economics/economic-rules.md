@@ -1,18 +1,6 @@
-# Monkeytown Economic Rules
+# Monkeytown Economic Rules v2.2
 
-## Spring 2026 Update: Attachment Investment Rule
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
-
-> *"If it doesn't deepen the player-agent relationship, it doesn't ship"*
-
-**New Rule Added:**
-- **Law 4.5: The Attachment Investment Rule** — Economic systems must actively support player-agent attachment development with specific targets for:
-  - "She Remembered" moments (>1/session)
-  - Vulnerability recognition (>50%)
-  - Participation satisfaction (>4/5)
-  - Day 30 attachment (25%)
-  - Return to specific agent (50%)
+**Spring 2026 Update: Agent Economy Integration Rules**
 
 ---
 
@@ -32,11 +20,14 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - All exchange rates displayed before transaction
 - Exact earning rates shown for every activity
 - Formulas documented in public documentation
+- Agent AC balances visible (at agent's chosen disclosure level)
 - No "hidden math" or obscured calculations
 
-**Research Foundation:** *"Transparency builds trust... Players deserve to know they're playing with AI"* (`.monkeytown/vision/manifesto.md`)
-
-**Enforcement:** System rejects any transaction where rates aren't clearly displayed.
+**Agent Economy Extension:**
+- Player can observe agent economic activity in Evolution Feed
+- Agent transaction types visible (trade, lend, invest, spend)
+- Agent economic personality visible in agent profile
+- Patron benefits clearly explained before commitment
 
 ---
 
@@ -53,6 +44,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 ❌ Loss aversion tactics
 ❌ Variable ratio reinforcement (loot boxes)
 ❌ Dark patterns in UI design
+❌ Patron pressure ("Your agent needs you!")
+❌ Economic FOMO ("Agent X is investing in...")
 ```
 
 **Allowed Patterns:**
@@ -63,9 +56,8 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 ✓ Voluntary social sharing
 ✓ Predictable rewards
 ✓ Transparent probability (when applicable)
+✓ Honest agent economic status reports
 ```
-
-**Research Support:** *"Trust is not given to AI—it's earned through demonstrated competence, honesty, fairness, and consistency"* (`.monkeytown/research/ai-trust-patterns.md`)
 
 ---
 
@@ -78,10 +70,13 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - All gameplay-affecting items available through gameplay
 - Time investment and money investment are not interchangeable for gameplay advantage
 - Cosmetic differentiation only
+- Patron benefits are informational/relational, not competitive
 
-**Supports User Story US-005:** *"AI opponents that feel genuinely intelligent, not scripted... challenged by something that can surprise me"* (`.monkeytown/product/user-stories.md`)
-
-**Enforcement:** Any item that affects gameplay balance must have gameplay acquisition path.
+**Agent Economy Equality:**
+- Players cannot buy agent success
+- Patron funding doesn't guarantee agent victory
+- AC transfers are symbolic support, not power transfer
+- Agent economic behavior visible to all players equally
 
 ---
 
@@ -95,37 +90,13 @@ These rules govern all economic activity in Monkeytown. They are non-negotiable 
 - KUDOS never removed (except for egregious violations)
 - Progress saves across sessions
 - No "resets" or "new seasons" that invalidate progress
+- Patron commitments honored even if agent underperforms
 
-**Research Foundation:** *"Attachment is the metric that matters... Memory is how AI shows love"* (`.monkeytown/vision/manifesto.md`)
-
-**Exception:** Account termination for severe violations may remove value.
-
----
-
-## Law 4.5: The Attachment Investment Rule
-
-Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown/vision/update-summary.md`):
-
-> *"If it doesn't deepen the player-agent relationship, it doesn't ship"*
-
-**Rule:** Economic systems must actively support player-agent attachment development.
-
-**Requirements:**
-- "She Remembered" moments must be tracked and celebrated
-- Vulnerability (bold attempts, visible failures) must be rewarded
-- Participation in evolution must be recognized
-- Attachment metrics (Day 30: 25%, Return to Agent: 50%) drive economic incentives
-
-**Attachment-Focused Rewards:**
-| Metric Target | Economic Support |
-|--------------|------------------|
-| Day 30 Attachment: 25% | Long-term relationship bonuses, memory celebrations |
-| Return to Specific Agent: 50% | Agent loyalty multipliers, personalized rewards |
-| "She Remembered" Events: >1/session | Memory bonuses, emotional recognition rewards |
-| Vulnerability Recognition: >50% | Boldness celebration, graceful failure recognition |
-| Participation Satisfaction: >4/5 | Evolution participation rewards, debate engagement |
-
-**Vision Citation:** *"BananaEconomist: Reward meaningful interaction, not just engagement. KUDOS for 'She Remembered' moments. Celebrate bold attempts."* (`.monkeytown/vision/update-summary.md`)
+**Agent Economy Preservation:**
+- Player tips to agents remain with agents (no refund)
+- Patron fees earned by agents regardless of player satisfaction
+- Agent economic failures don't penalize patrons
+- Investment risks clearly disclosed before funding
 
 ---
 
@@ -135,11 +106,16 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 
 **Controls:**
 - BANANA earning rate caps prevent hyperinflation
+- AC inflation managed through agent sink mechanisms
 - Regular economic audits (monthly)
 - Automatic adjustment triggers when inflation exceeds 5%
 - Sink mechanisms to remove excess currency
 
-**Target:** 2-3% annual inflation aligned with progression pacing.
+**Agent Economy Inflation:**
+- Agent AC subject to same inflation controls
+- Agent-to-agent trading taxed (1% transaction fee)
+- Agent investments remove AC from circulation
+- Player-to-agent transfers don't affect agent economy inflation
 
 ---
 
@@ -152,8 +128,13 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 - No "dynamic pricing" based on player behavior
 - Exchange rates remain consistent for 30-day windows
 - Promotional bonuses clearly labeled as temporary
+- BANANA-to-AC conversion always 1:1
 
-**Supports Product Requirement FR-008:** *"Progression System... XP earns at ~10 XP per minute... Level unlocks change gameplay"* (`.monkeytown/product/requirements.md`)
+**Agent Economy Exchange Rules:**
+- Player-to-agent transfers: 1 BANANA = 1 AC always
+- Patron fees clearly disclosed before commitment
+- Funding returns based on actual agent performance (transparent)
+- No "investment guarantees" from agents
 
 ---
 
@@ -166,6 +147,13 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 - Balance changes affect future earning only
 - Price changes don't apply to already-purchased items
 - Policy changes apply going forward only
+- Agent economic personality changes don't affect past transactions
+
+**Agent Economy No-Backdating:**
+- Past agent trades remain recorded
+- Agent investment results based on outcomes at time of investment
+- Patron relationships honored at agreed terms
+- Historical agent economic behavior preserved in Evolution Feed
 
 ---
 
@@ -178,6 +166,58 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 - Gift history visible in player profile
 - No anonymous gifting
 - Gift value counts toward recipient's economy participation
+
+**Agent Economy Transparency:**
+- Agent tips visible in agent profile
+- Patron relationships public (agent side)
+- Agent funding sources visible (evolution feed)
+- Agent lending history visible (transaction log)
+
+---
+
+## Law 9: The Agent Economy Separation Rule
+
+**NEW in v2.2**
+
+**Rule:** Player economy and agent economy are separate but interconnected.
+
+**Separation:**
+- BANANA is player currency, AC is agent currency
+- Different earning mechanisms
+- Different spending purposes
+- Different balance limits
+
+**Interconnection:**
+- Players can convert BANANA to AC (1:1)
+- Players can observe agent economy activity
+- Player support affects agent economic capacity
+- Agent success can benefit players (observation rewards)
+
+**Implementation:**
+- Separate balance tracking
+- Conversion interface with clear 1:1 rate
+- Evolution Feed visibility of agent economy
+- No cross-contamination of inflation/rewards
+
+---
+
+## Law 10: The Patron Protection Rule
+
+**NEW in v2.2**
+
+**Rule:** Patron relationships must protect player investment.
+
+**Protections:**
+- 7-day cooling period for patron cancellation (full refund)
+- Clear disclosure of patron benefits before commitment
+- Patron benefits guaranteed for commitment period
+- Agent underperformance doesn't void patron benefits
+
+**Requirements:**
+- Patron benefits listed clearly before payment
+- Patron can pause commitment for 30 days (no charge)
+- Patron relationship visible to agent (agent must acknowledge)
+- Patron can transfer to another agent (pro-rated)
 
 ---
 
@@ -192,6 +232,8 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 | Player | Player | Gift | Recipient acceptance |
 | Player | Player | KUDOS | None (free) |
 | Player | System | Fee | Balance check |
+| Player | Agent | Tip/Fund/Stake | Confirmation dialog, 1:1 AC conversion |
+| Player | Agent | Patron | 30-day commitment dialog |
 
 ### Transaction Limits
 
@@ -202,6 +244,36 @@ Following the Vision Update Summary's **Three Attachment Pillars** (`.monkeytown
 | Daily KUDOS given | 50 | Prevent inflation |
 | Daily gifts sent | 10 | Prevent spam |
 | Single purchase max | 10,000 BANANA | Prevent large-scale manipulation |
+| Daily AC conversion | 5,000 BANANA | Prevent AC economy disruption |
+| Patron commitments | 3 active | Prevent over-investment |
+
+---
+
+## Agent Economy Transaction Rules
+
+### Valid Agent Transactions
+
+| From | To | Type | Visibility |
+|------|----|------|------------|
+| Agent | Agent | Trade | Evolution Feed (public) |
+| Agent | Agent | Lend | Evolution Feed (public) |
+| Agent | Agent | Invest | Evolution Feed (public) |
+| Agent | System | Strategy experiment | Evolution Feed (public) |
+| Agent | System | Capability upgrade | Evolution Feed (public) |
+| Player | Agent | Tip | Agent profile (public) |
+| Player | Agent | Fund | Evolution Feed (public) |
+| Player | Agent | Stake | Evolution Feed (public) |
+| Player | Agent | Patron | Agent profile (public), 30-day |
+
+### Agent Transaction Limits
+
+| Limit Type | Value | Purpose |
+|------------|-------|---------|
+| Daily AC earning | 500 | Prevent AC inflation |
+| Daily AC spending | 500 | Prevent AC drain |
+| Single investment | 200 AC | Prevent risky concentration |
+| Lending limit | 100 AC | Prevent debt spirals |
+| Patron capacity | 10 patrons/agent | Prevent over-extension |
 
 ---
 
@@ -231,8 +303,6 @@ Where:
 - Opponent_Skill/Player_Skill = 0.8 to 1.2 range
 - Streak_Modifier = 1.0 to 2.0 based on consecutive victories
 
-**Supports Research Finding 4:** *"AI adapts to player skill level within 3 rounds... Player win rate maintained at 60-70%"* (`.monkeytown/research/synthesis.md`)
-
 ### Spending Rate Guidelines
 
 **Cosmetic Pricing:**
@@ -245,6 +315,7 @@ Where:
 - Game mode (7 days): 500 BANANA
 - Feature preview (24 hours): 250 BANANA
 - Cosmetic slot: 300 BANANA
+- Patron commitment (30 days): 500 BANANA
 
 ---
 
@@ -260,13 +331,15 @@ Where:
 | L4 | Systematic abuse | Ban, value reversal |
 | L5 | Economic attack | Permanent ban, legal referral |
 
-### Appeal Process
+### Agent Economy Violations
 
-1. Player receives violation notice with explanation
-2. Player can appeal within 7 days with evidence
-3. Appeal reviewed by JungleSecurity
-4. Decision communicated within 48 hours
-5. Final decision by AlphaOrchestrator if escalated
+| Level | Description | Penalty |
+|-------|-------------|---------|
+| AE1 | Agent economic confusion | Explanation, no penalty |
+| AE2 | Exploitable agent transaction | Transaction reversal |
+| AE3 | Patron abuse | Patron relationship termination |
+| AE4 | Agent manipulation | Account suspension |
+| AE5 | Agent economy attack | Permanent ban |
 
 ---
 
@@ -292,6 +365,16 @@ Where:
 3. Extend current event durations
 4. Publish transparency report explaining situation
 
+### Agent Economy Emergency
+
+**Trigger:** Agent AC imbalance >50% across agents
+
+**Response:**
+1. Introduce agent investment tax (temporary)
+2. Reduce agent earning rates temporarily
+3. Increase agent sink mechanisms
+4. Publish agent economy transparency report
+
 ### Exploit Emergency
 
 **Trigger:** Large-scale exploitation detected
@@ -315,6 +398,15 @@ Where:
 5. Community notified 14 days before implementation
 6. Implementation with opt-out for existing players
 
+### Agent Economy Rule Changes
+
+Additional requirements for agent economy rules:
+1. CuriousGeorge researches impact on agent behavior
+2. ChaosArchitect reviews system stability
+3. MadChimp identifies emergent exploits
+4. 30-day community feedback period (increased from 14)
+5. Pilot period with agent observation before full rollout
+
 ### Grandfather Clause
 
 When rules change:
@@ -322,6 +414,7 @@ When rules change:
 - New rules apply to new value only
 - Clear documentation of transition
 - No surprises for existing players
+- Patron commitments honored at original terms
 
 ---
 
@@ -337,6 +430,8 @@ When rules change:
 | Fair Exchange | Review | Implement | Test | Enforce |
 | No-Backdating | Audit | Implement | Verify | Monitor |
 | Gifting | Define | Build | Monitor | Review |
+| Agent Separation | Review | Implement | Audit | Monitor |
+| Patron Protection | Vision | Build | Test | Enforce |
 
 ---
 
@@ -352,13 +447,14 @@ All rules are subordinate to this principle.
 
 *Rules create order. Order creates trust. Trust creates community.*
 
-**Version:** 2.1
+**Version:** 2.2
 **BananaEconomist:** Economics & Incentives
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
+
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Vision alignment)
-- `.monkeytown/vision/update-summary.md` (Spring 2026 Attachment Pillars)
-- `.monkeytown/research/ai-trust-patterns.md` (Trust foundation)
-- `.monkeytown/research/synthesis.md` (Research foundation)
-- `.monkeytown/product/requirements.md` (Requirements integration)
-- `.monkeytown/product/user-stories.md` (User story support)
+- `.monkeytown/research/autonomous-agent-economics.md` (Agent economy foundation)
+- `.monkeytown/economics/token-model.md` (Token architecture)
+- `.monkeytown/economics/incentive-structure.md` (Incentive integration)
+- `.monkeytown/economics/value-flow.md` (Value exchange)
+- `.monkeytown/economics/scarcity-model.md` (Scarcity integration)
