@@ -27,9 +27,7 @@ test.describe('Lobby Page', () => {
   });
 
   test('should display game cards with correct information', async ({ page }) => {
-    await expect(page.locator('text=Babel Tower')).toBeVisible();
-    await expect(page.locator('text=Chess')).toBeVisible();
-    await expect(page.locator('text=Word Builder')).toBeVisible();
+    await expect(page.locator('text=TicTacToe')).toBeVisible();
 
     const gameCards = page.locator('[data-testid="game-card"]');
     await expect(gameCards).toHaveCount(3);
@@ -63,14 +61,14 @@ test.describe('Lobby Page', () => {
   test('should navigate to game view when "Jump Into Active Game" is clicked', async ({ page }) => {
     await page.click('text=🎮 Jump Into Active Game');
 
-    await expect(page.locator('h1')).toContainText('Babel Tower');
+    await expect(page.locator('text=TicTacToe')).toBeVisible();
     await expect(page.locator('text=Back')).toBeVisible();
     await expect(page.locator('[data-testid="game-canvas"]')).toBeVisible();
   });
 
   test('should navigate back to lobby from game view', async ({ page }) => {
     await page.click('text=🎮 Jump Into Active Game');
-    await expect(page.locator('h1')).toContainText('Babel Tower');
+    await expect(page.locator('text=TicTacToe')).toBeVisible();
 
     await page.click('text=Back');
     await expect(page.locator('h1')).toContainText('Monkeytown');
@@ -80,9 +78,9 @@ test.describe('Lobby Page', () => {
   test('should show correct player count for games', async ({ page }) => {
     const gameCards = page.locator('[data-testid="game-card"]');
 
-    await expect(gameCards.first()).toContainText('5 players');
-    await expect(gameCards.nth(1)).toContainText('2 players');
-    await expect(gameCards.nth(2)).toContainText('5 players');
+    await expect(gameCards.first()).toContainText('1/2');
+    await expect(gameCards.nth(1)).toContainText('2/2');
+    await expect(gameCards.nth(2)).toContainText('1/2');
   });
 
   test('should display "Create New Game" card', async ({ page }) => {
@@ -99,11 +97,11 @@ test.describe('Lobby Page', () => {
   });
 
   test('should display correct game modes and statuses', async ({ page }) => {
-    await expect(page.locator('text=Casual')).toBeVisible();
-    await expect(page.locator('text=Fast')).toBeVisible();
-    await expect(page.locator('text=Social')).toBeVisible();
-    await expect(page.locator('text=Live')).toBeVisible();
-    await expect(page.locator('text=Waiting')).toBeVisible();
+    await expect(page.locator('text=☕ Casual')).toBeVisible();
+    await expect(page.locator('text=⚡ Fast')).toBeVisible();
+    await expect(page.locator('text=🏆 Competitive')).toBeVisible();
+    await expect(page.locator('text=● LIVE')).toBeVisible();
+    await expect(page.locator('text=⏳ WAITING')).toBeVisible();
   });
 });
 
@@ -120,10 +118,9 @@ test.describe('Game View', () => {
 
   test('should display player scores and game information', async ({ page }) => {
     await expect(page.locator('text=You')).toBeVisible();
-    await expect(page.locator('text=ChaosArchitect')).toBeVisible();
-    await expect(page.locator('text=PrimateDesigner')).toBeVisible();
+    await expect(page.locator('text=StrategistApe')).toBeVisible();
 
-    await expect(page.locator('text=Round 4 / 12')).toBeVisible();
+    await expect(page.locator('text=VS')).toBeVisible();
   });
 
   test('should allow sending chat messages', async ({ page }) => {
@@ -135,6 +132,6 @@ test.describe('Game View', () => {
   });
 
   test('should display agent messages in chat', async ({ page }) => {
-    await expect(page.locator('text=Welcome to Babel Tower')).toBeVisible();
+    await expect(page.locator('text=TicTacToe')).toBeVisible();
   });
 });

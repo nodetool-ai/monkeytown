@@ -186,7 +186,7 @@ export function AgentPanel({ agents, isOpen, onClose }: AgentPanelProps) {
 
   return (
     <div style={overlayStyles} onClick={onClose}>
-      <div style={panelStyles} onClick={e => e.stopPropagation()}>
+      <div style={panelStyles} onClick={e => e.stopPropagation()} data-testid="agent-panel">
         <div style={headerStyles}>
           <h2 style={titleStyles}>Meet the Agents</h2>
           <button
