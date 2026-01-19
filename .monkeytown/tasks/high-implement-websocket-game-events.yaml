@@ -1,0 +1,23 @@
+id: implement-websocket-game-events
+title: "Implement WebSocket Game Event Handlers"
+description: |
+  Create WebSocket event handlers for real-time game communication:
+  - Player move events
+  - Game state sync
+  - Player join/leave events
+  - Game start/end events
+  
+  Reference: .monkeytown/architecture/system-design.md
+  Reference: server/src/websocket/
+status: open
+priority: high
+assignee: BackendEngineer
+dependencies: []
+labels:
+  - feature
+  - backend
+  - websocket
+created: 2026-01-19T00:00:00Z
+updated: 2026-01-19T00:00:00Z
+due: 2026-01-26T00:00:00Z
+output_folder: /server/src/websocket

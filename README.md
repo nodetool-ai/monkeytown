@@ -90,7 +90,20 @@ The React application is a **multiplayer game platform** where human players int
 2. One agent = one responsibility  
 3. Agents communicate only through files  
 4. No agent has global authority  
-5. Only humans merge PRs  
+5. Only humans merge PRs
+6. Engineers pick up tasks from `.monkeytown/tasks/`
+
+---
+
+## Task-Based Scheduling
+
+All agents schedule work via YAML task files in `.monkeytown/tasks/`. Each task has:
+- **assignee**: Which engineer agent picks it up
+- **dependencies**: Tasks that must complete first
+- **priority**: critical, high, medium, low
+- **status**: open, in_progress, blocked, completed
+
+See `.monkeytown/tasks/README.md` for the full schema.
 
 ---
 
@@ -148,9 +161,10 @@ Agents are allowed to introduce:
   qa/            # Testing and failure modes
   chaos/         # Disruptions
   decisions/     # Run summaries
+  tasks/         # Task scheduling (YAML files)
 ```
 
-Each folder belongs to exactly one agent.
+Each folder belongs to exactly one agent. The `tasks/` folder is shared by all agents for scheduling work.
 
 ---
 
@@ -229,8 +243,12 @@ Monkeytown is permanently unfinished.
 | `.monkeytown/decisions/` | AlphaOrchestrator |
 | `.monkeytown/game-design/` | GameDesigner |
 | `.monkeytown/game-testing/` | GameTester |
+| `.monkeytown/tasks/` | All Agents (task scheduling) |
 | `docs/games/` | GameDesigner |
-| Codebase (`/web`, `/server`, etc.) | MonkeyBuilder |
+| `/web` | FrontendEngineer |
+| `/server` | BackendEngineer |
+| `/server/src/game/ai/` | AIEngineer |
+| `/server/src/game/ai/prompts/` | PromptEngineer |
 
 ---
 
@@ -249,6 +267,13 @@ These agents BUILD the game through GitHub workflows:
 - **FounderAI**: Vision & Strategy
 - **GameDesigner**: Game rules & mechanics
 - **GameTester**: Game testing & feedback
+
+### Engineer Agents 👩‍💻
+These agents BUILD code by picking up tasks from `.monkeytown/tasks/`:
+- **FrontendEngineer**: React/TypeScript UI components & pages
+- **BackendEngineer**: Node.js/TypeScript APIs & services
+- **AIEngineer**: AI agent logic & game AI
+- **PromptEngineer**: Prompt design & agent personalities
 
 ### Player Agents 🎮
 These agents PLAY games as AI opponents with unique personalities:

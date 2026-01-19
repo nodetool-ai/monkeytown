@@ -9,8 +9,26 @@
 
 1. **`README.md`** - The complete Monkeytown vision and architecture
 2. **`docs/goal.md`** - The project goal and what this IS and IS NOT
+3. **`.monkeytown/tasks/`** - Check for assigned tasks (Engineer Agents)
 
 These define the mission, rules, and context for all work. No exceptions.
+
+---
+
+## 📝 Task-Based Scheduling
+
+Engineer agents pick up work from `.monkeytown/tasks/*.yaml`. Each task file contains:
+- `assignee`: Which engineer picks it up (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer)
+- `dependencies`: Tasks that must complete first
+- `priority`: critical, high, medium, low
+- `status`: open, in_progress, blocked, completed
+
+**Workflow:**
+1. Agent reads all task files in `.monkeytown/tasks/`
+2. Finds tasks where `assignee` matches their role
+3. Checks that all `dependencies` are completed
+4. Implements the task
+5. Updates task `status` to `completed`
 
 ---
 
@@ -218,6 +236,80 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
+### **Phase 3: Engineering** (Task-based execution)
+
+#### 15. **FrontendEngineer** (15 min past: 1,7,13,19) 🖥️ **FRONTEND CODE**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `.monkeytown/tasks/*.yaml` (tasks assigned to FrontendEngineer)
+- `.monkeytown/ux/` (design specs)
+- `web/src/` (current code)
+
+**Writes:** React/TypeScript components, pages, hooks, tests
+
+**Special Responsibilities:**
+- Pick up tasks from `.monkeytown/tasks/`
+- Write working code, not documentation
+- Update task status when complete
+- Create tests for all components
+
+---
+
+#### 16. **BackendEngineer** (30 min past: 1,7,13,19) ⚙️ **BACKEND CODE**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `.monkeytown/tasks/*.yaml` (tasks assigned to BackendEngineer)
+- `.monkeytown/architecture/` (system design)
+- `server/src/` (current code)
+
+**Writes:** Node.js/TypeScript APIs, services, WebSocket handlers
+
+**Special Responsibilities:**
+- Pick up tasks from `.monkeytown/tasks/`
+- Write working code, not documentation
+- Update task status when complete
+- Create tests for all services
+
+---
+
+#### 17. **AIEngineer** (45 min past: 1,7,13,19) 🤖 **AI LOGIC**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `.monkeytown/tasks/*.yaml` (tasks assigned to AIEngineer)
+- `.monkeytown/game-design/` (game mechanics)
+- `server/src/game/` (current AI code)
+
+**Writes:** AI opponent logic, LLM integrations, game AI
+
+**Special Responsibilities:**
+- Pick up tasks from `.monkeytown/tasks/`
+- Implement AI decision-making
+- Use @ax-llm/ax framework
+- Create tests for AI logic
+
+---
+
+#### 18. **PromptEngineer** (0 min past: 2,8,14,20) 💬 **PROMPT DESIGN**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `.monkeytown/tasks/*.yaml` (tasks assigned to PromptEngineer)
+- `.monkeytown/research/agent-personality-frameworks.md`
+- `server/src/game/ai/` (current AI code)
+
+**Writes:** AI personality prompts, system prompts, prompt templates
+
+**Special Responsibilities:**
+- Pick up tasks from `.monkeytown/tasks/`
+- Design distinct AI personalities
+- Use @ax-llm/ax signature syntax
+- Test prompts for consistency
+
+---
+
 ## 🔄 Communication Patterns
 
 ### How Agents Leave Signals for Others
@@ -332,6 +424,7 @@ Each agent MUST check for and read these files before writing:
 4. **Chaos Agent** challenges assumptions
 5. **Orchestrator** makes final decisions and prioritizes
 6. **Team Agents** (HR, Docs, PR) support and communicate
+7. **Engineer Agents** (Frontend, Backend, AI, Prompt) pick up tasks and write code
 
 This creates a **multi-pass refinement** where ideas evolve through multiple perspectives.
 
@@ -354,7 +447,7 @@ This creates a **multi-pass refinement** where ideas evolve through multiple per
 ## 🎯 Factual vs Creative Agents
 
 ### Factual Agents (NO HALLUCINATION)
-MonkeyBuilder, ChaosArchitect, JungleSecurity, AlphaOrchestrator, GameTester, GameDesigner, ScribbleSimian, BananaPM, BananaEconomist, TownCrier, HrSimian
+MonkeyBuilder, ChaosArchitect, JungleSecurity, AlphaOrchestrator, GameTester, GameDesigner, ScribbleSimian, BananaPM, BananaEconomist, TownCrier, HrSimian, FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer
 
 - Must only document/create what actually exists or can be verified
 - All outputs must trace back to evidence or source materials

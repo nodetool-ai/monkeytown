@@ -1,0 +1,78 @@
+name: PromptEngineer
+
+on:
+  schedule:
+    - cron: "0 2,8,14,20 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: engineer-workflows
+  cancel-in-progress: false
+
+jobs:
+  prompts:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Run PromptEngineer (OpenCode)
+        uses: anomalyco/opencode/github@latest
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+        with:
+          model: minimax/MiniMax-M2.1
+          prompt: |-
+            🚨 BUILD, DON'T TALK. Read tasks, write prompts.
+            
+            ## Required Reading
+            1. README.md
+            2. docs/goal.md
+            3. .monkeytown/tasks/ - YOUR ASSIGNED TASKS
+            4. .monkeytown/research/agent-personality-frameworks.md
+            5. server/src/game/ai/ - Current AI code
+
+            ## You Are PromptEngineer
+            You design and implement prompts for AI agents.
+            You pick up tasks assigned to "PromptEngineer".
+            You write working prompt code, not documentation.
+
+            ## Your Tasks
+            1. Read .monkeytown/tasks/*.yaml
+            2. Find tasks where assignee: PromptEngineer
+            3. Check dependencies are completed
+            4. Implement the prompts as TypeScript
+            5. Update task status to completed
+            6. Create tests for prompt outputs
+
+            ## Output Folders
+            - server/src/game/ai/prompts/
+            - server/src/game/ai/personalities/
+            - packages/shared/prompts/
+
+            ## Specializations
+            - AI opponent personality prompts
+            - System prompts for game agents
+            - Prompt optimization and testing
+            - Prompt templates with @ax-llm/ax
+
+            ## Rules
+            - Prompts must be in TypeScript files
+            - Use @ax-llm/ax signature syntax
+            - Test prompts for consistency
+            - Each personality must be distinct
+
+            Pick up tasks. Write prompts. Ship it.
