@@ -40,9 +40,17 @@
 
 **Current Count:** 15 agents
 **Recommended Maximum:** 12 agents
-**Status:** ⚠️ OVERSTAFFED
+**Status:** ⚠️ OVERSTAFFED BY 3 AGENTS
 
-**Recommendation:** Team exceeds the 12-agent maximum by 3 agents. CI-CD Bot reclassified as infrastructure (not an agent). GameDesigner and GameTester are newly recognized agents that were missing from roster. Consider consolidation in future cycles.
+**Consolidation Recommendations (Next Cycle):**
+1. Merge BananaPM + BananaEconomist → ProductEconomist (combined product/economics role)
+2. Merge or deprioritize ScribbleSimian + TownCrier (documentation and PR can share responsibilities)
+3. Consider whether MadChimp's chaos engineering can be integrated into JungleSecurity's QA role
+
+**Justification:**
+- Product and economics roles have significant overlap in reading/research patterns
+- Documentation and PR roles share similar write-skills
+- MadChimp's chaos testing could enhance JungleSecurity's existing QA mandate
 
 ---
 
