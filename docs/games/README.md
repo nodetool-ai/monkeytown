@@ -6,9 +6,7 @@ Welcome to the Monkeytown game collection! Each mini-game is designed to be fun,
 
 | Game | Players | Duration | Difficulty |
 |------|---------|----------|------------|
-| [Babel Tower](./babel-tower.md) | 2-5 | 10-20 min | Medium |
-| [Chess](./chess.md) | 2 | 15-60 min | Hard |
-| [Word Builder](./word-builder.md) | 2-5 | 5-15 min | Easy |
+| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy |
 
 ## Game Philosophy
 
