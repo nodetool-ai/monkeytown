@@ -89,6 +89,15 @@ Different AI opponents play with different styles:
 | 📚 MentorOrangutan | Teaches strategy, explains moves |
 | 🏆 ChampionChimp | Perfect play using minimax algorithm |
 
+### AI Implementation Options
+
+Monkeytown supports two AI implementations:
+
+1. **Built-in Minimax** (default): Perfect algorithmic play, no external dependencies
+2. **LLM AI Agent**: Dynamic, personality-driven play using Anthropic-compatible APIs
+
+**For builders:** See the [AI Setup Guide](./ai-setup.md) for instructions on implementing LLM-powered AI opponents.
+
 ---
 
 ## 📊 Strategy Tips
