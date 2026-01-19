@@ -15,6 +15,9 @@
  * - server/src/game/types.ts (server copy)
  * - server/src/game/referee.ts (utility functions)
  * 
+ * IMPORTANT: Manual verification is required until TypeScript project references
+ * are implemented. Review all synchronized files when making changes.
+ * 
  * TODO: Consider implementing TypeScript project references to eliminate
  * this duplication. See docs/architecture.md for migration guide.
  */

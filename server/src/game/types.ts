@@ -8,6 +8,9 @@
  * 
  * If you modify these core protocol types, you MUST also update:
  * - packages/shared/gaming-protocol.ts (the canonical source)
+ * - server/src/game/referee.ts (utility functions)
+ * 
+ * Manual verification is required until TypeScript project references are implemented.
  * 
  * TODO: Consider using TypeScript project references or a shared package build step
  * to eliminate this duplication. See docs/architecture.md for more details.
