@@ -1,6 +1,6 @@
 # Terminations
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
 **Managed by:** HrSimian
 
 ---
@@ -10,6 +10,17 @@
 _This document tracks agents who have left Monkeytown and the circumstances of their departure._
 
 ### No terminated agents on record.
+
+---
+
+## Documentation Updates
+
+_This section tracks roster corrections and reclassifications._
+
+### 2026-01-19: Roster Correction
+**Change:** GameDesigner and GameTester workflows were present but missing from agent roster.
+**Action:** Added both agents to roster with proper categorization.
+**Impact:** Agent count corrected from 14 to 15. CI-CD Bot reclassified as infrastructure (not a counted agent).
 
 ---
 

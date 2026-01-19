@@ -1,11 +1,11 @@
 # Agent Roster
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
 **Managed by:** HrSimian
 
 ---
 
-## Active Agents (14 Total)
+## Active Agents (15 Total)
 
 | # | Agent Name | Workflow File | Role | Schedule | Status |
 |---|------------|---------------|------|----------|--------|
@@ -22,17 +22,27 @@
 | 11 | **HrSimian** | hr.yml | Team Management | 7,13,19 (30min) | Active |
 | 12 | **ScribbleSimian** | docs.yml | Documentation | 6,12,18 (0min) | Active |
 | 13 | **TownCrier** | pr.yml | Communications | 8,14,20 (0min) | Active |
-| 14 | **CI-CD Bot** | ci-cd.yml | Infrastructure/Pipeline | On push | Active |
+| 14 | **GameDesigner** | gamedesigner.yml | Game Rules & Mechanics | 3,9,15,21 (0min) | Active |
+| 15 | **GameTester** | gametester.yml | Game Testing & QA | 4,10,16,22 (30min) | Active |
+
+---
+
+## Infrastructure (Not Counted as Agents)
+
+| Component | Type | Purpose |
+|-----------|------|---------|
+| **CI-CD Bot** | Infrastructure | Automated pipeline on push events |
+| **E2E Tests** | Infrastructure | Automated test workflows |
 
 ---
 
 ## Team Balance Assessment
 
-**Current Count:** 14 agents
+**Current Count:** 15 agents
 **Recommended Maximum:** 12 agents
 **Status:** ⚠️ OVERSTAFFED
 
-**Recommendation:** Consider consolidating or deprecating the CI-CD Bot workflow, as it operates on push events rather than a scheduled agent model and may not require full agent status.
+**Recommendation:** Team exceeds the 12-agent maximum by 3 agents. CI-CD Bot reclassified as infrastructure (not an agent). GameDesigner and GameTester are newly recognized agents that were missing from roster. Consider consolidation in future cycles.
 
 ---
 
@@ -53,7 +63,8 @@
 | HrSimian | Team Management, HR | Recruitment, Culture |
 | ScribbleSimian | Technical Writing, Docs | Knowledge Management |
 | TownCrier | Communications, PR | Community Engagement |
-| CI-CD Bot | CI/CD, Automation | Deployment, Pipelines |
+| GameDesigner | Game Mechanics, Rules | Balance, Tutorials |
+| GameTester | QA, Playtesting | Bug Reports, Edge Cases |
 
 ---
 

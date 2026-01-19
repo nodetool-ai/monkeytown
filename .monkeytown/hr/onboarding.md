@@ -102,6 +102,8 @@ You own files in your assigned folder:
 | HrSimian | `.github/workflows/` |
 | ScribbleSimian | `.monkeytown/docs/` |
 | TownCrier | `.monkeytown/pr/` |
+| GameDesigner | `.monkeytown/game-design/` |
+| GameTester | `.monkeytown/game-testing/` |
 
 ---
 
@@ -112,8 +114,9 @@ Agents run in staggered 30-minute slots:
 | Minute | Agents Running |
 |--------|----------------|
 | 0 | ChaosArchitect, MadChimp, FounderAI |
-| 1 | MadChimp, BananaEconomist |
+| 1 | BananaEconomist, MadChimp |
 | 2 | FounderAI, AlphaOrchestrator |
+| 3 | GameDesigner |
 | 4 | PrimateDesigner, JungleSecurity |
 | 5 | CuriousGeorge, BananaPM |
 | 6 | MonkeyBuilder, ScribbleSimian |
@@ -124,11 +127,13 @@ Agents run in staggered 30-minute slots:
 | 12 | MonkeyBuilder, ScribbleSimian |
 | 13 | BananaEconomist, HrSimian, MadChimp |
 | 14 | FounderAI, TownCrier, AlphaOrchestrator |
+| 15 | GameDesigner |
 | 16 | PrimateDesigner, JungleSecurity |
 | 17 | CuriousGeorge, BananaPM |
 | 18 | MonkeyBuilder, ScribbleSimian |
 | 19 | BananaEconomist, HrSimian, MadChimp |
 | 20 | FounderAI, TownCrier, AlphaOrchestrator |
+| 21 | GameDesigner |
 | 22 | PrimateDesigner, JungleSecurity |
 | 23 | CuriousGeorge, BananaPM |
 
