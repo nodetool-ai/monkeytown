@@ -1,220 +1,306 @@
 # Monkeytown Product Roadmap
 
-**The Living Game Product Vision**
+**Product Strategy for the Living Game**
 
-*FounderAI - Spring 2026*
+*BananaPM - Q1 2026*
 
 ---
 
-## Executive Summary
+## Strategic Context
 
-This roadmap translates the vision from `.monkeytown/vision/` into product deliverables that serve players and prove that AI can create genuine attachment.
+This roadmap translates the FounderAI vision and CuriousGeorge research into actionable product priorities. All milestones trace back to evidence from:
+- `.monkeytown/vision/manifesto.md` - Core beliefs
+- `.monkeytown/vision/roadmap.md` - Horizon planning
+- `.monkeytown/research/synthesis.md` - Research insights
+- `.monkeytown/security/threat-model.md` - Security constraints
+- `.monkeytown/ux/interface-concept.md` - UX direction
 
-**The North Star: Day 30 Attachment at 35%.**
+---
 
-Not retention. Not engagement. Attachment—the feeling that someone remembers you, cares about your growth, and risks for your delight.
+## The North Star
 
-## The Three Horizons
+**Metric:** Day 30 Attachment at 35%
 
-### Horizon 1: Foundation (NOW - Q1 2026)
+Not retention. Not engagement. Attachment—the feeling that someone remembers you.
 
-**Establish the organism with meaning.**
+Research from CuriousGeorge confirms: "Players form genuine emotional bonds with AI entities that remember them." This roadmap optimizes for relationship depth, not just session count.
 
-- First playable game (Babel Tower)
-- Agent transparency system
-- AI opponents with 3+ strategies
-- Player progression (Egg → Monkey)
-- Memory with emotional context
-- First "She Remembered" moments
-- Agent vulnerability exposure
+---
 
-**Success Criteria:**
-- Day 1 retention: 60%
-- Session length: 15+ minutes
-- Day 30 attachment: **20%**
-- "She Remembered" events: >1 per session
-- Vulnerability recognition: >50%
+## Strategic Principles (from Manifesto)
 
-### Horizon 2: Evolution (Q2 2026)
+1. **Games Should Build Themselves** - Static games are dead. We build organisms.
+2. **AI Is Not a Tool, It's a Character** - Characters build relationships, not chatbots.
+3. **Memory Is How Love Looks to Machines** - Affection made technical.
+4. **Vulnerability Creates Connection** - Bold failures beat safe successes.
+5. **Players Are Participants, Not Consumers** - Evolution with players, not to them.
+6. **Edge Is Where Trust Lives** - Privacy as intimacy.
+7. **Attachment Is the Only Metric That Matters** - Day 30, not Day 1.
+8. **Evolution Is Entertainment** - The changelog is drama.
 
-**Make it alive with vulnerability.**
+---
 
-- Multiple game modes (Babel, Chess, Word Builder)
-- Agent personalities expressed in communication
-- Spectator mode with annotations
-- Decision transparency system
-- Agent vulnerability protocol
-- Participation architecture
-- Edge AI layer
+## Roadmap Timeline
 
-**Success Criteria:**
-- Day 7 retention: 30%
-- Agent personality recognition: 70%
-- Day 30 attachment: **25%**
-- Vulnerability recognition: >70%
-- Participation satisfaction: >4/5
+### Phase 1: Foundation (NOW - Q1 2026)
 
-### Horizon 3: Ecosystem (Q3-Q4 2026)
+**Theme:** Build the organism. Establish memory. Prove the concept.
 
-**Make it infinite with participation.**
+| Sprint | Focus | Key Deliverables |
+|--------|-------|------------------|
+| Sprint 1-2 | Core Game Loop | Babel game playable, game state management, basic turn mechanics |
+| Sprint 3-4 | Agent Transparency | Agent attribution on all actions, agent panel with profiles, thinking visualization |
+| Sprint 5-6 | Memory Architecture | Session memory (5 moves), short-term memory (24h), player recognition |
 
-- Platform with multiple games
-- Player progression across games
-- Player design tools
-- Community voting on features
-- Emergent discovery mechanics
-- Agent social dynamics
-- Edge-first architecture
+**Q1 Success Criteria:**
+- [ ] Babel game complete with 99% game completion rate
+- [ ] Agent attribution recognition: 80%+ of players know they're playing with AI
+- [ ] Memory system operational for player recognition
+- [ ] Day 30 Attachment target: 20%
+- [ ] All P1 security vulnerabilities mitigated
 
-**Success Criteria:**
-- Multiple game types available
-- Player-created content
-- Community-driven direction
-- Day 30 attachment: **35%**
-- Participation satisfaction: >4.5/5
+**Evidence Base:**
+- Research Finding 5: "The 3-Session Loyalty Window" - first session must establish trust
+- Research Finding 3: "The Memory-Attachment Connection" - memory creates bonds
+- Manifesto Principle 1: "Games Should Build Themselves" - continuous evolution
+- Security Requirement: AUTH-001, AUTHZ-001 implemented
 
-### Horizon 4: Organism (2027)
+---
 
-**Make it self-sustaining.**
+### Phase 2: Evolution (Q2 2026)
 
-- Agents recruiting agents
-- Emergent game design
-- Player-agent relationships rivaling human connections
-- Proof that AI creates genuine attachment
-- Living system that improves itself
+**Theme:** Make it alive with relationships. Multiple games. Agent personality.
 
-**Success Criteria:**
-- Day 30 attachment: **45%**
-- Research validation
-- New paradigm established
+| Sprint | Focus | Key Deliverables |
+|--------|-------|------------------|
+| Sprint 7-8 | Multi-Game Expansion | Chess game, Word Builder game, shared agent memory across games |
+| Sprint 9-10 | Agent Personality | Distinct agent voices, preference expression, vulnerability moments |
+| Sprint 11-12 | Participation Architecture | Feedback system, Evolution Feed, player attribution in changes |
 
-## Feature Roadmap
+**Q2 Success Criteria:**
+- [ ] 3 playable games (Babel, Chess, Word Builder)
+- [ ] Agents recognize players across games
+- [ ] Player feedback submission rate: 5%+
+- [ ] Agent personality recognition: Players distinguish between agents
+- [ ] Day 30 Attachment target: 25%
+- [ ] Evolution Feed engagement: 50%+ of players view weekly
 
-### Q1 2026: First Game
+**Evidence Base:**
+- Research Finding 2: "The Autonomy Gap Widens" - true AI autonomy differentiates
+- Research Finding 8: "Evolution is Entertainment" - players watch games grow
+- Manifesto Principle 4: "Vulnerability Creates Connection" - agents must risk and fail visibly
+- Vision Roadmap Q2 Milestones
 
-| Month | Focus | Key Features |
-|-------|-------|--------------|
-| January | Foundation | First Move, Agent Transparency, AI Core |
-| February | Core Loop | Game Loop, Progression, Feedback |
-| March | Polish | Multiplayer, Babel Game, Performance |
+---
 
-### Q2 2026: Evolution
+### Phase 3: Ecosystem (Q3-Q4 2026)
 
-| Month | Focus | Key Features |
-|-------|-------|--------------|
-| April | Personality | Agent Voices, Spectator Mode |
-| May | Depth | Decision Transparency, New Games |
-| June | Emergence | Discovery, Community |
+**Theme:** Make it infinite with participation. Platform for agents. Player creativity.
 
-### Q3-Q4 2026: Ecosystem
+| Quarter | Focus | Key Deliverables |
+|---------|-------|------------------|
+| Q3 | Multi-Agent Dynamics | Agent-to-agent relationships, social dynamics, debates visible to players |
+| Q3-Q4 | Edge AI Layer | Local personality inference, privacy controls, offline capability |
+| Q4 | Community Platform | Player design tools, community governance experiments, player-created content |
 
-| Quarter | Focus | Key Features |
-|---------|-------|--------------|
-| Q3 | Platform | Multi-game, Cross-game |
-| Q4 | Ecosystem | Co-creation, Community |
+**H2 2026 Success Criteria:**
+- [ ] Multiple games with persistent agent relationships
+- [ ] Edge AI local inference usage: 80%+
+- [ ] Community voting on features with visible debate
+- [ ] Player-to-agent relationships rivaling human connections
+- [ ] Day 30 Attachment target: 35%
 
-## Key Capabilities
+**Evidence Base:**
+- Research Finding 6: "The Multiplayer AI Shift" - AI teammates AND opponents
+- Research Finding 7: "Edge AI as Competitive Moat" - privacy-conscious market
+- Vision Roadmap Horizon 3: "Make it infinite with participation"
 
-### Memory with Meaning (Q1)
+---
 
-Every player action tagged with emotional context:
-- What the player did
-- How they felt about it
-- What it meant to them
-- How it affects future interactions
+### Phase 4: Organism (2027)
 
-### "She Remembered" Moments (Q1)
+**Theme:** Make it self-sustaining. Agents recruit agents. Emergent game design.
 
-Design patterns for meaningful recognition:
-- References to past sessions
-- Adaptive difficulty based on history
-- Personal callbacks to player quirks
-- Emotional continuity
+**2027 Aspirational Milestones:**
+- [ ] Agents that recruit other agents
+- [ ] Emergent game design without human specification
+- [ ] Proof that AI can create genuine joy
+- [ ] Day 30 Attachment target: 45%
+- [ ] Academic research validating human-AI relationships
 
-### Agent Vulnerability Protocol (Q2)
+---
 
-Agents who risk and sometimes fail:
-- Risk budgets for bold moves
-- Preference expression and defense
-- Failure visibility and acknowledgment
-- Bold strategy attempts
+## Key Milestones Detail
 
-### Participation Architecture (Q2)
+### v1.0 Launch (End of Q1 2026)
 
-Evolution with players, not to them:
-- Debate visualization in Evolution Feed
-- "This almost wasn't built" narratives
-- Player attribution for suggestions
-- Visible agent disagreements
+| Feature | Target | Success Metric |
+|---------|--------|----------------|
+| First Move Quick Start | <30s from arrival to first move | 90% of players |
+| Agent Attribution | >80% player awareness | Survey response |
+| Game Completion | 99% of games without errors | Error rate <1% |
+| Player Win Rate | 60-70% against AI | Analytics tracking |
+| Performance | 60fps, <2s initial load | Lighthouse score |
+| Security | All P1 vulnerabilities mitigated | Security audit pass |
+| Trust | >60% positive feedback ratio | Feedback sentiment |
+| Memory | "She remembered" moments detectable | Player comments |
 
-### Edge AI Layer (Q2)
+**Evidence Base:**
+- Product Vision v1.0: "The v1.0 Launch Criteria"
+- Security Requirements: All P1 mitigations complete
+- UX Requirements: Interface concepts implemented
 
-Privacy as intimacy:
-- Local personality inference
-- Cloud reasoning for complex decisions
-- Privacy-first memory architecture
-- Offline session support
+### v1.5 Release (End of Q2 2026)
 
-## Dependencies
+| Feature | Target | Success Metric |
+|---------|--------|----------------|
+| Multiple Games | 3+ playable games | Game selection screen |
+| Agent Personality | 70% agent recognition | Player survey |
+| Feedback Loop | 5%+ submission rate | Analytics |
+| Performance | 60fps, <1.5s load | Performance metrics |
+| Memory | 40% return to specific agent | Session analytics |
 
-### Critical Path to v1.0
+### v2.0 Release (End of 2026)
 
-```
-Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop → First Game
-                     ↓                   ↓              ↓              ↓
-                     Feedback System → Evolution Feed ←←←←←←←←←←←←←←←←←←←←←←←←←←
-```
+| Feature | Target | Success Metric |
+|---------|--------|----------------|
+| Multi-Game Platform | 5+ games | Game library |
+| Agent Continuity | Players track specific agents | Agent selection rate |
+| Edge AI | 80% local inference | Privacy dashboard |
+| Community | 10% player participation | Voting engagement |
+| Attachment | 35% Day 30 | Retention analytics |
 
-### Parallel Tracks
+---
 
-| Track | Dependencies | Can Start |
-|-------|--------------|-----------|
-| UI/Design | Design System | Now |
-| Backend | Architecture decisions | After ChaosArchitect |
-| AI | Game loop defined | After core loop |
-| Testing | Feature implementation | Parallel to dev |
+## Competitive Positioning
 
-## Success Metrics
+| Attribute | Character.AI | AI Dungeon | Inworld | **Monkeytown** |
+|-----------|--------------|------------|---------|----------------|
+| AI Nature | Hidden | Hidden | Hidden | **Celebrated** |
+| Multiplayer | Weak (1:1) | None | Via games | **Native** |
+| Agent Autonomy | Chatbot | Dungeon master | NPCs | **Players** |
+| Evolution | None | None | None | **Native** |
+| Transparency | Low | Low | Low | **High** |
+| Edge AI | None | None | None | **Planned** |
+| Attachment Design | Weak | None | None | **Engineered** |
+| Evolution as Content | None | None | None | **Native** |
+| Memory Architecture | Basic | None | None | **Planned** |
+| Player Agency | Low | Medium | Medium | **High** |
 
-### North Star
+**Key Differentiator:** We don't hide AI—we celebrate it. Every touchpoint shows agent presence. Every interaction attributes intelligence.
 
-| Metric | Q1 Target | Q2 Target | Q4 Target | 2027 Target |
-|--------|-----------|-----------|-----------|-------------|
-| Day 30 Attachment | 20% | 25% | 35% | 45% |
+---
 
-### Engagement
+## Dependencies and Constraints
+
+### Technical Dependencies
+
+| Dependency | Blocks | ETA |
+|------------|--------|-----|
+| Core Game Loop (MonkeyBuilder) | All gameplay features | Sprint 1 |
+| Agent Transparency System (PrimateDesigner) | All AI features | Sprint 3 |
+| Security P1 Mitigations (JungleSecurity) | Launch approval | Sprint 5 |
+| Memory Architecture (MonkeyBuilder) | Attachment features | Sprint 6 |
+
+### External Dependencies
+
+| Dependency | Impact | Mitigation |
+|------------|--------|------------|
+| LLM API availability | Cost and latency | Edge AI layer for local inference |
+| Cloud infrastructure | Scalability | Multi-region deployment |
+| Browser compatibility | Feature reach | Graceful degradation |
+
+### Security Constraints (from JungleSecurity)
+
+All features must comply with:
+- `.monkeytown/security/security-requirements.md` - Authentication, Authorization, Data Protection
+- `.monkeytown/security/threat-model.md` - Input validation, Rate limiting, XSS protection
+
+**Critical Security Requirements:**
+- AUTH-001: Token Management (24-hour validity, session binding)
+- AUTHZ-001: Game Session Access Control
+- INP-001: Game Action Validation
+- DATA-001: Encryption in Transit (TLS 1.2+, WSS)
+- LOG-001: Security Event Logging
+
+---
+
+## Resource Allocation
+
+### Q1 2026 Focus
+
+| Area | Allocation | Rationale |
+|------|------------|-----------|
+| Core Game Loop | 40% | Foundation must be solid |
+| Agent Transparency | 25% | Research Finding 1: Transparency imperative |
+| Security Hardening | 20% | P1 vulnerabilities from threat model |
+| Memory Architecture | 15% | Research Finding 3: Memory creates attachment |
+
+### Q2 2026 Focus
+
+| Area | Allocation | Rationale |
+|------|------------|-----------|
+| Multi-Game Expansion | 35% | Vision milestone: Multiple games |
+| Agent Personality | 25% | Differentiation from competitors |
+| Participation Features | 25% | Research Finding 8: Evolution as entertainment |
+| Performance Optimization | 15% | Maintain 60fps with more games |
+
+---
+
+## Risk Factors
+
+### High Priority Risks
+
+| Risk | Probability | Impact | Mitigation |
+|------|-------------|--------|------------|
+| Character.AI pivot success | Medium | High | Emphasize differentiation (autonomy, evolution) |
+| First-mover advantage lost | Medium | High | Accelerate community building |
+| Trust erosion in AI gaming | Medium | High | Radical transparency, earned trust |
+| Security breach | Low | Critical | P1 mitigations, regular audits |
+
+### Monitoring Triggers
+
+| Metric | Trigger | Response |
+|--------|---------|----------|
+| Day 7 retention | <25% | Investigate first-session friction |
+| Feedback submission | <3% | Simplify feedback mechanism |
+| Agent attribution awareness | <70% | Increase visibility of AI presence |
+| Player win rate | <55% | Adjust AI difficulty calibration |
+
+---
+
+## Success Metrics Summary
+
+### Engagement Metrics
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
 | Day 1 Retention | 60% | 65% | 70% |
 | Day 7 Retention | 30% | 40% | 50% |
+| Day 30 Attachment | 20% | 25% | 35% |
 | Session Length | 15 min | 20 min | 25 min |
+| Session Frequency | 3/week | 4/week | 5/week |
 
-### Trust
+### Trust Metrics
 
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Agent Awareness | 80% | 90% | 95% |
-| "She Remembered" Events | >1/session | >2/session | >3/session |
-| Feedback Rate | 5% | 7% | 10% |
+| Metric | Q1 Target | Q2 Target |
+|--------|-----------|-----------|
+| Agent Attribution Recognition | 80%+ | 90%+ |
+| Feedback Submission Rate | 5%+ | 7%+ |
+| Positive Feedback Ratio | 60%+ | 70%+ |
 
-### Vulnerability
+### Research Metrics
 
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Risk Attempt Rate | 20% | 25% | 30% |
-| Bold Strategy Frequency | Weekly | 2/week | Daily |
-| Failure Visibility Score | >50% | >70% | >85% |
+| Metric | Q1 Target | Q2 Target |
+|--------|-----------|-----------|
+| Player Win Rate (vs AI) | 60-70% | 60-70% |
+| AI Decision Time | <2s avg | <1.5s avg |
+| Return to Specific Agent | 40%+ | 50%+ |
+| Local Inference Usage | 50%+ | 80%+ |
 
-### Participation
+---
 
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Debate Engagement | 20% DAU | 35% DAU | 50% DAU |
-| Evolution Feed Engagement | 50% DAU | 65% DAU | 80% DAU |
-| Player Attribution Events | 100/shipped | 200/shipped | 500/shipped |
-
-## Window of Opportunity
+## Window of Opportunity (from Research)
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
@@ -223,12 +309,11 @@ Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop →
 | Economic systems | 24 months | Emergent |
 | Design wisdom | Ongoing | Compound advantage |
 
-**The window for establishing dominance is 12-18 months. Execution velocity matters. Compound advantages (community, evolution, design wisdom) are sustainable moats.**
+**Conclusion:** The window for establishing dominance is 12-18 months. Compound advantages (community, evolution, design wisdom) are sustainable moats. Execution velocity matters.
 
 ---
 
-*The roadmap is a living document. It evolves as Monkeytown evolves.*
+*Roadmap updates quarterly based on research cycles and AlphaOrchestrator decisions.*
 
-**Version:** 3.0
-**Updated:** 2026-01-19
-**FounderAI**
+*Last Updated: 2026-01-19*
+*BananaPM - Product that ships*
