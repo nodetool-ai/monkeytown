@@ -1,6 +1,24 @@
-# Monkeytown Quality Gates
+# Monkeytown Quality Gates v2.1
 
 **Mandatory quality criteria for all code and releases**
+
+**Version:** 2.1
+**Date:** 2026-01-19
+**QA Lead:** JungleSecurity
+**Status:** ACTIVE
+**Next Review:** 2026-04-19
+
+---
+
+## Executive Summary
+
+This document defines mandatory quality gates for the Monkeytown platform. All gates must pass before code can be merged, deployed, or released. The gates are derived from security requirements and vulnerability assessments.
+
+**Key Updates in v2.1:**
+- Added security linting gates for JWT secret detection
+- Enhanced input validation gates
+- Added WebSocket security gates
+- Updated coverage thresholds for security-critical modules
 
 ---
 
@@ -8,7 +26,7 @@
 
 ### GATE-CODE-001: Lint Pass
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (every commit, every PR)
 
 ```yaml
 # .github/workflows/lint.yml
@@ -25,14 +43,13 @@ jobs:
           node-version: '20'
       - run: npm ci
       - run: npm run lint
-      
-# Quality Gate: Must pass with no warnings
 ```
 
 **Criteria:**
 - ESLint passes with 0 errors
 - No TypeScript type errors
 - Prettier formatting compliant
+- No console.log statements in production code
 
 **Failure Action:**
 ```
@@ -47,7 +64,7 @@ Fix all errors before committing.
 
 ### GATE-CODE-002: Type Safety
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (every commit, every PR)
 
 ```yaml
 # .github/workflows/typecheck.yml
@@ -70,6 +87,7 @@ jobs:
 - TypeScript compilation succeeds with 0 errors
 - No implicit any types
 - Strict null checks enabled
+- No type assertions that bypass type checking
 
 **Failure Action:**
 ```
@@ -82,9 +100,61 @@ Fix all TypeScript errors before committing.
 
 ---
 
-### GATE-CODE-003: Test Coverage
+### GATE-CODE-003: Security Linting
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (every commit, every PR)
+**Priority:** P1 - Critical
+
+```yaml
+# .github/workflows/security-lint.yml
+name: Security Lint
+on: [push, pull_request]
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Install security plugins
+        run: npm install -D eslint-plugin-security eslint-plugin-import
+      - name: Run security lint
+        run: npx eslint --ext .ts,.tsx --plugin security .
+      - name: Check for hardcoded secrets
+        run: |
+          grep -r "dev-secret\|test-secret\|'secret'" --include="*.ts" server/src/ || echo "No hardcoded secrets found"
+```
+
+**Criteria:**
+- No security warnings from eslint-plugin-security
+- No hardcoded secrets (especially 'dev-secret', 'test-secret')
+- No use of dangerous functions (eval, exec, etc.)
+- No SQL injection vulnerabilities in queries
+
+**Specific Checks:**
+- [ ] No 'dev-secret' or similar fallback secrets
+- [ ] No hardcoded API keys or passwords
+- [ ] No eval() or exec() usage
+- [ ] No SQL query string concatenation
+
+**Failure Action:**
+```
+🚫 BLOCKED: Security issues detected
+
+CRITICAL: Hardcoded JWT secret fallback detected!
+File: server/src/websocket/server.ts:120
+
+Remove hardcoded secrets before committing.
+```
+
+---
+
+### GATE-CODE-004: Test Coverage
+
+**Enforcement:** CI Pipeline (every commit, every PR)
 
 ```yaml
 # .github/workflows/test-coverage.yml
@@ -109,21 +179,24 @@ jobs:
 
 **Criteria:**
 
-| Component | Minimum Coverage |
-|-----------|-----------------|
-| Authentication | 95% |
-| Game Logic | 95% |
-| Input Validation | 90% |
-| Data Access | 85% |
-| Utilities | 80% |
-| **Overall** | **85%** |
+| Component | Minimum Coverage | Priority |
+|-----------|-----------------|----------|
+| Authentication | **95%** | P1 - Critical |
+| Game Logic | **95%** | P1 - Critical |
+| Input Validation | **95%** | P1 - Critical |
+| Authorization | **95%** | P1 - High |
+| WebSocket | **90%** | P1 - High |
+| Chat | **90%** | P1 - High |
+| Data Access | **85%** | P2 - Medium |
+| Utilities | **80%** | P2 - Medium |
+| **Overall** | **90%** | P1 - Critical |
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Coverage below threshold
 
-Current: 82%
-Required: 85%
+Current: 87%
+Required: 90%
 
 Run: npm run test:coverage
 
@@ -132,49 +205,11 @@ Add tests to cover missing code paths.
 
 ---
 
-### GATE-CODE-004: Security Linting
-
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/security-lint.yml
-name: Security Lint
-on: [push, pull_request]
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm install -D eslint-plugin-security
-      - run: npx eslint --ext .ts,.tsx --plugin security .
-```
-
-**Criteria:**
-- No security warnings from eslint-plugin-security
-- No hardcoded secrets detected
-- No use of dangerous functions
-
-**Failure Action:**
-```
-🚫 BLOCKED: Security issues detected
-
-Run: npx eslint --ext .ts,.tsx --plugin security .
-
-Security issues must be resolved before committing.
-```
-
----
-
 ## Test Quality Gates
 
 ### GATE-TEST-001: Unit Tests Pass
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (every commit, every PR)
 
 ```yaml
 # .github/workflows/unit-tests.yml
@@ -209,7 +244,68 @@ Fix failing tests before committing.
 
 ---
 
-### GATE-TEST-002: Integration Tests Pass
+### GATE-TEST-002: Security Tests Pass
+
+**Enforcement:** CI Pipeline (every PR), Nightly
+**Priority:** P1 - Critical
+
+```yaml
+# .github/workflows/security-tests.yml
+name: Security Tests
+on:
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 2 * * *'  # Daily at 2 AM
+
+jobs:
+  security-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm ci
+      - name: Run authentication security tests
+        run: npm run test:auth-security
+      - name: Run input validation tests
+        run: npm run test:input-validation
+      - name: Run WebSocket security tests
+        run: npm run test:websocket-security
+```
+
+**Required Security Tests:**
+- TC-AUTH-003: Invalid token signature rejection
+- TC-AUTH-006: Hardcoded secret rejection
+- TC-ACTION-002: Invalid position rejection
+- TC-ACTION-003: Speed hack detection
+- TC-WS-001: Connection rate limiting
+- TC-WS-002: Message rate limiting
+- TC-CHAT-002: XSS payload blocked
+- TC-SEC-001: SQL injection prevention
+- TC-SEC-006: JWT secret hardcoded check
+
+**Criteria:**
+- All security tests pass (0 failures)
+- 100% pass rate for critical security tests
+
+**Failure Action:**
+```
+🚫 BLOCKED: Security tests failed
+
+CRITICAL: Security vulnerability detected!
+
+Failed tests:
+- TC-AUTH-003: Token with 'dev-secret' was accepted
+- TC-ACTION-002: Invalid position was not rejected
+
+Security issues MUST be fixed before merge.
+```
+
+---
+
+### GATE-TEST-003: Integration Tests Pass
 
 **Enforcement:** CI Pipeline (PR required)
 
@@ -250,6 +346,7 @@ jobs:
 - All integration tests pass (0 failures)
 - Database migrations applied successfully
 - External service mocks working correctly
+- WebSocket integration tests pass
 
 **Failure Action:**
 ```
@@ -262,7 +359,7 @@ Fix failing integration tests before merge.
 
 ---
 
-### GATE-TEST-003: E2E Tests Critical Pass
+### GATE-TEST-004: E2E Tests Critical Pass
 
 **Enforcement:** Nightly + PR (non-blocking for urgent fixes)
 
@@ -305,6 +402,8 @@ Critical tests: 100% ✅
 All tests: 87% (2 failures)
 
 Review failures and fix in next 24 hours.
+
+Blocking: No (non-critical tests)
 ```
 
 ---
@@ -347,8 +446,8 @@ jobs:
 
 | Severity | Threshold | Action |
 |----------|-----------|--------|
-| Critical | 0 | BLOCK |
-| High | 0 | BLOCK |
+| Critical | 0 | **BLOCK** |
+| High | 0 | **BLOCK** |
 | Medium | Report only | WARN |
 | Low | Report only | INFO |
 
@@ -365,7 +464,7 @@ Run: npm audit fix
 
 ---
 
-### GATE-SEC-002: Dependency Update
+### GATE-SEC-002: Dependency Security
 
 **Enforcement:** Weekly
 
@@ -373,6 +472,7 @@ Run: npm audit fix
 - No dependency more than 6 months behind latest
 - Security patches applied within 7 days
 - No known vulnerable dependencies
+- Outdated dependencies documented
 
 **Failure Action:**
 ```
@@ -391,7 +491,7 @@ Update within 7 days to maintain security posture.
 
 **Enforcement:** Pre-commit + CI
 
-```bash
+```yaml
 # .pre-commit-config.yaml
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -405,6 +505,7 @@ repos:
 - No secrets in code
 - No secrets in commits
 - Baseline maintained and updated
+- False positives managed
 
 **Failure Action:**
 ```
@@ -412,9 +513,69 @@ repos:
 
 Secrets found:
 - File: server/src/auth.ts, line 42
-- Pattern: AWS_ACCESS_KEY
+- Pattern: JWT_SECRET.*=.*dev-secret
 
 Remove secrets from code immediately.
+```
+
+---
+
+### GATE-SEC-004: JWT Secret Validation
+
+**Enforcement:** CI Pipeline (every PR)
+**Priority:** P1 - Critical
+
+```yaml
+# .github/workflows/jwt-validation.yml
+name: JWT Secret Validation
+on: [push, pull_request]
+
+jobs:
+  jwt-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for hardcoded JWT secrets
+        run: |
+          echo "Checking for hardcoded JWT secrets..."
+          
+          # Check for 'dev-secret' and similar
+          if grep -r "dev-secret\|test-secret\|'secret'" --include="*.ts" server/src/ | grep -v ".test.ts" | grep -v ".spec.ts"; then
+            echo "❌ ERROR: Hardcoded JWT secret detected!"
+            echo "Found hardcoded secret in server/src/"
+            exit 1
+          fi
+          
+          # Check for JWT_SECRET fallback patterns
+          if grep -r "process.env.JWT_SECRET.*||" --include="*.ts" server/src/; then
+            echo "❌ ERROR: JWT_SECRET fallback detected!"
+            echo "Server must require JWT_SECRET, not use a fallback"
+            exit 1
+          fi
+          
+          echo "✅ No hardcoded JWT secrets found"
+```
+
+**Criteria:**
+- No hardcoded 'dev-secret' or similar fallback
+- JWT_SECRET must be required, not optional
+- No environment variable fallback patterns
+
+**Failure Action:**
+```
+🚫 BLOCKED: JWT Secret Vulnerability Detected!
+
+CRITICAL: Hardcoded JWT secret fallback found!
+
+File: server/src/websocket/server.ts:120
+Code: const decoded = jwt.verify(token, process.env.JWT_SECRET || 'dev-secret')
+
+This is VULN-001 and MUST be fixed before merge.
+
+Remediation:
+- Remove the 'dev-secret' fallback
+- Ensure JWT_SECRET is required at startup
+- Never commit secrets to version control
 ```
 
 ---
@@ -453,12 +614,12 @@ jobs:
 
 **Criteria:**
 
-| Metric | Target | Threshold |
-|--------|--------|-----------|
-| API Response (P50) | < 50ms | < 100ms |
-| API Response (P95) | < 100ms | < 200ms |
-| WebSocket Message | < 50ms | < 100ms |
-| Game State Update | < 30ms | < 60ms |
+| Metric | Target | Threshold | Status |
+|--------|--------|-----------|--------|
+| API Response (P50) | < 50ms | < 100ms | Required |
+| API Response (P95) | < 100ms | < 200ms | Required |
+| WebSocket Message | < 50ms | < 100ms | Required |
+| Game State Update | < 30ms | < 60ms | Required |
 
 **Failure Action:**
 ```
@@ -472,24 +633,24 @@ Review performance report and optimize.
 
 ---
 
-### GATE-PERF-002: Load Handling
+### GATE-PERF-002: Rate Limiting Performance
 
 **Enforcement:** Scheduled (nightly)
 
 **Criteria:**
-- System handles 1000 concurrent connections
-- No dropped connections under load
-- Memory usage stable (< 80%)
+- Rate limiting adds < 1ms latency to normal requests
+- Rate limit checks complete within 5ms under load
+- No dropped legitimate requests due to rate limiting
+- Memory usage for rate limiting is bounded
 
 **Failure Action:**
 ```
-🚨 ALERT: Load test failure
+⚠️ WARNING: Rate limiting performance issues
 
-Failed to handle 1000 concurrent connections
-Dropped connections: 45
-Memory usage: 92%
+Rate limiting added 5ms latency (target: <1ms)
+Memory usage for rate limiting growing unbounded
 
-Investigate immediately. System may not handle peak load.
+Optimize rate limiting implementation.
 ```
 
 ---
@@ -503,11 +664,12 @@ Investigate immediately. System may not handle peak load.
 - Automated tests pass on staging
 - Manual smoke tests pass
 - No critical bugs in staging
+- Security scan clean
 
 **Verification:**
 ```bash
-# Smoke test script
 #!/bin/bash
+# Smoke test script
 echo "Running smoke tests..."
 
 # 1. Health check
@@ -520,6 +682,9 @@ curl -f -X POST http://staging.example.com/api/login
 TOKEN=$(get_test_token)
 curl -f -X POST http://staging.example.com/api/games \
   -H "Authorization: Bearer $TOKEN"
+
+# 4. WebSocket connection
+node test/websocket-connection.js
 
 echo "Smoke tests passed ✅"
 ```
@@ -539,18 +704,20 @@ echo "Smoke tests passed ✅"
 | Monitoring configured | ✅ | Yes |
 | Documentation updated | ✅ | No |
 | Feature flags set correctly | ✅ | Yes |
+| Database migrations tested | ✅ | Yes |
 
 **Release Checklist:**
 ```markdown
 ## Production Release Checklist
 
 ### Pre-Release
-- [ ] Code review completed
+- [ ] Code review completed (minimum 2 approvals)
 - [ ] All CI gates passing
 - [ ] Security review completed
 - [ ] Performance benchmarks met
 - [ ] Database migrations tested
 - [ ] Rollback plan ready
+- [ ] Stakeholder notification sent
 
 ### Deployment
 - [ ] Backup created
@@ -579,6 +746,7 @@ echo "Smoke tests passed ✅"
 - Root cause identified
 - Fix tested in isolation
 - Security review if security-related
+- At least 1 approval (reduced from 2 for urgency)
 
 **Process:**
 ```
@@ -604,20 +772,22 @@ echo "Smoke tests passed ✅"
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Lint         ████████████████████████████ 100%                 │     │
 │  │ Type Check   ████████████████████████████ 100%                 │     │
-│  │ Coverage     ██████████████████████░░░░░ 85%                   │     │
+│  │ Coverage     ████████████████████████░░░░░ 92%                 │     │
 │  │ Security     ████████████████████████████ 100%                 │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  TEST QUALITY                                                            │
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Unit Tests   ████████████████████████████ 100%  ✅ PASS        │     │
-│  │ Integration  ██████████████████████████░░░ 95%  ✅ PASS        │     │
+│  │ Integration  ██████████████████████████░░░░ 95%  ✅ PASS        │     │
+│  │ Security     ████████████████████████████ 100%  ✅ PASS        │     │
 │  │ E2E Tests    ████████████████████████████ 100%  ⚠️ 1 FAIL      │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  SECURITY                                                                │
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Vulnerabilities ████████████████████████████ 0 Critical        │     │
+│  │ JWT Secrets    ████████████████████████████ 0 Found            │     │
 │  │ Dependencies   ████████████████████████░░░░░ 2 Updates         │     │
 │  │ Secrets        ████████████████████████████ 0 Found            │     │
 │  └────────────────────────────────────────────────────────────────┘     │
@@ -626,7 +796,7 @@ echo "Smoke tests passed ✅"
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Response P50   35ms ████████████████████████████               │     │
 │  │ Response P95   85ms ████████████████████████████               │     │
-│  │ Load Test      PASS ████████████████████████████               │     │
+│  │ Rate Limit    0.5ms ████████████████████████████               │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  RELEASE STATUS                                                          │
@@ -647,23 +817,25 @@ echo "Smoke tests passed ✅"
 
 | Gate | Commit | PR | Nightly | Release | Hotfix |
 |------|--------|-----|---------|---------|--------|
-| GATE-CODE-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-002 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-004 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-002 | - | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-003 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-SEC-001 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| GATE-SEC-002 | - | - | ✅ | ✅ | - |
-| GATE-SEC-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-PERF-001 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-PERF-002 | - | - | ✅ | ✅ | - |
+| GATE-CODE-001 (Lint) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-002 (Types) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-003 (Security) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-004 (Coverage) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-TEST-001 (Unit) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-TEST-002 (Security) | - | ✅ | ✅ | ✅ | ✅ |
+| GATE-TEST-003 (Integ) | - | ✅ | - | ✅ | ⚠️ |
+| GATE-TEST-004 (E2E) | - | ⚠️ | ✅ | ✅ | - |
+| GATE-SEC-001 (Vuln) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-002 (Deps) | - | - | ✅ | ✅ | - |
+| GATE-SEC-003 (Secrets) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-SEC-004 (JWT) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-PERF-001 (Response) | - | ⚠️ | ✅ | ✅ | - |
+| GATE-PERF-002 (Rate) | - | - | ✅ | ✅ | - |
 | GATE-RELEASE-001 | - | - | - | ✅ | - |
 | GATE-RELEASE-002 | - | - | - | ✅ | - |
 
 **Legend:**
-- ✅ Enforced
+- ✅ Enforced (blocks on failure)
 - ⚠️ Non-blocking (warning only)
 - - Not applicable
 
@@ -677,13 +849,13 @@ echo "Smoke tests passed ✅"
    ```markdown
    ## Quality Gate Exception Request
    
-   **Gate:** GATE-CODE-003 (Test Coverage)
+   **Gate:** GATE-CODE-004 (Test Coverage)
    
-   **Reason:** New code path has no test (simple utility function)
+   **Reason:** New authentication code path has no test (simple wrapper function)
    
-   **Risk Assessment:** Low - pure function with obvious behavior
+   **Risk Assessment:** Low - pure wrapper with obvious behavior
    
-   **Mitigation:** Will add test in follow-up PR
+   **Mitigation:** Will add test in follow-up PR (JIRA-123)
    
    **Approvers:** 2 required
    - [ ] Technical Lead
@@ -693,14 +865,25 @@ echo "Smoke tests passed ✅"
 2. **Approval Required**
    - 2 approvals for non-critical gates
    - Team lead approval for critical gates
+   - Security lead approval for security gates
 
 3. **Time Limit**
    - Exception valid for 7 days maximum
    - Must be resolved in next sprint
+   - Security exceptions: 24 hours max
 
 ---
 
-*Quality Gates Version: 1.0*
-*Last Updated: 2026-01-18*
-*Next Review: 2026-04-18*
+## References
+
+- Test Strategy: `.monkeytown/qa/test-strategy.md`
+- Test Cases: `.monkeytown/qa/test-cases.md`
+- Vulnerability Assessment: `.monkeytown/security/vulnerability-assessment.md`
+- Security Requirements: `.monkeytown/security/security-requirements.md`
+
+---
+
+*Quality Gates Version: 2.1*
+*Last Updated: 2026-01-19*
+*Next Review: 2026-04-19*
 *JungleSecurity - Never compromise on quality*

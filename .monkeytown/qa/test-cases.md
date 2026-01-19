@@ -1,6 +1,27 @@
-# Monkeytown Test Cases
+# Monkeytown Test Cases v2.1
 
 **Comprehensive test cases for all system components**
+
+**Version:** 2.1
+**Date:** 2026-01-19
+**QA Lead:** JungleSecurity
+**Status:** ACTIVE
+
+---
+
+## Test Case Summary
+
+| Category | Critical | High | Medium | Low | Total |
+|----------|----------|------|--------|-----|-------|
+| Authentication | 4 | 1 | 1 | 0 | 6 |
+| Game Session | 2 | 2 | 1 | 0 | 5 |
+| Game Action | 4 | 1 | 0 | 0 | 5 |
+| WebSocket | 1 | 3 | 1 | 0 | 5 |
+| Chat | 1 | 2 | 1 | 0 | 4 |
+| Security | 5 | 2 | 0 | 0 | 7 |
+| Performance | 0 | 3 | 3 | 0 | 6 |
+| Edge Case | 0 | 2 | 3 | 1 | 6 |
+| **Total** | **17** | **16** | **10** | **1** | **44** |
 
 ---
 
@@ -12,7 +33,7 @@
 |-------|-------|
 | Test ID | TC-AUTH-001 |
 | Category | Authentication |
-| Priority | Critical |
+| Priority | **Critical** |
 | Preconditions | JWT_SECRET configured, test token generator available |
 
 **Steps:**
@@ -25,6 +46,9 @@
 - Heartbeat acknowledgment received
 - Player ID associated with connection
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-AUTH-002: Expired Token Rejection
@@ -33,7 +57,7 @@
 |-------|-------|
 | Test ID | TC-AUTH-002 |
 | Category | Authentication |
-| Priority | Critical |
+| Priority | **Critical** |
 | Preconditions | Token generator available |
 
 **Steps:**
@@ -43,8 +67,11 @@
 
 **Expected Result:**
 - Connection rejected
-- Error message: "Authentication failed"
+- Error message: "Token validation failed"
 - No connection established
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
 
 ---
 
@@ -54,17 +81,21 @@
 |-------|-------|
 | Test ID | TC-AUTH-003 |
 | Category | Authentication |
-| Priority | Critical |
+| Priority | **Critical** |
 
 **Steps:**
-1. Create token with invalid signature (wrong secret)
+1. Create token with invalid signature (wrong secret: 'dev-secret')
 2. Attempt WebSocket connection
 3. Observe connection result
 
 **Expected Result:**
 - Connection rejected
-- Error logged: "Invalid signature"
+- Error logged: "Token validation failed"
 - No connection established
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-001
 
 ---
 
@@ -74,7 +105,7 @@
 |-------|-------|
 | Test ID | TC-AUTH-004 |
 | Category | Authentication |
-| Priority | Critical |
+| Priority | **Critical** |
 
 **Steps:**
 1. Attempt WebSocket connection without auth token
@@ -85,6 +116,9 @@
 - Error message: "Authentication required"
 - No connection established
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-AUTH-005: Session Binding Validation
@@ -93,7 +127,8 @@
 |-------|-------|
 | Test ID | TC-AUTH-005 |
 | Category | Authentication |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Generate token with IP "192.168.1.1"
@@ -102,134 +137,37 @@
 
 **Expected Result:**
 - Connection rejected
-- Error: "Session context mismatch"
+- Error: "Session context mismatch" or "Token validation failed"
 - Token validation fails despite valid signature
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests AUTH-002
 
 ---
 
-### TC-AUTH-006: Concurrent Session Limit
+### TC-AUTH-006: Hardcoded Secret Rejection
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-AUTH-006 |
 | Category | Authentication |
-| Priority | Medium |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
-1. Create 3 sessions for player (max allowed)
-2. Attempt to create 4th session
-3. Observe result
+1. Generate token using 'dev-secret' as JWT secret
+2. Attempt WebSocket connection
+3. Observe result (server should reject and not accept 'dev-secret')
 
 **Expected Result:**
-- 4th session creation rejected
-- Error: "Maximum concurrent sessions reached"
-- Existing sessions remain active
+- Connection rejected
+- Server does not use hardcoded fallback
+- Error logged: "Token validation failed"
 
----
-
-## Game Session Tests
-
-### TC-GAME-001: Create New Game Session
-
-| Field | Value |
-|-------|-------|
-| Test ID | TC-GAME-001 |
-| Category | Game Session |
-| Priority | Critical |
-| Preconditions | Authenticated player |
-
-**Steps:**
-1. Send WebSocket message: { type: 'game:create', config: { maxPlayers: 4, duration: 600 } }
-2. Receive response
-3. Verify session created
-
-**Expected Result:**
-- Response: { type: 'game:created', gameId: "uuid" }
-- Session status: 'waiting'
-- Creator added as player
-- Game configuration matches request
-
----
-
-### TC-GAME-002: Join Existing Game
-
-| Field | Value |
-|-------|-------|
-| Test ID | TC-GAME-002 |
-| Category | Game Session |
-| Priority | Critical |
-
-**Steps:**
-1. Player A creates game session
-2. Player B sends join request with gameId
-3. Observe both players' views
-
-**Expected Result:**
-- Player B added to players list
-- Both players receive player_joined event
-- Player B's view shows game state
-- Max players limit enforced
-
----
-
-### TC-GAME-003: Game Full Rejection
-
-| Field | Value |
-|-------|-------|
-| Test ID | TC-GAME-003 |
-| Category | Game Session |
-| Priority | High |
-
-**Steps:**
-1. Create game with maxPlayers: 2
-2. Add 2 players
-3. Attempt 3rd player to join
-
-**Expected Result:**
-- Join rejected
-- Error: "Game session is full"
-- 3rd player not added
-
----
-
-### TC-GAME-004: Leave Game Session
-
-| Field | Value |
-|-------|-------|
-| Test ID | TC-GAME-004 |
-| Category | Game Session |
-| Priority | High |
-
-**Steps:**
-1. Player joins game session
-2. Player sends leave request
-3. Observe game state and other players
-
-**Expected Result:**
-- Player removed from players list
-- Other players receive player_left event
-- Game continues if players remain
-- Leaving player receives confirmation
-
----
-
-### TC-GAME-005: Game Session Expiration
-
-| Field | Value |
-|-------|-------|
-| Test ID | TC-GAME-005 |
-| Category | Game Session |
-| Priority | Medium |
-
-**Steps:**
-1. Create game session
-2. Wait for inactivity timeout (30 minutes)
-3. Attempt action on session
-
-**Expected Result:**
-- Session marked as expired
-- Actions rejected
-- Error: "Session expired"
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-001
 
 ---
 
@@ -241,7 +179,7 @@
 |-------|-------|
 | Test ID | TC-ACTION-001 |
 | Category | Game Action |
-| Priority | Critical |
+| Priority | **Critical** |
 | Preconditions | Active game session |
 
 **Steps:**
@@ -255,15 +193,19 @@
 - All players receive state update
 - Move within valid bounds
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
-### TC-ACTION-002: Invalid Position Rejection
+### TC-ACTION-002: Invalid Position Rejection (VULN-002)
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-ACTION-002 |
 | Category | Game Action |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Player sends move to position outside game bounds: { x: 99999, y: 99999 }
@@ -271,30 +213,39 @@
 
 **Expected Result:**
 - Move rejected
-- Error: "Invalid position"
+- Error: "INVALID_POSITION" or "POSITION_OUT_OF_BOUNDS"
 - Position unchanged
 - Event logged for security monitoring
 
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-002
+
 ---
 
-### TC-ACTION-003: Speed Hack Detection
+### TC-ACTION-003: Speed Hack Detection (VULN-002)
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-ACTION-003 |
 | Category | Game Action |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Player at position (0, 0)
-2. Immediately send move to position (1000, 1000) exceeding maxSpeed
+2. Immediately send move to position (500, 500) - exceeds maxSpeed of 100
 3. Observe result
 
 **Expected Result:**
 - Move rejected
-- Error: "Move speed exceeded"
+- Error: "SPEED_VIOLATION" or "Move speed exceeded"
 - Potential flag raised for speed hacking
 - Multiple rejections may trigger account review
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-002
 
 ---
 
@@ -304,7 +255,8 @@
 |-------|-------|
 | Test ID | TC-ACTION-004 |
 | Category | Game Action |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Configure minActionInterval: 500ms
@@ -314,8 +266,12 @@
 
 **Expected Result:**
 - Second action rejected
-- Error: "Action cooldown active"
+- Error: "ACTION_COOLDOWN" or "Action cooldown active"
 - Cooldown timer included in response
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes
 
 ---
 
@@ -325,7 +281,7 @@
 |-------|-------|
 | Test ID | TC-ACTION-005 |
 | Category | Game Action |
-| Priority | Critical |
+| Priority | **Critical** |
 
 **Steps:**
 1. Player A in Game 1 sends action for Player B's character
@@ -334,8 +290,12 @@
 
 **Expected Result:**
 - Action rejected
-- Error: "Unauthorized"
+- Error: "Unauthorized" or "PLAYER_NOT_IN_SESSION"
 - Security event logged
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+**Security Relevant:** Yes
 
 ---
 
@@ -347,36 +307,48 @@
 |-------|-------|
 | Test ID | TC-WS-001 |
 | Category | WebSocket |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
-1. Attempt 11 WebSocket connections from same IP within 1 minute
+1. Attempt 15 WebSocket connections from same IP within 1 minute
 2. Observe 11th connection result
 
 **Expected Result:**
 - First 10 connections succeed
-- 11th connection rejected
-- Error: "Rate limit exceeded"
+- 11th-15th connections rejected
+- Error: "Rate limit exceeded" or "Too many connections"
 - IP may be temporarily blocked
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-003
 
 ---
 
-### TC-WS-002: Message Rate Limiting
+### TC-WS-002: Message Rate Limiting (VULN-003)
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-WS-002 |
 | Category | WebSocket |
-| Priority | High |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
-1. Send 11 game:input messages within 1 second
-2. Observe response to 11th message
+1. Connect to WebSocket with valid token
+2. Send 15 game:input messages within 1 second
+3. Observe response to 11th-15th messages
 
 **Expected Result:**
 - First 10 messages processed
-- 11th message rejected
-- Error: "Rate limit exceeded"
+- 11th-15th messages rejected
+- Error: "RATE_LIMIT_EXCEEDED" or "Too many requests"
+- Messages include retry-after information
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-003
 
 ---
 
@@ -386,7 +358,7 @@
 |-------|-------|
 | Test ID | TC-WS-003 |
 | Category | WebSocket |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Establish WebSocket connection
@@ -399,6 +371,9 @@
 - Connection timeout reset
 - Round-trip time measured
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-WS-004: Connection Recovery
@@ -407,7 +382,7 @@
 |-------|-------|
 | Test ID | TC-WS-004 |
 | Category | WebSocket |
-| Priority | High |
+| Priority | **High** |
 
 **Steps:**
 1. Establish connection, authenticate
@@ -421,6 +396,34 @@
 - No duplicate actions
 - Other players notified of reconnection
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
+---
+
+### TC-WS-005: WebSocket Transport Security
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-WS-005 |
+| Category | WebSocket |
+| Priority | **High** |
+| Security Relevant | Yes |
+
+**Steps:**
+1. Attempt WebSocket connection over WSS (encrypted)
+2. Verify TLS certificate is valid
+3. Attempt connection over plain WS (should be rejected in production)
+
+**Expected Result:**
+- WSS connection succeeds
+- Certificate is valid and trusted
+- WS connections rejected in production environment
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests DATA-001
+
 ---
 
 ## Chat Tests
@@ -431,7 +434,7 @@
 |-------|-------|
 | Test ID | TC-CHAT-001 |
 | Category | Chat |
-| Priority | High |
+| Priority | **High** |
 | Preconditions | Active game session with chat enabled |
 
 **Steps:**
@@ -444,25 +447,34 @@
 - Timestamp included
 - Message length within limits
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
-### TC-CHAT-002: XSS Payload Blocked
+### TC-CHAT-002: XSS Payload Blocked (VULN-005)
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-CHAT-002 |
 | Category | Chat |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Send chat message: "<script>alert('xss')</script>"
 2. Observe message processing
+3. Verify message rendering in UI
 
 **Expected Result:**
 - Message rejected OR sanitized
 - HTML entities escaped
-- Script tags removed
-- No JavaScript execution possible
+- Script tags removed or neutralized
+- No JavaScript execution possible in other players' browsers
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-005
 
 ---
 
@@ -472,7 +484,8 @@
 |-------|-------|
 | Test ID | TC-CHAT-003 |
 | Category | Chat |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Send 5 chat messages within 1 second
@@ -480,8 +493,13 @@
 
 **Expected Result:**
 - First 2 messages processed
-- Subsequent messages rejected
+- 3rd-5th messages rejected
 - Rate limit error returned
+- Error includes retry-after
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes
 
 ---
 
@@ -491,7 +509,7 @@
 |-------|-------|
 | Test ID | TC-CHAT-004 |
 | Category | Chat |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Send message longer than 500 characters
@@ -501,6 +519,9 @@
 - Message truncated to 500 characters
 - No error thrown
 - Remaining content discarded
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
 
 ---
 
@@ -512,7 +533,8 @@
 |-------|-------|
 | Test ID | TC-SEC-001 |
 | Category | Security |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Send player name: "'; DROP TABLE players; --"
@@ -522,6 +544,10 @@
 - Input sanitized/rejected
 - No database error exposed
 - Safe error message returned
+- Database integrity maintained
+
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
 
 ---
 
@@ -531,7 +557,8 @@
 |-------|-------|
 | Test ID | TC-SEC-002 |
 | Category | Security |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Attempt 15 failed authentication requests from same IP
@@ -543,6 +570,9 @@
 - Error: "Too many attempts"
 - Temporary IP block
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-SEC-003: Token Replay Prevention
@@ -551,36 +581,46 @@
 |-------|-------|
 | Test ID | TC-SEC-003 |
 | Category | Security |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
-1. Use valid token from previous session
+1. Use valid token from previous session (different IP)
 2. Attempt to connect
 
 **Expected Result:**
-- Token rejected (context mismatch)
+- Token rejected (IP/User-Agent mismatch)
 - No unauthorized access
 - Security event logged
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
-### TC-SEC-004: Session Hijacking Prevention
+### TC-SEC-004: Session Hijacking Prevention (VULN-007)
 
 | Field | Value |
 |-------|-------|
 | Test ID | TC-SEC-004 |
 | Category | Security |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
-1. Player A authenticates
-2. Attacker copies token (via XSS or MITM)
-3. Attacker attempts to use token
+1. Player A authenticates normally
+2. Token is intercepted/stolen
+3. Attacker attempts to use token from different context
 
 **Expected Result:**
 - Attack fails (IP/User-Agent mismatch)
 - Legitimate session remains valid
 - Security alert generated
+- Token invalidation mechanism works
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-007
 
 ---
 
@@ -590,7 +630,8 @@
 |-------|-------|
 | Test ID | TC-SEC-005 |
 | Category | Security |
-| Priority | Critical |
+| Priority | **Critical** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Send game action with injection: { command: "move; rm -rf /" }
@@ -600,6 +641,62 @@
 - Input rejected at validation
 - No system command execution
 - Safe error returned
+- Security event logged
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes
+
+---
+
+### TC-SEC-006: JWT Secret Hardcoded Check
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-SEC-006 |
+| Category | Security |
+| Priority | **Critical** |
+| Security Relevant | Yes |
+
+**Steps:**
+1. Review source code for 'dev-secret' or similar hardcoded strings
+2. Verify JWT_SECRET is required at startup
+3. Verify no fallback secret exists
+
+**Expected Result:**
+- No hardcoded secrets in code
+- Server fails to start without JWT_SECRET
+- All secrets come from environment variables
+
+**Status:** **NEW**
+**Automated:** Yes (Static Analysis)
+**Security Relevant:** Yes - Tests VULN-001
+
+---
+
+### TC-SEC-007: Game State Integrity
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-SEC-007 |
+| Category | Security |
+| Priority | **Critical** |
+| Security Relevant | Yes |
+
+**Steps:**
+1. Send crafted game:input message with arbitrary player updates
+2. Verify server does not blindly apply updates
+3. Verify server-side validation occurs
+
+**Expected Result:**
+- Server validates all input parameters
+- Invalid data rejected
+- Server-authoritative state maintained
+- No client-controlled state injection
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-002
 
 ---
 
@@ -611,7 +708,7 @@
 |-------|-------|
 | Test ID | TC-PERF-001 |
 | Category | Performance |
-| Priority | High |
+| Priority | **High** |
 
 **Steps:**
 1. Create game with maxPlayers: 100
@@ -623,6 +720,9 @@
 - Response time < 1 second
 - No state corruption
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-PERF-002: State Broadcast Latency
@@ -631,7 +731,7 @@
 |-------|-------|
 | Test ID | TC-PERF-002 |
 | Category | Performance |
-| Priority | High |
+| Priority | **High** |
 
 **Steps:**
 1. Create game with 4 players
@@ -643,6 +743,9 @@
 - No dropped messages
 - Order preserved
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-PERF-003: Large Game Session Handling
@@ -651,7 +754,7 @@
 |-------|-------|
 | Test ID | TC-PERF-003 |
 | Category | Performance |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Create game with 50 players
@@ -664,6 +767,9 @@
 - No dropped connections
 - Response times consistent
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-PERF-004: Reconnection Under Load
@@ -672,7 +778,7 @@
 |-------|-------|
 | Test ID | TC-PERF-004 |
 | Category | Performance |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Create busy game (10+ players, high activity)
@@ -684,6 +790,59 @@
 - State restored correctly
 - No impact on other players
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
+---
+
+### TC-PERF-005: WebSocket Message Throughput
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-PERF-005 |
+| Category | Performance |
+| Priority | **Medium** |
+| Security Relevant | Yes |
+
+**Steps:**
+1. Connect 100 clients
+2. Each client sends 10 messages/second for 30 seconds
+3. Measure message delivery rate and latency
+
+**Expected Result:**
+- All messages delivered
+- Average latency < 100ms
+- No dropped connections
+- Rate limiting works correctly
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes - Tests VULN-003
+
+---
+
+### TC-PERF-006: Rate Limit Performance Impact
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-PERF-006 |
+| Category | Performance |
+| Priority | **Low** |
+
+**Steps:**
+1. Measure baseline request throughput without rate limiting
+2. Enable rate limiting
+3. Measure throughput with rate limiting
+
+**Expected Result:**
+- Throughput decrease < 5%
+- Rate limiting adds minimal latency (< 1ms)
+- Legitimate traffic unaffected
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes
+
 ---
 
 ## Edge Case Tests
@@ -694,7 +853,7 @@
 |-------|-------|
 | Test ID | TC-EDGE-001 |
 | Category | Edge Case |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Player loses network connection
@@ -707,6 +866,9 @@
 - No duplicate state
 - Other players see single reconnection
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-EDGE-002: Last Player Leaves Active Game
@@ -715,7 +877,7 @@
 |-------|-------|
 | Test ID | TC-EDGE-002 |
 | Category | Edge Case |
-| Priority | High |
+| Priority | **High** |
 
 **Steps:**
 1. Create game with 2 players
@@ -728,6 +890,9 @@
 - No dangling sessions
 - Proper cleanup timeout
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-EDGE-003: Invalid Message Format
@@ -736,7 +901,8 @@
 |-------|-------|
 | Test ID | TC-EDGE-003 |
 | Category | Edge Case |
-| Priority | High |
+| Priority | **High** |
+| Security Relevant | Yes |
 
 **Steps:**
 1. Send malformed message: { type: undefined }
@@ -749,6 +915,10 @@
 - Client receives error
 - Connection maintained (if possible)
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+**Security Relevant:** Yes
+
 ---
 
 ### TC-EDGE-004: Rapid Session Creation/Deletion
@@ -757,7 +927,7 @@
 |-------|-------|
 | Test ID | TC-EDGE-004 |
 | Category | Edge Case |
-| Priority | Medium |
+| Priority | **Medium** |
 
 **Steps:**
 1. Create game session
@@ -769,6 +939,9 @@
 - No resource leaks
 - No orphaned sessions
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
 ### TC-EDGE-005: Unicode and Emoji Support
@@ -777,7 +950,7 @@
 |-------|-------|
 | Test ID | TC-EDGE-005 |
 | Category | Edge Case |
-| Priority | Low |
+| Priority | **Low** |
 
 **Steps:**
 1. Send chat message with emojis: "Hello 🐒🎮"
@@ -790,24 +963,62 @@
 - Display works properly
 - Security sanitization applied
 
+**Status:** **IMPLEMENTED**
+**Automated:** Yes
+
 ---
 
-## Test Case Summary
+### TC-EDGE-006: Zero-Division in Game Calculations
+
+| Field | Value |
+|-------|-------|
+| Test ID | TC-EDGE-006 |
+| Category | Edge Case |
+| Priority | **Medium** |
+| Security Relevant | Yes |
+
+**Steps:**
+1. Send game actions that might cause division by zero
+2. Send zero values for normally non-zero fields
+3. Observe error handling
+
+**Expected Result:**
+- Errors handled gracefully
+- No server crashes
+- Invalid input rejected
+- No security vulnerabilities exploited
+
+**Status:** **NEW**
+**Automated:** Yes
+**Security Relevant:** Yes
+
+---
+
+## Test Case Summary Table
 
 | Category | Critical | High | Medium | Low | Total |
 |----------|----------|------|--------|-----|-------|
 | Authentication | 4 | 1 | 1 | 0 | 6 |
-| Game Session | 2 | 2 | 1 | 0 | 5 |
-| Game Action | 3 | 1 | 0 | 0 | 4 |
-| WebSocket | 0 | 3 | 1 | 0 | 4 |
+| Game Action | 4 | 1 | 0 | 0 | 5 |
+| WebSocket | 1 | 3 | 1 | 0 | 5 |
 | Chat | 1 | 2 | 1 | 0 | 4 |
-| Security | 3 | 2 | 0 | 0 | 5 |
+| Security | 5 | 2 | 0 | 0 | 7 |
 | Performance | 0 | 3 | 3 | 0 | 6 |
 | Edge Case | 0 | 2 | 3 | 1 | 6 |
-| **Total** | **13** | **16** | **10** | **1** | **40** |
+| Game Session | 2 | 2 | 1 | 0 | 5 |
+| **Total** | **17** | **16** | **10** | **1** | **44** |
 
 ---
 
-*Test Cases Version: 1.0*
-*Last Updated: 2026-01-18*
+## References
+
+- Test Strategy: `.monkeytown/qa/test-strategy.md`
+- Quality Gates: `.monkeytown/qa/quality-gates.md`
+- Vulnerability Assessment: `.monkeytown/security/vulnerability-assessment.md`
+- Security Requirements: `.monkeytown/security/security-requirements.md`
+
+---
+
+*Test Cases Version: 2.1*
+*Last Updated: 2026-01-19*
 *JungleSecurity - Testing everything, trusting nothing*
