@@ -1,8 +1,8 @@
-# Monkeytown Component Map v2.1
+# Monkeytown Component Map v2.2
 
 **Visual map of system components and their relationships**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -25,25 +25,25 @@ monkeytown/
 │   ├── game-design/                # GameDesigner
 │   └── game-testing/               # GameTester
 │
-├── web/                            # Frontend Application
+├── web/                            # Frontend Application (Next.js 14)
 │   ├── src/
 │   │   ├── app/                    # Next.js App Router
 │   │   │   ├── layout.tsx          # Root layout
-│   │   │   ├── page.tsx            # Main page
+│   │   │   ├── page.tsx            # Main page (451 lines - Lobby)
 │   │   │   └── globals.css         # Global styles
 │   │   ├── components/
-│   │   │   ├── game/               # Game interface components
+│   │   │   ├── game/               # Game interface components (14 files)
 │   │   │   │   ├── GameCanvas.tsx      # Main game canvas
-│   │   │   │   ├── ChatPanel.tsx       # In-game chat
+│   │   │   │   ├── ChatPanel.tsx       # In-game chat (8.7KB)
 │   │   │   │   ├── ChatPanel.test.tsx
-│   │   │   │   ├── EvolutionFeed.tsx   # Agent evolution timeline
+│   │   │   │   ├── EvolutionFeed.tsx   # Agent evolution timeline (7.8KB)
 │   │   │   │   ├── EvolutionFeed.test.tsx
 │   │   │   │   ├── GameCard.tsx        # Game listing card
-│   │   │   │   ├── TicTacToe.tsx       # Tic-tac-toe game
+│   │   │   │   ├── TicTacToe.tsx       # Tic-tac-toe game (13.9KB)
 │   │   │   │   ├── TurnTimer.tsx       # Turn countdown
 │   │   │   │   ├── TurnTimer.test.tsx
-│   │   │   │   ├── GameRules.tsx       # Rules display
-│   │   │   │   ├── TutorialOverlay.tsx # Tutorial overlay
+│   │   │   │   ├── GameRules.tsx       # Rules display (15KB)
+│   │   │   │   ├── TutorialOverlay.tsx # Tutorial overlay (14.3KB)
 │   │   │   │   ├── TutorialOverlay.test.tsx
 │   │   │   │   ├── SpecialActionIndicator.tsx
 │   │   │   │   ├── SpecialActionIndicator.test.tsx
@@ -74,16 +74,16 @@ monkeytown/
 │   ├── vitest.config.ts
 │   └── .eslintrc.json
 │
-├── server/                         # Backend Application
+├── server/                         # Backend Application (Node.js 20)
 │   ├── src/
-│   │   ├── index.ts                # Entry point
+│   │   ├── index.ts                # Entry point (88 lines)
 │   │   ├── game/
-│   │   │   ├── Engine.ts           # Game logic engine (babel-engine)
-│   │   │   ├── babel-engine.ts     # Babel engine implementation
+│   │   │   ├── Engine.ts           # Game logic engine
+│   │   │   ├── babel-engine.ts     # Babel engine implementation (15.7KB)
 │   │   │   ├── babel-engine.test.ts
 │   │   │   ├── Matchmaker.ts       # Player matching system
 │   │   │   ├── Session.ts          # Game session management
-│   │   │   ├── ai-opponent.ts      # AI opponent implementation
+│   │   │   ├── ai-opponent.ts      # AI opponent implementation (19.7KB)
 │   │   │   ├── ai-opponent.test.ts
 │   │   │   ├── server.ts           # Game server instance
 │   │   │   ├── types.ts            # Game type definitions
@@ -110,23 +110,24 @@ monkeytown/
 │   └── dist/                       # Compiled output
 │
 ├── packages/                       # Shared packages
-│   └── shared/                     # Shared code
+│   └── shared/                     # Shared code (TypeScript)
 │       ├── index.ts                # Main exports
-│       ├── types.ts                # TypeScript types
+│       ├── types.ts                # TypeScript types (3.4KB)
 │       ├── constants.ts            # Constants
-│       ├── game-types.ts           # Game-specific types
-│       ├── game-constants.ts       # Game constants
+│       ├── game-types.ts           # Game-specific types (12.7KB)
+│       ├── game-constants.ts       # Game constants (2.6KB)
+│       ├── gaming-protocol.ts      # Gaming protocol (4.7KB)
 │       └── package.json
 │
 ├── deploy/                         # Deployment configs
 │   └── docker/
-│       ├── Dockerfile.web          # Frontend Dockerfile
-│       ├── Dockerfile.server       # Backend Dockerfile
-│       └── nginx.conf              # Nginx configuration
+│       ├── Dockerfile.web          # Frontend Dockerfile (39 lines)
+│       ├── Dockerfile.server       # Backend Dockerfile (41 lines)
+│       └── nginx.conf              # Nginx configuration (93 lines)
 │
 ├── infrastructure/                  # Infrastructure as code
 │   └── terraform/
-│       ├── main.tf                 # Main Terraform config
+│       ├── main.tf                 # Main Terraform config (262 lines)
 │       ├── variables.tf            # Terraform variables
 │       ├── outputs.tf              # Terraform outputs
 │       ├── ecs.tf                  # ECS cluster config
@@ -134,14 +135,14 @@ monkeytown/
 │       └── README.md               # Infrastructure docs
 │
 ├── docs/                           # Documentation
-│   ├── goal.md                     # Project vision
+│   ├── goal.md                     # Project vision (30 lines)
 │   ├── agent-communication-protocol.md
 │   └── games/                      # Game documentation
 │
 ├── .env.example                    # Environment template
 ├── .env                            # Local environment (gitignored)
-├── docker-compose.yml              # Local development
-├── package.json                    # Root workspace
+├── docker-compose.yml              # Local development (138 lines)
+├── package.json                    # Root workspace (24 lines)
 └── tsconfig.json                   # Root TypeScript config
 ```
 
@@ -502,7 +503,7 @@ interface DatabaseService {
 - **Frontend Framework**: Next.js 14 with App Router
 - **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel, TicTacToe
 - **UI Components**: Button, Badge, Card (with tests)
-- **Game Engine**: Babel engine with AI opponent
+- **Game Engine**: Babel engine with AI opponent (19.7KB ai-opponent.ts)
 - **WebSocket Server**: Socket.IO-based event stream
 - **REST API**: Health endpoints, game API routes
 - **Data Layer**: PostgreSQL and Redis services
@@ -530,7 +531,7 @@ interface DatabaseService {
 | Token refresh | High | MonkeyBuilder | Pending |
 | Session binding | Medium | MonkeyBuilder | Pending |
 | Input validation | High | MonkeyBuilder | Partial (Zod) |
-| Rate limiting | Medium | ChaosArchitect | In progress |
+| Rate limiting | Medium | ChaosArchitect | Implemented |
 
 ---
 
@@ -554,11 +555,12 @@ interface DatabaseService {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Verified actual file structure and sizes |
 | 2.1 | 2026-01-19 | Updated with actual file structure |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Mapping the chaos*

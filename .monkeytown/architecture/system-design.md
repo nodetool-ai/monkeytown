@@ -1,8 +1,8 @@
-# Monkeytown System Design v2.1
+# Monkeytown System Design v2.2
 
 **Architecture for AI-powered multiplayer game platform**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -18,19 +18,18 @@
                                        │
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    API GATEWAY / LOAD BALANCER                               │
-│                    (Nginx or AWS ALB)                                        │
+│                         NGINX REVERSE PROXY                                  │
+│                         (nginx:alpine :80)                                   │
 └─────────────────────────────────────────────────────────────────────────────┘
-                                       │
-                     ┌─────────────────┼─────────────────┐
-                     ▼                 ▼                 ▼
-            ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
-            │   Web Server   │ │  Game Server │ │  Event Stream   │
-            │   (Next.js)    │ │  (Node/TS)   │ │  (Socket.IO)    │
-            │    :3000       │ │    :3001     │ │     :8080       │
-            └────────────────┘ └──────────────┘ └─────────────────┘
-                     │                 │                 │
-                     └─────────────────┼─────────────────┘
+                     │                 │              │
+                     ▼                 ▼              ▼
+           ┌────────────────┐ ┌──────────────┐ ┌─────────────┐
+           │   Web Server   │ │  Game Server │ │ Event Stream│
+           │   (Next.js)    │ │  (Express)   │ │(Socket.IO)  │
+           │    :3000       │ │    :3001     │ │   :8080     │
+           └────────────────┘ └──────────────┘ └─────────────┘
+                     │                 │              │
+                     └─────────────────┼──────────────┘
                                        ▼
                          ┌─────────────────────────┐
                          │    REDIS (Pub/Sub +     │
@@ -54,8 +53,8 @@
 2. **Graceful Degradation**: System survives single-component failures
 3. **Eventual Consistency**: 500ms sync tolerance for multiplayer state
 4. **No Single Point of Failure**: All critical components redundant or restartable
-5. **Zero-Downtime Deployments**: Blue/green deployment strategy
-6. **WebSocket-First**: All player-server communication via WebSocket (ADR-002)
+5. **Zero-Downtime Deployments**: Blue/green deployment strategy via ECS
+6. **WebSocket-First**: All player-server communication via Socket.IO (ADR-002)
 
 ---
 
@@ -88,7 +87,7 @@
 
 ### 3. Docker Compose Only
 
-Per requirements, this system uses Docker Compose exclusively for container orchestration. No Kubernetes.
+Per requirements, this system uses Docker Compose for local development and AWS ECS Fargate for production. No Kubernetes.
 
 ---
 
@@ -96,7 +95,7 @@ Per requirements, this system uses Docker Compose exclusively for container orch
 
 ### 1. Frontend Layer (`web/`)
 
-**Technology**: Next.js 14, React 18, TypeScript
+**Technology**: Next.js 14, React 18, TypeScript, Vitest, Playwright
 
 **Directory Structure**:
 ```
@@ -104,33 +103,45 @@ web/
 ├── src/
 │   ├── app/                    # Next.js App Router
 │   │   ├── layout.tsx          # Root layout
-│   │   ├── page.tsx            # Main page
+│   │   ├── page.tsx            # Main lobby page (451 lines)
 │   │   └── globals.css         # Global styles
 │   ├── components/
-│   │   ├── game/               # Game interface components
+│   │   ├── game/               # Game interface components (14 files)
 │   │   │   ├── GameCanvas.tsx      # Main game canvas
 │   │   │   ├── ChatPanel.tsx       # In-game chat
+│   │   │   ├── ChatPanel.test.tsx
 │   │   │   ├── EvolutionFeed.tsx   # Agent evolution timeline
+│   │   │   ├── EvolutionFeed.test.tsx
 │   │   │   ├── GameCard.tsx        # Game listing card
 │   │   │   ├── TicTacToe.tsx       # Tic-tac-toe game
 │   │   │   ├── TurnTimer.tsx       # Turn countdown
+│   │   │   ├── TurnTimer.test.tsx
 │   │   │   ├── GameRules.tsx       # Rules display
-│   │   │   ├── TutorialOverlay.tsx # Tutorial
-│   │   │   └── SpecialActionIndicator.tsx
+│   │   │   ├── TutorialOverlay.tsx # Tutorial overlay
+│   │   │   ├── TutorialOverlay.test.tsx
+│   │   │   ├── SpecialActionIndicator.tsx
+│   │   │   ├── SpecialActionIndicator.test.tsx
+│   │   │   ├── AIReasoningDisplay.tsx
+│   │   │   └── index.ts
 │   │   ├── agents/             # AI agent components
 │   │   │   ├── AgentBadge.tsx      # Agent status badge
+│   │   │   ├── AgentBadge.test.tsx
 │   │   │   ├── AgentPanel.tsx      # Agent information panel
-│   │   │   └── AIReasoningDisplay.tsx
+│   │   │   └── index.ts
 │   │   └── ui/                 # Shared UI components
 │   │       ├── Button.tsx
+│   │       ├── Button.test.tsx
 │   │       ├── Badge.tsx
+│   │       ├── Badge.test.tsx
 │   │       ├── Card.tsx
+│   │       ├── Card.test.tsx
 │   │       └── index.ts
 │   ├── hooks/
 │   │   ├── useGame.ts          # Game state management hook
 │   │   └── index.ts
 │   └── test/
 │       └── setup.ts            # Test setup
+├── public/                     # Static assets
 ├── package.json
 ├── tsconfig.json
 ├── next.config.js
@@ -138,7 +149,7 @@ web/
 └── .eslintrc.json
 ```
 
-**Key Dependencies**:
+**Dependencies**:
 - `next: ^14.2.0`
 - `react: ^18.2.0`
 - `react-dom: ^18.2.0`
@@ -147,6 +158,7 @@ web/
 - `@playwright/test: ^1.57.0` (E2E tests)
 - `vitest: ^1.4.0` (Unit tests)
 - `typescript: ^5.3.0`
+- `@testing-library/react: ^14.2.0`
 
 ### 2. Backend Layer (`server/`)
 
@@ -156,12 +168,15 @@ web/
 ```
 server/
 ├── src/
-│   ├── index.ts                # Entry point
+│   ├── index.ts                # Entry point (88 lines)
 │   ├── game/
 │   │   ├── Engine.ts           # Game logic engine (babel-engine)
+│   │   ├── babel-engine.ts     # Babel engine implementation (15.7KB)
+│   │   ├── babel-engine.test.ts
 │   │   ├── Matchmaker.ts       # Player matching system
 │   │   ├── Session.ts          # Game session management
-│   │   ├── ai-opponent.ts      # AI opponent implementation
+│   │   ├── ai-opponent.ts      # AI opponent implementation (19.7KB)
+│   │   ├── ai-opponent.test.ts
 │   │   ├── server.ts           # Game server instance
 │   │   ├── types.ts            # Game type definitions
 │   │   ├── tictactoe-engine.ts # Tic-tac-toe game logic
@@ -196,6 +211,10 @@ server/
 - `bcryptjs: ^2.4.3` (Password hashing)
 - `zod: ^3.22.4` (Input validation)
 - `ws: ^8.14.2` (WebSocket library)
+- `helmet: ^7.1.0` (Security headers)
+- `cors: ^2.8.5` (Cross-origin resource sharing)
+- `compression: ^1.7.4` (Response compression)
+- `express-rate-limit: ^7.1.5` (Rate limiting)
 
 **Dev Dependencies**:
 - `typescript: ^5.3.3`
@@ -209,11 +228,13 @@ server/
 **Directory Structure**:
 ```
 packages/shared/
-├── index.ts            # Main exports
-├── types.ts            # TypeScript types
-├── constants.ts        # Shared constants
-├── game-types.ts       # Game-specific types
-└── game-constants.ts   # Game constants
+├── index.ts                # Main exports
+├── types.ts                # TypeScript types (3.4KB)
+├── constants.ts            # Shared constants
+├── game-types.ts           # Game-specific types (12.7KB)
+├── game-constants.ts       # Game constants (2.6KB)
+├── gaming-protocol.ts      # Gaming protocol (4.7KB)
+└── package.json
 ```
 
 **Package Configuration**:
@@ -234,17 +255,17 @@ packages/shared/
 
 ## Communication Patterns
 
-### 1. WebSocket Protocol
+### 1. WebSocket Protocol (Socket.IO)
 
 ```typescript
-// Client -> Server messages
+// Client → Server messages
 type ClientMessage =
   | { type: 'join_game'; payload: { gameId: string } }
   | { type: 'player_input'; payload: { action: InputAction } }
   | { type: 'chat_message'; payload: { text: string } }
   | { type: 'heartbeat'; payload: { timestamp: number } };
 
-// Server -> Client messages
+// Server → Client messages
 type ServerMessage =
   | { type: 'game_state'; payload: GameState }
   | { type: 'player_joined'; payload: Player }
@@ -257,8 +278,8 @@ type ServerMessage =
 
 ```
 Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
-                           ↓
-                    PostgreSQL (persistent)
+                            ↓
+                     PostgreSQL (persistent)
 ```
 
 ### 3. REST API Endpoints
@@ -268,7 +289,7 @@ Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
 GET /health/live   → Returns { status: 'alive' }
 GET /health/ready  → Returns { status: 'ready', checks: [...] }
 
-// Game API (future)
+// Game API
 POST /api/games/create → { gameId: string }
 POST /api/games/:id/join → { success: true }
 ```
@@ -339,7 +360,6 @@ CREATE TABLE agent_behaviors (
 
 **Dockerfile.web** (Multi-stage):
 ```dockerfile
-# Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -350,7 +370,6 @@ RUN npm ci
 COPY . .
 RUN npm run build --prefix web
 
-# Production stage
 FROM node:20-alpine AS frontend
 WORKDIR /app
 COPY --from=builder /app/web ./
@@ -363,7 +382,6 @@ CMD ["node_modules/.bin/next", "start"]
 
 **Dockerfile.server** (Multi-stage):
 ```dockerfile
-# Build stage
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
@@ -373,7 +391,6 @@ RUN npm ci
 COPY . .
 RUN npm run build --prefix server
 
-# Production stage
 FROM node:20-alpine AS server
 WORKDIR /app
 COPY --from=builder /app/server/dist ./dist
@@ -385,6 +402,103 @@ EXPOSE 3001
 CMD ["node", "dist/index.js"]
 ```
 
+### Nginx Configuration (Actual)
+
+```nginx
+events {
+    worker_connections 1024;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/xml;
+
+    upstream frontend {
+        server web:3000;
+    }
+
+    upstream game_server {
+        least_conn;
+        server game-server:3001;
+    }
+
+    upstream event_stream {
+        server event-stream:8080;
+    }
+
+    server {
+        listen 80;
+        server_name localhost;
+
+        # Health check endpoint
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+            add_header Content-Type text/plain;
+        }
+
+        # Frontend static assets
+        location /_next/static {
+            alias /app/.next/static;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Static assets
+        location /static {
+            alias /app/public;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Frontend fallback
+        location / {
+            proxy_pass http://frontend;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        # Game REST API
+        location /api/ {
+            proxy_pass http://game_server;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        # WebSocket upgrade for event stream
+        location /ws {
+            proxy_pass http://event_stream;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_read_timeout 86400;
+            proxy_send_timeout 86400;
+        }
+    }
+}
+```
+
 ---
 
 ## Infrastructure (Terraform)
@@ -394,7 +508,7 @@ CMD ["node", "dist/index.js"]
 | Resource | Module | Purpose |
 |----------|--------|---------|
 | VPC | terraform-aws-modules/vpc/aws | Network isolation |
-| ECS Cluster | terraform-aws-modules/ecs/aws | Container orchestration |
+| ECS Cluster | terraform-aws-modules/ecs/aws | Container orchestration (Fargate) |
 | RDS PostgreSQL | terraform-aws-modules/rds/aws | Primary database |
 | ElastiCache Redis | terraform-aws-modules/elasticache/aws | Cache/PubSub |
 | ALB | terraform-aws-modules/alb/aws | Load balancer |
@@ -423,7 +537,7 @@ CMD ["node", "dist/index.js"]
 
 ## Deployment Strategy
 
-### Docker Compose (Development)
+### Docker Compose (Local Development)
 
 ```bash
 # Start all services
@@ -447,6 +561,9 @@ docker build -t monkeytown-server:latest ./server
 aws ecr get-login-password | docker login --username AWS ...
 docker tag monkeytown-web:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-web:latest
 docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-web:latest
+
+docker tag monkeytown-server:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-server:latest
+docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-server:latest
 
 # Register task definitions and update services
 aws ecs register-task-definition ...
@@ -582,11 +699,12 @@ app.get('/health/ready', async (req, res) => {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Verified actual implementation, corrected nginx config |
 | 2.1 | 2026-01-19 | Updated with actual file structure, dependencies |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Making systems resilient*

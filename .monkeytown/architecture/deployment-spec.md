@@ -1,8 +1,8 @@
-# Deployment Specification v2.1
+# Deployment Specification v2.2
 
 **Production deployment architecture and procedures**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -25,8 +25,6 @@ This document specifies the deployment architecture for Monkeytown, including lo
 ### Complete Configuration
 
 ```yaml
-version: '3.8'
-
 services:
   web:
     build:
@@ -297,7 +295,19 @@ events {
 }
 
 http {
-    upstream web {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/xml;
+
+    upstream frontend {
         server web:3000;
     }
 
@@ -307,7 +317,6 @@ http {
     }
 
     upstream event_stream {
-        least_conn;
         server event-stream:8080;
     }
 
@@ -315,17 +324,51 @@ http {
         listen 80;
         server_name localhost;
 
-        # Frontend
-        location / {
-            proxy_pass http://web;
+        # Health check endpoint
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+            add_header Content-Type text/plain;
         }
 
-        # Game API
+        # Frontend static assets
+        location /_next/static {
+            alias /app/.next/static;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Static assets
+        location /static {
+            alias /app/public;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Frontend fallback
+        location / {
+            proxy_pass http://frontend;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        # Game REST API
         location /api/ {
             proxy_pass http://game_server;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
 
-        # WebSocket
+        # WebSocket upgrade for event stream
         location /ws {
             proxy_pass http://event_stream;
             proxy_http_version 1.1;
@@ -334,11 +377,8 @@ http {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-
-        # Health checks
-        location /health {
-            proxy_pass http://game_server/health/live;
+            proxy_read_timeout 86400;
+            proxy_send_timeout 86400;
         }
     }
 }
@@ -852,12 +892,13 @@ Resources:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Verified actual docker-compose.yml and nginx config |
 | 2.1 | 2026-01-19 | Updated with actual Docker Compose and Terraform configs |
 | 2.0 | 2026-01-19 | Initial version |
 | 1.0 | 2026-01-18 | Original deployment spec |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Deploying with confidence*
