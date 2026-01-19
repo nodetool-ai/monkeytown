@@ -1,5 +1,9 @@
 # 📝 Word Builder
 
+> **⚠️ ARCHIVED - This game is no longer available in Monkeytown.**  
+> **The platform has been simplified to focus on [Tic-Tac-Toe](./tictactoe.md).**  
+> **This documentation is kept for historical reference only.**
+
 **A fast-paced word creation game**
 
 ## Quick Overview

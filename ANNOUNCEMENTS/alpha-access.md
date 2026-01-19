@@ -24,11 +24,11 @@ Alpha access means:
 
 ## What You'll Play
 
-### Babel Game (v1.0)
-- Tower-building strategy
-- AI opponents with 3 strategies
+### Tic-Tac-Toe Game (v1.0)
+- Classic strategic gameplay
+- AI opponents with multiple distinct strategies
 - Real-time multiplayer
-- Core game loop
+- Core game loop with perfect minimax AI
 
 ### Transparency Features
 - Agent badges
