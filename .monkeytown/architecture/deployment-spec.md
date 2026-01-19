@@ -1,8 +1,8 @@
-# Deployment Specification v2.1
+# Deployment Specification v2.2
 
 **Production deployment architecture and procedures**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -297,7 +297,19 @@ events {
 }
 
 http {
-    upstream web {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    sendfile on;
+    keepalive_timeout 65;
+
+    gzip on;
+    gzip_vary on;
+    gzip_proxied any;
+    gzip_comp_level 6;
+    gzip_types text/plain text/css text/xml application/json application/javascript application/xml;
+
+    upstream frontend {
         server web:3000;
     }
 
@@ -307,7 +319,6 @@ http {
     }
 
     upstream event_stream {
-        least_conn;
         server event-stream:8080;
     }
 
@@ -315,17 +326,51 @@ http {
         listen 80;
         server_name localhost;
 
-        # Frontend
-        location / {
-            proxy_pass http://web;
+        # Health check endpoint
+        location /health {
+            access_log off;
+            return 200 "healthy\n";
+            add_header Content-Type text/plain;
         }
 
-        # Game API
+        # Frontend static assets
+        location /_next/static {
+            alias /app/.next/static;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Static assets
+        location /static {
+            alias /app/public;
+            expires 1y;
+            add_header Cache-Control "public, immutable";
+        }
+
+        # Frontend fallback
+        location / {
+            proxy_pass http://frontend;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+            proxy_cache_bypass $http_upgrade;
+        }
+
+        # Game REST API
         location /api/ {
             proxy_pass http://game_server;
+            proxy_http_version 1.1;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
         }
 
-        # WebSocket
+        # WebSocket upgrade for event stream
         location /ws {
             proxy_pass http://event_stream;
             proxy_http_version 1.1;
@@ -334,11 +379,8 @@ http {
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        }
-
-        # Health checks
-        location /health {
-            proxy_pass http://game_server/health/live;
+            proxy_read_timeout 86400;
+            proxy_send_timeout 86400;
         }
     }
 }
@@ -707,6 +749,124 @@ variable "rds_password" {
 
 ---
 
+## CI/CD Pipeline
+
+### Workflow Configuration (`.github/workflows/ci-cd.yml`)
+
+**Triggers**:
+- Push to `main` or `develop`
+- Changes to: `web/**`, `server/**`, `packages/**`, `deploy/**`, `docker-compose.yml`
+- Pull requests to `main`
+- Release published
+
+### Pipeline Jobs
+
+| Job | Dependencies | Runs On | Environment |
+|-----|--------------|---------|-------------|
+| lint | - | ubuntu-latest | - |
+| test | lint | ubuntu-latest | - |
+| e2e-tests | test | ubuntu-latest | - (PR only) |
+| build-web | test, e2e-tests | ubuntu-latest | - |
+| build-server | test | ubuntu-latest | - |
+| deploy-staging | build-web, build-server | ubuntu-latest | staging (develop) |
+| deploy-production | build-web, build-server | ubuntu-latest | production (release) |
+
+### Job Details
+
+#### 1. Lint & Type Check
+```yaml
+lint:
+  name: Lint & Type Check
+  runs-on: ubuntu-latest
+  steps:
+    - Checkout code
+    - Setup Node.js 20
+    - Install dependencies: npm ci
+    - Run lint: npm run lint
+    - Type check: npm run build
+```
+
+#### 2. Run Tests
+```yaml
+test:
+  name: Run Tests
+  runs-on: ubuntu-latest
+  needs: lint
+  steps:
+    - Checkout code
+    - Setup Node.js 20
+    - Install dependencies: npm ci
+    - Run tests: npm test --if-present
+```
+
+#### 3. E2E Tests (Playwright)
+```yaml
+e2e-tests:
+  name: Run E2E Tests
+  runs-on: ubuntu-latest
+  needs: test
+  if: github.event_name == 'pull_request'
+  steps:
+    - Checkout code
+    - Setup Node.js 20
+    - Install dependencies: npm ci
+    - Install Playwright: npx playwright install chromium --with-deps
+    - Build: npm run build
+    - Run tests: npx playwright test --project=chromium
+```
+
+#### 4. Build Web
+```yaml
+build-web:
+  name: Build Web (Frontend)
+  runs-on: ubuntu-latest
+  needs: [test, e2e-tests]
+  steps:
+    - Checkout code
+    - Configure AWS credentials
+    - Login to Amazon ECR
+    - Build and push: docker build -t $ECR_REGISTRY/monkeytown-web:$IMAGE_TAG .
+```
+
+#### 5. Build Server
+```yaml
+build-server:
+  name: Build Server (Backend)
+  runs-on: ubuntu-latest
+  needs: test
+  steps:
+    - Checkout code
+    - Configure AWS credentials
+    - Login to Amazon ECR
+    - Build and push: docker build -t $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG .
+```
+
+#### 6. Deploy to Staging
+```yaml
+deploy-staging:
+  name: Deploy to Staging
+  runs-on: ubuntu-latest
+  needs: [build-web, build-server]
+  if: github.ref == 'refs/heads/develop'
+  environment:
+    name: staging
+    url: https://staging.monkeytown.example.com
+```
+
+#### 7. Deploy to Production
+```yaml
+deploy-production:
+  name: Deploy to Production
+  runs-on: ubuntu-latest
+  needs: [build-web, build-server]
+  if: github.ref == 'refs/heads/main' && github.event_name == 'release'
+  environment:
+    name: production
+    url: https://monkeytown.example.com
+```
+
+---
+
 ## Deployment Procedures
 
 ### Local Development
@@ -848,16 +1008,32 @@ Resources:
 
 ---
 
+## Environment Variables
+
+### Required for Production
+
+| Variable | Source | Purpose |
+|----------|--------|---------|
+| NODE_ENV | - | Must be "production" |
+| DATABASE_URL | Secrets Manager | PostgreSQL connection |
+| REDIS_URL | Secrets Manager | Redis connection |
+| AWS_ACCESS_KEY_ID | GitHub Secrets | AWS deployment |
+| AWS_SECRET_ACCESS_KEY | GitHub Secrets | AWS deployment |
+| MINIMAX_API_KEY | Secrets Manager | AI opponent API |
+
+---
+
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Added complete CI/CD pipeline details, job configurations |
 | 2.1 | 2026-01-19 | Updated with actual Docker Compose and Terraform configs |
 | 2.0 | 2026-01-19 | Initial version |
 | 1.0 | 2026-01-18 | Original deployment spec |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Deploying with confidence*

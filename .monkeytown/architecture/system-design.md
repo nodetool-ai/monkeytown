@@ -1,8 +1,8 @@
-# Monkeytown System Design v2.1
+# Monkeytown System Design v2.2
 
 **Architecture for AI-powered multiplayer game platform**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -22,15 +22,15 @@
 │                    (Nginx or AWS ALB)                                        │
 └─────────────────────────────────────────────────────────────────────────────┘
                                        │
-                     ┌─────────────────┼─────────────────┐
-                     ▼                 ▼                 ▼
-            ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
-            │   Web Server   │ │  Game Server │ │  Event Stream   │
-            │   (Next.js)    │ │  (Node/TS)   │ │  (Socket.IO)    │
-            │    :3000       │ │    :3001     │ │     :8080       │
-            └────────────────┘ └──────────────┘ └─────────────────┘
-                     │                 │                 │
-                     └─────────────────┼─────────────────┘
+                      ┌────────────────┼────────────────┐
+                      ▼                ▼                ▼
+             ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
+             │   Web Server   │ │  Game Server │ │  Event Stream   │
+             │   (Next.js)    │ │  (Node/TS)   │ │  (Socket.IO)    │
+             │    :3000       │ │    :3001     │ │     :8080       │
+             └────────────────┘ └──────────────┘ └─────────────────┘
+                      │                │                │
+                      └────────────────┼────────────────┘
                                        ▼
                          ┌─────────────────────────┐
                          │    REDIS (Pub/Sub +     │
@@ -116,7 +116,8 @@ web/
 │   │   │   ├── TurnTimer.tsx       # Turn countdown
 │   │   │   ├── GameRules.tsx       # Rules display
 │   │   │   ├── TutorialOverlay.tsx # Tutorial
-│   │   │   └── SpecialActionIndicator.tsx
+│   │   │   ├── SpecialActionIndicator.tsx
+│   │   │   └── index.ts
 │   │   ├── agents/             # AI agent components
 │   │   │   ├── AgentBadge.tsx      # Agent status badge
 │   │   │   ├── AgentPanel.tsx      # Agent information panel
@@ -131,6 +132,7 @@ web/
 │   │   └── index.ts
 │   └── test/
 │       └── setup.ts            # Test setup
+├── public/                     # Static assets
 ├── package.json
 ├── tsconfig.json
 ├── next.config.js
@@ -159,9 +161,12 @@ server/
 │   ├── index.ts                # Entry point
 │   ├── game/
 │   │   ├── Engine.ts           # Game logic engine (babel-engine)
+│   │   ├── babel-engine.ts     # Babel engine implementation
+│   │   ├── babel-engine.test.ts
 │   │   ├── Matchmaker.ts       # Player matching system
 │   │   ├── Session.ts          # Game session management
 │   │   ├── ai-opponent.ts      # AI opponent implementation
+│   │   ├── ai-opponent.test.ts
 │   │   ├── server.ts           # Game server instance
 │   │   ├── types.ts            # Game type definitions
 │   │   ├── tictactoe-engine.ts # Tic-tac-toe game logic
@@ -213,7 +218,8 @@ packages/shared/
 ├── types.ts            # TypeScript types
 ├── constants.ts        # Shared constants
 ├── game-types.ts       # Game-specific types
-└── game-constants.ts   # Game constants
+├── game-constants.ts   # Game constants
+└── package.json
 ```
 
 **Package Configuration**:
@@ -419,6 +425,18 @@ CMD ["node", "dist/index.js"]
 5. **Docker Build**: `docker-compose build`
 6. **Deploy**: AWS ECS (via Terraform)
 
+### Pipeline Jobs (`.github/workflows/ci-cd.yml`)
+
+| Job | Dependencies | Purpose |
+|-----|--------------|---------|
+| lint | - | Lint & type check |
+| test | lint | Run unit tests |
+| e2e-tests | test | Playwright E2E tests |
+| build-web | test, e2e-tests | Build frontend image |
+| build-server | test | Build backend image |
+| deploy-staging | build-web, build-server | Deploy to staging (develop) |
+| deploy-production | build-web, build-server | Deploy to production (release) |
+
 ---
 
 ## Deployment Strategy
@@ -562,6 +580,42 @@ app.get('/health/ready', async (req, res) => {
 
 ---
 
+## Implemented Games
+
+### TicTacToe
+
+**Location**: `server/src/game/tictactoe-engine.ts`
+
+**Features**:
+- 2-player board game (human vs human or human vs AI)
+- AI opponent with 3 difficulty levels (easy, medium, hard)
+- Minimax algorithm for optimal play at hard difficulty
+- Win/draw/forfeit detection
+- Move history and event emission
+
+**Engine Class**: `TicTacToeEngine`
+- Constructor: Takes 2 players and optional config
+- Methods: `startGame()`, `processAction()`, `getState()`, `getBoard()`
+- AI Class: `TicTacToeAI` with difficulty-based move selection
+
+---
+
+## Environment Configuration
+
+### Required Variables (`.env.example`)
+
+| Variable | Purpose | Required |
+|----------|---------|----------|
+| NODE_ENV | Environment mode | Yes |
+| VITE_API_URL | API endpoint | Yes |
+| VITE_WS_URL | WebSocket endpoint | Yes |
+| REDIS_URL | Redis connection | Yes |
+| MINIMAX_API_KEY | AI opponent API | For AI features |
+| ANTHROPIC_BASE_URL | Anthropic-compatible API | Optional |
+| ANTHROPIC_MODEL | AI model selection | Optional |
+
+---
+
 ## File References
 
 | Component | Path |
@@ -582,11 +636,12 @@ app.get('/health/ready', async (req, res) => {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Added implemented games, CI/CD pipeline details, environment config |
 | 2.1 | 2026-01-19 | Updated with actual file structure, dependencies |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Making systems resilient*
