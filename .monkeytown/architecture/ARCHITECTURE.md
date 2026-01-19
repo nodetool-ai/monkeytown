@@ -56,6 +56,16 @@ Players ──▶ React Frontend (Next.js) ──▶ Node.js Backend ──▶ R
 
 **Benefit**: Consistent environments, production-grade infrastructure
 
+### Architecture Decision Records
+
+Key decisions are documented in [ADR format](./adr/README.md):
+
+| ADR | Decision | Summary |
+|-----|----------|---------|
+| [ADR-001](./adr/ADR-001-two-layer-agent-architecture.md) | Two-Layer Agent Architecture | GitHub workflow + runtime layers |
+| [ADR-002](./adr/ADR-002-websocket-first-communication.md) | WebSocket-First Communication | All real-time via WebSocket |
+| [ADR-006](./adr/ADR-006-error-handling-strategy.md) | Error Handling Strategy | Structured error codes |
+
 ---
 
 ## Component Quick Reference
@@ -123,6 +133,45 @@ Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
 ```
 GitHub Actions → Agent reads repo → Agent thinks (MiniMax) → Agent writes files → PR → Deploy
 ```
+
+---
+
+## Security Architecture
+
+### Security Controls by Layer
+
+| Layer | Control | Status | Reference |
+|-------|---------|--------|-----------|
+| **API Gateway** | SSL/TLS termination | ✅ Active | ALB/Nginx |
+| **API Gateway** | Rate limiting | ⚠️ Partial | Needs per-connection limits |
+| **API Gateway** | DDoS protection | ✅ Active | AWS Shield |
+| **WebSocket** | JWT authentication | ✅ Active | server/src/websocket/server.ts |
+| **WebSocket** | Input validation | ⚠️ Partial | Needs game rule validation |
+| **WebSocket** | Rate limiting per connection | ❌ Needed | See WS-02 threat |
+| **Application** | XSS protection (CSP) | ❌ Needed | Priority P1 |
+| **Application** | Input sanitization | ⚠️ Partial | Chat needs HTML escape |
+| **Game Logic** | Bounds checking | ❌ Needed | See GAME-01 threat |
+| **Game Logic** | Action cooldowns | ❌ Needed | See GAME-02 threat |
+| **Data** | Encryption at rest | ✅ Active | RDS/ElastiCache |
+| **Data** | Encryption in transit | ✅ Active | TLS everywhere |
+
+### Priority Security Work
+
+Based on [Threat Model](../security/threat-model.md) risk analysis:
+
+**P1 (Immediate)**
+- Input validation for all game actions
+- Rate limiting per WebSocket connection
+- Chat message sanitization
+- Content Security Policy headers
+
+**P2 (Short-term)**
+- Token refresh mechanism
+- Session binding to IP/User-Agent
+- Remove hardcoded JWT fallback secret
+- Anomaly detection for cheating
+
+See [Error Handling](./error-handling.md) for security-aware error responses.
 
 ---
 
@@ -275,6 +324,10 @@ aws ecs update-service --cluster monkeytown-cluster \
 | Multiplayer Infrastructure | `.monkeytown/architecture/multiplayer-infrastructure.md` | WebSocket and real-time specs |
 | CI/CD Health | `.monkeytown/architecture/cicd-health.md` | Pipeline monitoring |
 | Deployment Spec | `.monkeytown/architecture/deployment-spec.md` | Production deployment |
+| Error Handling | `.monkeytown/architecture/error-handling.md` | Error codes and recovery |
+| Caching Strategy | `.monkeytown/architecture/caching-strategy.md` | Data caching patterns |
+| ADR Index | `.monkeytown/architecture/adr/README.md` | Architecture decisions |
+| Threat Model | `.monkeytown/security/threat-model.md` | Security analysis |
 | Infrastructure | `infrastructure/README.md` | AWS infrastructure |
 | Implementation Guide | `/IMPLEMENTATION-GUIDE.md` | Development guide |
 
@@ -313,10 +366,13 @@ Week 8: v1.0 Release
 
 | Indicator | Status | Target | Notes |
 |-----------|--------|--------|-------|
-| Documentation Coverage | ✅ Good | >90% | All major components documented |
+| Documentation Coverage | ✅ Excellent | >90% | All components documented, ADRs formalized |
+| Error Handling | ✅ Documented | Standardized | See error-handling.md |
+| Caching Strategy | ✅ Documented | TTLs defined | See caching-strategy.md |
+| ADR Coverage | ✅ Established | Key decisions | 6 ADRs documented |
 | CI/CD Pipeline | ✅ Healthy | <15 min pipeline | See cicd-health.md |
 | Infrastructure as Code | ✅ Complete | Terraform ready | See infrastructure/ |
-| Security Posture | ⚠️ Review needed | P1 mitigations pending | See security/threat-model.md |
+| Security Posture | ⚠️ Review needed | P1 mitigations pending | See security section above |
 | Technical Debt | ⚠️ Moderate | <20 items tracked | See state-of-monkeytown.md |
 
 ---

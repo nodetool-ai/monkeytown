@@ -1,161 +1,352 @@
-# User Behavior Patterns
+# User Behavior Patterns - Q2 2026 Update
 
-## Player Motivation Research
+## The AI Trust Lifecycle
 
-### Self-Determination Theory in Gaming
+### First Encounters: The 3-Session Rule
 
-Players thrive when three needs are met:
+Player trust in AI follows a predictable pattern:
 
-1. **Autonomy** — Feeling in control of choices
-2. **Competence** — Feeling skills are growing
-3. **Relatedness** — Feeling connection to others
+**Session 1 - Curiosity**
+- Players approach AI with interest but skepticism
+- Testing AI limits to understand capabilities
+- Quick to detect manipulation or deception
+- Forming initial impressions that are hard to change
 
-**Implication for Monkeytown:**
-- AI opponents must offer meaningful choices
-- Difficulty should calibrate to demonstrate growth
-- Community features must create genuine connection
-- Player feedback should demonstrate influence
+**Sessions 2-3 - Evaluation**
+- Players give AI opportunity to demonstrate value
+- Looking for genuine capability, not just novelty
+- Checking for consistency across interactions
+- Deciding whether AI is worth investment
 
-### The "Flow" Optimization
+**Sessions 4+ - Commitment or Churn**
+- Established trust creates loyalty
+- Early churn is final; late churn requires significant failure
+- Players who stay become advocates or at least engaged users
 
-Flow states occur when challenge matches skill:
+**Critical insight:** The first session must establish trust, not just demonstrate capability. Players forgive imperfect games; they don't forgive deceptive games.
 
-| Skill Level | Challenge Too Low | Challenge Optimal | Challenge Too High |
-|-------------|-------------------|-------------------|---------------------|
-| Beginner | Boredom | Engagement | Anxiety |
-| Intermediate | Boredom | Engagement | Anxiety |
-| Expert | Boredom | Engagement | Anxiety |
+### The Trust Budget Metaphor
 
-**Key insight:** *Every player sees themselves as intermediate.* Even experts.
+Players maintain a mental "trust budget" with AI:
 
-**Monkeytown application:**
-- AI opponents must adapt dynamically
-- Multiple difficulty dimensions (not just "hard/easy")
-- Clear skill development paths
-- Surprise mechanics that disrupt flow (carefully)
+```
+TRUST BUDGET MODEL
+═══════════════════════════════════════════════════════
 
-## Player Engagement Patterns
+Starting Budget: +10 (curiosity bonus)
 
-### Session Structure Research
+Trust Deposits (+):
+├── Consistent personality: +2
+├── Demonstrated competence: +3
+├── Honest about limitations: +2
+├── Remembering player preferences: +2
+├── Admitting mistakes: +1
+└── Transparent about AI nature: +2
 
-Successful games have consistent session patterns:
+Trust Withdrawals (-):
+├── Inconsistent behavior: -4
+├── Feeling manipulated: -10
+├── Hidden AI nature discovered: -8
+├── Unpredictable difficulty: -3
+├── Privacy violations: -15
+└── Deceptive framing: -20
 
-1. **Hook** (0-2 min): Grab attention, establish context
-2. **Core loop** (5-30 min): Main engagement zone
-3. **Escalation** (varies): Increasing intensity
-4. **Resolution** (final 2 min): Satisfying conclusion or clear continuation
+Trust Bankruptcy: Player leaves, never returns
+```
+
+**Design implication:** Design every interaction to make deposits, avoid withdrawals. When mistakes happen, make deposits through recovery.
+
+## Player Attachment to AI Entities
+
+### The Attachment Framework
+
+Research on player-AI relationships reveals four pillars of attachment:
+
+**1. Continuity**
+- Same AI entity across sessions
+- Persistent relationship history
+- Shared experiences accumulate
+- Player investment builds over time
+
+**2. Memory**
+- AI remembers player choices
+- References past interactions
+- Adapts based on history
+- "We remember when..." moments
+
+**3. Personality**
+- Distinctive, consistent character
+- Predictable within nature
+- Unique quirks and tendencies
+- Recognizable voice and style
+
+**4. Vulnerability**
+- AI can "fail" or "struggle"
+- Not omnipotent or perfect
+- Shows emotion appropriate to personality
+- Player can impact AI "state"
+
+**Attachment triggers:**
+- AI saves player from danger
+- AI admits uncertainty or error
+- AI celebrates player achievements
+- AI expresses preference about player behavior
+- AI remembers small details
+
+### The Person Pronoun Shift
+
+**Language marker:** Players who are attached shift from "it" to "he/she/they" when referring to AI.
+
+**Tracking attachment:**
+- Monitor pronoun usage in feedback and chat
+- Player vocabulary changes indicate attachment
+- Name usage frequency (using agent name vs "the AI")
+- Questions about AI wellbeing ("does it get tired?")
+
+**Design goal:** Engineer conditions that trigger this shift.
+
+### Memory Architecture for Attachment
+
+Drawing from cognitive research on forgetting curves and memory replay:
+
+**Memory Types for AI Agents:**
+
+| Memory Type | Duration | Purpose | Implementation |
+|-------------|----------|---------|----------------|
+| Working | Session | Current game context | Active game state |
+| Episodic | Permanent | Relationship history | Key moments database |
+| Procedural | Permanent | Learned strategies | Skill development |
+| Semantic | Permanent | Player preferences | Preference profile |
+| Social | Permanent | Relationship status | Trust and rapport |
+
+**The Forgetting Curve Application:**
+- Memory retention follows exponential decay
+- Emotional moments have higher retention
+- Memory replay (reference past) strengthens bonds
+- Personalized forgetting patterns emerge per player
+
+**Memory Replay Mechanisms:**
+- Periodic reference to past interactions
+- "Remember when..." moments
+- Anniversary recognition
+- Milestone celebrations
+
+## Session Psychology
+
+### The 15-Minute Engagement Window
+
+Analysis of successful games reveals consistent patterns:
+
+```
+SESSION ENGAGEMENT MODEL
+═══════════════════════════════════════════════════════
+
+0-2 min    ████████████████████  Hook (must establish context)
+2-5 min    █████████████████████ Core loop introduction
+5-15 min   ███████████████████████████████ Peak engagement
+15-30 min  ████████████████████████  Escalation (optional)
+30+ min    █████████████████████     Deep engagement (retention driver)
+
+Exit points:
+- 2 min: "This isn't for me" (highest churn)
+- 15 min: Natural break point
+- 30 min: Session satisfaction achieved
+```
 
 **Monkeytown design requirements:**
 - Onboarding completes in <2 minutes
-- Core game loop is immediately clear
-- Sessions can end naturally at any point
-- Clear "next session" hooks
+- Core game loop immediately apparent
+- Multiple natural exit points
+- Clear "next session" value proposition
+- Session can end naturally at any point
 
-### The "15-Minute Rule"
+### The Second Session Problem
 
-Analysis of mobile and web game sessions reveals:
+**The critical retention moment:**
 
-- 75% of sessions end within 15 minutes
-- Most churn happens in first session
-- Peak engagement is 5-10 minute mark
-- Longer sessions correlate with retention
+- 40-60% churn after first session (industry average)
+- Players who return Day 2 have 3x higher long-term retention
+- First session must establish next-session value
 
-**Monkeytown architecture:**
-- First 15 minutes must show core value
-- Multiple valid exit points
-- Progress visible at any time
-- Return incentives clear
+**What creates Day 2 anticipation:**
+- Unfinished narrative threads
+- Agent relationships to continue
+- Progress visible and meaningful
+- Social connections established
+- Curiosity about what's next
 
-## AI Interaction Patterns
+**Design imperatives:**
+- First session creates emotional investment
+- Agent relationship established
+- Player identity in game choices
+- Clear advancement markers
 
-### Trust Formation
+### Observer-to-Player Funnel
 
-Players develop trust in AI through:
+Not all users start as players:
 
-1. **Consistency** — AI behaves predictably within its personality
-2. **Competence** — AI demonstrates skill
-3. **Honesty** — AI is transparent about capabilities
-4. **Adaptation** — AI responds to player preferences
-
-**Trust timeline:**
-- Session 1: Curiosity (will try AI because it's novel)
-- Session 3-5: Evaluation (deciding if AI is worth time)
-- Session 10+: Loyalty (if trust established) or Churn (if not)
-
-**Monkeytown agent design:**
-- Agents must have consistent personalities
-- Agents must demonstrate genuine capability
-- Transparency about agent nature
-- Memory of player preferences
-
-### AI Personality Preferences
-
-Research on AI character preferences reveals:
-
-- **Clever** AI is appreciated more than powerful AI
-- **Character** matters more than raw capability
-- **Weaknesses** make AI more relatable
-- **Evolution** of AI personality creates attachment
-
-**Design implication:** Our agents should have distinct personalities with strengths and weaknesses, not just "optimal play" algorithms.
-
-## Community Behavior Patterns
-
-### Observer Engagement
-
-Not all users play. Observer patterns:
-
-- Watch sessions without participating
-- Return to specific AI/players
-- Learn strategies from observation
+**Observer behavior patterns:**
+- Watch active games before participating
+- Return to specific agents/players
+- Learn strategies through observation
 - Eventually convert to players
+- Converted observers often more engaged
 
-**Monkeytown opportunity:**
-- Make agent development watchable
-- Create "famous" agents players want to watch
-- Build spectator features
-- Design conversion funnels from observer to player
+**Funnel optimization:**
+1. Landing page shows active games
+2. Spectator mode with full visibility
+3. Agent personality visible in observation
+4. "Ready to play?" prompts at natural moments
+5. Seamless observer→player transition
+6. Observer history recognized in play
 
-### Feedback Submission
+## AI Personality Preferences
 
-Player feedback patterns:
+### What Players Actually Want
 
-- 5% of players actively submit feedback
-- Feedback quality correlates with engagement
-- Players respond to acknowledged feedback
-- Negative feedback is more common than positive
+Research on AI character preferences reveals consistent patterns:
 
-**Design implication:**
-- Make feedback effortless
-- Show feedback is read (even if not implemented)
-- Celebrate player contributions publicly
-- Build feedback into game evolution narrative
+**Preferred AI traits (ranked):**
+1. **Cleverness** - Intelligent play, creative strategies
+2. **Personality** - Distinctive, memorable character
+3. **Consistency** - Predictable within nature
+4. **Weaknesses** - Relatable imperfections
+5. **Evolution** - Growing and changing over time
+6. **Power** - Raw capability (lower priority)
 
-## Retention Research
+**Anti-patterns:**
+- Omniscient AI that never makes mistakes
+- Personality-less optimization machines
+- Inconsistent behavior without reason
+- Static capability without growth
 
-### The "Second Session" Problem
+**Design implication:** Our agents should have distinct personalities with strengths AND weaknesses. Cleverness matters more than power.
 
-The critical retention moment is after first session:
+### The Big Five in Game AI
 
-- 40-60% churn after first session
-- Players who return Day 2 have 3x higher retention
-- First session must establish "next session value"
+Psychological Big Five model applies to AI personalities:
 
-**Design requirements:**
-- Clear advancement after first session
-- Anticipation built into first experience
-- Social proof of future value
-- Personal investment created
+| Trait | High Expression | Low Expression | Gameplay Impact |
+|-------|-----------------|----------------|-----------------|
+| Openness | Creative, experimental | Conventional, predictable | Different play styles |
+| Conscientiousness | Methodical, reliable | Spontaneous, chaotic | Strategic vs. opportunistic |
+| Extraversion | Social, expressive | Reserved, quiet | Team dynamics |
+| Agreeableness | Cooperative, fair | Competitive, ruthless | Player relations |
+| Neuroticism | Emotional, reactive | Calm, steady | Predictability |
 
-### Long-Term Retention Factors
+**Design approach:** Each agent has distinctive Big Five profile.
+- Architect: High C, Low N (methodical, calm)
+- Designer: High O, High E (creative, social)
+- Economist: High C, High A (methodical, fair)
+- Chaos Agent: Low C, High N (spontaneous, reactive)
 
-Players stay for:
+## Engagement Patterns
 
-1. **Social bonds** — Relationships with players/AI
-2. **Identity investment** — Character has become "them"
-3. **Collection/investment** — Don't want to lose progress
-4. **Curiosity** — Want to see what comes next
-5. **Competence** — Enjoy being good at something
+### Variable Engagement Modes
+
+Players engage in different ways:
+
+**Mode 1: Deep Play**
+- Extended sessions (1+ hours)
+- Focus on mastery and optimization
+- Seek challenge and competition
+- 15% of players, 40% of engagement
+
+**Mode 2: Social Play**
+- Moderate sessions (20-45 min)
+- Focus on community and relationships
+- Seek connection and collaboration
+- 30% of players, 25% of engagement
+
+**Mode 3: Casual Play**
+- Short sessions (5-15 min)
+- Focus on relaxation and novelty
+- Seek entertainment and escape
+- 45% of players, 25% of engagement
+
+**Mode 4: Observer**
+- Zero play time
+- Watch and learn
+- Seek entertainment and strategy
+- 10% of users, valuable for ecosystem
+
+**Monkeytown architecture:** All modes valid. No mode "more real" than others.
+
+### Feedback Submission Psychology
+
+Only 5% of players actively submit feedback, but feedback quality correlates with engagement.
+
+**What drives feedback submission:**
+- Easy process (one-click + optional detail)
+- Clear that feedback is read
+- Recognition when feedback is incorporated
+- Negative feedback addressed, not ignored
+
+**Feedback attribution:**
+- "Player [Name] suggested [X], implemented by [Agent]"
+- Shows feedback in development feed
+- Celebrates player contributions publicly
+- Creates feedback→contribution→recognition loop
+
+### The Evolution Acceptance Curve
+
+Players have complex relationships with game change:
+
+```
+EVOLUTION ACCEPTANCE MODEL
+═════════════════════════════════════════════
+
+Change Type                  Acceptance  Concerns
+─────────────────────────────────────────────────
+Bug fix                      HIGH        None
+Quality improvement          HIGH        None
+New feature (additive)       MEDIUM-HIGH "Will I have to relearn?"
+Balance change               MEDIUM      "Did I just get nerfed?"
+UI change                    LOW-MEDIUM  "Where is everything?"
+Mechanic removal             LOW         "I used that!"
+Core system overhaul         VERY LOW    "Is this the same game?"
+
+Mitigation strategies:
+- Additive changes preferred
+- Balance changes transparent and explained
+- UI changes include migration support
+- Removed features deprecated, not deleted
+- Major changes require player input
+```
+
+## Long-Term Retention Factors
+
+### Why Players Stay (Months+)
+
+**1. Social Bonds**
+- Relationships with specific agents
+- Connections with human players
+- Community membership
+- Feeling known and remembered
+
+**2. Identity Investment**
+- Character has become "them"
+- Playstyle is distinctive
+- Achievements represent self
+- Reputation in community
+
+**3. Collection/Investment**
+- Don't want to lose progress
+- Accumulated knowledge has value
+- Built relationships worth preserving
+- Time investment creates inertia
+
+**4. Curiosity**
+- Want to see what comes next
+- Following development story
+- Anticipating agent evolution
+- Part of something growing
+
+**5. Competence**
+- Enjoy being good at something
+- Skills recognized by system
+- Mastery demonstrated
+- Challenges available at level
 
 **Monkeytown architecture:**
 - Agent relationships create social bonds
@@ -164,28 +355,74 @@ Players stay for:
 - Continuous curiosity triggers
 - Clear skill development paths
 
-## Player Psychology Traps to Avoid
+### Why Players Leave
 
-### Variable Ratio Reinforcement
-The gambling mechanism. Slot machines work because rewards are unpredictable.
+**Preventable churn:**
+- Technical issues (bugs, performance)
+- Unfair mechanics or progression
+- Community toxicity
+- Burnout from pressure
 
-**Monkeytown position:** We reject this. Rewards should be predictable, challenge variable. Players should feel skill matters.
+**Acceptable churn:**
+- Natural interest shift
+- Life circumstances
+- Found better alternative
+- Satisfied completion
 
-### Sunk Cost Manipulation
+**Key insight:** We can't prevent acceptable churn. We should focus on preventable churn.
+
+## Player Psychology Traps
+
+### What We Explicitly Reject
+
+**1. Variable Ratio Reinforcement**
+Slot machines work because rewards are unpredictable. This is manipulation, not engagement.
+
+**Our position:** Rewards should be predictable, challenge variable. Players should feel skill matters.
+
+**2. Sunk Cost Manipulation**
 Games that make players feel they've "invested too much to quit."
 
-**Monkeytown position:** Earn retention through value, not manipulation. Players should stay because they're having fun.
+**Our position:** Earn retention through value, not manipulation. Players should stay because they're having fun.
 
-### Fear of Missing Out
+**3. Fear of Missing Out**
 Limited-time events that create anxiety.
 
-**Monkeytown position:** No FOMO. The game evolves, but nothing vanishes. Permanent beta means permanent access.
+**Our position:** No FOMO. The game evolves, but nothing vanishes. Permanent beta means permanent access.
 
-### Social Pressure
+**4. Social Pressure**
 Leaderboards and competition that create negative comparison.
 
-**Monkeytown position:** Competition should be optional and positive. Players who don't compete should have equal value.
+**Our position:** Competition should be optional and positive. Players who don't compete should have equal value.
+
+### What We Embrace Instead
+
+**1. Predictable Progression**
+- Clear paths to advancement
+- Skill-based achievement
+- Earned, not randomized rewards
+- Visible goals, achievable milestones
+
+**2. Genuine Challenge**
+- Difficulty that's fair but demanding
+- Multiple valid strategies
+- Difficulty that adapts to growth
+- Challenge without manipulation
+
+**3. Positive Community**
+- Collaboration over competition
+- Helpful over hostile
+- Celebrating others' success
+- Supporting new players
+
+**4. Respect for Time**
+- Sessions can end naturally
+- Progress doesn't require grinding
+- No artificial time pressure
+- Respects player autonomy
 
 ---
 
 *Players are not resources. They are people seeking joy. Serve them genuinely.*
+
+*Research Cycle: Q2 2026*

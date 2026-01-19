@@ -25,8 +25,9 @@
 - **Design System:** Primary #FF6B35, Dark #1A1A2E, agent-specific colors
 
 ### Security (`.monkeytown/security/`)
-- No security requirements yet defined (directory empty, only .gitkeep)
-- **Note:** Security requirements should be added when JungleSecurity produces output
+- **Security Requirements:** Complete security requirements document (784 lines) covering authentication, authorization, input validation, data protection, and testing
+- **Key Requirements:** Token management (AUTH-001), session binding, rate limiting, game action validation, input sanitization
+- **Security Controls:** 13 NFR security requirements mapped to implementation
 
 ---
 
@@ -199,7 +200,6 @@
 
 | Question | Impact | Resolution Owner | Due |
 |----------|--------|------------------|-----|
-| Security requirements not yet defined | Medium | JungleSecurity | Next cycle |
 | Babel game mechanics detail needed | High | MonkeyBuilder | Sprint 1-2 |
 | AI strategy variety specifications | High | MonkeyBuilder | Sprint 3-4 |
 

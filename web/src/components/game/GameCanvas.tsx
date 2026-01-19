@@ -1,11 +1,13 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { GameState, GameCard as GameCardType, PlayerType, AgentType, AGENT_COLORS } from '@monkeytown/packages/shared';
+import { GameState, GameCard as GameCardType, PlayerType, AgentType, AGENT_COLORS, PlayerAgentType } from '@monkeytown/packages/shared';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { AgentBadge } from '../agents';
 import { ChatPanel } from './ChatPanel';
+import { TurnTimer, useTurnTimer } from './TurnTimer';
+import { SpecialActionIndicator, isSpecialCard, getSpecialActionType } from './SpecialActionIndicator';
 
 interface GameCanvasProps {
   gameState: GameState;
@@ -174,13 +176,6 @@ export function GameCanvas({
     marginBottom: 'var(--space-4)',
   };
 
-  const turnTimerStyles: CSSProperties = {
-    fontFamily: 'var(--font-mono)',
-    fontSize: 'var(--text-body-large)',
-    fontWeight: 600,
-    color: gameState.turnTimeRemaining < 10 ? 'var(--color-error)' : 'var(--color-text-primary)',
-  };
-
   return (
     <div style={containerStyles}>
       <div style={gameAreaStyles}>
@@ -192,9 +187,14 @@ export function GameCanvas({
             {isMyTurn ? '🎯 Your Turn' : '⏳ Waiting'}
           </Badge>
           <div style={{ flex: 1 }} />
-          <div style={turnTimerStyles}>
-            ⏱️ {gameState.turnTimeRemaining}s
-          </div>
+          <TurnTimer
+            durationSeconds={gameState.turnTimeRemaining || 60}
+            startTime={Date.now() - (60 - gameState.turnTimeRemaining) * 1000}
+            isActive={gameState.status === 'live'}
+            isOwnTurn={isMyTurn}
+            showLabels={false}
+            compact
+          />
         </div>
 
         <div style={tableAreaStyles}>
@@ -252,26 +252,35 @@ export function GameCanvas({
 
         <div style={handAreaStyles}>
           {playerHand.map(card => (
-            <div
-              key={card.id}
-              style={card.id === selectedCardId ? selectedCardStyles : cardStyles}
-              onClick={() => onCardSelect?.(card.id)}
-              onMouseEnter={e => {
-                if (card.id !== selectedCardId) {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.borderColor = 'var(--color-border-strong)';
-                }
-              }}
-              onMouseLeave={e => {
-                if (card.id !== selectedCardId) {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'var(--color-border-default)';
-                }
-              }}
-            >
-              <span style={cardValueStyles}>{card.value}</span>
-              <span style={cardLabelStyles}>Points</span>
-            </div>
+            isSpecialCard(card as any) ? (
+              <SpecialActionIndicator
+                key={card.id}
+                card={card as any}
+                isSelected={card.id === selectedCardId}
+                onSelect={() => onCardSelect?.(card.id)}
+              />
+            ) : (
+              <div
+                key={card.id}
+                style={card.id === selectedCardId ? selectedCardStyles : cardStyles}
+                onClick={() => onCardSelect?.(card.id)}
+                onMouseEnter={e => {
+                  if (card.id !== selectedCardId) {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.borderColor = 'var(--color-border-strong)';
+                  }
+                }}
+                onMouseLeave={e => {
+                  if (card.id !== selectedCardId) {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'var(--color-border-default)';
+                  }
+                }}
+              >
+                <span style={cardValueStyles}>{card.value}</span>
+                <span style={cardLabelStyles}>Points</span>
+              </div>
+            )
           ))}
         </div>
       </div>

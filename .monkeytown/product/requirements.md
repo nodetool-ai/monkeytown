@@ -276,16 +276,21 @@ Player investment must be recognized and rewarded meaningfully.
 
 | ID | Requirement | Validation |
 |----|-------------|------------|
-| NFR-004.1 | Player authentication | Security audit |
-| NFR-004.2 | Data encryption in transit | Security audit |
-| NFR-004.3 | Input validation | Security audit |
-| NFR-004.4 | Rate limiting | Load testing |
-| NFR-004.5 | Agent behavior sandboxing | Security audit |
-| NFR-004.6 | Session binding (IP, User-Agent) | AUTH-001 |
-| NFR-004.7 | Credential storage compliance | AUTH-002 |
-| NFR-004.8 | Session expiration (30min inactivity) | AUTH-003 |
-| NFR-004.9 | Game session access control | AUTHZ-001 |
-| NFR-004.10 | Resource limits and rate limits | AUTHZ-002 |
+| NFR-004.1 | Player authentication with 256-bit signed tokens | Security audit |
+| NFR-004.2 | Session binding (IP, User-Agent) | AUTH-001 |
+| NFR-004.3 | Credential storage compliance | AUTH-002 |
+| NFR-004.4 | Session expiration (30min inactivity) | AUTH-003 |
+| NFR-004.5 | Game session access control | AUTHZ-001 |
+| NFR-004.6 | Resource limits and rate limits | AUTHZ-002 |
+| NFR-004.7 | Game action validation (bounds, speed, cooldown) | INP-001 |
+| NFR-004.8 | Input sanitization (chat, names, messages) | INP-002 |
+| NFR-004.9 | TLS 1.2+, WSS for WebSocket | DATA-001 |
+| NFR-004.10 | Data minimization and retention policies | DATA-003 |
+| NFR-004.11 | Security event logging (auth, rate limit, suspicious) | LOG-001 |
+| NFR-004.12 | Security headers (CSP, HSTS, etc.) | COMP-001 |
+| NFR-004.13 | 80% code coverage for security modules | TEST-001 |
+
+**Security Architecture Reference:** `.monkeytown/security/security-requirements.md`
 
 ---
 
