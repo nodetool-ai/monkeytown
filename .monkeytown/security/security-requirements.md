@@ -1,65 +1,64 @@
-# Monkeytown Security Requirements
+# Monkeytown Security Requirements v2.0
 
 **Mandatory security controls for all Monkeytown components**
+
+**Version:** 2.0
+**Date:** 2026-01-19
+**Agent:** JungleSecurity
+
+---
+
+## Overview
+
+This document specifies security requirements based on verified code review findings in `.monkeytown/security/vulnerability-assessment.md`. Requirements are categorized by implementation priority and mapped to specific code locations.
+
+**Key Findings:**
+- JWT secret hardcoded fallback at `server/src/websocket/server.ts:223` ⚠️
+- Missing WebSocket rate limiting ⚠️
+- Chat XSS vulnerability at `server/src/websocket/server.ts:185` ⚠️
+- No action cooldown enforcement ⚠️
 
 ---
 
 ## Authentication Requirements
 
-### AUTH-001: Token Management
+### AUTH-001: Token Management ⚠️ CRITICAL
 
 **Requirement:**
 All authentication tokens must be:
 - Generated using cryptographically secure random number generators
 - Signed with a 256-bit or stronger secret key
-- Limited to maximum 24-hour validity
-- Bound to the session context (IP, User-Agent)
+- **CRITICAL:** No hardcoded fallback secrets in production
+- Token expiration must be validated on every request
 
-**Implementation:**
+**Implementation Location:** `server/src/websocket/server.ts:221-225`
+
+**Code Requirement:**
 ```typescript
-interface TokenPayload {
-  playerId: string;
-  sessionId: string;
-  ip: string;
-  userAgent: string;
-  iat: number;
-  exp: number;
-}
-
-// Token generation
-function generateToken(payload: Omit<TokenPayload, 'iat' | 'exp'>): string {
-  const now = Math.floor(Date.now() / 1000);
-  const fullPayload: TokenPayload = {
-    ...payload,
-    iat: now,
-    exp: now + 86400,  // 24 hours
-  };
-  return jwt.sign(fullPayload, process.env.JWT_SECRET!, {
-    algorithm: 'HS256',
-  });
-}
-
-// Token validation
-async function validateToken(token: string, context: { ip: string; userAgent: string }): Promise<TokenPayload | null> {
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as TokenPayload;
-    
-    // Verify session binding
-    if (decoded.ip !== context.ip || decoded.userAgent !== context.userAgent) {
-      return null;
-    }
-    
-    return decoded;
-  } catch {
-    return null;
+private async validateToken(token: string): Promise<string> {
+  const jwt = await import('jsonwebtoken');
+  
+  // CRITICAL: No fallback secret allowed
+  const JWT_SECRET = process.env.JWT_SECRET;
+  if (!JWT_SECRET) {
+    throw new Error('JWT_SECRET environment variable is required for production');
   }
+  
+  // Verify and decode - jwt.verify() automatically checks 'exp' claim
+  const decoded = jwt.default.verify(token, JWT_SECRET) as { 
+    playerId: string; 
+    exp: number;
+  };
+  
+  return decoded.playerId;
 }
 ```
 
 **Verification:**
 - Unit test token generation and validation
-- Integration test token binding enforcement
+- Integration test token expiration
 - Penetration test token forgery attempts
+- **CI/CD check:** Fail build if 'dev-secret' string found in websocket/server.ts
 
 ---
 
@@ -67,18 +66,10 @@ async function validateToken(token: string, context: { ip: string; userAgent: st
 
 **Requirement:**
 No credentials may be stored in:
-- Source code
+- Source code (checked by pre-commit hooks)
 - Configuration files in version control
 - Log files
 - Error messages
-
-**Implementation:**
-```bash
-# .env.example ( NEVER commit .env )
-JWT_SECRET=your-secure-random-64-byte-secret-here
-REDIS_PASSWORD=your-secure-password-here
-DATABASE_URL=postgresql://user:password@host:5432/db
-```
 
 **Verification:**
 - CI/CD pipeline scan for secrets in code
@@ -87,180 +78,121 @@ DATABASE_URL=postgresql://user:password@host:5432/db
 
 ---
 
-### AUTH-003: Session Management
+### AUTH-003: Session Binding
 
 **Requirement:**
-- Sessions must expire after 30 minutes of inactivity
-- Maximum concurrent sessions per player: 3
-- Logout must invalidate the session server-side
+- Sessions must be bound to client IP and User-Agent
+- Token validation must verify context matches
 - Session tokens must be stored securely in the browser
 
-**Implementation:**
+**Implementation Location:** `server/src/websocket/server.ts:59-73`
+
+**Code Requirement:**
 ```typescript
-class SessionManager {
-  private readonly INACTIVITY_TIMEOUT = 30 * 60 * 1000;  // 30 minutes
-  private readonly MAX_CONCURRENT_SESSIONS = 3;
-  
-  async createSession(playerId: string): Promise<Session> {
-    const activeSessions = await this.getActiveSessionCount(playerId);
-    if (activeSessions >= this.MAX_CONCURRENT_SESSIONS) {
-      throw new Error('Maximum concurrent sessions reached');
+this.io.use(async (socket, next) => {
+  try {
+    const token = socket.handshake.auth.token;
+    if (!token) {
+      return next(new Error('Authentication required'));
+    }
+
+    const playerId = await this.validateToken(token);
+    
+    // Session binding validation
+    const clientIp = socket.handshake.address;
+    const clientUa = socket.handshake.headers['user-agent'];
+    
+    // Verify token contains expected context
+    const jwt = await import('jsonwebtoken');
+    const decoded = jwt.decode(token) as { ip?: string; userAgent?: string };
+    
+    if (decoded.ip && decoded.ip !== clientIp) {
+      console.warn(`[Security] IP mismatch for player ${playerId}`);
+      return next(new Error('Session context mismatch'));
     }
     
-    const session: Session = {
-      id: crypto.randomUUID(),
-      playerId,
-      createdAt: Date.now(),
-      lastActivity: Date.now(),
-    };
-    
-    await this.redis.setex(
-      `session:${session.id}`,
-      this.INACTIVITY_TIMEOUT / 1000,
-      JSON.stringify(session)
-    );
-    
-    return session;
-  }
-  
-  async invalidateSession(sessionId: string): Promise<void> {
-    await this.redis.del(`session:${sessionId}`);
-    // Also invalidate in token blacklist
-    await this.redis.setex(`blacklist:${sessionId}`, 86400, 'true');
-  }
-  
-  async refreshSession(sessionId: string): Promise<boolean> {
-    const session = await this.redis.get(`session:${sessionId}`);
-    if (!session) return false;
-    
-    const parsed = JSON.parse(session);
-    const now = Date.now();
-    
-    if (now - parsed.lastActivity > this.INACTIVITY_TIMEOUT) {
-      await this.invalidateSession(sessionId);
-      return false;
+    if (decoded.userAgent && decoded.userAgent !== clientUa) {
+      console.warn(`[Security] User-Agent mismatch for player ${playerId}`);
+      return next(new Error('Session context mismatch'));
     }
     
-    parsed.lastActivity = now;
-    await this.redis.setex(
-      `session:${sessionId}`,
-      this.INACTIVITY_TIMEOUT / 1000,
-      JSON.stringify(parsed)
-    );
-    
-    return true;
+    (socket as Socket & { playerId: string }).playerId = playerId;
+    next();
+  } catch (error) {
+    next(error as Error);
   }
-}
+});
 ```
 
 **Verification:**
-- Test session expiration behavior
-- Test concurrent session limit
-- Test session invalidation
+- Test unauthorized access attempts from different IP
+- Test session hijacking prevention
 
 ---
 
 ## Authorization Requirements
 
-### AUTHZ-001: Game Session Access Control
+### AUTHZ-001: Rate Limiting per Connection ⚠️ CRITICAL
 
 **Requirement:**
-- Players may only access game sessions they are explicitly authorized for
-- Authorization must be verified on every WebSocket event
-- No player may modify another player's state
+Rate limits must be enforced per WebSocket connection:
+- `game:action`: Maximum 10 per second
+- `game:chat`: Maximum 1 per second
+- `game:join`: Maximum 5 per minute
+- `heartbeat`: Maximum 1 per second
 
-**Implementation:**
-```typescript
-class GameAuthorization {
-  async canPlayerAccessSession(playerId: string, sessionId: string): Promise<boolean> {
-    const session = await this.sessionManager.getSession(sessionId);
-    if (!session) return false;
-    
-    return session.players.some(p => p.id === playerId);
-  }
-  
-  async canPlayerPerformAction(
-    playerId: string,
-    sessionId: string,
-    action: GameAction
-  ): Promise<boolean> {
-    // Verify session access
-    if (!await this.canPlayerAccessSession(playerId, sessionId)) {
-      return false;
-    }
-    
-    // Action-specific authorization
-    switch (action.type) {
-      case 'MOVE':
-        return this.canPlayerMove(playerId, sessionId);
-      case 'PLAY_CARD':
-        return this.canPlayerPlayCard(playerId, sessionId, action.cardId);
-      case 'CHAT':
-        return this.canPlayerChat(playerId, sessionId);
-      default:
-        return false;
-    }
-  }
-}
-```
+**Implementation Location:** `server/src/websocket/server.ts` (new method)
 
-**Verification:**
-- Test unauthorized access attempts
-- Test cross-session access attempts
-- Test player state modification by others
-
----
-
-### AUTHZ-002: Resource Limits
-
-**Requirement:**
-- Rate limits must be enforced per player, per action type
-- Game session creation limited to 5 per hour per player
-- WebSocket connections limited to 10 per IP
-
-**Implementation:**
+**Code Requirement:**
 ```typescript
 interface RateLimitConfig {
+  max: number;
   windowMs: number;
-  maxRequests: number;
 }
 
 const RATE_LIMITS: Record<string, RateLimitConfig> = {
-  'game:create': { windowMs: 3600000, maxRequests: 5 },
-  'game:join': { windowMs: 60000, maxRequests: 10 },
-  'game:input': { windowMs: 1000, maxRequests: 10 },
-  'game:chat': { windowMs: 1000, maxRequests: 2 },
-  'websocket:connect': { windowMs: 60000, maxRequests: 10 },
+  'game:action': { max: 10, windowMs: 1000 },
+  'game:chat': { max: 1, windowMs: 1000 },
+  'game:join': { max: 5, windowMs: 60000 },
+  'heartbeat': { max: 1, windowMs: 1000 },
 };
 
-class RateLimiter {
-  async checkRateLimit(
-    playerId: string,
-    action: string
-  ): Promise<{ allowed: boolean; remaining: number; resetTime: number }> {
-    const config = RATE_LIMITS[action];
-    if (!config) {
-      return { allowed: true, remaining: -1, resetTime: 0 };
-    }
-    
-    const key = `ratelimit:${playerId}:${action}`;
-    const current = await this.redis.get(key);
-    
-    if (!current) {
-      await this.redis.setex(key, config.windowMs / 1000, '1');
-      return { allowed: true, remaining: config.maxRequests - 1, resetTime: Date.now() + config.windowMs };
-    }
-    
-    const count = parseInt(current, 10);
-    if (count >= config.maxRequests) {
-      const ttl = await this.redis.ttl(key);
-      return { allowed: false, remaining: 0, resetTime: Date.now() + ttl * 1000 };
-    }
-    
-    await this.redis.incr(key);
-    return { allowed: true, remaining: config.maxRequests - count - 1, resetTime: Date.now() + config.windowMs };
+private connectionRateLimits = new Map<string, Map<string, { count: number; resetTime: number }>>();
+
+private checkRateLimit(playerId: string, eventType: string): boolean {
+  const limit = RATE_LIMITS[eventType];
+  if (!limit) return true;
+  
+  const now = Date.now();
+  const playerLimits = this.connectionRateLimits.get(playerId) || new Map();
+  
+  let eventLimit = playerLimits.get(eventType);
+  if (!eventLimit || now > eventLimit.resetTime) {
+    eventLimit = { count: 1, resetTime: now + limit.windowMs };
+    playerLimits.set(eventType, eventLimit);
+    this.connectionRateLimits.set(playerId, playerLimits);
+    return true;
   }
+  
+  if (eventLimit.count >= limit.max) {
+    console.warn(`[RateLimit] Player ${playerId} exceeded limit for ${eventType}`);
+    return false;
+  }
+  
+  eventLimit.count++;
+  return true;
 }
+```
+
+**Usage in handlers:**
+```typescript
+socket.on('game:action', async (data) => {
+  if (!this.checkRateLimit(playerId, 'game:action')) {
+    socket.emit('error', { code: 'RATE_LIMIT_EXCEEDED', message: 'Too many actions' });
+    return;
+  }
+  // ... existing handler
+});
 ```
 
 **Verification:**
@@ -272,145 +204,172 @@ class RateLimiter {
 
 ## Input Validation Requirements
 
-### INP-001: Game Action Validation
+### INP-001: Game Action Validation ⚠️ CRITICAL
 
 **Requirement:**
-All game actions must be validated against:
-- Game rules (can this action be performed?)
-- Entity ownership (does player own the entity?)
-- State constraints (is action valid given current state?)
-- Rate limits (is action within allowed frequency?)
+All game actions must be validated at the WebSocket entry point before reaching the game engine:
+- Type validation
+- Parameter bounds checking
+- Ownership verification
+- Rate limit enforcement
 
-**Implementation:**
+**Implementation Location:** `server/src/websocket/server.ts:134-171`
+
+**Code Requirement:**
 ```typescript
-interface GameActionValidator {
-  validateMove(playerId: string, sessionId: string, move: MoveAction): ValidationResult;
-  validatePlayCard(playerId: string, sessionId: string, cardId: string): ValidationResult;
-  validateChat(playerId: string, message: string): ValidationResult;
-}
-
-class GameActionValidatorImpl implements GameActionValidator {
-  validateMove(playerId: string, sessionId: string, move: MoveAction): ValidationResult {
-    const session = this.sessionManager.getSession(sessionId);
+socket.on('game:action', async (data: GameActionMessage) => {
+  // 1. Rate limit check
+  if (!this.checkRateLimit(playerId, 'game:action')) {
+    socket.emit('error', { code: 'RATE_LIMIT_EXCEEDED', message: 'Too many actions' });
+    return;
+  }
+  
+  // 2. Basic structure validation
+  if (!data.gameId || typeof data.gameId !== 'string') {
+    socket.emit('error', { code: 'INVALID_GAME_ID', message: 'Invalid game ID' });
+    return;
+  }
+  
+  // 3. Action validation based on type
+  const action = data.action;
+  if (!action || typeof action.type !== 'string') {
+    socket.emit('error', { code: 'INVALID_ACTION', message: 'Invalid action format' });
+    return;
+  }
+  
+  // 4. Game-specific validation
+  try {
+    const session = await this.gameServer.getSession(data.gameId);
     if (!session) {
-      return { valid: false, error: 'SESSION_NOT_FOUND' };
+      socket.emit('error', { code: 'GAME_NOT_FOUND', message: 'Game session not found' });
+      return;
     }
     
-    if (session.status !== 'active') {
-      return { valid: false, error: 'GAME_NOT_ACTIVE' };
-    }
-    
-    const player = session.players.find(p => p.id === playerId);
-    if (!player) {
-      return { valid: false, error: 'PLAYER_NOT_IN_SESSION' };
-    }
-    
-    // Validate position bounds
-    if (!this.isValidPosition(move.position, session.config.bounds)) {
-      return { valid: false, error: 'INVALID_POSITION' };
-    }
-    
-    // Validate move speed (prevent teleportation)
-    if (!this.isValidSpeed(player.position, move.position, session.config.maxSpeed)) {
-      return { valid: false, error: 'MOVE_SPEED_EXCEEDED' };
-    }
-    
-    // Check action cooldown
-    if (player.lastActionTime && Date.now() - player.lastActionTime < session.config.minActionInterval) {
-      return { valid: false, error: 'ACTION_COOLDOWN' };
-    }
-    
-    return { valid: true };
+    // ... existing handler
+  } catch (error) {
+    console.error('[EventStream] Action error:', error);
+    socket.emit('error', { code: 'ACTION_FAILED', message: 'Failed to process action' });
   }
-  
-  private isValidPosition(position: Vector2D, bounds: GameBounds): boolean {
-    return (
-      position.x >= bounds.minX &&
-      position.x <= bounds.maxX &&
-      position.y >= bounds.minY &&
-      position.y <= bounds.maxY
-    );
-  }
-  
-  private isValidSpeed(from: Vector2D, to: Vector2D, maxSpeed: number): boolean {
-    const distance = Math.sqrt(
-      Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2)
-    );
-    return distance <= maxSpeed;
-  }
-}
+});
 ```
 
 **Verification:**
 - Test valid action acceptance
 - Test invalid action rejection
 - Test edge cases (boundary values)
-- Test speed hacking prevention
 
 ---
 
-### INP-002: Input Sanitization
+### INP-002: Chat Message Sanitization ⚠️ CRITICAL
 
 **Requirement:**
-All user-generated content must be sanitized:
-- Chat messages: HTML escape, length limit, remove scripts
-- Player names: Alphanumeric + safe characters, length limit
-- Game data: Type validation, range validation
+All chat messages must be sanitized before broadcast:
+- HTML escape all content
+- Remove script tags and event handlers
+- Limit message length to 500 characters
+- Allow only safe formatting tags
 
-**Implementation:**
+**Implementation Location:** `server/src/websocket/server.ts:174-201`
+
+**Code Requirement:**
 ```typescript
-interface SanitizerConfig {
-  maxLength: number;
-  allowedCharacters: RegExp;
-  stripHtml: boolean;
-}
+import DOMPurify from 'isomorphic-dompurify';
 
-const SANITIZATION_RULES = {
-  chat: {
-    maxLength: 500,
-    allowedCharacters: /^[\s\w\s!?.,'"]+$/,
-    stripHtml: true,
-  },
-  playerName: {
-    maxLength: 32,
-    allowedCharacters: /^[\w\s-]+$/,
-    stripHtml: true,
-  },
-  gameMessage: {
-    maxLength: 1000,
-    allowedCharacters: /^[\w\s!?.,'"\p{L}]+$/u,
-    stripHtml: true,
-  },
-};
-
-function sanitizeInput(input: string, rule: keyof typeof SANITIZATION_RULES): string {
-  const config = SANITIZATION_RULES[rule];
-  
-  // Length limit
-  let sanitized = input.slice(0, config.maxLength);
-  
-  // Character whitelist
-  if (!config.allowedCharacters.test(sanitized)) {
-    sanitized = sanitized.replace(/[^\w\s-]/g, '');
+socket.on('game:chat', async (data: { gameId: string; message: string }) => {
+  try {
+    // 1. Validate message format
+    if (!data.message || typeof data.message !== 'string') {
+      socket.emit('error', { code: 'INVALID_MESSAGE', message: 'Invalid message' });
+      return;
+    }
+    
+    // 2. Length validation
+    if (data.message.length > 500) {
+      socket.emit('error', { code: 'MESSAGE_TOO_LONG', message: 'Message exceeds 500 characters' });
+      return;
+    }
+    
+    // 3. Sanitize with strict allowlist
+    const sanitized = DOMPurify.sanitize(data.message, {
+      ALLOWED_TAGS: ['b', 'i', 'u', 'em', 'strong', 'br'],
+      ALLOWED_ATTR: [],
+      ALLOW_DATA_ATTR: false,
+    });
+    
+    // 4. Get player info
+    const session = await this.gameServer.getSession(data.gameId);
+    const player = session?.players.find(p => p.id === playerId);
+    
+    // 5. Create sanitized message
+    const chatMessage = {
+      id: uuid(),
+      gameId: data.gameId,
+      senderId: playerId,
+      senderName: player?.name || 'Anonymous',
+      senderType: (player?.type || 'human') as 'human' | 'agent',
+      content: sanitized,
+      timestamp: Date.now(),
+    };
+    
+    // 6. Broadcast sanitized message
+    this.io.to(`game:${data.gameId}`).emit('game:chat', chatMessage);
+  } catch (error) {
+    console.error('[EventStream] Chat error:', error);
+    socket.emit('error', { code: 'CHAT_FAILED', message: 'Failed to send chat message' });
   }
-  
-  // HTML stripping
-  if (config.stripHtml) {
-    sanitized = sanitized
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#x27;');
-  }
-  
-  return sanitized.trim();
-}
+});
 ```
 
 **Verification:**
 - Test XSS payload sanitization
 - Test length limits
 - Test character whitelist enforcement
+
+---
+
+### INP-003: Action Cooldown Enforcement ⚠️ CRITICAL
+
+**Requirement:**
+All game actions must enforce a minimum cooldown period between actions from the same player.
+
+**Implementation Location:** `server/src/game/server.ts`
+
+**Code Requirement:**
+```typescript
+interface GameSession {
+  // ... existing fields ...
+  playerLastAction: Map<string, number>;  // playerId -> timestamp
+}
+
+// In processTicTacToeAction()
+const MIN_ACTION_INTERVAL = 100;  // 100ms cooldown
+
+async processTicTacToeAction(sessionId: string, playerId: string, action: TicTacToeAction): Promise<GameEvent | null> {
+  const session = await this.getSession(sessionId);
+  if (!session) return null;
+  
+  // Check cooldown
+  const now = Date.now();
+  const lastAction = session.playerLastAction?.get(playerId) || 0;
+  if (now - lastAction < MIN_ACTION_INTERVAL) {
+    console.warn(`[Security] Cooldown violation for player ${playerId}`);
+    return null;
+  }
+  
+  // Update last action time
+  if (!session.playerLastAction) {
+    session.playerLastAction = new Map();
+  }
+  session.playerLastAction.set(playerId, now);
+  
+  // ... existing handler
+}
+```
+
+**Verification:**
+- Test cooldown enforcement
+- Test rapid action rejection
+- Test fair play enforcement
 
 ---
 
@@ -423,34 +382,7 @@ function sanitizeInput(input: string, rule: keyof typeof SANITIZATION_RULES): st
 - WebSocket connections must use WSS (WebSocket Secure)
 - No plain HTTP except for local development
 
-**Implementation:**
-```nginx
-# nginx.conf
-server {
-    listen 443 ssl http2;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers on;
-    ssl_certificate /etc/ssl/certs/server.crt;
-    ssl_certificate_key /etc/ssl/private/server.key;
-    
-    # HSTS
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    
-    location / {
-        proxy_pass http://web;
-    }
-    
-    location /ws/ {
-        proxy_pass http://game-server;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
+**Implementation:** Configured at load balancer/Nginx level
 
 **Verification:**
 - TLS configuration scan
@@ -459,100 +391,38 @@ server {
 
 ---
 
-### DATA-002: Encryption at Rest
+### DATA-002: Error Message Sanitization
 
 **Requirement:**
-- Sensitive data in Redis must be encrypted
-- Database columns containing PII must be encrypted
-- Session data must be encrypted with rotating keys
+All error messages returned to clients must be sanitized:
+- No stack traces
+- No internal paths
+- No library versions
+- No sensitive data
 
-**Implementation:**
+**Implementation Location:** `server/src/websocket/server.ts` error handlers
+
+**Code Requirement:**
 ```typescript
-class EncryptionService {
-  private readonly ALGORITHM = 'aes-256-gcm';
-  private readonly IV_LENGTH = 16;
-  private readonly TAG_LENGTH = 16;
-  
-  async encrypt(plaintext: string, key: Buffer): Promise<string> {
-    const iv = crypto.randomBytes(this.IV_LENGTH);
-    const cipher = crypto.createCipheriv(this.ALGORITHM, key, iv);
-    
-    let encrypted = cipher.update(plaintext, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-    
-    const tag = cipher.getAuthTag();
-    
-    // Store as iv:tag:encrypted
-    return `${iv.toString('hex')}:${tag.toString('hex')}:${encrypted}`;
-  }
-  
-  async decrypt(encryptedData: string, key: Buffer): Promise<string> {
-    const [ivHex, tagHex, encrypted] = encryptedData.split(':');
-    
-    const iv = Buffer.from(ivHex, 'hex');
-    const tag = Buffer.from(tagHex, 'hex');
-    
-    const decipher = crypto.createDecipheriv(this.ALGORITHM, key, iv);
-    decipher.setAuthTag(tag);
-    
-    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    
-    return decrypted;
-  }
+// Bad - exposes internal details
+} catch (error) {
+  next(error as Error);
+}
+
+// Good - sanitized errors
+} catch (error) {
+  console.error('[EventStream] Internal error:', error);
+  next(new Error('An error occurred'));
 }
 ```
 
 **Verification:**
-- Test encryption/decryption round-trip
-- Verify encrypted data in Redis
-- Test key rotation
+- Test error message content
+- Ensure no sensitive data in responses
 
 ---
 
-### DATA-003: Data Minimization
-
-**Requirement:**
-- Collect only data necessary for game functionality
-- Retain data only for necessary duration
-- Provide data export and deletion capabilities for players
-
-**Implementation:**
-```typescript
-interface PlayerDataRetention {
-  sessionData: { retentionDays: 30, reason: 'gameplay history' };
-  chatLogs: { retentionDays: 7, reason: 'moderation' };
-  analytics: { retentionDays: 90, reason: 'improvements' };
-  credentials: { retentionDays: -1, reason: 'account maintenance' };
-}
-
-class DataRetentionService {
-  async cleanupExpiredData(): Promise<number> {
-    const cutoff = Date.now() - (30 * 24 * 60 * 60 * 1000);  // 30 days
-    const expiredSessions = await this.database.query(
-      'DELETE FROM sessions WHERE created_at < $1 RETURNING id',
-      [cutoff]
-    );
-    
-    const cutoff7Days = Date.now() - (7 * 24 * 60 * 60 * 1000);
-    await this.database.query(
-      'DELETE FROM chat_logs WHERE timestamp < $1',
-      [cutoff7Days]
-    );
-    
-    return expiredSessions.rowCount;
-  }
-}
-```
-
-**Verification:**
-- Test data cleanup automation
-- Verify player data export
-- Test data deletion
-
----
-
-## Logging and Monitoring Requirements
+## Logging Requirements
 
 ### LOG-001: Security Event Logging
 
@@ -562,111 +432,30 @@ The following events must be logged:
 - Authorization failures
 - Rate limit triggers
 - Suspicious activity patterns
-- System errors
+- Invalid action attempts
 
-**Implementation:**
+**Code Requirement:**
 ```typescript
-interface SecurityEvent {
-  timestamp: Date;
-  eventType: 'AUTH_SUCCESS' | 'AUTH_FAILURE' | 'AUTHZ_FAILURE' | 'RATE_LIMIT' | 'SUSPICIOUS';
-  playerId?: string;
-  sessionId?: string;
-  ip: string;
-  userAgent: string;
-  details: Record<string, unknown>;
+private logSecurityEvent(eventType: string, playerId: string, details: Record<string, unknown>): void {
+  console.log(JSON.stringify({
+    timestamp: new Date().toISOString(),
+    level: 'security',
+    eventType,
+    playerId,
+    ...details,
+  }));
 }
 
-class SecurityLogger {
-  async log(event: SecurityEvent): Promise<void> {
-    const logEntry = {
-      ...event,
-      timestamp: event.timestamp.toISOString(),
-    };
-    
-    // Structured logging
-    console.log(JSON.stringify({
-      level: this.getLogLevel(event.eventType),
-      ...logEntry,
-    }));
-    
-    // Also write to secure audit log
-    await this.auditLog.write(logEntry);
-  }
-  
-  private getLogLevel(eventType: SecurityEvent['eventType']): string {
-    switch (eventType) {
-      case 'AUTH_FAILURE':
-      case 'AUTHZ_FAILURE':
-        return 'warning';
-      case 'RATE_LIMIT':
-        return 'info';
-      case 'SUSPICIOUS':
-        return 'error';
-      default:
-        return 'info';
-    }
-  }
-}
+// Usage examples:
+this.logSecurityEvent('AUTH_SUCCESS', playerId, { action: 'websocket_connect' });
+this.logSecurityEvent('RATE_LIMIT_EXCEEDED', playerId, { event: 'game:action', count: 11 });
+this.logSecurityEvent('INVALID_ACTION', playerId, { action: action.type, reason: 'not_your_turn' });
 ```
 
 **Verification:**
 - Test log completeness
-- Test log integrity (tamper detection)
 - Test log aggregation
-
----
-
-### LOG-002: Monitoring and Alerting
-
-**Requirement:**
-- Real-time alerts for security events
-- Dashboards for security metrics
-- Anomaly detection for cheating patterns
-
-**Implementation:**
-```typescript
-interface SecurityMetrics {
-  failedAuthCount: number;
-  rateLimitTriggers: number;
-  authorizationFailures: number;
-  suspiciousPatternCount: number;
-}
-
-class SecurityMonitor {
-  private readonly ALERT_THRESHOLDS = {
-    failedAuthPerMinute: 10,
-    rateLimitPerMinute: 100,
-    authzFailurePerMinute: 50,
-  };
-  
-  checkThresholds(metrics: SecurityMetrics): Alert[] {
-    const alerts: Alert[] = [];
-    
-    if (metrics.failedAuthCount > this.ALERT_THRESHOLDS.failedAuthPerMinute) {
-      alerts.push({
-        severity: 'high',
-        type: 'BRUTE_FORCE_DETECTED',
-        message: `High authentication failures: ${metrics.failedAuthCount}/min`,
-      });
-    }
-    
-    if (metrics.rateLimitTriggers > this.ALERT_THRESHOLDS.rateLimitPerMinute) {
-      alerts.push({
-        severity: 'medium',
-        type: 'DOS_ATTACK',
-        message: `High rate limit triggers: ${metrics.rateLimitTriggers}/min`,
-      });
-    }
-    
-    return alerts;
-  }
-}
-```
-
-**Verification:**
 - Test alert triggering
-- Test alert routing
-- Test dashboard accuracy
 
 ---
 
@@ -680,53 +469,8 @@ All HTTP responses must include:
 - X-Content-Type-Options: nosniff
 - X-Frame-Options: DENY
 - Strict-Transport-Security
-- Referrer-Policy: strict-origin-when-cross-origin
 
-**Implementation:**
-```typescript
-// next.config.js
-const securityHeaders = [
-  {
-    key: 'Content-Security-Policy',
-    value: `
-      default-src 'self';
-      script-src 'self' 'unsafe-inline';
-      style-src 'self' 'unsafe-inline';
-      img-src 'self' data: https:;
-      font-src 'self';
-      connect-src wss: https:;
-      frame-ancestors 'none';
-    `.replace(/\s+/g, ' ').trim(),
-  },
-  {
-    key: 'X-Content-Type-Options',
-    value: 'nosniff',
-  },
-  {
-    key: 'X-Frame-Options',
-    value: 'DENY',
-  },
-  {
-    key: 'Strict-Transport-Security',
-    value: 'max-age=31536000; includeSubDomains',
-  },
-  {
-    key: 'Referrer-Policy',
-    value: 'strict-origin-when-cross-origin',
-  },
-];
-
-module.exports = {
-  async headers() {
-    return [
-      {
-        source: '/:path*',
-        headers: securityHeaders,
-      },
-    ];
-  },
-};
-```
+**Implementation:** Next.js headers in `next.config.js`
 
 **Verification:**
 - Automated header scanning
@@ -743,33 +487,7 @@ module.exports = {
 - Minimum 80% code coverage for security-critical modules
 - Automated security tests in CI/CD pipeline
 
-**Implementation:**
-```typescript
-// test/authentication.test.ts
-describe('Authentication', () => {
-  describe('Token Generation', () => {
-    it('should generate unique tokens', () => {
-      const token1 = generateToken(payload1);
-      const token2 = generateToken(payload2);
-      expect(token1).not.toEqual(token2);
-    });
-    
-    it('should reject expired tokens', async () => {
-      const token = generateToken({ ...payload, exp: Math.floor(Date.now() / 1000) - 3600 });
-      const result = await validateToken(token, context);
-      expect(result).toBeNull();
-    });
-  });
-  
-  describe('Session Binding', () => {
-    it('should reject token from different IP', async () => {
-      const token = generateToken({ ...payload, ip: '192.168.1.1' });
-      const result = await validateToken(token, { ...context, ip: '10.0.0.1' });
-      expect(result).toBeNull();
-    });
-  });
-});
-```
+**Test Framework:** Vitest (already configured)
 
 **Verification:**
 - Coverage report review
@@ -778,6 +496,24 @@ describe('Authentication', () => {
 
 ---
 
-*Security Requirements Version: 1.0*
-*Last Updated: 2026-01-18*
-*JungleSecurity - Making security mandatory*
+## Implementation Status
+
+| Requirement | Status | Location | Priority |
+|-------------|--------|----------|----------|
+| AUTH-001: Token Management | ❌ Missing | server/src/websocket/server.ts:221-225 | **P1** |
+| AUTH-002: Credential Storage | ✅ OK | N/A | - |
+| AUTH-003: Session Binding | ❌ Missing | server/src/websocket/server.ts:59-73 | P2 |
+| AUTHZ-001: Rate Limiting | ❌ Missing | server/src/websocket/server.ts | **P1** |
+| INP-001: Game Action Validation | ⚠️ Partial | server/src/websocket/server.ts:134-171 | P2 |
+| INP-002: Chat Sanitization | ❌ Missing | server/src/websocket/server.ts:174-201 | **P1** |
+| INP-003: Action Cooldown | ❌ Missing | server/src/game/server.ts | **P1** |
+| DATA-001: Encryption | ✅ OK | Infrastructure | - |
+| DATA-002: Error Sanitization | ⚠️ Partial | server/src/websocket/server.ts | P3 |
+| LOG-001: Security Logging | ⚠️ Partial | server/src/websocket/server.ts | P2 |
+| COMP-001: Security Headers | ❌ Missing | next.config.js | P2 |
+
+---
+
+*Security Requirements Version: 2.0*
+*Last Updated: 2026-01-19*
+*JungleSecurity - Based on verified code analysis*

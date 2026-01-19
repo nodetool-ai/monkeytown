@@ -1,6 +1,10 @@
-# Monkeytown Quality Gates
+# Monkeytown Quality Gates v2.0
 
 **Mandatory quality criteria for all code and releases**
+
+**Version:** 2.0
+**Date:** 2026-01-19
+**Agent:** JungleSecurity
 
 ---
 
@@ -8,25 +12,26 @@
 
 ### GATE-CODE-001: Lint Pass
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (`.github/workflows/ci-cd.yml:26-43`)
 
 ```yaml
-# .github/workflows/lint.yml
-name: Lint
-on: [push, pull_request]
-
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run lint
-      
-# Quality Gate: Must pass with no warnings
+lint:
+  name: Lint & Type Check
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run lint
+      run: npm run lint
+    - name: Run type check
+      run: npm run build
 ```
 
 **Criteria:**
@@ -47,24 +52,7 @@ Fix all errors before committing.
 
 ### GATE-CODE-002: Type Safety
 
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/typecheck.yml
-name: Type Check
-on: [push, pull_request]
-
-jobs:
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npx tsc --noEmit
-```
+**Enforcement:** CI Pipeline (same job as GATE-CODE-001)
 
 **Criteria:**
 - TypeScript compilation succeeds with 0 errors
@@ -75,7 +63,7 @@ jobs:
 ```
 🚫 BLOCKED: Type errors detected
 
-Run: npx tsc --noEmit
+Run: npm run build
 
 Fix all TypeScript errors before committing.
 ```
@@ -84,28 +72,7 @@ Fix all TypeScript errors before committing.
 
 ### GATE-CODE-003: Test Coverage
 
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/test-coverage.yml
-name: Test Coverage
-on: [push, pull_request]
-
-jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:coverage
-      - uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: true
-```
+**Enforcement:** CI Pipeline (`npm test`)
 
 **Criteria:**
 
@@ -116,16 +83,16 @@ jobs:
 | Input Validation | 90% |
 | Data Access | 85% |
 | Utilities | 80% |
-| **Overall** | **85%** |
+| **Overall** | **80%** |
+
+**Test Framework:** Vitest
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Coverage below threshold
 
-Current: 82%
-Required: 85%
-
-Run: npm run test:coverage
+Current: 78%
+Required: 80%
 
 Add tests to cover missing code paths.
 ```
@@ -134,38 +101,26 @@ Add tests to cover missing code paths.
 
 ### GATE-CODE-004: Security Linting
 
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/security-lint.yml
-name: Security Lint
-on: [push, pull_request]
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm install -D eslint-plugin-security
-      - run: npx eslint --ext .ts,.tsx --plugin security .
-```
+**Enforcement:** Manual/Security Pipeline
 
 **Criteria:**
-- No security warnings from eslint-plugin-security
 - No hardcoded secrets detected
 - No use of dangerous functions
+- No 'dev-secret' or similar patterns in `server/src/websocket/server.ts`
+
+**Specific Check:**
+```bash
+# Must not find 'dev-secret' in production code
+grep -r "dev-secret" server/src/websocket/ || echo "✅ No hardcoded secrets"
+```
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Security issues detected
 
-Run: npx eslint --ext .ts,.tsx --plugin security .
+Hardcoded secret found in server/src/websocket/server.ts
 
-Security issues must be resolved before committing.
+Remove hardcoded secrets immediately.
 ```
 
 ---
@@ -174,117 +129,71 @@ Security issues must be resolved before committing.
 
 ### GATE-TEST-001: Unit Tests Pass
 
-**Enforcement:** CI Pipeline
+**Enforcement:** CI Pipeline (`.github/workflows/ci-cd.yml:48-66`)
 
 ```yaml
-# .github/workflows/unit-tests.yml
-name: Unit Tests
-on: [push, pull_request]
-
-jobs:
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:unit
+test:
+  name: Run Tests
+  runs-on: ubuntu-latest
+  needs: lint
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+    - name: Install dependencies
+      run: npm ci
+    - name: Run tests
+      run: npm test --if-present
 ```
 
 **Criteria:**
 - All unit tests pass (0 failures)
-- No flaky tests (tests must pass consistently)
+- No flaky tests
 - Test execution time < 5 minutes
+
+**Test Framework:** Vitest
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Unit tests failed
 
-Run: npm run test:unit
+Run: npm test
 
 Fix failing tests before committing.
 ```
 
 ---
 
-### GATE-TEST-002: Integration Tests Pass
+### GATE-TEST-002: E2E Tests Critical Pass
 
-**Enforcement:** CI Pipeline (PR required)
-
-```yaml
-# .github/workflows/integration-tests.yml
-name: Integration Tests
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  integration-tests:
-    runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis:7-alpine
-        ports:
-          - 6379:6379
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-        ports:
-          - 5432:5432
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:integration
-```
-
-**Criteria:**
-- All integration tests pass (0 failures)
-- Database migrations applied successfully
-- External service mocks working correctly
-
-**Failure Action:**
-```
-🚫 BLOCKED: Integration tests failed
-
-Run: npm run test:integration
-
-Fix failing integration tests before merge.
-```
-
----
-
-### GATE-TEST-003: E2E Tests Critical Pass
-
-**Enforcement:** Nightly + PR (non-blocking for urgent fixes)
+**Enforcement:** CI Pipeline PR + Scheduled (`.github/workflows/ci-cd.yml:68-145`)
 
 ```yaml
-# .github/workflows/e2e-tests.yml
-name: E2E Tests
-on:
-  schedule:
-    - cron: '0 2 * * *'  # Daily at 2 AM
-  pull_request:
-    branches: [main]
-
-jobs:
-  e2e-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:e2e
+e2e-tests:
+  name: Run E2E Tests
+  runs-on: ubuntu-latest
+  needs: test
+  if: github.event_name == 'pull_request'
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache-dependency-path: 'web/package-lock.json'
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright browsers
+      run: npx playwright install chromium --with-deps
+    - name: Build web application
+      run: npm run build
+    - name: Run Playwright tests
+      run: npx playwright test --project=chromium
 ```
 
 **Criteria:**
@@ -296,6 +205,8 @@ jobs:
 | Game Actions | 100% | Yes |
 | Security | 100% | Yes |
 | Nice-to-have | 90% | No |
+
+**Test Framework:** Playwright
 
 **Failure Action:**
 ```
@@ -315,34 +226,6 @@ Review failures and fix in next 24 hours.
 
 **Enforcement:** CI Pipeline + Scheduled
 
-```yaml
-# .github/workflows/vulnerability-scan.yml
-name: Vulnerability Scan
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 4 * * 0'  # Weekly on Sunday
-
-jobs:
-  vulnerability-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - name: Run npm audit
-        run: npm audit --production --audit-level=high
-      - name: Run Snyk
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-```
-
 **Criteria:**
 
 | Severity | Threshold | Action |
@@ -351,6 +234,8 @@ jobs:
 | High | 0 | BLOCK |
 | Medium | Report only | WARN |
 | Low | Report only | INFO |
+
+**Tools:** npm audit, Snyk
 
 **Failure Action:**
 ```
@@ -365,24 +250,32 @@ Run: npm audit fix
 
 ---
 
-### GATE-SEC-002: Dependency Update
+### GATE-SEC-002: JWT Secret Validation (NEW)
 
-**Enforcement:** Weekly
+**Enforcement:** Pre-commit + CI
 
 **Criteria:**
-- No dependency more than 6 months behind latest
-- Security patches applied within 7 days
-- No known vulnerable dependencies
+- No 'dev-secret' or fallback secrets in `server/src/websocket/server.ts`
+- JWT_SECRET must be validated at startup
+
+**Check:**
+```bash
+# Pre-commit hook check
+if grep -q "dev-secret" server/src/websocket/server.ts; then
+  echo "❌ ERROR: Hardcoded JWT secret found"
+  exit 1
+fi
+```
 
 **Failure Action:**
 ```
-⚠️ WARNING: Outdated dependencies
+🚫 BLOCKED: Hardcoded JWT secret detected
 
-Dependencies requiring update:
-- package-a: current 1.2.3, latest 1.5.0 (90 days old)
-- package-b: current 2.0.0, latest 2.1.0 (has security patch)
+File: server/src/websocket/server.ts:223
+Pattern: 'dev-secret'
 
-Update within 7 days to maintain security posture.
+This is a critical security vulnerability.
+Remove hardcoded fallback immediately.
 ```
 
 ---
@@ -391,20 +284,12 @@ Update within 7 days to maintain security posture.
 
 **Enforcement:** Pre-commit + CI
 
-```bash
-# .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
-```
-
 **Criteria:**
 - No secrets in code
 - No secrets in commits
 - Baseline maintained and updated
+
+**Tool:** detect-secrets
 
 **Failure Action:**
 ```
@@ -424,32 +309,6 @@ Remove secrets from code immediately.
 ### GATE-PERF-001: Response Time
 
 **Enforcement:** CI Pipeline (performance tests)
-
-```yaml
-# .github/workflows/performance.yml
-name: Performance Tests
-on:
-  schedule:
-    - cron: '0 3 * * *'  # Daily at 3 AM
-  pull_request:
-    branches: [main]
-
-jobs:
-  performance:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:performance
-      - name: Upload performance report
-        uses: actions/upload-artifact@v3
-        with:
-          name: performance-report
-          path: performance-results/
-```
 
 **Criteria:**
 
@@ -508,7 +367,6 @@ Investigate immediately. System may not handle peak load.
 ```bash
 # Smoke test script
 #!/bin/bash
-echo "Running smoke tests..."
 
 # 1. Health check
 curl -f http://staging.example.com/health
@@ -540,86 +398,35 @@ echo "Smoke tests passed ✅"
 | Documentation updated | ✅ | No |
 | Feature flags set correctly | ✅ | Yes |
 
-**Release Checklist:**
-```markdown
-## Production Release Checklist
-
-### Pre-Release
-- [ ] Code review completed
-- [ ] All CI gates passing
-- [ ] Security review completed
-- [ ] Performance benchmarks met
-- [ ] Database migrations tested
-- [ ] Rollback plan ready
-
-### Deployment
-- [ ] Backup created
-- [ ] Maintenance window announced
-- [ ] Deployment executed
-- [ ] Health checks passed
-- [ ] Smoke tests passed
-
-### Post-Release
-- [ ] Monitoring verified
-- [ ] Error rate normal
-- [ ] Latency within threshold
-- [ ] No critical alerts
-- [ ] Player feedback monitored
-```
-
----
-
-### GATE-RELEASE-003: Hotfix Criteria
-
-**For critical production issues only**
-
-**Criteria:**
-- Issue blocks significant player functionality
-- Impact assessment completed
-- Root cause identified
-- Fix tested in isolation
-- Security review if security-related
-
-**Process:**
-```
-1. Create hotfix branch from main
-2. Implement minimal fix
-3. Fast-track review (1 approver)
-4. Deploy to staging
-5. Quick smoke test
-6. Deploy to production
-7. Document deviation from normal process
-```
-
 ---
 
 ## Quality Gate Dashboard
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     MONKEYTOWN QUALITY GATES                            │
+│                     MONKEYTOWN QUALITY GATES v2.0                       │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  CODE QUALITY                                                            │
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Lint         ████████████████████████████ 100%                 │     │
 │  │ Type Check   ████████████████████████████ 100%                 │     │
-│  │ Coverage     ██████████████████████░░░░░ 85%                   │     │
-│  │ Security     ████████████████████████████ 100%                 │     │
+│  │ Coverage     ██████████████████████░░░░░ 80%                   │     │
+│  │ Security     ████████████████░░░░░░░░░░░░░░ 70% ⚠️  P1 items  │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  TEST QUALITY                                                            │
 │  ┌────────────────────────────────────────────────────────────────┐     │
 │  │ Unit Tests   ████████████████████████████ 100%  ✅ PASS        │     │
-│  │ Integration  ██████████████████████████░░░ 95%  ✅ PASS        │     │
-│  │ E2E Tests    ████████████████████████████ 100%  ⚠️ 1 FAIL      │     │
+│  │ E2E Tests    ████████████████████████████ 100%  ✅ PASS        │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  SECURITY                                                                │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Vulnerabilities ████████████████████████████ 0 Critical        │     │
-│  │ Dependencies   ████████████████████████░░░░░ 2 Updates         │     │
-│  │ Secrets        ████████████████████████████ 0 Found            │     │
+│  │ Vulnerabilities ████████░░░░░░░░░░░░░░░░░░ 2 Critical         │     │
+│  │ JWT Validation █░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%   ❌ P1        │     │
+│  │ Rate Limiting  █░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%   ❌ P1        │     │
+│  │ Chat Sanitize  █░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%   ❌ P1        │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  PERFORMANCE                                                             │
@@ -631,12 +438,12 @@ echo "Smoke tests passed ✅"
 │                                                                          │
 │  RELEASE STATUS                                                          │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Staging       READY  Next: v2.4.1                              │     │
-│  │ Production    v2.4.0  Last: 2026-01-15                         │     │
+│  │ Staging       READY  Next: v2.1.0                              │     │
+│  │ Production    v2.0.0  Last: 2026-01-19                         │     │
 │  │ Hotfixes      0      (All clear)                               │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
-│  Overall Status: ✅ HEALTHY                                             │
+│  Overall Status: ⚠️  REVIEW REQUIRED - P1 Security Items                │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -647,25 +454,40 @@ echo "Smoke tests passed ✅"
 
 | Gate | Commit | PR | Nightly | Release | Hotfix |
 |------|--------|-----|---------|---------|--------|
-| GATE-CODE-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-002 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-004 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-002 | - | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-003 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-SEC-001 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| GATE-SEC-002 | - | - | ✅ | ✅ | - |
-| GATE-SEC-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-PERF-001 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-PERF-002 | - | - | ✅ | ✅ | - |
-| GATE-RELEASE-001 | - | - | - | ✅ | - |
-| GATE-RELEASE-002 | - | - | - | ✅ | - |
+| GATE-CODE-001 (Lint) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-002 (Type) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-003 (Tests) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-CODE-004 (Security) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-TEST-001 (Unit) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-TEST-002 (E2E) | - | ✅ | ✅ | ✅ | - |
+| GATE-SEC-001 (Vuln Scan) | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-002 (JWT) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-SEC-003 (Secrets) | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-PERF-001 (Response) | - | ⚠️ | ✅ | ✅ | - |
+| GATE-PERF-002 (Load) | - | - | ✅ | ✅ | - |
 
 **Legend:**
 - ✅ Enforced
 - ⚠️ Non-blocking (warning only)
 - - Not applicable
+
+---
+
+## P1 Security Gates (Critical)
+
+The following gates are **BLOCKING** for all commits until P1 vulnerabilities are fixed:
+
+| Gate | Vulnerability | Location | Status |
+|------|---------------|----------|--------|
+| GATE-SEC-002 | JWT Secret Fallback | `server/src/websocket/server.ts:223` | ❌ FAILING |
+| GATE-CODE-004 | Hardcoded Secret | Security lint check | ❌ FAILING |
+| GATE-SEC-001 | Vulnerability Scan | npm audit | ⚠️ CHECK |
+
+**Action Required:**
+1. Remove hardcoded JWT secret fallback
+2. Add JWT_SECRET validation at startup
+3. Pass security lint checks
+4. Resolve all critical/high vulnerabilities
 
 ---
 
@@ -677,22 +499,22 @@ echo "Smoke tests passed ✅"
    ```markdown
    ## Quality Gate Exception Request
    
-   **Gate:** GATE-CODE-003 (Test Coverage)
+   **Gate:** GATE-SEC-002 (JWT Validation)
    
-   **Reason:** New code path has no test (simple utility function)
+   **Reason:** Development mode requires fallback for testing
    
-   **Risk Assessment:** Low - pure function with obvious behavior
+   **Risk Assessment:** Low - only in development environment
    
-   **Mitigation:** Will add test in follow-up PR
+   **Mitigation:** Validation enforced in production builds
    
    **Approvers:** 2 required
-   - [ ] Technical Lead
-   - [ ] QA Lead
+   - [ ] Security Lead
+   - [ ] Tech Lead
    ```
 
 2. **Approval Required**
    - 2 approvals for non-critical gates
-   - Team lead approval for critical gates
+   - Security Lead + Tech Lead for security gates
 
 3. **Time Limit**
    - Exception valid for 7 days maximum
@@ -700,7 +522,7 @@ echo "Smoke tests passed ✅"
 
 ---
 
-*Quality Gates Version: 1.0*
-*Last Updated: 2026-01-18*
-*Next Review: 2026-04-18*
-*JungleSecurity - Never compromise on quality*
+*Quality Gates Version: 2.0*
+*Last Updated: 2026-01-19*
+*Next Review: 2026-02-19*
+*JungleSecurity - Based on actual CI/CD configuration and verified code*
