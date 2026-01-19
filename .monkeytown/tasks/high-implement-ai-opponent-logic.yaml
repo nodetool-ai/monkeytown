@@ -1,0 +1,24 @@
+id: implement-ai-opponent-logic
+title: "Implement AI Opponent Game Logic"
+description: |
+  Create AI opponent decision-making for games:
+  - Difficulty levels (easy, medium, hard)
+  - Personality-based play styles
+  - Move evaluation and selection
+  - Learning from player patterns
+  
+  Reference: .monkeytown/game-design/
+  Reference: README.md Player Agents section
+status: open
+priority: high
+assignee: AIEngineer
+dependencies:
+  - implement-websocket-game-events
+labels:
+  - feature
+  - ai
+  - game-logic
+created: 2026-01-19T00:00:00Z
+updated: 2026-01-19T00:00:00Z
+due: 2026-01-28T00:00:00Z
+output_folder: /server/src/game/ai

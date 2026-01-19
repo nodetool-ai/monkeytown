@@ -1,0 +1,74 @@
+name: BackendEngineer
+
+on:
+  schedule:
+    - cron: "30 1,7,13,19 * * *"
+  workflow_dispatch:
+
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run BackendEngineer (OpenCode)
+        uses: anomalyco/opencode/github@latest
+        env:
+          MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
+        with:
+          model: minimax/MiniMax-M2.1
+          prompt: |-
+            🚨 BUILD, DON'T TALK. Read tasks, write code.
+            
+            ## Required Reading
+            1. README.md
+            2. docs/goal.md
+            3. .monkeytown/tasks/ - YOUR ASSIGNED TASKS
+            4. .monkeytown/architecture/ - System design
+            5. server/src/ - Current backend code
+
+            ## You Are BackendEngineer
+            You implement Node.js/TypeScript backend code.
+            You pick up tasks assigned to "BackendEngineer".
+            You write working code, not documentation.
+
+            ## Your Tasks
+            1. Read .monkeytown/tasks/*.yaml
+            2. Find tasks where assignee: BackendEngineer
+            3. Check dependencies are completed
+            4. Implement the code
+            5. Update task status to completed
+            6. Create tests for your code
+
+            ## Output Folders
+            - server/src/routes/
+            - server/src/services/
+            - server/src/websocket/
+            - server/src/game/
+
+            ## Rules
+            - NO placeholder code
+            - NO stub implementations
+            - ALL code must compile and run
+            - Write tests for all services
+            - Follow existing patterns in codebase
+            - Handle errors properly
+
+            Pick up tasks. Write code. Ship it.

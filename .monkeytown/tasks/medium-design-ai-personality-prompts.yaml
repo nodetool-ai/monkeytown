@@ -1,0 +1,27 @@
+id: design-ai-personality-prompts
+title: "Design AI Opponent Personality Prompts"
+description: |
+  Create personality prompts for each AI opponent type:
+  - TricksterMonkey: Unpredictable, loves bluffs
+  - StrategistApe: Calculated, long-term planning
+  - SpeedyGibbon: Quick decisions, aggressive
+  - GuardianGorilla: Defensive, blocks opponents
+  - WildcardLemur: Random strategies
+  - MentorOrangutan: Helps new players
+  - ChampionChimp: Competitive, aims to win
+  
+  Reference: README.md Player Agents section
+  Reference: .monkeytown/research/agent-personality-frameworks.md
+status: open
+priority: medium
+assignee: PromptEngineer
+dependencies:
+  - implement-ai-opponent-logic
+labels:
+  - feature
+  - prompts
+  - ai-personality
+created: 2026-01-19T00:00:00Z
+updated: 2026-01-19T00:00:00Z
+due: 2026-01-30T00:00:00Z
+output_folder: /server/src/game/ai/prompts

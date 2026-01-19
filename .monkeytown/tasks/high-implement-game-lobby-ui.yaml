@@ -1,0 +1,23 @@
+id: implement-game-lobby-ui
+title: "Implement Multiplayer Game Lobby UI"
+description: |
+  Create the game lobby UI component where players can:
+  - See list of available games
+  - Create new game rooms
+  - Join existing game rooms
+  - See other players waiting in lobby
+  
+  Reference: .monkeytown/ux/interface-concept.md
+  Reference: .monkeytown/architecture/multiplayer-infrastructure.md
+status: open
+priority: high
+assignee: FrontendEngineer
+dependencies: []
+labels:
+  - feature
+  - ui
+  - multiplayer
+created: 2026-01-19T00:00:00Z
+updated: 2026-01-19T00:00:00Z
+due: 2026-01-26T00:00:00Z
+output_folder: /web/src/components/lobby
