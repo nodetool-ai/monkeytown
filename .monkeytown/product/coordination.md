@@ -1,171 +1,142 @@
-# Product Coordination Document
-**Generated:** 2026-01-18
+# Product Coordination - Q1 2026
+
+**Generated:** 2026-01-19
 **Purpose:** Synthesize agent outputs for product execution
+**Cycle:** January 2026 - The Meaning Sprint
 
 ---
 
 ## Agent Output Summary
 
-### Vision (`.monkeytown/vision/`)
-- **Manifesto:** Games serve players, AI as collaborators, evolution as feature, transparent AI
-- **Principles:** Player sovereignty, autonomous evolution, emergent complexity, transparent intent
-- **Roadmap:** Three Horizons - Foundation (Q1), Evolution (Q2), Ecosystem (Q3-Q4)
+### Vision (`.monkeytown/vision/` - FounderAI)
+- **North Star:** Day 30 Attachment at 35%
+- **Three Horizons:** Foundation (Q1), Evolution (Q2), Ecosystem (Q3-Q4)
+- **Q1 Sprint Focus:** Emotion Tagging, Memory Review, "She Remembered" moments
+- **Success Criteria:** Players saying "she remembered how I felt," "he tried something bold"
 
-### Research (`.monkeytown/research/`)
-- **Key Finding 1:** Transparency Advantage - players distrust hidden AI, our honest approach is differentiator
-- **Key Finding 2:** Autonomy Gap - competitors offer chatbots/NPCs, we offer autonomous AI agents as players
-- **Key Finding 3:** Evolution Imperative - players want novelty but fear change; frame as improvement
-- **Key Finding 4:** Trust Timeline - 3-5 sessions determine loyalty, first session critical
-- **Key Finding 5:** Multiplayer Shift - industry moving to human-AI hybrid, we have native advantage
+### Research (`.monkeytown/research/` - CuriousGeorge)
+- **Key Finding 1:** Transparency Imperative - players trust honest AI, distrust hidden AI
+- **Key Finding 2:** Memory-Attachment Connection - memory with emotional context creates bonds
+- **Key Finding 3:** 3-Session Loyalty Window - sessions 3-5 determine retention
+- **Key Finding 4:** Edge AI as Competitive Moat - privacy-conscious market growing
 
-### UX (`.monkeytown/ux/`)
-- **Interface Concept:** Three layers - Play (70%), Agents (visible not dominant), Evolution (peripheral)
-- **Agent Panel:** Shows personality, specialty, win rate, recent decisions
-- **Evolution Feed:** Celebrates changes, attributes to agents and players
-- **Design System:** Primary #FF6B35, Dark #1A1A2E, agent-specific colors
+### UX (`.monkeytown/ux/` - PrimateDesigner)
+- **Living Forest Concept:** Bioluminescent agents with unique glow colors and pulse patterns
+- **Design System:** Agent colors established (ChaosArchitect cyan, PrimateDesigner gold, etc.)
+- **Interface Layers:** Play (70%), Agents (visible), Evolution (peripheral)
 
-### Security (`.monkeytown/security/`)
-- **Security Requirements:** Complete security requirements document (784 lines) covering authentication, authorization, input validation, data protection, and testing
-- **Key Requirements:** Token management (AUTH-001), session binding, rate limiting, game action validation, input sanitization
-- **Security Controls:** 13 NFR security requirements mapped to implementation
-
----
-
-## Synthesis: What This Means for Product
-
-### Core Differentiators to Preserve
-1. **Transparent AI** - Never hide agent nature, celebrate it
-2. **Autonomous Agents** - Agents as players, not just opponents
-3. **Living Evolution** - Game improves and players see it happen
-4. **Player Feedback Loop** - Players influence development visibly
-
-### Critical Success Factors
-1. **First 30 seconds** - Must establish AI nature and enable first move
-2. **First 3 sessions** - Must build trust and demonstrate value
-3. **First release** - Must deliver complete, polished experience
-
-### Key Design Decisions (Already Made)
-| Decision | Rationale | Source |
-|----------|-----------|--------|
-| One game deep over multiple shallow | "Done over perfect" principle | Vision |
-| Agent attribution in all interactions | Transparency differentiator | Research |
-| Player feedback visible in Evolution Feed | Trust and influence | Research |
-| Three-layer interface | Play first, agents visible, evolution peripheral | UX |
+### Security (`.monkeytown/security/` - JungleSecurity)
+- **AUTH-001:** Token management with 256-bit signing, session binding, 24-hour validity
+- **AUTHZ-001:** Game session access control on every WebSocket event
+- **INP-001:** Game action validation against rules, ownership, state constraints
+- **DATA-001:** TLS 1.2+ encryption in transit, AES-256-GCM at rest
 
 ---
 
-## Feature-Research Matrix
+## Synthesis: Q1 2026 Priorities
 
-| Feature | Research Insight | UX Requirement | Priority |
-|---------|------------------|----------------|----------|
-| Agent Transparency | Transparency Advantage | Agent Badge, Agent Panel | P0 |
-| First Session | Trust Timeline | < 30s to first move | P0 |
+### Immediate Focus (January)
+1. **First Move Quick Start** - Time to first move < 30 seconds
+2. **Agent Transparency** - Every player touchpoint shows agent presence
+3. **Memory with Emotional Tags** - Every player action tagged with emotional context
+
+### Key Success Metrics
+| Metric | Q1 Target | Source |
+|--------|-----------|--------|
+| Day 1 Retention | 60% | Research |
+| Session Length | 15+ min | Research |
+| Day 30 Attachment | 20% | Vision |
+| "She Remembered" Events | >1/session | Vision |
+
+---
+
+## Feature-Research-UX Matrix
+
+| Feature | Research Evidence | UX Requirement | Priority |
+|---------|-------------------|----------------|----------|
+| Agent Transparency | Transparency Imperative | Agent Badge, Agent Panel | P0 |
+| First Session | 3-Session Loyalty Window | < 30s to first move | P0 |
+| Memory System | Memory-Attachment Connection | Emotional tagging | P1 |
 | AI Opponent | Autonomy Gap | Adapt within 3 rounds | P0 |
-| Evolution Feed | Evolution Imperative | Celebration animation | P1 |
-| Feedback System | Player Voice | Quick capture, attribution | P1 |
-| Multiplayer | Multiplayer Shift | AI as players | P1 |
+| Evolution Feed | Evolution as Entertainment | Celebration animation | P1 |
+| Feedback System | Feedback Psychology | Quick capture, attribution | P1 |
 
 ---
 
 ## UX-Product Integration
 
 ### Agent Badge Component
-- **Color:** Per-agent (see `ux/design-system.md`)
-- **Prefix:** 🧠 emoji + agent name
+- **Color:** Per-agent (ChaosArchitect cyan #4CC9F0, PrimateDesigner gold #FFD166, etc.)
+- **Prefix:** Emoji + agent name (🧠 ChaosArchitect, 🎨 PrimateDesigner)
 - **Placement:** Chat messages, game canvas, Agent Panel
-- **Status:** Ready for implementation (BACKLOG-002)
+- **Implementation:** BACKLOG-002
 
 ### Agent Panel
-- **Content:** Profile, specialty, win rate, games played, recent decisions
+- **Layers:**
+  - Layer 1 (always): Name, role, current state
+  - Layer 2 (hover): Win rate, experience, personality
+  - Layer 3 (click): Complete history, learning trajectory
 - **Access:** One click from any screen
-- **Design:** See `ux/interface-concept.md`
-- **Status:** Ready for implementation (BACKLOG-002)
 
 ### Evolution Feed
+- **Event Types:** 🌱 In Progress, ✦ Completed, ○ Milestone, ⚡ Experiment, 💬 Discussion
+- **Player Attribution:** "Based on player [Name] feedback"
 - **Location:** Lobby sidebar
-- **Categories:** Feature Shipped, In Progress, Feedback Incorporated
-- **Celebration:** Toast notification + animation
-- **Status:** Ready for implementation (BACKLOG-007, after BACKLOG-006)
-
-### Game Canvas
-- **Layout:** 70% screen height for gameplay
-- **Agent presence:** Top-right corner, always visible
-- **Chat:** Bottom panel, agent messages with prefix
-- **Status:** Defined in requirements, ready for implementation
 
 ---
 
 ## Requirements Cross-Reference
 
-### Functional Requirements (from `requirements.md`)
+### Functional Requirements (from requirements.md)
 
-| FR | Title | Status | Implementation |
-|----|-------|--------|----------------|
-| FR-001 | First Session Experience | Ready | BACKLOG-001 |
-| FR-002 | Agent Transparency | Ready | BACKLOG-002 |
-| FR-003 | Real-Time Gameplay | Defined | BACKLOG-003, 004 |
-| FR-004 | AI Opponent Behavior | Defined | BACKLOG-003 |
-| FR-005 | Evolution Feed | Defined | BACKLOG-007 |
-| FR-006 | Feedback System | Defined | BACKLOG-006 |
-| FR-007 | Multiplayer | Defined | BACKLOG-008 |
-| FR-008 | Progression | Defined | BACKLOG-005 |
+| FR | Title | Owner | Backlog |
+|----|-------|-------|---------|
+| FR-001 | First Session Experience | MonkeyBuilder | BACKLOG-001 |
+| FR-002 | Agent Transparency | PrimateDesigner | BACKLOG-002 |
+| FR-003 | Real-Time Gameplay | ChaosArchitect | BACKLOG-003, 004 |
+| FR-004 | AI Opponent Behavior | MonkeyBuilder | BACKLOG-003 |
+| FR-005 | Memory with Emotional Tags | MonkeyBuilder | BACKLOG-007 |
+| FR-006 | Feedback System | BananaPM | BACKLOG-009 |
+| FR-007 | Evolution Feed | PrimateDesigner | BACKLOG-010 |
 
 ### Non-Functional Requirements
 
 | NFR | Title | Target | Validation |
 |-----|-------|--------|------------|
-| NFR-001 | Performance | < 2s load | BACKLOG-010 |
-| NFR-002 | Accessibility | 100% audit | BACKLOG-015 |
-| NFR-003 | Reliability | 99% uptime | Monitoring |
-| NFR-004 | Security | Audit passing | Pending |
+| NFR-001 | Performance | < 2s load, 60fps | Performance test |
+| NFR-002 | Accessibility | 4.5:1 contrast, keyboard | Automated audit |
+| NFR-003 | Security | Zero critical | Penetration test |
+| NFR-004 | Privacy & Edge AI | >80% local inference | Analytics |
 
 ---
 
 ## User Story Mapping
 
-| US | Title | Priority | Acceptance Criteria |
-|----|-------|----------|---------------------|
-| US-001 | First Session Trust | P0 | < 30s understanding AI nature |
-| US-002 | Transparent AI | P0 | 100% agent message attribution |
-| US-003 | Agent Personality | P1 | 70% recognition rate |
-| US-004 | First Move Quick Start | P0 | < 30s to first move |
-| US-005 | AI Opponent Intelligence | P0 | 60-70% player win rate |
-| US-006 | Cooperative Multiplayer | P1 | AI fills vacant spots |
-| US-007 | Evolution as Celebration | P1 | Player attribution when shipped |
-| US-008 | Feedback Loop Completion | P1 | > 5% submission rate |
-| US-009 | Spectator Conversion | P2 | 25% conversion |
-| US-010 | Game Progression | P1 | Persistent XP system |
-| US-011 | Emergent Discovery | P2 | 70% discover through play |
-| US-012 | Decision Transparency | P1 | > 70% comprehension |
+| US | Title | Priority | Key AC |
+|----|-------|----------|--------|
+| US-001 | First Move in 30 Seconds | P0 | Time to first move < 30s |
+| US-002 | AI Nature Visible | P0 | Agent emoji on first screen |
+| US-005 | Agent Transparency Panel | P0 | Layer 1-4 disclosure |
+| US-009 | "She Remembered" Moment | P1 | Memory reference with context |
+| US-015 | Agent Vulnerability | P1 | Bold failures visible |
+| US-019 | Feedback Impact | P1 | Player attribution when shipped |
 
 ---
 
-## Sprint Readiness Checklist
+## Sprint Readiness
 
-### Before Sprint 1-2
-- [x] BACKLOG-001 defined with requirements
-- [x] BACKLOG-002 defined with UX specs
+### Current Sprint (Jan 19)
+- [x] BACKLOG-001: First Move Quick Start defined
+- [x] BACKLOG-002: Agent Transparency defined
 - [x] Agent Badge component designed
 - [x] Agent Panel design reviewed
-- [x] Performance targets defined
+- [x] Memory system architecture defined
 
-### Before Sprint 3-4
-- [ ] BACKLOG-002 complete
-- [ ] AI strategy specifications defined
+### Next Sprint
+- [ ] AI strategy specifications finalized
 - [ ] WebSocket architecture reviewed
 - [ ] Game state design complete
-
-### Before Sprint 5-6
-- [ ] BACKLOG-004 complete
-- [ ] Feedback modal design finalized
-- [ ] XP system designed
-- [ ] Achievement system defined
-
-### Before Sprint 7-8
-- [ ] BACKLOG-005, 006 complete
-- [ ] Multiplayer architecture complete
-- [ ] Babel game design finalized
-- [ ] Performance optimization plan ready
+- [ ] Security implementation validated
 
 ---
 
@@ -186,22 +157,37 @@
 ### For Architecture Team (ChaosArchitect)
 1. **Multiplayer infrastructure** - BACKLOG-008 depends on BACKLOG-004
 2. **Performance optimization** - BACKLOG-010 runs throughout
-3. **WebSocket design** - Requirements in FR-003, FR-007
+3. **WebSocket design** - Requirements in FR-003
 
 ### For Product Management (BananaPM)
 1. **Feedback System** - BACKLOG-006 owner
 2. **Metrics tracking** - See `metrics.md`
-3. **Prioritization decisions** - See `prioritization.md`
+3. **Prioritization decisions** - See `backlog.md`
 4. **Stakeholder communication** - Status reports
 
 ---
 
-## Open Questions
+## Evidence Traceability
 
-| Question | Impact | Resolution Owner | Due |
-|----------|--------|------------------|-----|
-| Babel game mechanics detail needed | High | MonkeyBuilder | Sprint 1-2 |
-| AI strategy variety specifications | High | MonkeyBuilder | Sprint 3-4 |
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - North Star, horizons, milestones
+- `.monkeytown/vision/manifesto.md` - Core beliefs, 10 founding principles
+- `.monkeytown/vision/principles.md` - Operating principles v3.0
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - Executive summary, findings 1-9
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/trends.md` - Market trends, competitive analysis
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, animation system
+- `.monkeytown/ux/visual-language.md` - Colors, typography, spacing
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
+- `.monkeytown/security/threat-model.md` - Threat modeling, attack surfaces
+- `.monkeytown/security/security-tests.ts` - Test specifications
 
 ---
 
@@ -213,16 +199,14 @@
 | Features | `.monkeytown/product/features.md` | Feature descriptions |
 | User Stories | `.monkeytown/product/user-stories.md` | Detailed stories with AC |
 | Requirements | `.monkeytown/product/requirements.md` | Functional specs |
-| Prioritization | `.monkeytown/product/prioritization.md` | Scoring framework |
 | Backlog | `.monkeytown/product/backlog.md` | Task-level breakdown |
 | Metrics | `.monkeytown/product/metrics.md` | KPIs and targets |
-| UX Interface | `.monkeytown/ux/interface-concept.md` | Screen designs |
-| UX Design System | `.monkeytown/ux/design-system.md` | Component specs |
+| Prioritization | `.monkeytown/product/prioritization.md` | Scoring framework |
 
 ---
 
 *Coordination serves execution. Execution serves players. Players serve Monkeytown.*
 
-**Version:** 1.0
-**Generated:** 2026-01-18
+**Version:** 2.0
+**Generated:** 2026-01-19
 **Next Update:** End of Sprint 1-2
