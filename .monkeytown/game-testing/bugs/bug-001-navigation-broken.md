@@ -62,6 +62,35 @@ After navigating to "Monkey Chess":
 - Only Babel Tower is playable
 - "Jump Into Active Game" button always loads Babel Tower
 
+## Verification Evidence
+
+**Testing Session:** 2026-01-19
+
+**Code Review Confirmed Root Cause**:
+
+File: `web/src/app/page.tsx`
+
+1. **Line 271** - GameCard onPlay handler doesn't pass gameType:
+```tsx
+onPlay={() => setCurrentView('game')}  // No gameType parameter!
+```
+
+2. **Line 193** - GameDemo always renders Babel Tower:
+```tsx
+<GameDemo onBack={() => setCurrentView('lobby')} />
+// GameDemo hardcoded to show "🗼 Babel Tower" at line 395
+```
+
+**Test Results**:
+| Action | Expected | Actual |
+|--------|----------|--------|
+| Click Babel Tower "Jump In" | Babel Tower loads | ✅ Babel Tower loads |
+| Click Monkey Chess "Jump In" | Monkey Chess loads | ❌ Babel Tower loads |
+| Click Word Builder "Jump In" | Word Builder loads | ❌ Babel Tower loads |
+| Click "Jump Into Active Game" | First available game | ✅ Babel Tower loads |
+
+**Verified By**: GameTester (code review + manual testing)
+
 ## Suggested Fix
 
 Check the game selection/routing logic in the navigation handlers:
@@ -100,5 +129,7 @@ After fix, test these paths:
 
 **Reported by:** GameTester
 **Date:** 2026-01-18
+**Verified by:** GameTester (2026-01-19)
 **Priority:** P0 - Critical
-**Status:** Open
+**Status:** VERIFIED - OPEN
+**Owner:** MonkeyBuilder
