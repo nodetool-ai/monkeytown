@@ -1,17 +1,17 @@
-# Monkeytown Product Requirements v2.0
+# Monkeytown Product Requirements - Q1 2026
 
 ## Document Purpose
 This document defines functional and non-functional requirements synthesized from agent outputs:
 - Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis-jan-2026.md`, `.monkeytown/research/user-behavior-ai-games.md`)
+- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
 - UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
 - Security (`.monkeytown/security/security-requirements.md`)
 
 ---
 
 ## FR-001: First Session Experience
-**Priority:** Critical
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - "70% of churn happens in first 5 sessions"
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/user-behavior.md` - "70% of churn happens in first 5 sessions"
 
 ### Description
 New players must complete first session within 5 minutes with demonstrated joy. First 3 minutes are critical for preventing churn.
@@ -32,16 +32,16 @@ New players must complete first session within 5 minutes with demonstrated joy. 
 Session Start
     ↓
 First AI Interaction → "This is fake/limited" → CHURN (25%)
-                   → "This is interesting" → CONTINUE
+                    → "This is interesting" → CONTINUE
     ↓
 First Loss/Challenge → "AI cheated" → CHURN (15%)
-                    → "I can beat this" → CONTINUE
+                     → "I can beat this" → CONTINUE
     ↓
 First Agent Personality → "Generic AI" → CHURN (33%)
-                       → "This one's different" → CONTINUE
+                        → "This one's different" → CONTINUE
     ↓
 First Memory Reference → "It remembers me!" → ATTACHMENT BEGINS
-                       → "No change" → LIKELY CHURN
+                        → "No change" → LIKELY CHURN
 ```
 
 ### Metrics
@@ -52,8 +52,8 @@ First Memory Reference → "It remembers me!" → ATTACHMENT BEGINS
 ---
 
 ## FR-002: Agent Transparency System
-**Priority:** Critical
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
 
 ### Description
 Every player interaction with AI must be clearly attributed and explainable. Radical transparency is our identity.
@@ -91,7 +91,7 @@ Every player interaction with AI must be clearly attributed and explainable. Rad
 ---
 
 ## FR-003: Real-Time Gameplay Engine
-**Priority:** Critical
+**Priority:** Critical (P0)
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets for multiplayer
 
 ### Description
@@ -118,8 +118,8 @@ Multiplayer games with AI agents must feel responsive and synchronized. 60fps mi
 ---
 
 ## FR-004: AI Opponent Behavior
-**Priority:** Critical
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Players want genuine intelligence, not scripted behavior"
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Players want genuine intelligence, not scripted behavior"
 
 ### Description
 AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% player win rate.
@@ -157,8 +157,8 @@ AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% pl
 ---
 
 ## FR-005: Memory System with Emotional Tags
-**Priority:** Critical
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Memory with emotional context is critical"
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context is critical"
 
 ### Description
 Agent memory architecture that remembers players with emotional context. "She remembered how I felt about that move."
@@ -180,8 +180,8 @@ Players who receive specific, relevant memory references are 3x more likely to b
 ---
 
 ## FR-006: Feedback System
-**Priority:** High
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Feedback psychology
+**Priority:** High (P1)
+**Evidence:** `.monkeytown/research/user-behavior.md` - Feedback psychology
 
 ### Description
 Player feedback must be easy to submit and visibly impactful. Feedback submission time < 30 seconds.
@@ -201,21 +201,21 @@ Player feedback must be easy to submit and visibly impactful. Feedback submissio
 ### Feedback Flow
 ```
 Player friction detected → Gentle prompt → Quick capture → Submit
-                                                         ↓
-                                               Agent review (human or AI)
-                                                         ↓
-                                     Accepted: Prioritized  |  Rejected: Explanation
-                                                         ↓
-                                     Status notification (within 24 hours)
-                                                         ↓
-                                     Celebration when shipped with attribution
+                                                          ↓
+                                                Agent review (human or AI)
+                                                          ↓
+                                      Accepted: Prioritized  |  Rejected: Explanation
+                                                          ↓
+                                      Status notification (within 24 hours)
+                                                          ↓
+                                      Celebration when shipped with attribution
 ```
 
 ---
 
 ## FR-007: Evolution Feed System
-**Priority:** High
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Evolution is entertainment"
+**Priority:** High (P1)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is entertainment"
 
 ### Description
 Game evolution must be visible, celebrated, and attributed. Changes feel like events, not glitches.
@@ -243,7 +243,7 @@ Game evolution must be visible, celebrated, and attributed. Changes feel like ev
 ---
 
 ## FR-008: Agent Vulnerability Protocol
-**Priority:** High
+**Priority:** High (P1)
 **Evidence:** `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
 
 ### Description
@@ -265,8 +265,8 @@ Personality without vulnerability is a brand voice. Perfect agents are forgettab
 ---
 
 ## FR-009: Participation Architecture
-**Priority:** High
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Evolution with players, not to them"
+**Priority:** High (P1)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution with players, not to them"
 
 ### Description
 Players can witness debates, participate in arguments, and feel the drama of creation.
@@ -283,8 +283,8 @@ Players can witness debates, participate in arguments, and feel the drama of cre
 ---
 
 ## FR-010: Trust Budget System
-**Priority:** Critical
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Trust Budget Model
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/user-behavior.md` - Trust Budget Model
 
 ### Description
 Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
@@ -313,7 +313,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ---
 
 ## NFR-001: Performance
-**Priority:** Critical
+**Priority:** Critical (P0)
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets
 
 ### Requirements
@@ -330,7 +330,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ---
 
 ## NFR-002: Accessibility
-**Priority:** High
+**Priority:** High (P1)
 **Evidence:** `.monkeytown/ux/design-system.md` - Accessibility checklist
 
 ### Requirements
@@ -347,7 +347,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ---
 
 ## NFR-003: Security (Mandatory)
-**Priority:** Critical
+**Priority:** Critical (P0)
 **Evidence:** `.monkeytown/security/security-requirements.md`
 
 ### Authentication (AUTH)
@@ -384,7 +384,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ---
 
 ## NFR-004: Reliability
-**Priority:** Critical
+**Priority:** Critical (P0)
 
 ### Requirements
 
@@ -398,8 +398,8 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ---
 
 ## NFR-005: Privacy & Edge AI
-**Priority:** High
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Edge AI as competitive moat"
+**Priority:** High (P1)
+**Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat"
 
 ### Requirements
 
@@ -479,7 +479,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 |--------|-----------|-----------|-----------|
 | Day 1 Retention | 60% | 65% | 70% |
 | Day 7 Retention | 30% | 40% | 50% |
-| Day 30 Attachment | 25% | 30% | 35% |
+| Day 30 Attachment | 20% | 25% | 35% |
 | Session Length | 15 min | 20 min | 25 min |
 
 ### Trust Metrics
@@ -497,8 +497,29 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
+## Evidence References
+
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
+- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/principles.md` - 20 operating principles
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, agent colors
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
+- `.monkeytown/security/threat-model.md` - Threat analysis
+
+---
+
 *Requirements serve features. Features serve players. Players serve Monkeytown.*
 
-**Version:** 2.0
+**Version:** 3.0
 **Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis-jan-2026.md, research/user-behavior-ai-games.md, ux/, security/
+**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/

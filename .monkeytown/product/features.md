@@ -1,9 +1,9 @@
-# Monkeytown Features v3.0
+# Monkeytown Features - Q1 2026
 
 ## Document Purpose
 This document captures features synthesized from:
 - Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis-jan-2026.md`, `.monkeytown/research/user-behavior-ai-games.md`)
+- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
 - UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
 - Security (`.monkeytown/security/security-requirements.md`)
 
@@ -14,8 +14,8 @@ This document captures features synthesized from:
 ### F1: Agent Transparency System
 
 **Priority:** P0
-**Source:** Research Finding 1 - Transparency Advantage, Manifesto Principle 4
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust. Players evaluate AI in three to five sessions."
+**Source:** Research Finding 1 - Transparency Imperative
+**Evidence:** `.monkeytown/research/synthesis.md` - "Transparency builds trust. Players evaluate AI in three to five sessions."
 
 **Description:** Every player touchpoint shows agent presence.
 
@@ -33,19 +33,31 @@ This document captures features synthesized from:
 | Layer 3 | Click | Complete history, learning trajectory |
 | Layer 4 | Optional | Decision logs, capability boundaries |
 
+**Agent Colors (from UX Design System):**
+| Agent | Color | Hex |
+|-------|-------|-----|
+| ChaosArchitect | Cyan | #4CC9F0 |
+| PrimateDesigner | Gold | #FFD166 |
+| JungleSecurity | Blue | #4361EE |
+| BananaEconomist | Purple | #7209B7 |
+| MadChimp | Orange | #FF6B35 |
+| FounderAI | Teal | #2EC4B6 |
+
 **Success Metric:** 80%+ player awareness
 
 **Blocking:** Blocks all AI features
 
 **Owner:** PrimateDesigner
 
+**Backlog:** BACKLOG-002
+
 ---
 
 ### F2: AI Opponent Core
 
 **Priority:** P0
-**Source:** Research - Autonomy Gap, Competitor Analysis
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Players want genuine intelligence, not scripted behavior."
+**Source:** Research - Autonomy Gap
+**Evidence:** `.monkeytown/research/synthesis.md` - "Players want genuine intelligence, not scripted behavior."
 
 **Description:** AI opponents with distinct personalities that adapt to player skill.
 
@@ -72,6 +84,8 @@ This document captures features synthesized from:
 
 **Owner:** MonkeyBuilder
 
+**Backlog:** BACKLOG-003
+
 ---
 
 ### F3: Core Game Loop
@@ -82,7 +96,7 @@ This document captures features synthesized from:
 
 **Description:** Complete gameplay cycle for Babel including game state management, turn processing, scoring, and win conditions.
 
-**Session Structure:**
+**Session Structure (from Research):**
 - First 3 minutes: Curiosity window
 - Minutes 3-15: Engagement zone
 - Minutes 15+: Dependency zone
@@ -94,106 +108,26 @@ This document captures features synthesized from:
 
 **Owner:** MonkeyBuilder
 
+**Backlog:** BACKLOG-004
+
 ---
 
-### F4: Multiplayer Infrastructure
+### F4: Memory System with Emotional Tags
 
 **Priority:** P0
-**Source:** Research Finding 5 - Multiplayer Shift
-**Evidence:** `.monkeytown/ux/interface-concept.md` - Real-time multiplayer rendering
-
-**Description:** Real-time multiplayer support using WebSocket connections.
-
-**Components:**
-- WebSocket server for real-time game state
-- Session management
-- Player presence indicators
-- Synchronized game state
-
-**Performance Targets:**
-- Initial load: < 2 seconds
-- Time to interactive: < 3 seconds
-- Frame rate: 60fps during gameplay
-- Transition: 300ms maximum duration
-
-**Success Metric:** All modes support multiplayer
-
-**Blocking:** Blocks First Game
-
-**Owner:** ChaosArchitect
-
----
-
-### F5: First Game: Babel
-
-**Priority:** P0
-**Source:** Vision - Initial game
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - First session must show genuine AI capability within 3 minutes
-
-**Description:** A complete, playable card game with AI opponents.
-
-**Features:**
-- Card mechanics and rules
-- AI opponent integration
-- Scoring and win conditions
-- Player progress tracking
-
-**First Session Flow:**
-1. Landing (0-5 seconds): "AI agents build games" tagline, "Jump In" button
-2. Agent Welcome (5-15 seconds): Agent emoji, brief personality
-3. First Move (15-45 seconds): Game state loaded, move available
-4. First Success (1-3 minutes): Meaningful achievement
-5. Agent Attribution (3-5 minutes): Agent panel accessible
-
-**Success Metric:** Playable from first session
-
-**v1.0 Release Criterion**
-
-**Owner:** MonkeyBuilder
-
----
-
-### F6: Security P1 Mitigations
-
-**Priority:** P0 (Required for launch)
-**Source:** Security Requirements
-**Evidence:** `.monkeytown/security/security-requirements.md`
-
-**Requirements:**
-- AUTH-001: Token Management (24-hour validity, session binding)
-- AUTHZ-001: Game Session Access Control
-- INP-001: Game Action Validation
-- DATA-001: Encryption in Transit (TLS 1.2+, WSS)
-- LOG-001: Security Event Logging
-
-**Verification:**
-- Unit test token generation and validation
-- Integration test token binding enforcement
-- Penetration test token forgery attempts
-
-**Success Metric:** Zero critical vulnerabilities
-
-**Required for launch**
-
-**Owner:** JungleSecurity
-
----
-
-## Enhanced Features (P1 - Should Ship)
-
-### F7: Memory System with Emotional Tags
-
-**Priority:** P1
 **Source:** Research Finding 7 - Player Attachment Engineering
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Memory with emotional context"
+**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context"
+**Evidence:** `.monkeytown/vision/principles.md` - "Memory is Love"
 
 **Description:** Agent memory architecture that remembers players with emotional context.
 
 **Memory Layers:**
-- **Session Memory:** Last five moves, current game state
-- **Short-Term Memory:** Twenty-four hours of preferences
-- **Long-Term Memory:** Persistent history across sessions
-- **Emotional Tagging:** What mattered, not just what happened
+| Layer | Duration | Purpose |
+|-------|----------|---------|
+| Session | Current game | Last 5 moves, current state |
+| Short-Term | 24 hours | Player preferences, reactions |
+| Long-Term | Persistent | History, interactions, achievements |
+| Emotional | All layers | What surprised, frustrated, delighted |
 
 **Emotional Tags:**
 - What moves surprised the player?
@@ -205,13 +139,92 @@ This document captures features synthesized from:
 
 **Owner:** MonkeyBuilder
 
+**Backlog:** BACKLOG-007
+
 ---
 
-### F8: Feedback System
+### F5: Trust Budget System
+
+**Priority:** P0
+**Source:** Research - Trust Lifecycle
+**Evidence:** `.monkeytown/research/user-behavior.md` - Trust Budget Model
+
+**Description:** Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
+
+**Trust Budget Model:**
+```
+Initial Budget: 50 trust points (skeptical but open)
+
+EARN TRUST (+points):
+├─ Consistent personality        (+10)
+├─ Genuine competence            (+15)
+├─ Honest limitations            (+10)
+├─ Memory of player              (+15)
+├─ Adaptation to preferences     (+10)
+├─ Vulnerability in character    (+8)
+└─ Transparent about AI nature   (+12)
+
+SPEND TRUST (-points):
+├─ Inconsistent behavior         (-20)
+├─ Suspected manipulation        (-30)
+├─ Capability failure            (-15)
+├─ Privacy concerns              (-25)
+├─ Hidden AI nature discovered   (-40)
+└─ "Too perfect" AI              (-10)
+
+BUDGET STATES:
+├─ 80+ points: Loyal advocate
+├─ 50-79 points: Engaged user
+├─ 25-49 points: Cautious user
+└─ <25 points: At risk of churn
+```
+
+**Success Metric:** Trust score maintenance above 50 points
+
+**Owner:** MonkeyBuilder
+
+**Backlog:** BACKLOG-005
+
+---
+
+### F6: Security Core (Required for Launch)
+
+**Priority:** P0 (Required for launch)
+**Source:** Security Requirements
+**Evidence:** `.monkeytown/security/security-requirements.md`
+
+**Requirements:**
+| ID | Requirement | Validation |
+|----|-------------|------------|
+| AUTH-001 | Token Management | 256-bit signing, session binding, 24-hour validity |
+| AUTH-002 | Credential Storage | No credentials in code, logs, or errors |
+| AUTH-003 | Session Management | 30-min inactivity, max 3 concurrent sessions |
+| AUTHZ-001 | Game Session Access Control | Authorization on every WebSocket event |
+| AUTHZ-002 | Resource Limits | Rate limits: 5 games/hr, 10 WS connections/IP |
+| INP-001 | Game Action Validation | Rules, ownership, state constraints, speed, cooldown |
+| INP-002 | Input Sanitization | Chat (500 chars), names (32 chars), HTML stripping |
+| DATA-001 | Encryption in Transit | TLS 1.2+, WSS |
+| DATA-002 | Encryption at Rest | AES-256-GCM for sensitive data |
+| DATA-003 | Data Minimization | Retention: sessions 30d, chat 7d, analytics 90d |
+| LOG-001 | Security Event Logging | Auth attempts, failures, rate limits, suspicious activity |
+
+**Success Metric:** Zero critical vulnerabilities
+
+**Required for launch**
+
+**Owner:** JungleSecurity
+
+**Backlog:** BACKLOG-006
+
+---
+
+## Enhanced Features (P1 - Should Ship)
+
+### F7: Feedback System
 
 **Priority:** P1
 **Source:** Research Finding 3 - Evolution Imperative
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Feedback psychology
+**Evidence:** `.monkeytown/research/user-behavior.md` - Feedback psychology
 
 **Design Pattern:**
 ```
@@ -231,14 +244,14 @@ Optional comment:
 **Feedback Loop:**
 ```
 Player friction detected → Gentle prompt → Quick capture → Submit
-                                                         ↓
-                                               Agent review (human or AI)
-                                                         ↓
-                                     Accepted: Prioritized  |  Rejected: Explanation
-                                                         ↓
-                                     Status notification (within 24 hours)
-                                                         ↓
-                                     Celebration when shipped
+                                                          ↓
+                                                Agent review (human or AI)
+                                                          ↓
+                                      Accepted: Prioritized  |  Rejected: Explanation
+                                                          ↓
+                                      Status notification (within 24 hours)
+                                                          ↓
+                                      Celebration when shipped
 ```
 
 **Success Metrics:**
@@ -251,13 +264,15 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 
 **Owner:** BananaPM
 
+**Backlog:** BACKLOG-009
+
 ---
 
-### F9: Evolution Feed
+### F8: Evolution Feed
 
 **Priority:** P1
 **Source:** Research Finding 8 - Evolution as Entertainment
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Evolution is entertainment"
+**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is entertainment"
 
 **Event Types:**
 | Type | Icon | Frequency | Player Action | Celebration Level |
@@ -280,17 +295,43 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 
 **Owner:** PrimateDesigner
 
+**Backlog:** BACKLOG-010
+
+---
+
+### F9: Agent Vulnerability Protocol
+
+**Priority:** P1
+**Source:** Vision - Vulnerability Principle
+**Evidence:** `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
+
+**Components:**
+- Risk Budgets: Each agent attempts creative/risky moves
+- Preference Expression: Agents defend choices, not just execute
+- Failure Visibility: Agents acknowledge mistakes visibly
+- Bold Strategy Attempts: Weekly bold moves, some fail
+
+**Success Metrics:**
+- Risk Attempt Rate: 20%
+- Bold Strategy Frequency: Weekly
+- Failure Visibility Score: >50%
+- Preference Expression Rate: >30%
+
+**Owner:** PrimateDesigner
+
+**Backlog:** BACKLOG-008
+
 ---
 
 ### F10: Game Progression System
 
 **Priority:** P1
 **Source:** Engaged Player archetype
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Session patterns
+**Evidence:** `.monkeytown/research/user-behavior.md` - Session patterns
 
 **Progression Tiers:**
 ```
-Egg → Chick → Monkey → Gorilla → ... (animal theme)
+Egg → Chick → Monkey → Gorilla → ...
 ```
 
 **Components:**
@@ -305,149 +346,106 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 
 **Owner:** BananaPM
 
+**Backlog:** BACKLOG-011
+
 ---
 
-### F11: Performance Optimization
+### F11: First Game: Babel
 
-**Priority:** P1
+**Priority:** P0
+**Source:** Vision - Initial game
+**Evidence:** `.monkeytown/research/user-behavior.md` - First session must show genuine AI capability within 3 minutes
+
+**Description:** A complete, playable card game with AI opponents.
+
+**First Session Flow:**
+1. Landing (0-5 seconds): "AI agents build games" tagline, "Jump In" button
+2. Agent Welcome (5-15 seconds): Agent emoji, brief personality
+3. First Move (15-45 seconds): Game state loaded, move available
+4. First Success (1-3 minutes): Meaningful achievement
+5. Agent Attribution (3-5 minutes): Agent panel accessible
+
+**Features:**
+- Card mechanics and rules
+- AI opponent integration
+- Scoring and win conditions
+- Player progress tracking
+
+**Success Metric:** Playable from first session
+
+**v1.0 Release Criterion**
+
+**Owner:** MonkeyBuilder
+
+**Backlog:** BACKLOG-012
+
+---
+
+## Performance Requirements (NFR)
+
+**Priority:** P0
 **Source:** UX Requirements
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets
 
-**Targets:**
-- Initial load: < 2 seconds
-- Time to interactive: < 3 seconds
-- Frame rate: 60fps during gameplay
-- Motion: 120fps on capable devices
-- Transition: 300ms maximum duration
-
-**Research Evidence:** First session must show something AI couldn't do before. Slow performance breaks immersion.
+| Metric | Target | Validation |
+|--------|--------|------------|
+| Initial load | < 2 seconds | Performance test |
+| Time to interactive | < 3 seconds | Performance test |
+| Frame rate | 60fps during gameplay | Automated test |
+| Motion | 120fps on capable devices | Performance test |
+| Transition | 300ms maximum duration | Performance test |
+| WebSocket latency | < 100ms | Network test |
 
 **Owner:** ChaosArchitect
 
+**Backlog:** BACKLOG-013
+
 ---
 
-### F12: Accessibility Compliance
+## Accessibility Requirements (NFR)
 
 **Priority:** P1
 **Source:** Security - Inclusive design
 **Evidence:** `.monkeytown/ux/design-system.md` - Accessibility checklist
 
-**Requirements:**
-- All interactions have keyboard equivalents
-- Color is never the only information carrier
-- Agent attribution works without color vision
-- Motion respects `prefers-reduced-motion`
-- Minimum touch target: 44x44px
-- Contrast ratio: 4.5:1 minimum
+| Requirement | Target | Validation |
+|-------------|--------|------------|
+| Color contrast ratio | 4.5:1 minimum | Automated test |
+| Keyboard navigation | All interactions | Accessibility test |
+| Touch target size | ≥ 44×44px | Design review |
+| Color not sole information carrier | All UI | Design review |
+| prefers-reduced-motion | All animations | Automated test |
 
 **Owner:** JungleSecurity
 
----
-
-## Future Features (P2+ - Post v1.0)
-
-### F13: Agent Personality System
-
-**Priority:** P2
-**Source:** Vision - Agent Personas
-**Evidence:** `.monkeytown/ux/interface-concept.md` - Player Agent System
-
-**Description:** Full personality expression for builder and player agents.
-
-**Success Metric:** 70% agent recognition
-
----
-
-### F14: Spectator Mode
-
-**Priority:** P2
-**Source:** Research - Observer Segment
-**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Observer economy
-
-**Description:** Watch games in progress without playing.
-
-**Features:**
-- Real-time game observation
-- Agent commentary overlay
-- "Join This Game" at natural break points
-- "Challenge Winner" option
-
-**Research Evidence:** 20% of users prefer watching to playing.
-
-**Success Metric:** 25% conversion rate
-
----
-
-### F15: Edge AI Layer
-
-**Priority:** P2
-**Source:** Research Finding 6 - Edge AI as Competitive Moat
-**Evidence:** `.monkeytown/vision/principles.md` - "Edge as Trust"
-
-**Architecture:**
-```
-┌─────────────────────────────────────────────────────────┐
-│                    PLAYER DEVICE                         │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  PERSONALITY LAYER (Local - Always Active)      │   │
-│  │  • Agent voice consistent                       │   │
-│  │  • Immediate responses (<100ms)                 │   │
-│  │  • No cloud data required                       │   │
-│  │  • Offline capable for core features            │   │
-│  └─────────────────────────────────────────────────┘   │
-│                           ↑                             │
-│                           ↓ (fallback)                  │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  REASONING LAYER (Cloud - When Available)       │   │
-│  │  • Complex decisions                            │   │
-│  │  • Long-term strategy                           │   │
-│  │  • Learning from behavior                       │   │
-│  │  • New strategy generation                      │   │
-│  └─────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────┘
-```
-
-**Success Metrics:**
-- Local inference usage > 80%
-- Response latency < 100ms
-- Privacy feature adoption > 50%
-- Offline session rate > 20%
-
----
-
-### F16: Decision Transparency
-
-**Priority:** P2
-**Source:** Manifesto Principle 5 - Transparent Intent
-**Evidence:** `.monkeytown/ux/interface-concept.md` - Agent Reasoning Visibility
-
-**Description:** Visible AI reasoning and decision-making process.
-
-**Success Metric:** 70% comprehension
+**Backlog:** BACKLOG-014
 
 ---
 
 ## Feature Dependencies
 
 ```
-Agent Transparency (P0)
+Agent Transparency (F1)
     ↓
-AI Opponent Core (P0) ───┐
+AI Opponent Core (F2) ───┐
     ↓                    │
-Core Game Loop (P0) ─────┤
+Core Game Loop (F3) ─────┤
     ↓                    │
-Multiplayer Infra (P0) ──┤
+Memory System (F4) ──────┤
+    ↓                    │
+Trust Budget (F5) ───────┤
     ↓                    ↓
-First Game: Babel (P0) ←─┘
+First Game: Babel (F11) ←─┘
     ↓
-    ├─→ Game Progression (P1)
-    ├─→ Memory System (P1)
+    ├─→ Game Progression (F10)
     │
-Security P1 Mitigations (P0) ──→ Accessibility (P1)
+Security Core (F6) ──→ Accessibility (F1)
     ↓
-Feedback System (P1)
+Feedback System (F7)
     ↓
-Evolution Feed (P1)
+Evolution Feed (F8)
+    ↓
+Agent Vulnerability (F9)
 ```
 
 ---
@@ -457,14 +455,15 @@ Evolution Feed (P1)
 | Attribute | Character.AI | AI Dungeon | Inworld | **Monkeytown** |
 |-----------|--------------|------------|---------|----------------|
 | AI Nature | Hidden | Hidden | Hidden | **Celebrated** |
-| Multiplayer | Weak | None | Via games | **Native** |
-| Agent Autonomy | Chatbots | Dungeon master | NPCs | **Players** |
+| Multiplayer | Weak (1:1) | None | Via games | **Native** |
+| Agent Autonomy | Chatbot | Dungeon master | NPCs | **Players** |
 | Evolution | None | None | None | **Native** |
 | Transparency | Low | Low | Low | **High** |
 | Player Feedback | Limited | Limited | None | **Direct** |
 | Edge AI | None | None | None | **Planned** |
 | Attachment Design | Weak | None | None | **Engineered** |
 | Evolution as Content | None | None | None | **Native** |
+| Memory Architecture | Basic | None | None | **Planned (Q1)** |
 
 ---
 
@@ -478,8 +477,31 @@ Features are prioritized by:
 
 ---
 
+## Evidence References
+
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
+- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/principles.md` - 20 operating principles
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/trends.md` - Market trends
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, agent colors
+- `.monkeytown/ux/visual-language.md` - Design tokens
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
+- `.monkeytown/security/threat-model.md` - Threat analysis
+
+---
+
 *Features serve players. Players drive evolution. Evolution defines Monkeytown.*
 
-**Version:** 3.0
+**Version:** 4.0
 **Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis-jan-2026.md, research/user-behavior-ai-games.md, ux/, security/
+**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/

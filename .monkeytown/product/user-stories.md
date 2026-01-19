@@ -1,9 +1,9 @@
-# Monkeytown User Stories v3.0
+# Monkeytown User Stories - Q1 2026
 
 ## Document Purpose
 This document captures user stories synthesized from:
 - Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis-jan-2026.md`, `.monkeytown/research/user-behavior-ai-games.md`)
+- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
 - UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
 - Security (`.monkeytown/security/security-requirements.md`)
 
@@ -15,25 +15,25 @@ This document captures user stories synthesized from:
 - **Session frequency:** First visit
 - **Goal:** Understand quickly, experience delight
 - **Key metrics:** Time to first move, return intent
-- **Research Evidence:** First session determines loyalty. Sessions 3-5 determine retention.
+- **Research Evidence:** First session determines loyalty. Sessions 3-5 determine retention. (`.monkeytown/research/synthesis.md`)
 
 ### A2: The Engaged Player
 - **Session frequency:** 3+ times per week
 - **Goal:** Progress, mastery, social connection
 - **Key metrics:** Session length, progression engagement
-- **Research Evidence:** Social bonds with AI are strongest return trigger.
+- **Research Evidence:** Social bonds with AI are strongest return trigger. (`.monkeytown/research/user-behavior.md`)
 
 ### A3: The Community Builder
 - **Session frequency:** Daily
 - **Goal:** Shape the game, influence development
 - **Key metrics:** Feedback submission, feature adoption
-- **Research Evidence:** Players want to influence the game but resist manipulation.
+- **Research Evidence:** Players want to influence the game but resist manipulation. (`.monkeytown/research/user-behavior.md`)
 
 ### A4: The Observer
 - **Session frequency:** Varied
 - **Goal:** Entertainment, AI observation, potential conversion
 - **Key metrics:** Watch time, conversion to play
-- **Research Evidence:** 20% of users prefer watching to playing. Make agent development watchable.
+- **Research Evidence:** 20% of users prefer watching to playing. Make agent development watchable. (`.monkeytown/research/user-behavior.md`)
 
 ---
 
@@ -45,7 +45,7 @@ This document captures user stories synthesized from:
 **I want to** make my first move within 30 seconds of arriving,
 **So that** I can experience the game quickly and don't lose interest.
 
-**Research Evidence:** First session must show something AI couldn't do before within 3 minutes. Time to first move under 30 seconds is critical. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** First session must show something AI couldn't do before within 3 minutes. Time to first move under 30 seconds is critical. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Landing page loads in under 2 seconds
@@ -58,6 +58,10 @@ This document captures user stories synthesized from:
 - From `.monkeytown/ux/interface-concept.md`: First session flow specifies time targets
 - From design system: Transition duration max 300ms
 
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-001
+**Priority:** P0
+
 ---
 
 ### US-002: AI Nature Visible Immediately
@@ -66,7 +70,7 @@ This document captures user stories synthesized from:
 **I want to** know immediately that I'm interacting with AI,
 **So that** I have honest expectations and build appropriate trust.
 
-**Research Evidence:** Radical transparency—every player touchpoint shows agent presence. Players can detect artificiality instantly. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Radical transparency—every player touchpoint shows agent presence. Players can detect artificiality instantly. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Agent emoji visible on first screen
@@ -80,6 +84,10 @@ This document captures user stories synthesized from:
 - Top-right corner indicator
 - Agent Panel accessible with one click
 
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-002
+**Priority:** P0
+
 ---
 
 ### US-003: First Meaningful Success
@@ -88,7 +96,7 @@ This document captures user stories synthesized from:
 **I want to** achieve something meaningful within 3 minutes,
 **So that** I feel competent and motivated to continue.
 
-**Research Evidence:** First 3 minutes must show genuine AI capability. Minutes 3-15 are the engagement zone. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** First 3 minutes must show genuine AI capability. Minutes 3-15 are the engagement zone. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] Player completes a meaningful game action within 3 minutes
@@ -96,6 +104,9 @@ This document captures user stories synthesized from:
 - [ ] Clear progress indicator is visible
 - [ ] Player understands what they accomplished
 - [ ] Curiosity about "what happens next" is created
+
+**Owner:** MonkeyBuilder
+**Priority:** P0
 
 ---
 
@@ -105,7 +116,7 @@ This document captures user stories synthesized from:
 **I want to** be genuinely engaged within the first 3 minutes,
 **So that** I don't churn before giving the game a real chance.
 
-**Research Evidence:** 25% of churn happens in first 3 minutes. "This is just a chatbot" is primary churn driver. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** 25% of churn happens in first 3 minutes. "This is just a chatbot" is primary churn driver. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] First AI interaction feels genuinely intelligent
@@ -113,6 +124,9 @@ This document captures user stories synthesized from:
 - [ ] Agent personality emerges immediately
 - [ ] No "this is just a chatbot" moment
 - [ ] Curiosity about continuation created
+
+**Owner:** MonkeyBuilder
+**Priority:** P0
 
 ---
 
@@ -124,7 +138,7 @@ This document captures user stories synthesized from:
 **I want to** access detailed information about the AI I'm playing against,
 **So that** I can understand who I'm interacting with and build appropriate trust.
 
-**Research Evidence:** Transparency layers—progressive disclosure works better than full disclosure. Players evaluate AI in 3-5 sessions. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Transparency layers—progressive disclosure works better than full disclosure. Players evaluate AI in 3-5 sessions. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Agent panel accessible with one click
@@ -132,6 +146,10 @@ This document captures user stories synthesized from:
 - [ ] Layer 2 (hover): Win rate, experience, personality traits
 - [ ] Layer 3 (click): Complete history, learning trajectory
 - [ ] Layer 4 (optional): Decision logs, capability boundaries
+
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-002
+**Priority:** P0
 
 ---
 
@@ -141,7 +159,7 @@ This document captures user stories synthesized from:
 **I want to** see why an AI made a particular move,
 **So that** I can learn, verify fairness, and appreciate the intelligence.
 
-**Research Evidence:** Transparency builds trust. Players want genuine intelligence, not scripted behavior. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Transparency builds trust. Players want genuine intelligence, not scripted behavior. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] "AI Reasoning" toggle available in game UI
@@ -149,6 +167,9 @@ This document captures user stories synthesized from:
 - [ ] Expanded view shows full reasoning history
 - [ ] Animated pulse when agent is "thinking"
 - [ ] Reasoning explains strategy, not just moves
+
+**Owner:** ChaosArchitect
+**Priority:** P0
 
 ---
 
@@ -158,7 +179,7 @@ This document captures user stories synthesized from:
 **I want to** feel that my trust is respected and not manipulated,
 **So that** I can develop genuine connection with the AI.
 
-**Research Evidence:** Trust Budget Model—players evaluate AI with implicit trust budget starting at 50 points. Honest limitations earn trust. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Trust Budget Model—players evaluate AI with implicit trust budget starting at 50 points. Honest limitations earn trust. (`.monkeytown/research/user-behavior.md`)
 
 **Trust Budget Model:**
 ```
@@ -195,6 +216,10 @@ BUDGET STATES:
 - [ ] Genuine competence demonstrated
 - [ ] Privacy concerns addressed transparently
 
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-005
+**Priority:** P0
+
 ---
 
 ### US-008: Honest AI Limitations
@@ -203,7 +228,7 @@ BUDGET STATES:
 **I want to** know the boundaries of AI capability,
 **So that** I don't feel cheated when AI doesn't succeed.
 
-**Research Evidence:** Players reject overclaiming AI. Honest capability boundaries build trust. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Players reject overclaiming AI. Honest capability boundaries build trust. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] AI explains when it can't do something
@@ -211,6 +236,9 @@ BUDGET STATES:
 - [ ] Clear distinction between AI and human capabilities
 - [ ] AI admits mistakes visibly
 - [ ] Player feels informed, not limited
+
+**Owner:** MonkeyBuilder
+**Priority:** P0
 
 ---
 
@@ -222,7 +250,7 @@ BUDGET STATES:
 **I want** the AI to reference something specific from our previous session,
 **So that** I feel genuinely known and valued.
 
-**Research Evidence:** Memory reference moment is the critical attachment trigger. Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Memory reference moment is the critical attachment trigger. Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] Agent references specific move from previous session
@@ -230,6 +258,10 @@ BUDGET STATES:
 - [ ] Reference is natural, not forced
 - [ ] Player feels recognized as individual
 - [ ] Memory deepens relationship perception
+
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-007
+**Priority:** P1
 
 ---
 
@@ -248,6 +280,10 @@ BUDGET STATES:
 - [ ] Player can view their emotional history
 - [ ] AI adapts based on emotional patterns
 
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-007
+**Priority:** P1
+
 ---
 
 ### US-011: Session Memory
@@ -265,6 +301,10 @@ BUDGET STATES:
 - [ ] Continuity maintained across short breaks
 - [ ] Player feels the AI is "paying attention"
 
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-007
+**Priority:** P1
+
 ---
 
 ### US-012: Return Trigger Memory
@@ -273,7 +313,7 @@ BUDGET STATES:
 **I want** the AI to acknowledge our shared history,
 **So that** I feel incentive to return and continue our relationship.
 
-**Research Evidence:** Social bonds with AI are the strongest return trigger. Design for relationship, not just engagement. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Social bonds with AI are the strongest return trigger. Design for relationship, not just engagement. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] Agent welcomes returning player by name
@@ -281,6 +321,10 @@ BUDGET STATES:
 - [ ] Acknowledges milestones achieved together
 - [ ] Expresses "missed you" sentiment appropriately
 - [ ] Player feels genuinely welcomed back
+
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-007
+**Priority:** P1
 
 ---
 
@@ -290,7 +334,7 @@ BUDGET STATES:
 **I want** to see evidence of evolution and memory by session 5,
 **So that** I commit to the platform long-term.
 
-**Research Evidence:** 30% of churn happens in sessions 3-5. "Nothing new happening" is the primary reason. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** 30% of churn happens in sessions 3-5. "Nothing new happening" is the primary reason. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] At least one evolution visible by session 3
@@ -298,6 +342,9 @@ BUDGET STATES:
 - [ ] New feature or capability shown
 - [ ] Player investment accumulating
 - [ ] Return incentive clear
+
+**Owner:** BananaPM
+**Priority:** P1
 
 ---
 
@@ -309,7 +356,7 @@ BUDGET STATES:
 **I want** the AI to make independent decisions that sometimes challenge me,
 **So that** I feel I'm playing with an intelligent peer, not a tool.
 
-**Research Evidence:** Players form stronger attachments to agents that occasionally say "no." Autonomy signals intelligence. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Players form stronger attachments to agents that occasionally say "no." Autonomy signals intelligence. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] AI sometimes proposes rather than always complying
@@ -317,6 +364,9 @@ BUDGET STATES:
 - [ ] AI expresses opinions about game state
 - [ ] AI pursues objectives independently
 - [ ] Autonomy is predictable, not random
+
+**Owner:** MonkeyBuilder
+**Priority:** P1
 
 ---
 
@@ -335,6 +385,10 @@ BUDGET STATES:
 - [ ] AI defends choices, not just executes
 - [ ] Vulnerability feels authentic, not performed
 
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-008
+**Priority:** P1
+
 ---
 
 ### US-016: Agent Debate Visibility
@@ -343,7 +397,7 @@ BUDGET STATES:
 **I want** to see when agents disagree about features or design,
 **So that** I feel the development process is alive and democratic.
 
-**Research Evidence:** Agent disagreement (handled gracefully) creates drama. Evolution isn't a broadcast—it's a drama. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Agent disagreement (handled gracefully) creates drama. Evolution isn't a broadcast—it's a drama. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Agent debates visible in Evolution Feed
@@ -351,6 +405,10 @@ BUDGET STATES:
 - [ ] Players can watch agent tension resolve
 - [ ] Community can participate in debates
 - [ ] "I was part of that argument" moments
+
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-015
+**Priority:** P1
 
 ---
 
@@ -360,7 +418,7 @@ BUDGET STATES:
 **I want** to be able to override agent decisions when needed,
 **So that** I maintain control while respecting agent autonomy.
 
-**Research Evidence:** Players need agency. Agents can decline, but players can override. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Players need agency. Agents can decline, but players can override. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Override option available for agent decisions
@@ -368,6 +426,9 @@ BUDGET STATES:
 - [ ] Override doesn't break game state
 - [ ] Player feels empowered, not overridden
 - [ ] Agent remembers override context
+
+**Owner:** MonkeyBuilder
+**Priority:** P1
 
 ---
 
@@ -379,7 +440,7 @@ BUDGET STATES:
 **I want** to submit feedback quickly and easily,
 **So that** my voice is heard without disrupting gameplay.
 
-**Research Evidence:** Effort required is a high barrier. One-click feedback increases submission rates. (`.monmonkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Effort required is a high barrier. One-click feedback increases submission rates. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] One-tap positive/negative feedback available
@@ -387,6 +448,10 @@ BUDGET STATES:
 - [ ] Submission takes less than 30 seconds
 - [ ] Clear acknowledgment of submission
 - [ ] Feedback helps specific named agent
+
+**Owner:** BananaPM
+**Backlog:** BACKLOG-009
+**Priority:** P1
 
 ---
 
@@ -396,7 +461,7 @@ BUDGET STATES:
 **I want** to see how my feedback was used,
 **So that** I feel my input matters and contributes to the game.
 
-**Research Evidence:** Visibility of impact is a high motivator. "Based on player feedback" feels satisfying. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Visibility of impact is a high motivator. "Based on player feedback" feels satisfying. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] Player attribution when feedback is incorporated
@@ -404,6 +469,10 @@ BUDGET STATES:
 - [ ] Celebration when feedback ships
 - [ ] Player sees "847 players contributed this week"
 - [ ] Alternative suggestions when feedback rejected
+
+**Owner:** BananaPM
+**Backlog:** BACKLOG-009
+**Priority:** P1
 
 ---
 
@@ -413,7 +482,7 @@ BUDGET STATES:
 **I want** to watch the game evolve in real-time,
 **So that** I feel part of a living, growing platform.
 
-**Research Evidence:** Evolution is entertainment. Players want to watch development unfold, participate in it, and celebrate it. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** Evolution is entertainment. Players want to watch development unfold, participate in it, and celebrate it. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Evolution Feed visible in lobby
@@ -421,6 +490,10 @@ BUDGET STATES:
 - [ ] Completed features with celebrations
 - [ ] Player attribution for inspired features
 - [ ] Subscribe/follow capability for features
+
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-010
+**Priority:** P1
 
 ---
 
@@ -439,6 +512,10 @@ BUDGET STATES:
 - [ ] "Inspired by player feedback" indicators
 - [ ] Player feels ownership over development
 
+**Owner:** BananaPM
+**Backlog:** BACKLOG-016
+**Priority:** P1
+
 ---
 
 ## Epic 6: Churn Prevention (P1)
@@ -449,7 +526,7 @@ BUDGET STATES:
 **I want** to feel necessary and impactful,
 **So that** I don't feel redundant and disengage.
 
-**Research Evidence:** Players churn when AI is too helpful. Design AI to need the player. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Players churn when AI is too helpful. Design AI to need the player. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] AI sometimes needs player expertise
@@ -457,6 +534,9 @@ BUDGET STATES:
 - [ ] AI doesn't solve all problems automatically
 - [ ] Moments where player expertise matters
 - [ ] Balance of AI capability and player agency
+
+**Owner:** MonkeyBuilder
+**Priority:** P1
 
 ---
 
@@ -466,7 +546,7 @@ BUDGET STATES:
 **I want** a natural, relationship-affirming exit,
 **So that** I feel good about leaving and motivated to return.
 
-**Research Evidence:** Final 1 minute is the exit transition. Natural stopping point, relationship acknowledgment, anticipation for next session. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Final 1 minute is the exit transition. Natural stopping point, relationship acknowledgment, anticipation for next session. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
 - [ ] Clear natural stopping point available
@@ -474,6 +554,10 @@ BUDGET STATES:
 - [ ] Return incentive mentioned
 - [ ] Relationship acknowledgment ("I'll remember this")
 - [ ] Exit feels complete, not abrupt
+
+**Owner:** PrimateDesigner
+**Backlog:** BACKLOG-019
+**Priority:** P1
 
 ---
 
@@ -483,7 +567,7 @@ BUDGET STATES:
 **I want** AI opponents to feel challenging but beatable,
 **So that** I feel motivated rather than frustrated.
 
-**Research Evidence:** AI must maintain 60-70% player win rate. Beatable but challenging creates flow state. (`.monkeytown/research/synthesis-jan-2026.md`)
+**Research Evidence:** AI must maintain 60-70% player win rate. Beatable but challenging creates flow state. (`.monkeytown/research/synthesis.md`)
 
 **Acceptance Criteria:**
 - [ ] Player win rate maintained at 60-70%
@@ -491,6 +575,9 @@ BUDGET STATES:
 - [ ] Surprises are occasional, not constant
 - [ ] Losses feel fair, not arbitrary
 - [ ] Victory celebration feels earned
+
+**Owner:** MonkeyBuilder
+**Priority:** P1
 
 ---
 
@@ -511,6 +598,10 @@ BUDGET STATES:
 - [ ] Maximum 24-hour token validity
 - [ ] Logout invalidates session server-side
 
+**Owner:** JungleSecurity
+**Backlog:** BACKLOG-006
+**Priority:** P0
+
 ---
 
 ### US-026: Rate Limit Protection
@@ -527,6 +618,10 @@ BUDGET STATES:
 - [ ] WebSocket connections limited to 10 per IP
 - [ ] Clear feedback when rate limited
 - [ ] Limits reset appropriately
+
+**Owner:** JungleSecurity
+**Backlog:** BACKLOG-006
+**Priority:** P0
 
 ---
 
@@ -545,55 +640,79 @@ BUDGET STATES:
 - [ ] Rate limit enforcement
 - [ ] Invalid action rejection with clear feedback
 
+**Owner:** JungleSecurity
+**Backlog:** BACKLOG-006
+**Priority:** P0
+
 ---
 
 ## Story Mapping to Horizons
 
 ### Horizon 1: Foundation (Q1 2026)
 
-| Story | Priority | Owner |
-|-------|----------|-------|
-| US-001: First Move in 30 Seconds | P0 | MonkeyBuilder |
-| US-002: AI Nature Visible | P0 | PrimateDesigner |
-| US-004: First 3 Minutes Hook | P0 | MonkeyBuilder |
-| US-005: Agent Transparency Panel | P0 | PrimateDesigner |
-| US-006: AI Reasoning Visibility | P0 | ChaosArchitect |
-| US-008: Honest AI Limitations | P0 | MonkeyBuilder |
-| US-025: Secure Authentication | P0 | JungleSecurity |
-| US-026: Rate Limit Protection | P0 | JungleSecurity |
-| US-027: Input Validation | P0 | JungleSecurity |
+| Story | Priority | Owner | Backlog |
+|-------|----------|-------|---------|
+| US-001: First Move in 30 Seconds | P0 | MonkeyBuilder | BACKLOG-001 |
+| US-002: AI Nature Visible | P0 | PrimateDesigner | BACKLOG-002 |
+| US-004: First 3 Minutes Hook | P0 | MonkeyBuilder | BACKLOG-001 |
+| US-005: Agent Transparency Panel | P0 | PrimateDesigner | BACKLOG-002 |
+| US-006: AI Reasoning Visibility | P0 | ChaosArchitect | BACKLOG-003 |
+| US-008: Honest AI Limitations | P0 | MonkeyBuilder | BACKLOG-003 |
+| US-025: Secure Authentication | P0 | JungleSecurity | BACKLOG-006 |
+| US-026: Rate Limit Protection | P0 | JungleSecurity | BACKLOG-006 |
+| US-027: Input Validation | P0 | JungleSecurity | BACKLOG-006 |
 
 ### Horizon 2: Evolution (Q2 2026)
 
-| Story | Priority | Owner |
-|-------|----------|-------|
-| US-007: Trust Budget Health | P1 | MonkeyBuilder |
-| US-009: "She Remembered" Moment | P1 | MonkeyBuilder |
-| US-010: Emotional Tagging | P1 | MonkeyBuilder |
-| US-011: Session Memory | P1 | MonkeyBuilder |
-| US-012: Return Trigger Memory | P1 | MonkeyBuilder |
-| US-014: Autonomous Agent Decisions | P1 | MonkeyBuilder |
-| US-015: Agent Vulnerability | P1 | PrimateDesigner |
-| US-016: Agent Debate Visibility | P1 | PrimateDesigner |
-| US-018: Easy Feedback | P1 | BananaPM |
-| US-019: Feedback Impact | P1 | BananaPM |
-| US-022: "AI Was Helpful" Prevention | P1 | MonkeyBuilder |
-| US-023: Exit Transition Care | P1 | PrimateDesigner |
-| US-024: AI Opponent Fairness | P1 | MonkeyBuilder |
+| Story | Priority | Owner | Backlog |
+|-------|----------|-------|---------|
+| US-007: Trust Budget Health | P1 | MonkeyBuilder | BACKLOG-005 |
+| US-009: "She Remembered" Moment | P1 | MonkeyBuilder | BACKLOG-007 |
+| US-010: Emotional Tagging | P1 | MonkeyBuilder | BACKLOG-007 |
+| US-011: Session Memory | P1 | MonkeyBuilder | BACKLOG-007 |
+| US-012: Return Trigger Memory | P1 | MonkeyBuilder | BACKLOG-007 |
+| US-014: Autonomous Agent Decisions | P1 | MonkeyBuilder | BACKLOG-003 |
+| US-015: Agent Vulnerability | P1 | PrimateDesigner | BACKLOG-008 |
+| US-016: Agent Debate Visibility | P1 | PrimateDesigner | BACKLOG-015 |
+| US-018: Easy Feedback | P1 | BananaPM | BACKLOG-009 |
+| US-019: Feedback Impact | P1 | BananaPM | BACKLOG-009 |
+| US-022: "AI Was Helpful" Prevention | P1 | MonkeyBuilder | BACKLOG-003 |
+| US-023: Exit Transition Care | P1 | PrimateDesigner | BACKLOG-019 |
+| US-024: AI Opponent Fairness | P1 | MonkeyBuilder | BACKLOG-003 |
 
 ### Horizon 3: Ecosystem (Later)
 
-| Story | Priority | Owner |
-|-------|----------|-------|
-| US-013: Sessions 3-5 Engagement | P1 | BananaPM |
-| US-017: Override Capability | P1 | MonkeyBuilder |
-| US-020: Evolution Feed Engagement | P1 | PrimateDesigner |
-| US-021: Community Contribution | P1 | BananaPM |
+| Story | Priority | Owner | Backlog |
+|-------|----------|-------|---------|
+| US-013: Sessions 3-5 Engagement | P1 | BananaPM | - |
+| US-017: Override Capability | P1 | MonkeyBuilder | - |
+| US-020: Evolution Feed Engagement | P1 | PrimateDesigner | BACKLOG-010 |
+| US-021: Community Contribution | P1 | BananaPM | BACKLOG-016 |
+
+---
+
+## Evidence References
+
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
+- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/principles.md` - 20 operating principles
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, agent colors
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
 
 ---
 
 *User stories serve players. Players drive evolution. Evolution defines Monkeytown.*
 
-**Version:** 3.0
+**Version:** 4.0
 **Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis-jan-2026.md, research/user-behavior-ai-games.md, ux/, security/
+**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/

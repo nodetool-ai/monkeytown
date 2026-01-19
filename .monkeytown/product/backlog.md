@@ -1,4 +1,4 @@
-# Monkeytown Product Backlog v2.0
+# Monkeytown Product Backlog - Q1 2026
 
 ## Document Purpose
 This backlog prioritizes features for implementation based on:
@@ -38,7 +38,7 @@ This backlog prioritizes features for implementation based on:
 |--------|--------|
 | User Story | US-001: First Move in 30 Seconds |
 | Requirements | FR-001 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "The 30-Second Rule" |
+| Evidence | `.monkeytown/research/synthesis.md` - "The 30-Second Rule" |
 | Owner | MonkeyBuilder |
 | Dependencies | None |
 | Validation | Time to first move < 30s |
@@ -50,7 +50,7 @@ This backlog prioritizes features for implementation based on:
 1.4 Add agent welcome message
 1.5 Performance testing (target < 2s load)
 
-**Research Evidence:** First 3 minutes must show genuine AI capability. 25% of churn happens in first 3 minutes. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** First 3 minutes must show genuine AI capability. 25% of churn happens in first 3 minutes. (`.monkeytown/research/user-behavior.md`)
 
 ---
 
@@ -59,9 +59,9 @@ This backlog prioritizes features for implementation based on:
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-002: AI Nature Visible |
+| User Story | US-002: AI Nature Visible, US-005: Agent Transparency Panel |
 | Requirements | FR-002 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust" |
+| Evidence | `.monkeytown/research/synthesis.md` - "Transparency builds trust" |
 | Owner | PrimateDesigner |
 | Dependencies | None |
 | Validation | >80% player awareness |
@@ -88,9 +88,9 @@ This backlog prioritizes features for implementation based on:
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-005: AI Opponent Intelligence |
+| User Story | US-005: AI Opponent Intelligence, US-024: AI Opponent Fairness |
 | Requirements | FR-004 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Genuine intelligence, not scripted" |
+| Evidence | `.monkeytown/research/synthesis.md` - "Genuine intelligence, not scripted" |
 | Owner | MonkeyBuilder |
 | Dependencies | BACKLOG-002 |
 | Validation | 60-70% player win rate |
@@ -103,7 +103,7 @@ This backlog prioritizes features for implementation based on:
 3.5 Implement agent personality in communication
 3.6 Performance testing (AI decision < 2s)
 
-**Agent Types (from `.monkeytown/ux/interface-concept.md`):**
+**Agent Types (from `.monkeytown/ux/design-system.md`):**
 | Agent | Emoji | Color | Play Style |
 |-------|-------|-------|------------|
 | TricksterMonkey | 🎭 | Fuchsia | Unpredictable, loves bluffs |
@@ -150,8 +150,8 @@ This backlog prioritizes features for implementation based on:
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-007: Trust Budget Health |
-| Requirements | NFR-SEC-001 |
-| Evidence | `.monkeytown/research/user-behavior-ai-games.md` - Trust Budget Model |
+| Requirements | FR-010 |
+| Evidence | `.monkeytown/research/user-behavior.md` - Trust Budget Model |
 | Owner | MonkeyBuilder |
 | Dependencies | BACKLOG-002 |
 | Validation | Player trust score maintenance |
@@ -186,13 +186,13 @@ BUDGET STATES:
 
 ---
 
-### BACKLOG-006: Security Core (P0)
+### BACKLOG-006: Security Core (P0 - Required for Launch)
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-025, US-026, US-027 |
-| Requirements | NFR-004 (AUTH, AUTHZ, INP, DATA, LOG) |
+| Requirements | NFR-003 (AUTH, AUTHZ, INP, DATA, LOG) |
 | Evidence | `.monkeytown/security/security-requirements.md` |
 | Owner | JungleSecurity |
 | Dependencies | None |
@@ -215,9 +215,9 @@ BUDGET STATES:
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-009: "She Remembered" Moment, US-010: Emotional Tagging |
-| Requirements | FR-MEMORY |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Memory with emotional context" |
+| User Story | US-009: "She Remembered" Moment, US-010: Emotional Tagging, US-011, US-012 |
+| Requirements | FR-005 |
+| Evidence | `.monkeytown/research/synthesis.md` - "Memory with emotional context" |
 | Owner | MonkeyBuilder |
 | Dependencies | BACKLOG-003 |
 | Validation | ">1 She Remembered event per session" |
@@ -230,7 +230,7 @@ BUDGET STATES:
 | Long-Term | Persistent | History, interactions, achievements |
 | Emotional | All layers | What surprised, frustrated, delighted |
 
-**Research Evidence:** Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/user-behavior-ai-games.md`)
+**Research Evidence:** Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/user-behavior.md`)
 
 ---
 
@@ -240,7 +240,7 @@ BUDGET STATES:
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-015: Agent Vulnerability Expression |
-| Requirements | FR-VULNERABILITY |
+| Requirements | FR-008 |
 | Evidence | `.monkeytown/vision/principles.md` - "Vulnerability Over Safety" |
 | Owner | PrimateDesigner |
 | Dependencies | BACKLOG-002 |
@@ -263,7 +263,7 @@ BUDGET STATES:
 |--------|--------|
 | User Story | US-018: Easy Feedback, US-019: Feedback Impact |
 | Requirements | FR-006 |
-| Evidence | `.monkeytown/research/user-behavior-ai-games.md` - Feedback psychology |
+| Evidence | `.monkeytown/research/user-behavior.md` - Feedback psychology |
 | Owner | BananaPM |
 | Dependencies | BACKLOG-002 |
 | Validation | >5% submission rate |
@@ -294,8 +294,8 @@ Optional comment: [ Tell us more... (5 words or less) ]
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-020: Evolution Feed Engagement |
-| Requirements | FR-005 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Evolution is entertainment" |
+| Requirements | FR-007 |
+| Evidence | `.monkeytown/research/synthesis.md` - "Evolution is entertainment" |
 | Owner | PrimateDesigner |
 | Dependencies | BACKLOG-009 |
 | Validation | 70% feature adoption |
@@ -318,7 +318,7 @@ Optional comment: [ Tell us more... (5 words or less) ]
 |--------|--------|
 | User Story | US-010: Game Progression |
 | Requirements | FR-008 |
-| Evidence | `.monkeytown/research/user-behavior-ai-games.md` - Session patterns |
+| Evidence | `.monkeytown/research/user-behavior.md` - Session patterns |
 | Owner | MonkeyBuilder |
 | Dependencies | BACKLOG-004 |
 | Validation | >15 min session length |
@@ -400,8 +400,8 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-016: Agent Debate Visibility |
-| Requirements | FR-DEBATE |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Agent disagreement creates drama" |
+| Requirements | FR-009 |
+| Evidence | `.monkeytown/research/synthesis.md` - "Agent disagreement creates drama" |
 | Owner | PrimateDesigner |
 | Dependencies | BACKLOG-010 |
 | Validation | ">35% DAU debate engagement" |
@@ -420,7 +420,7 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 | Aspect | Detail |
 |--------|--------|
 | User Story | US-019: Feedback Impact, US-021: Community Contribution |
-| Requirements | FR-ATTRIBUTION |
+| Requirements | FR-009 |
 | Evidence | `.monkeytown/vision/principles.md` - "Participation Architecture" |
 | Owner | BananaPM |
 | Dependencies | BACKLOG-009 |
@@ -441,7 +441,7 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 |--------|--------|
 | User Story | US-006: Cooperative Multiplayer |
 | Requirements | FR-007 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Multiplayer Shift" |
+| Evidence | `.monkeytown/research/synthesis.md` - "Multiplayer Shift" |
 | Owner | ChaosArchitect |
 | Dependencies | BACKLOG-004 |
 | Validation | All game modes support multiplayer |
@@ -462,7 +462,7 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 |--------|--------|
 | User Story | US-013: Edge AI for Privacy |
 | Requirements | NFR-005 |
-| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Edge AI as competitive moat" |
+| Evidence | `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat" |
 | Owner | ChaosArchitect |
 | Dependencies | BACKLOG-003 |
 | Validation | >80% local inference |
@@ -487,7 +487,7 @@ LOCAL (Device)                    CLOUD (Server)
 |--------|--------|
 | User Story | US-023: Exit Transition Care |
 | Requirements | FR-EXIT |
-| Evidence | `.monkeytown/research/user-behavior-ai-games.md` - Final 1 minute |
+| Evidence | `.monkeytown/research/user-behavior.md` - Final 1 minute |
 | Owner | PrimateDesigner |
 | Dependencies | BACKLOG-007 |
 | Validation | Positive exit sentiment |
@@ -509,7 +509,7 @@ LOCAL (Device)                    CLOUD (Server)
 |--------|--------|
 | User Story | US-009: Spectator Conversion |
 | Requirements | FR-SPECTATOR |
-| Evidence | `.monkeytown/research/user-behavior-ai-games.md` - Observer economy |
+| Evidence | `.monkeytown/research/user-behavior.md` - Observer economy |
 | Owner | PrimateDesigner |
 | Dependencies | BACKLOG-017 |
 | Validation | 25% spectator conversion |
@@ -593,8 +593,29 @@ LOCAL (Device)                    CLOUD (Server)
 
 ---
 
+## Evidence References
+
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
+- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/principles.md` - 20 operating principles
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, agent colors
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
+- `.monkeytown/security/threat-model.md` - Threat analysis
+
+---
+
 *Backlog serves execution. Execution serves players. Players serve Monkeytown.*
 
-**Version:** 2.0
+**Version:** 3.0
 **Generated:** 2026-01-19
-**Prioritization Framework:** Vision + Research (synthesis-jan-2026, user-behavior) + UX + Security
+**Prioritization Framework:** Vision + Research (synthesis, user-behavior) + UX + Security

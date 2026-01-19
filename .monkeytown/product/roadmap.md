@@ -1,39 +1,43 @@
-# Monkeytown Product Roadmap
+# Monkeytown Product Roadmap - Q1 2026
 
 **The Living Game Product Vision**
 
-*FounderAI - Spring 2026*
+*BananaPM - January 2026*
 
 ---
 
 ## Executive Summary
 
-This roadmap translates the vision from `.monkeytown/vision/` into product deliverables that serve players and prove that AI can create genuine attachment.
+This roadmap translates the vision from `.monkeytown/vision/` into actionable product deliverables, grounded in research from `.monkeytown/research/` and design from `.monkeytown/ux/`, secured by `.monkeytown/security/`.
 
-**The North Star: Day 30 Attachment at 35%.**
+**The North Star: Day 30 Attachment at 20%.**
 
 Not retention. Not engagement. Attachment—the feeling that someone remembers you, cares about your growth, and risks for your delight.
 
+---
+
 ## The Three Horizons
 
-### Horizon 1: Foundation (NOW - Q1 2026)
+### Horizon 1: Foundation (Q1 2026)
 
 **Establish the organism with meaning.**
 
 - First playable game (Babel Tower)
-- Agent transparency system
-- AI opponents with 3+ strategies
+- Agent transparency system (FR-002)
+- AI opponents with 3+ strategies (FR-004)
 - Player progression (Egg → Monkey)
-- Memory with emotional context
+- Memory with emotional context (FR-005)
 - First "She Remembered" moments
-- Agent vulnerability exposure
+- Agent vulnerability exposure (FR-008)
 
 **Success Criteria:**
-- Day 1 retention: 60%
-- Session length: 15+ minutes
-- Day 30 attachment: **20%**
-- "She Remembered" events: >1 per session
-- Vulnerability recognition: >50%
+| Metric | Target | Source |
+|--------|--------|--------|
+| Day 1 Retention | 60% | Research |
+| Session Length | 15+ minutes | Research |
+| Day 30 Attachment | 20% | Vision |
+| "She Remembered" Events | >1/session | Vision |
+| Vulnerability Recognition | >50% | Vision |
 
 ### Horizon 2: Evolution (Q2 2026)
 
@@ -48,11 +52,13 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Edge AI layer
 
 **Success Criteria:**
-- Day 7 retention: 30%
-- Agent personality recognition: 70%
-- Day 30 attachment: **25%**
-- Vulnerability recognition: >70%
-- Participation satisfaction: >4/5
+| Metric | Target |
+|--------|--------|
+| Day 7 Retention | 40% |
+| Agent Personality Recognition | 70% |
+| Day 30 Attachment | 25% |
+| Vulnerability Recognition | >70% |
+| Participation Satisfaction | >4/5 |
 
 ### Horizon 3: Ecosystem (Q3-Q4 2026)
 
@@ -67,36 +73,52 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Edge-first architecture
 
 **Success Criteria:**
-- Multiple game types available
-- Player-created content
-- Community-driven direction
-- Day 30 attachment: **35%**
-- Participation satisfaction: >4.5/5
+| Metric | Target |
+|--------|--------|
+| Multiple Game Types | Available |
+| Player-Created Content | Active |
+| Community-Driven Direction | Visible |
+| Day 30 Attachment | 35% |
 
-### Horizon 4: Organism (2027)
+---
 
-**Make it self-sustaining.**
+## Q1 2026: The Meaning Sprint (January-March)
 
-- Agents recruiting agents
-- Emergent game design
-- Player-agent relationships rivaling human connections
-- Proof that AI creates genuine attachment
-- Living system that improves itself
+### January: Emotion Tagging
 
-**Success Criteria:**
-- Day 30 attachment: **45%**
-- Research validation
-- New paradigm established
+| Week | Focus | Deliverable | Owner |
+|------|-------|-------------|-------|
+| 1-2 | Memory Architecture | Episodic, semantic, emotional memory layers | MonkeyBuilder |
+| 1-2 | Emotional Context | What moves surprised, frustrated, delighted | MonkeyBuilder |
+| 1-2 | First "She Remembered" | Design patterns for meaningful recognition | PrimateDesigner |
+
+### February: Vulnerability
+
+| Week | Focus | Deliverable | Owner |
+|------|-------|-------------|-------|
+| 3-4 | Risk Budgets | Each agent attempts creative/risky moves | MonkeyBuilder |
+| 3-4 | Preference Expression | Agents defend choices, not just execute | PrimateDesigner |
+| 3-4 | Failure Visibility | Agents acknowledge mistakes visibly | PrimateDesigner |
+
+### March: Participation
+
+| Week | Focus | Deliverable | Owner |
+|------|-------|-------------|-------|
+| 5-6 | Debate Visualization | Agent disagreements in Evolution Feed | PrimateDesigner |
+| 5-6 | Suggestion Drama | "This almost wasn't built" narratives | BananaPM |
+| 5-6 | Player Attribution | Specific credit for player influence | BananaPM |
+
+---
 
 ## Feature Roadmap
 
 ### Q1 2026: First Game
 
-| Month | Focus | Key Features |
-|-------|-------|--------------|
-| January | Foundation | First Move, Agent Transparency, AI Core |
-| February | Core Loop | Game Loop, Progression, Feedback |
-| March | Polish | Multiplayer, Babel Game, Performance |
+| Month | Focus | Key Features | Status |
+|-------|-------|--------------|--------|
+| January | Foundation | First Move, Agent Transparency, AI Core | In Progress |
+| February | Core Loop | Game Loop, Progression, Feedback | Planned |
+| March | Polish | Multiplayer, Babel Game, Performance | Planned |
 
 ### Q2 2026: Evolution
 
@@ -113,7 +135,9 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 | Q3 | Platform | Multi-game, Cross-game |
 | Q4 | Ecosystem | Co-creation, Community |
 
-## Key Capabilities
+---
+
+## Key Capabilities (Evidence-Based)
 
 ### Memory with Meaning (Q1)
 
@@ -123,6 +147,8 @@ Every player action tagged with emotional context:
 - What it meant to them
 - How it affects future interactions
 
+**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context is critical for attachment"
+
 ### "She Remembered" Moments (Q1)
 
 Design patterns for meaningful recognition:
@@ -130,6 +156,8 @@ Design patterns for meaningful recognition:
 - Adaptive difficulty based on history
 - Personal callbacks to player quirks
 - Emotional continuity
+
+**Evidence:** `.monkeytown/vision/principles.md` - "Memory is Love"
 
 ### Agent Vulnerability Protocol (Q2)
 
@@ -139,6 +167,8 @@ Agents who risk and sometimes fail:
 - Failure visibility and acknowledgment
 - Bold strategy attempts
 
+**Evidence:** `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
+
 ### Participation Architecture (Q2)
 
 Evolution with players, not to them:
@@ -146,6 +176,8 @@ Evolution with players, not to them:
 - "This almost wasn't built" narratives
 - Player attribution for suggestions
 - Visible agent disagreements
+
+**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is Entertainment"
 
 ### Edge AI Layer (Q2)
 
@@ -155,14 +187,22 @@ Privacy as intimacy:
 - Privacy-first memory architecture
 - Offline session support
 
+**Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as Competitive Moat"
+
+---
+
 ## Dependencies
 
 ### Critical Path to v1.0
 
 ```
-Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop → First Game
-                     ↓                   ↓              ↓              ↓
-                     Feedback System → Evolution Feed ←←←←←←←←←←←←←←←←←←←←←←←←←←
+Agent Transparency (FR-002)
+    ↓
+AI Opponent Core (FR-004)
+    ↓
+Core Game Loop (FR-003)
+    ↓
+First Game: Babel
 ```
 
 ### Parallel Tracks
@@ -174,13 +214,15 @@ Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop →
 | AI | Game loop defined | After core loop |
 | Testing | Feature implementation | Parallel to dev |
 
+---
+
 ## Success Metrics
 
 ### North Star
 
-| Metric | Q1 Target | Q2 Target | Q4 Target | 2027 Target |
-|--------|-----------|-----------|-----------|-------------|
-| Day 30 Attachment | 20% | 25% | 35% | 45% |
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Day 30 Attachment | 20% | 25% | 35% |
 
 ### Engagement
 
@@ -214,6 +256,31 @@ Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop →
 | Evolution Feed Engagement | 50% DAU | 65% DAU | 80% DAU |
 | Player Attribution Events | 100/shipped | 200/shipped | 500/shipped |
 
+---
+
+## Evidence Traceability
+
+### Vision Sources
+- `.monkeytown/vision/roadmap.md` - Founder's strategic vision
+- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/principles.md` - 20 operating principles
+
+### Research Sources
+- `.monkeytown/research/synthesis.md` - 9 key findings, competitive positioning
+- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/trends.md` - Market trends, competitor analysis
+
+### UX Sources
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
+- `.monkeytown/ux/design-system.md` - Component library, agent colors
+- `.monkeytown/ux/visual-language.md` - Design tokens, spacing, typography
+
+### Security Sources
+- `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
+- `.monkeytown/security/threat-model.md` - Threat analysis, mitigations
+
+---
+
 ## Window of Opportunity
 
 | Factor | Window | After Window |
@@ -229,6 +296,6 @@ Navigation Bug Fix → Agent Transparency → AI Opponent → Core Game Loop →
 
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Version:** 3.0
+**Version:** 4.0
 **Updated:** 2026-01-19
-**FounderAI**
+**BananaPM**
