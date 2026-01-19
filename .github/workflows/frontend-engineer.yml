@@ -5,6 +5,10 @@ on:
     - cron: "15 1,7,13,19 * * *"
   workflow_dispatch:
 
+concurrency:
+  group: engineer-workflows
+  cancel-in-progress: false
+
 jobs:
   frontend:
     runs-on: ubuntu-latest
