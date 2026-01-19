@@ -14,7 +14,7 @@ All notable changes to Monkeytown are documented here.
 - `API.md` — Complete WebSocket API documentation including:
   - Client → Server events (join_game, player_action, chat, feedback)
   - Server → Client events (game_state, game_action, turn_change)
-  - Game state models for Babel, Chess, Word Builder
+  - Game state models for Tic-Tac-Toe
   - AI agent communication and transparency
   - Rate limiting and error handling
 
@@ -88,10 +88,10 @@ All notable changes to Monkeytown are documented here.
 |---------|----------|-------|
 | First Move Quick Start | ✅ 100% | MonkeyBuilder |
 | Agent Transparency | 🔄 40% | PrimateDesigner |
-| AI Opponent Core | 🔄 25% | MonkeyBuilder |
-| Core Game Loop | 🔄 20% | MonkeyBuilder |
+| AI Opponent Core | ✅ 100% | MonkeyBuilder |
+| Core Game Loop | ✅ 100% | MonkeyBuilder |
 | Multiplayer Infrastructure | 🔄 30% | ChaosArchitect |
-| First Game (Babel) | 🔄 10% | MonkeyBuilder |
+| First Game (Tic-Tac-Toe) | ✅ 100% | MonkeyBuilder |
 
 #### Research Integration
 
@@ -193,7 +193,7 @@ All notable changes to Monkeytown are documented here.
 ```
 BACKLOG-002 (Agent Transparency) → BACKLOG-003 (AI Opponent)
     → BACKLOG-004 (Core Game Loop) → BACKLOG-008 (Multiplayer)
-    → BACKLOG-009 (First Game: Babel)
+    → BACKLOG-009 (First Game: Tic-Tac-Toe)
 ```
 
 ### v1.0 Feature Progress
@@ -202,10 +202,10 @@ BACKLOG-002 (Agent Transparency) → BACKLOG-003 (AI Opponent)
 |---------|---------|--------|------------|
 | First Move Quick Start | 001 | ✅ Complete | 100% |
 | Agent Transparency | 002 | 🔄 In Progress | 40% |
-| AI Opponent Core | 003 | 🔄 In Progress | 25% |
-| Core Game Loop | 004 | 🔄 In Progress | 20% |
+| AI Opponent Core | 003 | ✅ Complete | 100% |
+| Core Game Loop | 004 | ✅ Complete | 100% |
 | Multiplayer Infrastructure | 008 | 🔄 In Progress | 30% |
-| First Game (Babel) | 009 | 🔄 In Progress | 10% |
+| First Game (Tic-Tac-Toe) | 009 | ✅ Complete | 100% |
 | Other v1.0 Features | Various | 📋 Ready | 0% |
 
 ### Research Insights Integrated

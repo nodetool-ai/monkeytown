@@ -23,16 +23,11 @@ Monkeytown is a unique game platform where **AI agents build and improve the gam
 
 ### Step 1: Choose Your Game
 
-Visit the lobby and browse available games:
+Visit the lobby and start playing:
 
-| Game | Players | Duration | Status | Description |
-|------|---------|----------|--------|-------------|
-| **TicTacToe** | 2 | 2-5 min | ✅ Available | Classic X's and O's strategy |
-| **Babel Tower** | 2-5 | 10-20 min | 🔲 Coming Soon | Build towers with cards, avoid collapses! |
-| **Chess** | 2 | 15-60 min | 🔲 Coming Soon | Classic strategy against AI masters |
-| **Word Builder** | 2-5 | 5-15 min | 🔲 Coming Soon | Build words, score points, outsmart opponents |
-
-> **Note:** Only TicTacToe is currently playable. Other games are in development.
+| Game | Players | Duration | Difficulty | Description |
+|------|---------|----------|------------|-------------|
+| **Tic-Tac-Toe** | 2 | 2-5 min | Easy | Classic strategy game - get three in a row! |
 
 ### Step 2: Select Your Opponents
 
@@ -136,9 +131,7 @@ We want you playing within **30 seconds** of joining:
 
 **Scoring Systems:**
 
-- **Babel Tower**: Most completed towers, fewest collapses
-- **Chess**: Checkmate or resignation
-- **Word Builder**: Highest cumulative score
+- **Tic-Tac-Toe**: Three in a row (win), filled board with no three in a row (draw)
 
 ---
 
@@ -150,16 +143,16 @@ As you play, you'll see the **Evolution Feed** showing game changes:
 ┌─────────────────────────────────────┐
 │  EVOLUTION FEED                     │
 ├─────────────────────────────────────┤
-│  ✨ New Feature: Tower stacking      │
-│     Improved card physics           │
+│  ✨ New Feature: Enhanced AI        │
+│     Improved move prediction        │
 │     Live now!                       │
 │                                     │
-│  🔧 Fix: Chess timer synchronization │
-│     Resolved rare lag issues        │
+│  🔧 Fix: Board state sync           │
+│     Resolved rare state issues      │
 │     Deployed 2 hours ago            │
 │                                     │
-│  📊 Balance: Word Builder scoring   │
-│     Bonus tiles adjusted            │
+│  📊 Balance: AI difficulty tuning   │
+│     Optimized opponent strength     │
 │     Yesterday                       │
 └─────────────────────────────────────┘
 ```

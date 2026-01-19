@@ -52,8 +52,8 @@ Joins a player to a game lobby.
 
 ```typescript
 interface JoinGamePayload {
-  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
-  playerCount: 2 | 3 | 4 | 5;
+  gameType: 'tictactoe';
+  playerCount: 2;
   aiOpponents?: string[]; // Agent IDs
   settings?: GameSettings;
 }
@@ -72,7 +72,7 @@ interface GameSettings {
 socket.emit('join_game', {
   gameType: 'tictactoe',
   playerCount: 2,
-  aiOpponents: ['trickster']  // Agent type IDs
+  aiOpponents: ['StrategistApe']
 });
 ```
 
@@ -82,21 +82,15 @@ Sends a player action to the game server.
 
 ```typescript
 interface PlayerAction {
-  actionType: 'place_mark' | 'play_card' | 'move_piece' | 'build_word' | 'pass' | 'chat';
+  actionType: 'place' | 'forfeit' | 'chat';
   payload: ActionPayload;
   timestamp: number; // Client-side for lag compensation
 }
 
 interface ActionPayload {
-  // TicTacToe
+  // Tic-Tac-Toe
   | { row: number; col: number }
-  // Babel Tower
-  | { cardId: string; towerId: number }
-  // Chess
-  | { from: { row: number; col: number }; to: { row: number; col: number }; promotion?: string }
-  // Word Builder
-  | { tiles: string[]; position: { row: number; col: number }; direction: 'horizontal' | 'vertical' }
-  //通用
+  // General
   | { message?: string }
 }
 ```
@@ -104,9 +98,9 @@ interface ActionPayload {
 **Validation:** Server validates action against game rules before applying.
 
 ```typescript
-// Example: Place mark in TicTacToe
+// Example: Place symbol in Tic-Tac-Toe
 socket.emit('player_action', {
-  actionType: 'place_mark',
+  actionType: 'place',
   payload: { row: 1, col: 1 },
   timestamp: Date.now()
 });
@@ -172,7 +166,7 @@ Sent on connection and after every state change.
 ```typescript
 interface GameState {
   gameId: string;
-  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
+  gameType: 'tictactoe';
   phase: 'lobby' | 'playing' | 'finished';
   players: PlayerState[];
   currentTurn: number; // Player index
@@ -342,156 +336,41 @@ interface EvolutionUpdateEvent {
 
 ## Game State Models
 
-### TicTacToe Game State
+### Tic-Tac-Toe Game State
 
 ```typescript
 interface TicTacToeGameState {
   gameType: 'tictactoe';
-  board: (string | null)[][];  // 3x3 board, null = empty, 'X' or 'O' = filled
-  currentPlayer: 'X' | 'O';
-  winner: 'X' | 'O' | 'draw' | null;
-  moveHistory: TicTacToeMove[];
-  xIsHuman: boolean;  // True if human plays X
-  oIsHuman: boolean;  // True if human plays O (false = AI opponent)
-}
-
-interface TicTacToeMove {
-  player: 'X' | 'O';
-  row: number;
-  col: number;
-  timestamp: number;
-}
-```
-
-### Babel Tower Game State
-
-```typescript
-interface BabelGameState {
-  gameType: 'babel';
-  towers: BabelTower[];
-  deck: BabelCard[];
-  discardPile: BabelCard[];
-  round: number;
-  maxRounds: number;
+  board: TicTacToeBoard;
   currentPlayer: number;
-  direction: 1 | -1; // Clockwise or counter-clockwise
-  specialEffects: BabelSpecialEffect[];
+  currentSymbol: 'X' | 'O';
+  moveCount: number;
+  winnerId?: string;
+  winningLine?: number[][];
+  isDraw?: boolean;
 }
 
-interface BabelTower {
-  towerId: number;
-  cards: BabelCard[];
-  height: number;
-  isComplete: boolean;
-  collapseThreshold: number; // Usually 7
+interface TicTacToeBoard {
+  // 3x3 grid where each cell is 'X', 'O', or null
+  cells: (('X' | 'O' | null))[][];
 }
 
-interface BabelCard {
-  cardId: string;
-  value: number; // 1-13
-  suit: 'hearts' | 'diamonds' | 'clubs' | 'spades';
-  isWild: boolean;
-  effect?: BabelCardEffect;
-}
-
-interface BabelCardEffect {
-  type: 'reverse' | 'skip' | 'draw' | 'wild' | 'collapse';
-  value?: number;
-}
-```
-
-### Chess Game State
-
-```typescript
-interface ChessGameState {
-  gameType: 'chess';
-  board: ChessBoard;
-  currentPlayer: 'white' | 'black';
-  moveHistory: ChessMove[];
-  castlingRights: {
-    whiteKingSide: boolean;
-    whiteQueenSide: boolean;
-    blackKingSide: boolean;
-    blackQueenSide: boolean;
-  };
-  enPassantTarget?: { row: number; col: number };
-  halfMoveClock: number; // For 50-move rule
-  fullMoveNumber: number;
-  aiThinking?: {
-    depth: number;
-    nodesSearched: number;
-    timeElapsed: number;
-  };
-}
-
-interface ChessBoard {
-  squares: (ChessPiece | null)[][];
-}
-
-interface ChessPiece {
-  type: 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn';
-  color: 'white' | 'black';
-  hasMoved: boolean;
-}
-
-interface ChessMove {
-  from: { row: number; col: number };
-  to: { row: number; col: number };
-  piece: ChessPiece;
-  captured?: ChessPiece;
-  promotion?: string;
-  isCheck: boolean;
-  isCheckmate: boolean;
-  isCastling: boolean;
-  notation: string; // e.g., "e4", "Nf3", "O-O"
-}
-```
-
-### Word Builder Game State
-
-```typescript
-interface WordBuilderGameState {
-  gameType: 'word-builder';
-  board: WordBuilderBoard;
-  tiles: WordBuilderTile[];
-  players: WordBuilderPlayerState[];
-  currentPlayer: number;
-  round: number;
-  dictionary: string; // Active word list
-  bonuses: WordBonus[];
-}
-
-interface WordBuilderBoard {
-  size: { rows: number; cols: number };
-  cells: (WordBuilderCell | null)[][];
-}
-
-interface WordBuilderCell {
-  letter: string;
-  bonus?: 'double_letter' | 'triple_letter' | 'double_word' | 'triple_word';
-  isPremium: boolean;
-  isOccupied: boolean;
-}
-
-interface WordBuilderTile {
-  tileId: string;
-  letter: string;
-  value: number;
-  playerId: string;
-}
-
-interface WordBuilderPlayerState {
-  playerId: string;
-  rack: WordBuilderTile[];
-  score: number;
-  wordsFormed: string[];
-}
-
-interface WordBonus {
-  word: string;
-  score: number;
-  playerId: string;
-  timestamp: number;
+// Example game state
+{
+  gameType: 'tictactoe',
+  board: {
+    cells: [
+      ['X', 'O', null],
+      [null, 'X', null],
+      ['O', null, null]
+    ]
+  },
+  currentPlayer: 0,
+  currentSymbol: 'X',
+  moveCount: 4,
+  winnerId: undefined,
+  winningLine: undefined,
+  isDraw: false
 }
 ```
 

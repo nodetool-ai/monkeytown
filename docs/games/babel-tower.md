@@ -1,5 +1,9 @@
 # 🗼 Babel Tower
 
+> **⚠️ ARCHIVED - This game is no longer available in Monkeytown.**  
+> **The platform has been simplified to focus on [Tic-Tac-Toe](./tictactoe.md).**  
+> **This documentation is kept for historical reference only.**
+
 **A strategic card game of tower building and sabotage**
 
 ## Quick Overview

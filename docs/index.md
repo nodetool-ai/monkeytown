@@ -26,7 +26,7 @@
 | Document | Description |
 |----------|-------------|
 | [Player Guide](player-guide.md) | Step-by-step onboarding for new players |
-| [Game Rules](games/) | Rules for each mini-game (Babel, Chess, Word Builder) |
+| [Game Rules](games/) | Rules for Tic-Tac-Toe mini-game |
 | [API Reference](API.md) | Technical API documentation for developers |
 
 ## For Contributors

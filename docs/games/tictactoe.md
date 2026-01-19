@@ -1,6 +1,6 @@
-# ❌ TicTacToe
+# ❌ Tic-Tac-Toe ⭕
 
-**The classic game of X's and O's against AI opponents**
+**The classic game of strategy**
 
 ## Quick Overview
 
@@ -8,114 +8,151 @@
 |--------|---------|
 | Players | 2 |
 | Duration | 2-5 minutes |
-| Type | Classic Strategy |
-| Difficulty | Easy to Master |
+| Type | Board Game |
+| Difficulty | Easy |
 | Luck Factor | None |
+| Strategy | Medium |
 
 ---
 
 ## 🎯 Objective
 
-Be the first player to place three of your marks (X or O) in a horizontal, vertical, or diagonal row. The game ends when one player wins or all nine squares are filled (resulting in a draw).
+Get **three in a row** - place three of your symbols (X or O) in a horizontal, vertical, or diagonal line to win!
 
 ---
 
 ## 📦 Components
 
-- **3×3 Grid** - Nine squares for placing marks
-- **Two marks** - X and O
-- **Turn timer** - 30 seconds per move
+### The Board
+- 3×3 grid (9 squares)
+- Simple layout with clear cells
+
+### The Symbols
+
+| Symbol | Player |
+|--------|--------|
+| X | First player (usually you) |
+| O | Second player (AI opponent) |
 
 ---
 
 ## 🎮 How to Play
 
 ### Game Flow
+1. X moves first
+2. Players alternate turns
+3. Game ends on win or draw
 
-1. Players take turns placing their mark on an empty square
-2. First player to get three in a row wins
-3. If all squares are filled with no winner, the game is a draw
+### Making Your Move
 
-### On Your Turn
+**Click any empty square to place your symbol.**
 
-You have **30 seconds** to place your mark:
-
-1. Click or tap an empty square
-2. Your mark (X or O) appears
-3. Turn passes to the opponent
-
-### Winning Conditions
-
-| Condition | Description |
-|-----------|-------------|
-| **Row** | Three marks in a horizontal line |
-| **Column** | Three marks in a vertical line |
-| **Diagonal** | Three marks in a diagonal line |
-| **Draw** | All nine squares filled with no winner |
+Each turn:
+1. Click an empty cell
+2. Your symbol (X or O) appears
+3. Check for three in a row
+4. If no winner, next player's turn
 
 ---
 
-## 🤖 AI Opponent Personalities
+## 🏁 Winning the Game
 
-Different AI opponents play with different strategies:
+### Three Ways to End
 
-| Agent | Emoji | Personality | Strategy |
-|-------|-------|-------------|----------|
-| **TricksterMonkey** | 🎭 | Unpredictable | May set traps or make unusual moves |
-| **StrategistApe** | 🧩 | Calculated | Plays optimally, hard to beat |
-| **SpeedyGibbon** | ⚡ | Quick | Fast moves, aggressive positioning |
-| **GuardianGorilla** | 🛡️ | Defensive | Blocks your winning moves |
-| **WildcardLemur** | 🃏 | Random | Unpredictable, sometimes brilliant |
-| **MentorOrangutan** | 📚 | Teaching | Good for learning basics |
-| **ChampionChimp** | 🏆 | Competitive | Plays to win |
+#### Win ⚔️
+- Get three of your symbols in a row
+- Can be horizontal, vertical, or diagonal
+- First to three in a row wins!
+
+#### Draw 🤝
+- All 9 squares are filled
+- No player has three in a row
+- Game ends in a tie
+
+#### Forfeit 🏳️
+- A player can forfeit at any time
+- Other player automatically wins
+
+---
+
+## 🤖 AI Opponent Strategies
+
+Different AI opponents play with different styles:
+
+| Agent | Tic-Tac-Toe Style |
+|-------|-------------------|
+| 🎭 TricksterMonkey | Unpredictable moves, tries to trap you |
+| 🧩 StrategistApe | Optimal play, blocks and attacks strategically |
+| ⚡ SpeedyGibbon | Quick aggressive moves |
+| 🛡️ GuardianGorilla | Defensive blocking style |
+| 🃏 WildcardLemur | Random but sometimes brilliant moves |
+| 📚 MentorOrangutan | Teaches strategy, explains moves |
+| 🏆 ChampionChimp | Perfect play using minimax algorithm |
 
 ---
 
 ## 📊 Strategy Tips
 
 ### Beginner Tips
+1. **Take the center** - The middle square controls the most lines
+2. **Watch for two in a row** - Block your opponent's winning moves
+3. **Create forks** - Set up two winning moves at once
 
-1. **Take the center** - The center square is the most valuable
-2. **Block threats** - Always block opponent's two-in-a-row
-3. **Create forks** - Set up moves with two winning possibilities
+### Intermediate Tips
+1. **Corner strategy** - Corners are stronger than edges
+2. **Respond to center** - If opponent takes center, take a corner
+3. **Think ahead** - Plan your second move while making your first
 
 ### Advanced Tips
-
-1. **Force the win** - Create situations where opponent must let you win
-2. **Opposite corners** - Taking opposite corners when opponent is in center can be powerful
-3. **Edge strategy** - Taking edges first is usually not optimal
-
-### Expert Tips
-
-1. **Perfect play knowledge** - With optimal play, TicTacToe always ends in a draw
-2. **Traps** - Set up double threats that opponent cannot block
-3. **Reading opponents** - Predict opponent's strategy and counter
+1. **Force draws** - Perfect play from both sides always results in a draw
+2. **Opening moves** - Center or corner are best first moves
+3. **Pattern recognition** - Learn common winning patterns
 
 ---
 
 ## 📜 Complete Rules Summary
 
 ```
-TIC TAC TOE - COMPLETE RULES
+TIC-TAC-TOE - COMPLETE RULES
+
+OBJECTIVE:
+Get three of your symbols in a row (horizontal, vertical, or diagonal)
 
 SETUP:
-- 3×3 grid
-- Player X goes first
-- 30 seconds per turn
+- 3×3 grid board
+- Two players: X and O
+- X goes first
 
-PLAY:
-1. Place your mark on an empty square
-2. Opponent takes their turn
-3. Repeat until win or draw
+TURN:
+- Click an empty cell to place your symbol
+- No time limit (but please don't keep opponents waiting!)
 
 WINNING:
-- Three in a row (horizontal, vertical, diagonal)
-- First to achieve this wins
+- Three in a row: Win
+- Board full, no three in a row: Draw
+- Player forfeits: Other player wins
 
-DRAW:
-- All nine squares filled
-- No three in a row for either player
+STRATEGY:
+- Center square controls 4 lines
+- Corner squares control 3 lines
+- Edge squares control 2 lines
 ```
+
+---
+
+## ❓ FAQ
+
+**Q: Can I always win if I go first?**
+A: No, with perfect play from both players, the game always ends in a draw.
+
+**Q: What's the best first move?**
+A: Center or any corner. Avoid edge squares as your first move.
+
+**Q: How long does a game take?**
+A: Usually 2-5 minutes. With fast players, under a minute!
+
+**Q: Can I undo a move?**
+A: Not in competitive play. Choose carefully!
 
 ---
 
@@ -123,13 +160,12 @@ DRAW:
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | 2026-01-18 | Initial implementation |
+| 1.0 | 2026-01-19 | Initial rules documentation |
 
 **See also:**
-- [AI Opponent Implementation](../../server/src/game/ai-opponent.ts)
-- [TicTacToe Engine](../../server/src/game/tictactoe-engine.ts)
-- [Frontend Component](../../web/src/components/game/TicTacToe.tsx)
+- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
 
 ---
 
-*Part of the Monkeytown game collection.*
+*Part of the Monkeytown game collection. Classic rules, modern AI opponents.*

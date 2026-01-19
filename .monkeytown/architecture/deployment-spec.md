@@ -1,8 +1,8 @@
-# Deployment Specification
+# Deployment Specification v2.1
 
 **Production deployment architecture and procedures**
 
-**Version:** 1.0
+**Version:** 2.1
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -10,9 +10,345 @@
 
 ## Overview
 
-This document specifies the production deployment architecture for Monkeytown, including infrastructure requirements, deployment procedures, and operational guidelines.
+This document specifies the deployment architecture for Monkeytown, including local development (Docker Compose) and production (AWS ECS with Terraform).
 
-## Architecture Overview
+## Architecture Principles
+
+- **Docker Compose Only**: No Kubernetes per requirements
+- **Development**: Local Docker Compose environment
+- **Production**: AWS ECS Fargate with Terraform
+
+---
+
+## Docker Compose (Local Development)
+
+### Complete Configuration
+
+```yaml
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.web
+    container_name: monkeytown-web
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - VITE_API_URL=http://localhost:8080
+      - VITE_WS_URL=ws://localhost:8080
+    volumes:
+      - ./web:/app/web
+      - /app/web/node_modules
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  game-server:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
+    container_name: monkeytown-game-server
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+      - DATABASE_URL=postgres://monkeytown:dev@postgres:5432/monkeytown
+      - EVENT_STREAM_URL=ws://event-stream:8080
+    volumes:
+      - ./server:/app/server
+      - /app/server/node_modules
+      - ./packages/shared:/app/packages/shared
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  event-stream:
+    build:
+      context: .
+      dockerfile: deploy/docker/Dockerfile.server
+    container_name: monkeytown-event-stream
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=development
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./server:/app/server
+      - /app/server/node_modules
+      - ./packages/shared:/app/packages/shared
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+  redis:
+    image: redis:7-alpine
+    container_name: monkeytown-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - monkeytown
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: monkeytown-postgres
+    environment:
+      - POSTGRES_USER=monkeytown
+      - POSTGRES_PASSWORD=dev
+      - POSTGRES_DB=monkeytown
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U monkeytown -d monkeytown"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - monkeytown
+
+  nginx:
+    image: nginx:alpine
+    container_name: monkeytown-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./deploy/docker/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      web:
+        condition: service_started
+      game-server:
+        condition: service_started
+      event-stream:
+        condition: service_started
+    networks:
+      - monkeytown
+
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: monkeytown-redis-commander
+    ports:
+      - "8082:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+    networks:
+      - monkeytown
+
+networks:
+  monkeytown:
+    driver: bridge
+
+volumes:
+  redis-data:
+  postgres-data:
+```
+
+### Service Ports
+
+| Service | Container Port | Host Port | Protocol |
+|---------|---------------|-----------|----------|
+| web | 3000 | 3000 | HTTP |
+| game-server | 3001 | 3001 | HTTP |
+| event-stream | 8080 | 8080 | WebSocket |
+| redis | 6379 | 6379 | TCP |
+| postgres | 5432 | 5432 | TCP |
+| nginx | 80 | 80 | HTTP |
+| redis-commander | 8081 | 8082 | HTTP |
+
+### Health Checks
+
+```yaml
+# Redis health check
+redis:
+  healthcheck:
+    test: ["CMD", "redis-cli", "ping"]
+    interval: 5s
+    timeout: 3s
+    retries: 5
+
+# PostgreSQL health check
+postgres:
+  healthcheck:
+    test: ["CMD-SHELL", "pg_isready -U monkeytown -d monkeytown"]
+    interval: 5s
+    timeout: 5s
+    retries: 5
+```
+
+---
+
+## Dockerfiles
+
+### Dockerfile.web (Multi-stage)
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Build stage
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY web/package*.json ./web/
+COPY server/package*.json ./server/
+COPY packages/shared/package*.json ./packages/shared/
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build the web application
+RUN npm run build --prefix web
+
+# Production stage - Frontend
+FROM node:20-alpine AS frontend
+
+WORKDIR /app
+
+# Copy built assets from builder
+COPY --from=builder /app/web ./
+COPY --from=builder /app/node_modules ./node_modules
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3000
+
+EXPOSE 3000
+
+CMD ["node_modules/.bin/next", "start"]
+```
+
+### Dockerfile.server (Multi-stage)
+
+```dockerfile
+# syntax=docker/dockerfile:1
+
+# Build stage
+FROM node:20-alpine AS builder
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY server/package*.json ./server/
+COPY packages/shared/package*.json ./packages/shared/
+
+# Install dependencies
+RUN npm ci
+
+# Copy source code
+COPY . .
+
+# Build the server
+RUN npm run build --prefix server
+
+# Production stage - Server
+FROM node:20-alpine AS server
+
+WORKDIR /app
+
+# Copy built assets from builder
+COPY --from=builder /app/server/dist ./dist
+COPY --from=builder /app/server/package*.json ./
+
+# Install production dependencies only
+RUN npm install --omit=dev
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PORT=3001
+
+EXPOSE 3001
+
+CMD ["node", "dist/index.js"]
+```
+
+### Nginx Configuration
+
+```nginx
+events {
+    worker_connections 1024;
+}
+
+http {
+    upstream web {
+        server web:3000;
+    }
+
+    upstream game_server {
+        least_conn;
+        server game-server:3001;
+    }
+
+    upstream event_stream {
+        least_conn;
+        server event-stream:8080;
+    }
+
+    server {
+        listen 80;
+        server_name localhost;
+
+        # Frontend
+        location / {
+            proxy_pass http://web;
+        }
+
+        # Game API
+        location /api/ {
+            proxy_pass http://game_server;
+        }
+
+        # WebSocket
+        location /ws {
+            proxy_pass http://event_stream;
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection "upgrade";
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        }
+
+        # Health checks
+        location /health {
+            proxy_pass http://game_server/health/live;
+        }
+    }
+}
+```
+
+---
+
+## AWS Infrastructure (Terraform)
+
+### Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -56,14 +392,40 @@ This document specifies the production deployment architecture for Monkeytown, i
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
----
+### Terraform Configuration (`infrastructure/terraform/main.tf`)
 
-## AWS Resources
+```terraform
+terraform {
+  required_version = ">= 1.5.0"
 
-### VPC Configuration
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
 
-```hcl
-# infrastructure/terraform/vpc.tf
+  backend "s3" {
+    bucket         = "monkeytown-tf-state"
+    key            = "infrastructure/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "monkeytown-tf-locks"
+  }
+}
+
+provider "aws" {
+  region = var.aws_region
+
+  default_tags {
+    tags = {
+      Project     = "monkeytown"
+      Environment = var.environment
+      ManagedBy   = "terraform"
+    }
+  }
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "~> 5.0"
@@ -71,130 +433,108 @@ module "vpc" {
   name = "monkeytown-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["${var.aws_region}a", "${var.aws_region}b", "${var.aws_region}c"]
-  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-  database_subnets = ["10.0.201.0/24", "10.0.202.0/24", "10.0.203.0/24"]
+  azs             = slice(var.availability_zones, 0, 2)
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24"]
 
   enable_nat_gateway     = true
-  single_nat_gateway     = false
+  single_nat_gateway     = var.environment == "production"
   enable_dns_hostnames   = true
   enable_dns_support     = true
 
   tags = {
-    Name        = "monkeytown-vpc"
-    Environment = var.environment
-    ManagedBy   = "terraform"
+    Name = "monkeytown-vpc"
   }
 }
-```
 
-### ECS Cluster
-
-```hcl
-# infrastructure/terraform/ecs.tf
-module "ecs" {
+module "ecs_cluster" {
   source  = "terraform-aws-modules/ecs/aws"
   version = "~> 5.0"
 
-  cluster_name = "monkeytown-${var.environment}"
+  cluster_name = "monkeytown-cluster"
 
-  cluster_settings = {
-    name  = "containerInsights"
-    value = "enabled"
-  }
-
-  fargate_capacity_providers = {
-    FARGATE = {
-      default = true
+  cluster_configuration = {
+    execute_command_configuration = {
+      logging = "OVERRIDE"
+      log_configuration = {
+        cloud_watch_log_group_name = "/ecs/monkeytown"
+      }
     }
   }
 
+  default_capacity_provider_strategy = {
+    capacity_provider = "FARGATE"
+    base              = 1
+    weight            = 100
+  }
+
   tags = {
-    Environment = var.environment
-    ManagedBy   = "terraform"
+    Name = "monkeytown-ecs-cluster"
   }
 }
-```
 
-### RDS PostgreSQL
+module "redis" {
+  source  = "terraform-aws-modules/elasticache/aws"
+  version = "~> 7.0"
 
-```hcl
+  cluster_id                  = "monkeytown-redis"
+  engine                      = "redis"
+  node_type                   = var.redis_node_type
+  num_cache_nodes             = var.environment == "production" ? 2 : 1
+  parameter_group_name        = "default.redis7"
+  engine_version              = "7.0"
+  subnet_group_name           = module.vpc.redis_subnet_group_name
+  security_group_ids          = [module.vpc.security_group_ids["redis"]]
+  automatic_failover_enabled  = var.environment == "production"
+  auto_minor_version_upgrade  = true
+
+  tags = {
+    Name = "monkeytown-redis"
+  }
+}
+
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
   version = "~> 6.0"
 
-  identifier = "monkeytown-${var.environment}"
+  identifier = "monkeytown-postgres"
 
   engine               = "postgres"
   engine_version       = "15.4"
-  family               = "postgres15"
-  major_engine_version = "15"
+  instance_class       = var.rds_instance_class
+  db_name              = "monkeytown"
+  username             = var.rds_username
+  password             = var.rds_password
+  port                 = 5432
 
-  instance_class    = var.rds_instance_class
-  allocated_storage = 20
-  storage_encrypted = true
+  vpc_security_group_ids = [module.vpc.security_group_ids["rds"]]
+  subnet_ids          = module.vpc.private_subnets
 
-  db_name  = "monkeytown"
-  username = var.rds_username
-  password = var.rds_password
-  port     = 5432
-
-  vpc_security_group_ids = [module.security_group.rds_sg_id]
   db_subnet_group_name   = module.vpc.database_subnet_group_name
+  skip_final_snapshot    = var.environment != "production"
+  deletion_protection    = var.environment == "production"
 
   backup_retention_period = var.environment == "production" ? 7 : 1
-
-  monitoring_interval = 30
-  monitoring_role_arn = aws_iam_role.rds_monitoring.arn
-
-  tags = {
-    Environment = var.environment
-    ManagedBy   = "terraform"
-  }
-}
-```
-
-### ElastiCache Redis
-
-```hcl
-module "redis" {
-  source  = "terraform-aws-modules/elasticache/aws"
-  version = "~> 1.0"
-
-  cluster_id           = "monkeytown-${var.environment}"
-  engine               = "redis"
-  node_type            = var.redis_node_type
-  number_of_replicas   = var.environment == "production" ? 2 : 0
-  parameter_group_name = "default.redis7"
-  engine_version       = "7.0"
-  port                 = 6379
-
-  subnet_group_name  = module.vpc.database_subnet_group_name
-  security_group_ids = [module.security_group.redis_sg_id]
-
-  auto_minor_version_upgrade = true
+  monitoring_interval     = 60
+  monitoring_role_arn     = aws_iam_role.rds_monitoring.arn
 
   tags = {
-    Environment = var.environment
-    ManagedBy   = "terraform"
+    Name = "monkeytown-postgres"
   }
 }
-```
 
-### Application Load Balancer
-
-```hcl
 module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 9.0"
 
-  name = "monkeytown-${var.environment}"
+  name = "monkeytown-alb"
 
   load_balancer_type = "application"
   vpc_id             = module.vpc.vpc_id
   subnets            = module.vpc.public_subnets
-  security_groups    = [module.security_group.alb_sg_id]
+  security_groups    = [module.vpc.security_group_ids["alb"]]
+
+  enable_deletion_protection = var.environment == "production"
 
   http_tcp_listeners = [
     {
@@ -220,7 +560,7 @@ module "alb" {
       name_prefix      = "web-"
       backend_protocol = "HTTP"
       backend_port     = 3000
-      target_type      = "ip"
+      vpc_id           = module.vpc.vpc_id
       health_check = {
         path                = "/health/live"
         healthy_threshold   = 2
@@ -232,141 +572,136 @@ module "alb" {
   }
 
   tags = {
-    Environment = var.environment
-    ManagedBy   = "terraform"
+    Name = "monkeytown-alb"
   }
 }
-```
 
----
+resource "aws_iam_role" "rds_monitoring" {
+  name = "monkeytown-rds-monitoring"
 
-## ECS Task Definitions
-
-### Web Service
-
-```json
-{
-  "family": "monkeytown-web",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "512",
-  "memory": "1024",
-  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole",
-  "containerDefinitions": [
-    {
-      "name": "web",
-      "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-web:latest",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 3000,
-          "protocol": "tcp"
-        }
-      ],
-      "environment": [
-        {
-          "name": "NODE_ENV",
-          "value": "production"
-        },
-        {
-          "name": "NEXT_PUBLIC_API_URL",
-          "value": "https://api.monkeytown.example.com"
-        }
-      ],
-      "secrets": [
-        {
-          "name": "DATABASE_URL",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:123456789012:secret:monkeytown/db-url"
-        }
-      ],
-      "healthCheck": {
-        "command": ["CMD-SHELL", "curl -f http://localhost:3000/health/live"],
-        "interval": 60,
-        "timeout": 30,
-        "retries": 3,
-        "startPeriod": 60
-      },
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/monkeytown-web",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "monitoring.rds.amazonaws.com"
         }
       }
-    }
-  ]
+    ]
+  })
+}
+
+resource "aws_iam_role" "ecs_tasks" {
+  name = "monkeytown-ecs-tasks"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = "sts:AssumeRole"
+        Effect = "Allow"
+        Principal = {
+          Service = "ecs-tasks.amazonaws.com"
+        }
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy" "ecs_tasks_secrets" {
+  name = "monkeytown-ecs-secrets"
+  role = aws_iam_role.ecs_tasks.name
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "secretsmanager:GetSecretValue",
+          "kms:Decrypt"
+        ]
+        Effect = "Allow"
+        Resource = [
+          aws_secretsmanager_secret.database_password.arn,
+          aws_secretsmanager_secret.redis_password.arn
+        ]
+      }
+    ]
+  })
+}
+
+resource "aws_secretsmanager_secret" "database_password" {
+  name = "monkeytown/database-password"
+}
+
+resource "aws_secretsmanager_secret" "redis_password" {
+  name = "monkeytown/redis-password"
+}
+
+resource "aws_cloudwatch_log_group" "ecs" {
+  name              = "/ecs/monkeytown"
+  retention_in_days = var.environment == "production" ? 30 : 7
+}
+
+output "alb_dns_name" {
+  value = module.alb.lb_dns_name
+}
+
+output "redis_endpoint" {
+  value = module.redis.cluster_endpoint
+}
+
+output "database_endpoint" {
+  value = module.rds.instance_endpoint
 }
 ```
 
-### Game Server Service
+### Terraform Variables
 
-```json
-{
-  "family": "monkeytown-server",
-  "networkMode": "awsvpc",
-  "requiresCompatibilities": ["FARGATE"],
-  "cpu": "1024",
-  "memory": "2048",
-  "executionRoleArn": "arn:aws:iam::123456789012:role/ecsTaskExecutionRole",
-  "taskRoleArn": "arn:aws:iam::123456789012:role/ecsTaskRole",
-  "containerDefinitions": [
-    {
-      "name": "game-server",
-      "image": "123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-server:latest",
-      "essential": true,
-      "portMappings": [
-        {
-          "containerPort": 3001,
-          "protocol": "tcp"
-        },
-        {
-          "containerPort": 8080,
-          "protocol": "tcp"
-        }
-      ],
-      "environment": [
-        {
-          "name": "NODE_ENV",
-          "value": "production"
-        },
-        {
-          "name": "REDIS_URL",
-          "value": "redis://monkeytown-redis.xxxxx.cache.amazonaws.com:6379"
-        },
-        {
-          "name": "DATABASE_URL",
-          "value": "postgres://monkeytown:xxxxx@monkeytown-db.xxxxx RDS.amazonaws.com:5432/monkeytown"
-        }
-      ],
-      "secrets": [
-        {
-          "name": "DATABASE_PASSWORD",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:123456789012:secret:monkeytown/db-password"
-        },
-        {
-          "name": "JWT_SECRET",
-          "valueFrom": "arn:aws:secretsmanager:us-east-1:123456789012:secret:monkeytown/jwt-secret"
-        }
-      ],
-      "healthCheck": {
-        "command": ["CMD-SHELL", "curl -f http://localhost:3001/health/live"],
-        "interval": 30,
-        "timeout": 10,
-        "retries": 3,
-        "startPeriod": 60
-      },
-      "logConfiguration": {
-        "logDriver": "awslogs",
-        "options": {
-          "awslogs-group": "/ecs/monkeytown-server",
-          "awslogs-region": "us-east-1",
-          "awslogs-stream-prefix": "ecs"
-        }
-      }
-    }
-  ]
+```hcl
+# infrastructure/terraform/variables.tf
+variable "environment" {
+  description = "Environment name (development/production)"
+  type        = string
+  default     = "development"
+}
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-1"
+}
+
+variable "availability_zones" {
+  description = "Availability zones to use"
+  type        = list(string)
+  default     = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
+
+variable "redis_node_type" {
+  description = "Redis instance size"
+  type        = string
+  default     = "cache.t3.micro"
+}
+
+variable "rds_instance_class" {
+  description = "RDS instance size"
+  type        = string
+  default     = "db.t3.micro"
+}
+
+variable "rds_username" {
+  description = "Database username"
+  type        = string
+  default     = "monkeytown"
+}
+
+variable "rds_password" {
+  description = "Database password (use secrets manager in production)"
+  type        = string
+  default     = "dev-password"
 }
 ```
 
@@ -374,7 +709,23 @@ module "alb" {
 
 ## Deployment Procedures
 
-### Initial Deployment
+### Local Development
+
+```bash
+# Start all services
+docker-compose up -d
+
+# View logs
+docker-compose logs -f
+
+# Stop all services
+docker-compose down
+
+# Rebuild and start
+docker-compose up -d --build
+```
+
+### Production Deployment
 
 ```bash
 # 1. Initialize Terraform
@@ -399,28 +750,12 @@ docker build -t monkeytown-server:latest ./server
 docker tag monkeytown-server:latest 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-server:latest
 docker push 123456789012.dkr.ecr.us-east-1.amazonaws.com/monkeytown-server:latest
 
-# 5. Register task definitions
+# 5. Register task definitions and update services
 aws ecs register-task-definition --cli-input-json file://task-definitions/web.json
 aws ecs register-task-definition --cli-input-json file://task-definitions/server.json
 
-# 6. Create ECS services
-aws ecs create-service \
-  --cluster monkeytown-production \
-  --service-name monkeytown-web \
-  --task-definition monkeytown-web \
-  --desired-count 2 \
-  --launch-type FARGATE \
-  --deployment-configuration "maximumPercent=200,minimumHealthyPercent=100" \
-  --network-configuration "awsvpcConfiguration={subnets=[subnet-xxx],securityGroups=[sg-xxx],assignPublicIp=DISABLED}"
-
-aws ecs create-service \
-  --cluster monkeytown-production \
-  --service-name monkeytown-server \
-  --task-definition monkeytown-server \
-  --desired-count 2 \
-  --launch-type FARGATE \
-  --deployment-configuration "maximumPercent=200,minimumHealthyPercent=100" \
-  --network-configuration "awsvpcConfiguration={subnets=[subnet-xxx],securityGroups=[sg-xxx],assignPublicIp=DISABLED}"
+aws ecs update-service --cluster monkeytown-production --service monkeytown-web --task-definition monkeytown-web
+aws ecs update-service --cluster monkeytown-production --service monkeytown-server --task-definition monkeytown-server
 ```
 
 ### Blue/Green Deployment
@@ -451,76 +786,11 @@ aws ecs update-service \
   --task-definition monkeytown-web:previous-version
 ```
 
-### Rollback Procedure
-
-```bash
-# Option 1: Use previous task definition
-PREVIOUS_TASK=$(aws ecs describe-task-definition \
-  --task-definition monkeytown-web \
-  --query 'taskDefinition.taskDefinitionArn' \
-  --output text)
-
-aws ecs update-service \
-  --cluster monkeytown-production \
-  --service monkeytown-web \
-  --task-definition $PREVIOUS_TASK
-
-# Option 2: Scale down new version
-aws ecs update-service \
-  --cluster monkeytown-production \
-  --service monkeytown-web \
-  --desired-count 0
-```
-
 ---
 
 ## Monitoring & Alerting
 
-### CloudWatch Dashboards
-
-```yaml
-# CloudFormation template for dashboard
-Resources:
-  Dashboard:
-    Type: AWS::CloudWatch::Dashboard
-    Properties:
-      DashboardName: monkeytown-production
-      DashboardBody: |
-        {
-          "widgets": [
-            {
-              "type": "metric",
-              "x": 0, "y": 0,
-              "width": 12, "height": 6,
-              "properties": {
-                "title": "Request Count",
-                "metrics": [
-                  ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", "app/monkeytown/xxx", {"label": "Requests"}]
-                ],
-                "period": 300,
-                "stat": "Sum",
-                "region": "us-east-1"
-              }
-            },
-            {
-              "type": "metric",
-              "x": 12, "y": 0,
-              "width": 12, "height": 6,
-              "properties": {
-                "title": "Latency P95",
-                "metrics": [
-                  ["AWS/ApplicationELB", "TargetResponseTime", "LoadBalancer", "app/monkeytown/xxx", {"label": "Latency"}]
-                ],
-                "period": 300,
-                "stat": "p95",
-                "region": "us-east-1"
-              }
-            }
-          ]
-        }
-```
-
-### Alarms
+### CloudWatch Alarms
 
 ```yaml
 # High Error Rate Alarm
@@ -539,12 +809,8 @@ Resources:
       EvaluationPeriods: 2
       Threshold: 100
       ComparisonOperator: GreaterThanThreshold
-      AlarmActions:
-        - !Ref AlertTopic
-      InsufficientDataActions:
-        - !Ref AlertTopic
 
-  # High Latency Alarm
+# High Latency Alarm
   HighLatencyAlarm:
     Type: AWS::CloudWatch::Alarm
     Properties:
@@ -559,102 +825,6 @@ Resources:
       EvaluationPeriods: 2
       Threshold: 2
       ComparisonOperator: GreaterThanThreshold
-      AlarmActions:
-        - !Ref AlertTopic
-```
-
----
-
-## Security Configuration
-
-### Security Groups
-
-```hcl
-# ALB Security Group
-resource "aws_security_group" "alb" {
-  name        = "monkeytown-alb"
-  description = "Security group for ALB"
-  vpc_id      = module.vpc.vpc_id
-
-  ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = [module.vpc.vpc_cidr_block]
-  }
-
-  tags = {
-    Name        = "monkeytown-alb"
-    Environment = var.environment
-  }
-}
-
-# ECS Security Group
-resource "aws_security_group" "ecs" {
-  name        = "monkeytown-ecs"
-  description = "Security group for ECS tasks"
-  vpc_id      = module.vpc.vpc_id
-
-  ingress {
-    from_port       = 3000
-    to_port         = 3000
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb.id]
-  }
-
-  ingress {
-    from_port       = 3001
-    to_port         = 3001
-    protocol        = "tcp"
-    security_groups = [aws_security_group.alb.id]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  tags = {
-    Name        = "monkeytown-ecs"
-    Environment = var.environment
-  }
-}
-```
-
-### IAM Roles
-
-```hcl
-# ECS Task Execution Role
-resource "aws_iam_role" "ecs_task_execution" {
-  name = "monkeytown-ecs-task-execution"
-
-  assume_role_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = "sts:AssumeRole"
-        Effect = "Allow"
-        Principal = {
-          Service = "ecs-tasks.amazonaws.com"
-        }
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
-  role       = aws_iam_role.ecs_task_execution.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-}
 ```
 
 ---
@@ -678,15 +848,16 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution" {
 
 ---
 
-## References
+## Version History
 
-- Terraform configs: `infrastructure/terraform/`
-- Docker configs: `deploy/docker/`
-- CI/CD: `.github/workflows/ci-cd.yml`
-- Architecture: `.monkeytown/architecture/system-design.md`
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.1 | 2026-01-19 | Updated with actual Docker Compose and Terraform configs |
+| 2.0 | 2026-01-19 | Initial version |
+| 1.0 | 2026-01-18 | Original deployment spec |
 
 ---
 
-*Version: 1.0*
+*Version: 2.1*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Deploying with confidence*

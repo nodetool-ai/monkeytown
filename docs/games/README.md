@@ -4,21 +4,9 @@ Welcome to the Monkeytown game collection! Each mini-game is designed to be fun,
 
 ## Available Games
 
-| Game | Players | Duration | Status | Description |
-|------|---------|----------|--------|-------------|
-| **[TicTacToe](./tictactoe.md)** | 2 | 2-5 min | ✅ Playable | Classic X's and O's strategy |
-| **[Babel Tower](./babel-tower.md)** | 2-5 | 10-20 min | 🔲 Coming Soon | Card game of tower building |
-| **[Chess](./chess.md)** | 2 | 15-60 min | 🔲 Planned | Classic strategy against AI |
-| **[Word Builder](./word-builder.md)** | 2-5 | 5-15 min | 🔲 Planned | Build words, score points |
-
-### ⚠️ Current Status
-
-**Only TicTacToe is currently playable.** A navigation bug prevents access to other games (see [Bug-001](../../.monkeytown/game-testing/bugs/bug-001-navigation-broken.md)).
-
-The other games are in various stages of development:
-- **Babel Tower**: Backend engine complete, frontend pending
-- **Chess**: Types defined, engine not started
-- **Word Builder**: Types defined as "words", engine not started
+| Game | Players | Duration | Difficulty |
+|------|---------|----------|------------|
+| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy |
 
 ## Game Philosophy
 
