@@ -1,5 +1,22 @@
-// Gaming protocol types - defined locally to avoid import issues
+/**
+ * Server Game Types
+ * 
+ * ARCHITECTURE NOTE: These types are intentionally defined locally within the server
+ * package due to TypeScript's rootDir constraints for monorepo builds.
+ * 
+ * SOURCE OF TRUTH: packages/shared/gaming-protocol.ts
+ * 
+ * If you modify these core protocol types, you MUST also update:
+ * - packages/shared/gaming-protocol.ts (the canonical source)
+ * - server/src/game/referee.ts (utility functions)
+ * 
+ * Manual verification is required until TypeScript project references are implemented.
+ * 
+ * TODO: Consider using TypeScript project references or a shared package build step
+ * to eliminate this duplication. See docs/architecture.md for more details.
+ */
 
+// Gaming protocol types - synchronized with packages/shared/gaming-protocol.ts
 export type PlayerKind = 'human' | 'agent';
 export type GamePhase = 'waiting' | 'in_progress' | 'finished';
 export type GameResult = 'win' | 'lose' | 'draw' | 'ongoing';
@@ -60,7 +77,7 @@ export interface RefereeConfig {
   agentPrompt?: string;
 }
 
-// TicTacToe specific types
+// TicTacToe specific types - synchronized with packages/shared/gaming-protocol.ts
 export type TicTacToeSymbol = 'X' | 'O' | null;
 export type TicTacToeBoard = [
   [TicTacToeSymbol, TicTacToeSymbol, TicTacToeSymbol],

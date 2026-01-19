@@ -3,6 +3,23 @@
  * 
  * This module defines the protocol for player interactions in games,
  * where a referee (can be an AI agent) evaluates moves using prompts.
+ * 
+ * ARCHITECTURE NOTE: This is the SOURCE OF TRUTH for gaming protocol types.
+ * 
+ * Due to TypeScript's rootDir constraints in the monorepo, these types are
+ * also duplicated in server/src/game/types.ts. If you modify types here,
+ * you MUST also update that file to maintain consistency.
+ * 
+ * Files that should be synchronized:
+ * - packages/shared/gaming-protocol.ts (this file - canonical source)
+ * - server/src/game/types.ts (server copy)
+ * - server/src/game/referee.ts (utility functions)
+ * 
+ * IMPORTANT: Manual verification is required until TypeScript project references
+ * are implemented. Review all synchronized files when making changes.
+ * 
+ * TODO: Consider implementing TypeScript project references to eliminate
+ * this duplication. See docs/architecture.md for migration guide.
  */
 
 /**
