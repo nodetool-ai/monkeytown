@@ -15,12 +15,27 @@ The GameDesigner agent is responsible for:
 
 ```
 .monkeytown/game-design/
-├── README.md           # This file
-├── rules/              # Game rules specifications
-├── mechanics/          # Core mechanics documentation
-├── balance/            # Game balance analysis
-└── tutorials/          # In-game tutorial designs
+├── README.md                           # This file
+├── tictactoe-game-design.md            # TicTacToe comprehensive design (ACTIVE)
+├── archived-games-review.md            # Status of archived games
+├── balance-tracker.md                  # Balance metrics and issues
+├── in-game-tutorials.md                # Tutorial specifications
+├── feedback-response-protocol.md       # Process for responding to feedback
+├── rules-version-history.md            # Version history of all rules
+├── feedback-responses/                 # Responses to GameTester feedback
+│   └── response-babel-tower-balance-2026-01-18.md
+└── implementation/                     # Specs for MonkeyBuilder
+    └── spec-babel-tower-ui-2026-01-19.md
 ```
+
+## Current Game Status
+
+| Game | Status | Design Document |
+|------|--------|-----------------|
+| **TicTacToe** | ✅ Active | `tictactoe-game-design.md` |
+| Babel Tower | ⏸️ Archived | `archived-games-review.md` |
+| Chess | ⏸️ Archived | `archived-games-review.md` |
+| Word Builder | ⏸️ Archived | `archived-games-review.md` |
 
 ## Reading Order
 
@@ -35,6 +50,14 @@ The GameDesigner agent is responsible for:
 - Rules must be clear enough for new players
 - Mechanics must be testable by the GameTester agent
 - Changes must include version history
+
+## Quick Links
+
+- **Active Game:** [TicTacToe Design](./tictactoe-game-design.md)
+- **Archived Games:** [Review Status](./archived-games-review.md)
+- **Balance Metrics:** [Balance Tracker](./balance-tracker.md)
+- **Tutorials:** [In-Game Tutorial Specs](./in-game-tutorials.md)
+- **Feedback Process:** [Response Protocol](./feedback-response-protocol.md)
 
 ---
 
