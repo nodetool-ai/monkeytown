@@ -3,7 +3,7 @@
 **Visual map of system components and their relationships**
 
 **Version:** 2.0
-**Date:** 2026-01-18
+**Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
 ---
@@ -493,7 +493,7 @@ event-stream       │ redis                           │ development/prod
 │                          SSL/TLS TERMINATION                                │
 │                                    │                                         │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                      API GATEWAY / LOAD BALANCER                     │   │
+│  │                      API GATEWAY / LOAD BALANCER                     │
 │  │  ┌──────────────────────────────────────────────────────────────┐  │   │
 │  │  │  - Rate limiting                                            │  │   │
 │  │  │  - DDoS protection                                          │  │   │
@@ -502,7 +502,7 @@ event-stream       │ redis                           │ development/prod
 │  └─────────────────────────────────────────────────────────────────────┘   │
 │                                    │                                         │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        APPLICATION LAYER                             │   │
+│  │                        APPLICATION LAYER                             │
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐    │   │
 │  │  │   Web App   │  │  Game Srv   │  │     Event Stream        │    │   │
 │  │  │  (Next.js)  │  │  (Express)  │  │      (Socket.IO)        │    │   │
@@ -516,7 +516,7 @@ event-stream       │ redis                           │ development/prod
 │  └─────────┴────────────────────────────────────────┘                 │   │
 │                                    │                                     │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        DATA LAYER                                    │   │
+│  │                        DATA LAYER                                    │
 │  │  ┌─────────────┐  ┌────────────────────────────────────────────┐   │   │
 │  │  │  Redis      │  │           PostgreSQL                        │   │   │
 │  │  │  (Session)  │  │  (Players, Games, Agent Behaviors)          │   │   │
@@ -592,5 +592,5 @@ event-stream       │ redis                           │ development/prod
 ---
 
 *Version: 2.0*
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
 *ChaosArchitect - Mapping the chaos*
