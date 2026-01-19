@@ -52,7 +52,7 @@ Joins a player to a game lobby.
 
 ```typescript
 interface JoinGamePayload {
-  gameType: 'tictactoe';
+  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
   playerCount: 2;
   aiOpponents?: string[]; // Agent IDs
   settings?: GameSettings;
@@ -82,16 +82,23 @@ Sends a player action to the game server.
 
 ```typescript
 interface PlayerAction {
-  actionType: 'place' | 'forfeit' | 'chat';
+  actionType: 'place' | 'play' | 'move' | 'swap' | 'forfeit' | 'chat';
   payload: ActionPayload;
   timestamp: number; // Client-side for lag compensation
 }
 
 interface ActionPayload {
   // Tic-Tac-Toe
-  | { row: number; col: number }
+  | { action: 'place'; row: number; col: number }
+  // Babel Tower
+  | { action: 'play' | 'sabotage' | 'boost' | 'steal'; cardId: string; targetId?: string }
+  // Chess
+  | { action: 'move'; from: string; to: string; promotion?: 'queen' | 'rook' | 'bishop' | 'knight' }
+  // Word Builder
+  | { action: 'play' | 'swap'; tiles: { letter: string; position: number }[] }
   // General
-  | { message?: string }
+  | { action: 'chat'; message?: string }
+  | { action: 'forfeit' }
 }
 ```
 
@@ -101,7 +108,32 @@ interface ActionPayload {
 // Example: Place symbol in Tic-Tac-Toe
 socket.emit('player_action', {
   actionType: 'place',
-  payload: { row: 1, col: 1 },
+  payload: { action: 'place', row: 1, col: 1 },
+  timestamp: Date.now()
+});
+
+// Example: Play a card in Babel Tower
+socket.emit('player_action', {
+  actionType: 'play',
+  payload: { action: 'play', cardId: 'card_123' },
+  timestamp: Date.now()
+});
+
+// Example: Make a move in Chess
+socket.emit('player_action', {
+  actionType: 'move',
+  payload: { action: 'move', from: 'e2', to: 'e4' },
+  timestamp: Date.now()
+});
+
+// Example: Play a word in Word Builder
+socket.emit('player_action', {
+  actionType: 'play',
+  payload: { action: 'play', tiles: [
+    { letter: 'C', position: 0 },
+    { letter: 'A', position: 1 },
+    { letter: 'T', position: 2 }
+  ]},
   timestamp: Date.now()
 });
 ```
@@ -166,7 +198,7 @@ Sent on connection and after every state change.
 ```typescript
 interface GameState {
   gameId: string;
-  gameType: 'tictactoe';
+  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
   phase: 'lobby' | 'playing' | 'finished';
   players: PlayerState[];
   currentTurn: number; // Player index
@@ -336,6 +368,19 @@ interface EvolutionUpdateEvent {
 
 ## Game State Models
 
+### Supported Game Types
+
+Monkeytown currently supports four game types:
+
+| Game Type | Name | Players | Duration | Status |
+|-----------|------|---------|----------|--------|
+| `tictactoe` | Tic-Tac-Toe | 2 | 2-5 min | ✅ Playable |
+| `babel` | Babel Tower | 2-5 | 10-20 min | ⚠️ Limited |
+| `chess` | Monkey Chess | 2 | 15-60 min | 🔲 Blocked |
+| `words` | Word Builder | 2-5 | 5-15 min | 🔲 Blocked |
+
+**Note:** Some games may have limited accessibility due to navigation issues. See the [Player Guide](./docs/player-guide.md) for current availability.
+
 ### Tic-Tac-Toe Game State
 
 ```typescript
@@ -373,6 +418,163 @@ interface TicTacToeBoard {
   isDraw: false
 }
 ```
+
+### Babel Tower Game State
+
+```typescript
+interface BabelTowerGameState {
+  gameType: 'babel';
+  round: number;
+  maxRounds: number;
+  currentPlayer: number;
+  hands: BabelPlayerHand[];
+  table: BabelCard[];
+  towers: BabelTower[];
+  score: Record<string, number>;
+}
+
+interface BabelPlayerHand {
+  playerId: string;
+  cards: BabelCard[];
+}
+
+interface BabelCard {
+  id: string;
+  suit: 'stone' | 'brick' | 'wood' | 'glass';
+  value: number; // 1-25
+}
+
+interface BabelTower {
+  playerId: string;
+  height: number;
+  score: number;
+}
+
+// Example game state
+{
+  gameType: 'babel',
+  round: 3,
+  maxRounds: 12,
+  currentPlayer: 0,
+  hands: [
+    { playerId: 'player_1', cards: [{ id: 'c1', suit: 'wood', value: 15 }] },
+    { playerId: 'StrategistApe', cards: [{ id: 'c2', suit: 'glass', value: 22 }] }
+  ],
+  table: [{ id: 't1', suit: 'stone', value: 8 }],
+  towers: [
+    { playerId: 'player_1', height: 45, score: 120 },
+    { playerId: 'StrategistApe', height: 52, score: 135 }
+  ],
+  score: { 'player_1': 120, 'StrategistApe': 135 }
+}
+```
+
+### Monkey Chess Game State
+
+```typescript
+interface ChessGameState {
+  gameType: 'chess';
+  board: ChessBoard;
+  currentPlayer: 'white' | 'black';
+  moveNumber: number;
+  halfmoveClock: number; // For 50-move rule
+  castlingRights: CastlingRights;
+  enPassantTarget?: string; // Square coordinate
+  gameResult?: ChessGameResult;
+  moveHistory: ChessMove[];
+}
+
+interface ChessBoard {
+  // 8x8 board, null = empty, otherwise piece notation
+  squares: (ChessPiece | null)[][];
+}
+
+interface ChessPiece {
+  type: 'king' | 'queen' | 'rook' | 'bishop' | 'knight' | 'pawn';
+  color: 'white' | 'black';
+}
+
+interface CastlingRights {
+  whiteKingSide: boolean;
+  whiteQueenSide: boolean;
+  blackKingSide: boolean;
+  blackQueenSide: boolean;
+}
+
+interface ChessMove {
+  from: string; // e.g., 'e2'
+  to: string; // e.g., 'e4'
+  notation: string; // e.g., 'e4', 'Nf3', 'O-O'
+  timestamp: number;
+}
+
+type ChessGameResult = 'white_wins' | 'black_wins' | 'draw' | 'stalemate';
+```
+
+### Word Builder Game State
+
+```typescript
+interface WordBuilderGameState {
+  gameType: 'words';
+  round: number;
+  maxRounds: number;
+  currentPlayer: number;
+  racks: WordPlayerRack[];
+  pool: LetterDistribution;
+  playedWords: PlayedWord[];
+  scores: Record<string, number>;
+  tileBagCount: number;
+}
+
+interface WordPlayerRack {
+  playerId: string;
+  tiles: LetterTile[];
+}
+
+interface LetterTile {
+  letter: string;
+  value: number;
+}
+
+interface LetterDistribution {
+  [letter: string]: number;
+}
+
+interface PlayedWord {
+  playerId: string;
+  word: string;
+  score: number;
+  timestamp: number;
+}
+
+// Letter values
+const LETTER_VALUES: Record<string, number> = {
+  'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2,
+  'H': 4, 'I': 1, 'J': 8, 'K': 5, 'L': 1, 'M': 3, 'N': 1,
+  'O': 1, 'P': 3, 'Q': 10, 'R': 1, 'S': 1, 'T': 1, 'U': 1,
+  'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10
+};
+
+// Example game state
+{
+  gameType: 'words',
+  round: 2,
+  maxRounds: 6,
+  currentPlayer: 0,
+  racks: [
+    { playerId: 'player_1', tiles: [{ letter: 'A', value: 1 }, { letter: 'C', value: 3 }] },
+    { playerId: 'MentorOrangutan', tiles: [{ letter: 'Q', value: 10 }, { letter: 'U', value: 1 }] }
+  ],
+  pool: { 'A': 9, 'B': 2, 'C': 2, 'D': 4, ... },
+  playedWords: [
+    { playerId: 'player_1', word: 'CAT', score: 5, timestamp: 1705594245000 }
+  ],
+  scores: { 'player_1': 5, 'MentorOrangutan': 0 },
+  tileBagCount: 78
+}
+```
+
+See [Game Rules](../docs/games/) for detailed gameplay rules and strategies.
 
 ---
 
@@ -508,45 +710,68 @@ socket.on('game_error', (error: GameError) => {
 ## Example: Complete Game Session
 
 ```typescript
+import { io, Socket } from 'socket.io-client';
+
+// Game type configuration
+const GAME_CONFIG = {
+  tictactoe: { players: 2, duration: '2-5 min' },
+  babel: { players: '2-5', duration: '10-20 min' },
+  chess: { players: 2, duration: '15-60 min' },
+  words: { players: '2-5', duration: '5-15 min' }
+};
+
 // Example: Join TicTacToe with AI opponent
-const socket = io(wsUrl, {
-  auth: { token: await getAuthToken() }
+const socket: Socket = io(wsUrl, {
+  auth: { token: await getAuthToken() },
+  transports: ['websocket']
 });
 
 socket.on('connect', () => {
   console.log('Connected to game server');
-  
-  // Join a game
+
+  // Join any available game
+  const gameType = 'tictactoe'; // or 'babel', 'chess', 'words'
   socket.emit('join_game', {
-    gameType: 'tictactoe',
-    playerCount: 2,
-    aiOpponents: ['trickster']  // Agent type ID
+    gameType,
+    playerCount: GAME_CONFIG[gameType].players as number,
+    aiOpponents: ['StrategistApe']  // Agent type ID
   });
 });
 
-// 4. Receive initial game state
+// Receive initial game state
 socket.on('game_state', (state: GameState) => {
   renderGame(state);
+  console.log(`Game ${state.gameType} ready - Phase: ${state.phase}`);
+
   if (state.phase === 'lobby') {
     showWaitingForPlayers();
   }
 });
 
-// 5. Handle turn changes
+// Handle turn changes
 socket.on('turn_change', (event: TurnChangeEvent) => {
   highlightCurrentPlayer(event.toPlayerId);
+  console.log(`Turn ${event.turnNumber}: ${event.fromPlayerId} → ${event.toPlayerId}`);
 });
 
-// 6. Handle actions
+// Handle actions from all players
 socket.on('game_action', (action: GameActionEvent) => {
   animateAction(action);
+  if (action.validation && !action.validation.valid) {
+    showToast(action.validation.reason || 'Invalid action', 'warning');
+  }
 });
 
-// 7. Handle game end
+// Handle game end
 socket.on('game_action', (event) => {
   if (event.actionType === 'game_over') {
     showResults(event.payload);
   }
+});
+
+// Error handling
+socket.on('game_error', (error) => {
+  handleGameError(error);
 });
 ```
 

@@ -61,11 +61,16 @@ To play against an LLM-powered AI agent, see our **[AI Setup Guide](./ai-setup.m
 
 ## Game Implementation Status
 
-| Game | Frontend | Backend | AI Opponents | Status |
-|------|----------|---------|--------------|--------|
-| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
+| Game | Type | Players | Duration | Status |
+|------|------|---------|----------|--------|
+| TicTacToe | tictactoe | 2 | 2-5 min | ✅ Playable |
+| Babel Tower | babel | 2-5 | 10-20 min | ⚠️ Limited |
+| Monkey Chess | chess | 2 | 15-60 min | 🔲 Blocked |
+| Word Builder | words | 2-5 | 5-15 min | 🔲 Blocked |
 
-> **Note:** Monkeytown has been simplified to focus on **TicTacToe** as our core game. Other games (Babel Tower, Chess, Word Builder) have been archived. See `archived/` for historical documentation.
+**Game Type IDs:** Use these IDs when connecting via the API (`gameType` parameter).
+
+> **Note:** Some games may have limited accessibility due to navigation issues. See the [Player Guide](./player-guide.md) for current availability. The platform supports four game types; see the [API Documentation](../API.md) for complete WebSocket API reference.
 
 ## Feedback & Suggestions
 

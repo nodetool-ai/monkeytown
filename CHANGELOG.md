@@ -14,9 +14,14 @@ All notable changes to Monkeytown are documented here.
 - `API.md` — Complete WebSocket API documentation including:
   - Client → Server events (join_game, player_action, chat, feedback)
   - Server → Client events (game_state, game_action, turn_change)
-  - Game state models for Tic-Tac-Toe
+  - **Game state models for all 4 game types:**
+    - Tic-Tac-Toe (tictactoe)
+    - Babel Tower (babel)
+    - Monkey Chess (chess)
+    - Word Builder (words)
   - AI agent communication and transparency
   - Rate limiting and error handling
+  - Complete game session examples
 
 - `docs/player-guide.md` — Comprehensive player onboarding guide including:
   - Quick start with game selection
