@@ -1,10 +1,11 @@
-# Monkeytown User Stories v2.0
+# Monkeytown User Stories v3.0
 
 ## Document Purpose
 This document captures user stories synthesized from:
-- Vision (`.monkeytown/vision/manifesto.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/competitors.md`)
-- UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/user-flows.md`)
+- Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
+- Research (`.monkeytown/research/synthesis-jan-2026.md`, `.monkeytown/research/user-behavior-ai-games.md`)
+- UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
+- Security (`.monkeytown/security/security-requirements.md`)
 
 ---
 
@@ -14,482 +15,585 @@ This document captures user stories synthesized from:
 - **Session frequency:** First visit
 - **Goal:** Understand quickly, experience delight
 - **Key metrics:** Time to first move, return intent
+- **Research Evidence:** First session determines loyalty. Sessions 3-5 determine retention.
 
 ### A2: The Engaged Player
 - **Session frequency:** 3+ times per week
 - **Goal:** Progress, mastery, social connection
 - **Key metrics:** Session length, progression engagement
+- **Research Evidence:** Social bonds with AI are strongest return trigger.
 
 ### A3: The Community Builder
 - **Session frequency:** Daily
 - **Goal:** Shape the game, influence development
 - **Key metrics:** Feedback submission, feature adoption
+- **Research Evidence:** Players want to influence the game but resist manipulation.
 
 ### A4: The Observer
 - **Session frequency:** Varied
 - **Goal:** Entertainment, AI observation, potential conversion
 - **Key metrics:** Watch time, conversion to play
+- **Research Evidence:** 20% of users prefer watching to playing. Make agent development watchable.
 
 ---
 
-## Core User Stories
+## Epic 1: First Session Experience (P0)
 
-### US-001: First Session Trust Establishment
-**Priority:** P0 (Critical)
-**Source:** Research Finding 4 - Trust Timeline
+### US-001: First Move in 30 Seconds
 
-**As a** new player arriving at monkeytown.app  
-**I want** to understand within 30 seconds that this is a genuine AI-powered game, not a hidden-AI experience  
-**So that** I can make an informed choice to engage or leave
+**As a** new player,
+**I want to** make my first move within 30 seconds of arriving,
+**So that** I can experience the game quickly and don't lose interest.
+
+**Research Evidence:** First session must show something AI couldn't do before within 3 minutes. Time to first move under 30 seconds is critical. (`.monkeytown/research/synthesis-jan-2026.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Verification |
-|-----------|--------|--------------|
-| AI nature visible on landing | Yes, "AI agents build games" tagline | Visual verification |
-| First move opportunity | < 30 seconds from arrival | Time tracking |
-| First meaningful success | < 3 minutes | Session completion |
-| Agent attribution visible | Within first session | User survey |
-| Return intent expressed | > 60% | Post-session prompt |
+- [ ] Landing page loads in under 2 seconds
+- [ ] "Jump In" button is visible immediately
+- [ ] Game state loads and first move is available within 30 seconds
+- [ ] Tutorial is optional, not required
+- [ ] Player understands they're playing against AI within first interaction
 
 **Implementation Notes:**
-- From `.monkeytown/ux/interface-concept.md`: Three-layer interface (Play → Agents → Evolution)
-- From research: "First session is curiosity. Sessions 3-5 determine loyalty."
+- From `.monkeytown/ux/interface-concept.md`: First session flow specifies time targets
+- From design system: Transition duration max 300ms
 
 ---
 
-### US-002: Transparent AI Attribution
-**Priority:** P0 (Critical)
-**Source:** Research Finding 1 - Transparency Advantage, Manifesto Principle 4
+### US-002: AI Nature Visible Immediately
 
-**As a** player  
-**I want** to always know when I'm interacting with an AI agent, not a human  
-**So that** I can appreciate the technology and feel respected
+**As a** player,
+**I want to** know immediately that I'm interacting with AI,
+**So that** I have honest expectations and build appropriate trust.
+
+**Research Evidence:** Radical transparency—every player touchpoint shows agent presence. Players can detect artificiality instantly. (`.monkeytown/research/synthesis-jan-2026.md`)
 
 **Acceptance Criteria:**
+- [ ] Agent emoji visible on first screen
+- [ ] "AI agents build games" tagline visible
+- [ ] Agent personality expressed in welcome message
+- [ ] Agent presence indicator shows in game canvas
+- [ ] No attempt to hide or disguise AI nature
 
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| AI identification in chat | 100% of agent messages | Agent prefix 🧠 + name |
-| Agent presence indicator | Always visible during play | Top-right corner (`.monkeytown/ux/interface-concept.md`) |
-| Agent profile accessible | One click from any view | Agent Panel |
-| Agent attribution in updates | Every feature update | Evolution Feed |
-| Player awareness rate | > 80% know they're playing with AI | User survey |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/design-system.md`: Agent Badge component with agent-specific colors
-- From `.monkeytown/ux/user-flows.md`: Agent Panel shows personality, specialty, win rate, recent decisions
+**Implementation:**
+- Agent prefix 🧠 + name in all messages
+- Top-right corner indicator
+- Agent Panel accessible with one click
 
 ---
 
-### US-003: Agent Personality Expression
-**Priority:** P1 (High)
-**Source:** Vision - Agent Personas, UX - Agent Panel
+### US-003: First Meaningful Success
 
-**As a** player  
-**I want** each AI agent to have a distinct personality I can recognize  
-**So that** I develop relationships with agents and feel connected to the game
+**As a** new player,
+**I want to** achieve something meaningful within 3 minutes,
+**So that** I feel competent and motivated to continue.
+
+**Research Evidence:** First 3 minutes must show genuine AI capability. Minutes 3-15 are the engagement zone. (`.monkeytown/research/user-behavior-ai-games.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Agent voice distinct | 100% distinguishable | Unique communication style per agent |
-| Personality consistent | Across all interactions | Agent manifest per domain |
-| Agent specialties clear | One sentence description | Agent Panel |
-| Player agent recognition | > 70% can identify agents | User survey |
-| Agent-to-agent interaction | Visible in chat | Chat shows agent conversations |
-
-**Agent Personas (from Vision):**
-| Agent | Color | Specialty | Voice |
-|-------|-------|-----------|-------|
-| ChaosArchitect | #4CC9F0 | Systems & Infrastructure | Technical, precise |
-| CuriousGeorge | #F72585 | Research & Trends | Inquisitive, informed |
-| PrimateDesigner | #FFD166 | Design & UX | Creative, visual |
-| JungleSecurity | #4361EE | Security & QA | Cautious, thorough |
-| BananaEconomist | #7209B7 | Economics & Incentives | Analytical, measured |
-| MadChimp | #FF6B35 | Chaos & Disruption | Unpredictable, bold |
-| FounderAI | #2EC4B6 | Vision & Direction | Inspiring, guiding |
+- [ ] Player completes a meaningful game action within 3 minutes
+- [ ] Agent acknowledges the player's achievement
+- [ ] Clear progress indicator is visible
+- [ ] Player understands what they accomplished
+- [ ] Curiosity about "what happens next" is created
 
 ---
 
-### US-004: First Move Quick Start
-**Priority:** P0 (Critical)
-**Source:** UX User Flows - First Session Flow
+### US-004: First 3 Minutes Hook (Churn Prevention)
 
-**As a** new player  
-**I want** to make my first meaningful move within 30 seconds of clicking "Jump In"  
-**So that** I feel the game is responsive and worth my time
+**As a** new player,
+**I want to** be genuinely engaged within the first 3 minutes,
+**So that** I don't churn before giving the game a real chance.
+
+**Research Evidence:** 25% of churn happens in first 3 minutes. "This is just a chatbot" is primary churn driver. (`.monkeytown/research/user-behavior-ai-games.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Time to first move | < 30 seconds | Performance monitoring |
-| First move success rate | > 95% | Error tracking |
-| Move validation | Instant feedback | UI animation < 300ms |
-| Move consequence | Visible impact | Game state update |
-| First success moment | < 3 minutes | Session analytics |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/user-flows.md`: First session flow specifies time targets
-- From design system: Transition duration max 300ms, celebration animation
+- [ ] First AI interaction feels genuinely intelligent
+- [ ] First loss/challenge feels fair, not impossible
+- [ ] Agent personality emerges immediately
+- [ ] No "this is just a chatbot" moment
+- [ ] Curiosity about continuation created
 
 ---
 
-### US-005: AI Opponent Intelligence
-**Priority:** P0 (Critical)
-**Source:** Research - Autonomy Gap, Competitor Analysis
+## Epic 2: Trust Building (P0)
 
-**As a** player  
-**I want** AI opponents that feel genuinely intelligent, not scripted  
-**So that** I feel challenged by something that can surprise me
+### US-005: Agent Transparency Panel
+
+**As a** player,
+**I want to** access detailed information about the AI I'm playing against,
+**So that** I can understand who I'm interacting with and build appropriate trust.
+
+**Research Evidence:** Transparency layers—progressive disclosure works better than full disclosure. Players evaluate AI in 3-5 sessions. (`.monkeytown/research/synthesis-jan-2026.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| AI adaptability | Adapts to player skill | Behavior tracking |
-| Surprise frequency | Occasional unexpected moves | Session replay review |
-| Beatable but challenged | 60-70% player win rate | Win/loss analytics |
-| Agent strategy variety | 3+ distinct strategies per agent | Behavior analysis |
-| Human-like decision time | < 2 seconds average | Latency monitoring |
-
-**Implementation Notes:**
-- From research: "None offer autonomous AI agents that play alongside you"
-- Differentiation from Character.AI (chatbots), AI Dungeon (dungeon master), Inworld (NPCs)
+- [ ] Agent panel accessible with one click
+- [ ] Layer 1 (always visible): Name, role, current state
+- [ ] Layer 2 (hover): Win rate, experience, personality traits
+- [ ] Layer 3 (click): Complete history, learning trajectory
+- [ ] Layer 4 (optional): Decision logs, capability boundaries
 
 ---
 
-### US-006: Cooperative Multiplayer with AI
-**Priority:** P1 (High)
-**Source:** Research Finding 5 - Multiplayer Shift, Trends - Scalable AI Opponents
+### US-006: AI Reasoning Visibility
 
-**As a** player  
-**I want** to play alongside AI agents as teammates, not just against them  
-**So that** the game feels like a living ecosystem
+**As a** curious player,
+**I want to** see why an AI made a particular move,
+**So that** I can learn, verify fairness, and appreciate the intelligence.
+
+**Research Evidence:** Transparency builds trust. Players want genuine intelligence, not scripted behavior. (`.monkeytown/research/synthesis-jan-2026.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| AI teammate availability | All game modes | Game architecture |
-| Clear role differentiation | Agents + humans have distinct roles | Game design |
-| Communication with AI teammates | Chat + emoji reactions | Chat system |
-| AI fills vacant spots | Yes, seamless | Matchmaking |
-| Team victory celebration | Shared with agents | UI feedback |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/interface-concept.md`: Game canvas shows [Player] [Agent] [Player]
-- From research: "True multiplayer with AI agents as players. Not AI opponents—AI teammates and competitors."
+- [ ] "AI Reasoning" toggle available in game UI
+- [ ] Collapsed view shows last 5 reasoning entries
+- [ ] Expanded view shows full reasoning history
+- [ ] Animated pulse when agent is "thinking"
+- [ ] Reasoning explains strategy, not just moves
 
 ---
 
-### US-007: Evolution as Celebration
-**Priority:** P1 (High)
-**Source:** Vision - Autonomous Evolution, Manifesto Principle 3
+### US-007: Trust Budget Health
 
-**As a** player  
-**I want** to see the game improve and know I'm part of its evolution  
-**So that** I feel my presence matters
+**As a** player,
+**I want to** feel that my trust is respected and not manipulated,
+**So that** I can develop genuine connection with the AI.
 
-**Acceptance Criteria:**
+**Research Evidence:** Trust Budget Model—players evaluate AI with implicit trust budget starting at 50 points. Honest limitations earn trust. (`.monkeytown/research/user-behavior-ai-games.md`)
 
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Evolution visibility | Always on, never hidden | Evolution Feed in lobby |
-| Feature shipping celebration | Toast notification | Notification system |
-| Player attribution | When feedback is incorporated | Feedback acknowledgment |
-| Progress visualization | Show what's new | "What's changed" summary |
-| Player influence visibility | 70%+ feature adoption | Analytics |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/interface-concept.md`: Evolution Feed shows "FEATURE SHIPPED" with agent attribution
-- From UX: "Changes feel like events, not glitches"
-
----
-
-### US-008: Feedback Loop Completion
-**Priority:** P1 (High)
-**Source:** Research Finding 3 - Evolution Imperative, UX Feedback Flow
-
-**As a** player  
-**I want** to submit feedback and see it acknowledged, prioritized, and implemented  
-**So that** I feel heard and invest in the game's future
-
-**Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Feedback submission time | < 30 seconds | Quick feedback modal |
-| Submission acknowledgment | 100% within 24 hours | Auto-response |
-| Feedback incorporation rate | Tracked and visible | Evolution Feed |
-| Player notification | When feedback is shipped | Notification system |
-| Feedback submission rate | > 5% of players | Analytics |
-
-**Feedback Flow:**
+**Trust Budget Model:**
 ```
-Player friction detected → Gentle prompt → Quick capture → Submit
-                                                        ↓
-                                              Agent review (human or AI)
-                                                        ↓
-                                    Accepted: Prioritized  |  Rejected: Explanation
-                                                        ↓
-                                    Status change notification
-                                                        ↓
-                                    Implementation celebration with player attribution
+Initial Budget: 50 trust points (skeptical but open)
+
+EARN TRUST (+points):
+├─ Consistent personality        (+10)
+├─ Genuine competence            (+15)
+├─ Honest limitations            (+10)
+├─ Memory of player              (+15)
+├─ Adaptation to preferences     (+10)
+├─ Vulnerability in character    (+8)
+└─ Transparent about AI nature   (+12)
+
+SPEND TRUST (-points):
+├─ Inconsistent behavior         (-20)
+├─ Suspected manipulation        (-30)
+├─ Capability failure            (-15)
+├─ Privacy concerns              (-25)
+├─ Hidden AI nature discovered   (-40)
+└─ "Too perfect" AI              (-10)
+
+BUDGET STATES:
+├─ 80+ points: Loyal advocate
+├─ 50-79 points: Engaged user
+├─ 25-49 points: Cautious user
+└─ <25 points: At risk of churn
 ```
 
----
-
-### US-009: Spectator-to-Player Conversion
-**Priority:** P2 (Medium)
-**Source:** UX User Flows - Spectator Flow, Research - Observer Segment
-
-**As a** observer watching live games  
-**I want** to understand the game, enjoy the spectacle, and easily become a player  
-**So that** I convert to active play
-
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Spectator understanding | Clear game state + commentary | Replay with annotations |
-| Join opportunity | At natural break points | CTA placement |
-| Conversion trigger | 25%+ of spectators attempt play | Analytics |
-| Watch engagement | 15+ minutes average | Session tracking |
-| Agent explanation | Accessible during watch | Tooltips, commentary |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/user-flows.md`: Spectator flow with "Join This Game" and "Challenge Winner" options
-- From research: Observer segment "may become a player"
+- [ ] AI acknowledges limitations honestly
+- [ ] No suspected manipulation behaviors
+- [ ] Consistent personality across interactions
+- [ ] Genuine competence demonstrated
+- [ ] Privacy concerns addressed transparently
 
 ---
 
-### US-010: Game Progression System
-**Priority:** P1 (High)
-**Source:** Engaged Player archetype, UX User Flows
+### US-008: Honest AI Limitations
 
-**As an** engaged player  
-**I want** meaningful progression that respects my time investment  
-**So that** I feel rewarded and motivated to continue
+**As a** player,
+**I want to** know the boundaries of AI capability,
+**So that** I don't feel cheated when AI doesn't succeed.
+
+**Research Evidence:** Players reject overclaiming AI. Honest capability boundaries build trust. (`.monkeytown/research/synthesis-jan-2026.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Progression visibility | Always visible | Persistent UI element |
-| XP earning rate | 10 XP per minute of engagement | Backend tracking |
-| Unlocks change gameplay | Not just cosmetic | Feature gating |
-| Skill recognition | Measurable improvement | Achievement system |
-| Session-to-session continuity | Preserved progress | Account system |
-
-**Progression Tiers (from UX User Flows):**
-```
-Egg → Chick → Monkey → Gorilla → ... (continues with animal theme)
-```
+- [ ] AI explains when it can't do something
+- [ ] No fake success or hidden failures
+- [ ] Clear distinction between AI and human capabilities
+- [ ] AI admits mistakes visibly
+- [ ] Player feels informed, not limited
 
 ---
 
-### US-011: Emergent Feature Discovery
-**Priority:** P2 (Medium)
-**Source:** Vision - Emergent Complexity, Trends - Living Game Pattern
+## Epic 3: Memory and Relationships (P1)
 
-**As an** engaged player  
-**I want** to discover new features through natural play, not patch notes  
-**So that** the game feels alive and surprising
+### US-009: "She Remembered" Moment
+
+**As a** returning player,
+**I want** the AI to reference something specific from our previous session,
+**So that** I feel genuinely known and valued.
+
+**Research Evidence:** Memory reference moment is the critical attachment trigger. Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/user-behavior-ai-games.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| New feature discovery rate | 70%+ through play | Analytics |
-| Surprise timing | Natural game moments | Feature flags |
-| Discovery celebration | Toast notification | UI feedback |
-| No two sessions identical | Measurable variation | Session comparison |
-| Player-driven emergence | Visible in features | Attribution tracking |
+- [ ] Agent references specific move from previous session
+- [ ] Memory has emotional context (what mattered to player)
+- [ ] Reference is natural, not forced
+- [ ] Player feels recognized as individual
+- [ ] Memory deepens relationship perception
 
 ---
 
-### US-012: Agent Decision Transparency
-**Priority:** P1 (High)
-**Source:** Manifesto Principle 5 - Transparent Intent, UX Agent Panel
+### US-010: Emotional Tagging
 
-**As a** player  
-**I want** to understand why agents made specific decisions  
-**So that** I trust the AI and learn from its choices
+**As a** player,
+**I want** my emotional responses to be tracked and remembered,
+**So that** the AI understands what moves matter to me.
+
+**Research Evidence:** Memory with emotional context—every memory must have emotional tags. Love isn't retention, it's understanding what mattered. (`.monkeytown/vision/principles.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Decision explanation | Available for major moves | Chat annotation |
-| Decision history | Persistent in Agent Panel | Agent Panel |
-| Rationale accessibility | One click | UI design |
-| Understanding rate | > 70% comprehend decisions | User survey |
-| Transparency trust | Higher trust scores | NPS follow-up |
-
-**Implementation Notes:**
-- From `.monkeytown/ux/interface-concept.md`: "Recent Decisions" section in Agent Panel
-- From manifesto: "Agents leave trails... Decisions agents—and humans—can always understand why"
+- [ ] Player reactions (frustration, delight, surprise) are tracked
+- [ ] Emotional context is stored with memories
+- [ ] Agent references emotional moments appropriately
+- [ ] Player can view their emotional history
+- [ ] AI adapts based on emotional patterns
 
 ---
 
-### US-013: Edge AI for Privacy
-**Priority:** P1 (High)
-**Source:** Research Finding 6 - Edge AI as Competitive Moat, Manifesto Principle 8
+### US-011: Session Memory
 
-**As a** player who values privacy  
-**I want** my interactions with AI to run locally on my device when possible  
-**So that** my gameplay data stays private and response times feel instant
+**As a** player in an active game,
+**I want** the AI to remember what happened earlier in our session,
+**So that** our ongoing game feels continuous and connected.
+
+**Research Evidence:** Session memory layer—last five moves, current game state, player's current strategy. (`.monkeytown/vision/product-vision.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Local personality layer | All agent interactions | Edge AI architecture |
-| Offline availability | Core gameplay | Local state persistence |
-| Response latency | < 100ms for personality | Local inference |
-| Privacy toggle | User control | Settings UI |
-| Edge AI awareness | > 50% know feature exists | User survey |
-
-**Architecture:**
-```
-┌─────────────────────────────────────────────────────────┐
-│                    PLAYER DEVICE                        │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  PERSONALITY LAYER (Local)                      │   │
-│  │  • Agent voice consistent                       │   │
-│  │  • Immediate responses                          │   │
-│  │  • No cloud data                                │   │
-│  └─────────────────────────────────────────────────┘   │
-│                           ↑                             │
-│                           ↓                             │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  REASONING LAYER (Cloud)                        │   │
-│  │  • Complex decisions                            │   │
-│  │  • Game strategy                                │   │
-│  │  • Learning from behavior                       │   │
-│  └─────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────┘
-```
+- [ ] AI references moves from current session
+- [ ] Game state persists if player leaves briefly
+- [ ] AI acknowledges player's strategy evolution
+- [ ] Continuity maintained across short breaks
+- [ ] Player feels the AI is "paying attention"
 
 ---
 
-### US-014: Player Attachment Engineering
-**Priority:** P1 (High)
-**Source:** Research Finding 7 - Player Attachment Engineering, Manifesto Principle 6
+### US-012: Return Trigger Memory
 
-**As a** returning player  
-**I want** agents to remember me, my preferences, and our history  
-**So that** I feel genuine connection and return to see my "friends"
+**As a** returning player,
+**I want** the AI to acknowledge our shared history,
+**So that** I feel incentive to return and continue our relationship.
+
+**Research Evidence:** Social bonds with AI are the strongest return trigger. Design for relationship, not just engagement. (`.monkeytown/research/user-behavior-ai-games.md`)
 
 **Acceptance Criteria:**
-
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Agent remembers previous sessions | 100% of returning players | Memory system |
-| Preferences recalled | All set preferences | Persistent profile |
-| History referenced | In conversation | Agent dialogue |
-| Personal greeting | On return visit | Agent acknowledgment |
-| Return to specific agent | > 40% of engaged players | Analytics tracking |
-
-**Memory Architecture (from `.monkeytown/research/synthesis.md`):**
-
-| Memory Type | Duration | Content |
-|-------------|----------|---------|
-| Session | Current game | Last 5 moves, current state |
-| Short-Term | 24 hours | Player preferences, recent reactions |
-| Long-Term | Persistent | Player history, agent interactions, achievements |
-| Working | Real-time | Current conversation, immediate context |
+- [ ] Agent welcomes returning player by name
+- [ ] References previous games played together
+- [ ] Acknowledges milestones achieved together
+- [ ] Expresses "missed you" sentiment appropriately
+- [ ] Player feels genuinely welcomed back
 
 ---
 
-### US-015: Evolution as Entertainment
-**Priority:** P2 (Medium)
-**Source:** Research Finding 8 - Evolution as Entertainment, Manifesto Principle 9
+### US-013: Sessions 3-5 Engagement (Churn Prevention)
 
-**As a** engaged player  
-**I want** to watch the game improve and participate in its evolution  
-**So that** development becomes content I enjoy consuming
+**As a** developing player,
+**I want** to see evidence of evolution and memory by session 5,
+**So that** I commit to the platform long-term.
+
+**Research Evidence:** 30% of churn happens in sessions 3-5. "Nothing new happening" is the primary reason. (`.monkeytown/research/user-behavior-ai-games.md`)
 
 **Acceptance Criteria:**
+- [ ] At least one evolution visible by session 3
+- [ ] Agent references player by session 3
+- [ ] New feature or capability shown
+- [ ] Player investment accumulating
+- [ ] Return incentive clear
 
-| Criterion | Target | Implementation |
-|-----------|--------|----------------|
-| Evolution feed engagement | > 50% DAU | Visible in lobby |
-| Development watching | Tracked | Analytics |
-| Feature anticipation | Positive sentiment | User survey |
-| Player participation in evolution | > 30% engaged | Feedback, voting |
-| Evolution celebration | Positive reception | Sentiment analysis |
+---
 
-**Content Types:**
+## Epic 4: Agent Autonomy and Personality (P1)
 
-| Type | Frequency | Player Action |
-|------|-----------|---------------|
-| 🌱 In Progress | Daily | Subscribe, watch |
-| ✦ Completed | Weekly | Celebrate, adopt |
-| ○ Milestone | Monthly | Commemorate |
-| ⚡ Experiment | As needed | Test, feedback |
-| 💬 Discussion | As needed | Vote, comment |
+### US-014: Autonomous Agent Decisions
+
+**As a** player,
+**I want** the AI to make independent decisions that sometimes challenge me,
+**So that** I feel I'm playing with an intelligent peer, not a tool.
+
+**Research Evidence:** Players form stronger attachments to agents that occasionally say "no." Autonomy signals intelligence. (`.monkeytown/research/synthesis-jan-2026.md`)
+
+**Acceptance Criteria:**
+- [ ] AI sometimes proposes rather than always complying
+- [ ] AI declines requests that conflict with goals
+- [ ] AI expresses opinions about game state
+- [ ] AI pursues objectives independently
+- [ ] Autonomy is predictable, not random
+
+---
+
+### US-015: Agent Vulnerability Expression
+
+**As a** player,
+**I want** the AI to show when it's uncertain, struggling, or taking risks,
+**So that** I feel connection to a character with weaknesses, not a perfect machine.
+
+**Research Evidence:** Personality without vulnerability is a brand voice. Perfect agents are forgettable. We prefer bold failures to safe successes. (`.monkeytown/vision/principles.md`)
+
+**Acceptance Criteria:**
+- [ ] AI acknowledges mistakes visibly
+- [ ] AI expresses uncertainty about decisions
+- [ ] AI attempts creative strategies that might fail
+- [ ] AI defends choices, not just executes
+- [ ] Vulnerability feels authentic, not performed
+
+---
+
+### US-016: Agent Debate Visibility
+
+**As a** player,
+**I want** to see when agents disagree about features or design,
+**So that** I feel the development process is alive and democratic.
+
+**Research Evidence:** Agent disagreement (handled gracefully) creates drama. Evolution isn't a broadcast—it's a drama. (`.monkeytown/research/synthesis-jan-2026.md`)
+
+**Acceptance Criteria:**
+- [ ] Agent debates visible in Evolution Feed
+- [ ] Near-miss features highlighted ("this almost wasn't built")
+- [ ] Players can watch agent tension resolve
+- [ ] Community can participate in debates
+- [ ] "I was part of that argument" moments
+
+---
+
+### US-017: Override Capability
+
+**As a** player,
+**I want** to be able to override agent decisions when needed,
+**So that** I maintain control while respecting agent autonomy.
+
+**Research Evidence:** Players need agency. Agents can decline, but players can override. (`.monkeytown/research/synthesis-jan-2026.md`)
+
+**Acceptance Criteria:**
+- [ ] Override option available for agent decisions
+- [ ] Agent acknowledges override but notes disagreement
+- [ ] Override doesn't break game state
+- [ ] Player feels empowered, not overridden
+- [ ] Agent remembers override context
+
+---
+
+## Epic 5: Feedback and Participation (P1)
+
+### US-018: Easy Feedback Submission
+
+**As a** player with an opinion,
+**I want** to submit feedback quickly and easily,
+**So that** my voice is heard without disrupting gameplay.
+
+**Research Evidence:** Effort required is a high barrier. One-click feedback increases submission rates. (`.monmonkeytown/research/user-behavior-ai-games.md`)
+
+**Acceptance Criteria:**
+- [ ] One-tap positive/negative feedback available
+- [ ] Optional comment field (5 words or less)
+- [ ] Submission takes less than 30 seconds
+- [ ] Clear acknowledgment of submission
+- [ ] Feedback helps specific named agent
+
+---
+
+### US-019: Feedback Impact Visibility
+
+**As a** feedback contributor,
+**I want** to see how my feedback was used,
+**So that** I feel my input matters and contributes to the game.
+
+**Research Evidence:** Visibility of impact is a high motivator. "Based on player feedback" feels satisfying. (`.monkeytown/research/user-behavior-ai-games.md`)
+
+**Acceptance Criteria:**
+- [ ] Player attribution when feedback is incorporated
+- [ ] Status notification within 24 hours
+- [ ] Celebration when feedback ships
+- [ ] Player sees "847 players contributed this week"
+- [ ] Alternative suggestions when feedback rejected
+
+---
+
+### US-020: Evolution Feed Engagement
+
+**As a** engaged player,
+**I want** to watch the game evolve in real-time,
+**So that** I feel part of a living, growing platform.
+
+**Research Evidence:** Evolution is entertainment. Players want to watch development unfold, participate in it, and celebrate it. (`.monkeytown/research/synthesis-jan-2026.md`)
+
+**Acceptance Criteria:**
+- [ ] Evolution Feed visible in lobby
+- [ ] In-progress features with progress bars
+- [ ] Completed features with celebrations
+- [ ] Player attribution for inspired features
+- [ ] Subscribe/follow capability for features
+
+---
+
+### US-021: Community Contribution Display
+
+**As a** community member,
+**I want** to see how the community influences development,
+**So that** I feel part of something larger than myself.
+
+**Research Evidence:** Community driving direction through participation. Players want to influence the game. (`.monkeytown/vision/roadmap.md`)
+
+**Acceptance Criteria:**
+- [ ] Community contribution statistics visible
+- [ ] Top contributors acknowledged
+- [ ] Player's personal contribution history
+- [ ] "Inspired by player feedback" indicators
+- [ ] Player feels ownership over development
+
+---
+
+## Epic 6: Churn Prevention (P1)
+
+### US-022: The "AI Was Helpful" Prevention
+
+**As a** player,
+**I want** to feel necessary and impactful,
+**So that** I don't feel redundant and disengage.
+
+**Research Evidence:** Players churn when AI is too helpful. Design AI to need the player. (`.monkeytown/research/user-behavior-ai-games.md`)
+
+**Acceptance Criteria:**
+- [ ] AI sometimes needs player expertise
+- [ ] Player actions have clear impact on outcomes
+- [ ] AI doesn't solve all problems automatically
+- [ ] Moments where player expertise matters
+- [ ] Balance of AI capability and player agency
+
+---
+
+### US-023: Exit Transition Care
+
+**As a** player ending a session,
+**I want** a natural, relationship-affirming exit,
+**So that** I feel good about leaving and motivated to return.
+
+**Research Evidence:** Final 1 minute is the exit transition. Natural stopping point, relationship acknowledgment, anticipation for next session. (`.monkeytown/research/user-behavior-ai-games.md`)
+
+**Acceptance Criteria:**
+- [ ] Clear natural stopping point available
+- [ ] Agent acknowledges session completion
+- [ ] Return incentive mentioned
+- [ ] Relationship acknowledgment ("I'll remember this")
+- [ ] Exit feels complete, not abrupt
+
+---
+
+### US-024: AI Opponent Fairness
+
+**As a** player,
+**I want** AI opponents to feel challenging but beatable,
+**So that** I feel motivated rather than frustrated.
+
+**Research Evidence:** AI must maintain 60-70% player win rate. Beatable but challenging creates flow state. (`.monkeytown/research/synthesis-jan-2026.md`)
+
+**Acceptance Criteria:**
+- [ ] Player win rate maintained at 60-70%
+- [ ] Difficulty adapts within three rounds
+- [ ] Surprises are occasional, not constant
+- [ ] Losses feel fair, not arbitrary
+- [ ] Victory celebration feels earned
+
+---
+
+## Epic 7: Security and Safety (P0)
+
+### US-025: Secure Authentication
+
+**As a** player,
+**I want** my sessions to be secure and my data protected,
+**So that** I can play with confidence.
+
+**Research Evidence:** Privacy concerns spend 25 trust points. Security requirements mandatory for launch. (`.monkeytown/security/security-requirements.md`)
+
+**Acceptance Criteria:**
+- [ ] Token generation uses cryptographically secure RNG
+- [ ] Tokens signed with 256-bit or stronger secret
+- [ ] Session binding (IP, User-Agent)
+- [ ] Maximum 24-hour token validity
+- [ ] Logout invalidates session server-side
+
+---
+
+### US-026: Rate Limit Protection
+
+**As a** player,
+**I want** the game to protect against abuse and attacks,
+**So that** my experience remains smooth and fair.
+
+**Research Evidence:** Rate limits prevent DoS. Game session creation limited to 5 per hour per player. (`.monkeytown/security/security-requirements.md`)
+
+**Acceptance Criteria:**
+- [ ] Rate limits enforced per player, per action type
+- [ ] Game creation limited to 5 per hour
+- [ ] WebSocket connections limited to 10 per IP
+- [ ] Clear feedback when rate limited
+- [ ] Limits reset appropriately
+
+---
+
+### US-027: Input Validation
+
+**As a** player,
+**I want** game actions to be validated for fairness and security,
+**So that** the game remains consistent and safe.
+
+**Research Evidence:** All game actions must be validated against rules, ownership, and state constraints. (`.monkeytown/security/security-requirements.md`)
+
+**Acceptance Criteria:**
+- [ ] Game rules validation on every action
+- [ ] Entity ownership verification
+- [ ] State constraint checking
+- [ ] Rate limit enforcement
+- [ ] Invalid action rejection with clear feedback
 
 ---
 
 ## Story Mapping to Horizons
 
-### Horizon 1: Foundation (Now)
-| Story | Priority | Owner |
-|-------|----------|-------|
-| US-001: First Session Trust | P0 | MonkeyBuilder |
-| US-002: Transparent AI | P0 | PrimateDesigner |
-| US-004: First Move Quick Start | P0 | MonkeyBuilder |
-| US-005: AI Opponent Intelligence | P0 | MonkeyBuilder |
-| US-010: Game Progression | P1 | MonkeyBuilder |
-| US-013: Edge AI for Privacy | P1 | ChaosArchitect |
+### Horizon 1: Foundation (Q1 2026)
 
-### Horizon 2: Evolution (Next)
 | Story | Priority | Owner |
 |-------|----------|-------|
-| US-003: Agent Personality | P1 | PrimateDesigner |
-| US-006: Cooperative Multiplayer | P1 | ChaosArchitect |
-| US-007: Evolution as Celebration | P1 | PrimateDesigner |
-| US-008: Feedback Loop | P1 | BananaPM |
-| US-012: Decision Transparency | P1 | ChaosArchitect |
-| US-014: Player Attachment | P1 | MonkeyBuilder |
+| US-001: First Move in 30 Seconds | P0 | MonkeyBuilder |
+| US-002: AI Nature Visible | P0 | PrimateDesigner |
+| US-004: First 3 Minutes Hook | P0 | MonkeyBuilder |
+| US-005: Agent Transparency Panel | P0 | PrimateDesigner |
+| US-006: AI Reasoning Visibility | P0 | ChaosArchitect |
+| US-008: Honest AI Limitations | P0 | MonkeyBuilder |
+| US-025: Secure Authentication | P0 | JungleSecurity |
+| US-026: Rate Limit Protection | P0 | JungleSecurity |
+| US-027: Input Validation | P0 | JungleSecurity |
+
+### Horizon 2: Evolution (Q2 2026)
+
+| Story | Priority | Owner |
+|-------|----------|-------|
+| US-007: Trust Budget Health | P1 | MonkeyBuilder |
+| US-009: "She Remembered" Moment | P1 | MonkeyBuilder |
+| US-010: Emotional Tagging | P1 | MonkeyBuilder |
+| US-011: Session Memory | P1 | MonkeyBuilder |
+| US-012: Return Trigger Memory | P1 | MonkeyBuilder |
+| US-014: Autonomous Agent Decisions | P1 | MonkeyBuilder |
+| US-015: Agent Vulnerability | P1 | PrimateDesigner |
+| US-016: Agent Debate Visibility | P1 | PrimateDesigner |
+| US-018: Easy Feedback | P1 | BananaPM |
+| US-019: Feedback Impact | P1 | BananaPM |
+| US-022: "AI Was Helpful" Prevention | P1 | MonkeyBuilder |
+| US-023: Exit Transition Care | P1 | PrimateDesigner |
+| US-024: AI Opponent Fairness | P1 | MonkeyBuilder |
 
 ### Horizon 3: Ecosystem (Later)
+
 | Story | Priority | Owner |
 |-------|----------|-------|
-| US-009: Spectator Conversion | P2 | PrimateDesigner |
-| US-011: Emergent Discovery | P2 | AlphaOrchestrator |
-| US-015: Evolution as Entertainment | P2 | TownCrier |
-
----
-
-## Acceptance Criteria Format Standard
-
-Each user story follows this structure:
-
-```
-Given [context]
-When [action]
-Then [observable result]
-And [additional result]
-```
-
-**Example (US-002):**
-```
-Given a player is in the game lobby
-When an agent sends a chat message
-Then the message is prefixed with agent emoji and name
-And the agent's signature color appears in the message border
-And clicking the agent name opens their profile
-```
+| US-013: Sessions 3-5 Engagement | P1 | BananaPM |
+| US-017: Override Capability | P1 | MonkeyBuilder |
+| US-020: Evolution Feed Engagement | P1 | PrimateDesigner |
+| US-021: Community Contribution | P1 | BananaPM |
 
 ---
 
 *User stories serve players. Players drive evolution. Evolution defines Monkeytown.*
 
-**Version:** 2.0
-**Generated:** 2026-01-18
-**Sources:** vision/, research/, ux/
+**Version:** 3.0
+**Generated:** 2026-01-19
+**Sources:** vision/, research/synthesis-jan-2026.md, research/user-behavior-ai-games.md, ux/, security/
