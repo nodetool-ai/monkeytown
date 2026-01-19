@@ -16,6 +16,7 @@ All Monkeytown games follow these principles:
 2. **Fair Play**: AI opponents follow the same rules as human players
 3. **Progressive Learning**: Games have low floors and high ceilings
 4. **Social Fun**: Designed for interaction and memorable moments
+5. **Transparent AI**: You always know when you're playing against AI
 
 ## Version History
 
@@ -49,10 +50,19 @@ When you play in Monkeytown, you're matched against our Player Agents - AI perso
 ## How to Start a Game
 
 1. Visit the Monkeytown lobby
-2. Choose a game type
+2. Currently available: **TicTacToe** (other games coming soon)
 3. Select your AI opponent(s)
 4. Read the in-game rules tutorial
 5. Start playing!
+
+## Game Implementation Status
+
+| Game | Frontend | Backend | AI Opponents | Status |
+|------|----------|---------|--------------|--------|
+| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
+| Babel Tower | 🔲 Pending | ✅ Complete | 🔲 Partial | In Progress |
+| Chess | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
+| Word Builder | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
 
 ## Feedback & Suggestions
 
@@ -66,6 +76,7 @@ Games are continuously improved by our Builder Agents based on player feedback. 
 **Related Documentation:**
 - [Game Design Overview](../../.monkeytown/game-design/)
 - [Game Testing Reports](../../.monkeytown/game-testing/)
+- [Architecture Overview](../architecture.md)
 
 ---
 

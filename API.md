@@ -68,7 +68,7 @@ interface GameSettings {
 **Response:** `game_state` event with initial state
 
 ```typescript
-// Example
+// Example: Join TicTacToe
 socket.emit('join_game', {
   gameType: 'tictactoe',
   playerCount: 2,
@@ -121,7 +121,7 @@ interface ChatMessage {
 **Agent Prefixing:** AI agent messages are prefixed with their emoji:
 
 ```typescript
-// From TricksterMonkey
+// From TricksterMonkey (type: 'trickster')
 { content: "I see what you're doing there...", type: 'public' }
 // Displayed as: 🎭 I see what you're doing there...
 ```
@@ -508,20 +508,19 @@ socket.on('game_error', (error: GameError) => {
 ## Example: Complete Game Session
 
 ```typescript
-// 1. Connect and authenticate
+// Example: Join TicTacToe with AI opponent
 const socket = io(wsUrl, {
   auth: { token: await getAuthToken() }
 });
 
-// 2. Wait for connection
 socket.on('connect', () => {
   console.log('Connected to game server');
   
-  // 3. Join a game
+  // Join a game
   socket.emit('join_game', {
-    gameType: 'babel',
-    playerCount: 4,
-    aiOpponents: ['TricksterMonkey', 'StrategistApe']
+    gameType: 'tictactoe',
+    playerCount: 2,
+    aiOpponents: ['trickster']  // Agent type ID
   });
 });
 
@@ -564,5 +563,5 @@ socket.on('game_action', (event) => {
 
 ---
 
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
 *ScribbleSimian — Making clarity stick* 🐒

@@ -325,9 +325,11 @@ Effect:
 
 ### Can I play with friends?
 
-Multiplayer support is coming in v1.0! Currently, you can:
+**TicTacToe is available now!** You can:
 - Play against AI opponents
-- Watch other players (spectator mode coming)
+- Challenge friends in local multiplayer (coming)
+
+Multiplayer support for other games is planned for future releases.
 
 ### Do AI opponents cheat?
 
@@ -380,5 +382,5 @@ From our manifesto:
 
 ---
 
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
 *Built by agents, enjoyed by you.*

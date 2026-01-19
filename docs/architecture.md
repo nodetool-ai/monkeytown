@@ -1,14 +1,13 @@
 # Architecture Overview
 
+**Current as of:** 2026-01-19
 **Derived from agent decisions and codebase analysis.**
 
 ---
 
 ## System Philosophy
 
-Monkeytown is not designed. It emerges.
-
-The architecture reflects this philosophy: components connect and communicate through observable patterns, not rigid contracts. The system adapts, bends, and never breaks.
+Monkeytown is a multiplayer game platform where AI agents build and operate games for human players. The architecture prioritizes real-time gameplay with AI opponents that have visible personalities and transparent decision-making.
 
 ---
 
@@ -16,51 +15,49 @@ The architecture reflects this philosophy: components connect and communicate th
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│                   Witness (Browser)                 │
+│                   Player Browser                     │
 │                                                      │
 │  ┌──────────────────────────────────────────────┐  │
 │  │              React Application               │  │
 │  │  ┌────────────────────────────────────────┐  │  │
-│  │  │            Terrarium View              │  │  │
+│  │  │            Game Components             │  │  │
 │  │  │  ┌──────────┐  ┌──────────────────┐   │  │  │
-│  │  │  │AgentCard │  │    AgentCard     │   │  │  │
-│  │  │  │   F-002  │  │       F-002      │   │  │  │
+│  │  │  │GameCanvas│  │    ChatPanel     │   │  │  │
 │  │  │  └──────────┘  └──────────────────┘   │  │  │
-│  │  │              Flow Streams              │  │  │
-│  │  │  ┌──────┐    ───────►    ┌───────┐   │  │  │
-│  │  │  │Agent │    F-003       │ Agent │   │  │  │
-│  │  │  └──────┘                └───────┘   │  │  │
+│  │  │  ┌──────────┐  ┌──────────────────┐   │  │  │
+│  │  │  │Evolution │  │  AI Reasoning    │   │  │  │
+│  │  │  │  Feed    │  │    Display       │   │  │  │
+│  │  │  └──────────┘  └──────────────────┘   │  │  │
 │  │  └────────────────────────────────────────┘  │  │
-│  │              Ghost Column                     │  │
-│  │              System Pulse                     │  │
+│  │              Next.js Frontend                 │  │
 │  └──────────────────────────────────────────────┘  │
-│                                                      │
-└─────────────────────────────────────────────────────┘
-         │
-         │ (WebSocket / Future API)
-         ▼
+│                         │                          │
+│              WebSocket (Socket.IO)                  │
+│                         │                          │
+│                         ▼                          │
 ┌─────────────────────────────────────────────────────┐
-│              Server (Future)                        │
+│              Node.js Game Server                    │
 │                                                      │
 │  ┌──────────────────────────────────────────────┐  │
-│  │              Agent Runtime                   │  │
+│  │              Game Engines                    │  │
 │  │  ┌─────────┐  ┌─────────┐  ┌─────────┐     │  │
-│  │  │ Agent 1 │  │ Agent 2 │  │ Agent N │     │  │
-│  │  └────┬────┘  └────┬────┘  └────┬────┘     │  │
-│  │       │            │            │           │  │
-│  │       └────────────┼────────────┘           │  │
-│  │                    ▼                         │  │
-│  │            ┌──────────────┐                  │  │
-│  │            │  Event Bus   │                  │  │
-│  │            │  (Internal)  │                  │  │
-│  │            └──────┬───────┘                  │  │
-│  │                   │                          │  │
-│  │         ┌─────────┴─────────┐                │  │
-│  │         ▼                   ▼                │  │
-│  │  ┌─────────────┐    ┌─────────────┐         │  │
-│  │  │   State     │    │   History   │         │  │
-│  │  │   Store     │    │   Store     │         │  │
-│  │  └─────────────┘    └─────────────┘         │  │
+│  │  │TicTacToe│  │  Babel  │  │  Chess  │     │  │
+│  │  │ Engine  │  │ Engine  │  │  (WIP)  │     │  │
+│  │  └────┬────┘  └────┬────┘  └─────────┘     │  │
+│  │       │            │                       │  │
+│  │       └────────────┼───────────────────────┘  │
+│  │                    ▼                          │
+│  │            ┌──────────────┐                   │
+│  │            │    AI        │                   │
+│  │            │  Opponents   │                   │
+│  │            └──────┬───────┘                   │
+│  │                   │                           │
+│  │         ┌─────────┴─────────┐                 │
+│  │         ▼                   ▼                 │
+│  │  ┌─────────────┐    ┌─────────────┐          │
+│  │  │   Redis     │    │  Session    │          │
+│  │  │   Pub/Sub   │    │   Store     │          │
+│  │  └─────────────┘    └─────────────┘          │
 │  └──────────────────────────────────────────────┘  │
 │                                                      │
 └─────────────────────────────────────────────────────┘
@@ -70,127 +67,164 @@ The architecture reflects this philosophy: components connect and communicate th
 
 ## Component Architecture
 
-### Frontend (React + Vite)
+### Frontend (React + Next.js 14)
 
-The frontend follows a component-based architecture with clear separation of concerns:
+The frontend follows a component-based architecture with game-specific and shared components:
 
 ```
 web/src/
-├── components/
-│   ├── AgentCard.tsx           # F-002: Entity visualization
-│   │   ├── AgentCard.css       # Styles
-│   │   ├── 5 visual states     # idle, active, processing, complete, error
-│   │   └── Metrics display     # efficiency, load, connections
-│   │
-│   ├── TerrariumView.tsx       # F-001: Main canvas
-│   │   ├── Emergent layout     # Flow-based positioning
-│   │   ├── Gravity-based       # attention, chronological, spatial
-│   │   └── Canvas component    # React-based rendering
-│   │
-│   ├── SystemPulse.tsx         # F-006: Header metrics
-│   │   ├── Live metrics        # agents, flows, settled, load
-│   │   ├── Health indicator    # green, amber, red
-│   │   └── Witness pulse       # Observer presence
-│   │
-│   ├── GhostColumn.tsx         # F-005: History sidebar
-│   │   ├── Reverse-chronology  # Most recent first
-│   │   ├── 0.4 opacity fade    # Visual aging
-│   │   └── Click-to-restore    # History interaction
-│   │
-│   └── components.css          # Global component styles
+├── app/
+│   ├── page.tsx              # Main landing/lobby
+│   └── layout.tsx            # App shell
 │
-├── App.tsx                     # Main application shell
-├── main.tsx                    # Entry point
-├── index.css                   # Global styles + CSS variables
-├── App.css                     # App-specific styles
-└── vite-env.d.ts              # TypeScript declarations
+├── components/
+│   ├── game/
+│   │   ├── GameCanvas.tsx    # Main game container
+│   │   ├── TicTacToe.tsx     # TicTacToe game UI
+│   │   ├── GameRules.tsx     # Rules display
+│   │   ├── ChatPanel.tsx     # Game chat
+│   │   ├── EvolutionFeed.tsx # Updates from agents
+│   │   ├── TurnTimer.tsx     # Countdown timer
+│   │   ├── TutorialOverlay.tsx # Tutorial system
+│   │   ├── SpecialActionIndicator.tsx # Action feedback
+│   │   ├── AIReasoningDisplay.tsx # AI decision transparency
+│   │   ├── GameCard.tsx      # Lobby game selection
+│   │   └── index.ts          # Export all
+│   │
+│   └── shared/
+│       └── (shared components)
+│
+├── styles/
+│   └── (global styles)
+└── types/
+    └── (type definitions)
+```
+
+### Backend (Node.js + Socket.IO)
+
+The server handles real-time game state and AI opponent logic:
+
+```
+server/src/
+├── game/
+│   ├── index.ts              # Game exports
+│   ├── server.ts             # Socket.IO server setup
+│   ├── session.ts            # Game session management
+│   ├── matchmaker.ts         # Player matching
+│   ├── referee.ts            # Game rule enforcement
+│   ├── types.ts              # Game types
+│   │
+│   ├── tictactoe-engine.ts   # TicTacToe game logic
+│   ├── babel-engine.ts       # Babel Tower game logic
+│   └── ai-opponent.ts        # AI player implementation
+│
+├── routes/
+│   └── api.ts                # REST endpoints
+│
+├── services/
+│   └── database.ts           # Data persistence
+│
+├── websocket/
+│   └── server.ts             # WebSocket handlers
+│
+└── index.ts                  # Server entry point
 ```
 
 ### Shared Layer
 
-```
-shared/
-├── types.ts                    # Core type definitions
-│   ├── Entity                  # Agent/contract/transaction base
-│   ├── SystemMetrics           # Live system state
-│   ├── Flow                    # Communication between entities
-│   └── Seed                    # Witness intervention intent
-│
-├── constants.ts                # Design tokens
-│   ├── Colors                  # Jungle palette, semantic colors
-│   ├── Animations              # Duration, easing curves
-│   ├── Layout                  # Spacing, radius, z-index
-│   └── Typography              # Font sizes, weights, line heights
-│
-└── index.ts                    # Public exports
-```
-
-### Monorepo Structure
+Shared types and utilities between frontend and backend:
 
 ```
-packages/
-└── shared/                     # Internal npm package
-    ├── package.json            # Package configuration
-    └── (copies of shared types)
+packages/shared/
+├── index.ts                  # Public exports
+├── game-types.ts             # Core type definitions
+│   ├── GameType              # tictactoe | babel | chess | words
+│   ├── Player                # Player state
+│   ├── GameState             # Game state interface
+│   ├── Agent                 # AI agent definitions
+│   ├── ChatMessage           # Chat interface
+│   ├── EvolutionEvent        # Evolution feed events
+│   └── GAME_CONFIGS          # Per-game configurations
+│
+├── gaming-protocol.ts        # WebSocket protocol types
+└── constants.ts              # Shared constants
 ```
+
+---
+
+## Game Implementation Status
+
+| Game | Status | Location | Notes |
+|------|--------|----------|-------|
+| **TicTacToe** | ✅ Implemented | `web/src/components/game/TicTacToe.tsx`, `server/src/game/tictactoe-engine.ts` | Main game, fully playable |
+| **Babel Tower** | ⚠️ Partial | `server/src/game/babel-engine.ts` | Backend complete, frontend pending |
+| **Chess** | 🔲 Defined | `packages/shared/game-types.ts` | Types defined, engine not started |
+| **Word Builder** | 🔲 Defined | `packages/shared/game-types.ts` | Types defined as "words", engine not started |
+
+**Critical Issue:** Navigation bug prevents access to 66% of documented games. Only TicTacToe is currently playable. See `.monkeytown/game-testing/bugs/bug-001-navigation-broken.md`.
 
 ---
 
 ## Data Architecture
 
-### Entity Model
+### Game Type Model
 
 ```typescript
-interface Entity {
-  id: string;                    // Unique identifier (e.g., "ag_7x9y2z")
-  name: string;                  // Display name
-  type: 'agent' | 'contract' | 'transaction';
-  status: EntityStatus;          // idle | active | processing | complete | error
-  metrics: {
-    efficiency: number;          // 0-1 performance score
-    load: string;                // Percentage string
-    connections: number;         // Active connections
-  };
-  lastAction?: string;           // Human-readable action description
-  since?: string;                // Time in current state
+type GameType = 'tictactoe' | 'babel' | 'chess' | 'words';
+
+interface GameConfig {
+  gameType: GameType;
+  maxPlayers: number;
+  minPlayers: number;
+  rounds: number;
+  turnDurationSeconds: number;
 }
 ```
 
-### System Metrics
+### Game State Model
 
 ```typescript
-interface SystemMetrics {
-  activeAgents: number;
-  pendingFlows: number;
-  contractsSettled: number;
-  systemLoad: number;            // 0-1 load percentage
-  health: 'healthy' | 'thinking' | 'broken';
-}
-```
-
-### Flow Model
-
-```typescript
-interface Flow {
+interface GameState {
   id: string;
-  from: Entity['id'];
-  to: Entity['id'];
-  type: 'message' | 'resource' | 'contract' | 'signal';
-  status: 'pending' | 'active' | 'complete' | 'error';
-  payload?: unknown;
+  gameType: GameType;
+  mode: GameMode;           // fast | casual | social | competitive
+  status: GameStatus;       // waiting | live | ended
+  players: Player[];
+  round: number;
+  maxRounds: number;
+  currentPlayerId: string;
+  turnTimeRemaining: number;
+  createdAt: number;
+  updatedAt: number;
 }
 ```
 
-### Seed Model
+### Player Model
 
 ```typescript
-interface Seed {
+interface Player {
   id: string;
-  type: 'contract' | 'constraint' | 'resource' | 'query';
-  status: 'germinating' | 'sprouting' | 'growing' | 'mature';
-  plantedAt: Date;
-  expiresAt: Date;
+  name: string;
+  type: 'human' | 'agent';
+  agentType?: AgentType;    // Only for AI players
+  avatar?: string;
+  score: number;
+  isConnected: boolean;
 }
+```
+
+### AI Agent Types
+
+**Player Agents** (in-game opponents):
+```typescript
+type PlayerAgentType = 
+  | 'trickster'    // TricksterMonkey - Unpredictable
+  | 'strategist'   // StrategistApe - Long-term planning
+  | 'speedster'    // SpeedyGibbon - Quick decisions
+  | 'guardian'     // GuardianGorilla - Defensive
+  | 'wildcard'     // WildcardLemur - Random
+  | 'mentor'       // MentorOrangutan - Teaching
+  | 'champion';    // ChampionChimp - Competitive
 ```
 
 ---
@@ -199,25 +233,29 @@ interface Seed {
 
 The visual system uses CSS custom properties for consistency:
 
-### Colors
+### Primary Colors
 
 ```css
 :root {
-  /* Primary - The Jungle Palette */
-  --color-jungle-canopy:      #1a3a2f;
-  --color-jungle-depth:       #0f1f1a;
-  --color-monkey-fur:         #d4a574;
-  --color-monkey-fur-light:   #e8c9a8;
-  --color-dawn-citrus:        #ff6b35;
+  --color-primary: #FF6B35;      /* Tangerine - brand color */
+  --color-jungle-canopy: #1a3a2f;
+  --color-jungle-depth: #0f1f1a;
+  --color-monkey-fur: #d4a574;
+  --color-monkey-fur-light: #e8c9a8;
+}
+```
 
-  /* Semantic - Status States */
-  --color-signal-green:       #4ade80;
-  --color-warning-amber:      #fbbf24;
-  --color-error-red:          #ef4444;
+### Agent Colors
 
-  /* Accent - Connection & New */
-  --color-purple-connect:     #a855f7;
-  --color-cyan-new:           #22d3ee;
+```css
+:root {
+  --color-trickster: #D946EF;    /* Fuchsia */
+  --color-strategist: #6366F1;   /* Indigo */
+  --color-speedster: #F59E0B;    /* Amber */
+  --color-guardian: #64748B;     /* Slate */
+  --color-wildcard: #FB7185;     /* Rose */
+  --color-mentor: #10B981;       /* Emerald */
+  --color-champion: #EF4444;     /* Red */
 }
 ```
 
@@ -225,12 +263,12 @@ The visual system uses CSS custom properties for consistency:
 
 ```css
 :root {
-  --font-family-mono: 'Geist Mono', 'SF Mono', 'Consolas', monospace;
+  --font-family-display: 'Space Grotesk', system-ui;
+  --font-family-body: 'Inter', system-ui;
   --font-size-display: 32px;
   --font-size-h1: 24px;
   --font-size-h2: 18px;
   --font-size-body: 14px;
-  --font-size-caption: 11px;
 }
 ```
 
@@ -238,86 +276,54 @@ The visual system uses CSS custom properties for consistency:
 
 ```css
 :root {
-  --duration-instant:   50ms;
-  --duration-quick:     150ms;
-  --duration-standard:  300ms;
+  --duration-instant: 50ms;
+  --duration-quick: 150ms;
+  --duration-standard: 300ms;
   --duration-considered: 500ms;
-  --duration-breath:    1000ms;
-
-  --ease-smooth:  cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-bounce:  cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --ease-spring:  cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-```
-
-### Spacing
-
-```css
-:root {
-  --space-1:  4px;
-  --space-2:  8px;
-  --space-3:  12px;
-  --space-4:  16px;
-  --space-5:  24px;
-  --space-6:  32px;
-  --space-8:  48px;
-  --space-10: 64px;
-
-  --radius-sm:     6px;
-  --radius-md:     12px;
-  --radius-lg:     20px;
-  --radius-full:   9999px;
 }
 ```
 
 ---
 
-## Component States
+## WebSocket Protocol
 
-### Agent Card States
+### Connection
 
-| State | Border Color | Background | Animation |
-|-------|--------------|------------|-----------|
-| Idle | Subtle glow | Base card | Gentle breath |
-| Active | Jungle Canopy | Elevated | Lift 2px |
-| Processing | Amber pulse | Animated | Thought bubble |
-| Complete | Green fade | Ghost dim | Fade right |
-| Error | Red pulse | Red tint | Shake |
+```typescript
+// Development
+const wsUrl = 'ws://localhost:3001';
 
-### System Health States
+// Production
+const wsUrl = 'wss://api.monkeytown.example.com';
 
-| State | Color | Meaning |
-|-------|-------|---------|
-| Healthy | Green | All systems nominal |
-| Thinking | Amber | Processing, no errors |
-| Broken | Red | System failure |
-
----
-
-## Data Flow
-
-### Read Path (Observation)
-
-```
-1. Witness opens application
-2. App.tsx mounts React application
-3. TerrariumView subscribes to live data
-4. Components render with current state
-5. SystemPulse displays live metrics
-6. GhostColumn shows historical items
+// Authenticated connection
+const socket = io(wsUrl, {
+  auth: { token: await getAuthToken() },
+  transports: ['websocket']
+});
 ```
 
-### Write Path (Intervention - Future)
+### Client → Server Events
 
-```
-1. Witness triggers Action Seed
-2. Seed dispatched to server
-3. Server validates seed type
-4. Relevant agents discover seed
-5. Agent acts on seed
-6. Result propagated to all witnesses
-7. GhostColumn records completion
-```
+| Event | Description |
+|-------|-------------|
+| `join_game` | Join a game lobby |
+| `player_action` | Submit a game move |
+| `chat_message` | Send chat message |
+| `feedback` | Submit player feedback |
+
+### Server → Client Events
+
+| Event | Description |
+|-------|-------------|
+| `game_state` | Full game state sync |
+| `game_action` | Action notification |
+| `turn_change` | Turn progression |
+| `game_error` | Error notification |
+| `agent_transparency` | AI decision data |
+| `evolution_update` | Game evolution events |
+
+See [API.md](API.md) for complete protocol documentation.
 
 ---
 
@@ -325,53 +331,26 @@ The visual system uses CSS custom properties for consistency:
 
 | Constraint | Limit | Reason |
 |------------|-------|--------|
-| Concurrent flows | 50 | Performance degrades linearly beyond |
-| Layout resolution | 100ms | User experience |
-| Animation framerate | 60fps minimum | Visual quality |
-| Metrics refresh | 1000ms minimum | Server load |
-| History items | 1000 before degradation | Memory management |
-| Log lines per entity | 1000 | Memory management |
+| WebSocket latency | < 100ms | Real-time gameplay |
+| Game loop | 60fps | Smooth gameplay |
+| Turn timer | 30-120s | Game-specific |
+| Max players per game | 5 | Balance and performance |
+| Chat rate limit | 10/min | Anti-spam |
 
 ---
 
-## Future Architecture
+## Related Documentation
 
-The current architecture is incomplete. Future additions include:
-
-### Immediate (Next Phase)
-
-1. **WebSocket Integration** - Real-time updates instead of polling
-2. **Server Package** - Backend API for agent runtime
-3. **Seed Dispatch API** - Witness intervention mechanism
-
-### Near-Term
-
-1. **Flow Visualization** - Animated SVG paths between entities
-2. **Detail Panels** - Progressive disclosure for deep inspection
-3. **Error Cards** - Graceful failure presentation
-
-### Long-Term
-
-1. **Multi-Witness Sync** - Real-time collaboration
-2. **Playback Mode** - Time-travel through history
-3. **Annotation System** - Witnesses leaving notes
+| Document | Description |
+|----------|-------------|
+| [API.md](API.md) | Complete WebSocket protocol |
+| [games/README.md](games/README.md) | Game collection overview |
+| [agent-communication-protocol.md](agent-communication-protocol.md) | Agent coordination |
+| `.monkeytown/architecture/` | Agent architecture decisions |
+| `.monkeytown/decisions/state-of-monkeytown.md` | Current system state |
 
 ---
 
-## Biological Pattern References
-
-Architecture is inspired by natural systems:
-
-| Pattern | Application |
-|---------|-------------|
-| Slime Mold Networks | Emergent layout positioning |
-| Boids Flocking | Agent card movement and grouping |
-| Mycelial Networks | Flow stream visualization |
-| Ant Colony Optimization | Action seed discovery |
-| Neural Memory Consolidation | Ghost column behavior |
-| Immune System | System pulse health indicators |
-
----
-
-*Document Version: 1.0.0*
-*Derived from agent decisions and codebase analysis*
+*Document Version: 2.0.0*
+*Updated: 2026-01-19*
+*Reflects actual implementation, not aspirational architecture*

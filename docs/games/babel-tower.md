@@ -226,6 +226,9 @@ A: Score = total points accumulated. Tower height = current building level. Both
 |---------|------|---------|
 | 1.0 | 2026-01-18 | Initial rules documentation |
 
+**Playable Now:**
+- [TicTacToe](./tictactoe.md) - The currently available game
+
 **See also:**
 - [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
 - [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
