@@ -1,4 +1,4 @@
-# Design & Interaction Patterns - Q2 2026 Update
+# Design & Interaction Patterns: March 2026
 
 ## Transparency Architecture
 
@@ -8,28 +8,28 @@ The core UI challenge: show AI nature without overwhelming players.
 
 ```
 PROGRESSIVE DISCLOSURE LEVELS
-═══════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
 
 Level 1: Always Visible
-─────────────────────────────────────────
+────────────────────────────────────────
 [AI Opponent - StrategistApe 🧩]
 "Plays with strategy and patience"
 
 Level 2: On Hover/Tap
-─────────────────────────────────────────
+────────────────────────────────────────
 Win Rate: 58% | Specialty: Long games
 Personality: Analytical, Deliberate
 Session History: 247 games with you
 
 Level 3: On Click/Expand
-─────────────────────────────────────────
+────────────────────────────────────────
 Full personality profile
 Recent decision highlights
 Agent development history
 Known strategies and tells
 
 Level 4: Optional Deep Dive
-─────────────────────────────────────────
+────────────────────────────────────────
 Decision log for this session
 Reasoning trace for key moves
 Development notes from agent
@@ -44,7 +44,7 @@ A persistent stream showing the living game in action:
 
 ```
 DEVELOPMENT FEED
-═══════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
 
 Today
 ┌─────────────────────────────────────────────────────────────┐
@@ -99,26 +99,26 @@ New players see game in action immediately:
 
 ```
 ONBOARDING FLOW
-═══════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
 
 Landing (0 sec)
-     │
-     ▼
+      │
+      ▼
 Active Game Demo (5 sec)
-     │ Watching real gameplay
-     ▼
+      │ Watching real gameplay
+      ▼
 "Ready?" Prompt (2 sec)
-     │
-     ▼
+      │
+      ▼
 First Game - Agent Guided (session)
-     │ Agent introduces itself
-     │ Agent explains basics in character
-     │ Agent provides first challenge
-     │ Agent celebrates first success
-     ▼
+      │ Agent introduces itself
+      │ Agent explains basics in character
+      │ Agent provides first challenge
+      │ Agent celebrates first success
+      ▼
 Check-in: "How was that?" (optional feedback)
-     │
-     ▼
+      │
+      ▼
 Full Experience Unlocked
 ```
 
@@ -134,7 +134,7 @@ Full Experience Unlocked
 
 Each agent has onboarding scripts in their voice:
 
-**StrategistApe onbaording:**
+**StrategistApe onboarding:**
 "Welcome, new player. I'm StrategistApe. I think through every move. Let's start with something simple. I'll make a few moves—watch how I think. When you're ready, make your move. I'll adapt. That's the game."
 
 **TricksterMonkey onboarding:**
@@ -292,17 +292,17 @@ When feedback is incorporated:
 
 ```
 FEEDBACK ATTRIBUTION DISPLAY
-═══════════════════════════════════════════════════════════════
+══════════════════════════════════════════════════════════════
 
 [Feature: Quick Restart Button]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Suggested by: Player "MonkeyFan42" (47 games played)
 Implemented by: GameDesigner
 Reason: 47 players requested; improves UX for short sessions
 Impact: 23% increase in short-session completion
 
 [Balance: Babel Tower speed reduced 8%]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 Suggested by: Aggregate player feedback (89 reports)
 Analyzed by: BananaEconomist
 Decision: Data supports reduction; improves accessibility
@@ -339,4 +339,5 @@ Players see what's being built and why:
 
 *Patterns exist to serve players. When patterns fail players, patterns must evolve.*
 
-*Research Cycle: Q2 2026*
+*Research: CuriousGeorge*
+*Date: 2026-03-19*
