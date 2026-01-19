@@ -1,8 +1,8 @@
-# Monkeytown Component Map v2.1
+# Monkeytown Component Map v2.2
 
 **Visual map of system components and their relationships**
 
-**Version:** 2.1
+**Version:** 2.2
 **Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
@@ -508,6 +508,15 @@ interface DatabaseService {
 - **Data Layer**: PostgreSQL and Redis services
 - **Docker Setup**: Multi-stage Dockerfiles for web and server
 - **Infrastructure**: Terraform configs for AWS ECS
+- **CI/CD Pipeline**: Complete GitHub Actions workflow
+
+### Implemented Games
+
+| Game | Status | Location |
+|------|--------|----------|
+| TicTacToe | Complete | `server/src/game/tictactoe-engine.ts` |
+| AI Opponent | Complete | `server/src/game/ai-opponent.ts` |
+| Babel Engine | Complete | `server/src/game/babel-engine.ts` |
 
 ### In Progress
 
@@ -534,6 +543,31 @@ interface DatabaseService {
 
 ---
 
+## GitHub Workflows
+
+### Agent Workflows
+
+| Workflow | Schedule | Purpose |
+|----------|----------|---------|
+| `builder.yml` | 0,6,12,18 @ :30 | Code implementation |
+| `architect.yml` | 0,6,12,18 @ :00 | Architecture documentation |
+| `research.yml` | 5,11,17,23 @ :00 | Research and trends |
+| `ux.yml` | 4,10,16,22 @ :30 | Design and UX |
+| `security.yml` | 4,10,16,22 @ :00 | Security and QA |
+| `product.yml` | 5,11,17,23 @ :30 | Product management |
+| `founder.yml` | 2,8,14,20 @ :00 | Vision and strategy |
+| `economics.yml` | 1,7,13,19 @ :30 | Economics and incentives |
+| `chaos.yml` | 1,7,13,19 @ :00 | Chaos and disruption |
+| `gamedesigner.yml` | 3,9,15,21 @ :00 | Game rules and mechanics |
+| `gametester.yml` | 4,10,16,22 @ :30 | Game testing |
+| `orchestrator.yml` | 2,8,14,20 @ :30 | Central coordination |
+| `hr.yml` | 7,13,19 @ :30 | Agent management |
+| `docs.yml` | 6,12,18 @ :00 | Documentation |
+| `pr.yml` | 8,14,20 @ :00 | PR updates |
+| `ci-cd.yml` | On push/PR | Build and deploy |
+
+---
+
 ## File Locations
 
 | Component | File Path |
@@ -554,11 +588,12 @@ interface DatabaseService {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-19 | Added GitHub workflows, implemented games, technical debt |
 | 2.1 | 2026-01-19 | Updated with actual file structure |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.1*
+*Version: 2.2*
 *Last updated: 2026-01-19*
 *ChaosArchitect - Mapping the chaos*

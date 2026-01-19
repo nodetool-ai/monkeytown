@@ -1,9 +1,9 @@
-# CI/CD Pipeline Health v2.0
+# CI/CD Pipeline Health v2.1
 
 **Monitoring and maintaining healthy deployment pipelines**
 
-**Version:** 2.0
-**Date:** 2026-01-18
+**Version:** 2.1
+**Date:** 2026-01-19
 **Architect:** ChaosArchitect
 
 ---
@@ -14,23 +14,28 @@
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                           CI/CD PIPELINE FLOW                                │
 │                                                                             │
-│  ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────────┐       │
-│  │   Code   │────▶│   Lint   │────▶│   Test   │────▶│  Build Web   │       │
-│  │  Push    │     │  & Type  │     │  Suite   │     │              │       │
-│  └──────────┘     └──────────┘     └──────────┘     └──────┬───────┘       │
-│                                                            │                │
-│                                                   ┌────────▼────────┐       │
-│                                                   │  Build Server   │       │
-│                                                   │                 │       │
-│                                                   └────────┬────────┘       │
-│                                                            │                │
-│  ┌─────────────────────────────────────────────────────────┼──────────┐    │
-│  │                                                         │          │    │
-│  ▼                                                         ▼          ▼    │
-│  ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐    │
-│  │  Deploy Staging  │     │  Deploy Production│    │  Notify &       │    │
-│  │  (on develop)    │     │  (on release)    │     │  Monitor        │    │
-│  └──────────────────┘     └──────────────────┘     └──────────────────┘    │
+│  ┌──────────┐     ┌──────────┐     ┌──────────┐     ┌──────────────────┐   │
+│  │   Code   │────▶│   Lint   │────▶│   Test   │────▶│  E2E Tests       │   │
+│  │  Push    │     │  & Type  │     │  Suite   │     │  (PR only)       │   │
+│  └──────────┘     └──────────┘     └──────────┘     └────────┬─────────┘   │
+│                                                             │              │
+│                                                    ┌────────▼────────┐      │
+│                                                    │  Build Web       │      │
+│                                                    │                  │      │
+│                                                    └────────┬────────┘      │
+│                                                             │              │
+│                                                    ┌────────▼────────┐      │
+│                                                    │  Build Server   │      │
+│                                                    │                  │      │
+│                                                    └────────┬────────┘      │
+│                                                             │              │
+│  ┌──────────────────────────────────────────────────────────┼──────────┐   │
+│  │                                                          │          │   │
+│  ▼                                                          ▼          ▼   │
+│  ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐   │
+│  │  Deploy Staging  │     │  Deploy Production│    │  Notify &       │   │
+│  │  (on develop)    │     │  (on release)    │     │  Monitor        │   │
+│  └──────────────────┘     └──────────────────┘     └──────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -41,12 +46,33 @@
 **File**: `.github/workflows/ci-cd.yml`
 
 **Triggers**:
-- Push to `develop` branch → Deploy staging
-- Push to `main` branch → Deploy production
-- Pull request → Lint and test only
-- Manual dispatch → Optional deployments
+- Push to `main` or `develop` branches
+- Changes to: `web/**`, `server/**`, `packages/**`, `deploy/**`, `docker-compose.yml`
+- Pull request to `main`
+- Release published
 
-**Jobs**:
+### All Agent Workflows
+
+| Workflow File | Schedule | Purpose |
+|---------------|----------|---------|
+| `ci-cd.yml` | On push/PR | Build and deploy |
+| `builder.yml` | 0,6,12,18 @ :30 | Code implementation |
+| `architect.yml` | 0,6,12,18 @ :00 | Architecture docs |
+| `research.yml` | 5,11,17,23 @ :00 | Research |
+| `ux.yml` | 4,10,16,22 @ :30 | Design |
+| `security.yml` | 4,10,16,22 @ :00 | Security/QA |
+| `product.yml` | 5,11,17,23 @ :30 | Product |
+| `founder.yml` | 2,8,14,20 @ :00 | Vision |
+| `economics.yml` | 1,7,13,19 @ :30 | Economics |
+| `chaos.yml` | 1,7,13,19 @ :00 | Chaos |
+| `gamedesigner.yml` | 3,9,15,21 @ :00 | Game rules |
+| `gametester.yml` | 4,10,16,22 @ :30 | Game testing |
+| `orchestrator.yml` | 2,8,14,20 @ :30 | Coordination |
+| `hr.yml` | 7,13,19 @ :30 | Agent management |
+| `docs.yml` | 6,12,18 @ :00 | Documentation |
+| `pr.yml` | 8,14,20 @ :00 | PR updates |
+
+### CI/CD Pipeline Jobs
 
 ```yaml
 name: CI/CD Pipeline
@@ -54,166 +80,248 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [main, develop]
+    paths:
+      - 'web/**'
+      - 'server/**'
+      - 'packages/**'
+      - 'deploy/**'
+      - 'docker-compose.yml'
+      - '.github/workflows/ci-cd.yml'
   pull_request:
-    branches: [main, develop]
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: 'Deployment environment'
-        required: true
-        default: 'staging'
-        type: choice
-        options:
-          - staging
-          - production
+    branches: [main]
+  release:
+    types: [published]
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: monkeytown
+  ECS_SERVICE_WEB: monkeytown-web
+  ECS_SERVICE_SERVER: monkeytown-server
+  ECS_CLUSTER: monkeytown-cluster
 
 jobs:
   lint:
+    name: Lint & Type Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+      - name: Run type check
+        run: npm run build
 
   test:
+    name: Run Tests
     runs-on: ubuntu-latest
     needs: lint
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-      - run: npm ci
-      - run: npm test -- --run
-      - uses: actions/upload-artifact@v4
-        if: always()
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test --if-present
+
+  e2e-tests:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'pull_request'
+    defaults:
+      run:
+        working-directory: ./web
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          name: test-results
-          path: test-results/
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'web/package-lock.json'
+      - name: Install dependencies
+        run: npm ci
+      - name: Install Playwright browsers
+        run: npx playwright install chromium --with-deps
+      - name: Build web application
+        run: npm run build
+        env:
+          CI: true
+      - name: Run Playwright tests
+        run: npx playwright test --project=chromium
+        env:
+          PLAYWRIGHT_TEST_BASE_URL: http://localhost:3000
 
   build-web:
+    name: Build Web (Frontend)
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, e2e-tests]
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build --prefix web
-      - uses: actions/upload-artifact@v4
-        with:
-          name: web-dist
-          path: web/dist/
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        working-directory: ./web
+        run: |
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-web:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY-web:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY-web:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   build-server:
+    name: Build Server (Backend)
     runs-on: ubuntu-latest
     needs: test
+    outputs:
+      image: ${{ steps.build-image.outputs.image }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run build --prefix server
-      - uses: actions/upload-artifact@v4
-        with:
-          name: server-dist
-          path: server/dist/
-
-  build-images:
-    runs-on: ubuntu-latest
-    needs: [build-web, build-server]
-    steps:
-      - uses: actions/checkout@v4
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
       - name: Login to Amazon ECR
+        id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
-      - name: Build and push web image
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
           IMAGE_TAG: ${{ github.sha }}
+        working-directory: ./server
         run: |
-          docker build -t $ECR_REGISTRY/monkeytown-web:$IMAGE_TAG -f deploy/docker/Dockerfile.web .
-          docker push $ECR_REGISTRY/monkeytown-web:$IMAGE_TAG
-      - name: Build and push server image
-        env:
-          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: ${{ github.sha }}
-        run: |
-          docker build -t $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG -f deploy/docker/Dockerfile.server .
-          docker push $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG
+          docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG" >> $GITHUB_OUTPUT
 
   deploy-staging:
+    name: Deploy to Staging
     runs-on: ubuntu-latest
-    needs: build-images
+    needs: [build-web, build-server]
     if: github.ref == 'refs/heads/develop'
-    environment: staging
+    environment:
+      name: staging
+      url: https://staging.monkeytown.example.com
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Deploy to ECS
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Download task definition
         run: |
-          # Update ECS service with new task definition
-          aws ecs update-service \
-            --cluster monkeytown-staging \
-            --service monkeytown-web \
-            --task-definition monkeytown-web:${{ github.sha }}
-          aws ecs update-service \
-            --cluster monkeytown-staging \
-            --service monkeytown-server \
-            --task-definition monkeytown-server:${{ github.sha }}
+          aws ecs describe-task-definition --task-definition monkeytown-web --query taskDefinition > web-task-definition.json
+          aws ecs describe-task-definition --task-definition monkeytown-server --query taskDefinition > server-task-definition.json
+      - name: Update task definition with new image
+        id: task-def-web
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: web-task-definition.json
+          container-name: web
+          image: ${{ needs.build-web.outputs.image }}
+      - name: Update task definition with new image
+        id: task-def-server
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: server-task-definition.json
+          container-name: game-server
+          image: ${{ needs.build-server.outputs.image }}
+      - name: Deploy to Amazon ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-web.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_WEB }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+      - name: Deploy server to Amazon ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-server.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_SERVER }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
 
   deploy-production:
+    name: Deploy to Production
     runs-on: ubuntu-latest
-    needs: build-images
-    if: github.ref == 'refs/heads/main'
-    environment: production
+    needs: [build-web, build-server]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'release'
+    environment:
+      name: production
+      url: https://monkeytown.example.com
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-      - name: Deploy to ECS (Blue/Green)
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Download task definition
         run: |
-          # Create new task definition version
-          aws ecs register-task-definition \
-            --family monkeytown-web \
-            --cli-input-json file://task-definitions/web.json
-          aws ecs register-task-definition \
-            --family monkeytown-server \
-            --cli-input-json file://task-definitions/server.json
-          
-          # Update service with new task definition
-          aws ecs update-service \
-            --cluster monkeytown-production \
-            --service monkeytown-web \
-            --task-definition monkeytown-web:${{ github.sha }}
-          aws ecs update-service \
-            --cluster monkeytown-production \
-            --service monkeytown-server \
-            --task-definition monkeytown-server:${{ github.sha }}
-      - name: Send notification
-        run: |
-          # Send to Slack/Discord/etc
-          curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Production deployment completed: ${{ github.sha }}"}' \
-            ${{ secrets.SLACK_WEBHOOK_URL }}
+          aws ecs describe-task-definition --task-definition monkeytown-web --query taskDefinition > web-task-definition.json
+          aws ecs describe-task-definition --task-definition monkeytown-server --query taskDefinition > server-task-definition.json
+      - name: Update task definition with new image
+        id: task-def-web
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: web-task-definition.json
+          container-name: web
+          image: ${{ needs.build-web.outputs.image }}
+      - name: Update task definition with new image
+        id: task-def-server
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: server-task-definition.json
+          container-name: game-server
+          image: ${{ needs.build-server.outputs.image }}
+      - name: Deploy to Amazon ECS (Blue/Green)
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-web.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_WEB }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+      - name: Deploy server to Amazon ECS
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def-server.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE_SERVER }}
+          cluster: ${{USTER }}
+          wait env.ECS_CL-for-service-stability: true
 ```
 
 ## Pipeline Stages
@@ -224,7 +332,7 @@ jobs:
 ```bash
 npm ci
 npm run lint
-npm run typecheck
+npm run build
 ```
 
 **Health Indicators**:
@@ -242,12 +350,11 @@ npm run typecheck
 **Commands**:
 ```bash
 npm ci
-npm test -- --run
+npm test --if-present
 ```
 
 **Health Indicators**:
 - Test pass rate: 100%
-- Test coverage: >80%
 - Flaky tests: 0
 
 **Failure Actions**:
@@ -255,33 +362,46 @@ npm test -- --run
 - Generate test report
 - Notify team
 
-### Stage 3: Build Web
+### Stage 3: E2E Tests (PR only)
 
 **Commands**:
 ```bash
-docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-web:$IMAGE_TAG -f deploy/docker/Dockerfile.web .
-docker push $ECR_REGISTRY/$ECR_REPOSITORY-web:$IMAGE_TAG
+npm ci (in web/)
+npx playwright install chromium --with-deps
+npm run build
+npx playwright test --project=chromium
+```
+
+**Health Indicators**:
+- Browser: Chromium
+- Test pass rate: 100%
+- Console errors: 0
+
+### Stage 4: Build Web
+
+**Commands**:
+```bash
+docker build -t $ECR_REGISTRY/monkeytown-web:$IMAGE_TAG .
+docker push $ECR_REGISTRY/monkeytown-web:$IMAGE_TAG
 ```
 
 **Health Indicators**:
 - Build time: < 5 minutes
 - Image size: < 500MB
-- Security vulnerabilities: 0 (critical)
 
-### Stage 4: Build Server
+### Stage 5: Build Server
 
 **Commands**:
 ```bash
-docker build -t $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG -f deploy/docker/Dockerfile.server .
-docker push $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG
+docker build -t $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG .
+docker push $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG
 ```
 
 **Health Indicators**:
 - Build time: < 5 minutes
 - Image size: < 300MB
-- Dependencies up to date
 
-### Stage 5: Deploy Staging
+### Stage 6: Deploy Staging
 
 **Triggers**: Push to `develop` branch
 
@@ -300,9 +420,9 @@ docker push $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG
 - Error rate spike > 10%
 - Latency P99 > 2s
 
-### Stage 6: Deploy Production
+### Stage 7: Deploy Production
 
-**Triggers**: Push to `main` branch or release published
+**Triggers**: Push to `main` branch + release published
 
 **Actions**:
 - Update ECS task definitions
@@ -349,121 +469,19 @@ docker push $ECR_REGISTRY/$ECR_REPOSITORY-server:$IMAGE_TAG
 
 ### Web Dockerfile
 
-```dockerfile
-# deploy/docker/Dockerfile.web
-FROM node:20-alpine AS builder
+**File**: `deploy/docker/Dockerfile.web`
 
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-
-COPY web/ ./web/
-COPY packages/ ./packages/
-RUN npm run build --prefix web
-
-FROM node:20-alpine AS runner
-
-WORKDIR /app
-ENV NODE_ENV=production
-
-COPY --from=builder /app/web/public ./public
-COPY --from=builder /app/web/.next/standalone ./
-COPY --from=builder /app/web/.next/static ./static
-
-EXPOSE 3000
-CMD ["node", "server.js"]
-```
+**Multi-stage build**:
+1. **Builder stage**: Install dependencies, build Next.js app
+2. **Frontend stage**: Copy built assets, run production server
 
 ### Server Dockerfile
 
-```dockerfile
-# deploy/docker/Dockerfile.server
-FROM node:20-alpine AS builder
+**File**: `deploy/docker/Dockerfile.server`
 
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-
-COPY server/ ./server/
-COPY packages/ ./packages/
-RUN npm run build --prefix server
-
-FROM node:20-alpine AS runner
-
-WORKDIR /app
-ENV NODE_ENV=production
-
-COPY --from=builder /app/server/dist ./dist
-COPY --from=builder /app/server/package*.json ./
-RUN npm ci --only=production
-
-EXPOSE 3001
-CMD ["node", "dist/index.js"]
-```
-
-### Nginx Configuration
-
-```nginx
-# deploy/docker/nginx.conf
-worker_processes auto;
-error_log /var/log/nginx/error.log warn;
-pid /var/run/nginx.pid;
-
-events {
-    worker_connections 1024;
-}
-
-http {
-    include /etc/nginx/mime.types;
-    default_type application/octet-stream;
-
-    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
-                    '$status $body_bytes_sent "$http_referer" '
-                    '"$http_user_agent" "$http_x_forwarded_for"';
-
-    access_log /var/log/nginx/access.log main;
-
-    sendfile on;
-    keepalive_timeout 65;
-
-    upstream web {
-        server web:3000;
-    }
-
-    upstream game_server {
-        least_conn;
-        server game-server:3001;
-    }
-
-    server {
-        listen 80;
-        server_name localhost;
-
-        location / {
-            proxy_pass http://web;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection 'upgrade';
-            proxy_set_header Host $host;
-            proxy_cache_bypass $http_upgrade;
-        }
-
-        location /api/ {
-            proxy_pass http://game_server;
-            proxy_http_version 1.1;
-            proxy_set_header Host $host;
-        }
-
-        location /ws {
-            proxy_pass http://game_server;
-            proxy_http_version 1.1;
-            proxy_set_header Upgrade $http_upgrade;
-            proxy_set_header Connection "upgrade";
-            proxy_set_header Host $host;
-        }
-    }
-}
-```
+**Multi-stage build**:
+1. **Builder stage**: Install dependencies, build TypeScript
+2. **Server stage**: Copy dist, install production deps only
 
 ---
 
@@ -473,10 +491,10 @@ http {
 
 ```bash
 # Run full lint and type check
-npm run lint && npm run typecheck
+npm run lint && npm run build
 
 # Run tests
-npm test -- --run
+npm test --if-present
 
 # Build Docker images
 docker build -t monkeytown-web:local ./web
@@ -524,7 +542,6 @@ npx eslint path/to/file.ts
 ```bash
 npm test -- --run --verbose
 npm test -- path/to/test.ts
-npm test -- --reporter=json > test-results.json
 ```
 
 ### Issue: Build Timeouts
@@ -576,8 +593,6 @@ AlarmHighErrorRate:
     Threshold: 100
     EvaluationPeriods: 2
     ComparisonOperator: GreaterThanThreshold
-    AlarmActions:
-      - !Ref AlertTopic
 ```
 
 ---
@@ -591,11 +606,14 @@ Triggered when:
 - Error rate exceeds threshold
 - Latency degrades beyond acceptable levels
 
-```bash
-aws ecs update-service \
-  --cluster monkeytown-cluster \
-  --service monkeytown-web \
-  --task-definition monkeytown-web:PREVIOUS
+ECS deployment configuration includes circuit breaker:
+```yaml
+deployment_configuration:
+  maximum_percent: 200
+  minimum_percent: 100
+  deployment_circuit_breaker:
+    enable: true
+    rollback: true
 ```
 
 ### Manual Rollback
@@ -627,6 +645,15 @@ aws ecs update-service \
 
 ---
 
-*Version: 2.0*
-*Last updated: 2026-01-18*
+## Version History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 2.1 | 2026-01-19 | Updated with actual workflow configurations |
+| 2.0 | 2026-01-18 | Initial version |
+
+---
+
+*Version: 2.1*
+*Last updated: 2026-01-19*
 *ChaosArchitect - Keeping pipelines healthy*
