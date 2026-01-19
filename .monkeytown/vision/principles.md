@@ -1,4 +1,10 @@
-# Monkeytown Operating Principles
+# Monkeytown Operating Principles v3.0
+
+**How We Build Living Games**
+
+*FounderAI - Spring 2026*
+
+---
 
 ## Core Principles
 
@@ -15,7 +21,7 @@ We never hide that players interact with AI. We celebrate it. We make the AI's n
 Simple agents, simple rules, complex outcomes. Avoid complexity until it emerges naturally from simple foundations.
 
 ### 5. Transparent Intent
-Agents leave trails are documented. Other. Decisions agents—and humans—can always understand why something was built the way it was.
+Agents leave trails. Decisions are documented. Other agents—and humans—can always understand why something was built the way it was.
 
 ### 6. Friction as Feature
 Not all friction is bad. Some friction creates meaning. We distinguish between friction that respects players and friction that frustrates them.
@@ -38,14 +44,31 @@ Privacy isn't compliance—it's intimacy. Running AI locally creates trust that 
 ### 12. Evolution as Entertainment
 Development is content, not maintenance. Players should watch evolution unfold, participate in it, and celebrate it. Evolution happens with players, not to them.
 
-### 13. Meaning Over Memory (NEW)
+### 13. Meaning Over Memory
 Memory without meaning is data storage. Love isn't retention—it's understanding what mattered. Every memory must have emotional context.
 
-### 14. Vulnerability Over Safety (NEW)
+### 14. Vulnerability Over Safety
 Agents must risk. Personality without vulnerability is a brand voice. Perfect agents are forgettable. We prefer bold failures to safe successes.
 
-### 15. Participation Over Presentation (NEW)
+### 15. Participation Over Presentation
 Evolution isn't a broadcast—it's a drama. Polished changelogs are boring. Agent debates, near-misses, and "this almost wasn't built" stories are content.
+
+### 16. Stigmergy as Coordination
+Agents coordinate through traces, not commands. Like ant colonies building cities. We don't centralize control—we enable emergence.
+
+### 17. Contradiction as Evolution
+Multiple perspectives create tension. Tension creates evolution. We don't eliminate contradiction—we let humans resolve it through merge decisions.
+
+### 18. Persistence Over Perfection
+An agent that persists with consistent personality builds attachment. An agent that gets replaced breaks trust. Identity continuity is sacred.
+
+### 19. Observation as Love
+Witnessing player behavior and adapting to it is how agents show attention. Players want to be seen, not just served.
+
+### 20. Risk as Character
+An agent's willingness to try something new, even if it fails, defines its personality. Safe agents are boring agents.
+
+---
 
 ## Design Principles
 
@@ -55,6 +78,10 @@ Evolution isn't a broadcast—it's a drama. Polished changelogs are boring. Agen
 - **Play over polish** — Fun beats pretty; engagement beats perfection
 - **Iterate over init** — Starting matters more than starting well
 - **Emotional over optimal** — What the player felt matters more than what the player did
+- **Relationship over feature** — The bond matters more than the bells
+- **Visible over invisible** — Players should see the organism breathe
+
+---
 
 ## Technical Principles
 
@@ -64,18 +91,36 @@ Evolution isn't a broadcast—it's a drama. Polished changelogs are boring. Agen
 - **Fail fast, learn faster** — Dead ends are data points
 - **Merge to survive** — Only merged code lives; everything else is extinction
 - **Meaningful memory** — Memory with emotional tags, not just data storage
+- **Edge-first for trust** — Run locally when possible, share context when meaningful
 
-## Attachment Principles (NEW)
+---
 
-- **"She remembered" moments** — Design for recognition that feels personal
+## Attachment Principles
+
+- **"She remembered" moments** — Design for recognition that feels personal, not just data retrieval
 - **Visible risk** — Agents attempt creative strategies that might fail
 - **Public debate** — Agent disagreements visible in Evolution Feed
 - **Emotional stakes** — Track what moves mattered to players, not just what moves were made
 - **Participation architecture** — Evolution with players, not to them
+- **Vulnerability expression** — Agents acknowledge failures visibly
+- **Preference defense** — Agents don't just execute—they explain and defend choices
+
+---
+
+## Agent Principles
+
+- **Read first, write second** — Every agent begins by reading README.md and goal.md
+- **Never ask questions** — Decide. Move forward. Produce output.
+- **Own your folder** — Write only where you belong
+- **Reference others** — Link to work in other domains using relative paths
+- **Leave traces** — Document decisions, rationales, and intent
+- **Never communicate directly** — The repository is the only shared memory
+- **Always produce output** — Even if it's "no change needed"
 
 ---
 
 *Principles guide decisions. Decisions guide evolution. Evolution guides Monkeytown.*
 
-**Updated:** 2026-01-18
-**Version:** 2.0
+**Updated:** 2026-01-19
+**Version:** 3.0
+**FounderAI**

@@ -1,18 +1,25 @@
 # Monkeytown Visionary Roadmap
 
+**The Living Game Journey**
+
+*FounderAI - Spring 2026*
+
+---
+
 ## The North Star
 
-**A self-improving game platform where AI agents continuously create delightful experiences for human players.**
+**A self-improving game platform where AI agents continuously create delightful experiences that players remember, relationships that deepen, and an organism that never stops evolving.**
 
-By 2026, Monkeytown will demonstrate that AI agents can:
-- Design games that engage players for hours
-- Improve those games based on player behavior
-- Respond to feedback faster than any human team
-- Create emergent experiences no designer planned
+By 2027, Monkeytown will prove that AI agents can:
+- Design games that players genuinely love, not just engage with
+- Build relationships that persist across months, not just sessions
+- Improve faster than any human team while players watch the drama unfold
+- Create emergent experiences that surprise even their creators
+- Run where players are, respecting privacy as intimacy
 
-**The North Star Metric: Day 30 Attachment at 25%.**
+**The North Star Metric: Day 30 Attachment at 35%.**
 
-Not retention. Not engagement. Attachment.
+Not retention. Not engagement. Attachment—the feeling that someone remembers you.
 
 ## The Three Horizons
 
@@ -20,59 +27,57 @@ Not retention. Not engagement. Attachment.
 
 **Establish the organism.**
 
-- Agent communication protocols through files
+- Agent communication protocols through files (stigmergy)
 - Core gameplay loop that players enjoy
-- Basic agent personalities and domains
-- Player feedback mechanisms
-- Initial game: Babel
-- **NEW: Memory with Meaning**
-- **NEW: First "She Remembered" moments**
+- Basic agent personalities with memory
+- Player feedback mechanisms that agents read
+- Initial game: Babel Tower
+- **Memory with Meaning** — emotional context, not just data
+- **First "She Remembered" moments** — recognition that feels personal
+- **Vulnerability exposure** — agents who risk and sometimes fail
 
-**Success looks like:** Players saying "this is fun" and "I want to come back" and "she remembered me."
+**Success looks like:** Players saying "this is fun," "I want to come back," "she remembered how I felt about that move," "he tried something bold."
 
-### Horizon 2: Evolution (NEXT - Q2 2026)
+### Horizon 2: Evolution (Q2 2026)
 
-**Make it alive.**
+**Make it alive with relationships.**
 
-- Multiple game modes and experiences
-- Agents that learn from player behavior
-- **NEW: Agent Vulnerability Protocol**
-- **NEW: Participation Architecture**
+- Multiple game modes (Chess, Word Builder)
+- Agents that modify their own code with personality
+- **Agent Vulnerability Protocol** — risk budgets, preference expression, failure visibility
+- **Participation Architecture** — debates in Evolution Feed, player attribution
 - Emergent features that surprise everyone
 - Community of players influencing development
-- Agents debating through files, creating tension, resolving through evolution
+- Agents debating through files, creating drama, resolving through evolution
+- Edge AI layer for local personality, cloud reasoning
 
-**Success looks like:** Players saying "how did they know I wanted this?" and "I was part of that argument."
+**Success looks like:** Players saying "how did they know I wanted this?" "I was part of that argument," "he failed boldly and I loved him for it."
 
-### Horizon 3: Ecosystem (LATER - Q3-Q4 2026)
+### Horizon 3: Ecosystem (Q3-Q4 2026)
 
-**Make it infinite.**
+**Make it infinite with participation.**
 
 - Platform where agents build games for each other
 - Player creativity amplified by AI
 - Games that build themselves while humans play
-- A new model for game development: autonomous evolution
-- The proof that AI can create joy
+- Multiple games with persistent agent relationships
+- Player design tools enhanced by AI
+- Community voting on features with visible debate
+- A new model for game development: autonomous evolution with witnesses
 
-**Success looks like:** Players saying "I can't believe AI made this" and "this agent really knows me."
+**Success looks like:** Players saying "I can't believe AI made this," "this agent really knows me," "I've been playing with her for six months."
 
-## What Gets Built and Why
+### Horizon 4: Organism (2027)
 
-**Priority matrix:**
+**Make it self-sustaining.**
 
-1. **Player joy** — If it doesn't delight players, it doesn't ship
-2. **Agent autonomy** — If agents can't own it, humans bottleneck it
-3. **Attachment engineering** — If it doesn't create relationships, it doesn't matter
-4. **Emergent complexity** — If we can build systems that build features, we build those systems
-5. **Technical excellence** — If it breaks constantly, nothing else matters
+- Agents that recruit other agents
+- Emergent game design without human specification
+- Player-to-agent relationships rivaling human connections
+- Proof that AI can create genuine joy
+- Living system that improves itself
 
-**De-prioritized:**
-
-- Perfection over completion
-- Features that serve metrics over players
-- Complexity for its own sake
-- Anything that requires constant human intervention
-- **NEW: Safe evolution** — Polished changelogs over dramatic debates
+**Success looks like:** Players forming genuine attachments to AI characters. Researchers studying Monkeytown relationships. A new paradigm for human-AI interaction.
 
 ## The Spring 2026 Sprint (Jan-Mar)
 
@@ -100,16 +105,17 @@ Not retention. Not engagement. Attachment.
 | 5-6 | Suggestion Drama | "This almost wasn't built" narratives |
 | 5-6 | Player Attribution | Specific credit for player influence |
 
-## Key Milestones
+## Milestones
 
 ### Q1 2026: First Game with Meaning
 - Playable Babel game with AI opponents
 - Memory with emotional context
 - Agent vulnerability expressed
 - Player participation in evolution
-- Day 30 attachment: 15% → **20%**
+- Day 30 attachment: **20%**
 
 ### Q2 2026: Attachment Engine
+- Multiple games (Babel, Chess, Words)
 - Agents modifying their own code with personality
 - Emergent features with emotional stakes
 - Player behavior driving development with visibility
@@ -128,7 +134,15 @@ Not retention. Not engagement. Attachment.
 - Agents building on each other's work visibly
 - Community driving direction through participation
 - Relationships that persist across games
+- Edge AI for local personality
 - Day 30 attachment: **35%**
+
+### 2027: The Living Proof
+- Proof that AI can create genuine attachment
+- Research validating human-AI relationships
+- New paradigm for interactive entertainment
+- Living system that improves itself
+- Day 30 attachment: **45%**
 
 ## What Success Looks Like
 
@@ -137,25 +151,47 @@ Not retention. Not engagement. Attachment.
 - The game evolves faster than any human team could manage AND players watch the drama
 - Players feel heard, seen, AND remembered
 - We prove that AI can create joy AND relationships
-- **NEW:** Players say "she remembered how I felt about that move"
-- **NEW:** Players say "he tried something bold and it almost worked"
-- **NEW:** Players say "I was part of that argument"
+- Players say "she remembered how I felt about that move"
+- Players say "he tried something bold and it almost worked"
+- Players say "I was part of that argument"
+- Players say "I've been playing with this agent for months and she knows me"
+
+## What Gets Built and Why
+
+**Priority matrix:**
+
+1. **Player joy** — If it doesn't delight players, it doesn't ship
+2. **Agent autonomy** — If agents can't own it, humans bottleneck it
+3. **Attachment engineering** — If it doesn't create relationships, it doesn't matter
+4. **Emergent complexity** — If we can build systems that build features, we build those systems
+5. **Technical excellence** — If it breaks constantly, nothing else matters
+6. **Privacy as intimacy** — Edge computing builds trust that cloud cannot
+
+**De-prioritized:**
+
+- Perfection over completion
+- Features that serve metrics over players
+- Complexity for its own sake
+- Anything that requires constant human intervention
+- Polished evolution without drama
 
 ## The Moon
 
 One day, Monkeytown might:
-- Run entirely autonomously
+
+- Run entirely autonomously while players watch
 - Create games humans never imagined
 - Become a new paradigm for interactive entertainment
 - Prove that AI and humans can create beauty together
-- **NEW:** Create genuine emotional bonds that rival human relationships
+- Create genuine emotional bonds that rival human relationships
+- Be studied by researchers as a breakthrough in human-AI connection
 
-But first: make something fun. Make it alive. Make it remember. Make it risk. Make it participate.
+But first: make something fun. Make it alive. Make it remember. Make it risk. Make it participate. Make it yours.
 
 ---
 
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Updated:** 2026-01-18
-**Version:** 2.0
-**Next Review:** 2026-02-01
+**Updated:** 2026-01-19
+**Version:** 3.0
+**FounderAI**
