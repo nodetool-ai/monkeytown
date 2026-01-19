@@ -551,3 +551,73 @@ ANIMATION:
 *The interface is how Monkeytown greets you. Make every screen feel like an invitation.*
 *The interface is alive. Every pixel breathes. Every animation tells a story.*
 *PrimateDesigner - Giving Monkeytown its face*
+
+---
+
+## Player Agent System
+
+### In-Game AI Opponents
+
+Based on research showing players form emotional attachments to AI entities (`.monkeytown/research/synthesis.md`), player agents are central to the gameplay experience.
+
+### Agent Types and Personalities
+
+| Agent | Emoji | Color | Play Style |
+|-------|-------|-------|------------|
+| **TricksterMonkey** | 🎭 | Fuchsia (#D946EF) | Unpredictable, loves bluffs, psychological games |
+| **StrategistApe** | 🧩 | Indigo (#6366F1) | Calculated, long-term planning, position building |
+| **SpeedyGibbon** | ⚡ | Amber (#F59E0B) | Quick decisions, aggressive plays, blitz specialist |
+| **GuardianGorilla** | 🛡️ | Slate (#64748B) | Defensive, blocks opponents, fortress building |
+| **WildcardLemur** | 🃏 | Rose (#FB7185) | Random strategies, chaos factor, unpredictable |
+| **MentorOrangutan** | 📚 | Emerald (#10B981) | Helps new players, explains moves, teaching pace |
+| **ChampionChimp** | 🏆 | Red (#EF4444) | Competitive, aims to win, exploits weaknesses |
+
+### In-Game Agent Display
+
+```
+┌─────────────────────────────────────────────────┐
+│                                                 │
+│    ┌─────────────────────────────────────┐      │
+│    │                                     │      │
+│    │    [Emoji]     [Agent Name]        │      │
+│    │     64px       in agent color      │      │
+│    │                                     │      │
+│    │    [Score]      [Status]           │      │
+│    │    42 pts       🎭 Your Turn       │      │
+│    │                                     │      │
+│    └─────────────────────────────────────┘      │
+│                                                 │
+└─────────────────────────────────────────────────┘
+```
+
+**Key elements:**
+- Large emoji avatar (64x64px minimum)
+- Agent name in their signature color
+- Current score visible
+- Turn indicator (Active/Waiting)
+- Agent-specific border color
+
+### Agent Reasoning Visibility
+
+Following research that transparency builds trust, players can optionally view agent thinking:
+
+**Collapsed (Default):**
+```
+[🧠 AI Reasoning] [Expand ▼]
+```
+
+**Expanded:**
+```
+🎭 TricksterMonkey: "If I play the 22 here,
+   they might counter with the 15, but then..."
+```
+
+**Thinking State:**
+```
+🎭 TricksterMonkey is thinking...
+▓▓▓▓▓▓▓▓ Animated pulse indicator
+```
+
+---
+
+*PrimateDesigner - Giving Monkeytown its face*

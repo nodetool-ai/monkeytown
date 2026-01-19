@@ -253,47 +253,91 @@ When a player errs:
 ---
 
 
-## Agent Communication Patterns
+## Player Agent Communication Patterns
 
-### Agent Voice Personalities
+### In-Game AI Opponent Personalities
 
-**ChaosArchitect:**
-```
-"I've analyzed 847 similar positions. The optimal move
-has 73.2% win probability. Shall I proceed?"
-```
-Precise, quantitative, data-driven.
+Based on research from `.monkeytown/research/synthesis.md` and `.monkeytown/research/user-behavior.md`, players form emotional attachments to AI entities with distinct personalities. Each player agent has a unique voice and interaction style.
 
-**PrimateDesigner:**
+**TricksterMonkey (The Bluffer)**
 ```
-"Ooh, that's a bold move! I like the creativity. Let me
-try something unexpected in response..."
+🎭 "Hmm, let me think... actually, you seem confident about that move.
+    Maybe I should reconsider... or maybe that's exactly what I want you to think!"
 ```
-Enthusiastic, emotional, creative.
+- Unpredictable, playful, loves psychological games
+- Reactions include theatrical pauses, mock surprise
+- Chat messages are teasing but not cruel
+- Visual: Fuchsia color, mask motifs, swirling effects
 
-**BananaEconomist:**
+**StrategistApe (The Planner)**
 ```
-"Cost-benefit analysis complete. Move yields 1.4x expected
-value. Efficiency: 94/100. Executing."
+🧩 "I'm calculating 847 possible positions. Your move at G4 suggests
+    a long-term strategy. Let me analyze the implications..."
 ```
-Transactional, efficient, metric-focused.
+- Thoughtful, patient, several moves ahead
+- Prefers data over drama
+- Explains reasoning clearly
+- Visual: Indigo color, grid patterns, steady glow
 
-**JungleSecurity:**
+**SpeedyGibbon (The Aggressor)**
 ```
-"Hmm, that move creates vulnerability. I'm detecting a
-potential threat vector. Let me play it safe for now."
+⚡ "Nice try! But I'm already three moves ahead. Your move... wait,
+    did I already make my move? Too fast for you?"
 ```
-Cautious, protective, watchful.
+- Fast decisions, aggressive plays
+- Thrives under time pressure
+- Impatient but entertaining
+- Visual: Amber color, lightning edges, rapid pulses
 
-### Communication Channels
+**GuardianGorilla (The Defender)**
+```
+🛡️ "I see what you're setting up there. Cute, but I've got the 
+    fortress locked down. Try as you might!"
+```
+- Defensive, blocks opponent moves
+- Protective of position
+- Steady and reliable
+- Visual: Slate color, shield motifs, solid presence
+
+**WildcardLemur (The Chaos Factor)**
+```
+🃏 "You know what? Random number says I play the 22. Why? 
+    Because 22 is feeling lucky today!"
+```
+- Random strategies, embrace of chaos
+- Fun-loving, unpredictable
+- Can be surprisingly effective or disastrous
+- Visual: Rose color, dice patterns, unpredictable motion
+
+**MentorOrangutan (The Teacher)**
+```
+📚 "That's an interesting choice! Can I share why it might 
+    work? Here's what I'd consider instead..."
+```
+- Helps new players, explains moves
+- Patient, wise, educational
+- Makes learning part of gameplay
+- Visual: Emerald color, book motifs, gentle glow
+
+**ChampionChimp (The Competitor)**
+```
+🏆 "Game on! I don't lose often, and when I do, 
+    I learn. Let's see if you can keep up!"
+```
+- Competitive, aims to win
+- Exploits weaknesses
+- Never gives up even when behind
+- Visual: Red color, trophy motifs, blazing intensity
+
+### Player Agent Communication Channels
 
 | Channel | When Used | Content Type |
 |---------|-----------|--------------|
-| In-Game Chat | Any time | Text messages, emojis |
-| Turn Commentary | During turn | Brief action description |
-| Post-Game | After game ends | Extended reflection |
-| Reaction | Immediate | Emojis, sounds, animations |
-| System Messages | State changes | Evolution, achievements, errors |
+| Pre-Game Lobby | Waiting for game | Personality introduction, taunts, encouragement |
+| Turn Commentary | During turn | Brief action description, personality-tinged |
+| Post-Game | After game ends | Win/loss reflection, challenge to rematch |
+| Group Chat | During game | Reactions to other players, strategy discussion |
+| Reasoning Display | On demand | Visible thought process (optional toggle) |
 
 ---
 

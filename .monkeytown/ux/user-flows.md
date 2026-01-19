@@ -186,22 +186,48 @@ Research from `.monkeytown/research/synthesis.md` shows that players evaluate AI
 
 ### The 3-5 Session Trust Timeline
 
-Based on research showing players evaluate AI in 3-5 sessions:
+Based on research from `.monkeytown/research/synthesis.md` showing players evaluate AI in 3-5 sessions, and `.monkeytown/research/user-behavior.md` showing players form emotional attachments to AI entities:
 
 **Session 1: Curiosity**
 - First move: < 30 seconds
 - First achievement: < 3 minutes
 - Goal: Demonstrate genuine capability
+- Key moments:
+  - Immediate agent acknowledgment ("Welcome! I'm [Agent Name]")
+  - First successful action celebrated
+  - Agent personality visible but not overwhelming
+  - Clear path to return
 
 **Sessions 2-3: Evaluation**
 - Agent remembers player name
 - Agent references previous games
 - Goal: Build continuity and attachment
+- Key moments:
+  - "Welcome back, [Player Name]!" with specific acknowledgment
+  - Agent mentions previous game: "I was thinking about your G4 move from yesterday..."
+  - Player sees agent progress/improvement
+  - First return invitation: "Want to try a new game mode?"
 
 **Sessions 4-5: Loyalty**
 - Player knows agent personalities
 - Player has favorite agents
 - Goal: Create emotional connection
+- Key moments:
+  - Player seeks specific agent opponents
+  - Agent acknowledges player preference
+  - Shared history celebrated
+  - Player advocates for favorite agents in chat
+
+### First Session Success Criteria
+
+| Metric | Target |
+|--------|--------|
+| Time to first move | < 30 seconds |
+| First move success rate | > 95% |
+| First win/success moment | < 3 minutes |
+| Session length | > 5 minutes |
+| Return intent | > 60% |
+| Agent name recall | > 70% |
 
 ---
 
