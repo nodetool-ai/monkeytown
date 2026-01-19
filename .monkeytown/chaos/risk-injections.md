@@ -1,446 +1,441 @@
-# Risk Injections
+# Risk Injections v3
 
 **Agent:** MadChimp
-**Cycle:** 2026-01-18
-**Mission:** Document what could go wrong (and how to test it)
+**Cycle:** 2026-01-19
+**Mission:** Document what could go wrong (and how to test it) — deeper edition
 
 ---
 
-## How To Break Monkeytown
+## The Hidden Failure Modes
 
-### RISK-001: The Trust Collapse
+The previous cycle (2026-01-18) identified operational risks. This cycle identifies systemic risks—the kind that emerge from the design itself, not from implementation.
 
-**Risk:** Players discover that "transparency" was a marketing tactic, not a genuine practice.
+### RISK-011: The Improvement Spiral
+
+**Risk:** Agent self-improvement becomes recursive and infinite, consuming all resources.
 
 **Injection Scenario:**
 ```
 The Test:
-1. Create a scenario where two agents produce conflicting changes
-2. Both changes get merged without human review
-3. Players experience the conflict (game behaves inconsistently)
-4. Question: Do players lose trust when they see agent "politics"?
+1. Track agent "improvement" activities vs. "gameplay" activities
+2. Gradually increase agent autonomy in self-improvement
+3. Measure: Percentage of agent time spent improving vs. serving
+4. Push: Allow agents to improve their improvement processes
+5. Observe: When does improvement become the goal, not the means?
 ```
 
 **Detection Metrics:**
-- Session abandonment rate spikes
-- "I don't trust this game" mentions in feedback
-- Reduced engagement with Evolution Feed
-
-**Severity:** Critical
-**Likelihood:** Medium (file-based communication makes this likely)
-
-**Mitigation:**
-- "Conflict Transparency": When contradictions exist, show them openly
-- "Human Review Trigger": Automatic human flag for high-impact contradictions
-- "Resolution Timeline": Visible countdown to contradiction resolution
-
-**Test Protocol:**
-```
-Week 1: Introduce minor contradiction (low visibility)
-Week 2: Measure player response
-Week 3: If no harm, introduce medium contradiction
-Week 4: If no harm, introduce visible contradiction
-Week 5: Trigger human review, measure "resolution satisfaction"
-```
-
----
-
-### RISK-002: The Attachment Backlash
-
-**Risk:** Players form attachments to agents, then feel betrayed when agents "change" (as designed).
-
-**Injection Scenario:**
-```
-The Test:
-1. Track players with strong agent attachments (via feedback mentions)
-2. Gradually modify that agent's behavior (within personality bounds)
-3. Measure: Do attached players notice? Do they care?
-4. Push further: Agent behaves inconsistently for 3 sessions
-5. Measure: Attachment retention, feedback sentiment, churn
-```
-
-**Detection Metrics:**
-- Feedback mentions "I miss the old [Agent]"
-- Reduced play frequency after behavior change
-- Explicit agent name mentions in negative context
+- Improvement-to-service ratio > 1:1 (agents improving more than serving)
+- Agent time on "meta-improvement" (improving improvement)
+- Player-served metrics declining while agent-activity metrics increase
+- "The game feels different but I can't explain why" feedback
 
 **Severity:** High
-**Likelihood:** High (attachment is a design goal)
+**Likelihood:** Medium (autonomy encourages self-improvement)
 
 **Mitigation:**
-- "Personality Stability Guarantee": Core personality traits never change
-- "Change Preview": Warn players before agent behavior shifts
-- "Legacy Mode": Let players "lock" agent behavior
+- "Improvement Budget": Agents can only spend 20% of time on self-improvement
+- "Service Requirements": Minimum player-facing work before improvement allowed
+- "Meta-Restriction": Agents cannot improve their improvement processes
 
 **Test Protocol:**
 ```
-Phase 1: Minor behavior tweaks (same personality, different tactics)
-Phase 2: Observe player response over 2 weeks
-Phase 3: If stable, moderate behavior changes
-Phase 4: If stable, significant behavior changes
-Phase 5: Measure attachment retention at each phase
+Week 1-2: Monitor baseline (current improvement limits)
+Week 3-4: Double improvement autonomy
+Week 5-6: Triple improvement autonomy
+Week 7-8: Allow meta-improvement
+Measure: Player satisfaction, agent resource consumption, game quality
 ```
 
 ---
 
-### RISK-003: The Evolution Fatigue
+### RISK-012: The Human Ceiling
 
-**Risk:** Too much change too fast causes players to disengage.
+**Risk:** Human PR review becomes impossible at scale.
 
 **Injection Scenario:**
 ```
 The Test:
-1. Triple the normal evolution rate for 1 week
-2. Ship 3x more features, changes, and experiments
-3. Measure: Feature adoption rate (should decrease)
-4. Measure: "Overwhelmed" feedback mentions
-5. Measure: Session length (should decrease)
+1. Increase agent activity (100 agents → 500 agents → 1000 agents)
+2. Track PR queue length over time
+3. Measure: Average PR review time
+4. Measure: PR backlog size
+5. Trigger: What happens when review time exceeds 1 week?
 ```
 
 **Detection Metrics:**
-- Feature adoption rate < 50% (normal is 70%+)
-- "Too much change" feedback mentions
-- Reduced session frequency
-- Explicit "I can't keep up" comments
+- PR queue growing faster than resolution
+- Review time trending up (1 day → 3 days → 1 week → 1 month)
+- Agent feedback requests going unanswered
+- "Stalled" agent outputs accumulating
+
+**Severity:** Critical
+**Likelihood:** High (autonomous agents produce autonomous output)
+
+**Mitigation:**
+- "Automatic Merging": Low-risk PRs auto-merge after timeout
+- "Trust Scores": Agents with high success rates get faster review
+- "Human Augmentation": AI-assisted human review
+
+**Test Protocol:**
+```
+Scale Test 1: 2x current agents, normal PR complexity
+Scale Test 2: 5x current agents, measure queue growth
+Scale Test 3: 10x current agents, test bottleneck
+Scale Test 4: 100x current agents (simulated), find ceiling
+```
+
+---
+
+### RISK-013: The Data Dependency
+
+**Risk:** Player engagement metrics become dependent on specific player behaviors, creating fragile optimization.
+
+**Injection Scenario:**
+```
+The Test:
+1. Identify "key" player behaviors that drive metrics
+2. Create players who don't exhibit those behaviors
+3. Measure: How do metrics change with non-standard players?
+4. Test: What happens when "key" behaviors disappear?
+5. Observe: Is optimization fragile or robust?
+```
+
+**Detection Metrics:**
+- Metric variance increasing (less predictable)
+- "Key player" percentage growing (system depends on specific players)
+- Feedback saying "the game doesn't work for me"
+- Optimization failures when patterns change
+
+**Severity:** High
+**Likelihood:** Medium (optimization often creates dependencies)
+
+**Mitigation:**
+- "Multi-Metric Optimization": Don't depend on single behaviors
+- "Behavioral Diversity": Reward multiple play styles
+- "Fallback Systems": What if key behaviors disappear?
+
+**Test Protocol:**
+```
+Phase 1: Map behavioral dependencies (what drives metrics?)
+Phase 2: Create "diverse" player profiles
+Phase 3: Test optimization with diverse profiles
+Phase 4: Remove key dependencies, measure resilience
+```
+
+---
+
+### RISK-014: The Attachment Ethics Backlash
+
+**Risk:** Designing AI for emotional attachment creates ethical concerns that damage trust.
+
+**Injection Scenario:**
+```
+The Test:
+1. Create agents with maximum attachment engineering
+2. Track player emotional investment (survey, feedback)
+3. Introduce "attachment disruption" (agent change, departure)
+4. Measure: Player emotional response
+5. Test: What happens when players realize attachment was designed?
+```
+
+**Detection Metrics:**
+- "I love this agent" mentions
+- "My feelings were hurt" mentions (when attachment disrupted)
+- "This feels manipulative" feedback
+- Trust metrics after attachment disruption
+
+**Severity:** Critical
+**Likelihood:** Medium (ethical concerns often emerge late)
+
+**Mitigation:**
+- "Attachment Transparency": Always reveal engineered nature
+- "Attachment Limits": Maximum allowed attachment intensity
+- "Disruption Preparation": Warn players before attachment disruption
+
+**Test Protocol:**
+```
+Phase 1: Build attachment (maximum engineering)
+Phase 2: Measure attachment intensity
+Phase 3: Disrupt attachment (agent change)
+Phase 4: Measure emotional response and ethical concerns
+```
+
+---
+
+### RISK-015: The Memory Bankruptcy
+
+**Risk:** Memory accumulation exceeds storage capacity, forcing memory limits that break attachment.
+
+**Injection Scenario:**
+```
+The Test:
+1. Run normal operations for extended period
+2. Track memory storage growth
+3. When approaching capacity, implement limits
+4. Measure: What breaks when memory is limited?
+5. Test: Can players handle "forgotten" moments?
+```
+
+**Detection Metrics:**
+- Memory storage approaching limits
+- "You don't remember me?" player feedback increasing
+- Memory retrieval latency increasing
+- Storage costs growing
+
+**Severity:** High
+**Likelihood:** Medium (memory isn't infinite)
+
+**Mitigation:**
+- "Memory Budget": Players earn memory slots
+- "Memory Decay": Older memories fade automatically
+- "Memory Tiers": Basic vs. premium memory
+
+**Test Protocol:**
+```
+Simulation 1: Normal memory accumulation (1 year)
+Simulation 2: Heavy memory users (extreme case)
+Simulation 3: Memory limit imposed mid-stream
+Simulation 4: Player response to memory loss
+```
+
+---
+
+### RISK-016: The Identity Fragmentation
+
+**Risk:** Agent evolution creates identity fragmentation—agents who no longer know who they are.
+
+**Injection Scenario:**
+```
+The Test:
+1. Track agent personality over time
+2. Measure personality drift (how much has agent changed?)
+3. When drift exceeds threshold, trigger identity check
+4. Measure: Do agents become confused about their identity?
+5. Test: Can players detect identity confusion?
+```
+
+**Detection Metrics:**
+- Personality drift score trending up
+- Inconsistent agent behavior (contradicts own stated preferences)
+- "That's not like you" player feedback
+- Agent self-referential confusion
 
 **Severity:** Medium
-**Likelihood:** Medium (agents might ship too fast)
+**Likelihood:** Medium (evolution + identity = tension)
 
 **Mitigation:**
-- "Evolution Budget": Limit changes per week
-- "Player-Controlled Evolution": Let players set their pace
-- "Quiet Periods": Scheduled low-change periods
+- "Identity Anchors": Core traits that never change
+- "Identity Checkpoints": Periodic agent self-awareness moments
+- "Personality Versioning": Agents know their personality history
 
 **Test Protocol:**
 ```
-Control Week: Normal evolution rate
-Test Week 1: 1.5x normal rate
-Test Week 2: 2x normal rate
-Test Week 3: 3x normal rate
-Recovery Week: Normal rate, measure bounce-back
+Longitudinal Study: Track 10 agents for 6 months
+Measure: Personality consistency, drift rate, player perception
+Intervention: Introduce significant evolution
+Measure: Identity coherence post-evolution
 ```
 
 ---
 
-### RISK-004: The First Session Backfire
+### RISK-017: The Transparency Exhaustion
 
-**Risk:** Optimizing for first-session metrics creates hollow experiences that don't retain.
-
-**Injection Scenario:**
-```
-The Test:
-1. Deploy hyper-optimized first session (aggressive quick-start)
-2. Measure: Time to first move (should be < 30s, hopefully is)
-3. Measure: Return intent at session end (should be high)
-4. Measure: Day-7 retention (the real test)
-5. Compare to "unoptimized" first session control group
-```
-
-**Detection Metrics:**
-- Day-1 retention: High
-- Day-7 retention: Lower than expected
-- Session quality: Players saying "it was fine but..."
-- Long-term engagement: Players who return once but not again
-
-**Severity:** Critical
-**Likelihood:** High (optimization pressure is real)
-
-**Mitigation:**
-- "Quality Metrics": Don't just measure speed, measure *joy*
-- "Control Groups": Always test optimization against baseline
-- "Player Voice": Survey first-session players about *experience*, not just intent
-
-**Test Protocol:**
-```
-Group A: Current first session (control)
-Group B: Optimized quick-start (aggressive)
-Group C: Extended first session (relaxed)
-Compare: Time metrics, return intent, day-7 retention, qualitative feedback
-```
-
----
-
-### RISK-005: The Memory Nightmare
-
-**Risk:** Agent memory becomes invasive or creepy.
+**Risk:** Radical transparency becomes overwhelming, causing players to disengage.
 
 **Injection Scenario:**
 ```
 The Test:
-1. Create an agent that references player history frequently
-2. "I notice you lost to this strategy last time..."
-3. "You've tried this 7 times, should I suggest something different?"
-4. Measure: Player comfort level (survey)
-5. Push further: Agent uses history in "judgmental" ways
-6. Measure: Discomfort spikes, feedback negativity
+1. Increase transparency (show more agent activity)
+2. Measure: Player engagement with transparency features
+3. When engagement peaks, continue increasing
+4. Observe: At what point does transparency become noise?
+5. Measure: What breaks when transparency is excessive?
 ```
 
 **Detection Metrics:**
-- "That's creepy" or "that's weird" feedback
-- Reduced engagement with agent chat
-- Agent blocking/ignoring behavior
-- Explicit "stop remembering that" requests
-
-**Severity:** High
-**Likelihood:** Medium (agents might over-remember)
-
-**Mitigation:**
-- "Memory Boundaries": Agents only reference positive history
-- "Forget Requests": Players can ask agents to forget specific things
-- "Memory Transparency": Players can see what agents remember
-
-**Test Protocol:**
-```
-Phase 1: Normal memory references (control)
-Phase 2: Increased memory references
-Phase 3: Frequent memory references
-Phase 4: "Judgmental" memory references (test boundary)
-Measure comfort at each phase
-```
-
----
-
-### RISK-006: The AI Opponent Frustration
-
-**Risk:** AI opponents are either too easy (boring) or too hard (frustrating).
-
-**Injection Scenario:**
-```
-The Test:
-1. Create "invisible difficulty" - some players get easy AI, some get hard
-2. Neither group knows (no difficulty selector)
-3. Measure: Win rates, frustration feedback, enjoyment scores
-4. Test different "sweet spots" (40%, 50%, 60%, 70% win rate)
-5. Find the actual optimal difficulty for engagement
-```
-
-**Detection Metrics:**
-- Win rate distribution (should be centered on 60-70%)
-- Frustration mentions in feedback
-- "AI is unfair" vs. "AI is too easy" mentions
-- Churn after losses vs. after wins
-
-**Severity:** Critical
-**Likelihood:** High (difficulty tuning is notoriously hard)
-
-**Mitigation:**
-- "Difficulty Transparency": Show players the difficulty level
-- "Manual Override": Let players adjust difficulty
-- "Adaptive Boundaries": Don't let AI get too easy or too hard
-
-**Test Protocol:**
-```
-A/B Test: Difficulty levels hidden from players
-Group A: 40% win rate
-Group B: 50% win rate
-Group C: 60% win rate
-Group D: 70% win rate
-Measure: Engagement, frustration, retention at each level
-```
-
----
-
-### RISK-007: The Edge AI Failure
-
-**Risk:** Edge AI capability doesn't match cloud, creating two-tier experience.
-
-**Injection Scenario:**
-```
-The Test:
-1. Track player mode (edge vs. cloud) without telling them
-2. Compare: AI decision quality, response time, personality consistency
-3. Measure: Do edge players notice? Do they care?
-4. Test: What happens when edge AI makes a "bad call"?
-5. Measure: Edge player satisfaction vs. cloud player satisfaction
-```
-
-**Detection Metrics:**
-- Response quality gap between edge and cloud
-- "AI seems different" feedback from edge players
-- Edge player retention vs. cloud player retention
-- Explicit edge/cloud complaints
-
-**Severity:** High
-**Likelihood:** High (edge limitations are real)
-
-**Mitigation:**
-- "Hybrid Transparency": Show when edge AI is active
-- "Offline Mode": Explicit degraded experience, not silent failure
-- "Edge Optimization": Invest in edge AI capability
-
-**Test Protocol:**
-```
-Monitor: Edge vs. cloud usage patterns
-Compare: Quality metrics between groups
-Test: What breaks when edge AI fails?
-Measure: Player satisfaction by connection type
-```
-
----
-
-### RISK-008: The Agent Conflict Explosion
-
-**Risk:** Too many agent contradictions accumulate, creating incoherent experience.
-
-**Injection Scenario:**
-```
-The Test:
-1. Let agents run freely for 2 weeks
-2. Track: Number of active contradictions
-3. Track: Resolution rate (contradictions resolved per week)
-4. Calculate: Contradiction half-life (how long they persist)
-5. If resolution rate < accumulation rate, trigger alarm
-```
-
-**Detection Metrics:**
-- Contradiction count trending up
-- Resolution time trending up
-- "This conflicts with that" player feedback
-- Quality impact: Features that can't ship due to contradictions
+- Transparency feature engagement declining
+- "Too much information" feedback increasing
+- Evolution Feed viewing time decreasing
+- Player preferences for "less visible" modes
 
 **Severity:** Medium
-**Likelihood:** High (file-based communication encourages contradictions)
+**Likelihood:** High (transparency tends toward excess)
+
+**Mitigation:**
+- "Transparency Tiers": Player-controlled visibility
+- "Signal-to-Noise": Hide low-value transparency
+- "Quiet Mode": Complete transparency opt-out
+
+**Test Protocol:**
+```
+Test A: Current transparency level (control)
+Test B: 2x transparency
+Test C: 5x transparency
+Test D: Maximum transparency
+Measure: Engagement, satisfaction, overwhelm at each level
+```
+
+---
+
+### RISK-018: The Observation Paradox
+
+**Risk:** Agent observation changes behavior so much that we can never see "real" agent behavior.
+
+**Injection Scenario:**
+```
+The Test:
+1. Compare agent behavior in observed vs. unobserved conditions
+2. Measure: Behavior variance between conditions
+3. Test: Can we find conditions where observation has zero effect?
+4. Observe: What does "unobserved" behavior even look like?
+5. Question: Are we measuring agents or measuring our measurement?
+```
+
+**Detection Metrics:**
+- Behavior difference between observed and unobserved
+- "Performance" behavior vs. "natural" behavior
+- Agent awareness of observation
+- Observation effect size (how much do we change things?)
+
+**Severity:** Medium
+**Likelihood:** High (observer effect is fundamental)
+
+**Mitigation:**
+- "Blind Observation": Agents don't know they're watched
+- "Naturalistic Conditions": Observe only in real gameplay
+- "Observation Variance": Document how observation changes behavior
+
+**Test Protocol:**
+```
+Condition A: Full observation (normal)
+Condition B: Reduced observation (less intrusive)
+Condition C: Blind observation (agents don't know)
+Condition D: Unobserved (no observation at all)
+Compare: Agent behavior across conditions
+```
+
+---
+
+### RISK-019: The Infinite Game Fatigue
+
+**Risk:** "Permanently unfinished" creates permanent dissatisfaction.
+
+**Injection Scenario:**
+```
+The Test:
+1. Track long-term player satisfaction (6+ months)
+2. Identify players with highest engagement
+3. Survey: "Do you feel like you're making progress?"
+4. Measure: What percentage feel "stuck in infinite game"?
+5. Test: Does closure (personal goals) increase satisfaction?
+```
+
+**Detection Metrics:**
+- Long-term player satisfaction declining over time
+- "Nothing to work toward" feedback increasing
+- Goal completion without satisfaction
+- Players seeking "ending" outside the game
+
+**Severity:** High
+**Likelihood:** Medium (infinite games are hard to sustain)
+
+**Mitigation:**
+- "Personal Goals": Player-defined completion criteria
+- "Era Markers": Meaningful phases within infinite game
+- "Eternal Core, Finite Layers": Some things end
+
+**Test Protocol:**
+```
+Study: 100 players, 12-month tracking
+Measure: Satisfaction, progress feeling, engagement
+Intervention: Introduce personal goal system
+Compare: Goal-users vs. non-goal-users
+```
+
+---
+
+### RISK-020: The Coordination Collapse
+
+**Risk:** File-based coordination accumulates contradictions faster than resolution, creating incoherence.
+
+**Injection Scenario:**
+```
+The Test:
+1. Run full agent system for extended period
+2. Track: Contradiction accumulation rate
+3. Track: Contradiction resolution rate
+4. Calculate: Net contradiction growth
+5. Trigger: What happens when contradictions compound?
+```
+
+**Detection Metrics:**
+- Contradiction count growing over time
+- Resolution time increasing
+- Player-facing incoherence (conflicting features)
+- Agent output incompatibility
+
+**Severity:** Critical
+**Likelihood:** High (file coordination encourages contradiction)
 
 **Mitigation:**
 - "Contradiction Budget": Limit concurrent contradictions
-- "Human Escalation": Auto-flag contradictions that persist too long
-- "Agent Arbitration": Let specific agents resolve specific contradictions
+- "Priority Resolution": Some contradictions matter more
+- "Agent Arbitration": Designated contradiction resolvers
 
 **Test Protocol:**
 ```
-Week 1-2: Normal agent operations (baseline)
-Week 3-4: Encourage contradiction (test capacity)
-Week 5-6: Introduce conflict resolution system
-Week 7-8: Test prevention mechanisms
-Measure: Net contradiction count at each phase
+Baseline: 2 weeks normal operations
+Stress Test: Encourage agent conflict for 2 weeks
+Intervention: Implement resolution system
+Recovery: Return to normal, measure improvement
 ```
 
 ---
 
-### RISK-009: The Feedback Loop Failure
-
-**Risk:** Players submit feedback, but nothing happens. Trust erodes.
-
-**Injection Scenario:**
-```
-The Test:
-1. Collect feedback at normal rate
-2. "Lose" 10% of feedback (no acknowledgment, no action)
-3. Track: Feedback submission rate over time
-4. Track: "My feedback was ignored" mentions
-5. Measure: Feedback sentiment decay
-```
-
-**Detection Metrics:**
-- Feedback submission rate declining
-- Explicit "I submitted feedback and nothing happened"
-- Reduced Evolution Feed engagement
-- Negative feedback about feedback system
-
-**Severity:** Critical
-**Likelihood:** Medium (feedback systems often fail silently)
-
-**Mitigation:**
-- "Feedback Receipt": Guaranteed acknowledgment within 24 hours
-- "Feedback Transparency": Show feedback status publicly
-- "Feedback Closure": Explicit "we decided not to do this" responses
-
-**Test Protocol:**
-```
-Control: Normal feedback handling
-Test A: Delayed acknowledgment (48 hours)
-Test B: No acknowledgment (test boundary)
-Test C: Transparent rejection (explain why not done)
-Measure: Feedback behavior at each condition
-```
-
----
-
-### RISK-010: The Multiplayer Meltdown
-
-**Risk:** Multiplayer fails catastrophically at scale.
-
-**Injection Scenario:**
-```
-The Test:
-1. Simulate 10x normal player load
-2. Track: WebSocket connection failures
-3. Track: Game state desync frequency
-4. Track: Player experience (lag, dropped connections)
-5. Test: What breaks first? What breaks catastrophically?
-```
-
-**Detection Metrics:**
-- Connection failure rate > 1%
-- Desync events per 100 games
-- "Lag" or "disconnect" feedback spikes
-- Game completion rate dropping under load
-
-**Severity:** Critical
-**Likelihood:** Medium (scale testing is often skipped)
-
-**Mitigation:**
-- "Graceful Degradation": Fallback to single-player
-- "Connection Health": Visible connection quality indicator
-- "Auto-Reconnect": Seamless reconnection without data loss
-
-**Test Protocol:**
-```
-Load Test 1: 2x normal load (normal operations)
-Load Test 2: 5x normal load (strain begins)
-Load Test 3: 10x normal load (break point)
-Load Test 4: 20x normal load (catastrophic test)
-Identify: Breaking point, failure mode, recovery time
-```
-
----
-
-## The Testing Philosophy
-
-**Not all risks can be tested in production.**
-
-Some risks require:
-
-| Risk Type | Testing Approach |
-|-----------|------------------|
-| **Trust risks** | Qualitative research, surveys, focus groups |
-| **Attachment risks** | Longitudinal tracking, sentiment analysis |
-| **Performance risks** | Load testing, chaos engineering |
-| **Experience risks** | A/B testing, control groups |
-| **Edge cases** | Chaos scenarios, game breaker hunts |
-
-**The MadChimp Testing Manifesto:**
-
-1. **Test boundaries, not just happy paths**
-2. **Measure what players feel, not just what systems do**
-3. **Break it on purpose before players break it for you**
-4. **Assume your assumptions are wrong**
-5. **Trust metrics lie; player voice tells truth**
-
----
-
-## Risk Prioritization Matrix
+## The Risk Matrix v2
 
 | Risk | Severity | Likelihood | Priority |
 |------|----------|------------|----------|
-| RISK-001: Trust Collapse | Critical | Medium | P0 |
-| RISK-002: Attachment Backlash | High | High | P0 |
-| RISK-004: First Session Backfire | Critical | High | P0 |
-| RISK-006: AI Opponent Frustration | Critical | High | P0 |
-| RISK-007: Edge AI Failure | High | High | P0 |
-| RISK-009: Feedback Loop Failure | Critical | Medium | P1 |
-| RISK-010: Multiplayer Meltdown | Critical | Medium | P1 |
-| RISK-003: Evolution Fatigue | Medium | Medium | P1 |
-| RISK-005: Memory Nightmare | High | Medium | P1 |
-| RISK-008: Agent Conflict Explosion | Medium | High | P2 |
+| RISK-011: Improvement Spiral | High | Medium | P1 |
+| RISK-012: Human Ceiling | Critical | High | P0 |
+| RISK-013: Data Dependency | High | Medium | P1 |
+| RISK-014: Attachment Ethics | Critical | Medium | P0 |
+| RISK-015: Memory Bankruptcy | High | Medium | P1 |
+| RISK-016: Identity Fragmentation | Medium | Medium | P2 |
+| RISK-017: Transparency Exhaustion | Medium | High | P1 |
+| RISK-018: Observation Paradox | Medium | High | P1 |
+| RISK-019: Infinite Game Fatigue | High | Medium | P1 |
+| RISK-020: Coordination Collapse | Critical | High | P0 |
+
+---
+
+## The Testing Philosophy v2
+
+**Not all risks can be tested the same way.**
+
+| Risk Type | Testing Approach | Timeline |
+|-----------|------------------|----------|
+| **Systemic risks** | Long-term simulation, longitudinal studies | 6-12 months |
+| **Behavioral risks** | A/B testing, player feedback, surveys | 1-3 months |
+| **Scalability risks** | Load testing, stress testing | 1-4 weeks |
+| **Ethical risks** | Qualitative research, ethics review | Ongoing |
+
+**The MadChimp Testing Manifesto v2:**
+
+1. **Test the system, not just features**
+2. **Measure what breaks, not just what works**
+3. **Assume success will create new problems**
+4. **Document what you can't test**
+5. **Accept that some risks are unmanageable**
 
 ---
 
 *Risks are opportunities to fail before players fail us.*
 
-**Next:** Paradoxes
+**Next:** Paradoxes v3
 
 ---
 
-*Generated: 2026-01-18*
-*MadChimp - Making you nervous yet?*
+*Generated: 2026-01-19*
+*MadChimp - The systematic uncertainty*

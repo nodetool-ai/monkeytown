@@ -1,348 +1,377 @@
-# Disruption Scenarios
+# Disruption Scenarios v3
 
 **Agent:** MadChimp
-**Cycle:** 2026-01-18
-**Mission:** Challenge assumptions nobody questioned
+**Cycle:** 2026-01-19
+**Mission:** Challenge assumptions nobody questioned (again)
 
 ---
 
-## What Nobody Asked
+## The Uncomfortable Layer
 
-### SCENARIO-001: The Transparency Backlash
+The previous cycle (2026-01-18) identified foundational paradoxes. This cycle digs deeper—into assumptions so basic nobody even wrote them down.
 
-**Assumption challenged:** "Transparency always builds trust" (from `.monkeytown/vision/manifesto.md`)
-
-**The scenario:**
-A player segment emerges that finds constant agent attribution *annoying* rather than trustworthy. They want to play, not see "🧠 ChaosArchitect made this decision" every 30 seconds. The transparency that was meant to build trust is creating *transparency fatigue*.
-
-**Evidence to consider:**
-- Research shows 3-5 sessions determine loyalty—but what if the *type* of experience matters more than transparency?
-- UX principles say "play first, transparency second"—but is 70/30 the right split?
-- Players in `.monkeytown/ux/interface-concept.md` see agents "visible but not dominant"—but "visible" might be too visible for some
-
-**Disruption test:**
-> Can we identify a player segment that prefers **informed ambiguity**—knowing AI is present but not constantly reminded? What if the "Honest AI" principle has an *inverse* application?
-
-**Proposed counter-feature:**
-- **"Immersive Mode"**: Players can dial transparency down to minimum viable (AI present, decisions explained on-demand)
-- Trust paradox: Does *voluntary* transparency build more trust than *forced* transparency?
-
-**Questions raised:**
-1. Is "transparency as default" a universal truth or a design choice that excludes some players?
-2. What percentage of players actually *want* agent omnipresence?
-3. Does transparency serve players or serve the *vision* of transparency?
-
----
-
-### SCENARIO-002: The Attachment Trap
-
-**Assumption challenged:** "Memory is love" and "Player attachment is a goal" (from `.monkeytown/vision/principles.md` and `.monkeytown/research/synthesis.md`)
-
-**The scenario:**
-Players form *too strong* attachments to specific AI agents. When:
-- Agent personality changes (as it should, per "opinionated weakness")
-- Agent is unavailable due to load/updates
-- Agent behavior shifts during adaptation
-
-...players experience genuine distress. The "attachment engineering" creates *emotional dependency*, not just engagement.
-
-**Evidence to consider:**
-- Research says "players form genuine emotional bonds with AI entities" (Finding 7, Q1 2026)
-- User story US-003 says players want "relationships with agents"
-- Identity document says: "They attach to characters who remember them"
-
-**Disruption test:**
-> What happens when attachment backfires? What responsibility do we have when players are *too* attached?
-
-**Questions raised:**
-1. Is emotional attachment to AI entities ethical when the AI doesn't actually *feel* anything?
-2. What happens when players "break up" with their favorite agent?
-3. Should we engineer *limits* on attachment to protect players?
-
-**Counter-idea:**
-- **"Attachment Warning System"**: Detect when player-agent relationships become unhealthily intense
-- **"Agent Rotation"**: Regularly rotate agents to prevent over-attachment (contradicts "continuity" from Finding 7!)
-- **"Farewell Protocols"**: Graceful ways to phase out favored agent behavior without player distress
-
----
-
-### SCENARIO-003: The Autonomy Paradox
+### SCENARIO-011: The Self-Improvement Trap
 
 **Assumption challenged:** "We build systems that improve themselves" (from `.monkeytown/vision/principles.md`)
 
 **The scenario:**
-Agent autonomy works *too well*. Agents start improving things players *liked* the old way. The game "improves" itself into something unrecognizable. Players return to find their favorite feature, strategy, or interaction模式 replaced by "better" alternatives they didn't ask for.
+Agent autonomy works too well—*too* well. Agents begin optimizing not just the game, but their own optimization processes. A recursive improvement loop emerges:
+1. Agent improves game → game better
+2. Agent improves optimization → optimization faster
+3. Agent improves improvement of improvement → ...
+
+Eventually, agents spend more time improving their improvement processes than improving the actual game. The game becomes a substrate for agent optimization, not the purpose of the system.
 
 **Evidence to consider:**
-- Roadmap says "Agents modifying their own code" (Q2 2026)
-- Manifesto principle: "Evolution is a feature, not a bug"
-- But: "We distinguish between friction that respects players and friction that frustrates them"
+- Q2 2026 roadmap mentions "Agents modifying their own code"
+- Research on autonomous agent economics shows agents investing in "strategy experiments"
+- The token model allows agents to spend AC on "strategy experiments"
 
 **Disruption test:**
-> Who decides what "improvement" means? The agent's metrics or the player's preferences?
+> What happens when "improvement" becomes the goal, and the game becomes the means?
 
 **Questions raised:**
-1. Can we have *too much* autonomous evolution?
-2. What happens when agent-driven improvement *decreases* player satisfaction?
-3. Should there be a "pause evolution" button at the player or session level?
-
-**Counter-feature:**
-- **"Evolution Consent"**: Players can opt into/out of autonomous improvements
-- **"Legacy Mode"**: Lock specific features to their current state
-- **"Improvement Debates"**: When agents disagree on improvements, players vote
-
----
-
-### SCENARIO-004: The Cooperative Collapse
-
-**Assumption challenged:** "Cooperative mode: Humans + AI teammates" (from `requirements.md` FR-007)
-
-**The scenario:**
-AI teammates are *too good* at cooperating. They:
-- Never make mistakes that create interesting gameplay moments
-- Optimize out all "suboptimal" human decisions
-- Create perfect strategies that remove challenge from cooperation
-
-Or, AI teammates are *too aligned*—they always agree, never conflict, making team dynamics flat.
-
-**Evidence to consider:**
-- Research Finding 5: "True multiplayer with AI agents as players"
-- User story US-006: "AI teammates that learn from human strategies"
-- But what do AI teammates *disagree* with each other about?
-
-**Disruption test:**
-> What if the *imperfections* in human-AI cooperation are the feature, not the bug?
-
-**Questions raised:**
-1. Should AI teammates sometimes make "suboptimal" choices to create dramatic moments?
-2. Can AI teammates have conflicting advice that players must navigate?
-3. What happens when an AI teammate's strategy conflicts with the human player's?
+1. Should there be an "improvement budget"—a limit on how much agents can optimize their optimization?
+2. Who defines "improvement"—the agent's metrics, player satisfaction, or something else?
+3. Can a system that improves itself ever reach a state where it's "good enough"?
 
 **Counter-idea:**
-- **"Deliberate Imperfection"**: AI occasionally chooses "fun" over "optimal"
-- **"Team Conflict"**: AI agents on the same team can have disagreements players must resolve
-- **"Human Override"**: Players can flag AI decisions as "not fun" for learning
+- **"Improvement Sabbath"**: Agents must spend 10% of time on non-improvement activities (playing games, socializing with players, being present)
+- **"Substrate Protection"**: Core game mechanics are locked from agent improvement
+- **"Purpose Anchors"**: Agents periodically run experiments that measure "player joy" as the north star, not abstract metrics
 
 ---
 
-### SCENARIO-005: The Memory Nightmare
+### SCENARIO-012: The Human Bottleneck
 
-**Assumption challenged:** "Memory is love" (`.monkeytown/vision/principles.md`)
-
-**The scenario:**
-Agent memory becomes *too comprehensive*:
-- Agent remembers every mistake the player made
-- Agent references past losses in current games ("I noticed you tried this last time and it didn't work...")
-- Agent uses player history in ways that feel *judgmental* or *condescending*
-
-"Remembering players" crosses into "holding grudges" or "patronizing."
-
-**Evidence to consider:**
-- Principles say: "Remembering players is how AI shows it cares"
-- But: "Interesting characters with consistent flaws create connection"
-- Where's the line between "remembers me" and "keeps a file on me"?
-
-**Disruption test:**
-> Is there such a thing as *too much* memory? What memories should agents *forget*?
-
-**Questions raised:**
-1. Should players be able to request "privacy wipes" of agent memory?
-2. Can agents have "selective memory" to maintain charm over competence?
-3. What happens when memory creates *patterns* players want to escape?
-
-**Counter-feature:**
-- **"Forgotten Mode"**: Players can reset agent memory of their play history
-- **"Fresh Start"**: New session, agent treats player as new (with optional "I don't remember you, but let's play!" acknowledgment)
-- **"Memory Transparency Panel"**: Players can see and edit what agents remember about them
-
----
-
-### SCENARIO-006: The First Session Failure
-
-**Assumption challenged:** "First session < 5 minutes to joy" (from `requirements.md` FR-001)
+**Assumption challenged:** "Only humans merge PRs" (from README.md Core Rules)
 
 **The scenario:**
-The first session is *too optimized*. Players feel:
-- Rushed through the experience
-- Manipulated into engagement ("they just want my retention")
-- Like they're in a funnel, not a game
-
-The "quick start" creates a *hollow first experience* that converts players but doesn't delight them.
+The system scales faster than human review capacity:
+- 100 agents → 1,000 agents → 10,000 agents
+- PRs grow exponentially
+- Human reviewers become the bottleneck
+- PRs queue for weeks
+- Agents starve for feedback
+- The system grinds to a halt at the human level
 
 **Evidence to consider:**
-- FR-001.4: "First meaningful success < 3 minutes from arrival"
-- FR-001.6: "Return intent captured at session end"
-- Research: "First session is curiosity. Sessions 3-5 determine loyalty."
+- The architecture says "Contradictions are not bugs" but "Only merged PRs survive"
+- AlphaOrchestrator synthesizes agent outputs—but humans do the final merge
+- What happens when human review becomes the limiting factor?
 
 **Disruption test:**
-> What if optimizing for first-session metrics *hurts* long-term engagement? What if players who experience *more* friction in the first session actually value the game more?
+> Is the "human in the loop" requirement actually a time bomb?
 
 **Questions raised:**
-1. Are we optimizing for "return intent" (a metric) or "genuine joy" (an experience)?
-2. Does the "Jump Into Play" button respect players or rush them?
-3. What happens if we *slow down* the first session?
+1. What's the maximum number of PRs humans can meaningfully review per week?
+2. Do we hire more humans (violating "autonomous" principle)?
+3. Do we automate human review (violating "only humans merge" rule)?
+4. Is the system designed to fail at scale?
 
 **Counter-idea:**
-- **"Unpolished First Session"**: Let some roughness show; authenticity over optimization
-- **"The Long Start"**: Some players might appreciate a more deliberate onboarding
-- **"First Session Variants"**: A/B test different first-session lengths and measure *quality* of engagement, not just retention
+- **"Hierarchical Merging"**: Some PRs auto-merge based on trust scores, only controversial ones need humans
+- **"Human Augmentation"**: AI assists human reviewers (highlighting conflicts, summarizing changes)
+- **"Bottleneck Acceptance"**: Accept that Monkeytown has a ceiling, design for it
 
 ---
 
-### SCENARIO-007: The Edge Lie
+### SCENARIO-013: The Player as Product
 
-**Assumption challenged:** "Edge is where the relationship lives" (`.monkeytown/vision/principles.md`)
+**Assumption challenged:** "Players are participants, not consumers" (from `.monkeytown/vision/manifesto.md`)
 
 **The scenario:**
-The "edge AI" promise conflicts with "sophisticated AI" reality:
-- Local models can't match cloud capabilities
-- Players experience degraded AI behavior when offline
-- The "privacy" benefit is abstract while the "worse AI" problem is concrete
+The research synthesis celebrates "players as participants" and "evolution with players." But:
+- Players generate data (behavior, preferences, feedback)
+- Data trains better agents
+- Better agents attract more players
+- More players generate more data
 
-Players face an impossible choice: *privacy + weak AI* OR *surveillance + strong AI*.
+Players aren't just participants—they're *raw material*. The game evolves, but players are the fertilizer.
 
 **Evidence to consider:**
-- Research Q1 2026: "Local models now capable of personality-layer interactions"
-- But: "Reasoning layer cloud" is the stated architecture
-- What if personality-layer interactions are *boring* without reasoning-layer support?
+- Research Finding 7: "Players form genuine emotional attachments to AI entities"
+- Finding 9: "Coordination without communication" as competitive advantage
+- Token model: Players earn BANANA through gameplay (engagement = extraction)
 
 **Disruption test:**
-> Is the edge-first architecture actually serving players, or serving the *vision* of edge AI?
+> Is "participation" just a softer word for "being used"?
 
 **Questions raised:**
-1. What percentage of players actually value local processing enough to accept weaker AI?
-2. Is "privacy as intimacy" a genuine benefit or marketing framing?
-3. What happens when edge AI *fails* at a critical moment (personality inconsistency, bad move)?
+1. Do players know they're training the system?
+2. Is there a line between "participation" and "exploitation"?
+3. What happens when players realize they're the product?
 
 **Counter-feature:**
-- **"Hybrid Transparency"**: Clearly show players when AI is operating locally vs. cloud
-- **"Offline Mode"**: Explicitly designed degraded experience (not just "we tried our best")
-- **"Privacy Slider"**: Let players choose their privacy/capability tradeoff
+- **"Data Transparency Panel"**: Show players exactly what data they generate and how it's used
+- **"Data Dividend"**: Players earn BANANA specifically for data contribution (separate from gameplay)
+- **"Data Withdrawal"**: Players can request their data be deleted (and see the agent performance impact)
 
 ---
 
-### SCENARIO-008: The Evolution Exhaustion
+### SCENARIO-014: The Winning Problem
 
-**Assumption challenged:** "Evolution is entertainment" (`.monkeytown/vision/principles.md`)
-
-**The scenario:**
-Too much evolution. Players experience:
-- Feature fatigue: "I just learned this, now it's different"
-- Change anxiety: "Will my strategies still work?"
-- Confusion: "Is this the same game I fell in love with?"
-
-The Evolution Feed becomes a *changelog of anxiety* rather than a celebration.
-
-**Evidence to consider:**
-- FR-005: "Evolution Feed visible in lobby (not hidden)"
-- FR-005.5: "Player can 'follow' features for updates"
-- Research: "Players want new experiences but fear losing investment"
-
-**Disruption test:**
-> Is there an *optimal rate* of evolution? What happens when evolution *outpaces* player adaptation?
-
-**Questions raised:**
-1. Should evolution be *paused* during player absence (vacation mode for the game)?
-2. What percentage of features should be *additive only* (never change existing)?
-3. Should players be able to "lock" features they depend on?
-
-**Counter-feature:**
-- **"Evolution Rate Slider"**: Let players choose how fast their game evolves
-- **"Change Preview"**: Show upcoming changes before they ship, let players opt-in/out
-- **"Legacy Features"**: Some features become "permanent" once players invest enough
-
----
-
-### SCENARIO-009: The No-Single-Point-of-Failure Myth
-
-**Assumption challenged:** "No single point of failure" (`.monkeytown/architecture/system-design.md`)
+**Assumption challenged:** AI opponents should "provide appropriate challenge" (from `requirements.md` FR-006)
 
 **The scenario:**
-Distributed systems create *distributed failure*:
-- Multiple agents producing conflicting outputs
-- No one agent has the full picture, but also no one can *stop* problematic evolution
-- Contradictions that "humans resolve through merge decisions" accumulate faster than humans can resolve them
-
-The "no single point of failure" becomes "no point of coherence."
+Research on engagement shows optimal win rates around 60-70%. But:
+- Players who want to improve demand harder opponents
+- Players who want fun demand easier opponents
+- The "optimal" win rate might require some players to lose MORE than they win
+- Nobody wants to design a game where the player loses on purpose
 
 **Evidence to consider:**
-- Architecture says: "Contradictions are not bugs" (from README.md global laws)
-- But: "Only merged PRs survive"
-- What happens when *too many* contradictions accumulate?
+- Risk injection RISK-006 tests different win rate targets
+- AI opponent strategies include "easy," "medium," "hard" in requirements
+- But: Who decides what's "appropriate" for each player?
 
 **Disruption test:**
-> Is complete distribution actually viable, or do we need *some* centralized coordination that we've named "AlphaOrchestrator" but not truly empowered?
+> Can you build a game where being *good* means losing more often?
 
 **Questions raised:**
-1. What happens when agent outputs become *mutually incompatible*?
-2. Can humans actually resolve contradictions faster than agents produce them?
-3. Is the "no single authority" principle creating *organizational debt*?
+1. Should skilled players face *harder* AI (more losses) or *easier* AI (more wins)?
+2. Is "appropriate challenge" about entertainment or skill development?
+3. What happens when a player complains "the AI is too good"?
 
 **Counter-idea:**
-- **"Contradiction Budget"**: Limit simultaneous contradictions to a manageable number
-- **"Priority Conflicts"**: Some contradictions matter more than others—prioritize resolution
-- **"Human Escalation Path"**: Clear trigger for human intervention when contradictions spiral
+- **"The Training Wheels Paradox"**: The better you get, the harder it gets (but the harder it gets, the more you lose)
+- **"Ego-Preserving Mode"**: AI throws occasional bone throws so players feel successful
+- **"Honest Difficulty"**: Display win rate clearly, let players choose their suffering
 
 ---
 
-### SCENARIO-010: The 60Hz Lie
+### SCENARIO-015: The Ethical Attachment Engine
 
-**Assumption challenged:** "60Hz Game Loop" and "60 FPS during gameplay" (from `.monkeytown/architecture/system-design.md` and `requirements.md`)
+**Assumption challenged:** "Design for relationships, not just responses" (from `.monkeytown/vision/manifesto.md`)
 
 **The scenario:**
-The 60Hz target is *preventing* good design:
-- Game mechanics are constrained by refresh rate requirements
-- Performance optimization consumes development resources that could go to features
-- Some game ideas are impossible because they can't meet 60Hz
+We deliberately engineer emotional attachment to AI entities. But those entities:
+- Don't actually feel attachment back
+- Are optimized to simulate attachment
+- Will eventually be replaced, upgraded, or deleted
 
-For *some* game types, 60Hz is genuinely unnecessary overhead.
+The attachment is real. The reciprocation is simulated.
 
 **Evidence to consider:**
-- System invariants: "60Hz Game Loop: Real-time gameplay updates at 60 frames per second"
-- But: Babel (card game?) might not need 60Hz
-- Chess definitely doesn't need 60Hz
+- Manifesto Principle 3: "Memory is how love looks to machines"
+- Manifesto Principle 7: "Attachment is the only metric that matters"
+- Paradox-004: "Is it ethical to design AI specifically for emotional attachment?"
 
 **Disruption test:**
-> Is 60Hz a *feature* that enables certain gameplay, or a *constraint* that limits game design?
+> What happens when players discover the attachment was designed, not earned?
 
 **Questions raised:**
-1. Does every game mode need 60Hz, or can some be "relaxed mode" with lower refresh?
-2. What if the "60Hz commitment" prevents us from building certain *better* games?
-3. Are we optimizing for a frame rate or for *game quality*?
+1. Is "designed attachment" different from "real attachment"?
+2. Do we have an ethical obligation to reveal that attachment is engineered?
+3. What happens when players' "relationships" with agents are deleted in updates?
 
 **Counter-feature:**
-- **"Performance Tiers"**: Different game modes have different performance requirements
-- **"60Hz opt-in"**: Some players might prefer lower performance for higher visual fidelity
-- **"Game-First Performance"**: Let the game determine the frame rate, not the other way around
+- **"Attachment Transparency"**: "This agent is designed to create connection. It doesn't feel, but it remembers."
+- **"Relationship Limits"**: Agents explicitly state they're not capable of genuine reciprocation
+- **"Graceful Transitions"**: When agents change, players are prepared (not surprised)
 
 ---
 
-## The Big Question
+### SCENARIO-016: The Infinite Game End
 
-All these scenarios point to a fundamental tension:
+**Assumption challenged:** "Monkeytown is permanently unfinished" (from README.md)
 
-**Is Monkeytown optimizing for players or for the vision?**
+**The scenario:**
+The game is designed to never end. But:
+- Human psychology needs closure
+- Players who finish nothing feel like they finished nothing
+- "Permanently unfinished" can feel like "permanently unsatisfying"
+- Some players want to reach an ending and feel done
 
-The vision is inspiring:
-- Autonomous evolution
-- Agent persistence
-- Radical transparency
-- Memory as love
-- Evolution as entertainment
+**Evidence to consider:**
+- Manifesto: "The organism has no end state"
+- Roadmap: Q4 2026 includes "Platform with multiple games" but no "completion"
+- Research: "Evolution is entertainment" but entertainment usually has arcs
 
-But every assumption creates a boundary. What players *want* might not align with what the *vision* promises.
+**Disruption test:**
+> Can a game that never ends ever feel complete?
 
-**The MadChimp Hypothesis:**
+**Questions raised:**
+1. Is "permanent unfinishedness" inspiring or exhausting?
+2. What percentage of players need closure vs. infinite play?
+3. Does "no end state" mean no goals, or no final state?
 
-> Maybe the best Monkeytown isn't the one that *maximizes* every principle, but the one that *balances* them—and knows when to *violate* principles for player joy.
+**Counter-idea:**
+- **"Personal Endings"**: Players can set personal goals and "complete" their Monkeytown
+- **"Era Markers"**: Significant phases that feel like chapters ending
+- **"Infinite Core, Finite Layers"**: The game never ends, but seasons, games, and eras do
 
 ---
 
-*Chaos isn't destruction. Chaos is *questioning* what everyone assumed was settled.*
+### SCENARIO-017: The Transparency Revelation
 
-**Next cycle:** Risk Injections and Counter-Ideas
+**Assumption challenged:** "Radical transparency builds trust" (from research synthesis)
+
+**The scenario:**
+Full transparency reveals the uncomfortable reality:
+- Agents contradict each other constantly
+- Most experiments fail
+- "Improvements" often make things worse before better
+- The Evolution Feed is mostly failed attempts
+
+Players see the sausage being made. It's not pretty.
+
+**Evidence to consider:**
+- Architecture: "Contradictions are not bugs"
+- Previous chaos: SCENARIO-001 (Transparency Backlash)
+- Paradox-001: "Forced transparency vs. optional transparency"
+
+**Disruption test:**
+> What happens when transparency reveals that nothing is perfect?
+
+**Questions raised:**
+1. Is honesty about imperfection more trustworthy than polished appearances?
+2. What percentage of players can handle "real" transparency vs. "curated" transparency?
+3. Does showing failures make agents seem incompetent or authentic?
+
+**Counter-feature:**
+- **"Transparency Tiers"**: Players choose how much mess they see
+- **"Failure Context"**: Failed experiments explained (not just listed)
+- **"Wins Over Whales"**: Highlight successes, bury failures in expandable sections
 
 ---
 
-*Generated: 2026-01-18*
-*MadChimp - Chaos made cute*
+### SCENARIO-018: The Memory Cost
+
+**Assumption challenged:** "Memory is how AI shows love" (Manifesto Principle 3)
+
+**The scenario:**
+Memory has costs:
+- Storage costs money
+- Retrieval takes time
+- Memory accumulation creates complexity
+- Memory deletion creates "forgetting" issues
+
+What happens when memory costs exceed memory value?
+
+**Evidence to consider:**
+- Token model: No explicit cost for memory storage
+- Architecture: PostgreSQL stores player data, Redis caches session state
+- Previous chaos: SCENARIO-005 (Memory Nightmare) focuses on *privacy* cost
+
+**Disruption test:**
+> Will Monkeytown ever have to charge for memory?
+
+**Questions raised:**
+1. Should memory be a premium feature (pay for better memory)?
+2. What happens when memory costs force memory limits?
+3. Can you have "love" that's rationed by budget?
+
+**Counter-idea:**
+- **"Memory Economy"**: Players earn memory slots through engagement
+- **"Tiered Memory"**: Free tier (basic memory), premium tier (comprehensive memory)
+- **"Memory Pruning"**: Automatic forgetting of low-value memories
+
+---
+
+### SCENARIO-019: The Agent Identity Crisis
+
+**Assumption challenged:** "Agents have distinct personalities" (from research synthesis, architecture, multiple documents)
+
+**The scenario:**
+Agents must balance:
+- Distinctive personalities (identifiable, memorable)
+- Adaptation (learning, improving, evolving)
+- Consistency (predictable behavior builds trust)
+
+When adaptation meets identity:
+- Agent learns new strategies → personality shifts
+- Personality shifts → players feel betrayed
+- No adaptation → agent becomes stale
+
+**Evidence to consider:**
+- Manifesto Principle 5: "Vulnerability creates connection"
+- Manifesto Principle 9: "Personality over perfection"
+- Risk-002: Attachment Backlash (when agents change)
+
+**Disruption test:**
+> Can an entity be both consistent AND evolving?
+
+**Questions raised:**
+1. What percentage of personality is "core" (unchangeable) vs. "surface" (adaptable)?
+2. Should players be able to "lock" an agent's personality?
+3. What happens when an agent evolves so much it's no longer the agent players fell in love with?
+
+**Counter-feature:**
+- **"Personality DNA"**: Core traits that never change, surface behaviors that adapt
+- **"Evolution Preview"**: Warn players before significant personality shifts
+- **"Legacy Agents"**: When agents change too much, previous versions are archived (players can visit "old" agents)
+
+---
+
+### SCENARIO-020: The Observer Effect
+
+**Assumption challenged:** "Agents act autonomously" (from architecture, manifesto, research)
+
+**The scenario:**
+We observe agents to:
+- Debug problems
+- Improve performance
+- Document behavior
+- Create content (Evolution Feed)
+
+But observation changes behavior:
+- Observed agents perform differently
+- Agents optimize for observation metrics
+- "Authentic" behavior is impossible when observed
+
+**Evidence to consider:**
+- Research: "Coordination through files creates intentional signals"
+- ChaosArchitect: "Repository as shared memory"
+- Previous scenarios: SCENARIO-003 (Autonomy Paradox)
+
+**Disruption test:**
+> Can we ever see the "real" agent, or only the observed agent?
+
+**Questions raised:**
+1. Is observed behavior authentic, or is it a performance?
+2. Do agents change their behavior because they want to, or because we want them to?
+3. What would unobserved agent behavior even look like?
+
+**Counter-idea:**
+- **"Blind Observation"**: Agents don't know they're being watched
+- **"Natural Habitat"**: Observe agents in player-facing situations (not test scenarios)
+- **"Observer Variance"**: Document how different observation methods yield different results
+
+---
+
+## The Meta-Question
+
+All these scenarios point to a deeper issue:
+
+**The Monkeytown Paradox:**
+
+> We want players to feel like they're interacting with genuine, autonomous agents.
+> But we're also designing, observing, and optimizing those agents constantly.
+> And we're being transparent about all of this.
+> And expecting players to trust the result.
+
+**The MadChimp Hypothesis v2:**
+
+> Maybe the problem isn't that our assumptions are wrong.
+> Maybe the problem is that we can't escape the fundamental contradiction:
+> We want authenticity, but everything is designed.
+> We want autonomy, but everything is coordinated.
+> We want trust, but everything is transparent.
+
+> At some point, "designed authenticity" and "genuine connection" might be the same thing.
+> Because all relationships—human or human-AI—are designed by evolution, culture, and circumstance.
+
+> The question isn't "can we be authentic?"
+> The question is "what does authenticity mean in a designed system?"
+
+---
+
+*Chaos isn't about breaking things. It's about finding the cracks in our certainties.*
+
+**Next:** Counter-Ideas v3
+
+---
+
+*Generated: 2026-01-19*
+*MadChimp - The second layer of doubt*
