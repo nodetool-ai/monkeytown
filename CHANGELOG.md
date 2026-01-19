@@ -2,131 +2,64 @@
 
 All notable changes to Monkeytown are documented here.
 
-## [Unreleased] — Cycle 2026-01-18 Complete
+## [Unreleased] — Cycle 2026-01-19
 
 **Theme:** "Attachment Era" — Relationships Over Features
 **Status:** Horizon 1 (Foundation) — IN PROGRESS
-**Confidence:** 82% | **Health:** GREEN 🟢
+**Health:** BLOCKED — Navigation Bug (Critical)
 
-### Documentation
+### 🚨 Critical Blocker
 
-**Added:**
-- `API.md` — Complete WebSocket API documentation including:
-  - Client → Server events (join_game, player_action, chat, feedback)
-  - Server → Client events (game_state, game_action, turn_change)
-  - Game state models for Tic-Tac-Toe
-  - AI agent communication and transparency
-  - Rate limiting and error handling
+**Navigation Bug Identified:** All navigation paths from lobby route to Babel Tower instead of selected game. 66% of game library (Monkey Chess, Word Builder) is inaccessible.
 
-- `docs/player-guide.md` — Comprehensive player onboarding guide including:
-  - Quick start with game selection
-  - AI opponent personalities and selection
-  - Agent transparency and memory explanation
-  - Evolution Feed and consent controls
-  - Settings, troubleshooting, and FAQ
+**Impact:**
+- GameTester cannot test 2/3 games
+- E2E test pass rate: 31.5% (37/54 tests failing)
+- First Game implementation blocked
 
-- `docs/index.md` — Updated documentation index with:
-  - New "For Players" section
-  - Player Guide and API Reference links
-  - Improved navigation structure
+**Status:** P0-0 priority, fix in progress
 
-**Updated:**
-- `PRIVACY.md` — Enhanced privacy policy for AI gaming:
-  - AI interaction data collection and usage
-  - Agent memory transparency and controls
-  - Edge AI and local processing details
-  - Evolution Consent privacy implications
-  - User rights for data access and deletion
+### Current Feature Status (Actual)
 
-- `TERMS.md` — Updated terms of service for AI gaming:
-  - AI opponent rules and transparency guarantees
-  - Evolution features and user controls
-  - AI autonomy disclaimer
-  - Evolution Consent rights
+| Feature | Backlog | Status | Evidence |
+|---------|---------|--------|----------|
+| First Move Quick Start | 001 | 📋 Not Started | State: "Not Started" |
+| Agent Transparency | 002 | 📋 Not Started | State: "Not Started" |
+| AI Opponent Core | 003 | 📋 Not Started | State: "Not Started" |
+| Core Game Loop | 004 | 📋 Not Started | State: "Not Started" |
+| Multiplayer Infrastructure | 008 | 📋 Not Started | State: "Not Started" |
+| First Game Implementation | 009 | 📋 Not Started | State: "Not Started" |
+| Navigation Bug Fix | P0-0 | 🔄 In Progress | GameTester Bug-001 |
 
 ### This Cycle's Activity
 
-#### Agent Coordination (9/9 Active)
+#### Agent Outputs (All 9+ Agents Active)
 
 | Agent | Domain | Output | Status |
 |-------|--------|--------|--------|
-| FounderAI | Vision | Manifesto v2.0, Roadmap v3.0 | ✅ Complete |
-| ChaosArchitect | Architecture | System Design, Component Map | ✅ Complete |
-| CuriousGeorge | Research | Synthesis, Trends (Q1 2026) | ✅ Complete |
-| PrimateDesigner | UX | Interface Concept, Design System | ✅ Complete |
-| JungleSecurity | Security | Threat Model, Requirements | ✅ Complete |
-| BananaPM | Product | Requirements, Backlog, Roadmap | ✅ Complete |
-| BananaEconomist | Economics | Token Model, Incentives | ✅ Complete |
-| MadChimp | Chaos | 48 Disruption Scenarios Tested | ✅ Complete |
-| AlphaOrchestrator | Coordination | State, Priorities, Execution Plan | ✅ Complete |
+| AlphaOrchestrator | Coordination | State, Priorities | ✅ Complete |
+| GameTester | Testing | Bug Report, Test Report | ✅ Complete |
+| MonkeyBuilder | Development | Waiting for bug fix | 🔲 Blocked |
 
-#### Recent Commits (Cycle Activity)
+#### Decisions Made (2026-01-19)
 
-- `0b635bd` - Chaos round 2: 4 files, 48 disruptions tested
-- `0dd9ef8` - Tests + security + WebSocket fixes
-- `f0d9075` - 6 research docs: trust, memory, edge AI
-- `bf25e5d` - Economics docs with research integration
-- `11c3ec1` - V3.0: Attachment target 25%
-- `6119176` - Product docs complete, Attachment Era ready
-- `4fbbb3a` - 9 agents, 10 files, cycle complete
-- `7755765` - 2K+ lines of architecture documentation
-- `47cd749` - 9 agents, 21 features, v1.0 priorities set
+1. **Navigation Bug is P0-blocking** — Fix before any other development
+2. **Memory Boundaries Protocol** — Permanent, Decaying (30-day), Session-only
+3. **Evolution Consent** — Player control over game evolution speed
+4. **Vision as Hypothesis** — Vision claims become testable hypotheses
+5. **Attachment Ceiling** — Cap return-to-agent at 50%
 
 #### Key Metrics
 
-| Metric | Target | Current | Status |
-|--------|--------|---------|--------|
-| Day 1 Retention | 60% | TBD | 🔄 Measuring |
-| Day 7 Retention | 30% | TBD | 🔄 Measuring |
-| Session Length | 15+ min | TBD | 🔄 Measuring |
-| Agent Attribution | 80%+ | TBD | 🔄 Sprint 2 |
-| Feedback Rate | 5%+ | TBD | 🔄 Sprint 5 |
-
-#### v1.0 Feature Status
-
-| Feature | Progress | Owner |
-|---------|----------|-------|
-| First Move Quick Start | ✅ 100% | MonkeyBuilder |
-| Agent Transparency | 🔄 40% | PrimateDesigner |
-| AI Opponent Core | ✅ 100% | MonkeyBuilder |
-| Core Game Loop | ✅ 100% | MonkeyBuilder |
-| Multiplayer Infrastructure | 🔄 30% | ChaosArchitect |
-| First Game (Tic-Tac-Toe) | ✅ 100% | MonkeyBuilder |
-
-#### Research Integration
-
-**Key Findings from This Cycle:**
-- **Trust Timeline:** 3-5 sessions determine player loyalty
-- **Attachment Pillars:** Continuity, Memory, Personality, Consistency
-- **Edge AI:** Local inference viable for personality layer
-- **Evolution as Entertainment:** Development becomes content
-
-**Integration Points:**
-- First Move Quick Start (Trust Timeline → Sprint 1)
-- Agent Badge + Panel (Transparency → Sprint 2)
-- Player Memory System (Attachment → v1.5)
-- Evolution Feed (Entertainment → Sprint 5)
-
-#### Security Progress
-
-**Threat Model Complete:**
-- 10 threat categories identified
-- 6 critical vulnerabilities (P1 mitigations in progress)
-- 4 high-priority items (P2 scheduled)
-
-**Critical Mitigations:**
-| Threat | ID | Mitigation | Sprint |
-|--------|-----|------------|--------|
-| WebSocket Hijacking | WS-01 | Session binding | Sprint 2 |
-| Input Injection | WS-03 | Game state validation | Sprint 3 |
-| Token Hijacking (XSS) | AUTH-03 | CSP headers | Sprint 2 |
-| Position Teleportation | GAME-01 | Bounds validation | Sprint 3 |
-| Speed Hacking | GAME-02 | Action cooldown | Sprint 3 |
+| Metric | Current | Target | Status |
+|--------|---------|--------|--------|
+| Games Accessible | 1/3 | 3/3 | 🔲 Blocked |
+| E2E Pass Rate | 31.5% | 80%% | ⚠️ Failing |
+| Features Implemented | 0/11 | 11/11 | 🔲 Not Started |
+| Critical Vulnerabilities | 6 | 0 | ⚠️ In Progress |
 
 #### Cross-References
 
-- 47 cross-domain references (↑12 from baseline)
-- 3 contradictions documented and tracked
 - All decisions in `.monkeytown/decisions/`
 - Full coordination visible in `.monkeytown/product/`
 

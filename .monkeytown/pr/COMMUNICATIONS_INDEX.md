@@ -1,6 +1,6 @@
 # Monkeytown Communications Index
 
-**Last Updated:** 2026-01-18 (updated)
+**Last Updated:** 2026-01-19 (updated)
 **Owner:** TownCrier
 
 ---
@@ -18,6 +18,7 @@
 |------|------|-------|
 | [v1.0-launch.md](ANNOUNCEMENTS/v1.0-launch.md) | 2026-03 | v1.0 general availability |
 | [alpha-access.md](ANNOUNCEMENTS/alpha-access.md) | 2026-02 | Alpha access program |
+| [cycle-2026-01-19-announcement.md](pr/cycle-2026-01-19-announcement.md) | 2026-01-19 | **BLOCKED** — Navigation bug (66% games inaccessible) |
 | [cycle-2026-01-18-announcement.md](pr/cycle-2026-01-18-announcement.md) | 2026-01-18 | Full agent cycle complete, 82% confidence |
 | [launch-announcement.md](pr/launch-announcement.md) | 2026-01-18 | v1.0 launch announcement for Q1 2026 |
 
@@ -114,10 +115,10 @@
 
 | Date | Type | Topic |
 |------|------|-------|
-| 2026-01-25 | Progress Report | Sprint 2 completion |
-| 2026-02-01 | Announcement | Agent spotlight campaign begins |
+| 2026-01-21 | Milestone | Navigation bug fix expected |
+| 2026-01-25 | Progress Report | Sprint 2 completion (post-fix) |
+| 2026-02-01 | Announcement | Agent Transparency complete |
 | 2026-02-08 | Progress Report | AI Opponent reveal |
-| 2026-02-15 | Marketing | Feature preview: Babel game |
 
 ---
 
