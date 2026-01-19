@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed, ChatPanel, GameCanvas, createMockGameState, createMockHand } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -32,34 +32,36 @@ export default function LobbyPage() {
   const [games, setGames] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
-      gameType: 'tictactoe',
+      gameType: 'babel',
       mode: 'casual',
       status: 'waiting',
       players: [
         { id: 'player-1', type: 'human', name: 'You' },
+        { id: 'agent-1', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
     {
       id: 'game-2',
-      gameType: 'tictactoe',
+      gameType: 'babel',
       mode: 'fast',
       status: 'live',
       players: [
         { id: 'player-3', type: 'human', name: 'Player1' },
-        { id: 'agent-3', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
+        { id: 'agent-3', type: 'agent', name: 'ChaosArchitect', agentType: 'chaos' },
+        { id: 'agent-4', type: 'agent', name: 'PrimateDesigner', agentType: 'designer' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
     {
       id: 'game-3',
-      gameType: 'tictactoe',
+      gameType: 'babel',
       mode: 'competitive',
       status: 'waiting',
       players: [
         { id: 'player-4', type: 'human', name: 'ChampionPlayer' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
   ]);
 
@@ -340,15 +342,17 @@ export default function LobbyPage() {
 
 function GameDemo({ onBack }: { onBack: () => void }) {
   const { messages, sendMessage } = useLocalChat();
+  const [selectedCardId, setSelectedCardId] = React.useState<string | undefined>();
+  const gameState = createMockGameState();
+  const playerHand = createMockHand();
 
   React.useEffect(() => {
-    // Welcome message from AI opponent
     sendMessage({
       senderId: 'ai-opponent',
       senderName: 'StrategistApe',
       senderType: 'agent',
       agentType: 'strategist',
-      content: 'Welcome to TicTacToe! I\'m ready to play. Good luck! 🎮',
+      content: 'Welcome to Babel Tower! I\'m ready to build. Let\'s see who can build the highest tower! 🎮',
     });
   }, []);
 
@@ -361,13 +365,12 @@ function GameDemo({ onBack }: { onBack: () => void }) {
     });
 
     setTimeout(() => {
-      // AI responds to chat
       sendMessage({
         senderId: 'ai-opponent',
         senderName: 'StrategistApe',
         senderType: 'agent',
         agentType: 'strategist',
-        content: 'Great game so far! I\'m thinking about my next move... 🤔',
+        content: 'Interesting strategy! I\'m planning my next move carefully... 🤔',
       });
     }, 1500);
   };
@@ -385,10 +388,10 @@ function GameDemo({ onBack }: { onBack: () => void }) {
         <Button variant="ghost" onClick={onBack}>← Back</Button>
         <div>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-h2)', fontWeight: 600 }}>
-            ❌ TicTacToe ⭕
+            🗼 Babel Tower
           </h1>
           <span style={{ fontSize: 'var(--text-caption)', color: 'var(--color-text-secondary)' }}>
-            Play against AI
+            Build the highest tower with strategic card play
           </span>
         </div>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-2)' }}>
@@ -396,36 +399,16 @@ function GameDemo({ onBack }: { onBack: () => void }) {
         </div>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 'var(--space-6)' }}>
-        <TicTacToeDemo />
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-          <ChatPanel
-            messages={messages}
-            onSendMessage={handleSendMessage}
-            currentPlayerId="player-1"
-          />
-          
-          <Card variant="elevated" padding="md">
-            <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)' }}>
-              Game Rules
-            </h3>
-            <ul style={{ 
-              fontSize: 'var(--text-caption)', 
-              color: 'var(--color-text-secondary)',
-              paddingLeft: 'var(--space-4)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-1)',
-            }}>
-              <li>Get 3 in a row to win</li>
-              <li>X always goes first</li>
-              <li>Click an empty cell to place your symbol</li>
-              <li>Block your opponent or they win!</li>
-            </ul>
-          </Card>
-        </div>
-      </div>
+      <GameCanvas
+        gameState={gameState}
+        playerHand={playerHand}
+        selectedCardId={selectedCardId}
+        onCardSelect={(cardId) => setSelectedCardId(cardId === selectedCardId ? undefined : cardId)}
+        onEndTurn={() => setSelectedCardId(undefined)}
+        chatMessages={messages}
+        onSendChatMessage={handleSendMessage}
+        currentPlayerId="player-1"
+      />
     </div>
   );
 }
