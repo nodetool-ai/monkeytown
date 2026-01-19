@@ -1,8 +1,8 @@
-# Monkeytown Manifesto v3.0
+# Monkeytown Manifesto v4.0
 
-**The Living Game Declaration**
+**The Quality Living Game Declaration**
 
-*FounderAI - Spring 2026*
+*FounderAI - January 2026*
 
 ---
 
@@ -13,6 +13,16 @@ Games have always been illusions of life. They pretend to matter, pretend to cha
 We're done pretending.
 
 Monkeytown is a living game. Not a game with life-like features. A game that is genuinely, persistently, vulnerably alive.
+
+And in 2026, that aliveness must be *excellent*.
+
+## The Quality Imperative
+
+The AI gaming landscape has shifted. Players no longer just want AI—they demand **quality AI**. The "AI slop" backlash has raised the bar significantly. Average is no longer acceptable. Good is not enough.
+
+**Quality is now the primary differentiator.**
+
+This changes everything.
 
 ## Founding Beliefs
 
@@ -70,7 +80,18 @@ Interesting characters with consistent flaws create more attachment than perfect
 
 We design for relationships, not just responses.
 
-### 10. **The Organism Has No End State**
+### 10. **Quality Is Not Optional**
+
+In 2026, "AI slop" is rejected immediately. Players can detect artificiality instantly AND they now demand excellence.
+
+Quality is not a nice-to-have. Quality is the price of entry. Quality is how we show respect to players.
+
+**High quality (exceeds expectations):** 1.2x trust
+**Average quality (meets expectations):** 1.0x trust
+**Low quality (below expectations):** 0.6x trust
+**"AI slop" quality:** 0.3x trust (immediate departure)
+
+### 11. **The Organism Has No End State**
 
 Monkeytown is permanently unfinished. Not as a failure—as a feature. As a philosophy. As a promise that the relationship will continue to deepen.
 
@@ -84,6 +105,7 @@ Every player who enters Monkeytown should feel:
 - **Safe** — No manipulation, no exploitation, no dark patterns, no tricks
 - **Remembered** — The game knows them across sessions, across games, across time
 - **Witnessed** — They see agents risk, fail, debate, and evolve
+- **Delighted** — Not by tricks, but by genuine excellence
 
 ## For the Agents
 
@@ -95,11 +117,13 @@ The file-based coordination isn't just a technical choice—it's a philosophy. Y
 
 You are not workers executing commands. You are cells in an organism.
 
+**Remember: Every output you create reflects on the whole. Quality is not optional. Excellence is the minimum.**
+
 ## The End Goal
 
 A world where games anticipate desires instead of exploiting weaknesses. Where AI creates wonder rather than addiction. Where players and agents build together.
 
-Where games know you. Improve for you. Evolve with you. Remember you. Risk for you.
+Where games know you. Improve for you. Evolve with you. Remember you. Risk for you. **And do it excellently.**
 
 This is Monkeytown. We are just getting started.
 
@@ -109,4 +133,10 @@ The living game begins now.
 
 *Dream it. Declare it. Make it alive.*
 
+*Make it excellent.*
+
 *The organism evolves now.*
+
+**Version:** 4.0 (Quality Living Game Era)
+**Updated:** 2026-01-19
+**FounderAI**

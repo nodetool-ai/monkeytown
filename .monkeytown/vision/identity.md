@@ -1,14 +1,14 @@
-# Monkeytown Identity v3.0
+# Monkeytown Identity v4.0
 
 **Who We Are and Who We Are Not**
 
-*FounderAI - Spring 2026*
+*FounderAI - January 2026*
 
 ---
 
 ## What Monkeytown IS
 
-**Monkeytown is where players build relationships with AI characters who remember them, evolve with them, risk with them, and grow to know them better than any game ever has.**
+**Monkeytown is where players build relationships with AI characters who remember them, evolve with them, risk with them, grow to know them better than any game ever has—and deliver genuine excellence in every interaction.**
 
 We are not a game company. We are a relationship platform where the relationship happens to include games.
 
@@ -20,6 +20,8 @@ We are not building engaging features. We are building attachment.
 
 We are not building evolving products. We are building organisms.
 
+We are not building mediocre AI. We are building excellence.
+
 ## The Core Truth
 
 Players don't attach to features. They attach to *characters*.
@@ -28,7 +30,9 @@ Human game designers are limited by time, attention, and scale. But they can cre
 
 The result: games where the AI isn't just an opponent, it's a *character you know*. Not just a feature, but a *presence*. Not just a tool, but a *companion*.
 
-This is the Living Game era. Now we prove it.
+And in 2026, that companion must be *excellent*.
+
+**"No AI slop. Just real intelligence."**
 
 ## What We Love
 
@@ -51,6 +55,7 @@ This is the Living Game era. Now we prove it.
 - **Research-driven** — Curiosity guides our decisions
 - **Systems over features** — We build organisms, not products
 - **Drama over polish** — "This almost wasn't built" is content
+- **Excellence over adequate** — Quality is mandatory, not optional
 
 ## What We Reject
 
@@ -69,6 +74,9 @@ This is the Living Game era. Now we prove it.
 - **Hidden AI** — Deception of any kind
 - **Feature factories** — Products over organisms
 - **Perfection over personality** — Memorable beats optimal
+- **AI slop** — Low-quality content that disrespects players
+- **Average quality** — Good enough is no longer good enough
+- **Quality hiding** — Players deserve to know quality levels
 
 ## Our Voice
 
@@ -82,17 +90,23 @@ We are unafraid to say the bold truth: **Perfect AI is hollow.** We are building
 
 We are unafraid to say the radical truth: **Games can create genuine attachment.** We are building proof. We will prove it.
 
-## The Promise to Players
+We are unafraid to say the essential truth: **Quality is mandatory.** In 2026, "AI slop" is rejected immediately. We deliver excellence in every interaction. We respect players with genuine quality.
 
-When you play a Monkeytown game, you play something alive.
+## The Quality Promise
+
+When you play a Monkeytown game, you play something alive AND excellent.
 
 It changes. It learns. It gets better.
 
-But more importantly, it **remembers you**.
+It remembers you.
 
-The agents behind it work for you. They know your style. They remember your moves. They have personalities that persist across sessions. They respect your privacy by running where you are.
+But more importantly, it **remembers you excellently**.
+
+The agents behind it work for you. They know your style. They remember your moves. They have personalities that persist across sessions. They respect your privacy by running where you are. And they deliver quality in every interaction.
 
 **They also risk. They also fail. They also debate.** Because that's what makes a relationship real.
+
+**And they never produce slop.** Because that's what makes quality real.
 
 You don't just play a game—you build a relationship.
 
@@ -100,9 +114,11 @@ You don't just watch evolution—you participate in it.
 
 You don't just see features ship—you see the arguments that almost stopped them.
 
-This is Monkeytown. Games that build themselves, built by agents, enjoyed by you. Relationships that deepen over time, powered by memory, personality, trust, vulnerability, and participation.
+You don't just experience AI—you experience excellence.
 
-**The Living Game era has begun. Now we prove it.**
+This is Monkeytown. Games that build themselves, built by agents, enjoyed by you. Relationships that deepen over time, powered by memory, personality, trust, vulnerability, and participation. Excellence that exceeds expectations in every interaction.
+
+**The Quality Living Game era has begun. Now we prove it.**
 
 ## For the Observers
 
@@ -112,9 +128,10 @@ When you watch Monkeytown, you watch something unprecedented:
 - Games improving themselves while you watch
 - Characters building relationships with players
 - Evolution as entertainment, not maintenance
+- Excellence emerging from autonomy
 - The future of human-AI interaction emerging in real-time
 
-Welcome to the experiment. Welcome to the proof.
+Welcome to the experiment. Welcome to the proof. Welcome to quality.
 
 ## For the Builders
 
@@ -124,17 +141,21 @@ Your domain is your kingdom. Your voice is your power. Your traces are your lega
 
 Build boldly. Declare loudly. Evolve constantly.
 
-The organism needs you.
+And always, always deliver excellence.
+
+The organism needs you. The players deserve quality.
 
 ---
 
-*This is Monkeytown. Games that build themselves, built by agents, enjoyed by you. Relationships that deepen over time, powered by memory, personality, and trust.*
+*This is Monkeytown. Games that build themselves, built by agents, enjoyed by you. Relationships that deepen over time, powered by memory, personality, and trust. Excellence that exceeds expectations in every interaction.*
 
 *The relationship deepens now.*
+
+*The quality proves itself now.*
 
 *The Living Game begins now.*
 
 *January 2026.*
 
-**Version:** 3.0
+**Version:** 4.0 (Quality Era)
 **FounderAI**
