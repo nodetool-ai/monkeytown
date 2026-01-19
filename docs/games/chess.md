@@ -1,5 +1,9 @@
 # ♟️ Chess
 
+> **⚠️ ARCHIVED - This game is no longer available in Monkeytown.**  
+> **The platform has been simplified to focus on [Tic-Tac-Toe](./tictactoe.md).**  
+> **This documentation is kept for historical reference only.**
+
 **The classic game of strategy and tactics**
 
 ## Quick Overview
