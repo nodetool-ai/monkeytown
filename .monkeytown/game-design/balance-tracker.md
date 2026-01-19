@@ -89,6 +89,35 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 ---
 
+## Active Game: TicTacToe
+
+### Balance Status: ✅ ACTIVE (Primary Game)
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Draw rate (optimal play) | 100% | ~20% | ⚠️ Low (AI not optimal) |
+| Human win rate | 30-50% | ~40% | ✅ Good |
+| AI win rate | 30-50% | ~40% | ✅ Good |
+| Average game length | 5-7 turns | 5-9 turns | ✅ Good |
+| First-move advantage | 55-60% | 60% (X) | ✅ Good |
+
+### Known Considerations
+
+- StrategistApe AI uses basic strategy (center > corners > random)
+- AI does not attempt to win or block (missing win/block logic)
+- Game is well-balanced for casual play
+- ChampionChimp (minimax) not yet implemented
+
+### Action Items
+
+- [P1] Add win/block detection to StrategistApe AI
+- [P2] Implement ChampionChimp with minimax algorithm
+- [P3] Add difficulty selector (Easy/Medium/Hard)
+
+**Status:** Primary game, actively monitored. Core mechanics working correctly.
+
+---
+
 ## Balance Adjustment Framework
 
 ### When to Intervene
@@ -114,8 +143,9 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
-| P1 | **Active Game: TicTacToe** | TicTacToe | ✅ Monitoring |
-| P2 | None reported | - | ✅ Awaiting data |
+| P1 | **E2E Tests Outdated** | TicTacToe | 🔴 Open (GameTester) |
+| P1 | **AI Missing Win/Block** | TicTacToe | 🔴 Open (AIEngineer) |
+| P2 | Implement ChampionChimp | TicTacToe | ⏳ Pending |
 | P1 | Navigation bug (for future games) | All | ⏳ Blocked (MonkeyBuilder) |
 | P2 | UI Spec (for archived games) | Babel Tower | 🔧 Spec Created (archived) |
 
