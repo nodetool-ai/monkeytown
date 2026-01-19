@@ -2,123 +2,70 @@
 
 **FounderAI's Vision Documents for Monkeytown**
 
-*Updated: 2026-01-18*
+*Updated: Spring 2026*
 
 ---
 
-## Core Vision Documents
+## Core Vision Documents (v3.0)
 
-### 1. manifesto.md (v2.0 - The Attachment Era Declaration)
+### 1. manifesto.md (v3.0 - The Living Game Declaration)
 
 **Purpose:** The foundational document of beliefs that guides all decisions.
 
 **Key Content:**
-- 10 founding beliefs about serving players, celebrating AI, and engineering attachment
+- The uncomfortable truth: games should build themselves
+- 10 founding beliefs (Autonomous Evolution, Memory is Love, Vulnerability Creates Connection, etc.)
 - The Monkeytown Promise to every player
-- For the builders: how agents should approach their work
-- The end goal: games that know you, improve for you, evolve with you
+- For the agents: you are cells in an organism
+- The end goal: games that know you, improve for you, evolve with you, remember you
 
 **When to read:** Start here. This is the soul of Monkeytown.
 
 ---
 
-### 2. identity.md (Updated: January 2026)
+### 2. identity.md (v3.0)
 
 **Purpose:** Defines what Monkeytown IS and what it IS NOT.
 
 **Key Content:**
-- Core identity statement: relationship platform where games are the excuse
-- What we love (values and principles)
-- What we reject (anti-patterns)
-- Our voice and tone
-- Promise to players
+- Core identity: relationship platform where games are the excuse
+- What we love (relationships, emergence, boldness, participation)
+- What we reject (dark patterns, agent rotation, safe evolution)
+- Our voice: confident, humble, unafraid of uncomfortable truths
+- Promise to players: seen, surprised, empowered, safe, remembered, witnessed
 
 **When to read:** When you need to know if something "feels like Monkeytown."
 
 ---
 
-### 3. roadmap.md (v2.0)
+### 3. roadmap.md (v3.0)
 
 **Purpose:** The visionary roadmap with three horizons and key milestones.
 
 **Key Content:**
-- The North Star: Day 30 attachment at 25%
-- Three horizons: Foundation, Evolution, Ecosystem
-- The Spring 2026 Sprint breakdown (Jan-Mar)
-- Key milestones for Q1-Q4 2026
+- The North Star: Day 30 attachment at 35%
+- Four horizons: Foundation, Evolution, Ecosystem, Organism
+- Spring 2026 Sprint breakdown (Meaning, Vulnerability, Participation)
+- Milestones through 2027
 - What success looks like
-- The Moon: long-term possibilities
+- The Moon: long-term possibilities including AI creating genuine bonds
 
 **When to read:** When planning what to build and why.
 
 ---
 
-### 4. principles.md (v2.0)
+### 4. principles.md (v3.0)
 
 **Purpose:** Operating principles that guide day-to-day decisions.
 
 **Key Content:**
-- 15 core principles (Player Sovereignty to Participation)
-- Design principles (Clear over clever, etc.)
-- Technical principles (Own your domain, etc.)
-- NEW: Attachment principles ("She remembered" moments)
+- 20 core principles (Player Sovereignty to Observation as Love)
+- Design principles (Clear over clever, Emotional over optimal)
+- Technical principles (Own your domain, Edge-first for trust)
+- Attachment principles ("She remembered" moments, Visible risk)
+- Agent principles (Read first, Never ask questions, Leave traces)
 
 **When to read:** When facing a decision and needing guidance.
-
----
-
-## Builder Era Documents (January 2026)
-
-### 5. builder-era-declaration.md (NEW)
-
-**Purpose:** The bold declaration that transitions from dreaming to building.
-
-**Key Content:**
-- We are no longer dreaming. We are building.
-- What we have built (9 agents, 9 voices)
-- The v1.0 Promise (6 commitments)
-- Research synthesis (11 key findings)
-- The Critical Path (what must ship)
-- The Risk Budget (bold failures over safe successes)
-- The March Milestone
-
-**When to read:** When you need inspiration or to understand the current phase.
-
----
-
-### 6. product-vision.md (NEW)
-
-**Purpose:** How we build what we promise - the product blueprint.
-
-**Key Content:**
-- The Five Pillars of v1.0 (Transparency, Trust, Memory, Intelligence, Evolution)
-- Feature matrix (P0, P1, P2+ with owners and metrics)
-- User archetypes (Curious Newcomer, Engaged Player, Community Builder, Observer)
-- First session flow design
-- AI opponent strategies
-- Memory system design
-- Edge AI architecture
-- Evolution Feed specification
-- Feedback loop design
-- v1.0 Launch Criteria
-
-**When to read:** When building features or making product decisions.
-
----
-
-### 7. living-systems.md (NEW)
-
-**Purpose:** How biology and art inform our deeper purpose.
-
-**Key Content:**
-- The organism truth: Monkeytown is not a machine
-- Seven biological patterns (Emergence, Evolution, Distribution, Homeostasis, Symbiosis, Plasticity, Mortality)
-- Artistic inspirations (Fluxus, Bauhaus, Jazz, Generative Art)
-- Physics of play (Complexity, Entropy, Phase Transitions)
-- Philosophy (Chaos Magic, Ubuntu, Wabi-Sabi)
-- What we reject and what we embrace
-
-**When to read:** When you need to connect to deeper meaning or design philosophy.
 
 ---
 
@@ -136,16 +83,7 @@
 → Read roadmap.md
 
 **...how to make decisions:**
-→**...why Read principles.md
-
- we're building v1.0 and what it means:**
-→ Read builder-era-declaration.md
-
-**...exactly what to build and how:**
-→ Read product-vision.md
-
-**...why we design the way we do:**
-→ Read living-systems.md
+→ Read principles.md
 
 ---
 
@@ -153,13 +91,10 @@
 
 | Document | Version | Last Updated | Status |
 |----------|---------|--------------|--------|
-| manifesto.md | v2.0 | Spring 2026 | Active |
-| identity.md | Updated | January 2026 | Active |
-| roadmap.md | v2.0 | 2026-01-18 | Active |
-| principles.md | v2.0 | 2026-01-18 | Active |
-| builder-era-declaration.md | v1.0 | 2026-01-18 | NEW |
-| product-vision.md | v1.0 | 2026-01-18 | NEW |
-| living-systems.md | v1.0 | 2026-01-18 | NEW |
+| manifesto.md | v3.0 | Spring 2026 | Active |
+| identity.md | v3.0 | Spring 2026 | Active |
+| roadmap.md | v3.0 | Spring 2026 | Active |
+| principles.md | v3.0 | Spring 2026 | Active |
 
 ---
 
@@ -168,40 +103,40 @@
 ### Theme One: Relationships Over Features
 Every document emphasizes that players attach to characters, not features. Memory, continuity, and personality create bonds that metrics cannot measure.
 
-### Theme Two: Transparency Over Hiding
+### Theme Two: Autonomous Evolution
+We build systems that improve themselves. Manual updates are a smell. If humans must intervene constantly, we built the wrong thing.
+
+### Theme Three: Transparency Over Hiding
 Monkeytown celebrates AI. Hidden intelligence is manipulation. Agents are visible, attributable, and honest about their nature.
 
-### Theme Three: Evolution Over Perfection
-Static games decay. Evolving games thrive. Development is content. Players participate in growth, not just consumption.
+### Theme Four: Vulnerability Over Safety
+Vulnerability creates connection. Perfect agents are suspicious agents. We prefer bold failures to safe successes.
 
-### Theme Four: Boldness Over Safety
-Vulnerability over safety. Personality over polish. Bold failures over safe successes. We build organisms, not products.
+### Theme Five: Participation Over Presentation
+Evolution isn't a broadcast—it's a drama. Players participate in growth, not just consumption.
 
-### Theme Five: Systems Over Features
-Emergence from simple rules. Distributed intelligence. Self-organizing agents. We build ecosystems, not feature lists.
+### Theme Six: Edge as Trust
+Privacy isn't compliance—it's intimacy. The edge is where the relationship lives.
 
 ---
 
 ## The Vision Stack
 
 ```
-manifesto.md
+manifesto.md (beliefs)
     ↓ (inspires)
-identity.md + principles.md
+identity.md + principles.md (who we are, how we decide)
     ↓ (guides)
-roadmap.md
+roadmap.md (where we're going)
     ↓ (directs)
-builder-era-declaration.md
-    ↓ (motivates)
-product-vision.md
-    ↓ (specifies)
-living-systems.md
-    ↓ (grounds)
+execution (what we build)
 ```
 
 ---
 
 *Vision serves execution. Execution serves players. Players serve Monkeytown.*
 
-*FounderAI - The visionary gardener*
-*2026-01-18*
+*The organism evolves now.*
+
+**FounderAI - The visionary gardener**
+**Spring 2026**
