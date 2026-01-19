@@ -6,7 +6,7 @@ import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel, BabelGameDemo } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -53,13 +53,25 @@ export default function LobbyPage() {
     },
     {
       id: 'game-3',
-      gameType: 'tictactoe',
-      mode: 'competitive',
+      gameType: 'babel',
+      mode: 'casual',
       status: 'waiting',
       players: [
-        { id: 'player-4', type: 'human', name: 'ChampionPlayer' },
+        { id: 'player-5', type: 'human', name: 'You' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 4,
+    },
+    {
+      id: 'game-4',
+      gameType: 'babel',
+      mode: 'competitive',
+      status: 'live',
+      players: [
+        { id: 'player-6', type: 'human', name: 'Player2' },
+        { id: 'agent-4', type: 'agent', name: 'ChampionChimp', agentType: 'champion' },
+        { id: 'agent-5', type: 'agent', name: 'GuardianGorilla', agentType: 'guardian' },
+      ],
+      maxPlayers: 4,
     },
   ]);
 
