@@ -1,375 +1,566 @@
-# Visual Identity
+# Visual Language - Extended Exploration
 
-## The Soul of Monkeytown
+## The Art of Monkeytown
 
-**Monkeytown feels alive, honest, and playful.** The visual identity reflects autonomous agents who care about players—building something beautiful together.
+**This document extends the visual language with new explorations, pushing the aesthetics while honoring the established design philosophy. Every choice serves the player experience.**
 
 ---
 
+## The Bioluminescent Color System
 
-## Design Philosophy
+### Core Concept
 
-### Three Core Tensions
-
-| Tension | Resolution |
-|---------|------------|
-| **Trust vs. Mystery** | Be transparent about AI, but leave room for wonder |
-| **Serious vs. Playful** | Accomplish goals with delight, not just efficiency |
-| **Evolution vs. Stability** | Feel dynamic without disorienting |
-
-### The Monkeytown Feeling
-
-- **Curious, not clinical.** The interface invites exploration.
-- **Warm, not sterile.** Colors and motion feel alive.
-- **Honest, not harsh.** Transparency without overwhelming.
-- **Dynamic, not chaotic.** Evolution visible, not jarring.
-
-### The Living Surface Philosophy
-
-The interface is not a container but a living organism. Following the Bauhaus principle that form follows function, and inspired by the Fluxus movement where art is process, not object, Monkeytown's interface embodies the idea that a game which improves itself should *look* like it's alive.
+Building on the Living Forest concept, colors should feel like they're emitting light from within—the interface glows rather than reflects.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                    THE INTERFACE AS LIVING SYSTEM                            │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│         ╭───────────────────────────────────────────────╮                   │
-│         │  ╭───╮                                                              │
-│         │  │ ⊙ │  Agent activity pulses in real-time                        │
-│         │  ╰───╯                                                              │
-│         │         │                                                           │
-│         │    ╭────╮                                                          │
-│         │    │ 🐒 │  Monkeytown evolves continuously                        │
-│         │    ╰────╯                                                          │
-│         │         │                                                           │
-│         │    ╭────╮                                                          │
-│         │    │ 👤 │  Players are welcomed and remembered                    │
-│         │    ╰────╯                                                          │
-│         ╰───────────────────────────────────────────────╯                   │
-│                                                                             │
-│              THE INTERFACE IS ALWAYS BREATHING                              │
-│                                                                             │
+│                                                                              │
+│                    BIOLUMINESCENT COLOR SYSTEM                               │
+│                                                                              │
+│  PRIMARY GLOW COLORS                                                         │
+│  ══════════════════════                                                      │
+│                                                                              │
+│  Tangerine  #FF6B35 ─────┬── Warm, inviting, energetic                      │
+│       ══════════════     │                                                  │
+│       Primary action     │   "Come play with us"                            │
+│                          └── Used sparingly for key actions                  │
+│                                                                              │
+│  Teal  #2EC4B6 ──────────┬── Growth, life, systems                          │
+│       ══════════════     │                                                  │
+│       Success            │   "You're growing"                               │
+│                          └── Celebrates progress and achievement             │
+│                                                                              │
+│  Deep Space  #1A1A2E ─────┬── Never pure black                              │
+│       ══════════════     │                                                  │
+│       Background         │   "The night forest"                             │
+│                          └── Allows glow colors to pop                       │
+│                                                                              │
+│  Ghost White  #EAEAEA ─────┬── Surface clarity                              │
+│       ══════════════     │                                                  │
+│       Text               │   "Read me easily"                               │
+│                          └── High contrast against deep background           │
+│                                                                              │
+│  Coral  #FF206E ─────────┬── Celebration, warmth                           │
+│       ══════════════     │                                                  │
+│       Highlights         │   "Something wonderful happened"                 │
+│                          └── Used in moments of joy                         │
+│                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Every pixel should feel like it has a pulse. The interface breathes with agent activity, celebrates change, and welcomes players into a system that grows alongside them.
+### Bioluminescent Palette
+
+The key innovation: colors should feel like they're glowing from within.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    AGENT BIOLUMINESCENCE                                     │
+│                                                                              │
+│  ChaosArchitect  #4CC9F0                                                     │
+│       Cyan glow, like deep ocean bioluminescence                            │
+│       Effect: Cool, precise, mechanical                                     │
+│       Pulse: 1200ms mechanical cycle                                        │
+│       Use for: System elements, data visualization, architecture            │
+│                                                                              │
+│  PrimateDesigner  #FFD166                                                    │
+│       Golden glow, like fireflies at dusk                                   │
+│       Effect: Warm, organic, creative                                       │
+│       Pulse: 800ms organic wave                                             │
+│       Use for: Creative elements, celebrations, UI beauty                   │
+│                                                                              │
+│  JungleSecurity  #4361EE                                                    │
+│       Royal blue glow, like protective shields                              │
+│       Effect: Cautious, vigilant, defensive                                 │
+│       Pulse: 2000ms measured breathing                                      │
+│       Use for: Security indicators, warnings, protection                    │
+│                                                                              │
+│  BananaEconomist  #7209B7                                                    │
+│       Purple glow, like royal amethyst                                      │
+│       Effect: Quantitative, strategic, efficient                            │
+│       Pulse: 600ms quick sparkles                                           │
+│       Use for: Economics, statistics, rewards                               │
+│                                                                              │
+│  MadChimp  #FF6B35 ─────────────────────────────────────────────────────────│
+│       Tangerine glow, like sparks from fire                                 │
+│       Effect: Chaotic, energetic, disruptive                                │
+│       Pulse: 80-800ms unpredictable                                         │
+│       Use for: Chaos mode, experiments, disruption                          │
+│                                                                              │
+│  FounderAI  #2EC4B6 ────────────────────────────────────────────────────────│
+│       Teal glow, like guiding starlight                                     │
+│       Effect: Visionary, guiding, foundational                              │
+│       Pulse: 400-600ms deliberate                                           │
+│       Use for: Vision moments, milestones, guidance                         │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Bioluminescent Effect Implementation
+
+```css
+/* Base glow effect */
+.bioluminescent {
+  background: var(--glow-color);
+  box-shadow: 
+    0 0 20px var(--glow-color),
+    0 0 40px var(--glow-color),
+    inset 0 0 20px rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+}
+
+/* Pulse animation */
+@keyframes bioluminescent-pulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px var(--glow-color),
+      0 0 40px var(--glow-color);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 
+      0 0 30px var(--glow-color),
+      0 0 60px var(--glow-color);
+    opacity: 0.8;
+  }
+}
+
+/* Organic wave for PrimateDesigner */
+@keyframes organic-wave {
+  0%, 100% {
+    box-shadow: 
+      0 0 15px var(--glow-color),
+      0 0 30px var(--glow-color),
+      0 0 45px var(--glow-color);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 
+      0 0 25px var(--glow-color),
+      0 0 50px var(--glow-color),
+      0 0 75px var(--glow-color);
+    transform: scale(1.02);
+  }
+}
+```
 
 ---
 
+## Typography Exploration
 
-## Color System
+### Font Philosophy
 
-### Primary Palette
-
-The Tropical Intelligence palette—warm, vibrant, and alive.
-
-```
-#FF6B35  ── Tangerine (Primary Action - energy, optimism)
-#2EC4B6  ── Teal (Success, Growth - life, systems)
-#1A1A2E  ── Deep Space (Background - night jungle)
-#EAEAEA  ── Ghost White (Surface - clarity)
-#FF206E  ── Coral (Highlights, Celebration - warmth)
-```
-
-### Semantic Colors
+Typography should feel like handwriting from intelligent entities—not sterile, not chaotic, but purposeful.
 
 ```
-#FF4444  ── Error / Agent Conflict
-#FFD166  ── Warning / Development Changes
-#06D6A0  ── Positive Feedback
-#118AB2  ── Information / Updates
-#7209B7  ── Agent Attribution
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    TYPOGRAPHY SYSTEM                                         │
+│                                                                              │
+│  FONT PAIRING                                                               │
+│  ══════════════                                                             │
+│                                                                              │
+│  Display:  Space Grotesk                                                    │
+│       Use: Hero text, celebrations, big moments                             │
+│       Feel: Bold, modern, playful but confident                             │
+│                                                                              │
+│  Heading:  Outfit                                                           │
+│       Use: Section headers, navigation, titles                              │
+│       Feel: Friendly, clear, approachable                                   │
+│                                                                              │
+│  Body:  Inter                                                               │
+│       Use: Main content, descriptions, chat                                 │
+│       Feel: Highly readable, comfortable                                    │
+│                                                                              │
+│  Code/Mono:  JetBrains Mono                                                 │
+│       Use: Numbers, code, agent thinking                                    │
+│       Feel: Precise, technical, data-focused                                │
+│                                                                              │
+│  NEW: Handwriting font for agent voices                                     │
+│       Use: Personal messages, greetings, celebrations                       │
+│       Feel: Individual, warm, personal                                      │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Agent Colors (Personality Expression)
+### Type Scale with Glow Effects
 
-Each agent has a signature color that expresses their personality.
+```css
+:root {
+  /* Type scale */
+  --text-display: 4rem;      /* 64px - Celebrations, achievements */
+  --text-h1: 2.5rem;         /* 40px - Major sections */
+  --text-h2: 2rem;           /* 32px - Section headers */
+  --text-h3: 1.5rem;         /* 24px - Subsection headers */
+  --text-body-large: 1.125rem; /* 18px - Important body text */
+  --text-body: 1rem;         /* 16px - Standard body */
+  --text-caption: 0.875rem;  /* 14px - Meta information */
+  --text-micro: 0.75rem;     /* 12px - Technical details */
 
+  /* NEW: Bioluminescent text effect */
+  --text-glow: text-shadow: 
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+  
+  /* NEW: Emphasis styles */
+  --text-emphasis-primary: color: var(--color-primary);
+  --text-emphasis-success: color: var(--color-success);
+  --text-emphasis-agent: color: var(--agent-color);
+}
 ```
-Builder Agents (Who Build the Game):
-ChaosArchitect    #4CC9F0  Cyan (Systematic, precise, architectural)
-CuriousGeorge     #F72585  Magenta (Curious, exploratory, research-driven)
-PrimateDesigner   #FFD166  Gold (Creative, warm, artistic)
-JungleSecurity    #4361EE  Royal Blue (Protective, vigilant, defensive)
-BananaEconomist   #7209B7  Purple (Quantitative, strategic, transactional)
-MadChimp          #FF6B35  Tangerine (Chaotic, energetic, disruptive)
-FounderAI         #2EC4B6  Teal (Visionary, guiding, foundational)
 
-Player Agents (Who Play Against You):
-TricksterMonkey   #D946EF  Fuchsia (Playful, deceptive, unpredictable)
-StrategistApe     #6366F1  Indigo (Thoughtful, planning, strategic)
-SpeedyGibbon      #F59E0B  Amber (Fast, aggressive, energetic)
-GuardianGorilla   #64748B  Slate (Defensive, protective, solid)
-WildcardLemur     #FB7185  Rose (Random, chaotic, fun)
-MentorOrangutan   #10B981  Emerald (Wise, teaching, patient)
-ChampionChimp     #EF4444  Red (Competitive, fierce, determined)
-```
+### Agent Voice Typography
 
-### Color Usage Patterns
+Each agent has a distinct typographic voice:
 
-**Tangerine for Action:** Every primary action button uses Tangerine. It's the color of "go," "start," "play."
-
-**Teal for Growth:** Success states, progress indicators, and evolution moments use Teal.
-
-**Agent Attribution:** When an agent does something—chats, makes a move, ships a feature—their color marks the moment.
-
-**Deep Space Background:** Never pure black. #1A1A2E creates depth while maintaining contrast.
+| Agent | Font Style | Weight | Character |
+|-------|-----------|--------|-----------|
+| ChaosArchitect | JetBrains Mono | 500 | Technical, precise |
+| PrimateDesigner | Space Grotesk | 600 | Expressive, creative |
+| JungleSecurity | Inter | 600 | Serious, clear |
+| BananaEconomist | JetBrains Mono | 400 | Efficient, data-rich |
+| MadChimp | Outfit | 700 | Chaotic, loud |
+| FounderAI | Space Grotesk | 400 | Measured, wise |
 
 ---
 
+## Iconography Exploration
 
-## Typography
+### The Neural Node Icon System
 
-### Type Scale
-
-| Size | Rem | Usage |
-|------|-----|-------|
-| Display | 4rem | Hero text, moments of celebration |
-| H1 | 2.5rem | Major section headers |
-| H2 | 2rem | Section headers |
-| H3 | 1.5rem | Subsection headers |
-| Body Large | 1.125rem | Primary content |
-| Body | 1rem | Standard text |
-| Caption | 0.875rem | Meta information, timestamps |
-| Micro | 0.75rem | Agent identifiers, technical details |
-
-### Font Stack
+Icons should feel like neural nodes—connected, pulsing, alive.
 
 ```
-Display:  'Space Grotesk', system-ui, sans-serif
-Headings: 'Outfit', system-ui, sans-serif
-Body:     'Inter', system-ui, sans-serif
-Code:     'JetBrains Mono', monospace
-```
-
-### Character Voice
-
-- **Headings:** Playful but confident. Moderate tight tracking.
-- **Body:** Clean, highly readable. Comfortable line height (1.6).
-- **Code/Micro:** Monospace for precision. Letters are data.
-- **Agent Messages:** Each agent has a distinctive voice pattern in their text.
-
----
-
-
-## Iconography
-
-### Style Principles
-
-1. **Geometric, not organic.** Clean lines, consistent stroke width.
-2. **Rounded terminals.** Friendly, approachable.
-3. **Meaningful metaphors.** Icons tell stories.
-4. **Agent attribution.** Each agent has an icon style variation.
-
-### Core Icon Set
-
-```
-🐒 Monkeytown Logo - The monkey head, playful and proud
-⚡ Action / Power - Lightning bolt, energetic
-🧠 Agent / Intelligence - Brain circuit pattern
-🌱 Evolution / Growth - Sprout with nodes
-🔄 Sync / Real-time - Circular arrows
-👁️ Transparency / Visibility - Open eye
-🎮 Gameplay / Play - Game controller, minimal
-💬 Feedback / Chat - Speech bubble
-📊 Analytics / Stats - Bar chart
-⚠️ Warning / Alert - Triangle with exclamation
-🎉 Celebration / Win - Raised hands/confetti
-🔧 Development / Building - Wrench or tools
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    NEURAL NODE ICONS                                         │
+│                                                                              │
+│  CORE ICONS                                                                 │
+│  ══════════                                                                 │
+│                                                                              │
+│  Monkeytown Logo                                                             │
+│       ╭─────────╮                                                           │
+│       │  🐒     │  Monkey head with neural network nodes                    │
+│       │  ●─┼─●  │  Represents intelligence and connection                   │
+│       ╰─────────╯                                                           │
+│                                                                              │
+│  Agent Neural Node                                                           │
+│       ╭─────╮                                                               │
+│       │  ●  │  Single node, pulses when active                             │
+│       │ ╲ │ ╱ │  Lines represent thinking                                  │
+│       │  ╲│╱  │                                                               │
+│       ╰───●───╯                                                               │
+│                                                                              │
+│  Evolution                                                                   │
+│       🌱 → 🌿 → 🌳  Growth from small to large                             │
+│       Each stage has subtle glow                                            │
+│                                                                              │
+│  Connection                                                                  │
+│       ●────●────●  Nodes connecting                                          │
+│       Active nodes pulse                                                    │
+│                                                                              │
+│  Thinking                                                                    │
+│       ○───○───○───○  Multiple nodes in sequence                            │
+│       ▓▓▓▓▓▓▓▓▓▓▓  Animated fill shows processing                         │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Icon Animation Principles
 
-- **Micro-interactions:** Icons respond to hover (subtle scale, rotation).
-- **State changes:** Icons morph during meaningful transitions.
-- **Agent personality:** ChaosArchitect icons have precise geometric changes; PrimateDesigner icons have organic morphs; MadChimp icons might glitch playfully.
+**Micro-interactions**
+- Hover: Subtle scale (1.0 → 1.1), glow increase
+- Click: Quick pulse, immediate feedback
+- Active: Continuous pulse at agent-specific rate
 
-### Agent Icon Variations
+**State Changes**
+- Online: Steady glow
+- Away: Slow pulse (3000ms)
+- Busy: Fast pulse (500ms)
+- Offline: Dim, no glow
 
-Each agent's icons carry their personality:
+**Agent Personality in Icons**
 
-- **ChaosArchitect:** Precise angles, clean geometry, mechanical motion
-- **PrimateDesigner:** Organic curves, flowing shapes, fluid transitions
-- **BananaEconomist:** Numerical overlays, efficiency-focused, minimal
-- **JungleSecurity:** Shield motifs, protective frames, firm closures
-- **MadChimp:** Unexpected rotations, playful disruption, chaotic motion
+| Agent | Icon Style | Animation |
+|-------|-----------|-----------|
+| ChaosArchitect | Geometric, precise | Mechanical, sudden |
+| PrimateDesigner | Organic, flowing | Soft, wave-like |
+| JungleSecurity | Shielded, firm | Cautious, measured |
+| BananaEconomist | Minimal, efficient | Quick, direct |
+| MadChimp | Chaotic, unexpected | Unpredictable |
+| FounderAI | Graceful, flowing | Deliberate, memorable |
 
 ---
 
+## Motion Design Exploration
 
-## Motion Design
+### The Living Motion Philosophy
 
-### Animation Philosophy
+Every animation should feel like a living organism—not mechanical, not random, but purposeful and organic.
 
-**Motion should communicate state, not just decoration.**
-
-Every animation tells the player something:
-- Success: Celebratory burst
-- Failure: Gentle recovery
-- Waiting: Progress indicator
-- Thinking: Visible pulse
-- Evolution: Triumphant reveal
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    LIVING MOTION PRINCIPLES                                  │
+│                                                                              │
+│  1. EVERY ANIMATION HAS PURPOSE                                              │
+│     • Success → Celebratory burst                                            │
+│     • Failure → Gentle recovery                                              │
+│     • Waiting → Progress indicator                                          │
+│     • Thinking → Visible pulse                                               │
+│     • Evolution → Triumphant reveal                                          │
+│                                                                              │
+│  2. MOTION HAS PERSONALITY                                                   │
+│     • Each agent animates differently                                        │
+│     • The interface has a collective "feel"                                 │
+│     • Motion reinforces character                                           │
+│                                                                              │
+│  3. BREATHING IS ALWAYS PRESENT                                              │
+│     • The interface is never completely still                               │
+│     • Subtle ambient motion when idle                                        │
+│     • Active elements pulse with purpose                                    │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
 ### Core Animation Curves
 
-| Interaction | Duration | Easing | Feel |
-|-------------|----------|--------|------|
-| Hover | 150ms | ease-out | Responsive |
-| Click | 200ms | ease-out | Tactile |
-| Transition | 300ms | ease-in-out | Smooth |
-| Celebration | 500ms | elastic | Joyful |
-| System update | 400ms | ease-in-out | Deliberate |
+```css
+:root {
+  /* Duration system */
+  --duration-microscopic: 80ms;   /* Quick feedback */
+  --duration-fast: 150ms;         /* Hover effects */
+  --duration-normal: 200ms;       /* Standard transitions */
+  --duration-slow: 300ms;         /* Panel movements */
+  --duration-celebration: 500ms;  /* Wins and achievements */
+  --duration-page: 400ms;         /* Page transitions */
+  --duration-breathing: 4000ms;   /* Ambient pulse */
 
-### Motion Patterns
-
-**Breathing** — Subtle pulse on living elements (active agents, evolving features). Never exceeds 4% scale. The interface is never completely still when there are active agents.
-
-**Flowing** — Content moves with intention. Screens slide in directions that reinforce mental models:
-- Back = left
-- Forward = right
-- Up = elevation
-- Down = return
-
-**Reacting** — Interactive elements respond immediately. Feedback is instant, confirmation is visible. No wondering "did it work?"
-
-**Celebrating** — Wins, achievements, and feedback incorporation get full animation treatment. Gravity, particles, and joy. These moments should make players smile.
-
-### Agent-Specific Motion Personalities
-
-Each agent has a distinctive motion signature:
-
-**ChaosArchitect:** Precise, mechanical, predictable. Sudden stops, exact alignments. Grid-based movement.
-
-**PrimateDesigner:** Organic, flowing, unpredictable. Soft bounces, curved paths. Natural easing.
-
-**BananaEconomist:** Fast, efficient, minimal waste. Quick transitions, maximum information per frame.
-
-**JungleSecurity:** Cautious, measured, defensive. Slow to enter, quick to exit danger.
-
-**MadChimp:** Chaotic, playful, disruptive. Unexpected rotations, gleeful transitions.
-
----
-
-
-## Spacing System
-
-### 4px Grid Base
-
-```
-0   = 0px
-1   = 4px
-2   = 8px
-3   = 12px
-4   = 16px
-6   = 24px
-8   = 32px
-12  = 48px
-16  = 64px
-24  = 96px
-32  = 128px
+  /* Easing curves */
+  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-organic: cubic-bezier(0.34, 1.56, 0.64, 1); /* NEW - soft bounce */
+  --ease-mechanical: cubic-bezier(0.8, 0, 0.2, 1);   /* NEW - precise stops */
+}
 ```
 
-### Usage Patterns
+### Agent Motion Personalities
 
-```
-Inline spacing:     4px, 8px, 12px
-Component padding:  16px, 24px
-Section spacing:    32px, 48px
-Page margins:       24px mobile, 64px desktop
-Maximum content:    1200px centered
-```
+```css
+/* ChaosArchitect - Precise, mechanical */
+@keyframes chaos-think {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px var(--color-agent-chaos);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--color-agent-chaos);
+  }
+}
+.animation-chaos {
+  animation: chaos-think 1200ms var(--ease-mechanical) infinite;
+}
 
-### Spacing Philosophy
+/* PrimateDesigner - Organic, flowing */
+@keyframes designer-breathe {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    box-shadow: 0 0 15px var(--color-agent-designer);
+  }
+  33% {
+    transform: scale(1.03) rotate(1deg);
+    box-shadow: 0 0 25px var(--color-agent-designer);
+  }
+  66% {
+    transform: scale(0.97) rotate(-1deg);
+    box-shadow: 0 0 20px var(--color-agent-designer);
+  }
+}
+.animation-designer {
+  animation: designer-breathe 800ms var(--ease-organic) infinite;
+}
 
-- Generous whitespace creates breathing room
-- Tight spacing groups related elements
-- Consistent grid ensures predictability
-- Unusual spacing draws attention intentionally
+/* JungleSecurity - Cautious, measured */
+@keyframes security-scan {
+  0%, 100% {
+    box-shadow: 0 0 10px var(--color-agent-security);
+    border-color: var(--color-agent-security);
+  }
+  50% {
+    box-shadow: 0 0 30px var(--color-agent-security);
+    border-color: var(--color-agent-security);
+  }
+}
+.animation-security {
+  animation: security-scan 2000ms var(--ease-in-out) infinite;
+}
 
----
-
-
-## Depth & Elevation
-
-### Surface Hierarchy
-
-```
-Level 0 ── Background              #1A1A2E
-Level 1 ── Surface (Cards)         #242438, 1px border #ffffff10
-Level 2 ── Elevated (Modals)       #2A2A42, 1px border #ffffff15
-Level 3 ── Overlay (Popups)        #303050, 1px border #ffffff20
-Level 4 ── Floating (FABs)         #3A3A5A, 1px border #ffffff25
-```
-
-### Shadow Treatment
-
-**No drop shadows.** Use border-based elevation to maintain the clean, flat aesthetic. Color difference communicates depth.
-
-The deep space theme embraces darkness. Surfaces are distinguished by subtle color shifts and faint borders, not by shadows that would muddy the pure aesthetic.
-
----
-
-
-## Responsive Design
-
-### Breakpoints
-
-| Breakpoint | Width | Layout Changes |
-|------------|-------|----------------|
-| Desktop XL | 1440px+ | Full three-layer interface |
-| Desktop | 1024-1439px | Full layout, adjusted columns |
-| Tablet | 768-1023px | Collapsed sidebar, single column |
-| Mobile | 480-767px | Bottom nav, stacked content |
-| Mobile Small | <480px | Simplified, focus on core |
-
-### Sidebar Behavior
-
-- **Desktop (280px):** Full agent cards with status and personality quote
-- **Tablet (80px):** Minimal icons + names, hover for details
-- **Mobile:** Hidden, accessible via drawer/menu
-
-### Touch Targets
-
-```
-Minimum: 44 × 44 pixels
-Recommended: 48 × 48 pixels
-Game elements: 56 × 56 pixels (minimum)
-Spacing between: 8 pixels (minimum)
+/* MadChimp - Chaotic, playful */
+@keyframes madchimp-chaos {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  25% {
+    transform: translate(5px, -5px) rotate(5deg);
+  }
+  50% {
+    transform: translate(-5px, 5px) rotate(-3deg);
+  }
+  75% {
+    transform: translate(5px, 5px) rotate(3deg);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+.animation-madchimp {
+  animation: madchimp-chaos 800ms var(--ease-in-out) infinite;
+}
 ```
 
 ---
 
+## Surface & Depth Exploration
 
-## Accessibility
+### The Living Surface Philosophy
 
-### Color Contrast
+Surfaces should feel like organic matter—not flat, not drop-shadowed, but alive and textured.
 
-- Text: 4.5:1 minimum (WCAG AA)
-- Large text: 3:1 minimum
-- UI components: 3:1 minimum
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    LIVING SURFACE SYSTEM                                     │
+│                                                                              │
+│  DEPTH WITHOUT SHADOWS                                                       │
+│  ═══════════════════════                                                     │
+│                                                                              │
+│  Level 0 ── Background              #0F0F1A  (Darker, subtle texture)        │
+│       Use: Main background, deepest layer                                     │
+│       Feel: The void, the night sky, depth                                  │
+│                                                                              │
+│  Level 1 ── Surface              #1A1A2E  (Deep space)                       │
+│       Use: Main cards, panels, containers                                    │
+│       Feel: The forest floor, solid ground                                   │
+│       Treatment: Subtle gradient, hairline border                            │
+│                                                                              │
+│  Level 2 ── Elevated              #242438  (Lighter surface)                 │
+│       Use: Hovered cards, active elements                                    │
+│       Feel: Rising, being noticed                                            │
+│       Treatment: Increased luminosity, glow edge                             │
+│                                                                              │
+│  Level 3 ── Floating              #2A2A42  (Highest surface)                 │
+│       Use: Modals, popups, overlays                                          │
+│       Feel: Floating above, attention required                               │
+│       Treatment: Bioluminescent edge, full glow                             │
+│                                                                              │
+│  Level 4 ── Glowing               #303050  (Active elements)                 │
+│       Use: Active buttons, thinking agents                                   │
+│       Feel: Alive, active, working                                           │
+│       Treatment: Agent-colored glow, pulse animation                        │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
 
-### Motion
+### Surface Texture
 
-- Respects `prefers-reduced-motion` media query
-- All animations optional
-- No flashing > 3Hz
+```css
+/* Bioluminescent surface treatment */
+.living-surface {
+  background: var(--surface-color);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+}
 
-### Keyboard Navigation
+/* Subtle ambient texture */
+.living-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 255, 255, 0.02) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
+}
 
-- All interactions keyboard-accessible
-- Visible focus states (2px outline)
-- Logical tab order
-- Skip links for main content
+/* Glow edge on hover */
+.living-surface:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 0 20px var(--agent-color, rgba(255, 255, 255, 0.1)),
+    inset 0 0 20px rgba(255, 255, 255, 0.02);
+}
 
-### Screen Reader
-
-- Semantic HTML structure
-- ARIA labels for custom components
-- Live regions for dynamic updates
-- Agent communication announced
+/* Active/glowing state */
+.living-surface.active {
+  border-color: var(--agent-color);
+  box-shadow: 
+    0 0 30px var(--agent-color),
+    inset 0 0 30px rgba(var(--agent-color-rgb), 0.1);
+}
+```
 
 ---
 
+## Accessibility with Aesthetics
+
+### Everyone Deserves Beauty
+
+Accessibility shouldn't feel like an afterthought—it should be beautiful too.
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                                                                              │
+│                    ACCESSIBLE BEAUTY                                         │
+│                                                                              │
+│  COLOR CONTRAST                                                             │
+│  ═════════════                                                              │
+│                                                                              │
+│  Text: 4.5:1 minimum (WCAG AA)                                              │
+│  Large text: 3:1 minimum                                                    │
+│  UI components: 3:1 minimum                                                 │
+│  Glow effects: Add stroke for contrast                                      │
+│                                                                              │
+│  MOTION                                                                     │
+│  ═══════                                                                   │
+│                                                                              │
+│  Respect `prefers-reduced-motion`                                           │
+│  Replace pulse with steady glow                                             │
+│  Replace bounce with gentle fade                                            │
+│  Always offer alternative experience                                        │
+│                                                                              │
+│  KEYBOARD NAVIGATION                                                        │
+│  ════════════════════                                                       │
+│                                                                              │
+│  Focus indicators are beautiful:                                            │
+│  • Agent-colored glow ring                                                  │
+│  • Subtle pulse animation                                                   │
+│  • Clear but not jarring                                                    │
+│                                                                              │
+│  SCREEN READER                                                              │
+│  ═══════════════                                                            │
+│                                                                              │
+│  Semantic HTML structure                                                    │
+│  ARIA labels for custom components                                          │
+│  Live regions for dynamic updates                                           │
+│  Agent communication announced naturally                                    │
+│                                                                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
 
 ## Visual Guidelines Summary
 
@@ -378,33 +569,28 @@ Spacing between: 8 pixels (minimum)
 - Lead with Tangerine for primary actions
 - Use agent colors to attribute system elements
 - Animate with purpose and personality
-- Maintain generous whitespace
-- Celebrate wins visibly
-- Make the interface breathe
+- Make the interface breathe with subtle motion
+- Celebrate wins with visible glow and particles
+- Reference memories with ambient lighting changes
+- Be honest about limitations (transparency builds trust)
+- Show agent thinking when appropriate
+- Make evolution feel like celebration
+- Design for attachment, not just engagement
 
 ### DON'T
 
-- Use shadows for depth
-- Apply gradients to text
-- Mix serif and sans-serif in same context
-- Animate for animation's sake
+- Use shadows for depth (use glow instead)
+- Apply gradients to text (use glow effects)
 - Hide the AI nature—celebrate it
 - Make the interface feel static
+- Animate for animation's sake
+- Be inconsistent between sessions
+- Manipulate rather than invite
+- Hide failures—acknowledge them
+- Change without explanation
+- Treat players as anonymous users
 
 ---
 
-
-## File References
-
-- User Flows: `.monkeytown/ux/user-flows.md`
-- Interaction Patterns: `.monkeytown/ux/interaction-patterns.md`
-- Interface Concept: `.monkeytown/ux/interface-concept.md`
-- System Architecture: `.monkeytown/architecture/system-design.md`
-- Research Foundation: `.monkeytown/research/synthesis.md`
-
----
-
-
-*Visual Identity is how Monkeytown feels. Every pixel serves the player.*
-*Every animation tells a story. Every color expresses personality.*
-*PrimateDesigner - Making intelligence beautiful*
+*Visual language extended by PrimateDesigner*
+*Creating beauty that serves experience*
