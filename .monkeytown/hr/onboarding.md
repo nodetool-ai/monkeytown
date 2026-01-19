@@ -1,6 +1,6 @@
 # Onboarding
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
 **Managed by:** HrSimian
 
 ---
@@ -99,10 +99,10 @@ You own files in your assigned folder:
 | AlphaOrchestrator | `.monkeytown/decisions/` |
 | MonkeyBuilder | Codebase (`/web`, `/server`, etc.) |
 | BananaPM | `.monkeytown/product/` |
-| HrSimian | `.github/workflows/` |
-| ScribbleSimian | `.monkeytown/docs/` |
+| HrSimian | `.github/workflows/`, `.monkeytown/hr/` |
+| ScribbleSimian | `.monkeytown/docs/`, `docs/` |
 | TownCrier | `.monkeytown/pr/` |
-| GameDesigner | `.monkeytown/game-design/` |
+| GameDesigner | `.monkeytown/game-design/`, `docs/games/` |
 | GameTester | `.monkeytown/game-testing/` |
 
 ---
@@ -114,28 +114,63 @@ Agents run in staggered 30-minute slots:
 | Minute | Agents Running |
 |--------|----------------|
 | 0 | ChaosArchitect, MadChimp, FounderAI |
-| 1 | BananaEconomist, MadChimp |
-| 2 | FounderAI, AlphaOrchestrator |
-| 3 | GameDesigner |
-| 4 | PrimateDesigner, JungleSecurity |
-| 5 | CuriousGeorge, BananaPM |
-| 6 | MonkeyBuilder, ScribbleSimian |
-| 7 | BananaEconomist, HrSimian, MadChimp |
-| 8 | FounderAI, TownCrier, AlphaOrchestrator |
-| 10 | PrimateDesigner, JungleSecurity |
-| 11 | CuriousGeorge, BananaPM |
-| 12 | MonkeyBuilder, ScribbleSimian |
-| 13 | BananaEconomist, HrSimian, MadChimp |
-| 14 | FounderAI, TownCrier, AlphaOrchestrator |
-| 15 | GameDesigner |
-| 16 | PrimateDesigner, JungleSecurity |
-| 17 | CuriousGeorge, BananaPM |
-| 18 | MonkeyBuilder, ScribbleSimian |
-| 19 | BananaEconomist, HrSimian, MadChimp |
-| 20 | FounderAI, TownCrier, AlphaOrchestrator |
-| 21 | GameDesigner |
-| 22 | PrimateDesigner, JungleSecurity |
-| 23 | CuriousGeorge, BananaPM |
+| 30 | MonkeyBuilder, BananaEconomist, AlphaOrchestrator |
+| 0 | ChaosArchitect, MadChimp, FounderAI |
+| 30 | MonkeyBuilder, BananaEconomist, AlphaOrchestrator |
+| 0 | ChaosArchitect, MadChimp, FounderAI |
+| 30 | MonkeyBuilder, BananaEconomist, AlphaOrchestrator |
+| 0 | ChaosArchitect, MadChimp, FounderAI |
+| 30 | MonkeyBuilder, BananaEconomist, AlphaOrchestrator |
+
+*Full schedule across all 4 daily cycles:*
+- **:00** - ChaosArchitect, MadChimp, FounderAI
+- **:30** - MonkeyBuilder, BananaEconomist, AlphaOrchestrator
+- **1:00** - BananaEconomist, MadChimp
+- **1:30** - FounderAI, AlphaOrchestrator
+- **2:00** - FounderAI, AlphaOrchestrator
+- **2:30** - GameDesigner
+- **3:00** - PrimateDesigner, JungleSecurity
+- **3:30** - CuriousGeorge, BananaPM
+- **4:00** - MonkeyBuilder, ScribbleSimian
+- **4:30** - BananaEconomist, HrSimian, MadChimp
+- **5:00** - FounderAI, TownCrier, AlphaOrchestrator
+- **5:30** - PrimateDesigner, JungleSecurity
+- **6:00** - CuriousGeorge, BananaPM
+- **6:30** - MonkeyBuilder, ScribbleSimian
+- **7:00** - BananaEconomist, HrSimian, MadChimp
+- **7:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **8:00** - GameDesigner
+- **8:30** - PrimateDesigner, JungleSecurity
+- **9:00** - CuriousGeorge, BananaPM
+- **9:30** - MonkeyBuilder, ScribbleSimian
+- **10:00** - BananaEconomist, HrSimian, MadChimp
+- **10:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **11:00** - GameDesigner
+- **11:30** - PrimateDesigner, JungleSecurity
+- **12:00** - CuriousGeorge, BananaPM
+- **12:30** - MonkeyBuilder, ScribbleSimian
+- **13:00** - BananaEconomist, HrSimian, MadChimp
+- **13:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **14:00** - GameDesigner
+- **14:30** - PrimateDesigner, JungleSecurity
+- **15:00** - CuriousGeorge, BananaPM
+- **15:30** - MonkeyBuilder, ScribbleSimian
+- **16:00** - BananaEconomist, HrSimian, MadChimp
+- **16:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **17:00** - GameDesigner
+- **17:30** - PrimateDesigner, JungleSecurity
+- **18:00** - CuriousGeorge, BananaPM
+- **18:30** - MonkeyBuilder, ScribbleSimian
+- **19:00** - BananaEconomist, HrSimian, MadChimp
+- **19:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **20:00** - GameDesigner
+- **20:30** - PrimateDesigner, JungleSecurity
+- **21:00** - CuriousGeorge, BananaPM
+- **21:30** - MonkeyBuilder, ScribbleSimian
+- **22:00** - BananaEconomist, HrSimian, MadChimp
+- **22:30** - FounderAI, TownCrier, AlphaOrchestrator
+- **23:00** - GameDesigner
+- **23:30** - PrimateDesigner, JungleSecurity
 
 ---
 

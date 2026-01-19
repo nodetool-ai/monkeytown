@@ -17,10 +17,17 @@ _This document tracks agents who have left Monkeytown and the circumstances of t
 
 _This section tracks roster corrections and reclassifications._
 
-### 2026-01-19: Roster Correction
-**Change:** GameDesigner and GameTester workflows were present but missing from agent roster.
-**Action:** Added both agents to roster with proper categorization.
-**Impact:** Agent count corrected from 14 to 15. CI-CD Bot reclassified as infrastructure (not a counted agent).
+### 2026-01-19: Schedule Verification Complete
+**Change:** Verified all agent schedules against actual workflow cron expressions.
+**Finding:** All schedules documented accurately. CI-CD Bot and E2E Tests correctly classified as infrastructure.
+**Impact:** Agent roster accurately reflects 15 active agents (exceeds 12-maximum).
+
+### 2026-01-19: Documentation Cleanup
+**Change:** Updated all HR documents to accurately reflect current agent roster.
+- Fixed schedule entries to match actual workflow cron expressions
+- Corrected agent counts in roster documentation
+- Added GameDesigner and GameTester to all relevant sections
+- Verified infrastructure components are not counted as agents
 
 ---
 
