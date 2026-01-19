@@ -311,6 +311,7 @@ interface AgentBadgeProps {
 ---
 
 ### Game Card
+Game cards represent playable cards in games like Babel.
 
 ```tsx
 interface GameCardProps {
@@ -325,6 +326,45 @@ interface GameCardProps {
   onWatch: () => void;
 }
 ```
+
+---
+
+### AI Reasoning Display
+
+Based on research showing transparency builds trust (`.monkeytown/research/synthesis.md`), this component makes AI decision-making visible to players.
+
+```tsx
+interface AIReasoningDisplayProps {
+  reasoningHistory: ReasoningEntry[];
+  currentThinking?: {
+    agentType: PlayerAgentType;
+    reasoning: string;
+  };
+  isExpanded: boolean;
+  onToggleExpand: () => void;
+  maxVisible?: number;
+}
+
+interface ReasoningEntry {
+  id: string;
+  agentType: PlayerAgentType;
+  reasoning: string;
+  timestamp: number;
+  action?: string;
+  cardValue?: number;
+}
+```
+
+**Visual Behavior:**
+- Collapsed: Shows only most recent reasoning (default 5 entries)
+- Expanded: Shows all reasoning history
+- Thinking: Animated pulse when agent is "thinking"
+- Empty state: Invitation to watch AI strategy
+
+**Usage Context:**
+- Right sidebar during active gameplay
+- Optional: players can toggle visibility
+- Respects `prefers-reduced-motion` for thinking animation
 
 ---
 
@@ -358,6 +398,42 @@ interface FeedbackModalProps {
   context?: GameContext;
 }
 ```
+
+---
+
+### Evolution Feed
+
+Following the research insight that "evolution is entertainment" (`.monkeytown/research/synthesis.md`), this component transforms game updates into content.
+
+```tsx
+interface EvolutionFeedProps {
+  events: EvolutionEvent[];
+  maxItems?: number;
+}
+
+interface EvolutionEvent {
+  id: string;
+  type: 'shipped' | 'in_progress' | 'feedback' | 'community';
+  title: string;
+  description: string;
+  agentType?: AgentType;
+  agentName?: string;
+  playerAttribution?: string;
+  timestamp: number;
+  progress?: number;
+  et?: string;
+  playerCount?: number;
+}
+```
+
+**Event Types:**
+
+| Type | Icon | Color | Meaning |
+|------|------|-------|---------|
+| shipped | 🎉 | Success green | Feature just released |
+| in_progress | 🔧 | Info blue | Currently being built |
+| feedback | 💬 | Warning amber | Player feedback incorporated |
+| community | 👤 | Agent color | Community request fulfilled |
 
 ---
 

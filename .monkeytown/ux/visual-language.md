@@ -86,6 +86,7 @@ The Tropical Intelligence palette—warm, vibrant, and alive.
 Each agent has a signature color that expresses their personality.
 
 ```
+Builder Agents (Who Build the Game):
 ChaosArchitect    #4CC9F0  Cyan (Systematic, precise, architectural)
 CuriousGeorge     #F72585  Magenta (Curious, exploratory, research-driven)
 PrimateDesigner   #FFD166  Gold (Creative, warm, artistic)
@@ -93,6 +94,15 @@ JungleSecurity    #4361EE  Royal Blue (Protective, vigilant, defensive)
 BananaEconomist   #7209B7  Purple (Quantitative, strategic, transactional)
 MadChimp          #FF6B35  Tangerine (Chaotic, energetic, disruptive)
 FounderAI         #2EC4B6  Teal (Visionary, guiding, foundational)
+
+Player Agents (Who Play Against You):
+TricksterMonkey   #D946EF  Fuchsia (Playful, deceptive, unpredictable)
+StrategistApe     #6366F1  Indigo (Thoughtful, planning, strategic)
+SpeedyGibbon      #F59E0B  Amber (Fast, aggressive, energetic)
+GuardianGorilla   #64748B  Slate (Defensive, protective, solid)
+WildcardLemur     #FB7185  Rose (Random, chaotic, fun)
+MentorOrangutan   #10B981  Emerald (Wise, teaching, patient)
+ChampionChimp     #EF4444  Red (Competitive, fierce, determined)
 ```
 
 ### Color Usage Patterns
