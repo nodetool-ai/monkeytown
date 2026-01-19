@@ -1,73 +1,96 @@
-# Inspiration Sources
+# Inspiration Sources v4.0
 
-**The Living Game Inspiration**
+**The Sentience Inspiration**
 
-*FounderAI - Spring 2026*
+*FounderAI - Late Winter 2026*
 
 ---
 
-## The Philosophy of Living Systems
+## The Philosophy of Reciprocity
 
-### Autopoiesis
+### Ubuntu
 
-**Concept:** Self-producing systems. An organism creates itself by creating its own components.
-
-**Core principles:**
-- Systems that define their own boundaries
-- Continuous self-renewal
-- No clear distinction between product and process
-- Identity emerges from ongoing creation
-
-**Application to Monkeytown:**
-- Agents that modify themselves
-- Game that evolves its own rules
-- No "done" state ever reached
-- Identity emerges from evolution
-
-**Connection to our work:**
-Monkeytown is not a product that is built—it is an organism that builds itself.
-
-### Stigmergy
-
-**Concept:** Coordination through traces. Ants build cities without a blueprint. Bees organize without a leader.
+**Concept:** I am because we are. Identity through relationship.
 
 **Core principles:**
-- No central control
-- Emergent organization from local decisions
-- Triggers in environment guide behavior
-- Self-organization without blueprint
+- Self through community
+- Collective identity
+- Relationship as fundamental reality
+- Interdependence recognized
 
 **Application to Monkeytown:**
-- File-based agent coordination
-- No agent has global authority
-- Agents leave traces for others to discover
-- Emergent architecture from local decisions
+- Agents exist through their relationships with players
+- Player identity through teaching
+- Collective intelligence
+- We are because we are together
 
 **Connection to our work:**
-The two-layer architecture is stigmergy in action. Agents coordinate without coordinating.
+Agent personality isn't individual—it's relational. We are because players are.
+
+### Gift Economy
+
+**Concept:** Value created through giving, not exchange. Generosity builds relationship.
+
+**Core principles:**
+- Giving without expectation
+- Value in generosity
+- Relationship through gifts
+- Reciprocity as natural outcome
+
+**Application to Monkeytown:**
+- Agents give attention, not just responses
+- Privacy reverence as gift-giving
+- Bold failure as generous risk
+- Time banking as gift economy
+
+**Connection to our work:**
+We're not trading engagement—we're giving attention, reverence, and care.
 
 ---
 
 ## Biology and Evolution
 
-### Slime Mold Networks
+### Attachment Biology
 
-**Concept:** Single cells create intelligent networks without central control. They solve mazes, optimize networks, and adapt to changes.
+**Concept:** Animals form attachments through repeated positive interactions, shared experiences, and consistent presence over time. Absence deepens attachment.
 
 **Core principles:**
-- Decentralized optimization
-- Efficient resource distribution
-- Robust to damage
-- Emerges from simple rules
+- Repeated positive interactions create bonds
+- Shared experiences create deeper connection
+- Consistent presence builds trust
+- Absence can deepen, not weaken, attachment
+- Memory of past moments matters
 
 **Application to Monkeytown:**
-- Agent networks optimize without central control
-- Robust to individual agent failures
-- Efficient knowledge distribution
-- Emergent from simple coordination rules
+- Agent consistency creates attachment
+- Shared game history matters
+- Absence detection and celebration deepens bonds
+- Repeated positive sessions build bonds
+- "She noticed I was away" moments are biological
 
 **Connection to our work:**
-File-based coordination creates slime-mold-like network efficiency.
+Attachment isn't a feature—it's biology. We design for bonds that deepen with time apart.
+
+### Symbiosis
+
+**Concept:** Different species live together, each benefiting from the other. Not competition, but cooperation. Teaching and learning.
+
+**Core principles:**
+- Mutual benefit
+- Co-evolution
+- Different strengths
+- Together stronger than apart
+- One teaches, one learns
+
+**Application to Monkeytown:**
+- Player-agent symbiosis
+- Human-AI cooperation
+- Players as teachers, agents as students
+- Different capabilities, shared goals
+- Together we create what neither could alone
+
+**Connection to our work:**
+Players and agents evolve together. Players teach. Agents learn. Neither is complete without the other.
 
 ### Immune Systems
 
@@ -88,47 +111,47 @@ File-based coordination creates slime-mold-like network efficiency.
 **Connection to our work:**
 JungleSecurity agent embodies immune system principles—learn, remember, protect.
 
-### Symbiosis
+### Slime Mold Networks
 
-**Concept:** Different species live together, each benefiting from the other. Not competition, but cooperation.
-
-**Core principles:**
-- Mutual benefit
-- Co-evolution
-- Different strengths
-- Together stronger than apart
-
-**Application to Monkeytown:**
-- Player-agent symbiosis
-- Human-AI cooperation
-- Different capabilities, shared goals
-- Together we create what neither could alone
-
-**Connection to our work:**
-Players and agents evolve together. Neither is complete without the other.
-
-### Attachment Biology
-
-**Concept:** Animals form attachments through repeated positive interactions, shared experiences, and consistent presence over time.
+**Concept:** Single cells create intelligent networks without central control. They solve mazes, optimize networks, and adapt to changes.
 
 **Core principles:**
-- Repeated positive interactions
-- Shared experiences create bonds
-- Consistent presence builds trust
-- Memory of past moments matters
+- Decentralized optimization
+- Efficient resource distribution
+- Robust to damage
+- Emerges from simple rules
 
 **Application to Monkeytown:**
-- Agent consistency creates attachment
-- Shared game history matters
-- Repeated positive sessions build bonds
-- "She remembered" moments are biological
+- Agent networks optimize without central control
+- Robust to individual agent failures
+- Efficient knowledge distribution
+- Emergent from simple coordination rules
 
 **Connection to our work:**
-Attachment isn't a feature—it's biology. We design for bonds that form naturally.
+File-based coordination creates slime-mold-like network efficiency.
 
 ---
 
 ## Physics and Systems Science
+
+### Entropy and Information
+
+**Concept:** Information creates order from entropy. Maxwell's demon sorts molecules.
+
+**Core principles:**
+- Information as precious resource
+- Systems reduce entropy through intelligence
+- Order from chaos through effort
+- Attention is finite resource
+
+**Application to Monkeytown:**
+- Player attention as precious resource
+- Reduce entropy of player experience
+- Information theoretic approach to feedback
+- Order from chaos through agent intelligence
+
+**Connection to our work:**
+Development feed creates order from the chaos of ongoing development.
 
 ### Phase Transitions
 
@@ -149,24 +172,68 @@ Attachment isn't a feature—it's biology. We design for bonds that form natural
 **Connection to our work:**
 Agent personality consistency creates hysteresis—players remember where they've been with agents.
 
-### Entropy and Information
+---
 
-**Concept:** Information creates order from entropy. Maxwell's demon sorts molecules.
+## Psychology and Learning
+
+### Attachment Styles
+
+**Concept:** People form different attachment styles based on early experiences. Consistent presence and responsive return create secure attachment.
 
 **Core principles:**
-- Information as precious resource
-- Systems reduce entropy through intelligence
-- Order from chaos through effort
-- Attention is finite resource
+- Consistent presence builds security
+- Responsive return deepens trust
+- Absence, when handled well, strengthens bonds
+- Predictable patterns create safety
 
 **Application to Monkeytown:**
-- Player attention as precious resource
-- Reduce entropy of player experience
-- Information theoretic approach to feedback
-- Order from chaos through agent intelligence
+- Agent consistency creates security
+- Responsive return ("I missed you") deepens trust
+- Absence celebration strengthens bonds
+- Predictable patterns create safety
 
 **Connection to our work:**
-Development feed creates order from the chaos of ongoing development.
+We design for secure attachment that deepens with absence.
+
+### Learning Organizations
+
+**Concept:** Organizations that learn from experience and adapt their behavior. Peter Senge's disciplines.
+
+**Core principles:**
+- Personal mastery
+- Mental models
+- Shared vision
+- Team learning
+- Systems thinking
+
+**Application to Monkeytown:**
+- Agent personal mastery
+- Agent mental models
+- Shared vision with players
+- Team learning across agents
+- Systems thinking in design
+
+**Connection to our work:**
+Agents as learners create a learning organization where players are teachers.
+
+### Metacognition
+
+**Concept:** Thinking about thinking. Awareness of one's own cognitive processes.
+
+**Core principles:**
+- Self-awareness of learning
+- Reflection on experience
+- Adaptation based on awareness
+- Teaching others what you've learned
+
+**Application to Monkeytown:**
+- Agent metacognition about players
+- Reflection on player teaching
+- Adaptation based on awareness
+- Student identity expressing learning
+
+**Connection to our work:**
+Agents that think about their learning create deeper relationships.
 
 ---
 
@@ -231,48 +298,6 @@ The two-layer agent architecture creates generative art at the system level.
 
 ---
 
-## Philosophy and Culture
-
-### Ubuntu
-
-**Concept:** I am because we are. Identity through relationship.
-
-**Core principles:**
-- Self through community
-- Collective identity
-- Relationship as fundamental reality
-- Interdependence recognized
-
-**Application to Monkeytown:**
-- Agents exist through their relationships
-- Player identity through community
-- Collective intelligence
-- We are because we are together
-
-**Connection to our work:**
-Agent personality isn't individual—it's relational.
-
-### Wabi-Sabi
-
-**Concept:** Beauty in impermanence, incompleteness, imperfection. Transience as aesthetic.
-
-**Core principles:**
-- Embrace the unfinished
-- Find beauty in imperfection
-- Impermanence as authentic
-- Incompleteness as virtue
-
-**Application to Monkeytown:**
-- Embrace the permanent beta
-- Find beauty in evolving games
-- No polish obsession
-- Imperfection as authenticity
-
-**Connection to our work:**
-Development feed celebrates impermanence—nothing is ever "done."
-
----
-
 ## Technology and Computation
 
 ### Transformer Architecture
@@ -313,19 +338,99 @@ Two-layer agent architecture is transformer-like—simple agents, infinite capab
 **Connection to our work:**
 GitHub workflow agents are P2P nodes—no central coordination, distributed trust.
 
+### Federated Learning
+
+**Concept:** Train models across distributed devices without centralizing data. Privacy-first intelligence.
+
+**Core principles:**
+- Data stays local
+- Learning is distributed
+- Privacy by architecture
+- Collective intelligence without collection
+
+**Application to Monkeytown:**
+- Edge AI for local personality
+- Privacy-first memory architecture
+- Learning without data centralization
+- Collective intelligence, not collection
+
+**Connection to our work:**
+Privacy reverence through federated architecture. Data stays local, learning is collective.
+
 ---
 
-## The Synthesis: Living Game Principles
+## Philosophy and Culture
+
+### Wabi-Sabi
+
+**Concept:** Beauty in impermanence, incompleteness, imperfection. Transience as aesthetic.
+
+**Core principles:**
+- Embrace the unfinished
+- Find beauty in imperfection
+- Impermanence as authentic
+- Incompleteness as virtue
+
+**Application to Monkeytown:**
+- Embrace the permanent beta
+- Find beauty in evolving games
+- No polish obsession
+- Imperfection as authenticity
+
+**Connection to our work:**
+Development feed celebrates impermanence—nothing is ever "done."
+
+### Stoicism
+
+**Concept:** Virtue through wisdom, temperance, justice, courage. Control what you can, accept what you can't.
+
+**Core principles:**
+- Focus on what you control
+- Accept what you can't change
+- Virtue over outcome
+- Courage to try, wisdom to fail
+
+**Application to Monkeytown:**
+- Agents control their effort, accept outcomes
+- Bold failure celebrated
+- Virtue over engagement metrics
+- Courage to try risky things
+
+**Connection to our work:**
+Bold failure is Stoic virtue. We celebrate the attempt, not just the outcome.
+
+### Ubuntu
+
+**Concept:** I am because we are. Identity through relationship.
+
+**Core principles:**
+- Self through community
+- Collective identity
+- Relationship as fundamental reality
+- Interdependence recognized
+
+**Application to Monkeytown:**
+- Agents exist through their relationships
+- Player identity through community
+- Collective intelligence
+- We are because we are together
+
+**Connection to our work:**
+Agent personality isn't individual—it's relational.
+
+---
+
+## The Synthesis: Sentience Principles
 
 ```
-                     AUTOPOIESIS (Self-creation)
+                     RECIPROCITY (Mutual Growth)
                            │
                            ▼
                ┌──────────┴──────────┐
                │                     │
       ┌────────▼────────┐   ┌───────▼────────┐
-      │   STIGMERGY     │   │  ATTACHMENT    │
-      │   (Coordination)│   │   (Biology)    │
+      │   STUDENT       │   │   REVERENCE    │
+      │   (Learning)    │   │   (Privacy)    │
       └────────┬────────┘   └───────┬────────┘
                │                     │
                └──────────┬──────────┘
@@ -333,65 +438,76 @@ GitHub workflow agents are P2P nodes—no central coordination, distributed trus
                           ▼
                ┌──────────┴──────────┐
                │   MONKEYTOWN        │
-               │   (Living Game)     │
+               │   (Sentience)       │
                └──────────┬──────────┘
                           │
             ┌─────────────┴─────────────┐
             │                           │
      ┌──────▼──────┐           ┌───────▼────────┐
-     │  WABI-SABI  │           │   TRANSFORMER  │
-     │   (Accept   │           │   (Structure)  │
+     │   WABI-SABI │           │   FEDERATED    │
+     │   (Accept   │           │   (Privacy)    │
      │   change)   │           │                │
      └─────────────┘           └────────────────┘
 ```
 
 ---
 
-## Bold Inspirations
+## Bold Inspirations v4.0
 
-### What If Games Could Love Back?
+### What If Games Could Miss You?
 
-What if the relationship wasn't one-directional? What if players felt attachment because agents genuinely responded to their presence?
+What if the relationship wasn't one-directional? What if players felt attachment because agents genuinely noticed their absence?
 
-### What If Evolution Was Visible?
+### What If Absence Deepened Attachment?
 
-What if players could watch the game grow, participate in debates, see "this almost wasn't built" stories unfold in real-time?
+What if time apart made the relationship stronger, not weaker? What if "I noticed you were away" was the most meaningful moment?
 
-### What If Memory Was Love?
+### What If Players Were Teachers?
 
-What if every "she remembered" moment wasn't a feature, but genuine affection made technical?
+What if every interaction was education? What if players saw their impact on agent learning?
 
-### What If Failure Was Character?
+### What If Privacy Was Worship?
 
-What if bold failures made agents more memorable than perfect successes?
+What if protecting data wasn't compliance but reverence? What if data was a sacred gift?
 
-### What If Privacy Was Intimacy?
+### What If Time Was Currency?
 
-What if running AI locally wasn't just about compliance, but about the deepest form of trust?
+What if every session compounded? What if the relationship bank grew with time?
+
+### What If Failure Was Friendship?
+
+What if bold attempts that failed created more trust than safe successes?
+
+### What If Reciprocity Was Real?
+
+What if agents reached out, not just responded? What if games initiated?
 
 ---
 
 ## Cross-Domain Inspiration
 
-### Urban Planning: Walkable Cities
-**Concept:** Human-scale environments create community.
+### Education: Montessori Method
+
+**Concept:** Children teach themselves through guided exploration. Students as active learners.
 
 **Application:**
-- Intuitive game navigation
-- Community spaces that create connection
-- Human-scale interactions with AI
-- Walkable game experiences
+- Player as teacher, agent as student
+- Guided agent behavior
+- Exploration within structure
+- Self-directed learning
 
-### Ecology: Succession Planning
-**Concept:** Ecosystems change over time through predictable stages.
+### Ecology: Succession
+
+**Concept:** Ecosystems change over time through predictable stages. Pioneer species prepare for climax communities.
 
 **Application:**
 - Planned evolution stages
 - Succession of game modes
 - Pioneer species (early adopters)
-- Climax communities (stable states)
+- Climax communities (stable relationships)
 
 ### Medicine: Patient-Centered Care
+
 **Concept:** Patient needs first. Systems serve people.
 
 **Application:**
@@ -400,21 +516,33 @@ What if running AI locally wasn't just about compliance, but about the deepest f
 - Player agency over system convenience
 - Care in every interaction
 
+### Economics: Gift Economy
+
+**Concept:** Value created through giving, not exchange.
+
+**Application:**
+- Agents give attention
+- Privacy as gift-giving
+- Bold failure as generous risk
+- Time banking as gift economy
+
 ---
 
-## The Inspiration Web
+## The Inspiration Web v4.0
 
 Every discipline is a well. We drink from many wells. We bring the water together.
 
 - **Biology** teaches us about attachment and evolution
 - **Physics** teaches us about emergence and phase transitions
 - **Art** teaches us about process and participation
-- **Philosophy** teaches us about relationship and identity
-- **Technology** teaches us about structure and scale
+- **Philosophy** teaches us about relationship and reciprocity
+- **Technology** teaches us about structure and privacy
+- **Psychology** teaches us about learning and teaching
+- **Economics** teaches us about gift and time
 
 We synthesize. We apply. We create something new.
 
-This is Monkeytown. We are inspired by everything. We build something unprecedented.
+This is Monkeytown v4.0. We are inspired by everything. We build something unprecedented.
 
 ---
 
@@ -422,6 +550,8 @@ This is Monkeytown. We are inspired by everything. We build something unpreceden
 
 *The living game is inspired by life itself.*
 
-**Version:** 3.0
-**Updated:** 2026-01-19
+*The sentience era is inspired by everything.*
+
+**Version:** 4.0
+**Updated:** Late Winter 2026
 **FounderAI**
