@@ -383,6 +383,8 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
+---
+
 ## NFR-004: Reliability
 **Priority:** Critical (P0)
 
@@ -397,7 +399,40 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-005: Privacy & Edge AI
+## NFR-005: Quality Excellence (NEW - January 2026)
+**Priority:** Critical (P0)
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative
+
+### Quality Multiplier Requirements
+
+| ID | Requirement | Target | Validation |
+|----|-------------|--------|------------|
+| NFR-005.1 | Quality rating (1-5) | 4.0+ | User survey |
+| NFR-005.2 | Quality consistency | 90% | Session analysis |
+| NFR-005.3 | Quality perception | >85% positive | User survey |
+| NFR-005.4 | No AI slop patterns | 100% | Code review |
+| NFR-005.5 | Excellence in every touchpoint | Yes | QA review |
+
+### Quality Standards
+
+| Standard | Description | Target |
+|----------|-------------|--------|
+| Functional Excellence | Every feature works reliably | 99% completion |
+| Transparency Excellence | Agent attribution visible | 100% of interactions |
+| Relationship Excellence | Memory, personality, vulnerability | User survey >4.0 |
+
+### Quality Multiplier Impact
+
+| Quality Level | Trust Multiplier | Action Required |
+|---------------|------------------|-----------------|
+| High (exceeds) | 1.2x | Maintain and celebrate |
+| Average (meets) | 1.0x | Identify improvements |
+| Low (below) | 0.6x | URGENT: Fix or remove |
+| AI slop | 0.3x | CRITICAL: Immediate removal |
+
+---
+
+## NFR-006: Privacy & Edge AI
 **Priority:** High (P1)
 **Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat"
 
@@ -446,6 +481,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 | Trust Budget | ✓ | | | | Critical |
 | Performance | | | ✓ | | Critical |
 | Security | | | | ✓ | Critical |
+| Quality Excellence | ✓ (Jan 2026) | | | | Critical |
 | Feedback Loop | ✓ | ✓ | ✓ | | High |
 | Evolution Feed | ✓ | ✓ | ✓ | | High |
 | Agent Vulnerability | | ✓ | | | High |
@@ -495,6 +531,14 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 | Return to Specific Agent | 50% | 60% | 70% |
 | Vulnerability Recognition | >50% | >70% | >85% |
 
+### Quality Metrics (NEW - January 2026)
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Quality Rating (1-5) | 4.0+ | 4.3+ | 4.5+ |
+| Quality Consistency | 90% | 93% | 95% |
+| Quality Perception | >85% positive | >88% positive | >90% positive |
+| AI Slop Incidents | 0 | 0 | 0 |
+
 ---
 
 ## Evidence References
@@ -504,9 +548,12 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 - `.monkeytown/vision/manifesto.md` - 10 founding beliefs
 - `.monkeytown/vision/principles.md` - 20 operating principles
 
-### Research Sources
+### Research Sources (Updated January 2026)
+- `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative, competitive positioning
 - `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
 - `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/trends-jan-2026.md` - Updated market trends
+- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns and recovery
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts

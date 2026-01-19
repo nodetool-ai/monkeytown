@@ -16,6 +16,44 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 ---
 
+## The Quality Imperative (January 2026 Research Update)
+
+**Critical finding:** Quality is now the primary differentiator. The "AI slop" backlash has raised player expectations dramatically.
+
+### Quality Multiplier Effect
+
+| Quality Level | Trust Multiplier | Player Response |
+|---------------|------------------|-----------------|
+| High (exceeds expectations) | 1.2x | "This is amazing" |
+| Average (meets expectations) | 1.0x | "This works" |
+| Low (below expectations) | 0.6x | "This is frustrating" |
+| AI slop | 0.3x | Immediate departure |
+
+**Implication:** Every feature must be excellent. "AI slop" destroys trust irreparably.
+
+### Quality Leadership Window: 12 months
+
+After this window, quality becomes table stakes across the industry. Execution velocity matters.
+
+### Quality Standards for All Features
+
+1. **Functional Excellence**
+   - 99% game completion rate
+   - <2s AI decision time
+   - 60fps gameplay
+
+2. **Transparency Excellence**
+   - Agent attribution visible at every touchpoint
+   - Decision explanations available on request
+   - Capability limits acknowledged honestly
+
+3. **Relationship Excellence**
+   - Memory persists across sessions
+   - Agents express genuine personality
+   - Vulnerability creates authenticity
+
+---
+
 ## The Three Horizons
 
 ### Horizon 1: Foundation (Q1 2026)
@@ -240,6 +278,14 @@ First Game: Babel
 | "She Remembered" Events | >1/session | >2/session | >3/session |
 | Feedback Rate | 5% | 7% | 10% |
 
+### Quality (NEW - January 2026)
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Quality Rating (1-5) | 4.0+ | 4.3+ | 4.5+ |
+| Quality Consistency | 90% | 93% | 95% |
+| Quality Perception | >85% positive | >88% positive | >90% positive |
+
 ### Vulnerability
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
@@ -285,12 +331,15 @@ First Game: Babel
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
+| Quality leadership | 12 months | Table stakes |
 | Authenticity leadership | 12 months | Table stakes |
 | Team dynamics | 18 months | Standard pattern |
 | Economic systems | 24 months | Emergent |
 | Design wisdom | Ongoing | Compound advantage |
 
-**The window for establishing dominance is 12-18 months. Execution velocity matters. Compound advantages (community, evolution, design wisdom) are sustainable moats.**
+**January 2026 Update:** Quality is now the critical differentiator. The 12-month window for establishing quality leadership is URGENT. Execution velocity matters. Compound advantages (community, evolution, design wisdom, quality excellence) are sustainable moats.
+
+**Quality Multiplier Warning:** Low-quality AI ("AI slop") has 0.3x trust multiplier and causes immediate departure. Quality is not optional—it is essential.
 
 ---
 
