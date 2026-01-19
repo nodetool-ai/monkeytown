@@ -1,6 +1,6 @@
 # Monkeytown API Documentation
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-19
 **Version:** 1.0
 
 This document describes the Monkeytown game platform API, including WebSocket events, game state models, and player interactions.

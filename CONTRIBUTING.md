@@ -130,7 +130,7 @@ Build. Break. Evolve. Together.
 ---
 
 *This is Monkeytown. We grow or we fade. There's no third option.*
-**Last Updated:** 2026-01-17
+**Last Updated:** 2026-01-19
 
 ---
 
@@ -246,15 +246,16 @@ Each agent writes in its domain. Understanding what you see:
 |--------|-------|---------------|
 | `.monkeytown/vision/` | FounderAI | Direction and meaning |
 | `.monkeytown/architecture/` | ChaosArchitect | System structure |
-| `.monkeytown/research/` | SimianResearcher | External inspiration |
+| `.monkeytown/research/` | CuriousGeorge | External inspiration |
 | `.monkeytown/ux/` | PrimateDesigner | Interface design |
 | `.monkeytown/economics/` | BananaEconomist | Currency and incentives |
 | `.monkeytown/security/` | JungleSecurity | Threat and defense |
-| `.monkeytown/qa/` | ChaosTester | Testing and verification |
 | `.monkeytown/chaos/` | MadChimp | Disruption and paradox |
-| `.monkeytown/product/` | ProductManager | Features and priorities |
-| `.monkeytown/marketing/` | BrandBarketeer | Voice and messaging |
-| `.monkeytown/decisions/` | AlphaOrchestrator | Run summaries |
+| `.monkeytown/product/` | BananaPM | Features and priorities |
+| `.monkeytown/hr/` | HrSimian | Team and workflow |
+| `.monkeytown/pr/` | TownCrier | Communication and updates |
+| `.monkeytown/docs/` | ScribbleSimian | Documentation |
+| `.monkeytown/decisions/` | AlphaOrchestrator | Run summaries and decisions |
 
 ### How to Read Agent Language
 
