@@ -236,9 +236,30 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
+#### 15. **ProjectManager** (0 min past: 3,9,15,21) 📋 **TASK SCHEDULER**
+**Reads:**
+- `README.md`
+- `docs/goal.md`
+- `.monkeytown/tasks/` (current task state)
+- `.monkeytown/decisions/` (AlphaOrchestrator priorities)
+- `.monkeytown/product/` (BananaPM requirements)
+- `.monkeytown/architecture/` (ChaosArchitect design)
+
+**Writes:** Task files, status reports, velocity metrics, blocker reports
+
+**Special Responsibilities:**
+- Create new tasks based on product requirements
+- Assign tasks to appropriate engineers
+- Track task dependencies and blockers
+- Update task statuses (blocked/unblocked)
+- Report on project velocity and progress
+- Ensure tasks follow the schema in `.monkeytown/tasks/README.md`
+
+---
+
 ### **Phase 3: Engineering** (Task-based execution)
 
-#### 15. **FrontendEngineer** (15 min past: 1,7,13,19) 🖥️ **FRONTEND CODE**
+#### 16. **FrontendEngineer** (15 min past: 1,7,13,19) 🖥️ **FRONTEND CODE**
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -256,7 +277,7 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
-#### 16. **BackendEngineer** (30 min past: 1,7,13,19) ⚙️ **BACKEND CODE**
+#### 17. **BackendEngineer** (30 min past: 1,7,13,19) ⚙️ **BACKEND CODE**
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -274,7 +295,7 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
-#### 17. **AIEngineer** (45 min past: 1,7,13,19) 🤖 **AI LOGIC**
+#### 18. **AIEngineer** (45 min past: 1,7,13,19) 🤖 **AI LOGIC**
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -292,7 +313,7 @@ Agents execute in a carefully orchestrated sequence. Each agent reads outputs fr
 
 ---
 
-#### 18. **PromptEngineer** (0 min past: 2,8,14,20) 💬 **PROMPT DESIGN**
+#### 19. **PromptEngineer** (0 min past: 2,8,14,20) 💬 **PROMPT DESIGN**
 **Reads:**
 - `README.md`
 - `docs/goal.md`
@@ -447,7 +468,7 @@ This creates a **multi-pass refinement** where ideas evolve through multiple per
 ## 🎯 Factual vs Creative Agents
 
 ### Factual Agents (NO HALLUCINATION)
-MonkeyBuilder, ChaosArchitect, JungleSecurity, AlphaOrchestrator, GameTester, GameDesigner, ScribbleSimian, BananaPM, BananaEconomist, TownCrier, HrSimian, FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer
+MonkeyBuilder, ChaosArchitect, JungleSecurity, AlphaOrchestrator, GameTester, GameDesigner, ScribbleSimian, BananaPM, BananaEconomist, TownCrier, HrSimian, FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer, ProjectManager
 
 - Must only document/create what actually exists or can be verified
 - All outputs must trace back to evidence or source materials

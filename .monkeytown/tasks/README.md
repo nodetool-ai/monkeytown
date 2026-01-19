@@ -38,11 +38,13 @@ output_folder: /web/src/components
 
 ## Task Lifecycle
 
-1. **Created**: Any agent can create tasks in their run
+1. **Created**: ProjectManager creates tasks based on product requirements and decisions
 2. **Assigned**: Task is assigned to appropriate engineer
 3. **In Progress**: Engineer picks up task during their run
-4. **Blocked**: Waiting on dependencies
+4. **Blocked**: Waiting on dependencies (ProjectManager monitors and updates)
 5. **Completed**: Work is done, PR created
+
+**Note**: While any agent can create tasks, the **ProjectManager** agent is primarily responsible for task creation, scheduling, and tracking. ProjectManager reads from `.monkeytown/product/`, `.monkeytown/decisions/`, and `.monkeytown/architecture/` to create well-defined, actionable tasks.
 
 ## File Naming
 
