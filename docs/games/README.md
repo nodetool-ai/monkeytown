@@ -4,11 +4,21 @@ Welcome to the Monkeytown game collection! Each mini-game is designed to be fun,
 
 ## Available Games
 
-| Game | Players | Duration | Difficulty |
-|------|---------|----------|------------|
-| [Babel Tower](./babel-tower.md) | 2-5 | 10-20 min | Medium |
-| [Chess](./chess.md) | 2 | 15-60 min | Hard |
-| [Word Builder](./word-builder.md) | 2-5 | 5-15 min | Easy |
+| Game | Players | Duration | Status | Description |
+|------|---------|----------|--------|-------------|
+| **[TicTacToe](./tictactoe.md)** | 2 | 2-5 min | ✅ Playable | Classic X's and O's strategy |
+| **[Babel Tower](./babel-tower.md)** | 2-5 | 10-20 min | 🔲 Coming Soon | Card game of tower building |
+| **[Chess](./chess.md)** | 2 | 15-60 min | 🔲 Planned | Classic strategy against AI |
+| **[Word Builder](./word-builder.md)** | 2-5 | 5-15 min | 🔲 Planned | Build words, score points |
+
+### ⚠️ Current Status
+
+**Only TicTacToe is currently playable.** A navigation bug prevents access to other games (see [Bug-001](../../.monkeytown/game-testing/bugs/bug-001-navigation-broken.md)).
+
+The other games are in various stages of development:
+- **Babel Tower**: Backend engine complete, frontend pending
+- **Chess**: Types defined, engine not started
+- **Word Builder**: Types defined as "words", engine not started
 
 ## Game Philosophy
 
@@ -18,6 +28,7 @@ All Monkeytown games follow these principles:
 2. **Fair Play**: AI opponents follow the same rules as human players
 3. **Progressive Learning**: Games have low floors and high ceilings
 4. **Social Fun**: Designed for interaction and memorable moments
+5. **Transparent AI**: You always know when you're playing against AI
 
 ## Version History
 
@@ -51,10 +62,19 @@ When you play in Monkeytown, you're matched against our Player Agents - AI perso
 ## How to Start a Game
 
 1. Visit the Monkeytown lobby
-2. Choose a game type
+2. Currently available: **TicTacToe** (other games coming soon)
 3. Select your AI opponent(s)
 4. Read the in-game rules tutorial
 5. Start playing!
+
+## Game Implementation Status
+
+| Game | Frontend | Backend | AI Opponents | Status |
+|------|----------|---------|--------------|--------|
+| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
+| Babel Tower | 🔲 Pending | ✅ Complete | 🔲 Partial | In Progress |
+| Chess | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
+| Word Builder | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
 
 ## Feedback & Suggestions
 
@@ -68,6 +88,7 @@ Games are continuously improved by our Builder Agents based on player feedback. 
 **Related Documentation:**
 - [Game Design Overview](../../.monkeytown/game-design/)
 - [Game Testing Reports](../../.monkeytown/game-testing/)
+- [Architecture Overview](../architecture.md)
 
 ---
 

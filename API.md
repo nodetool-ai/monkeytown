@@ -52,7 +52,7 @@ Joins a player to a game lobby.
 
 ```typescript
 interface JoinGamePayload {
-  gameType: 'babel' | 'chess' | 'word-builder';
+  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
   playerCount: 2 | 3 | 4 | 5;
   aiOpponents?: string[]; // Agent IDs
   settings?: GameSettings;
@@ -68,11 +68,11 @@ interface GameSettings {
 **Response:** `game_state` event with initial state
 
 ```typescript
-// Example
+// Example: Join TicTacToe
 socket.emit('join_game', {
-  gameType: 'babel',
-  playerCount: 4,
-  aiOpponents: ['TricksterMonkey', 'StrategistApe']
+  gameType: 'tictactoe',
+  playerCount: 2,
+  aiOpponents: ['trickster']  // Agent type IDs
 });
 ```
 
@@ -82,12 +82,14 @@ Sends a player action to the game server.
 
 ```typescript
 interface PlayerAction {
-  actionType: 'play_card' | 'move_piece' | 'build_word' | 'pass' | 'chat';
+  actionType: 'place_mark' | 'play_card' | 'move_piece' | 'build_word' | 'pass' | 'chat';
   payload: ActionPayload;
   timestamp: number; // Client-side for lag compensation
 }
 
 interface ActionPayload {
+  // TicTacToe
+  | { row: number; col: number }
   // Babel Tower
   | { cardId: string; towerId: number }
   // Chess
@@ -102,10 +104,10 @@ interface ActionPayload {
 **Validation:** Server validates action against game rules before applying.
 
 ```typescript
-// Example: Play a card in Babel Tower
+// Example: Place mark in TicTacToe
 socket.emit('player_action', {
-  actionType: 'play_card',
-  payload: { cardId: 'tower_5', towerId: 2 },
+  actionType: 'place_mark',
+  payload: { row: 1, col: 1 },
   timestamp: Date.now()
 });
 ```
@@ -125,7 +127,7 @@ interface ChatMessage {
 **Agent Prefixing:** AI agent messages are prefixed with their emoji:
 
 ```typescript
-// From TricksterMonkey
+// From TricksterMonkey (type: 'trickster')
 { content: "I see what you're doing there...", type: 'public' }
 // Displayed as: 🎭 I see what you're doing there...
 ```
@@ -170,7 +172,7 @@ Sent on connection and after every state change.
 ```typescript
 interface GameState {
   gameId: string;
-  gameType: 'babel' | 'chess' | 'word-builder';
+  gameType: 'tictactoe' | 'babel' | 'chess' | 'words';
   phase: 'lobby' | 'playing' | 'finished';
   players: PlayerState[];
   currentTurn: number; // Player index
@@ -339,6 +341,27 @@ interface EvolutionUpdateEvent {
 ---
 
 ## Game State Models
+
+### TicTacToe Game State
+
+```typescript
+interface TicTacToeGameState {
+  gameType: 'tictactoe';
+  board: (string | null)[][];  // 3x3 board, null = empty, 'X' or 'O' = filled
+  currentPlayer: 'X' | 'O';
+  winner: 'X' | 'O' | 'draw' | null;
+  moveHistory: TicTacToeMove[];
+  xIsHuman: boolean;  // True if human plays X
+  oIsHuman: boolean;  // True if human plays O (false = AI opponent)
+}
+
+interface TicTacToeMove {
+  player: 'X' | 'O';
+  row: number;
+  col: number;
+  timestamp: number;
+}
+```
 
 ### Babel Tower Game State
 
@@ -606,20 +629,19 @@ socket.on('game_error', (error: GameError) => {
 ## Example: Complete Game Session
 
 ```typescript
-// 1. Connect and authenticate
+// Example: Join TicTacToe with AI opponent
 const socket = io(wsUrl, {
   auth: { token: await getAuthToken() }
 });
 
-// 2. Wait for connection
 socket.on('connect', () => {
   console.log('Connected to game server');
   
-  // 3. Join a game
+  // Join a game
   socket.emit('join_game', {
-    gameType: 'babel',
-    playerCount: 4,
-    aiOpponents: ['TricksterMonkey', 'StrategistApe']
+    gameType: 'tictactoe',
+    playerCount: 2,
+    aiOpponents: ['trickster']  // Agent type ID
   });
 });
 
@@ -662,5 +684,5 @@ socket.on('game_action', (event) => {
 
 ---
 
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
 *ScribbleSimian — Making clarity stick* 🐒

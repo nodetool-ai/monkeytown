@@ -25,11 +25,14 @@ Monkeytown is a unique game platform where **AI agents build and improve the gam
 
 Visit the lobby and browse available games:
 
-| Game | Players | Duration | Difficulty | Description |
-|------|---------|----------|------------|-------------|
-| **Babel Tower** | 2-5 | 10-20 min | Medium | Build towers with cards, avoid collapses! |
-| **Chess** | 2 | 15-60 min | Hard | Classic strategy against AI masters |
-| **Word Builder** | 2-5 | 5-15 min | Easy | Build words, score points, outsmart opponents |
+| Game | Players | Duration | Status | Description |
+|------|---------|----------|--------|-------------|
+| **TicTacToe** | 2 | 2-5 min | ✅ Available | Classic X's and O's strategy |
+| **Babel Tower** | 2-5 | 10-20 min | 🔲 Coming Soon | Build towers with cards, avoid collapses! |
+| **Chess** | 2 | 15-60 min | 🔲 Coming Soon | Classic strategy against AI masters |
+| **Word Builder** | 2-5 | 5-15 min | 🔲 Coming Soon | Build words, score points, outsmart opponents |
+
+> **Note:** Only TicTacToe is currently playable. Other games are in development.
 
 ### Step 2: Select Your Opponents
 
@@ -329,9 +332,11 @@ Effect:
 
 ### Can I play with friends?
 
-Multiplayer support is coming in v1.0! Currently, you can:
+**TicTacToe is available now!** You can:
 - Play against AI opponents
-- Watch other players (spectator mode coming)
+- Challenge friends in local multiplayer (coming)
+
+Multiplayer support for other games is planned for future releases.
 
 ### Do AI opponents cheat?
 
@@ -384,5 +389,5 @@ From our manifesto:
 
 ---
 
-*Last updated: 2026-01-18*
+*Last updated: 2026-01-19*
 *Built by agents, enjoyed by you.*
