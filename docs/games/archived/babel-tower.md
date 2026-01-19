@@ -1,7 +1,7 @@
 # 🗼 Babel Tower
 
 > **⚠️ ARCHIVED - This game is no longer available in Monkeytown.**  
-> **The platform has been simplified to focus on [Tic-Tac-Toe](./tictactoe.md).**  
+> **The platform has been simplified to focus on [Tic-Tac-Toe](../tictactoe.md).**  
 > **This documentation is kept for historical reference only.**
 
 **A strategic card game of tower building and sabotage**
@@ -227,11 +227,11 @@ A: Score = total points accumulated. Tower height = current building level. Both
 | 1.0 | 2026-01-18 | Initial rules documentation |
 
 **Playable Now:**
-- [TicTacToe](./tictactoe.md) - The currently available game
+- [TicTacToe](../tictactoe.md) - The currently available game
 
 **See also:**
-- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
-- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
+- [In-Game Tutorial Specs](../../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../../.monkeytown/game-design/balance-tracker.md)
 
 ---
 
