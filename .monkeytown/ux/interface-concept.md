@@ -1,8 +1,48 @@
-# Interface Concept Exploration
+# Monkeytown Interface Concept v2
 
-## Visionary Interface Ideas for Monkeytown
+**Designer:** PrimateDesigner
+**Version:** 2.0
+**Date:** 2026-01-19
+**Status:** Living Document
+**Related:** `.monkeytown/ux/implementation-guide.md`
 
-**This document explores bold new directions for Monkeytown's interface. Every concept here pushes boundaries while honoring the core philosophy: play first, agents present, evolution celebrated.**
+---
+
+## Executive Summary
+
+This document defines the high-level interface vision for Monkeytown, bridging visionary concepts with practical implementation. The interface embodies our core philosophy: **"Design the interface so players forget they're using one."**
+
+### Current Codebase Foundation
+
+The React application already implements foundational elements:
+
+```
+web/src/
+├── app/
+│   ├── page.tsx              # Landing/lobby with game demo
+│   ├── globals.css           # CSS design tokens
+│   └── layout.tsx
+├── components/
+│   ├── ui/
+│   │   ├── Button.tsx        # Primary interaction component
+│   │   ├── Card.tsx          # Surface component
+│   │   └── Badge.tsx         # Status indicators
+│   ├── game/
+│   │   ├── TicTacToe.tsx     # Working game implementation
+│   │   ├── ChatPanel.tsx     # In-game communication
+│   │   ├── GameCard.tsx      # Game selection cards
+│   │   └── AgentBadge.tsx    # Agent identification
+│   └── agents/
+│       └── AgentPanel.tsx    # Agent roster
+└── hooks/
+    └── useGame.ts            # Game state management
+```
+
+**Implemented Design Tokens** (`web/src/app/globals.css`):
+- Bioluminescent agent colors (cyan, gold, royal blue, purple)
+- Organic easing curves and durations
+- Dark theme foundation with warm accents
+- Animation keyframes (fade, slide, pulse, celebrate)
 
 ---
 
@@ -447,5 +487,78 @@ The bioluminescent forest concept offers the best balance of:
 
 ---
 
-*Interface concept exploration by PrimateDesigner*
+## Implementation Roadmap v2
+
+### Current State Assessment
+
+| Component | Status | Next Step |
+|-----------|--------|-----------|
+| **Button** | ✅ Implemented | Add agent glow colors |
+| **Card** | ✅ Implemented | Add interactive lift effect |
+| **Badge** | ✅ Implemented | Add pulse animation |
+| **AgentBadge** | ✅ Implemented | Add personality-specific styling |
+| **TicTacToe** | ✅ Implemented | Add celebration animations |
+| **ChatPanel** | ✅ Implemented | Add personality voices |
+| **EvolutionFeed** | ✅ Implemented | Add visual enhancements |
+| **AgentPanel** | ✅ Implemented | Expand with full profiles |
+
+### Quick Wins (This Sprint)
+
+1. **Add agent pulse animation** to `AgentBadge.tsx`
+   - CSS keyframe: 1200ms for ChaosArchitect, 800ms for PrimateDesigner
+   - Apply glow color from design tokens
+
+2. **Enhance game celebration** in `TicTacToe.tsx`
+   - Add `animate-celebrate` class on win
+   - Bioluminescent border effect
+
+3. **Add thinking indicator** to game UI
+   - Show when AI is processing
+   - Agent-specific animation patterns
+
+### Medium-Term Goals (This Quarter)
+
+1. **Agent personality in chat**
+   - Unique greeting patterns per agent
+   - Strategy comments during play
+   - Win/loss reactions
+
+2. **Memory system integration**
+   - Reference past games in chat
+   - Track player preferences
+   - Show relationship history
+
+3. **Evolution feed enhancements**
+   - Visual development timeline
+   - Agent attribution for changes
+   - Player impact celebration
+
+### Long-Term Vision
+
+- **Living Forest UI**: Full bioluminescent interface
+- **Neural Thinking**: Visible AI reasoning
+- **Constellation**: Player/agent relationship visualization
+- **Coral Reef**: Collaborative growth system
+
+---
+
+## Cross-References
+
+| Document | Path | Purpose |
+|----------|------|---------|
+| Implementation Guide | `.monkeytown/ux/implementation-guide.md` | Practical code patterns |
+| Visual Language | `.monkeytown/ux/visual-language.md` | Colors, typography, imagery |
+| Design System | `.monkeytown/ux/design-system.md` | Component specifications |
+| Animation System | `.monkeytown/ux/animation-system.md` | Motion design |
+| User Flows | `.monkeytown/ux/user-flows.md` | Journey documentation |
+| Soul of Monkeytown | `.monkeytown/ux/soul-of-monkeytown.md` | Design philosophy |
+| Trust Patterns | `.monkeytown/ux/trust-attachment-patterns.md` | Emotional connection |
+| Codebase | `web/src/` | Implementation files |
+| Architecture | `.monkeytown/architecture/system-design.md` | Technical constraints |
+
+---
+
+*Interface concept by PrimateDesigner v2.0*
 *Creating interfaces that feel alive, honest, and magical*
+
+**Remember:** Every pixel should whisper "You're not alone here."
