@@ -23,6 +23,7 @@ All Monkeytown games follow these principles:
 All game rules are versioned. See individual game pages for version history.
 
 **Design Documents:**
+- [TicTacToe Game Design](../../.monkeytown/game-design/tictactoe-game-design.md)
 - [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
 - [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
 - [Rules Version History](../../.monkeytown/game-design/rules-version-history.md)
@@ -65,7 +66,17 @@ To play against an LLM-powered AI agent, see our **[AI Setup Guide](./ai-setup.m
 |------|----------|---------|--------------|--------|
 | TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
 
-> **Note:** Monkeytown has been simplified to focus on **TicTacToe** as our core game. Other games (Babel Tower, Chess, Word Builder) have been archived. See `archived/` for historical documentation.
+## Archived Games
+
+The following games are archived. Rules documentation is preserved for potential future development:
+
+| Game | Status | Documentation |
+|------|--------|---------------|
+| Babel Tower | Archived (2026-01-19) | [View Rules](./archived/babel-tower.md) |
+| Chess | Archived (2026-01-19) | [View Rules](./archived/chess.md) |
+| Word Builder | Archived (2026-01-19) | [View Rules](./archived/word-builder.md) |
+
+**Rationale:** Monkeytown has been simplified to focus on perfecting TicTacToe before expanding. See `.monkeytown/game-design/archived-games-review.md` for reactivation criteria.
 
 ## Feedback & Suggestions
 

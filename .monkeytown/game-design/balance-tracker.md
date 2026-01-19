@@ -4,9 +4,9 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 ---
 
-## Babel Tower
+## Archived Game: Babel Tower
 
-### Balance Status: ✅ VERIFIED
+### Balance Status: ⏸️ ARCHIVED (2026-01-19)
 
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
@@ -16,11 +16,13 @@ Track balance issues, player feedback, and planned improvements for each game.
 | Sabotage frequency | 10-20% | TBD | ⏳ Pending data |
 
 ### Known Considerations
+
 - Glass suit (+6 bonus) is strongest in late rounds
 - Sabotage mechanic can create comeback opportunities
 - Round multipliers encourage late-game scoring
 
-### Action Items
+### Action Items (On Hold - Archived)
+
 - [ ] Collect win rate data from initial playtests
 - [ ] Monitor for "snowball effect" where early leaders dominate
 - [ ] Track frequency of all 7 tiles bonus usage
@@ -29,11 +31,13 @@ Track balance issues, player feedback, and planned improvements for each game.
 - [x] **UI Fix Required:** Add special action tooltips/highlighting (reported 2026-01-18)
 - [x] **Clarification:** Timer is 60s as documented, display shows elapsed time
 
+**Status:** Implementation spec created for future reference. Game archived pending platform stabilization.
+
 ---
 
-## Word Builder
+## Archived Game: Word Builder
 
-### Balance Status: ✅ VERIFIED
+### Balance Status: ⏸️ ARCHIVED (2026-01-19)
 
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
@@ -43,20 +47,24 @@ Track balance issues, player feedback, and planned improvements for each game.
 | 7-tile bonus frequency | 5-10% | TBD | ⏳ Pending data |
 
 ### Known Considerations
+
 - Q and Z tiles (10 points) are powerful but hard to use
 - 7-tile bonus (+50 points) can swing games
 - Short words (3-4 letters) have low multipliers, encouraging longer words
 
-### Action Items
+### Action Items (On Hold - Archived)
+
 - [ ] Monitor if tile distribution feels fair
 - [ ] Track challenge abuse (challenging valid words)
 - [ ] Collect data on most-played word lengths
 
+**Status:** Game archived. Rules complete but implementation pending.
+
 ---
 
-## Chess
+## Archived Game: Chess
 
-### Balance Status: ✅ VERIFIED
+### Balance Status: ⏸️ ARCHIVED (2026-01-19)
 
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
@@ -66,14 +74,18 @@ Track balance issues, player feedback, and planned improvements for each game.
 | Checkmate rate | 70-85% | TBD | ⏳ Pending data |
 
 ### Known Considerations
+
 - Standard chess is well-balanced by design
 - Time controls affect outcome rates
 - AI opponent strength needs tuning
 
-### Action Items
+### Action Items (On Hold - Archived)
+
 - [ ] Monitor AI opponent ELO appropriateness
 - [ ] Track draw rates vs checkmate rates
 - [ ] Collect data on opening preferences
+
+**Status:** Game archived. Only types defined, no implementation exists.
 
 ---
 
@@ -102,12 +114,10 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
-| P2 | UI: Missing suit indicators | Babel Tower | 🔧 Spec Created |
-| P2 | UI: Round multiplier not visible | Babel Tower | 🔧 Spec Created |
-| P2 | UI: Special action tooltips missing | Babel Tower | 🔧 Spec Created |
-| P2 | Clarify: Timer displays remaining time | Babel Tower | ✅ Documented |
-| P1 | Navigation bug: All games route to Babel Tower | All | ⏳ Blocked |
-| P1 | None reported | - | ✅ Awaiting data |
+| P1 | **Active Game: TicTacToe** | TicTacToe | ✅ Monitoring |
+| P2 | None reported | - | ✅ Awaiting data |
+| P1 | Navigation bug (for future games) | All | ⏳ Blocked (MonkeyBuilder) |
+| P2 | UI Spec (for archived games) | Babel Tower | 🔧 Spec Created (archived) |
 
 ---
 
