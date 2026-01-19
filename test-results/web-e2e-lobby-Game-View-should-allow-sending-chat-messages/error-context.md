@@ -1,0 +1,115 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - button "← Back to Lobby" [ref=e4] [cursor=pointer]
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "← Back" [ref=e7] [cursor=pointer]
+        - generic [ref=e8]:
+          - heading "🗼 Babel Tower" [level=1] [ref=e9]
+          - text: Casual • 3 players
+        - generic [ref=e10]:
+          - generic [ref=e11]:
+            - generic [ref=e12]: 🧩
+            - generic [ref=e13]: StrategistApe
+            - 'status "Status: online" [ref=e14]'
+          - generic [ref=e15]:
+            - generic [ref=e16]: 🎭
+            - generic [ref=e17]: TricksterMonkey
+            - 'status "Status: online" [ref=e18]'
+          - button "📖 Rules" [ref=e19] [cursor=pointer]
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - 'status "Status: info" [ref=e23]': Round 4/12
+            - 'status "Status: success" [ref=e24]': 🎯 Your Turn
+            - generic [ref=e26]: "0"
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]:
+                - generic [ref=e31]: 👤
+                - generic [ref=e32]: You
+                - generic [ref=e33]: "42"
+              - generic [ref=e34]:
+                - generic [ref=e35]: 🧠
+                - generic [ref=e36]: StrategistApe
+                - generic [ref=e37]: "38"
+                - generic [ref=e38]:
+                  - generic [ref=e39]: 🧩
+                  - 'status "Status: online" [ref=e40]'
+              - generic [ref=e41]:
+                - generic [ref=e42]: 🧠
+                - generic [ref=e43]: TricksterMonkey
+                - generic [ref=e44]: "45"
+                - generic [ref=e45]:
+                  - generic [ref=e46]: 🎭
+                  - 'status "Status: online" [ref=e47]'
+            - generic [ref=e48]:
+              - generic [ref=e49]: Table Cards
+              - generic [ref=e50]:
+                - generic [ref=e52] [cursor=pointer]: "7"
+                - generic [ref=e54] [cursor=pointer]: "12"
+                - generic [ref=e56] [cursor=pointer]: "5"
+          - generic [ref=e57]:
+            - generic [ref=e59] [cursor=pointer]:
+              - generic [ref=e60]: 🃏
+              - generic [ref=e61]: "8"
+            - generic [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: 🎯
+              - generic [ref=e65]: "15"
+            - generic [ref=e66] [cursor=pointer]:
+              - generic [ref=e67]: "6"
+              - generic [ref=e68]: Points
+            - generic [ref=e70] [cursor=pointer]:
+              - generic [ref=e71]: 🎯
+              - generic [ref=e72]: "22"
+            - generic [ref=e74] [cursor=pointer]:
+              - generic [ref=e75]: ⬆️
+              - generic [ref=e76]: "11"
+        - generic [ref=e77]:
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e80]: 💬
+              - generic [ref=e81]: Chat
+              - generic [ref=e82]: "2"
+            - generic [ref=e83]:
+              - generic [ref=e84]:
+                - generic [ref=e85]:
+                  - generic [ref=e86]:
+                    - generic [ref=e87]:
+                      - generic [ref=e88]: 🧩
+                      - 'status "Status: online" [ref=e89]'
+                    - generic [ref=e90]: StrategistApe
+                  - generic [ref=e91]: Welcome to Babel Tower! I'm calculating the optimal strategy... Good luck!
+                - generic [ref=e92]: 03:02 AM
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - generic [ref=e95]:
+                    - generic [ref=e96]:
+                      - generic [ref=e97]: 🧩
+                      - 'status "Status: online" [ref=e98]'
+                    - generic [ref=e99]: StrategistApe
+                  - generic [ref=e100]: Welcome to Babel Tower! I'm calculating the optimal strategy... Good luck!
+                - generic [ref=e101]: 03:02 AM
+            - generic [ref=e103]:
+              - textbox "Type a message..." [ref=e104]
+              - button "Send" [disabled] [ref=e105]
+          - generic [ref=e106]:
+            - generic [ref=e107]: Game Info
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]: "Mode:"
+                - generic [ref=e111]: casual
+              - generic [ref=e112]:
+                - generic [ref=e113]: "Type:"
+                - generic [ref=e114]: babel
+              - generic [ref=e115]:
+                - generic [ref=e116]: "Players:"
+                - generic [ref=e117]: "3"
+        - generic [ref=e119]:
+          - button "Play Card" [ref=e120] [cursor=pointer]
+          - button "End Turn" [ref=e121] [cursor=pointer]
+  - alert [ref=e122]
+```

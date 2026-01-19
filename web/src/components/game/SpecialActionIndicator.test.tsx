@@ -73,7 +73,7 @@ describe('SpecialActionIndicator', () => {
       />
     );
     const cardElement = screen.getByText('15').closest('div');
-    expect(cardElement).toHaveStyle({ borderColor: 'var(--color-primary)' });
+    expect(cardElement).toHaveStyle({ border: '3px solid var(--color-primary)' });
   });
 
   it('shows tooltip on hover', () => {

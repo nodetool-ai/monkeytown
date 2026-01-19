@@ -375,7 +375,7 @@ export function TutorialOverlay({ gameType, onComplete, onSkip, isOpen }: Tutori
           </button>
         </div>
 
-        <div style={progressBarStyles}>
+        <div style={progressBarStyles} data-testid="tutorial-progress">
           <div style={progressFillStyles} />
         </div>
 

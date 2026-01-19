@@ -133,7 +133,7 @@ export function TurnTimer({
         {minutes > 0 ? `${minutes}:${seconds.toString().padStart(2, '0')}` : seconds}
       </div>
 
-      <div style={progressBarStyles}>
+      <div style={progressBarStyles} data-testid="progress-bar">
         <div style={progressFillStyles} />
       </div>
     </div>
