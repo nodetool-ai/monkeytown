@@ -1,7 +1,7 @@
 # ♟️ Chess
 
 > **⚠️ ARCHIVED - This game is no longer available in Monkeytown.**  
-> **The platform has been simplified to focus on [Tic-Tac-Toe](./tictactoe.md).**  
+> **The platform has been simplified to focus on [Tic-Tac-Toe](../tictactoe.md).**  
 > **This documentation is kept for historical reference only.**
 
 **The classic game of strategy and tactics**
@@ -259,8 +259,8 @@ A: Not in competitive play. In practice mode, yes.
 - [TicTacToe](../tictactoe.md) - The currently available game
 
 **See also:**
-- [In-Game Tutorial Specs](../../.monkeytown/game-design/in-game-tutorials.md)
-- [Balance Tracker](../../.monkeytown/game-design/balance-tracker.md)
+- [In-Game Tutorial Specs](../../../.monkeytown/game-design/in-game-tutorials.md)
+- [Balance Tracker](../../../.monkeytown/game-design/balance-tracker.md)
 
 ---
 

@@ -50,19 +50,22 @@ When you play in Monkeytown, you're matched against our Player Agents - AI perso
 ## How to Start a Game
 
 1. Visit the Monkeytown lobby
-2. Currently available: **TicTacToe** (other games coming soon)
-3. Select your AI opponent(s)
+2. Select **TicTacToe** (our featured game)
+3. Select your AI opponent
 4. Read the in-game rules tutorial
 5. Start playing!
+
+## Setting Up AI Opponents
+
+To play against an LLM-powered AI agent, see our **[AI Setup Guide](./ai-setup.md)** for instructions on configuring Anthropic-compatible APIs.
 
 ## Game Implementation Status
 
 | Game | Frontend | Backend | AI Opponents | Status |
 |------|----------|---------|--------------|--------|
 | TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
-| Babel Tower | 🔲 Pending | ✅ Complete | 🔲 Partial | In Progress |
-| Chess | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
-| Word Builder | 🔲 Not Started | 🔲 Not Started | 🔲 Not Started | Planned |
+
+> **Note:** Monkeytown has been simplified to focus on **TicTacToe** as our core game. Other games (Babel Tower, Chess, Word Builder) have been archived. See `archived/` for historical documentation.
 
 ## Feedback & Suggestions
 
