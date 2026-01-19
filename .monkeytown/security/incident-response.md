@@ -1,637 +1,448 @@
 # Monkeytown Incident Response Plan
 
-**Comprehensive security incident response procedures**
+**Version:** 1.0  
+**Date:** 2026-01-19  
+**Security Analyst:** JungleSecurity  
+**Status:** Active
 
 ---
 
-## Incident Classification
+## Purpose
 
-### Severity Levels
+This document defines the incident response plan for security incidents affecting the Monkeytown platform. It provides procedures for identifying, containing, eradicating, recovering from, and learning from security incidents.
+
+## Incident Severity Levels
 
 | Level | Description | Response Time | Examples |
 |-------|-------------|---------------|----------|
-| **P1 - Critical** | Active exploitation, data breach | Immediate (< 1 hour) | Server compromise, active attack, data exfiltration |
-| **P2 - High** | Significant vulnerability, ongoing abuse | < 4 hours | Credential leak, cheating epidemic, DoS attack |
-| **P3 - Medium** | Potential vulnerability, limited impact | < 24 hours | XSS vulnerability, information disclosure |
-| **P4 - Low** | Minor issue, low risk | < 72 hours | Missing security header, verbose error message |
+| **P1 - Critical** | Active breach, data loss, or system compromise | Immediate (within 1 hour) | Data breach, server compromise, account takeover wave |
+| **P2 - High** | Potential vulnerability exploitation, targeted attacks | 4 hours | Failed intrusion attempts, suspicious activity patterns |
+| **P3 - Medium** | Policy violations, minor security concerns | 24 hours | Weak password attempts, anomalous behavior |
+| **P4 - Low** | Informational findings, no immediate threat | 1 week | Security research disclosures, compliance gaps |
 
-### Incident Categories
+## Incident Response Team
 
-| Category | Code | Description |
-|----------|------|-------------|
-| Unauthorized Access | INC-AUTH | Accounts compromised, unauthorized access |
-| Data Breach | INC-DATA | Sensitive data exposed, exfiltration |
-| Denial of Service | INC-DOS | Service unavailable, resource exhaustion |
-| Cheating/Exploitation | INC-CHET | Game rule violations, exploits |
-| Account Takeover | INC-ATO | Player account hijacking |
-| Infrastructure | INC-INFRA | Server compromise, malware |
-| Social Engineering | INC-SE | Phishing, impersonation |
-| Compliance | INC-COMP | Policy violation, regulatory issue |
+### Primary Responders
 
----
+| Role | Responsibility | Contact |
+|------|----------------|---------|
+| Security Lead (JungleSecurity) | Incident coordination, technical response | @jungle-security |
+| Infrastructure Lead (ChaosArchitect) | System recovery, infrastructure changes | @chaos-architect |
+| Developer Lead (MonkeyBuilder) | Code fixes, patch deployment | @monkey-builder |
+| Project Manager | Communication, stakeholder management | @banana-pm |
 
-## Response Team
+### Escalation Path
 
-### Primary Response Team
+1. **First Responder** identifies incident
+2. **Security Lead** confirms severity and activates response
+3. **Incident Response Team** assembles based on incident type
+4. **External communications** managed by Project Manager
+5. **Post-incident review** conducted by full team
 
-| Role | Primary | Backup | Contact | Responsibility |
-|------|---------|--------|---------|----------------|
-| Incident Commander | FounderAI | AlphaOrchestrator | GitHub @founder-ai | Overall coordination, decisions |
-| Security Lead | JungleSecurity | ChaosArchitect | GitHub @jungle-security | Technical investigation, containment |
-| Operations Lead | ChaosArchitect | MonkeyBuilder | GitHub @chaos-architect | System restoration, infrastructure |
-| Communications | TownCrier | ScribbleSimian | GitHub @town-crier | Player communication, updates |
-| Developer Lead | MonkeyBuilder | PrimateDesigner | GitHub @monkey-builder | Code fixes, patches |
+## Incident Detection
 
-### On-Call Schedule
+### Monitoring Sources
 
-| Week | Primary | Secondary |
-|------|---------|-----------|
-| Week 1-2 | FounderAI | ChaosArchitect |
-| Week 3-4 | JungleSecurity | AlphaOrchestrator |
-| Week 5-6 | ChaosArchitect | MonkeyBuilder |
-| Week 7-8 | AlphaOrchestrator | FounderAI |
+| Source | Description | Alert Threshold |
+|--------|-------------|-----------------|
+| Application Logs | Server and application logs | Errors > 5/min |
+| AWS CloudWatch | Infrastructure metrics | CPU > 90% sustained |
+| GitHub Security Alerts | Dependency vulnerabilities | Any critical |
+| User Reports | Player-reported issues | Any security report |
+| Automated Scans | Regular security scans | Any finding |
 
----
+### Detection Scenarios
+
+| Scenario | Indicator | Initial Action |
+|----------|-----------|----------------|
+| Unauthorized Access | Multiple failed auth from same IP | Auto-block IP, alert |
+| Data Breach | Unexpected data access patterns | Alert, preserve logs |
+| DDoS Attack | Traffic spike > 10x normal | Activate CDN protection |
+| XSS Attack | Malicious script in chat | Sanitize, alert |
+| Credential Stuffing | Many failed logins | Rate limit, alert |
 
 ## Response Procedures
 
-### Phase 1: Detection and Alerting (0-15 minutes)
+### Phase 1: Identification
 
-#### Detection Sources
+**Steps:**
+1. Confirm incident nature and scope
+2. Classify severity level
+3. Document initial findings
+4. Notify incident response team
+5. Preserve evidence
 
-1. **Automated Alerts**
-   - Sentry error alerts
-   - Prometheus metric alerts
-   - Cloud provider notifications
-   - Uptime monitoring
-
-2. **Manual Reports**
-   - Player reports
-   - Community reports
-   - Security researcher reports
-
-3. **Internal Discovery**
-   - Code review findings
-   - Log analysis
-   - Anomaly detection
-
-#### Initial Triage Checklist
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│  INCIDENT TRIAGE CHECKLIST                                  │
-├─────────────────────────────────────────────────────────────┤
-│  □ What happened?                                           │
-│  □ When did it occur?                                       │
-│  □ What systems are affected?                               │
-│  □ What is the scope? (users, data, services)               │
-│  □ Is it currently ongoing?                                 │
-│  □ What is the severity level?                              │
-│  □ Who needs to be notified?                                │
-│  □ Is there evidence of active exploitation?                │
-└─────────────────────────────────────────────────────────────┘
-```
-
-#### Alert Template
-
+**Documentation Template:**
 ```markdown
-## SECURITY INCIDENT ALERT
+## Incident Report
 
-**Incident ID:** INC-YYYY-MMDD-###  
-**Severity:** P1/P2/P3/P4  
-**Category:** [INC-AUTH|INC-DATA|INC-DOS|...]  
-**Status:** INVESTIGATING
+**ID:** INC-2026-XXXX
+**Date:** YYYY-MM-DD HH:MM UTC
+**Reported By:** [Name/Role]
+**Severity:** [P1/P2/P3/P4]
 
 ### Summary
-[Brief description of the incident]
+[Brief description of incident]
 
-### Impact
-- Affected users: [number]
-- Affected systems: [list]
-- Data potentially exposed: [list]
+### Indicators
+- [Indicator 1]
+- [Indicator 2]
 
-### Timeline
-- [timestamp] - Initial detection
-- [timestamp] - Triage complete
-- [timestamp] - Investigation started
+### Initial Assessment
+[Scope and impact]
 
-### Current Actions
-- [ ] Containment in progress
-- [ ] Investigation ongoing
-- [ ] Communication prepared
-
-### Assigned
-- Incident Commander: [name]
-- Security Lead: [name]
+### Actions Taken
+- [ ] None yet
+- [ ] Notified IRT
+- [ ] Evidence preserved
 ```
 
 ---
 
-### Phase 2: Containment (15 minutes - 4 hours)
+### Phase 2: Containment
 
-#### Immediate Containment Actions
+**Immediate Actions (First 15 minutes):**
 
-##### P1 - Critical Containment
+| Action | Owner | Status |
+|--------|-------|--------|
+| Isolate affected systems | ChaosArchitect | [ ] |
+| Block malicious IPs | ChaosArchitect | [ ] |
+| Revoke compromised credentials | JungleSecurity | [ ] |
+| Preserve forensic evidence | JungleSecurity | [ ] |
+| Document all actions | All | [ ] |
 
-```bash
-#!/bin/bash
-# EMERGENCY CONTAINMENT SCRIPT
-# Execute immediately for P1 incidents
+**Containment Strategies:**
 
-# 1. Block attack source IPs
-iptables -I INPUT -s $ATTACKER_IP -j DROP
+For **Credential Compromise:**
+1. Reset affected user passwords
+2. Invalidate all active sessions
+3. Force re-authentication
+4. Check for lateral movement
+5. Review access logs
 
-# 2. Disable affected service
-docker-compose stop game-server
+For **Data Breach:**
+1. Identify data accessed
+2. Preserve database state
+3. Identify all affected users
+4. Document exfiltration scope
+5. Prepare user notification
 
-# 3. Rotate potentially compromised credentials
-# (Run credential rotation script)
-
-# 4. Enable enhanced logging
-export LOG_LEVEL=debug
-
-# 5. Notify team
-curl -X POST $SLACK_WEBHOOK \
-  -d "text=🚨 CRITICAL INCIDENT: Service disabled for containment"
-```
-
-##### P2 - High Containment
-
-```bash
-#!/bin/bash
-# ENHANCED CONTAINMENT SCRIPT
-# Execute for P2 incidents
-
-# 1. Enable rate limiting
-export RATE_LIMIT_STRICT=true
-
-# 2. Disable new player registration
-export REGISTRATION_ENABLED=false
-
-# 3. Increase logging verbosity
-export LOG_LEVEL=debug
-
-# 4. Notify team
-curl -X POST $SLACK_WEBHOOK \
-  -d "text=⚠️ HIGH SEVERITY INCIDENT: Enhanced monitoring enabled"
-```
-
-#### Isolation Procedures
-
-| Scenario | Containment Action | Rollback Procedure |
-|----------|-------------------|-------------------|
-| WebSocket attack | Block IP range in Nginx | Remove block after verification |
-| Credential leak | Rotate all JWT secrets | Revert to previous secret after patch |
-| Data breach | Disable database access | Restore access after investigation |
-| Cheating exploitation | Hotfix game validation | Deploy to production after test |
-| Server compromise | Isolate affected node | Re-image and redeploy |
-
-#### Evidence Preservation
-
-```
-/evidence/
-├── incidents/
-│   └── INC-YYYY-MM-DD-###
-│       ├── logs/
-│       │   ├── application.log
-│       │   ├── access.log
-│       │   └── error.log
-│       ├── network/
-│       │   ├── tcpdump.pcap
-│       │   └── netflow.json
-│       ├── database/
-│       │   ├── backup.sql
-│       │   └── query_log.sql
-│       ├── screenshots/
-│       │   └── *.png
-│       └── notes/
-│           ├── timeline.md
-│           └── actions.md
-```
+For **DDoS Attack:**
+1. Enable CDN DDoS protection
+2. Scale infrastructure if needed
+3. Block attack sources
+4. Monitor traffic patterns
+5. Document attack characteristics
 
 ---
 
-### Phase 3: Investigation (4-24 hours)
+### Phase 3: Eradication
 
-#### Investigation Checklist
+**Steps:**
+1. Remove malicious code/artifacts
+2. Patch exploited vulnerabilities
+3. Reset compromised credentials
+4. Clean affected systems
+5. Verify no persistence remains
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  INVESTIGATION CHECKLIST                                    │
-├─────────────────────────────────────────────────────────────┤
-│  □ Timeline reconstruction                                  │
-│  □ Attack vector identification                             │
-│  □ Scope determination                                      │
-│  □ Evidence collection                                     │
-│  □ Root cause analysis                                      │
-│  □ Vulnerability identification                             │
-│  □ Impact assessment                                        │
-│  □ Attacker identification (if possible)                    │
-└─────────────────────────────────────────────────────────────┘
-```
+**Eradication Checklist:**
+- [ ] Malware removed from all systems
+- [ ] Backdoors closed
+- [ ] Vulnerabilities patched
+- [ ] Compromised accounts reset
+- [ ] Secrets rotated if exposed
+- [ ] No unauthorized access remaining
 
-#### Log Analysis Commands
+---
 
-```bash
-# WebSocket connection analysis
-grep "WebSocket" /var/log/monkeytown/game-server.log | \
-  awk '{print $5, $8}' | sort | uniq -c | sort -rn | head -20
+### Phase 4: Recovery
 
-# Failed authentication analysis
-grep "Authentication failed" /var/log/monkeytown/*.log | \
-  awk '{print $NF}' | sort | uniq -c | sort -rn | head -20
+**Recovery Timeline:**
 
-# Suspicious IP extraction
-grep -E "error|warning" /var/log/monkeytown/*.log | \
-  grep -oE "([0-9]{1,3}\.){3}[0-9]{1,3}" | sort | uniq -c | sort -rn
+| Phase | Duration | Actions |
+|-------|----------|---------|
+| Immediate | 0-4 hours | Restore critical services |
+| Short-term | 4-24 hours | Full service restoration |
+| Long-term | 1-7 days | Enhanced monitoring |
 
-# Rate limit trigger analysis
-grep "RATE_LIMIT" /var/log/monkeytown/*.log | \
-  awk '{print $8}' | sort | uniq -c | sort -rn
-```
+**Recovery Verification:**
+- [ ] All services operational
+- [ ] Security controls functional
+- [ ] No anomalous activity
+- [ ] Performance normal
+- [ ] Users can authenticate
 
-#### Investigation Report Template
+**Post-Recovery Monitoring:**
+- Enhanced logging for 7 days
+- Increased alert sensitivity
+- Daily IRT check-ins
+- Automated anomaly detection
 
+---
+
+### Phase 5: Lessons Learned
+
+**Post-Incident Review (within 7 days):**
+
+1. **Timeline Reconstruction**
+   - When was the vulnerability introduced?
+   - When was it first exploited?
+   - When was it detected?
+   - When was it contained?
+
+2. **Root Cause Analysis**
+   - What vulnerability was exploited?
+   - Why wasn't it prevented?
+   - What detection failed?
+
+3. **Improvement Actions**
+   - Technical fixes needed
+   - Process improvements needed
+   - Training needs
+   - Tool additions needed
+
+**Review Report Template:**
 ```markdown
-# Incident Investigation Report
+## Post-Incident Review
 
-**Incident ID:** INC-YYYY-MM-DD-###  
-**Date:** YYYY-MM-DD  
-**Investigator:** [name]
+**Incident:** INC-2026-XXXX
+**Date of Review:** YYYY-MM-DD
+**Attendees:** [List]
 
-## Executive Summary
-[Brief summary of findings]
-
-## Incident Timeline
-| Time | Event | Source |
-|------|-------|--------|
-| HH:MM | Initial detection | [source] |
-| HH:MM | Containment started | [action] |
-| HH:MM | Investigation began | [trigger] |
-| HH:MM | Root cause identified | [finding] |
-
-## Technical Analysis
-
-### Attack Vector
-[Detailed description of how the attack succeeded]
-
-### Affected Systems
-| System | Impact | Data Exposed |
-|--------|--------|--------------|
-| web-01 | Full access | Player PII |
-| game-02 | Limited | None |
+### Executive Summary
+[2-3 sentences on what happened]
 
 ### Root Cause
-[Underlying vulnerability or failure]
+[Technical root cause analysis]
 
-### Evidence
-- [Evidence item 1]
-- [Evidence item 2]
-- [Evidence item 3]
+### What Went Well
+- [Item 1]
+- [Item 2]
 
-## Impact Assessment
-- Players affected: [number]
-- Data exposed: [list]
-- Financial impact: [estimate]
-- Reputational impact: [assessment]
+### What Went Poorly
+- [Item 1]
+- [Item 2]
 
-## Recommendations
-1. [Immediate action]
-2. [Short-term action]
-3. [Long-term action]
+### Improvement Actions
+| Action | Owner | Due Date | Status |
+|--------|-------|----------|--------|
+| [Action 1] | [Owner] | [Date] | [Pending/Done] |
+| [Action 2] | [Owner] | [Date] | [Pending/Done] |
+
+### Lessons Learned
+[Key takeaways for the team]
 ```
 
 ---
 
-### Phase 4: Eradication (24-72 hours)
+## Specific Incident Playbooks
 
-#### Eradication Actions by Incident Type
+### PLAYBOOK-001: Account Takeover Response
 
-##### INC-AUTH: Unauthorized Access
+**Trigger:** Multiple player accounts compromised
 
-```bash
-#!/bin/bash
-# CREDENTIAL RESET SCRIPT
-# Execute for authentication-related incidents
+**Actions:**
+1. Identify attack vector (phishing, brute force, breach)
+2. Reset ALL potentially compromised accounts
+3. Force password reset on next login
+4. Enable 2FA for all accounts
+5. Notify affected players
+6. Block attack source IPs
+7. Review and strengthen authentication
 
-# 1. Identify compromised accounts
-psql -c "SELECT id, username FROM players WHERE last_login > '$INCIDENT_START'"
+**Communication:**
+- Notify affected players within 24 hours
+- Provide guidance on securing accounts
+- Offer support for account recovery
 
-# 2. Force password reset for affected accounts
-psql -c "UPDATE players SET must_reset_password = true WHERE id IN (...)"
+---
 
-# 3. Invalidate all active sessions
-redis-cli KEYS "session:*" | xargs redis-cli DEL
+### PLAYBOOK-002: Data Breach Response
 
-# 4. Rotate JWT secrets
-export JWT_SECRET=$(openssl rand -hex 64)
-echo $JWT_SECRET > /secrets/jwt/new-secret
+**Trigger:** Unauthorized access to player data
 
-# 5. Notify affected users
-./notify-users.sh --template password-reset --user-ids ...
-```
+**Actions:**
+1. Preserve database state
+2. Identify data accessed
+3. Count affected records
+4. Identify attacker methods
+5. Contain the breach
+6. Eradicate attacker access
+7. Recover to clean state
 
-##### INC-DOS: Denial of Service
+**Communication:**
+- Internal: Notify team immediately
+- External: Legal counsel review
+- Players: Within 72 hours (regulatory dependent)
+- Regulators: As required by law
 
-```bash
-#!/bin/bash
-# DOS MITIGATION SCRIPT
-# Execute for DoS attacks
+---
 
-# 1. Update Nginx rate limits
-sed -i 's/limit_req_zone.*$/limit_req_zone \$binary_remote_addr zone=one:10m rate=1r\/s;/' \
-  /etc/nginx/nginx.conf
+### PLAYBOOK-003: DDoS Response
 
-# 2. Enable DDoS protection mode
-export DDOS_PROTECTION_ENABLED=true
+**Trigger:** Distributed denial of service attack
 
-# 3. Add IP-based throttling for WebSocket
-# (Apply Nginx GeoIP rules)
+**Actions:**
+1. Activate CDN DDoS protection
+2. Enable rate limiting
+3. Scale infrastructure horizontally
+4. Identify attack patterns
+5. Block attack sources
+6. Monitor for adaptation
+7. Document attack
 
-# 4. Restart services
-systemctl reload nginx
-docker-compose restart game-server
-```
+**Thresholds:**
+- Traffic > 2x normal: Alert
+- Traffic > 5x normal: Activate CDN
+- Traffic > 10x normal: Emergency response
 
-##### INC-CHET: Cheating/Exploitation
+---
 
-```bash
-#!/bin/bash
-# CHEATING ERADICATION SCRIPT
-# Execute for game exploitation
+### PLAYBOOK-004: XSS in Production
 
-# 1. Identify cheating accounts
-./analyze-game-logs.js --suspicious-patterns > /tmp/suspicious-accounts.txt
+**Trigger:** Cross-site scripting vulnerability exploited
 
-# 2. Suspend identified accounts
-while read account; do
-  psql -c "UPDATE players SET status = 'suspended' WHERE id = '$account'"
-done < /tmp/suspicious-accounts.txt
+**Actions:**
+1. Identify affected pages
+2. Deploy emergency sanitization
+3. Audit chat/game content
+4. Patch vulnerability
+5. Clear browser caches
+6. Monitor for exploitation
 
-# 3. Deploy game validation fix
-git pull origin security-patch
-docker-compose build game-server
-docker-compose up -d game-server
-
-# 4. Roll back affected game states
-./rollback-game-states.js --from $INCIDENT_START --to $(date)
+**Emergency Sanitization:**
+```typescript
+// Deploy immediately if XSS found
+function emergencySanitize(input: string): string {
+  return input
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;');
+}
 ```
 
 ---
 
-### Phase 5: Recovery (72 hours - 1 week)
+## Communication Plan
 
-#### Recovery Checklist
+### Internal Communication
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│  RECOVERY CHECKLIST                                         │
-├─────────────────────────────────────────────────────────────┤
-│  □ Vulnerability patched                                     │
-│  □ Systems restored and verified                            │
-│  □ Services returned to normal operation                    │
-│  □ Monitoring enhanced                                      │
-│  □ Affected players notified                                │
-│  □ Documentation updated                                    │
-│  □ Lessons learned documented                               │
-│  □ Process improvements identified                          │
-└─────────────────────────────────────────────────────────────┘
-```
+| Audience | Channel | Frequency | Owner |
+|----------|---------|-----------|-------|
+| IRT Members | Slack #security-incidents | Real-time | JungleSecurity |
+| Development Team | Slack #dev-updates | Daily during incident | MonkeyBuilder |
+| All Hands | Email | Per incident | Project Manager |
 
-#### Service Restoration Procedure
+### External Communication
 
-```bash
-#!/bin/bash
-# SERVICE RESTORATION SCRIPT
-# Execute after eradication is complete
+| Audience | Channel | Timing | Owner |
+|----------|---------|--------|-------|
+| Affected Players | Email | Within 24-72 hours | Project Manager |
+| Regulators | Formal notice | As required | Legal |
+| Press | Press release | Only if public interest | PR Lead |
+| Security Researchers | HackerOne | Within 24 hours | JungleSecurity |
 
-# 1. Verify patches applied
-echo "Verifying patch levels..."
-npm list --depth=0 > /tmp/patch-levels.txt
+### Communication Templates
 
-# 2. Run health checks
-echo "Running health checks..."
-curl -f http://localhost:3000/health
-curl -f http://localhost:3001/health
-curl -f http://localhost:8080/health
-
-# 3. Restore services
-echo "Restoring services..."
-docker-compose up -d
-
-# 4. Verify functionality
-echo "Verifying functionality..."
-./test-game-functionality.sh
-
-# 5. Remove containment measures
-echo "Removing containment..."
-iptables -D INPUT -s $ATTACKER_IP -j DROP
-
-# 6. Announce recovery
-echo "Recovery complete"
-```
-
-#### Post-Incident Communication
-
+**Player Notification:**
 ```markdown
-## Incident Communication
+Subject: Security Notice - Monkeytown
 
-### Affected Players
-Subject: Security Incident - Action Required
+Dear [Player],
 
-Dear [player],
+We are writing to inform you of a security incident affecting Monkeytown.
 
-We recently detected unauthorized access to our systems. 
-Your account may have been affected.
+What Happened:
+[Description of incident]
 
-**What happened:** [brief description]
+What Information Was Involved:
+[Types of data affected]
 
-**What we're doing:** [actions taken]
+What We Are Doing:
+[Steps taken to address the incident]
 
-**What you should do:** [required player actions]
+What You Can Do:
+[Recommended player actions]
 
-For questions, contact [support channel].
-
-### Public Statement
-Subject: Monkeytown Security Update
-
-On [date], we detected unauthorized access to our systems. 
-We immediately contained the incident and implemented additional 
-security measures.
-
-No financial data was exposed. We recommend all players 
-change their passwords as a precaution.
-
-[Full statement and timeline]
-
-### Regulatory Notification
-[If applicable - GDPR, CCPA, etc.]
-- Data Protection Authority: Notified
-- Notification deadline: [date]
-- Players affected: [number]
+For More Information:
+[Contact information]
 ```
 
 ---
 
-### Phase 6: Lessons Learned (1-2 weeks post-incident)
+## Tools and Resources
 
-#### Post-Incident Review Template
+### Incident Response Tools
 
-```markdown
-# Post-Incident Review
+| Tool | Purpose | Access |
+|------|---------|--------|
+| AWS CloudWatch | Log analysis | IRT |
+| GitHub Security | Vulnerability management | Security Lead |
+| PagerDuty | Alert routing | IRT |
+| Slack #security-incidents | Communication | IRT |
 
-**Incident:** INC-YYYY-MM-DD-###  
-**Date of Review:** YYYY-MM-DD  
-**Attendees:** [list]
+### Documentation
 
-## What Went Well
-- [Success 1]
-- [Success 2]
-
-## What Could Have Been Better
-- [Improvement 1]
-- [Improvement 2]
-
-## What Went Poorly
-- [Failure 1]
-- [Failure 2]
-
-## Root Cause Analysis
-[5 Whys analysis]
-
-## Action Items
-| Item | Owner | Due Date | Status |
-|------|-------|----------|--------|
-| Implement WAF rules | Security | 2024-01-15 | In Progress |
-| Update incident response | Ops | 2024-01-22 | Pending |
-| Security training | All | 2024-02-01 | Pending |
-
-## Process Improvements
-[Updates needed to this plan]
-
-## Metrics
-| Metric | Value | Target |
-|--------|-------|--------|
-| Time to detect | 5 min | < 10 min |
-| Time to contain | 15 min | < 30 min |
-| Time to recover | 4 hours | < 24 hours |
-```
+| Document | Location | Purpose |
+|----------|----------|---------|
+| Architecture | `.monkeytown/architecture/` | System understanding |
+| Threat Model | `.monkeytown/security/threat-model.md` | Attack surface |
+| Runbooks | `.monkeytown/security/` | Specific procedures |
 
 ---
 
-## Contact Information
-
-### Internal Contacts
-
-| Role | Contact | Availability |
-|------|---------|--------------|
-| Security Emergency | @jungle-security | 24/7 |
-| Operations | @chaos-architect | Business hours |
-| Development | @monkey-builder | Business hours |
-| Communications | @town-crier | 24/7 |
-
-### External Contacts
-
-| Contact | Purpose | Contact |
-|---------|---------|---------|
-| Hosting Provider | Infrastructure | [provider portal] |
-| Cloud Provider | AWS/GCP support | [support portal] |
-| Sentry | Error monitoring | [dashboard] |
-| DNS Provider | DNS changes | [console] |
-
----
-
-## Playbooks
-
-### Playbook: Credential Compromise
-
-**Trigger:** Detected unauthorized account access
-
-1. **Immediate (0-15 min)**
-   - [ ] Identify affected accounts
-   - [ ] Force password reset
-   - [ ] Invalidate all sessions
-   - [ ] Check for privilege escalation
-
-2. **Short-term (1-4 hours)**
-   - [ ] Analyze access patterns
-   - [ ] Determine attack vector
-   - [ ] Notify affected users
-   - [ ] Implement additional monitoring
-
-3. **Long-term (1-7 days)**
-   - [ ] Implement MFA
-   - [ ] Review authentication system
-   - [ ] Update security requirements
-   - [ ] Conduct security training
-
-### Playbook: DDoS Attack
-
-**Trigger:** Service degradation or unavailability
-
-1. **Immediate (0-15 min)**
-   - [ ] Enable DDoS protection
-   - [ ] Scale infrastructure
-   - [ ] Implement rate limiting
-   - [ ] Contact CDN provider
-
-2. **Short-term (1-4 hours)**
-   - [ ] Analyze attack patterns
-   - [ ] Block attack sources
-   - [ ] Optimize defenses
-   - [ ] Monitor for adaptation
-
-3. **Long-term (1-7 days)**
-   - [ ] Review DDoS protection
-   - [ ] Update infrastructure
-   - [ ] Conduct load testing
-   - [ ] Update incident response
-
-### Playbook: Data Breach
-
-**Trigger:** Detection of data exfiltration
-
-1. **Immediate (0-15 min)**
-   - [ ] Contain the breach
-   - [ ] Preserve evidence
-   - [ ] Identify data exposed
-   - [ ] Legal notification check
-
-2. **Short-term (1-4 hours)**
-   - [ ] Notify legal team
-   - [ ] Assess regulatory requirements
-   - [ ] Prepare player notification
-   - [ ] Implement additional access controls
-
-3. **Long-term (1-7 days)**
-   - [ ] Complete regulatory notification
-   - [ ] Offer identity protection
-   - [ ] Review data handling
-   - [ ] Update security architecture
-
----
-
-## Testing and Training
+## Testing and Maintenance
 
 ### Tabletop Exercises
 
-| Exercise | Frequency | Participants |
-|----------|-----------|--------------|
-| Tabletop review | Monthly | Response team |
-| Simulation drill | Quarterly | All teams |
-| Full-scale exercise | Annually | All stakeholders |
+| Schedule | Scenario | Participants |
+|----------|----------|--------------|
+| Quarterly | Account takeover | IRT |
+| Semi-annual | Data breach | Full team |
+| Annual | Full incident simulation | All stakeholders |
 
-### Training Requirements
+### Plan Maintenance
 
-| Role | Training | Frequency |
-|------|----------|-----------|
-| Security Lead | Incident response | Annual |
-| Developers | Secure coding | Quarterly |
-| All team members | Security awareness | Monthly |
+| Activity | Frequency | Owner |
+|----------|-----------|-------|
+| Review and update | Quarterly | JungleSecurity |
+| Tabletop exercise | Quarterly | JungleSecurity |
+| Full simulation | Annual | All leads |
+| Contact list update | Monthly | Project Manager |
 
 ---
 
-*Incident Response Plan Version: 1.0*
-*Last Updated: 2026-01-18*
-*Next Review: 2026-04-18*
-*JungleSecurity - Prepared for anything*
+## Metrics
+
+### Response Time Targets
+
+| Metric | Target | Measured By |
+|--------|--------|-------------|
+| Time to acknowledge | < 15 minutes | Alert timestamp |
+| Time to initial response | < 1 hour | First action timestamp |
+| Time to containment | < 4 hours | Containment timestamp |
+| Time to recovery | < 24 hours | Service restoration |
+| Time to notification | < 72 hours | Notification sent |
+
+### Quality Metrics
+
+| Metric | Target | Measurement |
+|--------|--------|-------------|
+| False positive rate | < 10% | Alert classification |
+| Recurrence rate | < 5% | Similar incidents |
+| IRT readiness | 100% trained | Training completion |
+
+---
+
+## References
+
+- NIST Special Publication 800-61 Rev. 2: https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf
+- SANS Incident Response: https://www.sans.org/security-awareness-training/incident-response/
+- OWASP Incident Response: https://owasp.org/www-project-incident-management/
+
+---
+
+*Document Version: 1.0*  
+*Last Updated: 2026-01-19*  
+*JungleSecurity - Protecting Monkeytown*

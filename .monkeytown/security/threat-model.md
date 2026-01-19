@@ -1,483 +1,480 @@
 # Monkeytown Threat Model
 
-**Security analysis for AI-powered multiplayer game platform**
+**Version:** 1.0  
+**Date:** 2026-01-19  
+**Security Analyst:** JungleSecurity  
+**Status:** Active Review
 
 ---
 
 ## Executive Summary
 
-This threat model identifies potential security risks in the Monkeytown multiplayer game platform. The system consists of a Next.js frontend, Node.js backend with WebSocket support, Redis for real-time state, and PostgreSQL for persistence. Analysis reveals critical attack surfaces in WebSocket communication, player input validation, and authentication mechanisms.
+This threat model analyzes the security architecture of Monkeytown, an AI-powered multiplayer game platform. The system implements a two-layer architecture with GitHub workflow agents and real-time React/Node.js gameplay. This document identifies potential threats across all system components and provides risk assessments based on actual code analysis.
 
----
+## System Scope
 
-## System Boundary
+### In Scope
+- Frontend: Next.js 14 React application (`web/`)
+- Backend: Node.js 20 Express + Socket.IO server (`server/`)
+- Real-time communication: WebSocket/Socket.IO
+- Data stores: Redis (sessions/Pub/Sub), PostgreSQL (persistent data)
+- Authentication: JWT-based authentication
+- Agent layer: @ax-llm/ax framework integration
+
+### Out of Scope
+- GitHub Actions infrastructure (external)
+- Third-party OAuth providers (external)
+- End-user devices (client-side only)
+
+## Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                         TRUST BOUNDARY                                      │
-│                                                                             │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                         PUBLIC INTERNET                              │   │
-│  │  Players, attackers, scanners, bots                                 │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-│                                    │                                         │
-│                          SSL/TLS TERMINATION                                │
-│                                    │                                         │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                      API GATEWAY / LOAD BALANCER                     │   │
-│  │  ┌──────────────────────────────────────────────────────────────┐  │   │
-│  │  │  - Rate limiting                                            │  │   │
-│  │  │  - DDoS protection                                          │  │   │
-│  │  │  - Request validation                                       │  │   │
-│  │  │  - SSL termination                                          │  │   │
-│  │  └──────────────────────────────────────────────────────────────┘  │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-│                                    │                                         │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        APPLICATION LAYER                             │   │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐    │   │
-│  │  │   Web App   │  │  Game Srv   │  │     Event Stream        │    │   │
-│  │  │  (Next.js)  │  │  (Express)  │  │      (Socket.IO)        │    │   │
-│  │  └─────────────┘  └─────────────┘  └─────────────────────────┘    │   │
-│  │         │                  │                      │                 │   │
-│  │         │        ┌─────────┴─────────┐          │                 │   │
-│  │         │        ▼                   ▼          │                 │   │
-│  │         │  ┌──────────┐       ┌──────────┐      │                 │   │
-│  │         │  │  Redis   │       │ Postgres │      │                 │   │
-│  │         │  └──────────┘       └──────────┘      │                 │   │
-│  └─────────┴────────────────────────────────────────┘                 │   │
-│                                    │                                     │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        DATA LAYER                                    │   │
-│  │  ┌─────────────┐  ┌────────────────────────────────────────────┐   │   │
-│  │  │  Redis      │  │           PostgreSQL                        │   │   │
-│  │  │  (Session)  │  │  (Players, Games, Agent Behaviors)          │   │   │
-│  │  └─────────────┘  └────────────────────────────────────────────┘   │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        EXTERNAL SERVICES                             │   │
-│  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐    │   │
-│  │  │   OAuth     │  │   MiniMax   │  │     Monitoring          │    │   │
-│  │  │   Providers │  │   API       │  │     (Sentry)            │    │   │
-│  │  └─────────────┘  └─────────────┘  └─────────────────────────┘    │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
+│                              PLAYERS (Browsers)                              │
+│                         React Frontend - Next.js 14                          │
 └─────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                                        ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    API GATEWAY / LOAD BALANCER                               │
+│                    (Nginx or AWS ALB)                                        │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                        │
+                      ┌─────────────────┼─────────────────┐
+                      ▼                 ▼                 ▼
+             ┌────────────────┐ ┌──────────────┐ ┌─────────────────┐
+             │   Web Server   │ │  Game Server │ │  Event Stream   │
+             │   (Next.js)    │ │  (Node/TS)   │ │  (Socket.IO)    │
+             │    :3000       │ │    :3001     │ │     :8080       │
+             └────────────────┘ └──────────────┘ └─────────────────┘
+                      │                 │                 │
+                      └─────────────────┼─────────────────┘
+                                        ▼
+                          ┌─────────────────────────┐
+                          │    REDIS (Pub/Sub +     │
+                          │    Session Store)       │
+                          │      redis:6379         │
+                          └─────────────────────────┘
+                                        │
+                                        ▼
+                          ┌─────────────────────────┐
+                          │   POSTGRESQL (Game      │
+                          │   State + Agents)       │
+                          │    postgres:5432        │
+                          └─────────────────────────┘
 ```
 
----
+## Trust Boundaries
 
-## Assets
+| Boundary | Description | Trust Level |
+|----------|-------------|-------------|
+| Player → Load Balancer | External traffic | Untrusted |
+| Load Balancer → Web Server | Internal traffic | Trusted |
+| Web Server → Game Server | Internal API calls | Trusted |
+| Game Server → Database | Database queries | Trusted |
+| WebSocket Clients → Event Stream | Real-time game data | Authenticated |
 
-| Asset | Description | Sensitivity |
-|-------|-------------|-------------|
-| Player credentials | OAuth tokens, session IDs | Critical |
-| JWT tokens | Authentication tokens for WebSocket | Critical |
-| Game state | Real-time player positions, scores | High |
-| Player PII | Username, avatar, gameplay history | Medium |
-| Agent behaviors | AI decision models and personalities | High |
-| Session data | In-progress game sessions | High |
-| Rate limit counters | Redis-based rate limiting state | Low |
+## Data Flow Analysis
 
----
-
-## Threat Actors
-
-| Actor | Motivation | Capability |
-|-------|------------|------------|
-| Script Kiddie | Disruption, vandalism | Basic |
-| Organized Attackers | Financial gain, data theft | Advanced |
-| Cheating Players | Competitive advantage | Medium |
-| Griefers | Harassment, disruption | Basic |
-| Nation States | Large-scale disruption | Sophisticated |
-| Insiders | Data theft, sabotage | Variable |
-
----
-
-## Attack Surface Analysis
-
-### 1. WebSocket Attack Surface (CRITICAL)
-
-**Entry Points:**
-- `game:join` - Join game sessions
-- `game:leave` - Leave game sessions
-- `game:input` - Submit player actions
-- `game:chat` - Send chat messages
-- `heartbeat` - Connection keepalive
-
-**Threats:**
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| WS-01 | WebSocket hijacking via token theft | Critical | Medium |
-| WS-02 | Mass connection exhaustion (DoS) | High | High |
-| WS-03 | Input injection via game:input | Critical | Medium |
-| WS-04 | Chat message injection (XSS) | High | Medium |
-| WS-05 | Protocol downgrade attacks | Medium | Low |
-| WS-06 | Cross-site WebSocket hijacking | High | Medium |
-
-**Attack Vectors:**
+### Authentication Flow
 
 ```
-Player Browser                      Attacker
-    │                                  │
-    │  1. Legitimate WebSocket         │
-    │◄─────────────────────────────────│
-    │    CONNECT /ws token=XXX         │
-    │                                  │
-    │  2. Attacker's malicious script  │
-    │◄─────────────────────────────────│
-    │    WebSocket('wss://game',       │
-    │      token stolen from cookie)   │
-    │                                  │
-    │  3. Attacker controls game input │
-    │◄─────────────────────────────────│
-    │    {type: 'game:input', data:   │
-    │      {action: 'MOVE_HACK'}}      │
+Player → Web → OAuth Provider → Callback → JWT → WebSocket
 ```
 
-### 2. HTTP API Attack Surface (HIGH)
-
-**Endpoints:**
-- `POST /api/games/create` - Create new game
-- `POST /api/games/:id/join` - Join existing game
-- `GET /api/players/:id` - Get player info
-- `GET /api/leaderboard` - Get rankings
-
-**Threats:**
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| API-01 | SQL injection via player parameters | Critical | Low |
-| API-02 | Mass game creation (resource exhaustion) | Medium | High |
-| API-03 | Player enumeration via ID guessing | Low | High |
-| API-04 | Rate limit bypass via IP rotation | Medium | Medium |
-
-### 3. Authentication Attack Surface (CRITICAL)
-
-**Current Implementation:**
+**Current Implementation (server/src/websocket/server.ts:221-224):**
 ```typescript
-// From server/src/websocket/server.ts:35-46
-this.io.use(async (socket, next) => {
-  try {
-    const token = socket.handshake.auth.token;
-    if (!token) {
-      return next(new Error('Authentication required'));
-    }
-    const playerId = await this.validateToken(token);
-    (socket as Socket & { playerId: string }).playerId = playerId;
-    next();
-  } catch (error) {
-    next(error as Error);
-  }
+private async validateToken(token: string): Promise<string> {
+  const jwt = await import('jsonwebtoken');
+  const decoded = jwt.default.verify(token, process.env.JWT_SECRET || 'dev-secret') as { playerId: string };
+  return decoded.playerId;
+}
+```
+
+**Security Concern:** Hardcoded fallback secret `dev-secret` enables token forgery if JWT_SECRET not set.
+
+### Game Action Flow
+
+```
+Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
+                            ↓
+                     PostgreSQL (persistent)
+```
+
+**Current Implementation (server/src/websocket/server.ts:134-171):**
+- Actions processed through `game:action` event
+- Game-specific processing (TicTacToe/Babel)
+- State broadcast to all players in game room
+
+### Chat Message Flow
+
+```
+Player Input → Sanitization → Database → Redis Pub/Sub → All Players
+```
+
+**Current Implementation (server/src/websocket/server.ts:173-202):**
+- Chat messages sanitized using basic HTML tag stripping
+- Persisted to PostgreSQL
+- Broadcast via Socket.IO room
+
+## Threat Identification
+
+### AUTH-001: JWT Secret Hardcoded Fallback
+
+**Severity:** Critical  
+**Status:** Confirmed  
+**Component:** `server/src/websocket/server.ts:223`
+
+**Description:**
+The WebSocket authentication uses a hardcoded fallback JWT secret `dev-secret` when `JWT_SECRET` environment variable is not set. This allows any attacker to forge valid JWT tokens and authenticate as any player.
+
+**Evidence:**
+```typescript
+const decoded = jwt.default.verify(token, process.env.JWT_SECRET || 'dev-secret') as { playerId: string };
+```
+
+**Impact:**
+- Complete account takeover
+- Unauthorized game access
+- Player impersonation
+- Potential data manipulation
+
+**Affected Code:**
+- `server/src/websocket/server.ts:223`
+
+**Recommendation:**
+1. Fail fast if JWT_SECRET not set in production
+2. Enforce environment variable configuration
+3. Implement JWT token rotation
+4. Add token binding to IP/User-Agent
+
+---
+
+### AUTH-002: Weak Token Validation
+
+**Severity:** High  
+**Status:** Confirmed  
+**Component:** `server/src/index.ts`
+
+**Description:**
+No token expiration checking or audience validation in the current implementation. JWT tokens are verified without checking standard JWT claims.
+
+**Evidence:**
+The `validateToken` function only extracts `playerId` without validating standard JWT claims like `exp`.
+
+**Impact:**
+- Stolen tokens remain valid indefinitely
+- No token refresh mechanism
+- Extended window for token replay attacks
+
+**Recommendation:**
+1. Implement `exp` claim validation
+2. Add `aud` claim verification
+3. Implement token refresh endpoint
+4. Set reasonable token expiration (15-30 minutes)
+
+---
+
+### WS-001: Missing WebSocket Rate Limiting
+
+**Severity:** High  
+**Status:** Confirmed  
+**Component:** `server/src/websocket/server.ts`
+
+**Description:**
+While HTTP API endpoints have rate limiting (`express-rate-limit`), WebSocket connections do not have per-connection rate limiting implemented. This allows resource exhaustion through message flooding.
+
+**Current Rate Limiting (server/src/index.ts:50-55):**
+```typescript
+const limiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 100,
+  message: { error: 'Too many requests' },
 });
+app.use('/api/', limiter);
 ```
 
-**Issues Identified:**
-- Token passed in `auth.token` (visible in memory)
-- No token expiration validation
-- No refresh token mechanism
-- Hardcoded fallback secret: `process.env.JWT_SECRET || 'dev-secret'`
+**Impact:**
+- Denial of service through connection flooding
+- Server resource exhaustion
+- Degraded game performance for legitimate players
 
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| AUTH-01 | JWT secret exposure in code | Critical | Low |
-| AUTH-02 | Token replay attacks | High | Medium |
-| AUTH-03 | Token hijacking via XSS | Critical | Medium |
-| AUTH-04 | Session fixation | Medium | Low |
+**Affected Code:**
+- `server/src/websocket/server.ts` - No Socket.IO-level rate limiting
 
-### 4. Redis Attack Surface (MEDIUM)
-
-**Current Usage:**
-- Session caching with 1-hour TTL
-- Player state with 5-minute TTL
-- Rate limiting with 1-minute TTL
-- Pub/Sub for event distribution
-
-**Threats:**
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| REDIS-01 | Redis injection via session keys | High | Low |
-| REDIS-02 | Session hijacking via cache access | High | Medium |
-| REDIS-03 | Rate limit bypass via key collision | Low | Medium |
-
-### 5. Game Logic Attack Surface (HIGH)
-
-**Attack Vectors:**
-
-```
-Game Entity Manipulation:
-┌─────────────────────────────────────────────────────────────┐
-│  Player sends: {type: 'game:input', data: {action: 'MOVE', │
-│    position: {x: 9999, y: 9999}}}                           │
-│                                                              │
-│  Server processes:                                          │
-│  1. Validates player session ✓                              │
-│  2. Applies movement to game state ✗ (no bounds check)      │
-│  3. Broadcasts update                                       │
-│                                                              │
-│  Result: Player teleports outside game boundaries           │
-└─────────────────────────────────────────────────────────────┘
-```
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| GAME-01 | Position teleportation (bounds bypass) | High | High |
-| GAME-02 | Speed hacking (action spam) | High | High |
-| GAME-03 | Score manipulation | Medium | Medium |
-| GAME-04 | Game state injection | Critical | Low |
-| GAME-05 | AI behavior manipulation | High | Low |
+**Recommendation:**
+1. Implement per-socket rate limiting using Socket.IO middleware
+2. Limit action events to 30 per minute per player
+3. Implement connection throttling
+4. Add automatic disconnect for rate limit violators
 
 ---
 
-## Data Flow Threat Analysis
+### WS-002: No Connection Validation
 
-### 1. Player Connection Flow
+**Severity:** Medium  
+**Status:** Confirmed  
+**Component:** `server/src/websocket/server.ts:59-74`
 
-```
-Player Browser                                    Attacker
-    │                                                 │
-    │ 1. Open WebSocket connection                    │
-    │────────────────────────────────────────────────►│
-    │  handshake with token                           │
-    │                                                 │
-    │ 2. JS bundle loads                              │
-    │◄────────────────────────────────────────────────│
-    │  (token in memory, vulnerable to XSS)           │
-    │                                                 │
-    │ 3. Authenticate with JWT                        │
-    │────────────────────────────────────────────────►│
-    │                                                 │
-    │ 4. Game session created                         │
-    │◄────────────────────────────────────────────────│
-    │                                                 │
-    │                                                 │ 5. XSS steals token from memory
-    │                                                 │◄───────────────────────────────
-    │                                                 │  document.cookie or memory read
-    │                                                 │
-    │                                                 │ 6. Attacker creates parallel connection
-    │                                                 │────────────────────────────────►
-    │                                                 │  Hijacked session active
-```
+**Description:**
+WebSocket connections accept tokens but do not validate connection properties like IP address consistency or User-Agent.
 
-**Threats:**
-- XSS allows token theft (WS-06, AUTH-03)
-- No session binding to IP/User-Agent
-- Token valid until expiration (no revocation)
+**Impact:**
+- Token theft through man-in-the-middle
+- Session hijacking
+- No protection against connection hijacking
 
-### 2. Game Event Flow
-
-```
-Player A                                          Attacker
-    │                                                 │
-    │ 1. Send input {action: 'PLAY_CARD',             │
-    │    cardId: 'card_123'}                          │
-    │────────────────────────────────────────────────►│
-    │                                                 │
-    │ 2. Server validates                             │
-    │   - Player in session ✓                         │
-    │   - Token valid ✓                               │
-    │   - BUT: No game rule validation ✗              │
-    │                                                 │
-    │ 3. Process input                                │
-    │   - Update game state                           │
-    │   - Broadcast to all players                    │
-    │                                                 │
-    │                                                 │ 4. Craft malicious input
-    │                                                 │────────────────────────────────►
-    │                                                 │ {action: 'PLAY_CARD', cardId:
-    │                                                 │  'ANY_CARD_FROM_DECK'}
-```
-
-**Threats:**
-- No validation that player actually has the card (GAME-04)
-- No action cooldown enforcement (GAME-02)
-- Race conditions in state updates
+**Recommendation:**
+1. Bind tokens to IP addresses
+2. Validate User-Agent consistency
+3. Implement connection tokens with short TTL
 
 ---
 
-## Attack Trees
+### INJ-001: Incomplete Chat Sanitization
 
-### Attack Tree 1: Game Account Compromise
+**Severity:** Medium  
+**Status:** Confirmed  
+**Component:** `server/src/services/validation.ts:161-167`
 
-```
-OR: Achieve player account compromise
-│
-├── OR: Token theft via XSS
-│   ├── Leaf: Stored XSS in chat (likelihood: medium)
-│   ├── Leaf: Reflected XSS in game parameters (likelihood: medium)
-│   └── Leaf: DOM injection via compromised JS bundle (likelihood: low)
-│
-├── OR: Brute force authentication
-│   ├── Leaf: JWT secret brute force (likelihood: low)
-│   └── Leaf: OAuth token prediction (likelihood: very low)
-│
-└── OR: Social engineering
-    ├── Leaf: Phishing for OAuth credentials (likelihood: medium)
-    └── Leaf: Session hijacking via MITM (likelihood: low, SSL pinned)
-```
+**Description:**
+Chat message sanitization only strips basic HTML tags but does not prevent all XSS vectors.
 
-### Attack Tree 2: Denial of Service
-
-```
-OR: Make game unavailable
-│
-├── OR: Connection exhaustion
-│   ├── Leaf: WebSocket connection flood (likelihood: high)
-│   │   └── Mitigated by: rate limiting per IP
-│   └── Leaf: HTTP request flood (likelihood: high)
-│       └── Mitigated by: load balancer, CDN
-│
-├── OR: Resource exhaustion
-│   ├── Leaf: Game session spam (likelihood: medium)
-│   │   └── Mitigated by: rate limiting, auth required
-│   └── Leaf: Redis memory exhaustion (likelihood: low)
-│       └── Mitigated by: TTL on all keys
-│
-└── OR: Game logic DoS
-    ├── Leaf: Infinite game loops (likelihood: low)
-    └── Leaf: Memory leak via game entities (likelihood: medium)
+**Current Sanitization:**
+```typescript
+private sanitizeString(str: string): string {
+  return str
+    .replace(/[<>]/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+=/gi, '')
+    .trim();
+}
 ```
 
-### Attack Tree 3: Cheating
+**Bypass Examples:**
+- Event handlers: `<svg onload=alert(1)>`
+- CSS injection: `background:url(javascript:alert(1))`
+- Data URLs: `data:text/html,<script>alert(1)</script>`
 
-```
-OR: Gain unfair competitive advantage
-│
-├── OR: Input manipulation
-│   ├── Leaf: Speed hacking (likelihood: high)
-│   ├── Leaf: Position teleportation (likelihood: high)
-│   └── Leaf: Action spam (likelihood: high)
-│
-├── OR: State manipulation
-│   ├── Leaf: Score modification (likelihood: medium)
-│   ├── Leaf: Card manipulation (likelihood: medium)
-│   └── Leaf: Entity creation (likelihood: low)
-│
-└── OR: Information disclosure
-    ├── Leaf: Peek at other players' hands (likelihood: medium)
-    └── Leaf: See hidden AI strategies (likelihood: low)
-```
+**Impact:**
+- Cross-site scripting attacks
+- Cookie theft
+- Session hijacking
+- Malicious redirects
+
+**Recommendation:**
+1. Use a well-tested sanitization library (DOMPurify, sanitize-html)
+2. Implement Content Security Policy headers
+3. Escape HTML entities properly
+4. Consider markdown rendering instead of raw HTML
 
 ---
 
-## Risk Matrix
+### INJ-002: Game Action Validation Gaps
 
-| Threat | Severity | Likelihood | Risk Score | Mitigation Priority |
-|--------|----------|------------|------------|---------------------|
-| WS-01: WebSocket hijacking | Critical | Medium | 12 | P1 |
-| WS-03: Input injection | Critical | Medium | 12 | P1 |
-| AUTH-01: JWT secret exposure | Critical | Low | 9 | P2 |
-| AUTH-03: Token hijacking via XSS | Critical | Medium | 12 | P1 |
-| GAME-01: Position teleportation | High | High | 16 | P1 |
-| GAME-02: Speed hacking | High | High | 16 | P1 |
-| GAME-04: Game state injection | Critical | Low | 9 | P2 |
-| WS-02: Connection exhaustion | High | High | 16 | P1 |
-| API-01: SQL injection | Critical | Low | 9 | P2 |
-| WS-04: Chat XSS | High | Medium | 12 | P1 |
+**Severity:** Medium  
+**Status:** Potential Risk  
+**Component:** `server/src/game/tictactoe-engine.ts`
 
-**Risk Score = Severity × Likelihood (1-4 scale)**
+**Description:**
+TicTacToe game actions are validated at the engine level, but there are potential gaps in validating action sequences and timing.
 
----
+**Current Validation (server/src/game/tictactoe-engine.ts:140-143):**
+```typescript
+// Validate coordinates
+if (row < 0 || row > 2 || col < 0 || col > 2) {
+  return { success: false, error: 'Invalid position: row and col must be 0-2' };
+}
+```
 
-## Security Controls Summary
+**Potential Issues:**
+- No validation of action timing (prevent rapid-fire moves)
+- Race conditions in concurrent action processing
+- No action cooldown enforcement
 
-### Existing Controls
+**Impact:**
+- Game state corruption
+- Unfair advantage through timing attacks
+- Potential for game exploits
 
-| Control | Location | Effectiveness |
-|---------|----------|---------------|
-| JWT authentication | server/src/websocket/server.ts:35-46 | Partial |
-| Rate limiting | server/src/services/redis.ts:75-85 | Partial |
-| CORS configuration | server/src/websocket/server.ts:17-21 | Good |
-| Session management | server/src/game/session.ts | Partial |
-| Input validation | server/src/game/session.ts:28-38 | Insufficient |
-| SSL/TLS | Nginx/Load Balancer | Good |
-
-### Required Controls
-
-| Control | Priority | Component |
-|---------|----------|-----------|
-| Input sanitization (chat, game input) | P1 | EventStream, GameServer |
-| Game state validation | P1 | GameEngine |
-| Rate limiting per connection | P1 | EventStream |
-| XSS protection headers | P1 | Next.js |
-| CSP implementation | P1 | Next.js |
-| Session binding (IP, fingerprint) | P2 | WebSocket |
-| Token rotation/refresh | P2 | Auth |
-| Anomaly detection | P2 | GameServer |
-| Comprehensive logging | P2 | All components |
+**Recommendation:**
+1. Implement action timestamps and validate timing windows
+2. Add action sequence numbering
+3. Implement optimistic locking for game state
+4. Add action cooldowns (minimum 500ms between actions)
 
 ---
 
-## Recommendations
+### GAME-001: Missing Game State Integrity
+
+**Severity:** Medium  
+**Status:** Potential Risk  
+**Component:** `server/src/game/session.ts`
+
+**Description:**
+Game state is updated without cryptographic integrity protection, allowing potential tampering if Redis is compromised.
+
+**Impact:**
+- Modified game state in transit
+- Cheating through state manipulation
+- Unfair game outcomes
+
+**Recommendation:**
+1. Implement state signing for critical game events
+2. Use HMAC for state verification
+3. Implement state version numbering
+4. Add state conflict detection
+
+---
+
+### SEC-001: Missing Security Headers
+
+**Severity:** Medium  
+**Status:** Confirmed  
+**Component:** `web/`
+
+**Description:**
+Frontend Next.js application lacks explicit Content Security Policy (CSP) headers and other security headers.
+
+**Missing Headers:**
+- Content-Security-Policy
+- X-Content-Type-Options
+- X-Frame-Options
+- Referrer-Policy
+
+**Impact:**
+- XSS attacks more effective
+- Clickjacking vulnerabilities
+- Information leakage through referrers
+
+**Recommendation:**
+1. Implement CSP headers in Next.js configuration
+2. Add helmet middleware equivalent for frontend
+3. Configure strict Content Security Policy
+4. Enable HSTS in production
+
+---
+
+### CORS-001: Permissive CORS Configuration
+
+**Severity:** Low  
+**Status:** Confirmed (Development Only)  
+**Component:** `server/src/index.ts:45-48`
+
+**Description:**
+CORS is configured to allow origins from environment variable, but default includes wildcard patterns in development.
+
+**Current Configuration:**
+```typescript
+app.use(cors({
+  origin: process.env.CORS_ORIGINS?.split(',') || ['http://localhost:3000'],
+  credentials: true,
+}));
+```
+
+**Risk:** If CORS_ORIGINS is misconfigured or empty, could allow unintended origins.
+
+**Recommendation:**
+1. Validate CORS_ORIGINS format
+2. Reject wildcard patterns in production
+3. Implement explicit origin whitelist
+4. Add CORS preflight logging
+
+---
+
+### SEC-002: Information Disclosure in Error Messages
+
+**Severity:** Low  
+**Status:** Confirmed  
+**Component:** `server/src/websocket/server.ts:117-120`
+
+**Description:**
+Error messages may disclose internal system information to players.
+
+**Example:**
+```typescript
+socket.emit('error', { code: 'GAME_NOT_FOUND', message: 'Game session not found' });
+```
+
+**Potential Issue:**
+- Debug mode may expose stack traces
+- Database errors could leak schema information
+
+**Recommendation:**
+1. Implement error message sanitization
+2. Separate internal and external error messages
+3. Log detailed errors server-side only
+4. Use generic error codes for client responses
+
+---
+
+## Risk Summary
+
+| Threat ID | Severity | Status | Remediation Priority |
+|-----------|----------|--------|---------------------|
+| AUTH-001 | Critical | Confirmed | P1 - Immediate |
+| AUTH-002 | High | Confirmed | P1 - Immediate |
+| WS-001 | High | Confirmed | P1 - Immediate |
+| WS-002 | Medium | Confirmed | P2 - Short-term |
+| INJ-001 | Medium | Confirmed | P2 - Short-term |
+| INJ-002 | Medium | Potential | P2 - Short-term |
+| GAME-001 | Medium | Potential | P2 - Short-term |
+| SEC-001 | Medium | Confirmed | P2 - Short-term |
+| CORS-001 | Low | Confirmed | P3 - Normal |
+| SEC-002 | Low | Confirmed | P3 - Normal |
+
+## Security Controls Matrix
+
+| Control | Implemented | Effectiveness | Notes |
+|---------|-------------|---------------|-------|
+| JWT Authentication | ✅ | Medium | Needs secret hardening |
+| Password Hashing | ✅ | High | Using bcryptjs |
+| Input Validation | ⚠️ Partial | Medium | Zod schemas exist, gaps in game logic |
+| Rate Limiting | ⚠️ Partial | Low | HTTP only, WebSocket missing |
+| SSL/TLS | ✅ | High | At load balancer level |
+| CORS | ✅ | Medium | Configurable, needs validation |
+| Helmet Security Headers | ✅ | High | On Express backend |
+| XSS Protection | ⚠️ Partial | Low | Basic sanitization only |
+| Session Management | ⚠️ Partial | Medium | Redis sessions, no refresh |
+| Audit Logging | ❌ | N/A | No audit trail implementation |
+
+## Recommended Security Roadmap
 
 ### Immediate (P1)
-
-1. **Implement input validation for all game actions**
-   - Validate positions are within game bounds
-   - Verify player has required resources before actions
-   - Enforce action cooldowns server-side
-
-2. **Add rate limiting per WebSocket connection**
-   - Limit `game:input` to 10 actions/second
-   - Limit `game:chat` to 1 message/second
-   - Limit connections per IP to 10
-
-3. **Sanitize all user-generated content**
-   - HTML escape chat messages
-   - Validate game action data schemas
-
-4. **Implement Content Security Policy**
-   ```typescript
-   // Next.js middleware or headers
-   Content-Security-Policy: default-src 'self'; 
-     script-src 'self' 'unsafe-inline';
-     connect-src wss: https:;
-     img-src data: https:;
-   ```
+1. Fix hardcoded JWT secret fallback
+2. Implement WebSocket rate limiting
+3. Add JWT expiration validation
+4. Implement proper chat sanitization
 
 ### Short-term (P2)
+5. Add Content Security Policy headers
+6. Implement token refresh mechanism
+7. Add connection binding (IP/User-Agent)
+8. Implement game state integrity
 
-1. **Strengthen authentication**
-   - Implement token refresh mechanism
-   - Add session binding to IP and User-Agent
-   - Move JWT secret to environment variable
+### Normal (P3)
+9. Add comprehensive audit logging
+10. Implement anomaly detection
+11. Add intrusion detection capabilities
+12. Security headers for frontend
+13. Implement bug bounty program
 
-2. **Add anomaly detection**
-   - Detect unusual action patterns (speed hacking)
-   - Detect impossible position changes
-   - Alert on repeated rule violations
+## Threat Model Maintenance
 
-3. **Implement comprehensive logging**
-   - Log all authentication events
-   - Log game rule violations
-   - Log rate limit triggers
-
-### Long-term (P3)
-
-1. **Security audit**
-   - Third-party penetration test
-   - Dependency vulnerability scan
-   - Code review for security issues
-
-2. **Advanced protections**
-   - WebSocket frame encryption
-   - Client-side tamper detection
-   - Behavioral analysis for cheating detection
-
----
+**Review Schedule:** Quarterly or after major architecture changes  
+**Last Review:** 2026-01-19  
+**Next Review:** 2026-04-19  
+**Owner:** JungleSecurity
 
 ## References
 
-- OWASP WebSocket Security Cheat Sheet
-- CWE-119: Improper Restriction of Operations within Memory Buffer
-- CWE-79: Improper Neutralization of Input During Web Page Generation
-- CWE-307: Improper Restriction of Excessive Authentication Attempts
+- Architecture: `.monkeytown/architecture/system-design.md`
+- Security Requirements: `.monkeytown/security/security-requirements.md`
+- Vulnerability Assessment: `.monkeytown/security/vulnerability-assessment.md`
+- Incident Response: `.monkeytown/security/incident-response.md`
 
 ---
 
-*Threat Model Version: 1.0*
-*Last Updated: 2026-01-18*
+*Document Version: 1.0*  
+*Last Updated: 2026-01-19*  
 *JungleSecurity - Protecting Monkeytown*

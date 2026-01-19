@@ -1,706 +1,486 @@
 # Monkeytown Quality Gates
 
-**Mandatory quality criteria for all code and releases**
+**Version:** 1.0  
+**Date:** 2026-01-19  
+**QA Lead:** JungleSecurity  
+**Status:** Active
 
 ---
 
-## Code Quality Gates
+## Purpose
 
-### GATE-CODE-001: Lint Pass
+This document defines the quality gates that must be passed before code can be merged to main and deployed to production. Each gate includes specific criteria, measurement methods, and escalation procedures.
 
-**Enforcement:** CI Pipeline
+## Gate Overview
 
-```yaml
-# .github/workflows/lint.yml
-name: Lint
-on: [push, pull_request]
-
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run lint
-      
-# Quality Gate: Must pass with no warnings
-```
-
-**Criteria:**
-- ESLint passes with 0 errors
-- No TypeScript type errors
-- Prettier formatting compliant
-
-**Failure Action:**
-```
-🚫 BLOCKED: Code quality issues detected
-
-Run: npm run lint
-
-Fix all errors before committing.
-```
+| Gate | Trigger | Blocker | Automated |
+|------|---------|---------|-----------|
+| **Code Quality** | Every commit | Yes | Yes |
+| **Unit Tests** | Every commit | Yes | Yes |
+| **Integration Tests** | Every PR | Yes | Yes |
+| **E2E Tests** | Every PR | Yes | Yes |
+| **Security Scan** | Every PR | Yes | Yes |
+| **Performance Tests** | Nightly | Yes | Yes |
+| **Manual Review** | Every PR | Yes | No |
+| **Security Review** | P1/P2 features | Yes | No |
+| **Performance Review** | Before release | Yes | No |
 
 ---
 
-### GATE-CODE-002: Type Safety
-
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/typecheck.yml
-name: Type Check
-on: [push, pull_request]
-
-jobs:
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npx tsc --noEmit
-```
-
-**Criteria:**
-- TypeScript compilation succeeds with 0 errors
-- No implicit any types
-- Strict null checks enabled
-
-**Failure Action:**
-```
-🚫 BLOCKED: Type errors detected
-
-Run: npx tsc --noEmit
-
-Fix all TypeScript errors before committing.
-```
-
----
-
-### GATE-CODE-003: Test Coverage
-
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/test-coverage.yml
-name: Test Coverage
-on: [push, pull_request]
-
-jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:coverage
-      - uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: true
-```
-
-**Criteria:**
-
-| Component | Minimum Coverage |
-|-----------|-----------------|
-| Authentication | 95% |
-| Game Logic | 95% |
-| Input Validation | 90% |
-| Data Access | 85% |
-| Utilities | 80% |
-| **Overall** | **85%** |
-
-**Failure Action:**
-```
-🚫 BLOCKED: Coverage below threshold
-
-Current: 82%
-Required: 85%
-
-Run: npm run test:coverage
-
-Add tests to cover missing code paths.
-```
-
----
-
-### GATE-CODE-004: Security Linting
-
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/security-lint.yml
-name: Security Lint
-on: [push, pull_request]
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm install -D eslint-plugin-security
-      - run: npx eslint --ext .ts,.tsx --plugin security .
-```
-
-**Criteria:**
-- No security warnings from eslint-plugin-security
-- No hardcoded secrets detected
-- No use of dangerous functions
-
-**Failure Action:**
-```
-🚫 BLOCKED: Security issues detected
-
-Run: npx eslint --ext .ts,.tsx --plugin security .
-
-Security issues must be resolved before committing.
-```
-
----
-
-## Test Quality Gates
-
-### GATE-TEST-001: Unit Tests Pass
-
-**Enforcement:** CI Pipeline
-
-```yaml
-# .github/workflows/unit-tests.yml
-name: Unit Tests
-on: [push, pull_request]
-
-jobs:
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:unit
-```
-
-**Criteria:**
-- All unit tests pass (0 failures)
-- No flaky tests (tests must pass consistently)
-- Test execution time < 5 minutes
-
-**Failure Action:**
-```
-🚫 BLOCKED: Unit tests failed
-
-Run: npm run test:unit
-
-Fix failing tests before committing.
-```
-
----
-
-### GATE-TEST-002: Integration Tests Pass
-
-**Enforcement:** CI Pipeline (PR required)
-
-```yaml
-# .github/workflows/integration-tests.yml
-name: Integration Tests
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  integration-tests:
-    runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis:7-alpine
-        ports:
-          - 6379:6379
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-        ports:
-          - 5432:5432
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:integration
-```
-
-**Criteria:**
-- All integration tests pass (0 failures)
-- Database migrations applied successfully
-- External service mocks working correctly
-
-**Failure Action:**
-```
-🚫 BLOCKED: Integration tests failed
-
-Run: npm run test:integration
-
-Fix failing integration tests before merge.
-```
-
----
-
-### GATE-TEST-003: E2E Tests Critical Pass
-
-**Enforcement:** Nightly + PR (non-blocking for urgent fixes)
-
-```yaml
-# .github/workflows/e2e-tests.yml
-name: E2E Tests
-on:
-  schedule:
-    - cron: '0 2 * * *'  # Daily at 2 AM
-  pull_request:
-    branches: [main]
-
-jobs:
-  e2e-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:e2e
-```
-
-**Criteria:**
-
-| Test Category | Pass Required | Blocking |
-|--------------|---------------|----------|
-| Critical Path | 100% | Yes |
-| Authentication | 100% | Yes |
-| Game Actions | 100% | Yes |
-| Security | 100% | Yes |
-| Nice-to-have | 90% | No |
-
-**Failure Action:**
-```
-⚠️ WARNING: E2E tests need attention
-
-Critical tests: 100% ✅
-All tests: 87% (2 failures)
-
-Review failures and fix in next 24 hours.
-```
-
----
-
-## Security Quality Gates
-
-### GATE-SEC-001: Vulnerability Scan
-
-**Enforcement:** CI Pipeline + Scheduled
-
-```yaml
-# .github/workflows/vulnerability-scan.yml
-name: Vulnerability Scan
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 4 * * 0'  # Weekly on Sunday
-
-jobs:
-  vulnerability-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - name: Run npm audit
-        run: npm audit --production --audit-level=high
-      - name: Run Snyk
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-```
-
-**Criteria:**
-
-| Severity | Threshold | Action |
-|----------|-----------|--------|
-| Critical | 0 | BLOCK |
-| High | 0 | BLOCK |
-| Medium | Report only | WARN |
-| Low | Report only | INFO |
-
-**Failure Action:**
-```
-🚫 BLOCKED: Security vulnerabilities detected
-
-Critical: 2 found
-High: 5 found
-
-Resolve critical and high vulnerabilities before merge.
-Run: npm audit fix
-```
-
----
-
-### GATE-SEC-002: Dependency Update
-
-**Enforcement:** Weekly
-
-**Criteria:**
-- No dependency more than 6 months behind latest
-- Security patches applied within 7 days
-- No known vulnerable dependencies
-
-**Failure Action:**
-```
-⚠️ WARNING: Outdated dependencies
-
-Dependencies requiring update:
-- package-a: current 1.2.3, latest 1.5.0 (90 days old)
-- package-b: current 2.0.0, latest 2.1.0 (has security patch)
-
-Update within 7 days to maintain security posture.
-```
-
----
-
-### GATE-SEC-003: Secret Scanning
-
-**Enforcement:** Pre-commit + CI
+## Gate 1: Code Quality
+
+### Criteria
+
+| Metric | Target | Threshold | Measurement |
+|--------|--------|-----------|-------------|
+| ESLint Errors | 0 | 0 | `npm run lint` |
+| ESLint Warnings | < 20 | < 50 | `npm run lint` |
+| TypeScript Errors | 0 | 0 | `npm run typecheck` |
+| Code Coverage | > 80% | > 70% | `npm run test:coverage` |
+| Complexity | < 10 per function | < 15 per function | `npm run lint` |
+
+### Commands
 
 ```bash
-# .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
+# Run linting
+npm run lint
+
+# Run type checking
+npm run typecheck
+
+# Check coverage
+npm run test:coverage
 ```
 
-**Criteria:**
-- No secrets in code
-- No secrets in commits
-- Baseline maintained and updated
+### Failure Action
 
-**Failure Action:**
-```
-🚫 BLOCKED: Potential secrets detected
-
-Secrets found:
-- File: server/src/auth.ts, line 42
-- Pattern: AWS_ACCESS_KEY
-
-Remove secrets from code immediately.
-```
+- **Block** merge until errors resolved
+- **Auto-comment** on PR with specific issues
+- **Assign** to developer for immediate fix
 
 ---
 
-## Performance Quality Gates
+## Gate 2: Unit Tests
 
-### GATE-PERF-001: Response Time
+### Criteria
 
-**Enforcement:** CI Pipeline (performance tests)
+| Component | Coverage Target | Coverage Threshold | Priority |
+|-----------|-----------------|-------------------|----------|
+| Game Engines | 95% | 90% | P1 |
+| Validation | 100% | 100% | P1 |
+| Utilities | 90% | 85% | P2 |
+| Components | 80% | 70% | P2 |
+| Services | 85% | 75% | P2 |
 
-```yaml
-# .github/workflows/performance.yml
-name: Performance Tests
-on:
-  schedule:
-    - cron: '0 3 * * *'  # Daily at 3 AM
-  pull_request:
-    branches: [main]
+### Commands
 
-jobs:
-  performance:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:performance
-      - name: Upload performance report
-        uses: actions/upload-artifact@v3
-        with:
-          name: performance-report
-          path: performance-results/
-```
-
-**Criteria:**
-
-| Metric | Target | Threshold |
-|--------|--------|-----------|
-| API Response (P50) | < 50ms | < 100ms |
-| API Response (P95) | < 100ms | < 200ms |
-| WebSocket Message | < 50ms | < 100ms |
-| Game State Update | < 30ms | < 60ms |
-
-**Failure Action:**
-```
-⚠️ WARNING: Performance degradation detected
-
-P95 API Response: 180ms (target: 100ms)
-P95 WebSocket: 95ms (target: 100ms)
-
-Review performance report and optimize.
-```
-
----
-
-### GATE-PERF-002: Load Handling
-
-**Enforcement:** Scheduled (nightly)
-
-**Criteria:**
-- System handles 1000 concurrent connections
-- No dropped connections under load
-- Memory usage stable (< 80%)
-
-**Failure Action:**
-```
-🚨 ALERT: Load test failure
-
-Failed to handle 1000 concurrent connections
-Dropped connections: 45
-Memory usage: 92%
-
-Investigate immediately. System may not handle peak load.
-```
-
----
-
-## Release Quality Gates
-
-### GATE-RELEASE-001: Staging Deployment
-
-**Criteria:**
-- All CI gates pass
-- Automated tests pass on staging
-- Manual smoke tests pass
-- No critical bugs in staging
-
-**Verification:**
 ```bash
-# Smoke test script
-#!/bin/bash
-echo "Running smoke tests..."
+# Run all unit tests
+npm run test
 
-# 1. Health check
-curl -f http://staging.example.com/health
+# Run with coverage
+npm run test:coverage
 
-# 2. Auth flow
-curl -f -X POST http://staging.example.com/api/login
-
-# 3. Game creation
-TOKEN=$(get_test_token)
-curl -f -X POST http://staging.example.com/api/games \
-  -H "Authorization: Bearer $TOKEN"
-
-echo "Smoke tests passed ✅"
+# Run specific test file
+npm run test -- tictactoe-engine.test.ts
 ```
+
+### Test Requirements
+
+- All P1 tests must pass
+- No flaky tests (max 5% flakiness)
+- Tests complete in < 5 minutes
+
+### Failure Action
+
+- **Block** merge until coverage meets threshold
+- **Report** specific uncovered lines
+- **Require** justification for any coverage reduction
 
 ---
 
-### GATE-RELEASE-002: Production Readiness
+## Gate 3: Integration Tests
 
-**Criteria:**
+### Criteria
 
-| Check | Status | Required |
-|-------|--------|----------|
-| All critical tests pass | ✅ | Yes |
-| Security scan clean | ✅ | Yes |
-| Performance benchmarks met | ✅ | Yes |
-| Rollback plan tested | ✅ | Yes |
-| Monitoring configured | ✅ | Yes |
-| Documentation updated | ✅ | No |
-| Feature flags set correctly | ✅ | Yes |
+| Test Category | Pass Rate | Time Limit |
+|---------------|-----------|------------|
+| API Endpoints | 100% | < 2 min |
+| Database Operations | 100% | < 1 min |
+| WebSocket Events | 100% | < 2 min |
+| Game Sessions | 100% | < 2 min |
 
-**Release Checklist:**
-```markdown
-## Production Release Checklist
+### Commands
 
-### Pre-Release
-- [ ] Code review completed
-- [ ] All CI gates passing
-- [ ] Security review completed
-- [ ] Performance benchmarks met
-- [ ] Database migrations tested
-- [ ] Rollback plan ready
+```bash
+# Run integration tests
+npm run test:integration
 
-### Deployment
-- [ ] Backup created
-- [ ] Maintenance window announced
-- [ ] Deployment executed
-- [ ] Health checks passed
-- [ ] Smoke tests passed
-
-### Post-Release
-- [ ] Monitoring verified
-- [ ] Error rate normal
-- [ ] Latency within threshold
-- [ ] No critical alerts
-- [ ] Player feedback monitored
+# Run with database
+npm run test:integration:db
 ```
+
+### Requirements
+
+- Must use test database (not production)
+- Must be idempotent (can run multiple times)
+- Must clean up after themselves
+
+### Failure Action
+
+- **Block** merge until all tests pass
+- **Debug** output provided in CI logs
+- **Require** investigation of root cause
 
 ---
 
-### GATE-RELEASE-003: Hotfix Criteria
+## Gate 4: End-to-End Tests
 
-**For critical production issues only**
+### Criteria
 
-**Criteria:**
-- Issue blocks significant player functionality
-- Impact assessment completed
-- Root cause identified
-- Fix tested in isolation
-- Security review if security-related
+| Test Type | Pass Rate | Priority |
+|-----------|-----------|----------|
+| Critical Paths | 100% | P1 |
+| Core Features | 95% | P1 |
+| Edge Cases | 90% | P2 |
+| Exploratory | 80% | P3 |
 
-**Process:**
+### Critical Paths (Must Pass)
+
+1. ✅ User registration/login
+2. ✅ Game creation
+3. ✅ Making a game move
+4. ✅ Win/lose/draw detection
+5. ✅ Chat messaging
+6. ✅ WebSocket reconnection
+
+### Commands
+
+```bash
+# Run E2E tests
+npm run e2e
+
+# Run specific browser
+npm run e2e:chromium
+npm run e2e:firefox
+
+# Run with debug
+npm run e2e:debug
 ```
-1. Create hotfix branch from main
-2. Implement minimal fix
-3. Fast-track review (1 approver)
-4. Deploy to staging
-5. Quick smoke test
-6. Deploy to production
-7. Document deviation from normal process
-```
+
+### Requirements
+
+- Must pass on all supported browsers
+- Tests must be isolated (no shared state)
+- Screenshots on failure
+
+### Failure Action
+
+- **Block** merge for critical path failures
+- **Review** screenshot/video of failure
+- **Allow** merge for non-critical failures with justification
 
 ---
 
-## Quality Gate Dashboard
+## Gate 5: Security Scan
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     MONKEYTOWN QUALITY GATES                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  CODE QUALITY                                                            │
-│  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Lint         ████████████████████████████ 100%                 │     │
-│  │ Type Check   ████████████████████████████ 100%                 │     │
-│  │ Coverage     ██████████████████████░░░░░ 85%                   │     │
-│  │ Security     ████████████████████████████ 100%                 │     │
-│  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  TEST QUALITY                                                            │
-│  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Unit Tests   ████████████████████████████ 100%  ✅ PASS        │     │
-│  │ Integration  ██████████████████████████░░░ 95%  ✅ PASS        │     │
-│  │ E2E Tests    ████████████████████████████ 100%  ⚠️ 1 FAIL      │     │
-│  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  SECURITY                                                                │
-│  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Vulnerabilities ████████████████████████████ 0 Critical        │     │
-│  │ Dependencies   ████████████████████████░░░░░ 2 Updates         │     │
-│  │ Secrets        ████████████████████████████ 0 Found            │     │
-│  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  PERFORMANCE                                                             │
-│  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Response P50   35ms ████████████████████████████               │     │
-│  │ Response P95   85ms ████████████████████████████               │     │
-│  │ Load Test      PASS ████████████████████████████               │     │
-│  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  RELEASE STATUS                                                          │
-│  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Staging       READY  Next: v2.4.1                              │     │
-│  │ Production    v2.4.0  Last: 2026-01-15                         │     │
-│  │ Hotfixes      0      (All clear)                               │     │
-│  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  Overall Status: ✅ HEALTHY                                             │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
+### Criteria
+
+| Scan Type | Pass Criteria | Blocker |
+|-----------|---------------|---------|
+| Dependency Scan | No Critical/High CVEs | Yes |
+| SAST Scan | No Critical/High findings | Yes |
+| Secrets Scan | No secrets in code | Yes |
+| Container Scan | No Critical/High findings | Yes |
+
+### Tools
+
+| Tool | Purpose | Configuration |
+|------|---------|---------------|
+| npm audit | Dependency vulnerabilities | Fail on critical |
+| ESLint security | Code security patterns | Security rules enabled |
+| gitleaks | Secrets detection | Pre-commit hooks |
+| Trivy | Container scanning | CI integration |
+
+### Commands
+
+```bash
+# Security audit
+npm audit
+
+# Secrets scan
+gitleaks detect --source=. --verbose
+
+# Full security scan
+npm run security:scan
 ```
 
----
+### Vulnerability Thresholds
 
-## Gate Enforcement Matrix
+| Severity | Gate Action | Time to Fix |
+|----------|-------------|-------------|
+| Critical | **Block** | 24 hours |
+| High | **Block** | 72 hours |
+| Medium | **Warn** | 2 weeks |
+| Low | **Info** | Next sprint |
 
-| Gate | Commit | PR | Nightly | Release | Hotfix |
-|------|--------|-----|---------|---------|--------|
-| GATE-CODE-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-002 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-CODE-004 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-001 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-002 | - | ✅ | - | ✅ | ⚠️ |
-| GATE-TEST-003 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-SEC-001 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| GATE-SEC-002 | - | - | ✅ | ✅ | - |
-| GATE-SEC-003 | ✅ | ✅ | - | ✅ | ⚠️ |
-| GATE-PERF-001 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-PERF-002 | - | - | ✅ | ✅ | - |
-| GATE-RELEASE-001 | - | - | - | ✅ | - |
-| GATE-RELEASE-002 | - | - | - | ✅ | - |
+### Failure Action
 
-**Legend:**
-- ✅ Enforced
-- ⚠️ Non-blocking (warning only)
-- - Not applicable
+- **Critical/High:** Block merge, create security issue
+- **Medium:** Allow with tracking issue
+- **Low:** Allow, log for backlog
 
 ---
 
-## Exceptions Process
+## Gate 6: Performance Tests
 
-**When a gate cannot be met:**
+### Criteria
 
-1. **Document Exception**
-   ```markdown
-   ## Quality Gate Exception Request
-   
-   **Gate:** GATE-CODE-003 (Test Coverage)
-   
-   **Reason:** New code path has no test (simple utility function)
-   
-   **Risk Assessment:** Low - pure function with obvious behavior
-   
-   **Mitigation:** Will add test in follow-up PR
-   
-   **Approvers:** 2 required
-   - [ ] Technical Lead
-   - [ ] QA Lead
-   ```
+| Metric | Target | Threshold | Frequency |
+|--------|--------|-----------|-----------|
+| API P95 Latency | < 100ms | < 200ms | Nightly |
+| WebSocket RTT | < 50ms | < 100ms | Nightly |
+| Page Load | < 2s | < 3s | Nightly |
+| Time to Interactive | < 3s | < 5s | Nightly |
+| Concurrent Users | 1000 | 500 | Nightly |
 
-2. **Approval Required**
-   - 2 approvals for non-critical gates
-   - Team lead approval for critical gates
+### Commands
 
-3. **Time Limit**
-   - Exception valid for 7 days maximum
-   - Must be resolved in next sprint
+```bash
+# Run load test
+npm run test:load
+
+# Run performance test
+npm run test:performance
+
+# Generate report
+npm run test:performance:report
+```
+
+### Performance Budget
+
+| Resource | Budget | Monitoring |
+|----------|--------|------------|
+| JS Bundle | < 200KB | Lighthouse |
+| CSS Bundle | < 50KB | Lighthouse |
+| API Response | < 100KB | Network tab |
+| WebSocket Messages | < 1KB each | Custom metrics |
+
+### Failure Action
+
+- **Threshold exceeded:** Create performance issue
+- **Target missed:** Add to tech debt backlog
+- **Critical:** Block next release
 
 ---
 
-*Quality Gates Version: 1.0*
-*Last Updated: 2026-01-18*
-*Next Review: 2026-04-18*
-*JungleSecurity - Never compromise on quality*
+## Gate 7: Manual Review
+
+### Criteria
+
+| Review Type | Required Reviewers | Focus |
+|-------------|-------------------|-------|
+| Code Review | 1 developer | Logic, style, tests |
+| Security Review | JungleSecurity | Security implications |
+| UX Review | PrimateDesigner | User experience |
+| Architecture Review | ChaosArchitect | Design compliance |
+
+### Review Checklist
+
+- [ ] Code follows style guidelines
+- [ ] Tests included and passing
+- [ ] Documentation updated
+- [ ] No debug/logging code left
+- [ ] Error handling implemented
+- [ ] Security considerations addressed
+- [ ] Performance impact assessed
+
+### Review Tools
+
+- GitHub Pull Request reviews
+- Codeowners file for automatic assignment
+- PR templates for completeness
+
+### Failure Action
+
+- **Reviewer requested changes:** Must be addressed
+- **Approval:** Required before merge
+- **LGTM:** Required from all reviewers
+
+---
+
+## Gate 8: Security Review
+
+### Trigger
+
+- P1 or P2 features
+- Authentication/authorization changes
+- Data handling changes
+- New third-party integrations
+- Infrastructure changes
+
+### Criteria
+
+| Area | Checklist |
+|------|-----------|
+| Authentication | [ ] No hardcoded secrets |
+| | [ ] Token handling secure |
+| | [ ] Session management secure |
+| Authorization | [ ] Role-based access control |
+| | [ ] Permission checks in place |
+| Data Protection | [ ] Input validation |
+| | [ ] Output encoding |
+| | [ ] PII protection |
+| Dependencies | [ ] No vulnerable packages |
+| | [ ] Minimum versions specified |
+
+### Approval
+
+- **JungleSecurity** must approve
+- Security findings documented
+- Mitigation strategies defined
+
+---
+
+## Gate 9: Performance Review
+
+### Trigger
+
+- Before any release
+- After major feature additions
+- Following infrastructure changes
+- Performance regression suspected
+
+### Criteria
+
+| Area | Checklist |
+|------|-----------|
+| Load Testing | [ ] Passed at expected load |
+| | [ ] No memory leaks detected |
+| | [ ] Error rate < 1% |
+| Stress Testing | [ ] Breaking point identified |
+| | [ ] Graceful degradation |
+| | [ ] Recovery verified |
+| Monitoring | [ ] Metrics defined |
+| | [ ] Alerts configured |
+| | [ ] Dashboards created |
+
+### Sign-off Required
+
+- **ChaosArchitect** for infrastructure
+- **JungleSecurity** for security impact
+
+---
+
+## Deployment Gates
+
+### Development Deployment
+
+| Gate | Status |
+|------|--------|
+| Code Quality | ✅ |
+| Unit Tests | ✅ |
+| Integration Tests | ✅ |
+
+### Staging Deployment
+
+| Gate | Status |
+|------|--------|
+| Development Gates | ✅ |
+| E2E Tests | ✅ |
+| Security Scan | ✅ |
+
+### Production Deployment
+
+| Gate | Status |
+|------|--------|
+| Staging Gates | ✅ |
+| Performance Tests | ✅ |
+| Manual Security Review | ✅ |
+| Performance Review | ✅ |
+| Team Lead Approval | ✅ |
+
+---
+
+## Quality Metrics Dashboard
+
+### Current Metrics
+
+| Metric | Target | Current | Trend |
+|--------|--------|---------|-------|
+| Code Coverage | 80% | TBD | - |
+| Test Pass Rate | 98% | TBD | - |
+| Bug Escape Rate | < 5% | TBD | - |
+| MTTR (Mean Time to Recovery) | < 4h | TBD | - |
+| Security Vulnerabilities | 0 Critical | TBD | - |
+| Performance Budget | 100% | TBD | - |
+
+### Reporting
+
+- **Weekly:** Quality metrics to team
+- **Monthly:** Quality report to stakeholders
+- **Quarterly:** Quality review and planning
+
+---
+
+## Escalation Procedures
+
+### Failed Gate Escalation
+
+| Gate Failure | Escalation Path |
+|--------------|-----------------|
+| Code Quality | Developer → Tech Lead |
+| Unit Tests | Developer → Tech Lead |
+| Integration Tests | Developer → MonkeyBuilder |
+| E2E Tests | Developer → MonkeyBuilder |
+| Security Scan | Developer → JungleSecurity |
+| Performance Tests | ChaosArchitect → Team |
+| Manual Review | Reviewer → Project Manager |
+| Security Review | JungleSecurity → FounderAI |
+
+### Emergency Procedures
+
+For urgent fixes that cannot wait for normal gates:
+
+1. **Request** emergency bypass from Project Manager
+2. **Document** risk acceptance
+3. **Complete** abbreviated review
+4. **Deploy** with monitoring
+5. **Address** full gates within 24 hours
+
+---
+
+## Continuous Improvement
+
+### Quality Metrics Review
+
+| Activity | Frequency | Owner |
+|----------|-----------|-------|
+| Gate effectiveness analysis | Monthly | JungleSecurity |
+| False positive review | Weekly | Team |
+| Test maintenance | Weekly | QA Lead |
+| Tool evaluation | Quarterly | Team |
+
+### Gate Refinement Process
+
+1. Collect metrics on gate effectiveness
+2. Identify false positives/negatives
+3. Propose gate adjustments
+4. Team review and approval
+5. Update documentation
+6. Communicate changes
+
+---
+
+## References
+
+- Test Strategy: `.monkeytown/qa/test-strategy.md`
+- Test Cases: `.monkeytown/qa/test-cases.md`
+- Security Requirements: `.monkeytown/security/security-requirements.md`
+- Threat Model: `.monkeytown/security/threat-model.md`
+
+---
+
+*Document Version: 1.0*  
+*Last Updated: 2026-01-19*  
+*JungleSecurity - Protecting Monkeytown*

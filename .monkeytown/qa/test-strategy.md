@@ -1,355 +1,385 @@
 # Monkeytown Test Strategy
 
-**Comprehensive quality assurance approach for multiplayer game platform**
+**Version:** 1.0  
+**Date:** 2026-01-19  
+**QA Lead:** JungleSecurity  
+**Status:** Active
 
 ---
 
-## Quality Objectives
+## Purpose
 
-| Objective | Target | Measurement |
-|-----------|--------|-------------|
-| Game functionality | 99% of features working | Automated test pass rate |
-| Security vulnerabilities | Zero critical/high | Vulnerability scan results |
-| Performance | 60fps, <100ms latency | Performance benchmarks |
-| Availability | 99.9% uptime | Monitoring metrics |
-| User satisfaction | >4.5/5 rating | Player feedback |
+This document defines the testing strategy for Monkeytown, ensuring quality across all system components. The strategy covers unit testing, integration testing, E2E testing, security testing, and performance testing.
 
----
+## Testing Philosophy
 
-## Test Pyramid
+### Core Principles
+
+1. **Test Early, Test Often** - Tests run on every commit
+2. **Shift Left** - Find bugs in development, not production
+3. **Automate Everything** - Manual testing for exploratory only
+4. **Test Behavior, Not Implementation** - Focus on user outcomes
+5. **Fail Fast** - Immediate feedback on regressions
+
+### Testing Pyramid
 
 ```
-                    ▲
-                   /█\        E2E Tests
-                  / █ \       (10%)
-                 /  █  \
-                /───█───\     Integration Tests
-               /    █    \    (30%)
-              /     █     \
-             /──────█──────\  Unit Tests
-            /       █       \ (60%)
-           /        █        \
-          ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+                    ┌─────────────┐
+                   /   E2E Tests  \      <- 10% (Critical user journeys)
+                  /─────────────────\
+                 /    Integration    \   <- 25% (Component interactions)
+                /─────────────────────\
+               /      Unit Tests       \ <- 65% (Individual functions)
+              /─────────────────────────\
 ```
-
-### Unit Tests (60%)
-
-**Purpose:** Verify individual components in isolation
-
-**Coverage Targets:**
-- Game logic: 95%
-- Authentication: 95%
-- Data validation: 90%
-- Utility functions: 85%
-
-**Frameworks:**
-- Frontend: Vitest, React Testing Library
-- Backend: Jest, Vitest
-- Shared: Vitest
-
-**Example:**
-```typescript
-// server/src/game/session.test.ts
-describe('GameSession', () => {
-  describe('addPlayer', () => {
-    it('should add player to session', () => {
-      const session = new GameSessionManager();
-      const player = createTestPlayer();
-      
-      session.createSession({ maxPlayers: 4 });
-      const result = session.addPlayer('session-1', player);
-      
-      expect(result).toBe(true);
-      const sessionData = session.getSession('session-1');
-      expect(sessionData.players).toContain(player);
-    });
-    
-    it('should reject when session is full', () => {
-      const session = new GameSessionManager();
-      session.createSession({ maxPlayers: 2 });
-      session.addPlayer('session-1', createTestPlayer());
-      session.addPlayer('session-1', createTestPlayer());
-      
-      const result = session.addPlayer('session-1', createTestPlayer());
-      expect(result).toBe(false);
-    });
-  });
-});
-```
-
----
-
-### Integration Tests (30%)
-
-**Purpose:** Verify component interactions
-
-**Test Categories:**
-1. API endpoint tests
-2. Database operation tests
-3. WebSocket communication tests
-4. Redis cache integration tests
-5. Multi-service flow tests
-
-**Example:**
-```typescript
-// server/src/websocket/server.test.ts
-describe('EventStream WebSocket', () => {
-  let eventStream: EventStream;
-  let io: SocketIOServer;
-  
-  beforeEach(async () => {
-    const httpServer = createTestServer();
-    const redis = new RedisService();
-    const gameServer = new GameServer();
-    eventStream = new EventStream(httpServer, redis, gameServer);
-    io = eventStream.io;
-  });
-  
-  it('should authenticate valid tokens', (done) => {
-    const token = generateTestToken();
-    
-    const client = ioSocket('http://localhost', {
-      auth: { token },
-    });
-    
-    client.on('connect', () => {
-      expect(client.connected).toBe(true);
-      done();
-    });
-    
-    client.on('connect_error', (err) => {
-      done(err);
-    });
-  });
-});
-```
-
----
-
-### End-to-End Tests (10%)
-
-**Purpose:** Verify complete user journeys
-
-**Test Scenarios:**
-1. Player registration and login
-2. Game creation and joining
-3. Gameplay interactions
-4. Player disconnect and reconnect
-5. Multiplayer synchronization
-
-**Example:**
-```typescript
-// web/src/e2e/gameplay.test.ts
-describe('Gameplay Flow', () => {
-  it('should allow player to join and play a game', async () => {
-    const { page } = await createBrowser();
-    
-    // Login
-    await page.goto('/login');
-    await page.fill('[name=username]', 'testplayer');
-    await page.click('button[type=submit]');
-    
-    // Create game
-    await page.click('text=Create Game');
-    await page.selectOption('[name=gameType]', 'chess');
-    await page.click('text=Start Game');
-    
-    // Wait for game to start
-    await expect(page.locator('.game-board')).toBeVisible();
-    
-    // Make a move
-    await page.click('[data-piece="white-pawn"]');
-    await page.click('[data-square="e4"]');
-    
-    // Verify move
-    await expect(page.locator('[data-piece="white-pawn"]')).toHaveAttribute('data-square', 'e4');
-  });
-});
-```
-
----
 
 ## Test Categories
 
-### Functional Tests
+### 1. Unit Tests
 
-| Area | Test Types | Tools |
-|------|-----------|-------|
-| Game logic | Rules, scoring, win conditions | Unit + Integration |
-| Player management | Registration, profiles, stats | E2E + Integration |
-| Game sessions | Create, join, leave, end | E2E + Integration |
-| Real-time features | WebSocket, state sync | Integration + E2E |
+**Purpose:** Verify individual functions and classes work correctly
 
-### Performance Tests
+**Scope:**
+- Game engine logic
+- Validation functions
+- Utility functions
+- Data transformations
 
-**Load Testing:**
+**Tools:**
+- Vitest (`web/`)
+- Jest equivalent (`server/`)
+
+**Coverage Requirements:**
+| Component | Minimum Coverage |
+|-----------|-----------------|
+| Game Engines | 95% |
+| Validation | 100% |
+| Utilities | 90% |
+| Components | 80% |
+
+**Example Test (server/src/game/tictactoe-engine.test.ts):**
 ```typescript
-// server/src/test/load.test.ts
-describe('Performance', () => {
-  it('should handle 1000 concurrent connections', async () => {
-    const connections: Socket[] = [];
-    const target = 1000;
+describe('TicTacToeEngine', () => {
+  describe('processAction', () => {
+    it('should reject actions when game is not in progress', () => {
+      const engine = createTicTacToeEngine(players);
+      const result = engine.processAction(playerId, { type: 'place', row: 0, col: 0 });
+      expect(result.success).toBe(false);
+      expect(result.error).toBe('Game is not in progress');
+    });
     
-    for (let i = 0; i < target; i++) {
-      const socket = await connectWebSocket();
-      connections.push(socket);
-    }
+    it('should reject actions from non-current player', () => {
+      const engine = createTicTacToeEngine(players);
+      engine.startGame();
+      const result = engine.processAction(otherPlayerId, { type: 'place', row: 0, col: 0 });
+      expect(result.success).toBe(false);
+      expect(result.error).toBe('Not your turn');
+    });
     
-    // Verify all connected
-    expect(eventStream.getConnectionStats().totalConnections).toBe(target);
-    
-    // Simulate activity
-    await simulateGameActivity(connections.slice(0, 100));
-    
-    // Measure latency
-    const latencies = await measureLatency(100);
-    expect(average(latencies)).toBeLessThan(100);  // < 100ms
+    it('should accept valid moves', () => {
+      const engine = createTicTacToeEngine(players);
+      engine.startGame();
+      const result = engine.processAction(playerId, { type: 'place', row: 0, col: 0 });
+      expect(result.success).toBe(true);
+    });
   });
 });
 ```
 
-**Stress Testing:**
-```typescript
-describe('Stress Tests', () => {
-  it('should recover from database connection loss', async () => {
-    // Simulate database failure
-    await database.disconnect();
-    
-    // Verify graceful degradation
-    expect(api.healthCheck()).toMatchObject({ status: 'degraded' });
-    
-    // Verify recovery
-    await database.reconnect();
-    await waitForRecovery();
-    
-    expect(api.healthCheck()).toMatchObject({ status: 'healthy' });
-  });
-});
-```
+---
 
-### Security Tests
+### 2. Integration Tests
 
-**Authentication Tests:**
+**Purpose:** Verify components work together correctly
+
+**Scope:**
+- API endpoints
+- Database operations
+- Redis caching
+- WebSocket events
+- Game session lifecycle
+
+**Tools:**
+- Supertest (HTTP)
+- Socket.IO client
+- Test database containers
+
+**Example Test (server/src/__tests__/api.test.ts):**
 ```typescript
-// server/src/test/security/auth.test.ts
-describe('Authentication Security', () => {
-  it('should reject expired tokens', async () => {
-    const expiredToken = generateToken({ exp: Date.now() / 1000 - 3600 });
-    
-    const response = await request(app)
-      .get('/api/player')
-      .set('Authorization', `Bearer ${expiredToken}`);
-    
-    expect(response.status).toBe(401);
+describe('Game API', () => {
+  beforeAll(async () => {
+    await setupTestDatabase();
   });
   
-  it('should reject tokens with invalid signature', async () => {
-    const invalidToken = generateInvalidToken();
-    
-    const response = await request(app)
-      .get('/api/player')
-      .set('Authorization', `Bearer ${invalidToken}`);
-    
-    expect(response.status).toBe(401);
-  });
-});
-```
-
-**Input Validation Tests:**
-```typescript
-describe('Input Validation', () => {
-  it('should reject SQL injection in player name', async () => {
-    const maliciousInput = "'; DROP TABLE players; --";
-    
-    const response = await request(app)
-      .post('/api/player')
-      .send({ name: maliciousInput });
-    
-    expect(response.status).toBe(400);
-    expect(response.body.error).toContain('invalid');
+  afterAll(async () => {
+    await teardownTestDatabase();
   });
   
-  it('should reject XSS in chat messages', async () => {
-    const xssPayload = '<script>alert("xss")</script>';
-    
-    const response = await request(app)
-      .post('/api/chat')
-      .send({ message: xssPayload });
-    
-    expect(response.status).toBe(400);
-    expect(response.body.error).toContain('sanitized');
+  describe('POST /api/games/create', () => {
+    it('should create a new game session', async () => {
+      const response = await request(app)
+        .post('/api/games/create')
+        .set('Authorization', `Bearer ${validToken}`)
+        .send({ gameType: 'tictactoe' });
+      
+      expect(response.status).toBe(201);
+      expect(response.body.gameId).toBeDefined();
+    });
   });
 });
 ```
 
-**Rate Limiting Tests:**
-```typescript
-describe('Rate Limiting', () => {
-  it('should block excessive requests from single IP', async () => {
-    const requests = [];
-    for (let i = 0; i < 101; i++) {
-      requests.push(
-        request(app).get('/api/leaderboard')
-      );
-    }
-    
-    const responses = await Promise.all(requests);
-    const tooManyResponses = responses.filter(r => r.status === 429);
-    
-    expect(tooManyResponses.length).toBeGreaterThan(0);
-  });
-});
-```
+---
 
-### Game-Specific Tests
+### 3. End-to-End Tests
 
-**Game State Consistency:**
+**Purpose:** Verify complete user journeys work correctly
+
+**Scope:**
+- User registration flow
+- Game creation and joining
+- Real-time gameplay
+- Chat functionality
+- Agent interactions
+
+**Tools:**
+- Playwright (`web/e2e/`)
+
+**Example Test (web/e2e/gameplay.spec.ts):**
 ```typescript
-describe('Game State Consistency', () => {
-  it('should synchronize state across all players', async () => {
-    const players = await createGameWithPlayers(4);
-    
-    // Player 1 makes a move
-    await players[0].makeMove('e2', 'e4');
-    
-    // Verify all players see the same state
-    for (const player of players) {
-      const state = await player.getGameState();
-      expect(state.board[52]).toEqual({ piece: 'white-pawn', to: 'e4' });
-    }
+import { test, expect } from '@playwright/test';
+
+test.describe('TicTacToe Gameplay', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+    await page.fill('#username', 'testplayer');
+    await page.click('button:has-text("Start")');
   });
   
-  it('should prevent illegal moves', async () => {
-    const player = await createGameWithPlayer();
+  test('should allow player to make a move', async ({ page }) => {
+    await page.click('button:has-text("Create Game")');
+    await page.waitForSelector('.game-board');
     
-    const result = await player.makeMove('invalid');
+    // Make a move in the center
+    await page.click('.cell:nth-child(5)');
     
-    expect(result.success).toBe(false);
-    expect(result.error).toContain('illegal');
+    // Verify move was made
+    await expect(page.locator('.cell:nth-child(5)')).toContainText('X');
+  });
+  
+  test('should detect win condition', async ({ page }) => {
+    await page.click('button:has-text("Create Game")');
+    await page.waitForSelector('.game-board');
+    
+    // Set up winning position
+    await page.click('.cell:nth-child(1)'); // X
+    await page.click('.cell:nth-child(4)'); // O
+    await page.click('.cell:nth-child(2)'); // X
+    await page.click('.cell:nth-child(5)'); // O
+    await page.click('.cell:nth-child(3)'); // X - Win!
+    
+    // Verify win message
+    await expect(page.locator('.game-over')).toContainText('You Win!');
   });
 });
 ```
 
-**Reconnection Handling:**
+---
+
+### 4. Security Tests
+
+**Purpose:** Verify security controls work correctly
+
+**Scope:**
+- Authentication
+- Authorization
+- Input validation
+- Rate limiting
+- XSS prevention
+
+**Tools:**
+- Custom security test suite
+- OWASP ZAP (automated scanning)
+- Manual penetration testing
+
+**Example Security Test (server/src/__tests__/security.test.ts):**
 ```typescript
-describe('Reconnection', () => {
-  it('should restore game state after disconnect', async () => {
-    const player = await createGameWithPlayer();
+describe('Security Tests', () => {
+  describe('Authentication', () => {
+    it('should reject expired tokens', async () => {
+      const expiredToken = createExpiredToken();
+      const response = await request(app)
+        .get('/api/user/profile')
+        .set('Authorization', `Bearer ${expiredToken}`);
+      
+      expect(response.status).toBe(401);
+    });
     
-    // Play some moves
-    await player.makeMove('e2', 'e4');
-    await player.makeMove('e7', 'e5');
+    it('should reject tokens with invalid signature', async () => {
+      const forgedToken = createForgedToken();
+      const response = await request(app)
+        .get('/api/user/profile')
+        .set('Authorization', `Bearer ${forgedToken}`);
+      
+      expect(response.status).toBe(401);
+    });
+  });
+  
+  describe('Input Validation', () => {
+    it('should reject SQL injection attempts', async () => {
+      const response = await request(app)
+        .post('/api/games/create')
+        .set('Authorization', `Bearer ${validToken}`)
+        .send({ gameType: "tictactoe'; DROP TABLE games; --" });
+      
+      expect(response.status).toBe(400);
+    });
     
-    // Simulate disconnect
-    await player.disconnect();
-    await waitFor(5000);  // 5 second disconnect
+    it('should reject XSS in chat messages', async () => {
+      const response = await request(app)
+        .post('/api/chat')
+        .set('Authorization', `Bearer ${validToken}`)
+        .send({ message: '<script>alert(1)</script>' });
+      
+      expect(response.status).toBe(400);
+    });
+  });
+  
+  describe('Rate Limiting', () => {
+    it('should block excessive requests', async () => {
+      for (let i = 0; i <= 100; i++) {
+        await request(app)
+          .get('/api/health')
+          .catch(() => {}); // Ignore errors
+      }
+      
+      const response = await request(app).get('/api/health');
+      expect(response.status).toBe(429);
+    });
+  });
+});
+```
+
+---
+
+### 5. Performance Tests
+
+**Purpose:** Verify system meets performance requirements
+
+**Scope:**
+- API response times
+- WebSocket latency
+- Database query performance
+- Concurrent user capacity
+- Memory usage
+
+**Tools:**
+- k6 (load testing)
+- Lighthouse (frontend performance)
+- Node.js profiling
+
+**Performance Requirements:**
+
+| Metric | Target | Threshold |
+|--------|--------|-----------|
+| API response time (P95) | < 100ms | < 200ms |
+| WebSocket round-trip | < 50ms | < 100ms |
+| Page load time | < 2s | < 3s |
+| Time to interactive | < 3s | < 5s |
+| Concurrent connections | 1000 | 500 |
+| Memory usage | < 512MB | < 1GB |
+
+**Example Load Test (k6/scenarios/gameplay.js):**
+```javascript
+import http from 'k6/http';
+import ws from 'k6/ws';
+import { check, sleep } from 'k6';
+
+export const options = {
+  stages: [
+    { duration: '30s', target: 100 },    // Ramp up
+    { duration: '1m', target: 500 },     // Stress test
+    { duration: '30s', target: 100 },    // Cool down
+  ],
+  thresholds: {
+    http_req_duration: ['p(95)<200'],
+    ws_session_duration: ['p(95)<100'],
+  },
+};
+
+export default function() {
+  // Test WebSocket connection
+  const url = `ws://${__ENV.HOST}/game`;
+  const res = ws.connect(url, {}, function(socket) {
+    socket.on('open', function() {
+      socket.send(JSON.stringify({
+        type: 'join_game',
+        gameId: 'test-game',
+      }));
+    });
     
-    // Reconnect
-    await player.reconnect();
+    socket.on('message', function(msg) {
+      const data = JSON.parse(msg);
+      if (data.type === 'game_state') {
+        check(data, {
+          'game state received': (d) => d.gameId !== undefined,
+        });
+      }
+    });
     
-    // Verify state restored
-    const state = await player.getGameState();
-    expect(state.board).toMatchSnapshot();
+    socket.setTimeout(function() {
+      socket.close();
+    }, 5000);
+  });
+  
+  sleep(1);
+}
+```
+
+---
+
+### 6. Chaos Tests
+
+**Purpose:** Verify system resilience under failure
+
+**Scope:**
+- Database connection failures
+- Redis unavailability
+- Network partitions
+- Service restarts
+- High load scenarios
+
+**Tools:**
+- Chaos Monkey (simulated failures)
+- Fault injection in tests
+
+**Example Chaos Test:**
+```typescript
+describe('Resilience Tests', () => {
+  it('should handle Redis connection failure gracefully', async () => {
+    // Simulate Redis failure
+    await redisService.disconnect();
+    
+    // Operations should still work (with degraded functionality)
+    const gameAction = await gameServer.processAction(gameId, action);
+    expect(gameAction.success).toBe(true);
+    
+    // Recovery should be automatic
+    await redisService.connect();
+    await gameServer.processAction(gameId, anotherAction);
+    expect(anotherAction.success).toBe(true);
+  });
+  
+  it('should handle rapid reconnection', async () => {
+    // Simulate network instability
+    for (let i = 0; i < 10; i++) {
+      await socket.disconnect();
+      await socket.connect();
+    }
+    
+    // Should still be functional
+    const response = await socket.send({ type: 'heartbeat' });
+    expect(response).toBeDefined();
   });
 });
 ```
@@ -360,232 +390,166 @@ describe('Reconnection', () => {
 
 ### Environment Matrix
 
-| Environment | Purpose | Data | Isolation |
-|-------------|---------|------|-----------|
-| Local | Development | Synthetic | Per developer |
-| CI | Automated testing | Synthetic | Per build |
-| Staging | Pre-production | Anonymized prod | Shared |
-| Production | Live monitoring | Real | N/A |
+| Environment | Purpose | Data | Refresh |
+|-------------|---------|------|---------|
+| Development | Local development | Synthetic | On-demand |
+| CI | Automated testing | Synthetic | Every run |
+| Staging | Pre-production testing | Sanitized prod | Weekly |
+| Production | Monitoring | Real | N/A |
 
-### Environment Configuration
-
-```yaml
-# docker-compose.test.yml
-services:
-  web-test:
-    build: ./web
-    environment:
-      - NODE_ENV=test
-      - API_URL=http://server-test:3001
-    depends_on:
-      - server-test
-      - redis-test
-      - postgres-test
-
-  server-test:
-    build: ./server
-    environment:
-      - NODE_ENV=test
-      - REDIS_URL=redis://redis-test:6379
-      - DATABASE_URL=postgresql://test@postgres-test/monkeytown_test
-      - JWT_SECRET=test-secret
-    depends_on:
-      - redis-test
-      - postgres-test
-
-  redis-test:
-    image: redis:7-alpine
-    ports:
-      - "6379:6379"
-
-  postgres-test:
-    image: postgres:15-alpine
-    environment:
-      - POSTGRES_USER=test
-      - POSTGRES_PASSWORD=test
-      - POSTGRES_DB=monkeytown_test
-    ports:
-      - "5432:5432"
-```
-
----
-
-## CI/CD Pipeline Integration
-
-### Pipeline Stages
+### CI/CD Pipeline Integration
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│  CI/CD Pipeline                                                  │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
-│  │  Build   │→ │  Lint    │→ │  Type    │→ │  Unit    │        │
-│  │          │  │          │  │  Check   │  │  Tests   │        │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │
-│                                              │                  │
-│                                              ▼                  │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
-│  │  Deploy  │← │ Security │← │ Integ    │← │  E2E     │        │
-│  │  Staging │  │  Scan    │  │  Tests   │  │  Tests   │        │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │
-│                                              │                  │
-│                                              ▼                  │
-│                                        ┌──────────┐            │
-│                                        │  Deploy  │            │
-│                                        │Production│            │
-│                                        └──────────┘            │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+Commit → Lint → Unit Tests → Integration Tests → Build → E2E Tests → Security Scan → Deploy
 ```
 
-### Test Execution Commands
-
-```bash
-# Run all tests
-npm test
-
-# Run unit tests only
-npm run test:unit
-
-# Run integration tests only
-npm run test:integration
-
-# Run E2E tests only
-npm run test:e2e
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run security tests
-npm run test:security
-
-# Run performance tests
-npm run test:performance
-```
-
-### Quality Gates
-
-| Gate | Criteria | Action on Fail |
-|------|----------|----------------|
-| Lint | No warnings | Block |
-| Type Check | No errors | Block |
-| Unit Tests | >80% coverage, all pass | Block |
-| Integration Tests | All pass | Block |
-| Security Scan | No critical/high | Block |
-| E2E Tests | All critical pass | Block |
-| Performance | <100ms latency | Warn |
+**Test Gates:**
+1. **Lint** - Code quality must pass
+2. **Unit Tests** - 80% coverage minimum
+3. **Integration Tests** - All must pass
+4. **E2E Tests** - Critical paths only
+5. **Security Scan** - No critical findings
+6. **Performance Test** - Within thresholds
 
 ---
 
 ## Test Data Management
 
-### Data Factories
+### Data Generation Strategy
+
+| Type | Tool | Description |
+|------|------|-------------|
+| Player data | Faker.js | Randomized test players |
+| Game states | Custom factories | Valid/invalid game states |
+| Edge cases | Custom generators | Boundary conditions |
+
+### Test Data Examples
 
 ```typescript
-// test/factories/player.ts
-function createTestPlayer(overrides: Partial<Player> = {}): Player {
+// Player factory
+function createTestPlayer(overrides = {}): Player {
   return {
     id: uuid(),
-    name: `TestPlayer_${Math.random().toString(36).slice(2)}`,
-    avatar: 'default_avatar',
-    position: { x: 0, y: 0 },
+    name: `TestPlayer_${Math.random().toString(36).substr(2, 9)}`,
+    type: 'human',
     score: 0,
-    status: 'connected',
-    isAI: false,
+    isConnected: true,
     ...overrides,
   };
 }
 
-// test/factories/game.ts
-function createTestSession(overrides: Partial<GameSession> = {}): GameSession {
+// Game state factory
+function createTestGameState(overrides = {}): GameState {
   return {
     id: uuid(),
-    config: {
-      maxPlayers: 4,
-      duration: 600,
-      rules: {
-        allowChat: true,
-        allowSpectators: true,
-        friendlyFire: false,
-        winCondition: 'score',
-      },
-      aiDifficulty: 'medium',
-    },
-    state: {
-      entities: new Map(),
-      timestamp: Date.now(),
-      tick: 0,
-    },
-    players: [],
-    status: 'waiting',
-    createdAt: Date.now(),
+    gameType: 'tictactoe',
+    phase: 'in_progress',
+    players: [createTestPlayer(), createTestPlayer()],
+    board: [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ],
+    currentPlayerIndex: 0,
     ...overrides,
   };
 }
 ```
 
-### Test Data Cleanup
+---
+
+## Quality Metrics
+
+### Test Metrics
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Unit Test Coverage | 85% | TBD | [ ] |
+| Integration Test Pass Rate | 100% | TBD | [ ] |
+| E2E Test Pass Rate | 95% | TBD | [ ] |
+| Security Test Pass Rate | 100% | TBD | [ ] |
+| Flaky Test Rate | < 5% | TBD | [ ] |
+
+### Quality Gates
+
+| Gate | Criteria | Blocker |
+|------|----------|---------|
+| Unit Coverage | >= 85% | Yes |
+| Critical Bugs | 0 | Yes |
+| Security Vulnerabilities | 0 Critical | Yes |
+| Performance | All within threshold | Yes |
+| Flaky Tests | < 5% | No (warning) |
+
+---
+
+## Test Maintenance
+
+### Test Review Process
+
+1. **Code Review Includes Tests** - All PRs must include/update tests
+2. **Test Review** - Tests reviewed alongside code
+3. **Flaky Test Triage** - Weekly review of flaky tests
+4. **Coverage Analysis** - Monthly coverage report
+
+### Test Documentation
+
+Each test file should include:
+- Purpose statement
+- Setup requirements
+- Cleanup procedures
+- Known limitations
+
+---
+
+## Tooling Configuration
+
+### Web Testing Setup
 
 ```typescript
-afterEach(async () => {
-  // Clean up test data
-  await database.cleanup();
-  await redis.flushall();
-  
-  // Close connections
-  await browser.close();
-  
-  // Clean up files
-  await fs.remove(testArtifactsDir);
+// web/vitest.config.ts
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./src/test/setup.ts'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: ['node_modules/', 'src/test/'],
+    },
+  },
 });
 ```
 
----
+### Server Testing Setup
 
-## Reporting and Metrics
-
-### Test Reports
-
-| Report Type | Generation | Audience |
-|-------------|-----------|----------|
-| Unit Test | Every commit | Developers |
-| Integration Test | Every PR | Developers |
-| E2E Test | Daily | QA + Developers |
-| Security Scan | Weekly | Security Lead |
-| Performance Report | Weekly | All team |
-
-### Key Metrics Dashboard
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│  Test Quality Dashboard                                          │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Test Coverage: ████████████████████░░░░ 85%                    │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Unit Tests: 245 passed, 3 failed                          │   │
-│  │ Integration: 78 passed, 2 failed                          │   │
-│  │ E2E Tests: 32 passed, 1 failed                            │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-│  Performance:                                                    │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Avg Response: 45ms  ████████████████████░░░░             │   │
-│  │ P95 Response: 120ms ████████████████████░░░░             │   │
-│  │ Error Rate: 0.1%   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-│  Security:                                                       │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Critical: 0  High: 2  Medium: 5  Low: 12                  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+```typescript
+// server/jest.config.js
+module.exports = {
+  testEnvironment: 'node',
+  testMatch: ['**/__tests__/**/*.test.ts'],
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/*.d.ts',
+  ],
+  setupFilesAfterEnv: ['./src/test/setup.ts'],
+};
 ```
 
 ---
 
-*Test Strategy Version: 1.0*
-*Last Updated: 2026-01-18*
-*JungleSecurity - Quality through testing*
+## References
+
+- Playwright Documentation: https://playwright.dev/
+- Vitest Documentation: https://vitest.dev/
+- k6 Documentation: https://k6.io/docs/
+- OWASP Testing Guide: https://owasp.org/www-project-web-security-testing-guide/
+
+---
+
+*Document Version: 1.0*  
+*Last Updated: 2026-01-19*  
+*JungleSecurity - Protecting Monkeytown*
