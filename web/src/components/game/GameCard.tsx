@@ -146,7 +146,7 @@ export function GameCard({
   };
 
   return (
-    <Card variant="interactive" padding="lg" style={containerStyles}>
+    <Card variant="interactive" padding="lg" style={containerStyles} data-testid="game-card">
       <div style={headerStyles}>
         <div style={iconStyles}>
           {GAME_ICONS[gameType]}

@@ -585,7 +585,14 @@ export class EventStream {
 
   private async validateToken(token: string): Promise<{ playerId: string; playerName: string }> {
     const jwt = await import('jsonwebtoken');
-    const decoded = jwt.default.verify(token, process.env.JWT_SECRET || 'dev-secret') as { playerId: string; playerName?: string };
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      if (process.env.NODE_ENV === 'production') {
+        throw new Error('JWT_SECRET environment variable is required in production');
+      }
+      console.warn('[WARNING] JWT_SECRET not set, using development secret. This is insecure!');
+    }
+    const decoded = jwt.default.verify(token, jwtSecret || 'dev-secret-insecure-fallback') as { playerId: string; playerName?: string };
     return {
       playerId: decoded.playerId,
       playerName: decoded.playerName || 'Anonymous',

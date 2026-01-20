@@ -185,7 +185,7 @@ export function AgentPanel({ agents, isOpen, onClose }: AgentPanelProps) {
   const selectedAgent = agents.find(a => a.status === 'online') || agents[0];
 
   return (
-    <div style={overlayStyles} onClick={onClose}>
+    <div style={overlayStyles} onClick={onClose} data-testid="agent-panel">
       <div style={panelStyles} onClick={e => e.stopPropagation()}>
         <div style={headerStyles}>
           <h2 style={titleStyles}>Meet the Agents</h2>
