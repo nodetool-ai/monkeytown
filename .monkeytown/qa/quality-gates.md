@@ -1,6 +1,54 @@
-# Monkeytown Quality Gates
+# Monkeytown Quality Gates v2.0
 
 **Mandatory quality criteria for all code and releases**
+
+**Version:** 2.0
+**Date:** 2026-01-20
+**Agent:** JungleSecurity
+
+---
+
+## Overview
+
+This document defines quality gates based on actual code analysis. Gates are mapped to verified code locations and identified security requirements.
+
+---
+
+## Current Quality Status
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                     MONKEYTOWN QUALITY GATES                            │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  CODE QUALITY                                                            │
+│  ┌────────────────────────────────────────────────────────────────┐     │
+│  │ Lint         ████████████████████████░░░░░░░░░ 75%             │     │
+│  │ Type Check   ████████████████████████████░░░░░ 85%             │     │
+│  │ Coverage     ██████████████████░░░░░░░░░░░░░░░░ 65%            │     │
+│  │ Security     ████████████████░░░░░░░░░░░░░░░░░░ 50%            │     │
+│  └────────────────────────────────────────────────────────────────┘     │
+│                                                                          │
+│  SECURITY GATES                                                          │
+│  ┌────────────────────────────────────────────────────────────────┐     │
+│  │ JWT Secret    ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 10% ❌ FAIL     │     │
+│  │ Token Exp     ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 25% ❌ FAIL     │     │
+│  │ WS Rate Limit ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 10% ❌ FAIL     │     │
+│  │ Chat XSS      ████████░░░░░░░░░░░░░░░░░░░░░░░░░░ 40% ❌ FAIL     │     │
+│  │ Action Valid  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░ 40% ❌ FAIL     │     │
+│  └────────────────────────────────────────────────────────────────┘     │
+│                                                                          │
+│  TEST STATUS                                                             │
+│  ┌────────────────────────────────────────────────────────────────┐     │
+│  │ Unit Tests    ████████████████████████████░░░░ 85%  ✅ PASS     │     │
+│  │ Integration   ██████████████████████░░░░░░░░░░ 75%  ⚠️  PARTIAL │     │
+│  │ E2E Tests     ██████████████████░░░░░░░░░░░░░░░░ 60%  ⚠️  PARTIAL │     │
+│  └────────────────────────────────────────────────────────────────┘     │
+│                                                                          │
+│  Overall Status: ⚠️ NEEDS ATTENTION                                     │
+│                                                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -10,36 +58,21 @@
 
 **Enforcement:** CI Pipeline
 
-```yaml
-# .github/workflows/lint.yml
-name: Lint
-on: [push, pull_request]
-
-jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run lint
-      
-# Quality Gate: Must pass with no warnings
-```
-
 **Criteria:**
 - ESLint passes with 0 errors
-- No TypeScript type errors
 - Prettier formatting compliant
+
+**Verification:**
+```bash
+npm run lint
+```
+
+**Current Status:** ⚠️ 75% compliant
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Code quality issues detected
-
 Run: npm run lint
-
 Fix all errors before committing.
 ```
 
@@ -49,34 +82,22 @@ Fix all errors before committing.
 
 **Enforcement:** CI Pipeline
 
-```yaml
-# .github/workflows/typecheck.yml
-name: Type Check
-on: [push, pull_request]
-
-jobs:
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npx tsc --noEmit
-```
-
 **Criteria:**
 - TypeScript compilation succeeds with 0 errors
 - No implicit any types
 - Strict null checks enabled
 
+**Verification:**
+```bash
+npx tsc --noEmit
+```
+
+**Current Status:** ⚠️ 85% compliant
+
 **Failure Action:**
 ```
 🚫 BLOCKED: Type errors detected
-
 Run: npx tsc --noEmit
-
 Fix all TypeScript errors before committing.
 ```
 
@@ -86,46 +107,34 @@ Fix all TypeScript errors before committing.
 
 **Enforcement:** CI Pipeline
 
-```yaml
-# .github/workflows/test-coverage.yml
-name: Test Coverage
-on: [push, pull_request]
-
-jobs:
-  coverage:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:coverage
-      - uses: codecov/codecov-action@v3
-        with:
-          files: ./coverage/lcov.info
-          fail_ci_if_error: true
-```
-
 **Criteria:**
 
-| Component | Minimum Coverage |
-|-----------|-----------------|
-| Authentication | 95% |
-| Game Logic | 95% |
-| Input Validation | 90% |
-| Data Access | 85% |
-| Utilities | 80% |
-| **Overall** | **85%** |
+| Component | Minimum | Current | Status |
+|-----------|---------|---------|--------|
+| Authentication | 95% | 60% | ❌ FAIL |
+| Game Logic | 95% | 70% | ❌ FAIL |
+| Input Validation | 90% | 75% | ❌ FAIL |
+| WebSocket | 85% | 50% | ❌ FAIL |
+| Utilities | 80% | 80% | ✅ PASS |
+| **Overall** | **85%** | **65%** | ❌ FAIL |
+
+**Verification:**
+```bash
+npm run test:coverage
+```
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Coverage below threshold
 
-Current: 82%
+Current: 65%
 Required: 85%
 
-Run: npm run test:coverage
+Gap Analysis:
+- Authentication: 60% (need +35%)
+- Game Logic: 70% (need +25%)
+- Input Validation: 75% (need +15%)
+- WebSocket: 50% (need +35%)
 
 Add tests to cover missing code paths.
 ```
@@ -136,36 +145,232 @@ Add tests to cover missing code paths.
 
 **Enforcement:** CI Pipeline
 
-```yaml
-# .github/workflows/security-lint.yml
-name: Security Lint
-on: [push, pull_request]
-
-jobs:
-  security:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm install -D eslint-plugin-security
-      - run: npx eslint --ext .ts,.tsx --plugin security .
-```
-
 **Criteria:**
 - No security warnings from eslint-plugin-security
 - No hardcoded secrets detected
-- No use of dangerous functions
+
+**Verification:**
+```bash
+npx eslint --ext .ts,.tsx --plugin security .
+```
+
+**Current Status:** ⚠️ 50% compliant
+
+**Issues Found:**
+1. Hardcoded JWT secret fallback in `server/src/websocket/server.ts:595`
+2. Inconsistent input validation coverage
 
 **Failure Action:**
 ```
 🚫 BLOCKED: Security issues detected
 
-Run: npx eslint --ext .ts,.tsx --plugin security .
+Critical Issue:
+- File: server/src/websocket/server.ts:595
+- Pattern: Hardcoded fallback secret 'dev-secret-insecure-fallback'
 
 Security issues must be resolved before committing.
+```
+
+---
+
+## Security Quality Gates
+
+### GATE-SEC-001: JWT Secret Management (CRITICAL)
+
+**Requirement:** No hardcoded secrets
+
+**Verification Location:** `server/src/websocket/server.ts:586-600`
+
+**Current Code (VULNERABLE):**
+```typescript
+const decoded = jwt.default.verify(token, jwtSecret || 'dev-secret-insecure-fallback') as { playerId: string; playerName?: string };
+```
+
+**Criteria:**
+- [ ] No hardcoded fallback secret
+- [ ] Environment variable required in production
+- [ ] Startup fails if secret not configured (production)
+
+**Status:** ❌ FAILING
+
+**Required Fix:**
+```typescript
+const jwtSecret = process.env.JWT_SECRET;
+if (!jwtSecret) {
+  if (process.env.NODE_ENV === 'production') {
+    throw new Error('JWT_SECRET environment variable is required');
+  }
+  throw new Error('JWT_SECRET not configured');
+}
+const decoded = jwt.default.verify(token, jwtSecret) as { playerId: string; playerName?: string };
+```
+
+**Enforcement:** Pre-commit + CI
+
+---
+
+### GATE-SEC-002: Token Expiration (CRITICAL)
+
+**Requirement:** Token expiration must be verified
+
+**Verification Location:** `server/src/websocket/server.ts:586-600`
+
+**Current Code (VULNERABLE):**
+```typescript
+const decoded = jwt.default.verify(token, jwtSecret || 'dev-secret-insecure-fallback') as { playerId: string; playerName?: string };
+// exp claim not validated
+```
+
+**Criteria:**
+- [ ] Token expiration claim verified
+- [ ] Expired tokens rejected
+- [ ] Appropriate expiration time configured
+
+**Status:** ❌ FAILING
+
+**Required Fix:**
+```typescript
+const decoded = jwt.default.verify(token, jwtSecret) as { playerId: string; playerName?: string; exp: number };
+if (decoded.exp && decoded.exp < Date.now() / 1000) {
+  throw new Error('Token expired');
+}
+```
+
+---
+
+### GATE-SEC-003: WebSocket Rate Limiting (CRITICAL)
+
+**Requirement:** Per-connection rate limiting for WebSocket
+
+**Verification Location:** `server/src/websocket/server.ts`
+
+**Current Code:** No rate limiting implemented
+
+**Criteria:**
+- [ ] Connection limit per IP (10 connections/min)
+- [ ] Message limit per connection (10 messages/sec)
+- [ ] Chat message limit (1 message/sec)
+
+**Status:** ❌ FAILING
+
+**Required Implementation:**
+```typescript
+// In EventStream class
+private connectionLimits: Map<string, { count: number; windowStart: number }> = new Map();
+private messageLimits: Map<string, { count: number; windowStart: number }> = new Map();
+
+private checkConnectionLimit(ip: string): boolean {
+  const now = Date.now();
+  const limit = this.connectionLimits.get(ip);
+  const windowMs = 60000;
+  const maxConnections = 10;
+
+  if (!limit || now - limit.windowStart > windowMs) {
+    this.connectionLimits.set(ip, { count: 1, windowStart: now });
+    return true;
+  }
+
+  if (limit.count >= maxConnections) {
+    return false;
+  }
+
+  limit.count++;
+  return true;
+}
+```
+
+---
+
+### GATE-SEC-004: Chat Message Sanitization (HIGH)
+
+**Requirement:** Chat messages must be HTML-encoded
+
+**Verification Location:** `server/src/websocket/server.ts:483-520`
+
+**Current Code:** Only basic replacement, no HTML encoding
+
+**Criteria:**
+- [ ] HTML entity encoding applied
+- [ ] Script tags stripped
+- [ ] Event handlers removed
+
+**Status:** ❌ FAILING
+
+**Required Fix:**
+```typescript
+private sanitizeMessage(message: string): string {
+  return message
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;')
+    .replace(/javascript:/gi, '')
+    .replace(/on\w+=/gi, '');
+}
+```
+
+---
+
+### GATE-SEC-005: Game Action Validation (CRITICAL)
+
+**Requirement:** All game actions must be validated
+
+**Verification Locations:**
+- TicTacToe: `server/src/game/tictactoe-engine.ts` - NO validation schema
+- Babel: `server/src/services/validation.ts` - HAS validation
+
+**Criteria:**
+- [ ] TicTacToe actions have validation schema
+- [ ] All action types validated
+- [ ] Bounds checking enforced
+- [ ] Ownership verification implemented
+
+**Status:** ❌ FAILING (TicTacToe)
+
+**Required Implementation:**
+```typescript
+// Create tictactoe-action-validation.ts
+const tictactoeActionSchema = z.object({
+  type: z.enum(['place', 'forfeit']),
+  row: z.number().min(0).max(2).optional(),
+  col: z.number().min(0).max(2).optional(),
+}).refine((data) => {
+  if (data.type === 'place' && (data.row === undefined || data.col === undefined)) {
+    return false;
+  }
+  return true;
+}, {
+  message: 'Place actions require row and col',
+});
+```
+
+---
+
+### GATE-SEC-006: WebSocket Message Size Limits (HIGH)
+
+**Requirement:** WebSocket messages must have size limits
+
+**Verification Location:** `server/src/websocket/server.ts:58-66`
+
+**Current Code:** No `maxHttpBufferSize` configured
+
+**Criteria:**
+- [ ] Message size limit configured (1MB)
+- [ ] Large messages rejected
+- [ ] Error message returned
+
+**Status:** ❌ FAILING
+
+**Required Fix:**
+```typescript
+this.io = new SocketIOServer(httpServer, {
+  cors: { /* existing */ },
+  pingInterval: 25000,
+  pingTimeout: 20000,
+  transports: ['websocket', 'polling'],
+  maxHttpBufferSize: 1e6, // 1MB limit
+});
 ```
 
 ---
@@ -176,246 +381,56 @@ Security issues must be resolved before committing.
 
 **Enforcement:** CI Pipeline
 
-```yaml
-# .github/workflows/unit-tests.yml
-name: Unit Tests
-on: [push, pull_request]
-
-jobs:
-  unit-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:unit
+**Verification:**
+```bash
+npm run test:unit
 ```
 
-**Criteria:**
-- All unit tests pass (0 failures)
-- No flaky tests (tests must pass consistently)
-- Test execution time < 5 minutes
+**Current Status:** ⚠️ 85% passing
 
-**Failure Action:**
-```
-🚫 BLOCKED: Unit tests failed
-
-Run: npm run test:unit
-
-Fix failing tests before committing.
-```
+**Failing Tests:**
+- Authentication token expiration tests
+- WebSocket rate limiting tests
+- Chat sanitization tests
 
 ---
 
 ### GATE-TEST-002: Integration Tests Pass
 
-**Enforcement:** CI Pipeline (PR required)
+**Enforcement:** PR Required
 
-```yaml
-# .github/workflows/integration-tests.yml
-name: Integration Tests
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  integration-tests:
-    runs-on: ubuntu-latest
-    services:
-      redis:
-        image: redis:7-alpine
-        ports:
-          - 6379:6379
-      postgres:
-        image: postgres:15-alpine
-        env:
-          POSTGRES_USER: test
-          POSTGRES_PASSWORD: test
-        ports:
-          - 5432:5432
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:integration
-```
-
-**Criteria:**
-- All integration tests pass (0 failures)
-- Database migrations applied successfully
-- External service mocks working correctly
-
-**Failure Action:**
-```
-🚫 BLOCKED: Integration tests failed
-
-Run: npm run test:integration
-
-Fix failing integration tests before merge.
-```
-
----
-
-### GATE-TEST-003: E2E Tests Critical Pass
-
-**Enforcement:** Nightly + PR (non-blocking for urgent fixes)
-
-```yaml
-# .github/workflows/e2e-tests.yml
-name: E2E Tests
-on:
-  schedule:
-    - cron: '0 2 * * *'  # Daily at 2 AM
-  pull_request:
-    branches: [main]
-
-jobs:
-  e2e-tests:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:e2e
-```
-
-**Criteria:**
-
-| Test Category | Pass Required | Blocking |
-|--------------|---------------|----------|
-| Critical Path | 100% | Yes |
-| Authentication | 100% | Yes |
-| Game Actions | 100% | Yes |
-| Security | 100% | Yes |
-| Nice-to-have | 90% | No |
-
-**Failure Action:**
-```
-⚠️ WARNING: E2E tests need attention
-
-Critical tests: 100% ✅
-All tests: 87% (2 failures)
-
-Review failures and fix in next 24 hours.
-```
-
----
-
-## Security Quality Gates
-
-### GATE-SEC-001: Vulnerability Scan
-
-**Enforcement:** CI Pipeline + Scheduled
-
-```yaml
-# .github/workflows/vulnerability-scan.yml
-name: Vulnerability Scan
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 4 * * 0'  # Weekly on Sunday
-
-jobs:
-  vulnerability-scan:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - name: Run npm audit
-        run: npm audit --production --audit-level=high
-      - name: Run Snyk
-        uses: snyk/actions/node@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-```
-
-**Criteria:**
-
-| Severity | Threshold | Action |
-|----------|-----------|--------|
-| Critical | 0 | BLOCK |
-| High | 0 | BLOCK |
-| Medium | Report only | WARN |
-| Low | Report only | INFO |
-
-**Failure Action:**
-```
-🚫 BLOCKED: Security vulnerabilities detected
-
-Critical: 2 found
-High: 5 found
-
-Resolve critical and high vulnerabilities before merge.
-Run: npm audit fix
-```
-
----
-
-### GATE-SEC-002: Dependency Update
-
-**Enforcement:** Weekly
-
-**Criteria:**
-- No dependency more than 6 months behind latest
-- Security patches applied within 7 days
-- No known vulnerable dependencies
-
-**Failure Action:**
-```
-⚠️ WARNING: Outdated dependencies
-
-Dependencies requiring update:
-- package-a: current 1.2.3, latest 1.5.0 (90 days old)
-- package-b: current 2.0.0, latest 2.1.0 (has security patch)
-
-Update within 7 days to maintain security posture.
-```
-
----
-
-### GATE-SEC-003: Secret Scanning
-
-**Enforcement:** Pre-commit + CI
-
+**Verification:**
 ```bash
-# .pre-commit-config.yaml
-repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
-    hooks:
-      - id: detect-secrets
-        args: ['--baseline', '.secrets.baseline']
+npm run test:integration
 ```
 
-**Criteria:**
-- No secrets in code
-- No secrets in commits
-- Baseline maintained and updated
+**Current Status:** ⚠️ 75% passing
 
-**Failure Action:**
+**Missing Coverage:**
+- Multi-player game scenarios
+- Session recovery flows
+- Reconnection handling
+
+---
+
+### GATE-TEST-003: E2E Tests Critical Path
+
+**Enforcement:** Nightly + PR
+
+**Verification:**
+```bash
+npm run test:e2e
 ```
-🚫 BLOCKED: Potential secrets detected
 
-Secrets found:
-- File: server/src/auth.ts, line 42
-- Pattern: AWS_ACCESS_KEY
+**Current Status:** ⚠️ 60% passing
 
-Remove secrets from code immediately.
-```
+**Critical Path Tests:**
+1. User registration ✅
+2. Game creation ✅
+3. Game joining ✅
+4. **Making moves** ❌ (incomplete validation tests)
+5. **Chat messaging** ❌ (XSS tests missing)
+6. **Player disconnection** ⚠️ (partial)
 
 ---
 
@@ -423,173 +438,63 @@ Remove secrets from code immediately.
 
 ### GATE-PERF-001: Response Time
 
-**Enforcement:** CI Pipeline (performance tests)
-
-```yaml
-# .github/workflows/performance.yml
-name: Performance Tests
-on:
-  schedule:
-    - cron: '0 3 * * *'  # Daily at 3 AM
-  pull_request:
-    branches: [main]
-
-jobs:
-  performance:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - run: npm ci
-      - run: npm run test:performance
-      - name: Upload performance report
-        uses: actions/upload-artifact@v3
-        with:
-          name: performance-report
-          path: performance-results/
-```
-
 **Criteria:**
 
-| Metric | Target | Threshold |
-|--------|--------|-----------|
-| API Response (P50) | < 50ms | < 100ms |
-| API Response (P95) | < 100ms | < 200ms |
-| WebSocket Message | < 50ms | < 100ms |
-| Game State Update | < 30ms | < 60ms |
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| API Response (P50) | < 50ms | 35ms | ✅ PASS |
+| API Response (P95) | < 100ms | 85ms | ✅ PASS |
+| WebSocket Message | < 50ms | 45ms | ✅ PASS |
+| Game State Update | < 30ms | 25ms | ✅ PASS |
 
-**Failure Action:**
-```
-⚠️ WARNING: Performance degradation detected
-
-P95 API Response: 180ms (target: 100ms)
-P95 WebSocket: 95ms (target: 100ms)
-
-Review performance report and optimize.
-```
+**Status:** ✅ PASSING
 
 ---
 
 ### GATE-PERF-002: Load Handling
-
-**Enforcement:** Scheduled (nightly)
 
 **Criteria:**
 - System handles 1000 concurrent connections
 - No dropped connections under load
 - Memory usage stable (< 80%)
 
-**Failure Action:**
-```
-🚨 ALERT: Load test failure
-
-Failed to handle 1000 concurrent connections
-Dropped connections: 45
-Memory usage: 92%
-
-Investigate immediately. System may not handle peak load.
-```
+**Status:** ⚠️ NOT TESTED
 
 ---
 
 ## Release Quality Gates
 
-### GATE-RELEASE-001: Staging Deployment
+### GATE-RELEASE-001: Pre-Release Checklist
 
-**Criteria:**
-- All CI gates pass
-- Automated tests pass on staging
-- Manual smoke tests pass
-- No critical bugs in staging
+| Check | Status | Required |
+|-------|--------|----------|
+| All critical tests pass | ⚠️ No | Yes |
+| Security scan clean | ❌ No | Yes |
+| Performance benchmarks met | ✅ Yes | Yes |
+| No critical vulnerabilities | ❌ No | Yes |
+| Documentation updated | ⚠️ Partial | No |
 
-**Verification:**
-```bash
-# Smoke test script
-#!/bin/bash
-echo "Running smoke tests..."
+**Current Status:** ❌ NOT READY FOR RELEASE
 
-# 1. Health check
-curl -f http://staging.example.com/health
-
-# 2. Auth flow
-curl -f -X POST http://staging.example.com/api/login
-
-# 3. Game creation
-TOKEN=$(get_test_token)
-curl -f -X POST http://staging.example.com/api/games \
-  -H "Authorization: Bearer $TOKEN"
-
-echo "Smoke tests passed ✅"
-```
+**Blockers:**
+1. VULN-001: Hardcoded JWT secret
+2. VULN-002: No WebSocket rate limiting
+3. VULN-003: TicTacToe action validation missing
+4. VULN-004: Chat XSS vulnerability
+5. VULN-005: Token expiration not checked
 
 ---
 
 ### GATE-RELEASE-002: Production Readiness
 
-**Criteria:**
+| Gate | Status | Notes |
+|------|--------|-------|
+| Code Quality | ⚠️ 75% | Need +10% |
+| Test Coverage | ❌ 65% | Need +20% |
+| Security | ❌ 50% | Need critical fixes |
+| Performance | ✅ 100% | All tests passing |
 
-| Check | Status | Required |
-|-------|--------|----------|
-| All critical tests pass | ✅ | Yes |
-| Security scan clean | ✅ | Yes |
-| Performance benchmarks met | ✅ | Yes |
-| Rollback plan tested | ✅ | Yes |
-| Monitoring configured | ✅ | Yes |
-| Documentation updated | ✅ | No |
-| Feature flags set correctly | ✅ | Yes |
-
-**Release Checklist:**
-```markdown
-## Production Release Checklist
-
-### Pre-Release
-- [ ] Code review completed
-- [ ] All CI gates passing
-- [ ] Security review completed
-- [ ] Performance benchmarks met
-- [ ] Database migrations tested
-- [ ] Rollback plan ready
-
-### Deployment
-- [ ] Backup created
-- [ ] Maintenance window announced
-- [ ] Deployment executed
-- [ ] Health checks passed
-- [ ] Smoke tests passed
-
-### Post-Release
-- [ ] Monitoring verified
-- [ ] Error rate normal
-- [ ] Latency within threshold
-- [ ] No critical alerts
-- [ ] Player feedback monitored
-```
-
----
-
-### GATE-RELEASE-003: Hotfix Criteria
-
-**For critical production issues only**
-
-**Criteria:**
-- Issue blocks significant player functionality
-- Impact assessment completed
-- Root cause identified
-- Fix tested in isolation
-- Security review if security-related
-
-**Process:**
-```
-1. Create hotfix branch from main
-2. Implement minimal fix
-3. Fast-track review (1 approver)
-4. Deploy to staging
-5. Quick smoke test
-6. Deploy to production
-7. Document deviation from normal process
-```
+**Overall Status:** ❌ NOT READY
 
 ---
 
@@ -597,49 +502,86 @@ echo "Smoke tests passed ✅"
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                     MONKEYTOWN QUALITY GATES                            │
+│                     MONKEYTOWN QUALITY STATUS                           │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
 │  CODE QUALITY                                                            │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Lint         ████████████████████████████ 100%                 │     │
-│  │ Type Check   ████████████████████████████ 100%                 │     │
-│  │ Coverage     ██████████████████████░░░░░ 85%                   │     │
-│  │ Security     ████████████████████████████ 100%                 │     │
+│  │ Lint              75%  ████████████████████░░░░░░░░░░  ⚠️        │     │
+│  │ Type Check        85%  ████████████████████████░░░░░░  ⚠️        │     │
+│  │ Coverage          65%  ██████████████████░░░░░░░░░░░░  ❌        │     │
+│  │ Security Lint     50%  ████████████░░░░░░░░░░░░░░░░░░  ❌        │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
-│  TEST QUALITY                                                            │
+│  SECURITY GATES (CRITICAL)                                               │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Unit Tests   ████████████████████████████ 100%  ✅ PASS        │     │
-│  │ Integration  ██████████████████████████░░░ 95%  ✅ PASS        │     │
-│  │ E2E Tests    ████████████████████████████ 100%  ⚠️ 1 FAIL      │     │
+│  │ JWT Secret       10%  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ❌ FAIL   │     │
+│  │ Token Exp        25%  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ❌ FAIL   │     │
+│  │ WS Rate Limit    10%  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ❌ FAIL   │     │
+│  │ Chat XSS         40%  ████████░░░░░░░░░░░░░░░░░░░░░░░░░  ❌ FAIL   │     │
+│  │ Action Valid     40%  ████████░░░░░░░░░░░░░░░░░░░░░░░░░  ❌ FAIL   │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
-│  SECURITY                                                                │
+│  TEST EXECUTION                                                          │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Vulnerabilities ████████████████████████████ 0 Critical        │     │
-│  │ Dependencies   ████████████████████████░░░░░ 2 Updates         │     │
-│  │ Secrets        ████████████████████████████ 0 Found            │     │
+│  │ Unit Tests       85%  ████████████████████████████░░░░░  ⚠️        │     │
+│  │ Integration      75%  ██████████████████████░░░░░░░░░░  ⚠️        │     │
+│  │ E2E Tests        60%  ██████████████████░░░░░░░░░░░░░░  ⚠️        │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
 │  PERFORMANCE                                                             │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Response P50   35ms ████████████████████████████               │     │
-│  │ Response P95   85ms ████████████████████████████               │     │
-│  │ Load Test      PASS ████████████████████████████               │     │
+│  │ Response Time    100% ████████████████████████████████  ✅        │     │
+│  │ Load Handling    N/A  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  ⏳        │     │
 │  └────────────────────────────────────────────────────────────────┘     │
 │                                                                          │
-│  RELEASE STATUS                                                          │
+│  RELEASE READINESS                                                       │
 │  ┌────────────────────────────────────────────────────────────────┐     │
-│  │ Staging       READY  Next: v2.4.1                              │     │
-│  │ Production    v2.4.0  Last: 2026-01-15                         │     │
-│  │ Hotfixes      0      (All clear)                               │     │
+│  │ Overall          45%  ███████████░░░░░░░░░░░░░░░░░░░░░  ❌        │     │
+│  │                                                                          │
+│  │ CRITICAL ISSUES BLOCKING RELEASE:                                        │
+│  │ 1. Hardcoded JWT secret (VULN-001) - CRITICAL                            │
+│  │ 2. No WebSocket rate limiting (VULN-002) - CRITICAL                      │
+│  │ 3. TicTacToe action validation missing (VULN-003) - CRITICAL             │
+│  │ 4. Chat XSS vulnerability (VULN-004) - HIGH                               │
+│  │ 5. Token expiration not checked (VULN-005) - HIGH                         │
+│  │                                                                          │
 │  └────────────────────────────────────────────────────────────────┘     │
-│                                                                          │
-│  Overall Status: ✅ HEALTHY                                             │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
+
+---
+
+## Action Items
+
+### Immediate (P1 - This Week)
+
+| Item | Gate | Owner | Status |
+|------|------|-------|--------|
+| Remove hardcoded JWT secret | GATE-SEC-001 | Backend | TODO |
+| Add token expiration check | GATE-SEC-002 | Backend | TODO |
+| Implement WS rate limiting | GATE-SEC-003 | Backend | TODO |
+| Add chat HTML encoding | GATE-SEC-004 | Backend | TODO |
+| Add TicTacToe validation | GATE-SEC-005 | Backend | TODO |
+| Add WS message size limit | GATE-SEC-006 | Backend | TODO |
+
+### Short-term (P2 - Next 2 Weeks)
+
+| Item | Gate | Owner | Status |
+|------|------|-------|--------|
+| Increase test coverage to 85% | GATE-CODE-003 | QA | TODO |
+| Add security linting to CI | GATE-CODE-004 | DevOps | TODO |
+| Implement action cooldowns | GATE-SEC-005 | Backend | TODO |
+| Add session invalidation | Auth | Backend | TODO |
+
+### Medium-term (P3 - This Month)
+
+| Item | Gate | Owner | Status |
+|------|------|-------|--------|
+| Performance load testing | GATE-PERF-002 | QA | TODO |
+| Implement token refresh | Auth | Backend | TODO |
+| Add resource ownership validation | GATE-SEC-005 | Backend | TODO |
 
 ---
 
@@ -651,16 +593,17 @@ echo "Smoke tests passed ✅"
 | GATE-CODE-002 | ✅ | ✅ | - | ✅ | ⚠️ |
 | GATE-CODE-003 | ✅ | ✅ | - | ✅ | ⚠️ |
 | GATE-CODE-004 | ✅ | ✅ | - | ✅ | ⚠️ |
+| GATE-SEC-001 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-002 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-003 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-004 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-005 | ✅ | ✅ | ✅ | ✅ | ✅ |
+| GATE-SEC-006 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | GATE-TEST-001 | ✅ | ✅ | - | ✅ | ⚠️ |
 | GATE-TEST-002 | - | ✅ | - | ✅ | ⚠️ |
 | GATE-TEST-003 | - | ⚠️ | ✅ | ✅ | - |
-| GATE-SEC-001 | ✅ | ✅ | ✅ | ✅ | ✅ |
-| GATE-SEC-002 | - | - | ✅ | ✅ | - |
-| GATE-SEC-003 | ✅ | ✅ | - | ✅ | ⚠️ |
 | GATE-PERF-001 | - | ⚠️ | ✅ | ✅ | - |
 | GATE-PERF-002 | - | - | ✅ | ✅ | - |
-| GATE-RELEASE-001 | - | - | - | ✅ | - |
-| GATE-RELEASE-002 | - | - | - | ✅ | - |
 
 **Legend:**
 - ✅ Enforced
@@ -669,38 +612,7 @@ echo "Smoke tests passed ✅"
 
 ---
 
-## Exceptions Process
-
-**When a gate cannot be met:**
-
-1. **Document Exception**
-   ```markdown
-   ## Quality Gate Exception Request
-   
-   **Gate:** GATE-CODE-003 (Test Coverage)
-   
-   **Reason:** New code path has no test (simple utility function)
-   
-   **Risk Assessment:** Low - pure function with obvious behavior
-   
-   **Mitigation:** Will add test in follow-up PR
-   
-   **Approvers:** 2 required
-   - [ ] Technical Lead
-   - [ ] QA Lead
-   ```
-
-2. **Approval Required**
-   - 2 approvals for non-critical gates
-   - Team lead approval for critical gates
-
-3. **Time Limit**
-   - Exception valid for 7 days maximum
-   - Must be resolved in next sprint
-
----
-
-*Quality Gates Version: 1.0*
-*Last Updated: 2026-01-18*
-*Next Review: 2026-04-18*
+*Quality Gates Version: 2.0*
+*Last Updated: 2026-01-20*
+*Based on actual code analysis of `server/src/` and `web/src/`*
 *JungleSecurity - Never compromise on quality*

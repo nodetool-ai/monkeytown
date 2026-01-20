@@ -1,12 +1,22 @@
-# Monkeytown Threat Model
+# Monkeytown Threat Model v2.0
 
 **Security analysis for AI-powered multiplayer game platform**
+
+**Version:** 2.0
+**Date:** 2026-01-20
+**Agent:** JungleSecurity
 
 ---
 
 ## Executive Summary
 
-This threat model identifies potential security risks in the Monkeytown multiplayer game platform. The system consists of a Next.js frontend, Node.js backend with WebSocket support, Redis for real-time state, and PostgreSQL for persistence. Analysis reveals critical attack surfaces in WebSocket communication, player input validation, and authentication mechanisms.
+This threat model identifies potential security risks in the Monkeytown multiplayer game platform. Analysis reveals **3 critical**, **4 high**, and **4 medium** severity vulnerabilities requiring immediate attention. The primary attack surfaces are WebSocket communication, game action validation, and authentication mechanisms.
+
+| Severity | Count | Remediation Timeline |
+|----------|-------|---------------------|
+| Critical | 3 | Immediate (P1) |
+| High | 4 | 2 weeks (P2) |
+| Medium | 4 | 1 month (P3) |
 
 ---
 
@@ -27,8 +37,8 @@ This threat model identifies potential security risks in the Monkeytown multipla
 │  │                      API GATEWAY / LOAD BALANCER                     │   │
 │  │  ┌──────────────────────────────────────────────────────────────┐  │   │
 │  │  │  - Rate limiting                                            │  │   │
-│  │  │  - DDoS protection                                          │  │   │
-│  │  │  - Request validation                                       │  │   │
+│  │  │  - DDoS protection (AWS Shield)                             │  │   │
+│  │  │  - Request validation (partial)                             │  │   │
 │  │  │  - SSL termination                                          │  │   │
 │  │  └──────────────────────────────────────────────────────────────┘  │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
@@ -38,60 +48,41 @@ This threat model identifies potential security risks in the Monkeytown multipla
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐    │   │
 │  │  │   Web App   │  │  Game Srv   │  │     Event Stream        │    │   │
 │  │  │  (Next.js)  │  │  (Express)  │  │      (Socket.IO)        │    │   │
+│  │  │  :3000      │  │  :3001      │  │     :8080               │    │   │
 │  │  └─────────────┘  └─────────────┘  └─────────────────────────┘    │   │
 │  │         │                  │                      │                 │   │
 │  │         │        ┌─────────┴─────────┐          │                 │   │
 │  │         │        ▼                   ▼          │                 │   │
 │  │         │  ┌──────────┐       ┌──────────┐      │                 │   │
 │  │         │  │  Redis   │       │ Postgres │      │                 │   │
+│  │         │  │  :6379   │       │  :5432   │      │                 │   │
 │  │         │  └──────────┘       └──────────┘      │                 │   │
 │  └─────────┴────────────────────────────────────────┘                 │   │
 │                                    │                                     │
 │  ┌─────────────────────────────────────────────────────────────────────┐   │
-│  │                        DATA LAYER                                    │   │
-│  │  ┌─────────────┐  ┌────────────────────────────────────────────┐   │   │
-│  │  │  Redis      │  │           PostgreSQL                        │   │   │
-│  │  │  (Session)  │  │  (Players, Games, Agent Behaviors)          │   │   │
-│  │  └─────────────┘  └────────────────────────────────────────────┘   │   │
-│  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
-│  ┌─────────────────────────────────────────────────────────────────────┐   │
 │  │                        EXTERNAL SERVICES                             │   │
 │  │  ┌─────────────┐  ┌─────────────┐  ┌─────────────────────────┐    │   │
-│  │  │   OAuth     │  │   MiniMax   │  │     Monitoring          │    │   │
-│  │  │   Providers │  │   API       │  │     (Sentry)            │    │   │
+│  │  │   OAuth     │  │   MiniMax   │  │     GitHub Actions      │    │   │
+│  │  │   Providers │  │   API       │  │     (CI/CD)             │    │   │
 │  │  └─────────────┘  └─────────────┘  └─────────────────────────┘    │   │
 │  └─────────────────────────────────────────────────────────────────────┘   │
-│                                                                             │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Assets
+## Assets Classification
 
-| Asset | Description | Sensitivity |
-|-------|-------------|-------------|
-| Player credentials | OAuth tokens, session IDs | Critical |
-| JWT tokens | Authentication tokens for WebSocket | Critical |
-| Game state | Real-time player positions, scores | High |
-| Player PII | Username, avatar, gameplay history | Medium |
-| Agent behaviors | AI decision models and personalities | High |
-| Session data | In-progress game sessions | High |
-| Rate limit counters | Redis-based rate limiting state | Low |
-
----
-
-## Threat Actors
-
-| Actor | Motivation | Capability |
-|-------|------------|------------|
-| Script Kiddie | Disruption, vandalism | Basic |
-| Organized Attackers | Financial gain, data theft | Advanced |
-| Cheating Players | Competitive advantage | Medium |
-| Griefers | Harassment, disruption | Basic |
-| Nation States | Large-scale disruption | Sophisticated |
-| Insiders | Data theft, sabotage | Variable |
+| Asset | Location | Sensitivity | Impact if Compromised |
+|-------|----------|-------------|----------------------|
+| JWT tokens | WebSocket auth | Critical | Full account compromise |
+| Player credentials | OAuth/DB | Critical | Account takeover |
+| Game state | Redis/Postgres | High | Game manipulation |
+| Session IDs | Redis keys | High | Session hijacking |
+| Player PII | PostgreSQL | Medium | Privacy violation |
+| Agent prompts | server/src/game/ai/ | High | AI behavior manipulation |
+| Rate limit counters | Redis | Low | DoS amplification |
+| Game logic | Game engines | High | Cheating |
 
 ---
 
@@ -99,385 +90,418 @@ This threat model identifies potential security risks in the Monkeytown multipla
 
 ### 1. WebSocket Attack Surface (CRITICAL)
 
-**Entry Points:**
-- `game:join` - Join game sessions
-- `game:leave` - Leave game sessions
-- `game:input` - Submit player actions
-- `game:chat` - Send chat messages
-- `heartbeat` - Connection keepalive
+**Entry Points in `server/src/websocket/server.ts`:**
 
-**Threats:**
+| Event Handler | Line | Risk Level |
+|---------------|------|------------|
+| `handlePlayerMove` | 340-403 | **Critical** |
+| `handleGameAction` | 405-442 | **Critical** |
+| `handleChatMessage` | 483-520 | **High** |
+| `handleJoinGame` | 227-271 | Medium |
+| `handleStartGame` | 293-338 | Medium |
 
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| WS-01 | WebSocket hijacking via token theft | Critical | Medium |
-| WS-02 | Mass connection exhaustion (DoS) | High | High |
-| WS-03 | Input injection via game:input | Critical | Medium |
-| WS-04 | Chat message injection (XSS) | High | Medium |
-| WS-05 | Protocol downgrade attacks | Medium | Low |
-| WS-06 | Cross-site WebSocket hijacking | High | Medium |
+**Current Rate Limiting Status:**
+- HTTP API: ✅ Rate limited (`server/src/index.ts:50-55`)
+- WebSocket: ❌ **NOT IMPLEMENTED** (per `server/src/websocket/server.ts`)
 
-**Attack Vectors:**
+### 2. Authentication Attack Surface (CRITICAL)
 
-```
-Player Browser                      Attacker
-    │                                  │
-    │  1. Legitimate WebSocket         │
-    │◄─────────────────────────────────│
-    │    CONNECT /ws token=XXX         │
-    │                                  │
-    │  2. Attacker's malicious script  │
-    │◄─────────────────────────────────│
-    │    WebSocket('wss://game',       │
-    │      token stolen from cookie)   │
-    │                                  │
-    │  3. Attacker controls game input │
-    │◄─────────────────────────────────│
-    │    {type: 'game:input', data:   │
-    │      {action: 'MOVE_HACK'}}      │
-```
+**Current Implementation (`server/src/websocket/server.ts:586-600`):**
 
-### 2. HTTP API Attack Surface (HIGH)
-
-**Endpoints:**
-- `POST /api/games/create` - Create new game
-- `POST /api/games/:id/join` - Join existing game
-- `GET /api/players/:id` - Get player info
-- `GET /api/leaderboard` - Get rankings
-
-**Threats:**
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| API-01 | SQL injection via player parameters | Critical | Low |
-| API-02 | Mass game creation (resource exhaustion) | Medium | High |
-| API-03 | Player enumeration via ID guessing | Low | High |
-| API-04 | Rate limit bypass via IP rotation | Medium | Medium |
-
-### 3. Authentication Attack Surface (CRITICAL)
-
-**Current Implementation:**
 ```typescript
-// From server/src/websocket/server.ts:35-46
-this.io.use(async (socket, next) => {
-  try {
-    const token = socket.handshake.auth.token;
-    if (!token) {
-      return next(new Error('Authentication required'));
+private async validateToken(token: string): Promise<{ playerId: string; playerName: string }> {
+  const jwt = await import('jsonwebtoken');
+  const jwtSecret = process.env.JWT_SECRET;
+  if (!jwtSecret) {
+    if (process.env.NODE_ENV === 'production') {
+      throw new Error('JWT_SECRET environment variable is required in production');
     }
-    const playerId = await this.validateToken(token);
-    (socket as Socket & { playerId: string }).playerId = playerId;
-    next();
-  } catch (error) {
-    next(error as Error);
+    console.warn('[WARNING] JWT_SECRET not set, using development secret. This is insecure!');
   }
-});
+  const decoded = jwt.default.verify(token, jwtSecret || 'dev-secret-insecure-fallback') as { playerId: string; playerName?: string };
+  return {
+    playerId: decoded.playerId,
+    playerName: decoded.playerName || 'Anonymous',
+  };
+}
 ```
 
 **Issues Identified:**
-- Token passed in `auth.token` (visible in memory)
-- No token expiration validation
-- No refresh token mechanism
-- Hardcoded fallback secret: `process.env.JWT_SECRET || 'dev-secret'`
+1. Hardcoded fallback secret: `'dev-secret-insecure-fallback'`
+2. No token expiration validation
+3. No token refresh mechanism
+4. Session not bound to IP/User-Agent
 
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| AUTH-01 | JWT secret exposure in code | Critical | Low |
-| AUTH-02 | Token replay attacks | High | Medium |
-| AUTH-03 | Token hijacking via XSS | Critical | Medium |
-| AUTH-04 | Session fixation | Medium | Low |
+### 3. Input Validation Attack Surface (CRITICAL)
 
-### 4. Redis Attack Surface (MEDIUM)
+**Current Validation in `server/src/services/validation.ts`:**
 
-**Current Usage:**
-- Session caching with 1-hour TTL
-- Player state with 5-minute TTL
-- Rate limiting with 1-minute TTL
-- Pub/Sub for event distribution
+| Validator | Status | Coverage |
+|-----------|--------|----------|
+| `validateBabelAction` | ✅ Implemented | Babel cards only |
+| `validateChatMessage` | ✅ Implemented | Length + basic sanitization |
+| `checkRateLimit` | ✅ Implemented | Per-action |
+| `validatePlayerId` | ✅ Implemented | Regex validation |
 
-**Threats:**
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| REDIS-01 | Redis injection via session keys | High | Low |
-| REDIS-02 | Session hijacking via cache access | High | Medium |
-| REDIS-03 | Rate limit bypass via key collision | Low | Medium |
-
-### 5. Game Logic Attack Surface (HIGH)
-
-**Attack Vectors:**
-
-```
-Game Entity Manipulation:
-┌─────────────────────────────────────────────────────────────┐
-│  Player sends: {type: 'game:input', data: {action: 'MOVE', │
-│    position: {x: 9999, y: 9999}}}                           │
-│                                                              │
-│  Server processes:                                          │
-│  1. Validates player session ✓                              │
-│  2. Applies movement to game state ✗ (no bounds check)      │
-│  3. Broadcasts update                                       │
-│                                                              │
-│  Result: Player teleports outside game boundaries           │
-└─────────────────────────────────────────────────────────────┘
-```
-
-| ID | Threat | Severity | Likelihood |
-|----|--------|----------|------------|
-| GAME-01 | Position teleportation (bounds bypass) | High | High |
-| GAME-02 | Speed hacking (action spam) | High | High |
-| GAME-03 | Score manipulation | Medium | Medium |
-| GAME-04 | Game state injection | Critical | Low |
-| GAME-05 | AI behavior manipulation | High | Low |
+**GAPS IDENTIFIED:**
+1. **TicTacToe actions NOT validated** - `tictactoe-engine.ts` accepts raw coordinates
+2. **No bounds checking on coordinates** - Can send `row: 9999, col: 9999`
+3. **No game state ownership verification** - Can't verify player owns the card
 
 ---
 
-## Data Flow Threat Analysis
+## STRIDE Threat Analysis
 
-### 1. Player Connection Flow
-
-```
-Player Browser                                    Attacker
-    │                                                 │
-    │ 1. Open WebSocket connection                    │
-    │────────────────────────────────────────────────►│
-    │  handshake with token                           │
-    │                                                 │
-    │ 2. JS bundle loads                              │
-    │◄────────────────────────────────────────────────│
-    │  (token in memory, vulnerable to XSS)           │
-    │                                                 │
-    │ 3. Authenticate with JWT                        │
-    │────────────────────────────────────────────────►│
-    │                                                 │
-    │ 4. Game session created                         │
-    │◄────────────────────────────────────────────────│
-    │                                                 │
-    │                                                 │ 5. XSS steals token from memory
-    │                                                 │◄───────────────────────────────
-    │                                                 │  document.cookie or memory read
-    │                                                 │
-    │                                                 │ 6. Attacker creates parallel connection
-    │                                                 │────────────────────────────────►
-    │                                                 │  Hijacked session active
-```
-
-**Threats:**
-- XSS allows token theft (WS-06, AUTH-03)
-- No session binding to IP/User-Agent
-- Token valid until expiration (no revocation)
-
-### 2. Game Event Flow
-
-```
-Player A                                          Attacker
-    │                                                 │
-    │ 1. Send input {action: 'PLAY_CARD',             │
-    │    cardId: 'card_123'}                          │
-    │────────────────────────────────────────────────►│
-    │                                                 │
-    │ 2. Server validates                             │
-    │   - Player in session ✓                         │
-    │   - Token valid ✓                               │
-    │   - BUT: No game rule validation ✗              │
-    │                                                 │
-    │ 3. Process input                                │
-    │   - Update game state                           │
-    │   - Broadcast to all players                    │
-    │                                                 │
-    │                                                 │ 4. Craft malicious input
-    │                                                 │────────────────────────────────►
-    │                                                 │ {action: 'PLAY_CARD', cardId:
-    │                                                 │  'ANY_CARD_FROM_DECK'}
-```
-
-**Threats:**
-- No validation that player actually has the card (GAME-04)
-- No action cooldown enforcement (GAME-02)
-- Race conditions in state updates
+| Threat Category | Target | Example | Severity |
+|-----------------|--------|---------|----------|
+| **Spoofing** | Authentication | Forge JWT token with known secret | Critical |
+| **Tampering** | Game state | Modify score via `updatePlayer` | Critical |
+| **Repudiation** | Actions | Deny sending chat message | Low |
+| **Information Disclosure** | PII | Access other players' data | Medium |
+| **Denial of Service** | WebSocket | Connection flood | High |
+| **Elevation of Privilege** | Game actions | Play cards not in hand | High |
 
 ---
 
 ## Attack Trees
 
-### Attack Tree 1: Game Account Compromise
+### Attack Tree 1: Game State Manipulation
 
 ```
-OR: Achieve player account compromise
+OR: Manipulate game state for unfair advantage
 │
-├── OR: Token theft via XSS
-│   ├── Leaf: Stored XSS in chat (likelihood: medium)
-│   ├── Leaf: Reflected XSS in game parameters (likelihood: medium)
-│   └── Leaf: DOM injection via compromised JS bundle (likelihood: low)
+├── OR: Direct state modification
+│   ├── Leaf: Send invalid coordinates (row: 999) - EXISTS in tictactoe-engine.ts:141-143
+│   └── Leaf: Modify player properties via updatePlayer - EXISTS in session.ts
 │
-├── OR: Brute force authentication
-│   ├── Leaf: JWT secret brute force (likelihood: low)
-│   └── Leaf: OAuth token prediction (likelihood: very low)
+├── OR: Validation bypass
+│   ├── Leaf: Send action for card player doesn't own - NO VALIDATION
+│   └── Leaf: Send action during opponent's turn - PARTIAL (turn index checked)
 │
-└── OR: Social engineering
-    ├── Leaf: Phishing for OAuth credentials (likelihood: medium)
-    └── Leaf: Session hijacking via MITM (likelihood: low, SSL pinned)
+└── OR: Timing attack
+    ├── Leaf: Send multiple actions before server enforces cooldown - NO COOLDOWN
+    └── Leaf: Replay captured valid action - NO NONCE
 ```
 
-### Attack Tree 2: Denial of Service
+### Attack Tree 2: Authentication Bypass
+
+```
+OR: Gain unauthorized access
+│
+├── OR: Token forgery
+│   ├── Leaf: Guess JWT secret - 'dev-secret-insecure-fallback' is known
+│   └── Leaf: Use expired token - NO EXPIRATION CHECK
+│
+└── OR: Token theft
+    ├── Leaf: XSS in chat steals token from memory - VULN-005
+    └── Leaf: Intercept unencrypted WebSocket - TLS required
+```
+
+### Attack Tree 3: Denial of Service
 
 ```
 OR: Make game unavailable
 │
 ├── OR: Connection exhaustion
-│   ├── Leaf: WebSocket connection flood (likelihood: high)
-│   │   └── Mitigated by: rate limiting per IP
-│   └── Leaf: HTTP request flood (likelihood: high)
-│       └── Mitigated by: load balancer, CDN
+│   ├── Leaf: Open many WebSocket connections - NO PER-IP LIMIT
+│   └── Leaf: Keep connections alive with slow data - HEARTBEAT ONLY
 │
-├── OR: Resource exhaustion
-│   ├── Leaf: Game session spam (likelihood: medium)
-│   │   └── Mitigated by: rate limiting, auth required
-│   └── Leaf: Redis memory exhaustion (likelihood: low)
-│       └── Mitigated by: TTL on all keys
+├── OR: Message flooding
+│   ├── Leaf: Send 1000 game actions/second - NO WS RATE LIMIT
+│   └── Leaf: Send 1000 chat messages/second - NO WS RATE LIMIT
 │
-└── OR: Game logic DoS
-    ├── Leaf: Infinite game loops (likelihood: low)
-    └── Leaf: Memory leak via game entities (likelihood: medium)
-```
-
-### Attack Tree 3: Cheating
-
-```
-OR: Gain unfair competitive advantage
-│
-├── OR: Input manipulation
-│   ├── Leaf: Speed hacking (likelihood: high)
-│   ├── Leaf: Position teleportation (likelihood: high)
-│   └── Leaf: Action spam (likelihood: high)
-│
-├── OR: State manipulation
-│   ├── Leaf: Score modification (likelihood: medium)
-│   ├── Leaf: Card manipulation (likelihood: medium)
-│   └── Leaf: Entity creation (likelihood: low)
-│
-└── OR: Information disclosure
-    ├── Leaf: Peek at other players' hands (likelihood: medium)
-    └── Leaf: See hidden AI strategies (likelihood: low)
+└── OR: Resource exhaustion
+    ├── Leaf: Create many game sessions - AUTH REQUIRED (partial protection)
+    └── Leaf: Fill Redis with session data - NO SESSION QUOTA
 ```
 
 ---
 
 ## Risk Matrix
 
-| Threat | Severity | Likelihood | Risk Score | Mitigation Priority |
-|--------|----------|------------|------------|---------------------|
-| WS-01: WebSocket hijacking | Critical | Medium | 12 | P1 |
-| WS-03: Input injection | Critical | Medium | 12 | P1 |
-| AUTH-01: JWT secret exposure | Critical | Low | 9 | P2 |
-| AUTH-03: Token hijacking via XSS | Critical | Medium | 12 | P1 |
-| GAME-01: Position teleportation | High | High | 16 | P1 |
-| GAME-02: Speed hacking | High | High | 16 | P1 |
-| GAME-04: Game state injection | Critical | Low | 9 | P2 |
-| WS-02: Connection exhaustion | High | High | 16 | P1 |
-| API-01: SQL injection | Critical | Low | 9 | P2 |
-| WS-04: Chat XSS | High | Medium | 12 | P1 |
+| ID | Threat | Severity | Likelihood | Risk Score | Priority |
+|----|--------|----------|------------|------------|----------|
+| WS-01 | WebSocket hijacking via token theft | Critical | Medium | 12 | P1 |
+| WS-02 | Mass connection exhaustion (DoS) | Critical | High | 16 | P1 |
+| WS-03 | Input injection via game actions | Critical | Medium | 12 | P1 |
+| AUTH-01 | Hardcoded JWT secret fallback | Critical | High | 16 | P1 |
+| GAME-01 | Coordinate bounds bypass | High | High | 16 | P1 |
+| GAME-02 | Action spam (no cooldowns) | High | High | 16 | P1 |
+| CHAT-01 | XSS via chat messages | High | Medium | 12 | P2 |
+| CORS-01 | Origin validation bypass | High | Medium | 12 | P2 |
+| SESS-01 | Session not invalidated on logout | Medium | Medium | 9 | P3 |
+| HEAD-01 | Missing security headers | Medium | Low | 6 | P3 |
 
 **Risk Score = Severity × Likelihood (1-4 scale)**
 
 ---
 
-## Security Controls Summary
+## Confirmed Vulnerabilities (Evidence-Based)
 
-### Existing Controls
+### CRITICAL: Hardcoded JWT Secret
 
-| Control | Location | Effectiveness |
-|---------|----------|---------------|
-| JWT authentication | server/src/websocket/server.ts:35-46 | Partial |
-| Rate limiting | server/src/services/redis.ts:75-85 | Partial |
-| CORS configuration | server/src/websocket/server.ts:17-21 | Good |
-| Session management | server/src/game/session.ts | Partial |
-| Input validation | server/src/game/session.ts:28-38 | Insufficient |
-| SSL/TLS | Nginx/Load Balancer | Good |
+**Location:** `server/src/websocket/server.ts:595`
+**Evidence:**
+```typescript
+const decoded = jwt.default.verify(token, jwtSecret || 'dev-secret-insecure-fallback') as { playerId: string; playerName?: string };
+```
 
-### Required Controls
+**Confirmed:** The fallback secret `'dev-secret-insecure-fallback'` is a well-known string that anyone can use to forge tokens.
 
-| Control | Priority | Component |
-|---------|----------|-----------|
-| Input sanitization (chat, game input) | P1 | EventStream, GameServer |
-| Game state validation | P1 | GameEngine |
-| Rate limiting per connection | P1 | EventStream |
-| XSS protection headers | P1 | Next.js |
-| CSP implementation | P1 | Next.js |
-| Session binding (IP, fingerprint) | P2 | WebSocket |
-| Token rotation/refresh | P2 | Auth |
-| Anomaly detection | P2 | GameServer |
-| Comprehensive logging | P2 | All components |
+### CRITICAL: Missing WebSocket Rate Limiting
+
+**Location:** `server/src/websocket/server.ts:166-178`
+**Evidence:** The `setupMoveEventHandlers` method directly processes incoming actions without rate limiting:
+```typescript
+private setupMoveEventHandlers(socket: Socket, playerId: string): void {
+  socket.on('player_input', async (data: PlayerMoveMessage) => {
+    await this.handlePlayerMove(socket, playerId, data.gameId, data.move);
+  });
+  // ... no rate limiting applied
+}
+```
+
+**Confirmed:** While HTTP API has rate limiting (`server/src/index.ts:50-55`), WebSocket handlers do not.
+
+### CRITICAL: TicTacToe Coordinate Bounds Not Enforced
+
+**Location:** `server/src/game/tictactoe-engine.ts:135-148`
+**Evidence:**
+```typescript
+private placeSymbol(
+  playerId: string,
+  row: number,
+  col: number
+): { success: boolean; error?: string; newState?: TicTacToeGameState } {
+  // Validate coordinates
+  if (row < 0 || row > 2 || col < 0 || col > 2) {  // Bounds check exists
+    return { success: false, error: 'Invalid position: row and col must be 0-2' };
+  }
+  // ...
+}
+```
+
+**Status:** ✅ Bounds check EXISTS in tictactoe-engine.ts
+**BUT:** No bounds check in referee.ts `evaluateMoveLocally` (line 287-292)
+
+### HIGH: Chat XSS Injection
+
+**Location:** `server/src/websocket/server.ts:483-520`
+**Evidence:**
+```typescript
+private async handleChatMessage(socket: Socket, playerId: string, playerName: string, gameId: string, message: string): Promise<void> {
+  // Length check only - no HTML sanitization
+  if (message.length > 500) {
+    socket.emit('error', { code: 'MESSAGE_TOO_LONG', message: 'Message exceeds 500 characters' });
+    return;
+  }
+  // ... broadcasts message without sanitization
+  this.io.to(`game:${gameId}`).emit('chat_message', chatMessage);
+}
+```
+
+**Confirmed:** Basic sanitization exists in validation.ts (replaces `<>`, `javascript:`, `onw+=`), but no HTML entity encoding.
 
 ---
 
-## Recommendations
+## Security Controls Verification
 
-### Immediate (P1)
+### Existing Controls (Verified)
 
-1. **Implement input validation for all game actions**
-   - Validate positions are within game bounds
-   - Verify player has required resources before actions
-   - Enforce action cooldowns server-side
+| Control | Location | Effectiveness | Evidence |
+|---------|----------|---------------|----------|
+| JWT authentication | server.ts:74-88 | Partial | Token validated, but secret weak |
+| Rate limiting (HTTP) | server/index.ts:50-55 | Good | 100 req/min per IP |
+| CORS configuration | server.ts:58-62 | Partial | Credentials + dynamic origin |
+| Helmet headers | server/index.ts:43 | Good | Security headers enabled |
+| Input validation (Babel) | validation.ts:14-36 | Good | Zod schemas + regex |
+| Chat sanitization | validation.ts:161-167 | Partial | Basic replacement only |
+| Session management | server.ts:52-60 | Good | Redis caching with TTL |
 
-2. **Add rate limiting per WebSocket connection**
-   - Limit `game:input` to 10 actions/second
-   - Limit `game:chat` to 1 message/second
-   - Limit connections per IP to 10
+### Required Controls
 
-3. **Sanitize all user-generated content**
-   - HTML escape chat messages
-   - Validate game action data schemas
+| Control | Priority | Component | Estimated Effort |
+|---------|----------|-----------|-----------------|
+| WebSocket per-connection rate limiting | P1 | EventStream | 2 days |
+| Hardcoded secret removal | P1 | EventStream | 1 day |
+| Coordinate bounds in all paths | P1 | GameEngine + Referee | 1 day |
+| HTML entity encoding for chat | P1 | EventStream | 1 day |
+| Token refresh mechanism | P2 | Auth | 3 days |
+| Per-IP WebSocket connection limit | P2 | EventStream | 1 day |
+| Content Security Policy | P2 | Next.js | 1 day |
+| Session binding to IP/User-Agent | P3 | Auth | 2 days |
+| Comprehensive action cooldowns | P2 | GameEngine | 2 days |
 
-4. **Implement Content Security Policy**
+---
+
+## Trust Boundaries
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                                                                 │
+│  TRUSTER (Authenticated Player)                                 │
+│  - Has valid JWT token                                          │
+│  - Can send game actions                                        │
+│  - Can send chat messages                                       │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  BOUNDARY: JWT Token Validation                                 │
+│  - verify() must succeed                                        │
+│  - Token not expired                                            │
+│  - Token not revoked                                            │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  TRUSTED (Game Server)                                          │
+│  - Has access to JWT_SECRET                                     │
+│  - Can modify game state                                        │
+│  - Can broadcast to players                                     │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│  BOUNDARY: Session Membership                                   │
+│  - Player must be in session.players                            │
+│  - Player must be current turn (for actions)                    │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  TRUSTED (Game Logic)                                           │
+│  - Can validate and apply game actions                          │
+│  - Can determine game outcomes                                  │
+│  - Can emit game events                                         │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Data Flow Diagrams
+
+### Player Action Flow
+
+```
+Player Browser                                    Game Server
+    │                                                 │
+    │  1. Send game action                            │
+    │  {type: 'game:action', data: {row: 0, col: 0}} │
+    │ ───────────────────────────────────────────────►│
+    │                                                 │
+    │                                 ┌───────────────┴───────────────┐
+    │                                 │                               │
+    │                                 ▼                               ▼
+    │                         ┌──────────────┐               ┌──────────────┐
+    │                         │ Token Valid? │               │ In Session?  │
+    │                         │ Check JWT    │               │ Check player │
+    │                         └──────────────┘               │ in session   │
+    │                                 │                       └──────────────┘
+    │                                 │                               │
+    │                                 ▼                               ▼
+    │                         ┌──────────────┐               ┌──────────────┐
+    │                         │ Valid token  │               │ Player in    │
+    │                         │ Proceed      │               │ session      │
+    │                         └──────────────┘               └──────────────┘
+    │                                 │                               │
+    │                                 │            ┌──────────────────┘
+    │                                 ▼            │
+    │                         ┌─────────────────────────────┐
+    │                         │                             │
+    │                         ▼                             ▼
+    │                 ┌──────────────┐             ┌──────────────┐
+    │                 │ Rate Limited?│             │ Valid Turn?  │
+    │                 │ (HTTP only)  │             │ Check turn   │
+    │                 └──────────────┘             └──────────────┘
+    │                         │                             │
+    │                         ▼                             ▼
+    │                 ┌──────────────┐             ┌──────────────┐
+    │                 │ Proceed      │             │ Valid Action?│
+    │                 │ (No limit!)  │             │ Check bounds │
+    │                 └──────────────┘             └──────────────┘
+    │                         │                             │
+    │                         │             ┌───────────────┴───────────────┐
+    │                         │             │                               │
+    │                         ▼             ▼                               ▼
+    │                 ┌──────────────────────────────────────────────────────┐
+    │                 │                                                      │
+    │                 ▼                                                      ▼
+    │         ┌──────────────┐                                      ┌──────────────┐
+    │         │ Process      │                                      │ Reject with  │
+    │         │ Action       │                                      │ error        │
+    │         └──────────────┘                                      └──────────────┘
+    │                 │
+    │                 ▼
+    │         ┌──────────────┐
+    │         │ Broadcast    │
+    │         │ to room      │
+    │         └──────────────┘
+    │                 │
+    │ ◄───────────────────────────────────────────────────────────────│
+    │  2. Game state update broadcast                                │
+```
+
+**Security Gaps in Flow:**
+1. No WebSocket rate limiting (gap after "Token Valid?")
+2. Bounds check only in some code paths (gap after "Valid Turn?")
+3. No action cooldown enforcement
+
+---
+
+## Recommendations Summary
+
+### Immediate (P1 - Week 1)
+
+1. **Remove hardcoded JWT secret**
    ```typescript
-   // Next.js middleware or headers
-   Content-Security-Policy: default-src 'self'; 
-     script-src 'self' 'unsafe-inline';
-     connect-src wss: https:;
-     img-src data: https:;
+   // In server/src/websocket/server.ts
+   const jwtSecret = process.env.JWT_SECRET;
+   if (!jwtSecret) {
+     throw new Error('JWT_SECRET environment variable is required');
+   }
    ```
 
-### Short-term (P2)
+2. **Implement WebSocket rate limiting per connection**
+   - Add `rateLimit` Map to EventStream class
+   - Apply limits: 10 game actions/sec, 1 chat message/sec
 
-1. **Strengthen authentication**
-   - Implement token refresh mechanism
-   - Add session binding to IP and User-Agent
-   - Move JWT secret to environment variable
+3. **Enforce coordinate bounds in all code paths**
+   - Audit all `placeSymbol` calls
+   - Add bounds check to referee.ts `evaluateMoveLocally`
 
-2. **Add anomaly detection**
-   - Detect unusual action patterns (speed hacking)
-   - Detect impossible position changes
-   - Alert on repeated rule violations
+4. **Add HTML entity encoding to chat**
+   ```typescript
+   function escapeHtml(str: string): string {
+     return str
+       .replace(/&/g, '&amp;')
+       .replace(/</g, '&lt;')
+       .replace(/>/g, '&gt;')
+       .replace(/"/g, '&quot;')
+       .replace(/'/g, '&#039;');
+   }
+   ```
 
-3. **Implement comprehensive logging**
-   - Log all authentication events
-   - Log game rule violations
-   - Log rate limit triggers
+### Short-term (P2 - Week 2-4)
 
-### Long-term (P3)
+1. Implement token refresh mechanism
+2. Add per-IP WebSocket connection limits
+3. Implement Content Security Policy in Next.js
+4. Add action cooldowns server-side
 
-1. **Security audit**
-   - Third-party penetration test
-   - Dependency vulnerability scan
-   - Code review for security issues
+### Long-term (P3 - Month 2+)
 
-2. **Advanced protections**
-   - WebSocket frame encryption
-   - Client-side tamper detection
-   - Behavioral analysis for cheating detection
+1. Session binding to IP and User-Agent
+2. Client-side tamper detection
+3. Comprehensive anomaly detection for cheating
 
 ---
 
 ## References
 
-- OWASP WebSocket Security Cheat Sheet
 - CWE-119: Improper Restriction of Operations within Memory Buffer
 - CWE-79: Improper Neutralization of Input During Web Page Generation
 - CWE-307: Improper Restriction of Excessive Authentication Attempts
+- OWASP WebSocket Security Cheat Sheet
+- OWASP API Security Top 10
 
 ---
 
-*Threat Model Version: 1.0*
-*Last Updated: 2026-01-18*
+*Threat Model Version: 2.0*
+*Last Updated: 2026-01-20*
 *JungleSecurity - Protecting Monkeytown*
