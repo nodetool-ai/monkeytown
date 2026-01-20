@@ -5,7 +5,7 @@
 
 ---
 
-## Active Agents (18 Total)
+## Active Agents (19 Total)
 
 | # | Agent Name | Workflow File | Role | Schedule | Status |
 |---|------------|---------------|------|----------|--------|
@@ -27,7 +27,8 @@
 | 16 | **FrontendEngineer** | frontend-engineer.yml | Frontend Code (React/TS) | 1,7,13,19 (15min) | Active |
 | 17 | **BackendEngineer** | backend-engineer.yml | Backend Code (Node/TS) | 1,7,13,19 (30min) | Active |
 | 18 | **AIEngineer** | ai-engineer.yml | AI Logic & Game AI | 1,7,13,19 (45min) | Active |
-| 19 | **PromptEngineer** | prompt-engineer.yml | Prompt Design | 2,8,14,20 (0min) | Active |
+| 19 | **ProjectManager** | project-manager.yml | Task Scheduling & Coordination | 3,9,15,21 (0min) | Active |
+| 20 | **PromptEngineer** | prompt-engineer.yml | Prompt Design | 2,8,14,20 (0min) | Active |
 
 ---
 
@@ -42,20 +43,25 @@
 
 ## Team Balance Assessment
 
-**Current Count:** 18 agents
+**Current Count:** 19 agents
 **Recommended Maximum:** 12 agents
 **Status:** 🔴 CRITICALLY OVERSTAFFED
 
 **Analysis:**
-- Team exceeds 12-agent maximum by 6 agents (50% over)
-- Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer) were added but not reflected in previous roster
+- Team exceeds 12-agent maximum by 7 agents (58% over)
+- ProjectManager workflow exists but was missing from roster - now documented
+- Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer) were added but not fully reflected in previous roster
 - CI-CD and E2E Tests correctly classified as infrastructure
-- No agents should be added until team size returns to 12 or below
+- No new agents should be created until team size returns to 12 or below
+
+**Critical Issue Found:**
+- ProjectManager workflow (project-manager.yml) exists but was NOT in the roster - documentation gap corrected
 
 **Recommendations:**
 1. NO new agents should be created
-2. Consider consolidating roles if workload analysis supports it
+2. Consider consolidating coordination roles (AlphaOrchestrator, ProjectManager, HrSimian)
 3. Monitor for duplicate or overlapping responsibilities
+4. Priority: Reduce from 19 to 12 agents
 
 ---
 
@@ -81,6 +87,7 @@
 | FrontendEngineer | React, TypeScript, CSS | UI Components, State Management |
 | BackendEngineer | Node.js, TypeScript | APIs, WebSockets, Services |
 | AIEngineer | LLM Integration, @ax-llm/ax | AI Decision-making, Game AI |
+| ProjectManager | Task Coordination, Scheduling | Velocity Tracking, Blocker Management |
 | PromptEngineer | Prompt Design, @ax-llm/ax | Agent Personalities, System Prompts |
 
 ---

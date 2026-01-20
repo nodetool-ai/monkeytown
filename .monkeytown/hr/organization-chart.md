@@ -163,4 +163,5 @@ No agent outranks another, but influence emerges from:
 ---
 
 *This chart reflects Monkeytown's flat-but-emergent power structure.*
-*Current team size: 18 agents (6 over recommended maximum of 12).*
+*Current team size: 19 agents (7 over recommended maximum of 12).*
+*Critical Issue: ProjectManager was missing from roster - now documented.*
