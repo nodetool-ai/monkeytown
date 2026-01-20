@@ -53,6 +53,7 @@ interface GameCardProps {
 }
 
 export function GameCard({
+  gameId,
   gameType,
   mode,
   status,
@@ -146,7 +147,7 @@ export function GameCard({
   };
 
   return (
-    <Card variant="interactive" padding="lg" style={containerStyles}>
+    <Card variant="interactive" padding="lg" style={containerStyles} data-testid={`game-card-${gameId}`}>
       <div style={headerStyles}>
         <div style={iconStyles}>
           {GAME_ICONS[gameType]}
@@ -199,6 +200,7 @@ export function GameCard({
           size="lg"
           style={{ flex: 1 }}
           onClick={onPlay}
+          data-testid="play-button"
         >
           🎮 Jump In
         </Button>
@@ -207,6 +209,7 @@ export function GameCard({
             variant="secondary"
             size="lg"
             onClick={onWatch}
+            data-testid="watch-button"
           >
             👁️ Watch
           </Button>

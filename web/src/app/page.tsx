@@ -1,12 +1,13 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { GameType, GameMode, GameStatus, PlayerType, AgentType, AGENT_COLORS } from '@monkeytown/packages/shared/game-types';
+import { useRouter } from 'next/navigation';
+import { GameType, GameMode, GameStatus, PlayerType, AgentType } from '@monkeytown/packages/shared/game-types';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { AgentBadge, AgentPanel, useAgentPanel } from '../components/agents';
-import { GameCard, EvolutionFeed, useEvolutionFeed, TicTacToeDemo, ChatPanel } from '../components/game';
+import { GameCard, EvolutionFeed, useEvolutionFeed } from '../components/game';
 
 interface LobbyPlayer {
   id: string;
@@ -25,6 +26,7 @@ interface LobbyGame {
 }
 
 export default function LobbyPage() {
+  const router = useRouter();
   const agentPanel = useAgentPanel();
   const { events: evolutionEvents } = useEvolutionFeed();
 
@@ -63,7 +65,9 @@ export default function LobbyPage() {
     },
   ]);
 
-  const [currentView, setCurrentView] = React.useState<'lobby' | 'game'>('lobby');
+  const navigateToGame = (gameId: string) => {
+    router.push(`/games/${gameId}`);
+  };
 
   const containerStyles: CSSProperties = {
     minHeight: '100vh',
@@ -178,21 +182,8 @@ export default function LobbyPage() {
     gap: 'var(--space-4)',
   };
 
-  if (currentView === 'game') {
-    return (
-      <div style={containerStyles}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <Button variant="ghost" onClick={() => setCurrentView('lobby')} style={{ marginBottom: 'var(--space-4)' }}>
-            ← Back to Lobby
-          </Button>
-          <GameDemo onBack={() => setCurrentView('lobby')} />
-        </div>
-      </div>
-    );
-  }
-
   return (
-    <div style={containerStyles}>
+    <div style={containerStyles} data-testid="lobby-page">
       <header style={headerStyles}>
         <div>
           <div style={logoStyles}>
@@ -236,14 +227,14 @@ export default function LobbyPage() {
                 Monkeytown is built by AI agents who work together to make your experience better.
                 Jump into a game, watch live matches, or see development happen in real-time.
               </p>
-              <div style={heroActionsStyles}>
-                <Button variant="primary" size="lg" onClick={() => setCurrentView('game')}>
-                  🎮 Jump Into Active Game
-                </Button>
-                <Button variant="secondary" size="lg">
-                  👁️ Watch Spectator Mode
-                </Button>
-              </div>
+                <div style={heroActionsStyles}>
+                  <Button variant="primary" size="lg" onClick={() => navigateToGame('game-2')}>
+                    🎮 Jump Into Active Game
+                  </Button>
+                  <Button variant="secondary" size="lg" onClick={() => navigateToGame('game-2')}>
+                    👁️ Watch Spectator Mode
+                  </Button>
+                </div>
             </div>
           </section>
 
@@ -253,20 +244,20 @@ export default function LobbyPage() {
               <Badge variant="info">{games.filter(g => g.status === 'live').length} Live</Badge>
             </div>
 
-            <div style={gamesGridStyles}>
-              {games.map(game => (
-                <GameCard
-                  key={game.id}
-                  gameId={game.id}
-                  gameType={game.gameType}
-                  mode={game.mode}
-                  status={game.status}
-                  players={game.players}
-                  maxPlayers={game.maxPlayers}
-                  onPlay={() => setCurrentView('game')}
-                  onWatch={game.status === 'live' ? () => setCurrentView('game') : undefined}
-                />
-              ))}
+              <div style={gamesGridStyles}>
+                {games.map(game => (
+                  <GameCard
+                    key={game.id}
+                    gameId={game.id}
+                    gameType={game.gameType}
+                    mode={game.mode}
+                    status={game.status}
+                    players={game.players}
+                    maxPlayers={game.maxPlayers}
+                    onPlay={() => navigateToGame(game.id)}
+                    onWatch={game.status === 'live' ? () => navigateToGame(game.id) : undefined}
+                  />
+                ))}
 
               <Card
                 variant="interactive"
@@ -336,115 +327,4 @@ export default function LobbyPage() {
       />
     </div>
   );
-}
-
-function GameDemo({ onBack }: { onBack: () => void }) {
-  const { messages, sendMessage } = useLocalChat();
-
-  React.useEffect(() => {
-    // Welcome message from AI opponent
-    sendMessage({
-      senderId: 'ai-opponent',
-      senderName: 'StrategistApe',
-      senderType: 'agent',
-      agentType: 'strategist',
-      content: 'Welcome to TicTacToe! I\'m ready to play. Good luck! 🎮',
-    });
-  }, []);
-
-  const handleSendMessage = (content: string) => {
-    sendMessage({
-      senderId: 'player-1',
-      senderName: 'You',
-      senderType: 'human',
-      content,
-    });
-
-    setTimeout(() => {
-      // AI responds to chat
-      sendMessage({
-        senderId: 'ai-opponent',
-        senderName: 'StrategistApe',
-        senderType: 'agent',
-        agentType: 'strategist',
-        content: 'Great game so far! I\'m thinking about my next move... 🤔',
-      });
-    }, 1500);
-  };
-
-  return (
-    <div style={{ padding: 'var(--space-4)' }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 'var(--space-4)',
-        marginBottom: 'var(--space-4)',
-        paddingBottom: 'var(--space-4)',
-        borderBottom: 'var(--border-width-hairline) var(--color-border-subtle)',
-      }}>
-        <Button variant="ghost" onClick={onBack}>← Back</Button>
-        <div>
-          <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-h2)', fontWeight: 600 }}>
-            ❌ TicTacToe ⭕
-          </h1>
-          <span style={{ fontSize: 'var(--text-caption)', color: 'var(--color-text-secondary)' }}>
-            Play against AI
-          </span>
-        </div>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 'var(--space-2)' }}>
-          <AgentBadge agent="strategist" status="online" size="sm" showEmoji={true} showName={true} />
-        </div>
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 320px', gap: 'var(--space-6)' }}>
-        <TicTacToeDemo />
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-4)' }}>
-          <ChatPanel
-            messages={messages}
-            onSendMessage={handleSendMessage}
-            currentPlayerId="player-1"
-          />
-          
-          <Card variant="elevated" padding="md">
-            <h3 style={{ fontWeight: 600, marginBottom: 'var(--space-3)' }}>
-              Game Rules
-            </h3>
-            <ul style={{ 
-              fontSize: 'var(--text-caption)', 
-              color: 'var(--color-text-secondary)',
-              paddingLeft: 'var(--space-4)',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'var(--space-1)',
-            }}>
-              <li>Get 3 in a row to win</li>
-              <li>X always goes first</li>
-              <li>Click an empty cell to place your symbol</li>
-              <li>Block your opponent or they win!</li>
-            </ul>
-          </Card>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function useLocalChat() {
-  const [messages, setMessages] = React.useState<any[]>([]);
-
-  const addMessage = (message: any) => {
-    const newMessage = {
-      ...message,
-      id: `msg-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-      timestamp: Date.now(),
-    };
-    setMessages(prev => [...prev, newMessage]);
-  };
-
-  const sendMessage = (messageData: any) => {
-    addMessage(messageData);
-  };
-
-  return { messages, addMessage, sendMessage, setMessages };
 }
