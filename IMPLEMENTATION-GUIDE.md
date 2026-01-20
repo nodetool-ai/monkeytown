@@ -335,7 +335,7 @@ This creates **multi-pass refinement** where ideas evolve through multiple persp
 
 ## 🎉 The Result
 
-**Your 13 agents now have a clear, logical protocol for:**
+**Your 14 agents now have a clear, logical protocol for:**
 1. Reading foundational documents (README, goals)
 2. Reading each other's outputs in the right order
 3. Communicating via file references

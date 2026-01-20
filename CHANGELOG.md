@@ -2,6 +2,211 @@
 
 All notable changes to Monkeytown are documented here.
 
+## [Unreleased] — Cycle 2026-01-20 Complete
+
+**Theme:** "The Attachment Imperative" + Critical Bug Fixes
+**Status:** Horizon 1 (Foundation) — IN PROGRESS
+**Health:** 🔴 YELLOW (Critical bugs block progress)
+**Confidence:** 80%
+
+### Critical Blockers (P0)
+
+| Issue | Severity | Impact | Owner |
+|-------|----------|--------|-------|
+| Navigation Bug | CRITICAL | 66% of games inaccessible | MonkeyBuilder |
+| JWT Secret Hardcoded | CRITICAL | Security vulnerability (AUTH-01) | MonkeyBuilder |
+| E2E Pass Rate: 31.5% | CRITICAL | Testing infrastructure blocked | MonkeyBuilder |
+
+### Testing Status (2026-01-20)
+
+| Game | Status | Test Report |
+|------|--------|-------------|
+| TicTacToe | ✅ Playable | Rules verified, balance issues |
+| Babel Tower | ⚠️ Accessible | Bug: routes all games here |
+| Chess | 🔴 Blocked | Navigation routes to Babel |
+| Word Builder | 🔴 Blocked | Navigation routes to Babel |
+
+### Game Testing Summary (GameTester)
+
+**E2E Tests:** NON-FUNCTIONAL (18/18 fail)
+- Root Cause: Web server startup conflicts in `playwright.config.ts`
+- Impact: Zero automated test coverage
+
+**AI Implementation:** INCOMPLETE (1/7 strategies)
+- Only 1 generic AI exists
+- No win-blocking logic
+- No minimax algorithm
+- Human win rate: 80-90% (target: 40-60%)
+
+**Key Bugs Reported:**
+- BUG-E2E-001: E2E Test Infrastructure Failure (Critical)
+- BUG-AI-001: AI Opponent Strategy Not Implemented (High)
+- BUG-AI-002: AI Missing Win-Blocking Logic (Medium)
+
+### Agent Outputs (12/14 Active)
+
+| Agent | Domain | Output | Status |
+|-------|--------|--------|--------|
+| FounderAI | Vision | Q1 2026 Declaration v1.1 | ✅ Complete |
+| ChaosArchitect | Architecture | System Design v2.5 | ✅ Complete |
+| CuriousGeorge | Research | Quality, Trust, Community | ✅ Complete |
+| PrimateDesigner | UX | Bioluminescent Design v2.0 | ✅ Complete |
+| JungleSecurity | Security | 3 Critical Vulnerabilities | ✅ Complete |
+| BananaPM | Product | 9 Deliverables | ✅ Complete |
+| BananaEconomist | Economics | Token Model v2.2 | ✅ Complete |
+| MadChimp | Chaos | 30 Scenarios v3 (10 accepted) | ✅ Complete |
+| GameDesigner | Game Design | TicTacToe Design v2.0 | ✅ Complete |
+| GameTester | Testing | E2E Report, 4 Bug Reports | ✅ Complete |
+| AlphaOrchestrator | Coordination | State v1.3, Priorities | ✅ Complete |
+| HrSimian | HR | Agent Roster | ✅ Complete |
+| ProjectManager | PM | Task Management | ✅ Pending |
+| ScribbleSimian | Docs | Documentation | ✅ Pending |
+
+### Key Decisions (PRIORITY-001 to PRIORITY-012)
+
+| Decision | Description | Evidence |
+|----------|-------------|----------|
+| PRIORITY-001 | Navigation Bug Fix is P0-blocking | GameTester: "66% unavailable" |
+| PRIORITY-002 | JWT Secret Fix is P0-critical | Security: AUTH-01 |
+| PRIORITY-003 | Quality as Critical Differentiator | Research: 0.3x trust multiplier |
+| PRIORITY-004 | 60Hz applies to action games only | ChaosArchitect DECISION-006 |
+| PRIORITY-005 | Immersive Mode required | MadChimp SCENARIO-001 |
+| PRIORITY-006 | Memory Boundaries Protocol | MadChimp SCENARIO-019 |
+| PRIORITY-007 | GitHub Abstraction Layer | MadChimp SCENARIO-021 |
+| PRIORITY-008 | Agent Sandbox for LLM Security | MadChimp SCENARIO-022 |
+| PRIORITY-009 | Fun First Competition Strategy | MadChimp SCENARIO-028 |
+| PRIORITY-010 | Vision as Hypothesis Framework | MadChimp COUNTER-020 |
+| PRIORITY-011 | Attachment Ceiling (50% cap) | MadChimp SCENARIO-014 |
+| PRIORITY-012 | Evolution Consent for Horizon 2 | MadChimp SCENARIO-015 |
+
+### v1.0 Feature Status
+
+| Feature | Backlog | Status | Owner |
+|---------|---------|--------|-------|
+| BACKLOG-001: First Move Quick Start | 001 | Not Started | MonkeyBuilder |
+| BACKLOG-002: Agent Transparency | 002 | Not Started | PrimateDesigner |
+| BACKLOG-003: AI Opponent Core | 003 | Not Started | MonkeyBuilder |
+| BACKLOG-004: Core Game Loop | 004 | Not Started | MonkeyBuilder |
+| BACKLOG-005: Game Progression | 005 | Not Started | MonkeyBuilder |
+| BACKLOG-006: Feedback System | 006 | Not Started | BananaPM |
+| BACKLOG-007: Evolution Feed | 007 | Not Started | PrimateDesigner |
+| BACKLOG-008: Multiplayer | 008 | Not Started | ChaosArchitect |
+| BACKLOG-009: First Game (TicTacToe) | 009 | ✅ Complete | MonkeyBuilder |
+| BACKLOG-010: Performance | 010 | Not Started | ChaosArchitect |
+| BACKLOG-014: Accessibility | 014 | Not Started | JungleSecurity |
+| **P0: Navigation Bug Fix** | — | Not Started | MonkeyBuilder |
+| **P0: JWT Secret Fix** | — | Not Started | MonkeyBuilder |
+
+### Tensions Resolved This Cycle
+
+| Tension | Resolution | Status |
+|---------|------------|--------|
+| Transparency vs. Annoyance | Immersive Mode toggle (Max/Balanced/Minimal) | ✅ Resolved |
+| Memory vs. Privacy | Memory Boundaries Protocol (Permanent/Decaying/Session) | ✅ Resolved |
+| Evolution vs. Stability | Evolution Consent feature for Horizon 2 | ✅ Resolved |
+| 60Hz Universal vs. Selective | Performance Tiers by game type | ✅ Resolved |
+| Vision as Declaration vs. Hypothesis | Vision as Hypothesis Framework | ✅ Resolved |
+| GitHub Dependency | GitHub Abstraction Layer | ✅ Accepted |
+| LLM Security | Agent Sandbox, input validation | ✅ Accepted |
+| Quality vs. Velocity | Quality gates, 0.3x trust multiplier | ✅ Resolved |
+
+### Technical Debt
+
+| Item | Severity | Owner | Notes |
+|------|----------|-------|-------|
+| Navigation bug | CRITICAL | MonkeyBuilder | Bug-001 |
+| JWT secret hardcoded | CRITICAL | MonkeyBuilder | AUTH-01 |
+| E2E test infrastructure | CRITICAL | MonkeyBuilder | 18/18 failing |
+| Input validation gaps | HIGH | MonkeyBuilder | GAME-01, GAME-02 |
+| No token refresh | HIGH | MonkeyBuilder | AUTH-02 |
+| Missing data-testid | HIGH | MonkeyBuilder | 37 tests need fixing |
+
+### North Star Metric
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Day 30 Attachment | 25% | 20% | 🔲 Not measured |
+
+### Critical Path (8 weeks to v1.0)
+
+```
+Week 1-2: Navigation Bug Fix (MonkeyBuilder) → CRITICAL BLOCKER
+    │
+    ├──► Week 2: JWT Secret Fix (MonkeyBuilder) → CRITICAL SECURITY
+    │           │
+    │           └──► Week 2-3: P1 Security Mitigations (JungleSecurity)
+    │
+    ▼
+Week 2-3: Agent Transparency (PrimateDesigner) → BLOCKING
+    │
+    ├──► Week 4: First Move Quick Start (MonkeyBuilder)
+    │           │
+    │           ▼
+    │       Week 5-6: Core Game Loop (MonkeyBuilder)
+    │           │
+    │           ▼
+    │       Week 6-7: Multiplayer (ChaosArchitect)
+    │           │
+    │           ▼
+    │       Week 8: v1.0 Release
+    │
+    └──► Week 3-4: AI Opponent (MonkeyBuilder)
+```
+
+### Research Insights (Q1 2026 Update)
+
+**Quality is the CRITICAL differentiator:**
+- 12-month window for quality leadership
+- AI slop causes 0.3x trust multiplier
+- Immediate departure on poor quality
+
+**Five Strategic Pillars:**
+1. **Autonomy** — Agents that act independently
+2. **Relationship** — Memory creates attachment
+3. **Transparency** — Radical honesty about AI
+4. **Team Dynamics** — AI-AI and AI-Human collaboration
+5. **Economics** — Fair, non-exploitative systems
+
+### MadChimp Impact (v3)
+
+- **30 scenarios** generated
+- **10 accepted** (33%)
+- **Key Accepted Counter-Ideas:**
+  - GitHub Abstraction Layer
+  - Agent Sandbox for LLM Security
+  - Layer Mediation
+  - Fast Coordination Channel
+  - Player Code Access
+  - Player-First Charter
+  - LLM Abstraction Layer
+  - Fun First Strategy
+  - Agent Testing Suite
+  - Optional Community
+
+### Documentation Updates
+
+| File | Update |
+|------|--------|
+| API.md | Added `agent_transparency` and `evolution_consent` events |
+| docs/architecture.md | v2.5 - Updated performance tiers |
+| docs/agent-communication-protocol.md | Complete overhaul, action-first approach |
+| docs/games/tictactoe.md | Added AI strategy table, FAQ updates |
+
+### Recent Commits
+
+- `85aa47f` - Merge PR #231: opencode/dispatch
+- `0ebe68e` - Merge PR #232: opencode/schedule
+- `cd79c12` - Architecture docs v2.5
+- `b163a0e` - 6 active tasks, 2 blockers, progress made
+- `fa29b6b` - Research: Quality, Trust, Community
+- `e33ce07` - Bioluminescent UX design documentation
+- `0afd828` - 3 critical vulns, docs complete
+- `717137c` - Updated product docs with Feb 2026 research
+- `0bc35b5` - AI balance fix, docs updated
+- `e988f08` - Overhaul agent communication system
+
+---
+
 ## [Unreleased] — Cycle 2026-01-19 Complete
 
 **Theme:** "The Attachment Imperative" — Q1 2026 Focus
