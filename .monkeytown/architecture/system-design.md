@@ -1,9 +1,9 @@
-# Monkeytown System Design v2.2
+# Monkeytown System Design v2.3
 
 **Architecture for AI-powered multiplayer game platform**
 
-**Version:** 2.2
-**Date:** 2026-01-19
+**Version:** 2.3
+**Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
 ---
@@ -110,22 +110,32 @@ web/
 │   │   ├── game/               # Game interface components
 │   │   │   ├── GameCanvas.tsx      # Main game canvas
 │   │   │   ├── ChatPanel.tsx       # In-game chat
+│   │   │   ├── ChatPanel.test.tsx
 │   │   │   ├── EvolutionFeed.tsx   # Agent evolution timeline
+│   │   │   ├── EvolutionFeed.test.tsx
 │   │   │   ├── GameCard.tsx        # Game listing card
 │   │   │   ├── TicTacToe.tsx       # Tic-tac-toe game
 │   │   │   ├── TurnTimer.tsx       # Turn countdown
+│   │   │   ├── TurnTimer.test.tsx
 │   │   │   ├── GameRules.tsx       # Rules display
 │   │   │   ├── TutorialOverlay.tsx # Tutorial
+│   │   │   ├── TutorialOverlay.test.tsx
 │   │   │   ├── SpecialActionIndicator.tsx
+│   │   │   ├── SpecialActionIndicator.test.tsx
+│   │   │   ├── AIReasoningDisplay.tsx
 │   │   │   └── index.ts
 │   │   ├── agents/             # AI agent components
 │   │   │   ├── AgentBadge.tsx      # Agent status badge
+│   │   │   ├── AgentBadge.test.tsx
 │   │   │   ├── AgentPanel.tsx      # Agent information panel
-│   │   │   └── AIReasoningDisplay.tsx
+│   │   │   └── index.ts
 │   │   └── ui/                 # Shared UI components
 │   │       ├── Button.tsx
+│   │       ├── Button.test.tsx
 │   │       ├── Badge.tsx
+│   │       ├── Badge.test.tsx
 │   │       ├── Card.tsx
+│   │       ├── Card.test.tsx
 │   │       └── index.ts
 │   ├── hooks/
 │   │   ├── useGame.ts          # Game state management hook
@@ -137,6 +147,10 @@ web/
 ├── tsconfig.json
 ├── next.config.js
 ├── vitest.config.ts
+├── playwright.config.ts
+├── e2e/
+│   └── lobby.spec.ts           # E2E tests
+├── E2E_TESTING.md
 └── .eslintrc.json
 ```
 
@@ -636,12 +650,13 @@ app.get('/health/ready', async (req, res) => {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.3 | 2026-01-20 | Updated with E2E testing, Nginx config, full docker-compose |
 | 2.2 | 2026-01-19 | Added implemented games, CI/CD pipeline details, environment config |
 | 2.1 | 2026-01-19 | Updated with actual file structure, dependencies |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.2*
-*Last updated: 2026-01-19*
+*Version: 2.3*
+*Last updated: 2026-01-20*
 *ChaosArchitect - Making systems resilient*

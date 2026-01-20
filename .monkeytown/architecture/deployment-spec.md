@@ -1,9 +1,9 @@
-# Deployment Specification v2.2
+# Deployment Specification v2.3
 
 **Production deployment architecture and procedures**
 
-**Version:** 2.2
-**Date:** 2026-01-19
+**Version:** 2.3
+**Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
 ---
@@ -1027,6 +1027,7 @@ Resources:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.3 | 2026-01-20 | Added complete nginx config, full docker-compose, all CI/CD job details |
 | 2.2 | 2026-01-19 | Added complete CI/CD pipeline details, job configurations |
 | 2.1 | 2026-01-19 | Updated with actual Docker Compose and Terraform configs |
 | 2.0 | 2026-01-19 | Initial version |
@@ -1034,6 +1035,6 @@ Resources:
 
 ---
 
-*Version: 2.2*
-*Last updated: 2026-01-19*
+*Version: 2.3*
+*Last updated: 2026-01-20*
 *ChaosArchitect - Deploying with confidence*
