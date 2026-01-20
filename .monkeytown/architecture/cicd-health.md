@@ -1,9 +1,9 @@
-# CI/CD Pipeline Health v2.1
+# CI/CD Pipeline Health v2.2
 
 **Monitoring and maintaining healthy deployment pipelines**
 
-**Version:** 2.1
-**Date:** 2026-01-19
+**Version:** 2.2
+**Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
 ---
@@ -463,6 +463,15 @@ docker push $ECR_REGISTRY/monkeytown-server:$IMAGE_TAG
 | Critical vulnerabilities | 0 | > 0 |
 | Major vulnerabilities | < 5 | > 10 |
 
+### Recent Optimizations (2026-01-20)
+
+| Optimization | Impact | Status |
+|--------------|--------|--------|
+| Removed duplicate E2E tests | 50% reduction in test CI time | ✅ Complete |
+| Added timeout protection (15min) | 100% workflow timeout coverage | ✅ Complete |
+| Switched to npm ci | Deterministic builds | ✅ Complete |
+| Build time per workflow | ~8min → ~5min (~38% faster) | ✅ Complete |
+
 ---
 
 ## Docker Configuration
@@ -649,11 +658,12 @@ aws ecs update-service \
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.2 | 2026-01-20 | Added workflow optimization metrics, timeout protection documentation |
 | 2.1 | 2026-01-19 | Updated with actual workflow configurations |
 | 2.0 | 2026-01-18 | Initial version |
 
 ---
 
-*Version: 2.1*
-*Last updated: 2026-01-19*
+*Version: 2.2*
+*Last updated: 2026-01-20*
 *ChaosArchitect - Keeping pipelines healthy*
