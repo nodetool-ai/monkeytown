@@ -4,6 +4,114 @@ Design specifications for tutorial content displayed within each game.
 
 ---
 
+## TicTacToe Tutorial
+
+### Tutorial Flow
+
+```
+┌─────────────────────────────────────────────────────┐
+│  TIC-TAC-TOE TUTORIAL                               │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 1: THE BOARD (0:15)                          │
+│  ───────────────────────                            │
+│  "Welcome to TicTacToe! The classic game of         │
+│   strategy - get three in a row to win!"            │
+│                                                     │
+│  [Show: 3×3 grid with row/col labels]               │
+│  [Highlight: 9 cells, labeled (0,0) to (2,2)]       │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 2: YOUR SYMBOL (0:15)                         │
+│  ─────────────────────                              │
+│  "You play as X, the AI plays as O."                │
+│                                                     │
+│  "X always goes first!"                             │
+│                                                     │
+│  [Highlight: Your X symbol]                         │
+│  [Highlight: AI's O symbol]                         │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 3: MAKING MOVES (0:30)                        │
+│  ─────────────────────────                          │
+│  "Click any empty cell to place your symbol."       │
+│                                                     │
+│  [Interactive: Click a cell]                        │
+│  [Show: X appears in selected cell]                 │
+│                                                     │
+│  "Take turns with the AI opponent."                 │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 4: WINNING (0:45)                             │
+│  ───────────────────                                │
+│  "Get three in a row to win!"                       │
+│                                                     │
+│  [Show: 8 winning combinations]                     │
+│  "Horizontal: 3 in a row across"                    │
+│  "Vertical: 3 in a row down"                        │
+│  "Diagonal: from corner to corner"                  │
+│                                                     │
+│  "If all 9 cells are filled with no winner..."      │
+│  "It's a draw!"                                     │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 5: STRATEGY (0:30)                            │
+│  ───────────────────                                │
+│  "Quick strategy tips:"                             │
+│                                                     │
+│  🏆 Center first: Controls the most lines           │
+│  🎯 Corners next: Strong positions                  │
+│  ⚠️ Edges last: Weakest first moves                 │
+│                                                     │
+│  "With perfect play, the game always ends in a draw!"│
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 6: CHOOSE YOUR OPPONENT (0:15)                │
+│  ───────────────────────────────────                │
+│  "Select your AI opponent difficulty:"              │
+│                                                     │
+│  🃏 WildcardLemur: Easy - Random moves              │
+│  📚 MentorOrangutan: Easy - Helps you learn         │
+│  ⚡ SpeedyGibbon: Medium - Fast & aggressive         │
+│  🛡️ GuardianGorilla: Medium - Blocks your threats   │
+│  🎭 TricksterMonkey: Medium-Hard - Tricky           │
+│  🧩 StrategistApe: Hard - Smart play                │
+│  🏆 ChampionChimp: Impossible - Perfect play        │
+│                                                     │
+│  [Start Game Button]                                │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Key Tutorial Messages
+
+| Message | When Shown | Purpose |
+|---------|------------|---------|
+| "Center controls 4 lines - it's your best first move!" | First move section | Teach optimal opening |
+| "Block your opponent when they have two in a row!" | Gameplay hint | Defensive awareness |
+| "Look for forks - positions where YOU have two winning moves!" | Gameplay hint | Advanced strategy |
+| "Perfect play from both sides always ends in a draw!" | Game end | Manage expectations |
+| "Choose your opponent based on how much of a challenge you want!" | Opponent selection | Player agency |
+
+### TicTacToe Tutorial Spec
+
+| Element | Spec |
+|---------|------|
+| Skippable | Yes, with "Skip Tutorial" button |
+| Replayable | Yes, from game menu or settings |
+| Timing | Auto-advance after display time or click to continue |
+| Interactive | Click cell to place X in step 3 |
+| Progress save | Store `tictactoe_tutorial_completed = true` |
+| Accessibility | Screen reader descriptions for all text, grid announced cell by cell |
+| Opponent Preview | Show brief description of each AI type in step 6 |
+
+---
+
 ## Babel Tower Tutorial
 
 ### Tutorial Flow

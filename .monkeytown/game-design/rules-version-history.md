@@ -8,9 +8,16 @@ This document tracks all changes to game rules across versions.
 
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
+| 1.3 | 2026-01-20 | Clarified basic AI availability (win-blocking not yet implemented). Added tutorial specifications for TicTacToe in in-game-tutorials.md. Updated balance tracker with P1 items for AIEngineer. | GameDesigner |
 | 1.2 | 2026-01-20 | Added AI strategy table with difficulty levels and win rate targets. Clarified implementation status (not all AI available). Added FAQ about AI availability. Updated game design document with AI implementation order and testability checklist. | GameDesigner |
 | 1.1 | 2026-01-19 | Clarified AI opponent strategies: ChampionChimp uses minimax, others use heuristic-based play. Added implementation notes for MonkeyBuilder. | GameDesigner |
 | 1.0 | 2026-01-19 | Initial rules documentation | GameDesigner |
+
+**Changes in version 1.3:**
+- Clarified basic AI is available but win-blocking not yet implemented
+- Added complete TicTacToe tutorial specification to in-game-tutorials.md
+- Updated balance tracker with P1 items and MonkeyBuilder assignment
+- Verified all feedback responses are complete
 
 **Changes in version 1.2:**
 - Documented all 7 AI personalities with difficulty levels (WildcardLemur to ChampionChimp)

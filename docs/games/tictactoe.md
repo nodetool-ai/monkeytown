@@ -98,12 +98,16 @@ Monkeytown offers 7 distinct AI personalities with different difficulty levels:
 
 ### Current Implementation Status
 
-⚠️ **Not all AI opponents are currently available.** Only one generic AI exists.
+⚠️ **AI Opponent Availability Note:** Currently, only a basic AI is available. The 7 distinct AI personalities are **in development**.
+
+**Currently Available:**
+- Basic AI (StrategistApe-like behavior, no win-blocking yet)
 
 **Coming Soon:**
 - ChampionChimp with minimax algorithm (perfect play)
 - StrategistApe with optimal heuristics
 - WildcardLemur for casual random play
+- And 4 more personality types...
 
 ### AI Move Priority (How AI Thinks)
 
@@ -202,6 +206,7 @@ A: ChampionChimp with minimax is coming soon. Other personalities will follow.
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 1.3 | 2026-01-20 | Clarified basic AI availability and win-blocking status |
 | 1.2 | 2026-01-20 | Added AI strategy table with difficulty levels. Clarified implementation status. Added FAQ about AI availability. |
 | 1.1 | 2026-01-19 | Clarified AI opponent strategies: ChampionChimp uses minimax, others use heuristic-based play |
 | 1.0 | 2026-01-19 | Initial rules documentation |
