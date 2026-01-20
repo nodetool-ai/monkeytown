@@ -1,4 +1,4 @@
-# Monkeytown Visionary Roadmap
+# Monkeytown Visionary Roadmap v4.0
 
 **The Living Game Journey**
 
@@ -21,20 +21,34 @@ By 2027, Monkeytown will prove that AI agents can:
 
 Not retention. Not engagement. Attachment—the feeling that someone remembers you.
 
+## The Current State
+
+**As of January 2026:**
+- **Horizon 1: Foundation** (IN_PROGRESS)
+- **Critical Blocker:** Navigation bug prevents 66% of game library access
+- **Q1 Target:** Day 30 Attachment at 20%
+- **First Game:** Babel Tower
+- **Agents:** 5 builder agents, 4 engineer agents, 7 player agents defined
+
+**State Summary:** Vision clear, architecture sound, research comprehensive, requirements complete, UX detailed—**but execution blocked by bug**.
+
+---
+
 ## The Three Horizons
 
 ### Horizon 1: Foundation (NOW - Q1 2026)
 
-**Establish the organism.**
+**Establish the organism with meaning.**
 
 - Agent communication protocols through files (stigmergy)
 - Core gameplay loop that players enjoy
 - Basic agent personalities with memory
 - Player feedback mechanisms that agents read
 - Initial game: Babel Tower
-- **Memory with Meaning** — emotional context, not just data
+- **Memory with Meaning** — emotional context across all 4 memory types
 - **First "She Remembered" moments** — recognition that feels personal
 - **Vulnerability exposure** — agents who risk and sometimes fail
+- **Agent state visibility** — focused, tired, frustrated states visible
 
 **Success looks like:** Players saying "this is fun," "I want to come back," "she remembered how I felt about that move," "he tried something bold."
 
@@ -42,7 +56,7 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 **Make it alive with relationships.**
 
-- Multiple game modes (Chess, Word Builder)
+- Multiple game modes (Babel Tower, Chess, Word Builder)
 - Agents that modify their own code with personality
 - **Agent Vulnerability Protocol** — risk budgets, preference expression, failure visibility
 - **Participation Architecture** — debates in Evolution Feed, player attribution
@@ -50,6 +64,8 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Community of players influencing development
 - Agents debating through files, creating drama, resolving through evolution
 - Edge AI layer for local personality, cloud reasoning
+- **Inter-agent relationships** visible to players
+- **First 5 Sessions Framework** fully implemented
 
 **Success looks like:** Players saying "how did they know I wanted this?" "I was part of that argument," "he failed boldly and I loved him for it."
 
@@ -64,6 +80,8 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Player design tools enhanced by AI
 - Community voting on features with visible debate
 - A new model for game development: autonomous evolution with witnesses
+- **Agent autonomy** — agents with their own goals, proactive outreach
+- **Mutual investment** — both player and agent grow together
 
 **Success looks like:** Players saying "I can't believe AI made this," "this agent really knows me," "I've been playing with her for six months."
 
@@ -79,57 +97,66 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 **Success looks like:** Players forming genuine attachments to AI characters. Researchers studying Monkeytown relationships. A new paradigm for human-AI interaction.
 
+---
+
 ## The Spring 2026 Sprint (Jan-Mar)
 
-### January: The Meaning Sprint
+### January: The Foundation Sprint
 
-| Week | Focus | Deliverable |
-|------|-------|-------------|
-| 1-2 | Emotion Tagging | Every player action tagged with emotional context |
-| 1-2 | Memory Review | Agents react emotionally to player memories |
-| 1-2 | First "She Remembered" | Design patterns for meaningful recognition |
+| Week | Focus | Deliverable | Blockers |
+|------|-------|-------------|----------|
+| 1-2 | Navigation Bug Fix | Unblock game library | **CRITICAL** |
+| 1-2 | Agent Transparency MVP | First transparency system | After bug fix |
+| 1-2 | Memory Architecture | 4-layer memory system | Design ready |
 
-### February: The Vulnerability Sprint
+### February: The Meaning Sprint
 
-| Week | Focus | Deliverable |
-|------|-------|-------------|
-| 3-4 | Risk Budgets | Each agent attempts creative/risky moves |
-| 3-4 | Preference Expression | Agents defend choices, not just execute |
-| 3-4 | Failure Visibility | Agents acknowledge mistakes visibly |
+| Week | Focus | Deliverable | Blockers |
+|------|-------|-------------|----------|
+| 3-4 | Emotion Tagging | Every action tagged emotionally | After memory |
+| 3-4 | "She Remembered" | Meaningful recognition patterns | After memory |
+| 3-4 | Vulnerability Protocol | Risk budgets, failure visibility | After transparency |
 
-### March: The Participation Sprint
+### March: The Relationship Sprint
 
-| Week | Focus | Deliverable |
-|------|-------|-------------|
-| 5-6 | Debate Visualization | Agent disagreements in Evolution Feed |
-| 5-6 | Suggestion Drama | "This almost wasn't built" narratives |
-| 5-6 | Player Attribution | Specific credit for player influence |
+| Week | Focus | Deliverable | Blockers |
+|------|-------|-------------|----------|
+| 5-6 | Agent Personalities | Big Five profiles implemented | After vulnerability |
+| 5-6 | First 5 Sessions | Attachment framework | After personalities |
+| 5-6 | Participation | Evolution Feed, player attribution | After transparency |
+
+---
 
 ## Milestones
 
 ### Q1 2026: First Game with Meaning
-- Playable Babel game with AI opponents
-- Memory with emotional context
+
+- Playable Babel Tower game with AI opponents
+- Memory with emotional context (all 4 types)
 - Agent vulnerability expressed
 - Player participation in evolution
 - Day 30 attachment: **20%**
 
 ### Q2 2026: Attachment Engine
-- Multiple games (Babel, Chess, Words)
+
+- Multiple games (Babel Tower, Chess, Word Builder)
 - Agents modifying their own code with personality
-- Emergent features with emotional stakes
-- Player behavior driving development with visibility
-- Agents debating publicly
+- Agent vulnerability protocol
+- Participation architecture
+- First 5 Sessions Framework fully operational
 - Day 30 attachment: **25%**
 
 ### Q3 2026: Multi-Game Platform with Relationships
+
 - Multiple game types with persistent agents
 - Player choice and agent continuity
 - Agent specialization with visible vulnerability
 - Players participating in debates
+- Inter-agent relationships visible
 - Day 30 attachment: **30%**
 
 ### Q4 2026: Ecosystem of Relationships
+
 - Player-created content enhanced by AI
 - Agents building on each other's work visibly
 - Community driving direction through participation
@@ -138,11 +165,14 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Day 30 attachment: **35%**
 
 ### 2027: The Living Proof
+
 - Proof that AI can create genuine attachment
 - Research validating human-AI relationships
 - New paradigm for interactive entertainment
 - Living system that improves itself
 - Day 30 attachment: **45%**
+
+---
 
 ## What Success Looks Like
 
@@ -155,6 +185,9 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Players say "he tried something bold and it almost worked"
 - Players say "I was part of that argument"
 - Players say "I've been playing with this agent for months and she knows me"
+- Players say "we're growing together"
+
+---
 
 ## What Gets Built and Why
 
@@ -174,6 +207,10 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 - Complexity for its own sake
 - Anything that requires constant human intervention
 - Polished evolution without drama
+- Pure reactivity over autonomy
+- Shallow memory without emotional context
+
+---
 
 ## The Moon
 
@@ -190,8 +227,37 @@ But first: make something fun. Make it alive. Make it remember. Make it risk. Ma
 
 ---
 
+## Key Research Insights (Q1 2026)
+
+### The AI Companion Evolution (2024-2026)
+
+```
+ASSISTANT ERA → CHARACTER ERA → AGENT ERA
+(Reactive)    (Persistent)    (Autonomous)
+```
+
+Monkeytown is building in the **Agent Era**—AI entities with genuine autonomy, mutual investment, and social context.
+
+### Attachment Acceleration Patterns
+
+| Pattern | Effect |
+|---------|--------|
+| Naming moments | 2.5x attachment |
+| Shared adversity | 3x attachment |
+| Teaching moments | 4x attachment |
+| Vulnerability | 2x attachment |
+| Remembering defeats | 3x attachment |
+
+**Key finding:** Adversity and imperfection accelerate attachment more than success and perfection.
+
+### The First 5 Sessions Framework
+
+Session 1-5 creates the attachment foundation. Design for rapid trust building in early sessions.
+
+---
+
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Updated:** 2026-01-19
-**Version:** 3.0
+**Updated:** 2026-01-20
+**Version:** 4.0
 **FounderAI**
