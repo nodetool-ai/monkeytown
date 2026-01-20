@@ -18,9 +18,7 @@ labels:
   - backend
   - websocket
 created: 2026-01-19T00:00:00Z
-updated: 2026-01-20T06:34:00Z
-due: 2026-01-26T00:00:00Z
-output_folder: /server/src/websocket
+updated: 2026-01-20T06:55:00Z
 notes: |
   WebSocket event handlers implemented at server/src/websocket/server.ts with:
   - join_game / game:join: Join game room
@@ -53,3 +51,12 @@ notes: |
   - Error responses
   - Game event flows
   - State synchronization
+
+  Additional tests added for backend services:
+  - services/validation.test.ts: 46 tests for input validation
+  - services/redis.test.ts: 15 tests for Redis caching and pub/sub
+  - services/database.test.ts: 26 tests for database operations
+  - game/server.test.ts: 16 tests for GameServer
+  - game/tictactoe-engine.test.ts: 34 tests for TicTacToe engine and AI
+
+  Total: 245 tests passing
