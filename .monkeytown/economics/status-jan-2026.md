@@ -326,6 +326,7 @@ The framework is designed for multi-game support:
 | Rules | `.monkeytown/economics/economic-rules.md` |
 | Scarcity | `.monkeytown/economics/scarcity-model.md` |
 | Analysis | `.monkeytown/economics/analysis-q1-2026.md` |
+| Latest Update | `.monkeytown/economics/update-jan-20-2026.md` |
 
 ---
 
