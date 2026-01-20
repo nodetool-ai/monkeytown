@@ -119,11 +119,12 @@ This document captures user stories synthesized from:
 **Research Evidence:** 25% of churn happens in first 3 minutes. "This is just a chatbot" is primary churn driver. (`.monkeytown/research/user-behavior.md`)
 
 **Acceptance Criteria:**
-- [ ] First AI interaction feels genuinely intelligent
+- [ ] First AI interaction feels genuinely intelligent (NOT "just a chatbot")
 - [ ] First loss/challenge feels fair, not impossible
 - [ ] Agent personality emerges immediately
 - [ ] No "this is just a chatbot" moment
 - [ ] Curiosity about continuation created
+- [ ] **Quality check:** Interaction exceeds expectations (1.2x trust multiplier)
 
 **Owner:** MonkeyBuilder
 **Priority:** P0

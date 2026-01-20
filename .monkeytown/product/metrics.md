@@ -195,6 +195,25 @@ The uncomfortable truth: Day 30 attachment is at 15%. This is not enough. We nee
 | Transition duration | ≤ 300 ms | Performance monitoring |
 | WebSocket latency | < 100 ms | Network monitoring |
 
+### NEW: Quality Metrics (January 2026 - Critical)
+
+| Metric | Target | Source | Measurement |
+|--------|--------|--------|-------------|
+| Quality rating (1-5) | 4.0+ | Jan 2026 Research | User survey |
+| Quality consistency | 90% | Jan 2026 Research | Session analysis |
+| Quality perception | >85% positive | Jan 2026 Research | User survey |
+| Quality multiplier (avg) | 1.0x+ | Jan 2026 Research | Trust tracking |
+| AI slop incidents | 0 | Jan 2026 Research | Code review |
+
+### Quality Multiplier Warning Levels
+
+| Quality Level | Multiplier | Alert Threshold |
+|---------------|------------|-----------------|
+| High (exceeds) | 1.2x | Celebrate |
+| Average (meets) | 1.0x | Monitor |
+| Low (below) | 0.6x | YELLOW ALERT |
+| AI slop | 0.3x | RED ALERT - Immediate action |
+
 ### Reliability (NFR-003)
 
 | Metric | Target | Measurement |
@@ -269,6 +288,55 @@ The uncomfortable truth: Day 30 attachment is at 15%. This is not enough. We nee
 │  Day 1 Retention: [60%] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
 │  Day 7 Retention: [30%] ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
 │                                                                      │
+│  NEW: QUALITY METRICS (Critical)                                    │
+│  Quality Rating: [4.0/5] ✓  Quality Consistency: [90%] ✓            │
+│  Quality Perception: [85% positive] ✓                               │
+│                                                                      │
+│  SESSION HEALTH                                                    │
+│  Avg Session: [15m] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│  Sessions/Week: [3]  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│                                                                      │
+│  AI TRANSPARENCY                                                   │
+│  Agent Awareness: [80%] ████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│  Feedback Rate: [5%]  ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│                                                                      │
+│  EVOLUTION                                                         │
+│  Features This Month: [10] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│  Feature Adoption: [70%] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+### Product Deep Dive (Weekly)
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  USER STORIES PROGRESS                                              │
+│  P0 Complete: [5/5]  ████████████████████████████████████████████  │
+│  P1 Complete: [3/5]  ██████████████████████░░░░░░░░░░░░░░░░░░░░░░░  │
+│  P2 Complete: [1/5]  ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
+│                                                                      │
+│  NEW: QUALITY DEEP DIVE                                             │
+│  Quality Rating: [4.0/5]  Quality Consistency: [90%]                │
+│  AI Slop Incidents: [0] ✓  Quality Multiplier: [1.0x]               │
+│                                                                      │
+│  FUNNEL CONVERSION                                                  │
+│  Landing → Jump In: [70%] → First Session: [80%] → Day 1: [60%]     │
+│                                                                      │
+│  AI PERFORMANCE                                                     │
+│  Win Rate: [65%] ████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │
+│  Decision Time: [1.2s] ✓                                            │
+│  Explainability: [72%] ✓                                            │
+│                                                                      │
+│  TECHNICAL                                                          │
+│  Uptime: [99.9%] ✓    Load: [1.8s] ✓    Latency: [45ms] ✓           │
+│  Quality Check: [PASS] ✓                                            │
+└─────────────────────────────────────────────────────────────────────┘
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  NORTH STAR                                                        │
+│  Day 1 Retention: [60%] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│  Day 7 Retention: [30%] ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
+│                                                                      │
 │  SESSION HEALTH                                                    │
 │  Avg Session: [15m] ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
 │  Sessions/Week: [3]  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │
@@ -319,6 +387,9 @@ The uncomfortable truth: Day 30 attachment is at 15%. This is not enough. We nee
 | AI win rate | < 50% or > 80% | Balance adjustment |
 | Agent memory failure | Any | Critical bug |
 | Local inference crash | > 1% | Architecture review |
+| **Quality Rating** | **< 3.5** | **URGENT: Quality review** |
+| **Quality Multiplier** | **< 0.8** | **URGENT: Remove low-quality features** |
+| **AI Slop Incidents** | **> 0** | **IMMEDIATE: Remove "AI slop" features** |
 
 ### Yellow Alerts (Review This Week)
 
@@ -330,6 +401,9 @@ The uncomfortable truth: Day 30 attachment is at 15%. This is not enough. We nee
 | Feature adoption | < 50% | Communication review |
 | Return to specific agent | < 30% | Attachment review |
 | Local inference usage | < 60% | UX review |
+| **Quality Rating** | **3.5-3.9** | **Identify improvements** |
+| **Quality Consistency** | **< 85%** | **Quality audit** |
+| **Quality Perception** | **< 80% positive** | **User research** |
 
 ---
 

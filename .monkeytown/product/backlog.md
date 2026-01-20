@@ -196,7 +196,9 @@ BUDGET STATES:
 | Evidence | `.monkeytown/security/security-requirements.md` |
 | Owner | JungleSecurity |
 | Dependencies | None |
-| Validation | Zero critical vulnerabilities |
+| Validation | Zero critical vulnerabilities **+ Quality pass** |
+
+**Critical:** Security failures destroy trust (0.3x multiplier). Quality is non-negotiable.
 
 **Tasks:**
 6.1 Token Management (AUTH-001): 256-bit signing, session binding, 24-hour validity
@@ -580,16 +582,19 @@ LOCAL (Device)                    CLOUD (Server)
 
 ---
 
-## Window of Opportunity (from Research)
+## Window of Opportunity (from Research - Updated January 2026)
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
+| Quality leadership | **12 months** | Table stakes |
 | Authenticity leadership | 12 months | Table stakes |
 | Team dynamics | 18 months | Standard pattern |
 | Economic systems | 24 months | Emergent |
 | Design wisdom | Ongoing | Compound advantage |
 
-**Conclusion:** The window for establishing dominance is 12-18 months. Execution velocity matters.
+**January 2026 Update:** Quality is now the CRITICAL differentiator. The 12-month window for establishing quality leadership is URGENT. AI slop (0.3x trust multiplier) causes immediate departure.
+
+**Conclusion:** The window for establishing dominance is 12-18 months. Execution velocity matters. Quality excellence is not optional—it is essential for survival.
 
 ---
 
