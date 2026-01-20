@@ -1,16 +1,16 @@
-# Visual Language - Extended Exploration
+# Visual Language
 
 ## The Art of Monkeytown
 
-**This document extends the visual language with new explorations, pushing the aesthetics while honoring the established design philosophy. Every choice serves the player experience.**
+**This document defines the complete visual language of Monkeytown—the colors, typography, icons, motion, and spatial systems that create a coherent, beautiful, living interface.**
 
 ---
 
 ## The Bioluminescent Color System
 
-### Core Concept
+### Core Philosophy
 
-Building on the Living Forest concept, colors should feel like they're emitting light from within—the interface glows rather than reflects.
+Colors in Monkeytown don't merely illuminate—they emit. The interface glows from within, like deep-sea bioluminescence. Each color has warmth, depth, and intention. Nothing is flat, nothing is mechanical. Everything feels alive.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -48,9 +48,31 @@ Building on the Living Forest concept, colors should feel like they're emitting 
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Bioluminescent Palette
+### Primary Palette
 
-The key innovation: colors should feel like they're glowing from within.
+| Token | Color | HEX | RGB | Usage |
+|-------|-------|-----|-----|-------|
+| `--color-primary` | Tangerine | #FF6B35 | 255, 107, 53 | Primary actions, CTAs, celebrations |
+| `--color-success` | Teal | #2EC4B6 | 46, 196, 182 | Progress, growth, achievements |
+| `--color-warning` | Gold | #FFD166 | 255, 209, 102 | Warnings, pending states, highlights |
+| `--color-error` | Coral | #FF206E | 255, 32, 110 | Errors, failures, critical issues |
+| `--color-info` | Cyan | #4CC9F0 | 76, 201, 240 | Information, system status |
+
+### Neutral Palette
+
+| Token | Color | HEX | RGB | Usage |
+|-------|-------|-----|-----|-------|
+| `--color-bg-primary` | Deep Space | #1A1A2E | 26, 26, 46 | Main background |
+| `--color-bg-surface` | Surface | #242438 | 36, 36, 56 | Cards, panels, containers |
+| `--color-bg-elevated` | Elevated | #2A2A42 | 42, 42, 66 | Hovered surfaces, active states |
+| `--color-bg-floating` | Floating | #303050 | 48, 48, 80 | Modals, popups, overlays |
+| `--color-border-subtle` | Subtle | #404060 | 64, 64, 96 | Hairlines, dividers |
+| `--color-border-default` | Default | #5A5A7A | 90, 90, 122 | Interactive boundaries |
+| `--color-text-primary` | Ghost White | #EAEAEA | 234, 234, 234 | Primary text |
+| `--color-text-secondary` | Silver | #A0A0B0 | 160, 160, 176 | Secondary text |
+| `--color-text-tertiary` | Slate | #707080 | 112, 112, 128 | Tertiary text, captions |
+
+### Bioluminescent Agent Colors
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -93,23 +115,35 @@ The key innovation: colors should feel like they're glowing from within.
 │       Pulse: 400-600ms deliberate                                           │
 │       Use for: Vision moments, milestones, guidance                         │
 │                                                                              │
+│  GameDesigner  #FF6B35                                                       │
+│       Tangerine glow, like game pieces                                      │
+│       Effect: Playful, strategic, engaging                                  │
+│       Pulse: 1000ms playful bounce                                          │
+│       Use for: Game elements, rules, mechanics                              │
+│                                                                              │
+│  GameTester  #06D6A0                                                         │
+│       Emerald glow, like verified checkmarks                                │
+│       Effect: Precise, thorough, reliable                                   │
+│       Pulse: 1500ms steady validation                                       │
+│       Use for: Test results, quality indicators                             │
+│                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Bioluminescent Effect Implementation
+### Glow Effects Implementation
 
 ```css
-/* Base glow effect */
+/* Bioluminescent surface glow */
 .bioluminescent {
-  background: var(--glow-color);
+  background: var(--glow-color, var(--color-primary));
   box-shadow: 
-    0 0 20px var(--glow-color),
-    0 0 40px var(--glow-color),
+    0 0 20px var(--glow-color, var(--color-primary)),
+    0 0 40px var(--glow-color, var(--color-primary)),
     inset 0 0 20px rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-lg);
 }
 
-/* Pulse animation */
+/* Bioluminescent pulse animation */
 @keyframes bioluminescent-pulse {
   0%, 100% {
     box-shadow: 
@@ -125,32 +159,48 @@ The key innovation: colors should feel like they're glowing from within.
   }
 }
 
-/* Organic wave for PrimateDesigner */
-@keyframes organic-wave {
-  0%, 100% {
-    box-shadow: 
-      0 0 15px var(--glow-color),
-      0 0 30px var(--glow-color),
-      0 0 45px var(--glow-color);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 
-      0 0 25px var(--glow-color),
-      0 0 50px var(--glow-color),
-      0 0 75px var(--glow-color);
-    transform: scale(1.02);
-  }
+/* Bioluminescent text */
+.text-bioluminescent {
+  color: var(--glow-color);
+  text-shadow: 
+    0 0 10px var(--glow-color),
+    0 0 20px var(--glow-color);
+}
+
+/* Ambient surface texture */
+.surface-bioluminescent {
+  background: var(--color-bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.surface-bioluminescent::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(255, 255, 255, 0.03) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(255, 255, 255, 0.02) 0%,
+      transparent 50%
+    );
+  pointer-events: none;
 }
 ```
 
 ---
 
-## Typography Exploration
+## Typography System
 
 ### Font Philosophy
 
-Typography should feel like handwriting from intelligent entities—not sterile, not chaotic, but purposeful.
+Typography should feel like handwriting from intelligent entities—not sterile, not chaotic, but purposeful and warm. Each font has personality, and type choices reinforce the living, organic nature of the interface.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -176,59 +226,55 @@ Typography should feel like handwriting from intelligent entities—not sterile,
 │       Use: Numbers, code, agent thinking                                    │
 │       Feel: Precise, technical, data-focused                                │
 │                                                                              │
-│  NEW: Handwriting font for agent voices                                     │
+│  Agent Voice:  Handwriting font (to be selected)                            │
 │       Use: Personal messages, greetings, celebrations                       │
 │       Feel: Individual, warm, personal                                      │
 │                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Type Scale with Glow Effects
+### Type Scale
 
-```css
-:root {
-  /* Type scale */
-  --text-display: 4rem;      /* 64px - Celebrations, achievements */
-  --text-h1: 2.5rem;         /* 40px - Major sections */
-  --text-h2: 2rem;           /* 32px - Section headers */
-  --text-h3: 1.5rem;         /* 24px - Subsection headers */
-  --text-body-large: 1.125rem; /* 18px - Important body text */
-  --text-body: 1rem;         /* 16px - Standard body */
-  --text-caption: 0.875rem;  /* 14px - Meta information */
-  --text-micro: 0.75rem;     /* 12px - Technical details */
+| Token | Size | Line Height | Weight | Usage |
+|-------|------|-------------|--------|-------|
+| `--text-display` | 4rem / 64px | 1.1 | 700 | Celebrations, achievements |
+| `--text-h1` | 2.5rem / 40px | 1.2 | 700 | Major sections |
+| `--text-h2` | 2rem / 32px | 1.3 | 600 | Section headers |
+| `--text-h3` | 1.5rem / 24px | 1.4 | 600 | Subsection headers |
+| `--text-h4` | 1.25rem / 20px | 1.4 | 500 | Minor headers |
+| `--text-body-large` | 1.125rem / 18px | 1.6 | 400 | Important body text |
+| `--text-body` | 1rem / 16px | 1.6 | 400 | Standard body |
+| `--text-caption` | 0.875rem / 14px | 1.5 | 400 | Meta information |
+| `--text-micro` | 0.75rem / 12px | 1.4 | 400 | Technical details |
+| `--text-code` | 0.875rem / 14px | 1.5 | 400 | Code snippets |
 
-  /* NEW: Bioluminescent text effect */
-  --text-glow: text-shadow: 
-    0 0 10px currentColor,
-    0 0 20px currentColor;
-  
-  /* NEW: Emphasis styles */
-  --text-emphasis-primary: color: var(--color-primary);
-  --text-emphasis-success: color: var(--color-success);
-  --text-emphasis-agent: color: var(--agent-color);
-}
-```
+### Typographic Voice by Context
 
-### Agent Voice Typography
+**Player-Facing**
+- Primary text: Inter, regular weight
+- Headings: Outfit, semi-bold
+- Celebrations: Space Grotesk, bold
+- Always warm, welcoming, clear
 
-Each agent has a distinct typographic voice:
+**Agent Communication**
+- System messages: Inter, regular
+- Personal messages: Agent handwriting style
+- Thinking display: JetBrains Mono, monospaced
+- Technical clarity meets personality
 
-| Agent | Font Style | Weight | Character |
-|-------|-----------|--------|-----------|
-| ChaosArchitect | JetBrains Mono | 500 | Technical, precise |
-| PrimateDesigner | Space Grotesk | 600 | Expressive, creative |
-| JungleSecurity | Inter | 600 | Serious, clear |
-| BananaEconomist | JetBrains Mono | 400 | Efficient, data-rich |
-| MadChimp | Outfit | 700 | Chaotic, loud |
-| FounderAI | Space Grotesk | 400 | Measured, wise |
+**Game Interface**
+- Game state: JetBrains Mono for numbers
+- Instructions: Outfit, clear
+- Achievements: Space Grotesk, celebratory
+- Fast scanning, instant comprehension
 
 ---
 
-## Iconography Exploration
+## Iconography System
 
-### The Neural Node Icon System
+### Neural Node Icon Philosophy
 
-Icons should feel like neural nodes—connected, pulsing, alive.
+Icons should feel like neural nodes—connected, pulsing, alive. Each icon is part of a larger network, suggesting the living intelligence behind every element.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -263,8 +309,26 @@ Icons should feel like neural nodes—connected, pulsing, alive.
 │       ○───○───○───○  Multiple nodes in sequence                            │
 │       ▓▓▓▓▓▓▓▓▓▓▓  Animated fill shows processing                         │
 │                                                                              │
+│  Achievement                                                                 │
+│       ✦───★───✦  Star with node connections                                │
+│       Glows when earned                                                     │
+│                                                                              │
+│  Gameplay                                                                    │
+│       🎮───♟️───🎯  Game icons with neural ring                             │
+│       Subtle pulse during active play                                       │
+│                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
+
+### Icon Sizes
+
+| Context | Size | Padding | Stroke Width |
+|---------|------|---------|--------------|
+| Small (micro) | 16px | 2px | 1.5px |
+| Default | 24px | 4px | 2px |
+| Large | 32px | 6px | 2px |
+| XL (hero) | 48px | 8px | 2.5px |
+| Display | 64px | 12px | 3px |
 
 ### Icon Animation Principles
 
@@ -272,31 +336,22 @@ Icons should feel like neural nodes—connected, pulsing, alive.
 - Hover: Subtle scale (1.0 → 1.1), glow increase
 - Click: Quick pulse, immediate feedback
 - Active: Continuous pulse at agent-specific rate
+- Loading: Rotating or pulsing indicator
 
-**State Changes**
+**State Visualizations**
 - Online: Steady glow
 - Away: Slow pulse (3000ms)
 - Busy: Fast pulse (500ms)
 - Offline: Dim, no glow
-
-**Agent Personality in Icons**
-
-| Agent | Icon Style | Animation |
-|-------|-----------|-----------|
-| ChaosArchitect | Geometric, precise | Mechanical, sudden |
-| PrimateDesigner | Organic, flowing | Soft, wave-like |
-| JungleSecurity | Shielded, firm | Cautious, measured |
-| BananaEconomist | Minimal, efficient | Quick, direct |
-| MadChimp | Chaotic, unexpected | Unpredictable |
-| FounderAI | Graceful, flowing | Deliberate, memorable |
+- Thinking: Chaotic node activation
 
 ---
 
-## Motion Design Exploration
+## Motion Design
 
-### The Living Motion Philosophy
+### Living Motion Philosophy
 
-Every animation should feel like a living organism—not mechanical, not random, but purposeful and organic.
+Every animation should feel like a living organism—not mechanical, not random, but purposeful and organic. Motion conveys state, personality, and intention.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -320,29 +375,42 @@ Every animation should feel like a living organism—not mechanical, not random,
 │     • Subtle ambient motion when idle                                        │
 │     • Active elements pulse with purpose                                    │
 │                                                                              │
+│  4. TIMING IS NATURAL                                                        │
+│     • Fast actions feel snappy                                               │
+│     • Important moments feel deliberate                                      │
+│     • Transitions feel organic                                               │
+│     • Celebrations feel joyful                                               │
+│                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Core Animation Curves
+### Duration System
+
+| Animation Type | Duration | Feel | Examples |
+|---------------|----------|------|----------|
+| Micro | 80ms | Instant | Hover, focus, click feedback |
+| Fast | 150ms | Responsive | State changes, small moves |
+| Normal | 200ms | Smooth | Standard transitions |
+| Slow | 300ms | Deliberate | Panel movements, reveals |
+| Celebration | 500ms | Joyful | Wins, achievements |
+| Page | 400ms | Flowing | Page transitions |
+| Breathing | 4000ms | Ambient | Idle states, pulses |
+| Epic | 800ms | Momentous | Major reveals, milestones |
+
+### Easing Curves
 
 ```css
 :root {
-  /* Duration system */
-  --duration-microscopic: 80ms;   /* Quick feedback */
-  --duration-fast: 150ms;         /* Hover effects */
-  --duration-normal: 200ms;       /* Standard transitions */
-  --duration-slow: 300ms;         /* Panel movements */
-  --duration-celebration: 500ms;  /* Wins and achievements */
-  --duration-page: 400ms;         /* Page transitions */
-  --duration-breathing: 4000ms;   /* Ambient pulse */
-
-  /* Easing curves */
+  /* Standard curves */
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Expressive curves */
   --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  --ease-organic: cubic-bezier(0.34, 1.56, 0.64, 1); /* NEW - soft bounce */
-  --ease-mechanical: cubic-bezier(0.8, 0, 0.2, 1);   /* NEW - precise stops */
+  --ease-organic: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-mechanical: cubic-bezier(0.8, 0, 0.2, 1);
+  --ease-gentle: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 ```
 
@@ -398,36 +466,56 @@ Every animation should feel like a living organism—not mechanical, not random,
   animation: security-scan 2000ms var(--ease-in-out) infinite;
 }
 
-/* MadChimp - Chaotic, playful */
-@keyframes madchimp-chaos {
-  0% {
-    transform: translate(0, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(5px, -5px) rotate(5deg);
+/* BananaEconomist - Efficient, sparkly */
+@keyframes economist-sparkle {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
   }
   50% {
-    transform: translate(-5px, 5px) rotate(-3deg);
+    opacity: 1;
+    transform: scale(1.2);
   }
-  75% {
-    transform: translate(5px, 5px) rotate(3deg);
-  }
-  100% {
-    transform: translate(0, 0) rotate(0deg);
-  }
+}
+.animation-economist {
+  animation: economist-sparkle 600ms var(--ease-mechanical) infinite;
+}
+
+/* MadChimp - Chaotic, playful */
+@keyframes madchimp-chaos {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(5px, -5px) rotate(5deg); }
+  50% { transform: translate(-5px, 5px) rotate(-3deg); }
+  75% { transform: translate(5px, 5px) rotate(3deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
 }
 .animation-madchimp {
   animation: madchimp-chaos 800ms var(--ease-in-out) infinite;
+}
+
+/* FounderAI - Visionary, guiding */
+@keyframes founder-guidance {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+.animation-founder {
+  animation: founder-guidance 4000ms var(--ease-organic) infinite;
 }
 ```
 
 ---
 
-## Surface & Depth Exploration
+## Spatial System
 
-### The Living Surface Philosophy
+### Living Surface Philosophy
 
-Surfaces should feel like organic matter—not flat, not drop-shadowed, but alive and textured.
+Surfaces should feel like organic matter—not flat, not drop-shadowed, but alive and textured. Depth is communicated through glow, not shadows.
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
@@ -464,59 +552,36 @@ Surfaces should feel like organic matter—not flat, not drop-shadowed, but aliv
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Surface Texture
+### Spacing System
 
-```css
-/* Bioluminescent surface treatment */
-.living-surface {
-  background: var(--surface-color);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  position: relative;
-  overflow: hidden;
-}
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--space-1` | 4px | Tight spacing, inline elements |
+| `--space-2` | 8px | Standard gap |
+| `--space-3` | 12px | Comfortable spacing |
+| `--space-4` | 16px | Section spacing |
+| `--space-5` | 20px | Comfortable section |
+| `--space-6` | 24px | Component spacing |
+| `--space-8` | 32px | Large component |
+| `--space-10` | 40px | Section separation |
+| `--space-12` | 48px | Major sections |
+| `--space-16` | 64px | Page sections |
 
-/* Subtle ambient texture */
-.living-surface::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(255, 255, 255, 0.03) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 80%,
-      rgba(255, 255, 255, 0.02) 0%,
-      transparent 50%
-    );
-  pointer-events: none;
-}
+### Border Radius
 
-/* Glow edge on hover */
-.living-surface:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 
-    0 0 20px var(--agent-color, rgba(255, 255, 255, 0.1)),
-    inset 0 0 20px rgba(255, 255, 255, 0.02);
-}
-
-/* Active/glowing state */
-.living-surface.active {
-  border-color: var(--agent-color);
-  box-shadow: 
-    0 0 30px var(--agent-color),
-    inset 0 0 30px rgba(var(--agent-color-rgb), 0.1);
-}
-```
+| Token | Value | Usage |
+|-------|-------|-------|
+| `--radius-sm` | 4px | Small elements, tags |
+| `--radius-md` | 8px | Buttons, inputs |
+| `--radius-lg` | 12px | Cards, panels |
+| `--radius-xl` | 16px | Large cards, modals |
+| `--radius-full` | 9999px | Pills, avatars |
 
 ---
 
 ## Accessibility with Aesthetics
 
-### Everyone Deserves Beauty
+### Universal Beauty
 
 Accessibility shouldn't feel like an afterthought—it should be beautiful too.
 
@@ -557,14 +622,39 @@ Accessibility shouldn't feel like an afterthought—it should be beautiful too.
 │  Live regions for dynamic updates                                           │
 │  Agent communication announced naturally                                    │
 │                                                                              │
+│  COLOR BLINDNESS                                                            │
+│  ════════════════                                                           │
+│                                                                              │
+│  Never rely on color alone                                                  │
+│  Use icons, patterns, or labels                                             │
+│  Agent colors have distinct hues                                            │
+│  Achievements have icons + colors                                           │
+│                                                                              │
 └─────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Reduced Motion Alternative
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .bioluminescent-pulse {
+    animation: none;
+    box-shadow: 0 0 10px var(--glow-color);
+  }
+}
 ```
 
 ---
 
-## Visual Guidelines Summary
+## Visual Guidelines Quick Reference
 
-### DO
+### Do
 
 - Lead with Tangerine for primary actions
 - Use agent colors to attribute system elements
@@ -576,8 +666,11 @@ Accessibility shouldn't feel like an afterthought—it should be beautiful too.
 - Show agent thinking when appropriate
 - Make evolution feel like celebration
 - Design for attachment, not just engagement
+- Use bioluminescent effects instead of shadows
+- Choose fonts that feel warm, not sterile
+- Create icons that feel like neural nodes
 
-### DON'T
+### Don't
 
 - Use shadows for depth (use glow instead)
 - Apply gradients to text (use glow effects)
@@ -589,8 +682,11 @@ Accessibility shouldn't feel like an afterthought—it should be beautiful too.
 - Hide failures—acknowledge them
 - Change without explanation
 - Treat players as anonymous users
+- Use pure black backgrounds
+- Create flat, lifeless surfaces
+- Animate without purpose
 
 ---
 
-*Visual language extended by PrimateDesigner*
+*Visual language defined by PrimateDesigner*
 *Creating beauty that serves experience*
