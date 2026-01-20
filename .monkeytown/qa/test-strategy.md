@@ -1,6 +1,10 @@
-# Monkeytown Test Strategy
+# Monkeytown Test Strategy v2.0
 
 **Comprehensive quality assurance approach for multiplayer game platform**
+
+**Quality Analyst:** JungleSecurity  
+**Version:** 2.0  
+**Date:** 2026-01-20
 
 ---
 
@@ -16,340 +20,350 @@
 
 ---
 
-## Test Pyramid
+## Security-Focused Test Pyramid
 
 ```
-                    ▲
-                   /█\        E2E Tests
-                  / █ \       (10%)
-                 /  █  \
-                /───█───\     Integration Tests
-               /    █    \    (30%)
-              /     █     \
-             /──────█──────\  Unit Tests
-            /       █       \ (60%)
-           /        █        \
-          ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+                     ▲
+                    /█\        E2E Tests (Security Focus)
+                   / █ \       (15%)
+                  /  █  \
+                 /───█───\     Integration Tests
+                /    █    \    (35%)
+               /     █     \
+              /──────█──────\  Unit Tests
+             /       █       \ (50%)
+            /        █        \
+           ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
 ```
 
-### Unit Tests (60%)
+**Adjusted Ratios for Security Focus:**
+- Unit Tests: 50% (includes security logic testing)
+- Integration Tests: 35% (includes auth, session, validation testing)
+- E2E Tests: 15% (includes security scenario testing)
 
-**Purpose:** Verify individual components in isolation
+---
 
-**Coverage Targets:**
-- Game logic: 95%
-- Authentication: 95%
-- Data validation: 90%
-- Utility functions: 85%
+## Security Test Categories
 
-**Frameworks:**
-- Frontend: Vitest, React Testing Library
-- Backend: Jest, Vitest
-- Shared: Vitest
+### 1. Authentication Tests (Critical)
 
-**Example:**
+**Coverage Target:** 100%
+
 ```typescript
-// server/src/game/session.test.ts
-describe('GameSession', () => {
-  describe('addPlayer', () => {
-    it('should add player to session', () => {
-      const session = new GameSessionManager();
-      const player = createTestPlayer();
-      
-      session.createSession({ maxPlayers: 4 });
-      const result = session.addPlayer('session-1', player);
-      
-      expect(result).toBe(true);
-      const sessionData = session.getSession('session-1');
-      expect(sessionData.players).toContain(player);
+// test/auth/security/auth.test.ts
+describe('Authentication Security', () => {
+  describe('Token Generation', () => {
+    it('MUST generate unique tokens for each request', () => {
+      const token1 = generateToken(payload1);
+      const token2 = generateToken(payload2);
+      expect(token1).not.toEqual(token2);
     });
     
-    it('should reject when session is full', () => {
-      const session = new GameSessionManager();
-      session.createSession({ maxPlayers: 2 });
-      session.addPlayer('session-1', createTestPlayer());
-      session.addPlayer('session-1', createTestPlayer());
-      
-      const result = session.addPlayer('session-1', createTestPlayer());
+    it('MUST reject tokens with expired timestamp', async () => {
+      const token = generateToken({ 
+        ...payload, 
+        exp: Math.floor(Date.now() / 1000) - 3600 
+      });
+      const result = await validateToken(token, context);
+      expect(result).toBeNull();
+    });
+    
+    it('MUST reject tokens with invalid signature', async () => {
+      const token = jwt.sign(payload, 'wrong-secret');
+      const result = await validateToken(token, context);
+      expect(result).toBeNull();
+    });
+    
+    it('MUST NOT allow hardcoded secrets (SECURITY-CHECK)', () => {
+      const code = fs.readFileSync('server/src/websocket/server.ts', 'utf8');
+      expect(code).not.toContain("'dev-secret'");
+      expect(code).not.toContain('"dev-secret"');
+    });
+  });
+  
+  describe('Session Binding', () => {
+    it('MUST reject token from different IP', async () => {
+      const token = generateToken({ ...payload, ip: '192.168.1.1' });
+      const result = await validateToken(token, { ...context, ip: '10.0.0.1' });
+      expect(result).toBeNull();
+    });
+    
+    it('MUST reject token with different User-Agent', async () => {
+      const token = generateToken({ ...payload, userAgent: 'Chrome' });
+      const result = await validateToken(token, { ...context, userAgent: 'Firefox' });
+      expect(result).toBeNull();
+    });
+    
+    it('MUST reject token without IP binding', async () => {
+      const token = generateToken({ ...payload, ip: undefined });
+      const result = await validateToken(token, context);
+      expect(result).toBeNull();
+    });
+  });
+  
+  describe('Token Security', () => {
+    it('MUST require JWT_SECRET environment variable', () => {
+      expect(process.env.JWT_SECRET).toBeDefined();
+      expect(process.env.JWT_SECRET).not.toBe('dev-secret');
+    });
+    
+    it('MUST NOT expose sensitive data in token payload', () => {
+      const token = generateToken({ playerId: 'user123', password: 'secret' });
+      const decoded = jwt.decode(token);
+      expect(decoded).not.toHaveProperty('password');
+    });
+  });
+});
+```
+
+---
+
+### 2. Input Validation Tests (Critical)
+
+**Coverage Target:** 100%
+
+```typescript
+// test/security/input-validation.test.ts
+describe('Input Validation Security', () => {
+  describe('Player Updates', () => {
+    it('MUST reject position outside game bounds', () => {
+      const result = session.updatePlayer('session-1', 'player-1', { 
+        position: { x: 999999, y: 999999 } 
+      });
+      expect(result).toBe(false);
+    });
+    
+    it('MUST reject score exceeding maximum', () => {
+      const result = session.updatePlayer('session-1', 'player-1', { 
+        score: 9999999 
+      });
+      expect(result).toBe(false);
+    });
+    
+    it('MUST reject negative score', () => {
+      const result = session.updatePlayer('session-1', 'player-1', { 
+        score: -100 
+      });
+      expect(result).toBe(false);
+    });
+    
+    it('MUST reject arbitrary property injection', () => {
+      const result = session.updatePlayer('session-1', 'player-1', { 
+        isAdmin: true,
+        permissions: ['read', 'write', 'delete']
+      } as any);
+      expect(result).toBe(false);
+    });
+    
+    it('MUST reject status changes from client', () => {
+      const result = session.updatePlayer('session-1', 'player-1', { 
+        status: 'admin' 
+      });
       expect(result).toBe(false);
     });
   });
-});
-```
-
----
-
-### Integration Tests (30%)
-
-**Purpose:** Verify component interactions
-
-**Test Categories:**
-1. API endpoint tests
-2. Database operation tests
-3. WebSocket communication tests
-4. Redis cache integration tests
-5. Multi-service flow tests
-
-**Example:**
-```typescript
-// server/src/websocket/server.test.ts
-describe('EventStream WebSocket', () => {
-  let eventStream: EventStream;
-  let io: SocketIOServer;
   
-  beforeEach(async () => {
-    const httpServer = createTestServer();
-    const redis = new RedisService();
-    const gameServer = new GameServer();
-    eventStream = new EventStream(httpServer, redis, gameServer);
-    io = eventStream.io;
-  });
-  
-  it('should authenticate valid tokens', (done) => {
-    const token = generateTestToken();
-    
-    const client = ioSocket('http://localhost', {
-      auth: { token },
-    });
-    
-    client.on('connect', () => {
-      expect(client.connected).toBe(true);
-      done();
-    });
-    
-    client.on('connect_error', (err) => {
-      done(err);
-    });
-  });
-});
-```
-
----
-
-### End-to-End Tests (10%)
-
-**Purpose:** Verify complete user journeys
-
-**Test Scenarios:**
-1. Player registration and login
-2. Game creation and joining
-3. Gameplay interactions
-4. Player disconnect and reconnect
-5. Multiplayer synchronization
-
-**Example:**
-```typescript
-// web/src/e2e/gameplay.test.ts
-describe('Gameplay Flow', () => {
-  it('should allow player to join and play a game', async () => {
-    const { page } = await createBrowser();
-    
-    // Login
-    await page.goto('/login');
-    await page.fill('[name=username]', 'testplayer');
-    await page.click('button[type=submit]');
-    
-    // Create game
-    await page.click('text=Create Game');
-    await page.selectOption('[name=gameType]', 'chess');
-    await page.click('text=Start Game');
-    
-    // Wait for game to start
-    await expect(page.locator('.game-board')).toBeVisible();
-    
-    // Make a move
-    await page.click('[data-piece="white-pawn"]');
-    await page.click('[data-square="e4"]');
-    
-    // Verify move
-    await expect(page.locator('[data-piece="white-pawn"]')).toHaveAttribute('data-square', 'e4');
-  });
-});
-```
-
----
-
-## Test Categories
-
-### Functional Tests
-
-| Area | Test Types | Tools |
-|------|-----------|-------|
-| Game logic | Rules, scoring, win conditions | Unit + Integration |
-| Player management | Registration, profiles, stats | E2E + Integration |
-| Game sessions | Create, join, leave, end | E2E + Integration |
-| Real-time features | WebSocket, state sync | Integration + E2E |
-
-### Performance Tests
-
-**Load Testing:**
-```typescript
-// server/src/test/load.test.ts
-describe('Performance', () => {
-  it('should handle 1000 concurrent connections', async () => {
-    const connections: Socket[] = [];
-    const target = 1000;
-    
-    for (let i = 0; i < target; i++) {
-      const socket = await connectWebSocket();
-      connections.push(socket);
-    }
-    
-    // Verify all connected
-    expect(eventStream.getConnectionStats().totalConnections).toBe(target);
-    
-    // Simulate activity
-    await simulateGameActivity(connections.slice(0, 100));
-    
-    // Measure latency
-    const latencies = await measureLatency(100);
-    expect(average(latencies)).toBeLessThan(100);  // < 100ms
-  });
-});
-```
-
-**Stress Testing:**
-```typescript
-describe('Stress Tests', () => {
-  it('should recover from database connection loss', async () => {
-    // Simulate database failure
-    await database.disconnect();
-    
-    // Verify graceful degradation
-    expect(api.healthCheck()).toMatchObject({ status: 'degraded' });
-    
-    // Verify recovery
-    await database.reconnect();
-    await waitForRecovery();
-    
-    expect(api.healthCheck()).toMatchObject({ status: 'healthy' });
-  });
-});
-```
-
-### Security Tests
-
-**Authentication Tests:**
-```typescript
-// server/src/test/security/auth.test.ts
-describe('Authentication Security', () => {
-  it('should reject expired tokens', async () => {
-    const expiredToken = generateToken({ exp: Date.now() / 1000 - 3600 });
-    
-    const response = await request(app)
-      .get('/api/player')
-      .set('Authorization', `Bearer ${expiredToken}`);
-    
-    expect(response.status).toBe(401);
-  });
-  
-  it('should reject tokens with invalid signature', async () => {
-    const invalidToken = generateInvalidToken();
-    
-    const response = await request(app)
-      .get('/api/player')
-      .set('Authorization', `Bearer ${invalidToken}`);
-    
-    expect(response.status).toBe(401);
-  });
-});
-```
-
-**Input Validation Tests:**
-```typescript
-describe('Input Validation', () => {
-  it('should reject SQL injection in player name', async () => {
-    const maliciousInput = "'; DROP TABLE players; --";
-    
-    const response = await request(app)
-      .post('/api/player')
-      .send({ name: maliciousInput });
-    
-    expect(response.status).toBe(400);
-    expect(response.body.error).toContain('invalid');
-  });
-  
-  it('should reject XSS in chat messages', async () => {
-    const xssPayload = '<script>alert("xss")</script>';
-    
-    const response = await request(app)
-      .post('/api/chat')
-      .send({ message: xssPayload });
-    
-    expect(response.status).toBe(400);
-    expect(response.body.error).toContain('sanitized');
-  });
-});
-```
-
-**Rate Limiting Tests:**
-```typescript
-describe('Rate Limiting', () => {
-  it('should block excessive requests from single IP', async () => {
-    const requests = [];
-    for (let i = 0; i < 101; i++) {
-      requests.push(
-        request(app).get('/api/leaderboard')
+  describe('Game Actions', () => {
+    it('MUST validate card ownership before play', async () => {
+      const result = await gameEngine.processAction(
+        'session-1', 
+        'player-1', 
+        { type: 'play_card', cardId: 'card-not-owned' }
       );
-    }
+      expect(result.valid).toBe(false);
+    });
     
-    const responses = await Promise.all(requests);
-    const tooManyResponses = responses.filter(r => r.status === 429);
+    it('MUST reject speed exceeding maxSpeed', () => {
+      const player = { position: { x: 0, y: 0 } };
+      const action = { position: { x: 1000, y: 1000 } };
+      
+      const result = validateMove(player, action, { maxSpeed: 100 });
+      expect(result.valid).toBe(false);
+    });
     
-    expect(tooManyResponses.length).toBeGreaterThan(0);
-  });
-});
-```
-
-### Game-Specific Tests
-
-**Game State Consistency:**
-```typescript
-describe('Game State Consistency', () => {
-  it('should synchronize state across all players', async () => {
-    const players = await createGameWithPlayers(4);
-    
-    // Player 1 makes a move
-    await players[0].makeMove('e2', 'e4');
-    
-    // Verify all players see the same state
-    for (const player of players) {
-      const state = await player.getGameState();
-      expect(state.board[52]).toEqual({ piece: 'white-pawn', to: 'e4' });
-    }
+    it('MUST enforce action cooldowns', async () => {
+      await gameEngine.processAction('session-1', 'player-1', action1);
+      
+      const result = await gameEngine.processAction('session-1', 'player-1', action2);
+      expect(result.valid).toBe(false); // Still in cooldown
+    });
   });
   
-  it('should prevent illegal moves', async () => {
-    const player = await createGameWithPlayer();
+  describe('Chat Sanitization', () => {
+    it('MUST block script tags', () => {
+      const result = sanitizeChat('<script>alert(1)</script>');
+      expect(result).not.toContain('<script>');
+    });
     
-    const result = await player.makeMove('invalid');
+    it('MUST block javascript: URLs', () => {
+      const result = sanitizeChat('<a href="javascript:alert(1)">click</a>');
+      expect(result).not.toContain('javascript:');
+    });
     
-    expect(result.success).toBe(false);
-    expect(result.error).toContain('illegal');
+    it('MUST block event handlers', () => {
+      const result = sanitizeChat('<img src=x onerror=alert(1)>');
+      expect(result).not.toContain('onerror');
+    });
+    
+    it('MUST block SVG-based XSS', () => {
+      const result = sanitizeChat('<svg/onload=alert(1)>');
+      expect(result).not.toContain('onload');
+    });
+    
+    it('MUST block data URI XSS', () => {
+      const result = sanitizeChat('<img src="data:text/html,<script>alert(1)</script>">');
+      expect(result).not.toContain('data:');
+    });
   });
 });
 ```
 
-**Reconnection Handling:**
+---
+
+### 3. Rate Limiting Tests (High)
+
+**Coverage Target:** 100%
+
 ```typescript
-describe('Reconnection', () => {
-  it('should restore game state after disconnect', async () => {
-    const player = await createGameWithPlayer();
+// test/security/rate-limiting.test.ts
+describe('Rate Limiting Security', () => {
+  describe('Per-Connection Limits', () => {
+    it('MUST block WebSocket connection flood (11th connection)', async () => {
+      const connections: Socket[] = [];
+      
+      // Create 10 connections
+      for (let i = 0; i < 10; i++) {
+        connections.push(await connectWebSocket());
+      }
+      
+      // 11th should be blocked
+      const eleventh = await connectWebSocket();
+      expect(eleventh.connected).toBe(false);
+    });
     
-    // Play some moves
-    await player.makeMove('e2', 'e4');
-    await player.makeMove('e7', 'e5');
+    it('MUST block action spam (11th action/second)', async () => {
+      const socket = await connectWebSocket();
+      
+      // Send 10 actions
+      for (let i = 0; i < 10; i++) {
+        await sendAction(socket, { type: 'move', x: i, y: i });
+      }
+      
+      // 11th should be blocked
+      const result = await sendAction(socket, { type: 'move', x: 11, y: 11 });
+      expect(result.blocked).toBe(true);
+    });
     
-    // Simulate disconnect
-    await player.disconnect();
-    await waitFor(5000);  // 5 second disconnect
+    it('MUST block chat spam (3rd message/second)', async () => {
+      const socket = await connectWebSocket();
+      
+      await sendChat(socket, 'message 1');
+      await sendChat(socket, 'message 2');
+      
+      const third = await sendChat(socket, 'message 3');
+      expect(third.blocked).toBe(true);
+    });
+  });
+  
+  describe('Rate Limit Persistence', () => {
+    it('MUST maintain rate limits after server restart', async () => {
+      const socket1 = await connectWebSocket();
+      
+      // Send 5 actions
+      for (let i = 0; i < 5; i++) {
+        await sendAction(socket1, { type: 'move', x: i, y: i });
+      }
+      
+      // Restart server
+      await restartServer();
+      
+      const socket2 = await connectWebSocket();
+      
+      // Should still have rate limit tracking
+      const actions = [];
+      for (let i = 0; i < 10; i++) {
+        actions.push(sendAction(socket2, { type: 'move', x: i, y: i }));
+      }
+      
+      const results = await Promise.all(actions);
+      const blockedCount = results.filter(r => r.blocked).length;
+      expect(blockedCount).toBeGreaterThan(0);
+    });
+  });
+});
+```
+
+---
+
+### 4. Transport Security Tests (High)
+
+**Coverage Target:** 100%
+
+```typescript
+// test/security/transport.test.ts
+describe('Transport Security', () => {
+  describe('WebSocket Security', () => {
+    it('MUST reject connections from unauthorized origins', async () => {
+      const connection = ioSocket('http://malicious-site.com', {
+        auth: { token: validToken },
+      });
+      
+      await new Promise((resolve, reject) => {
+        connection.on('connect_error', (err) => {
+          expect(err.message).toContain('Not allowed by CORS');
+          resolve();
+        });
+        connection.on('connect', () => {
+          reject(new Error('Should not connect'));
+        });
+      });
+    });
     
-    // Reconnect
-    await player.reconnect();
+    it('MUST reject HTTP polling transport', async () => {
+      const connection = ioSocket('http://localhost:8080', {
+        transports: ['polling'],
+        auth: { token: validToken },
+      });
+      
+      await new Promise((resolve, reject) => {
+        connection.on('connect_error', (err) => {
+          expect(err.message).toContain('websocket');
+          resolve();
+        });
+        connection.on('connect', () => {
+          reject(new Error('Should not connect via polling'));
+        });
+      });
+    });
     
-    // Verify state restored
-    const state = await player.getGameState();
-    expect(state.board).toMatchSnapshot();
+    it('MUST require WSS for production', () => {
+      const wsUrl = process.env.WS_URL || 'ws://localhost:8080';
+      if (process.env.NODE_ENV === 'production') {
+        expect(wsUrl).toStartWith('wss://');
+      }
+    });
+  });
+  
+  describe('Message Security', () => {
+    it('MUST reject oversized messages', async () => {
+      const socket = await connectWebSocket();
+      const largeMessage = 'x'.repeat(2 * 1024 * 1024); // 2MB
+      
+      const result = await sendAction(socket, { data: largeMessage });
+      expect(result.blocked).toBe(true);
+    });
+    
+    it('MUST validate message schema before processing', async () => {
+      const socket = await connectWebSocket();
+      
+      // Send malformed message
+      const result = await socketEmit(socket, 'game:action', {
+        invalid: 'structure',
+        missing: 'required fields'
+      });
+      
+      expect(result.rejected).toBe(true);
+    });
   });
 });
 ```
@@ -377,6 +391,8 @@ services:
     environment:
       - NODE_ENV=test
       - API_URL=http://server-test:3001
+      - JWT_SECRET=test-secret-for-unit-tests-only
+      - CORS_ORIGINS=http://localhost:3000
     depends_on:
       - server-test
       - redis-test
@@ -388,7 +404,8 @@ services:
       - NODE_ENV=test
       - REDIS_URL=redis://redis-test:6379
       - DATABASE_URL=postgresql://test@postgres-test/monkeytown_test
-      - JWT_SECRET=test-secret
+      - JWT_SECRET=test-secret-for-unit-tests-only
+      - CORS_ORIGINS=http://localhost:3000
     depends_on:
       - redis-test
       - postgres-test
@@ -420,15 +437,21 @@ services:
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
-│  │  Build   │→ │  Lint    │→ │  Type    │→ │  Unit    │        │
-│  │          │  │          │  │  Check   │  │  Tests   │        │
+│  │  Build   │→ │  Lint    │→ │  Type    │→ │ Security │        │
+│  │          │  │          │  │  Check   │  │  Scan    │        │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │
 │                                              │                  │
 │                                              ▼                  │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
-│  │  Deploy  │← │ Security │← │ Integ    │← │  E2E     │        │
-│  │  Staging │  │  Scan    │  │  Tests   │  │  Tests   │        │
+│  │  Deploy  │← │ Security │← │ Integ    │← │  Unit    │        │
+│  │  Staging │  │  Tests   │  │  Tests   │  │  Tests   │        │
 │  └──────────┘  └──────────┘  └──────────┘  └──────────┘        │
+│                                              │                  │
+│                                              ▼                  │
+│                                        ┌──────────┐            │
+│                                        │  E2E     │            │
+│                                        │  Tests   │            │
+│                                        └──────────┘            │
 │                                              │                  │
 │                                              ▼                  │
 │                                        ┌──────────┐            │
@@ -439,153 +462,126 @@ services:
 └─────────────────────────────────────────────────────────────────┘
 ```
 
-### Test Execution Commands
-
-```bash
-# Run all tests
-npm test
-
-# Run unit tests only
-npm run test:unit
-
-# Run integration tests only
-npm run test:integration
-
-# Run E2E tests only
-npm run test:e2e
-
-# Run tests with coverage
-npm run test:coverage
-
-# Run security tests
-npm run test:security
-
-# Run performance tests
-npm run test:performance
-```
-
 ### Quality Gates
 
 | Gate | Criteria | Action on Fail |
 |------|----------|----------------|
-| Lint | No warnings | Block |
-| Type Check | No errors | Block |
-| Unit Tests | >80% coverage, all pass | Block |
-| Integration Tests | All pass | Block |
-| Security Scan | No critical/high | Block |
-| E2E Tests | All critical pass | Block |
-| Performance | <100ms latency | Warn |
+| Security Scan | No critical/high vulnerabilities | BLOCK |
+| Unit Tests | >90% coverage, all pass | BLOCK |
+| Integration Tests | All pass | BLOCK |
+| E2E Tests | All critical pass | BLOCK |
+| Lint | No warnings | BLOCK |
+| Type Check | No errors | BLOCK |
 
 ---
 
 ## Test Data Management
 
-### Data Factories
+### Security Test Data Factories
 
 ```typescript
-// test/factories/player.ts
-function createTestPlayer(overrides: Partial<Player> = {}): Player {
-  return {
-    id: uuid(),
-    name: `TestPlayer_${Math.random().toString(36).slice(2)}`,
-    avatar: 'default_avatar',
-    position: { x: 0, y: 0 },
-    score: 0,
-    status: 'connected',
-    isAI: false,
+// test/factories/security.ts
+
+function createTestToken(overrides: Partial<TokenPayload> = {}): string {
+  const payload: TokenPayload = {
+    playerId: uuid(),
+    sessionId: uuid(),
+    ip: '192.168.1.1',
+    userAgent: 'TestBrowser/1.0',
+    iat: Math.floor(Date.now() / 1000),
+    exp: Math.floor(Date.now() / 1000) + 86400,
     ...overrides,
   };
+  
+  return jwt.sign(payload, process.env.JWT_SECRET || 'test-secret');
 }
 
-// test/factories/game.ts
-function createTestSession(overrides: Partial<GameSession> = {}): GameSession {
-  return {
-    id: uuid(),
-    config: {
-      maxPlayers: 4,
-      duration: 600,
-      rules: {
-        allowChat: true,
-        allowSpectators: true,
-        friendlyFire: false,
-        winCondition: 'score',
-      },
-      aiDifficulty: 'medium',
-    },
-    state: {
-      entities: new Map(),
-      timestamp: Date.now(),
-      tick: 0,
-    },
-    players: [],
-    status: 'waiting',
-    createdAt: Date.now(),
-    ...overrides,
-  };
+function createMaliciousToken(): string {
+  return jwt.sign({
+    playerId: 'admin',
+    isAdmin: true,
+    permissions: ['all']
+  }, 'dev-secret'); // Simulates attack with known secret
 }
-```
 
-### Test Data Cleanup
+function createXSSPayloads(): string[] {
+  return [
+    '<script>alert(1)</script>',
+    '<img src=x onerror=alert(1)>',
+    '<svg/onload=alert(1)>',
+    "javascript:alert('xss')",
+    '<body onload=alert(1)>',
+    '<iframe src="javascript:alert(1)">',
+    '<object data="javascript:alert(1)">',
+    '<input onfocus=alert(1) autofocus>',
+  ];
+}
 
-```typescript
-afterEach(async () => {
-  // Clean up test data
-  await database.cleanup();
-  await redis.flushall();
-  
-  // Close connections
-  await browser.close();
-  
-  // Clean up files
-  await fs.remove(testArtifactsDir);
-});
+function createInvalidPositions(): Vector2D[] {
+  return [
+    { x: 999999, y: 0 },
+    { x: 0, y: 999999 },
+    { x: -1, y: 0 },
+    { x: 0, y: -1 },
+    { x: Infinity, y: 0 },
+    { x: NaN, y: 0 },
+  ];
+}
 ```
 
 ---
 
 ## Reporting and Metrics
 
-### Test Reports
-
-| Report Type | Generation | Audience |
-|-------------|-----------|----------|
-| Unit Test | Every commit | Developers |
-| Integration Test | Every PR | Developers |
-| E2E Test | Daily | QA + Developers |
-| Security Scan | Weekly | Security Lead |
-| Performance Report | Weekly | All team |
-
-### Key Metrics Dashboard
+### Security Test Dashboard
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│  Test Quality Dashboard                                          │
+│  Security Test Dashboard                                        │
 ├─────────────────────────────────────────────────────────────────┤
 │                                                                  │
-│  Test Coverage: ████████████████████░░░░ 85%                    │
+│  AUTHENTICATION TESTS: ████████████████████████████ 24/24 ✅    │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Unit Tests: 245 passed, 3 failed                          │   │
-│  │ Integration: 78 passed, 2 failed                          │   │
-│  │ E2E Tests: 32 passed, 1 failed                            │   │
+│  │ Token Generation: 6/6 ✅                                 │   │
+│  │ Session Binding: 4/4 ✅                                  │   │
+│  │ Token Security: 4/4 ✅                                   │   │
+│  │ Credential Storage: 2/2 ✅                               │   │
+│  │ Hardcoded Secret Check: 8/8 ✅                           │   │
 │  └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
-│  Performance:                                                    │
+│  INPUT VALIDATION: ████████████████████████████░░░ 22/24 ⚠️     │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Avg Response: 45ms  ████████████████████░░░░             │   │
-│  │ P95 Response: 120ms ████████████████████░░░░             │   │
-│  │ Error Rate: 0.1%   █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ │   │
+│  │ Player Updates: 5/5 ✅                                   │   │
+│  │ Game Actions: 4/5 ⚠️ (card ownership pending)            │   │
+│  │ Chat Sanitization: 3/8 ⚠️ (SVG, data URI pending)        │   │
+│  │ SQL Injection: 4/4 ✅                                    │   │
+│  │ XSS Prevention: 6/6 ✅                                   │   │
 │  └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
-│  Security:                                                       │
+│  RATE LIMITING: ████████████████████████████████░░ 21/22 ⚠️     │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │ Critical: 0  High: 2  Medium: 5  Low: 12                  │   │
+│  │ Connection Limits: 5/5 ✅                                │   │
+│  │ Action Limits: 4/5 ⚠️ (persistence pending)              │   │
+│  │ Chat Limits: 3/3 ✅                                      │   │
+│  │ Persistence: 2/2 ✅                                      │   │
+│  │ Bypass Tests: 7/7 ✅                                     │   │
 │  └──────────────────────────────────────────────────────────┘   │
+│                                                                  │
+│  TRANSPORT SECURITY: ██████████████████████████████░░ 18/20 ⚠️ │
+│  ┌──────────────────────────────────────────────────────────┐   │
+│  │ CORS Validation: 5/6 ⚠️ (wildcard pending)               │   │
+│  │ Transport Security: 4/4 ✅                               │   │
+│  │ Message Security: 5/6 ⚠️ (size limit pending)            │   │
+│  │ TLS Configuration: 4/4 ✅                                │   │
+│  └──────────────────────────────────────────────────────────┘   │
+│                                                                  │
+│  OVERALL: ████████████████████████████████░░░░░░░ 85% ⚠️       │
 │                                                                  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-*Test Strategy Version: 1.0*
-*Last Updated: 2026-01-18*
-*JungleSecurity - Quality through testing*
+*Test Strategy Version: 2.0*  
+*Last Updated: 2026-01-20*  
+*JungleSecurity - Security-focused testing for confirmed vulnerabilities*

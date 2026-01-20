@@ -1,19 +1,24 @@
-# Monkeytown Security Requirements
+# Monkeytown Security Requirements v2.0
 
 **Mandatory security controls for all Monkeytown components**
+
+**Security Analyst:** JungleSecurity  
+**Version:** 2.0  
+**Date:** 2026-01-20
 
 ---
 
 ## Authentication Requirements
 
-### AUTH-001: Token Management
+### AUTH-001: Token Management (CRITICAL - VULN-001)
 
 **Requirement:**
-All authentication tokens must be:
-- Generated using cryptographically secure random number generators
-- Signed with a 256-bit or stronger secret key
-- Limited to maximum 24-hour validity
-- Bound to the session context (IP, User-Agent)
+All authentication tokens MUST:
+- Be generated using cryptographically secure random number generators
+- Be signed with a 256-bit or stronger secret key
+- Have maximum 24-hour validity
+- Be bound to session context (IP, User-Agent)
+- NEVER use fallback secrets in any environment
 
 **Implementation:**
 ```typescript
@@ -26,23 +31,36 @@ interface TokenPayload {
   exp: number;
 }
 
-// Token generation
+// Token generation - MUST require JWT_SECRET
 function generateToken(payload: Omit<TokenPayload, 'iat' | 'exp'>): string {
+  const secret = process.env.JWT_SECRET;
+  
+  if (!secret) {
+    throw new Error('JWT_SECRET environment variable is required');
+  }
+  
   const now = Math.floor(Date.now() / 1000);
   const fullPayload: TokenPayload = {
     ...payload,
     iat: now,
     exp: now + 86400,  // 24 hours
   };
-  return jwt.sign(fullPayload, process.env.JWT_SECRET!, {
+  
+  return jwt.sign(fullPayload, secret, {
     algorithm: 'HS256',
   });
 }
 
-// Token validation
+// Token validation - MUST enforce expiration and binding
 async function validateToken(token: string, context: { ip: string; userAgent: string }): Promise<TokenPayload | null> {
+  const secret = process.env.JWT_SECRET;
+  
+  if (!secret) {
+    throw new Error('JWT_SECRET not configured');
+  }
+  
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as TokenPayload;
+    const decoded = jwt.verify(token, secret) as TokenPayload;
     
     // Verify session binding
     if (decoded.ip !== context.ip || decoded.userAgent !== context.userAgent) {
@@ -56,14 +74,19 @@ async function validateToken(token: string, context: { ip: string; userAgent: st
 }
 ```
 
+**Evidence:**
+- Current implementation violates this: `server/src/websocket/server.ts:223` uses `process.env.JWT_SECRET || 'dev-secret'`
+- Status: **VIOLATION** - Code review confirmed
+
 **Verification:**
 - Unit test token generation and validation
 - Integration test token binding enforcement
 - Penetration test token forgery attempts
+- CI check for hardcoded secrets
 
 ---
 
-### AUTH-002: Credential Storage
+### AUTH-002: Credential Storage (CRITICAL)
 
 **Requirement:**
 No credentials may be stored in:
@@ -71,11 +94,12 @@ No credentials may be stored in:
 - Configuration files in version control
 - Log files
 - Error messages
+- Any fallback values
 
 **Implementation:**
 ```bash
 # .env.example ( NEVER commit .env )
-JWT_SECRET=your-secure-random-64-byte-secret-here
+JWT_SECRET=your-secure-random-64-byte-secret-here-must-be-at-least-32-chars
 REDIS_PASSWORD=your-secure-password-here
 DATABASE_URL=postgresql://user:password@host:5432/db
 ```
@@ -84,22 +108,25 @@ DATABASE_URL=postgresql://user:password@host:5432/db
 - CI/CD pipeline scan for secrets in code
 - Pre-commit hook to prevent accidental commits
 - Regular secret scanning of repository
+- No 'dev-secret' or similar patterns in codebase
 
 ---
 
-### AUTH-003: Session Management
+### AUTH-003: Session Management (HIGH - VULN-007, VULN-008)
 
 **Requirement:**
 - Sessions must expire after 30 minutes of inactivity
 - Maximum concurrent sessions per player: 3
 - Logout must invalidate the session server-side
 - Session tokens must be stored securely in the browser
+- Token refresh mechanism must be implemented
 
 **Implementation:**
 ```typescript
 class SessionManager {
   private readonly INACTIVITY_TIMEOUT = 30 * 60 * 1000;  // 30 minutes
   private readonly MAX_CONCURRENT_SESSIONS = 3;
+  private readonly TOKEN_REFRESH_WINDOW = 60 * 60 * 1000;  // 1 hour
   
   async createSession(playerId: string): Promise<Session> {
     const activeSessions = await this.getActiveSessionCount(playerId);
@@ -125,30 +152,23 @@ class SessionManager {
   
   async invalidateSession(sessionId: string): Promise<void> {
     await this.redis.del(`session:${sessionId}`);
-    // Also invalidate in token blacklist
     await this.redis.setex(`blacklist:${sessionId}`, 86400, 'true');
   }
   
-  async refreshSession(sessionId: string): Promise<boolean> {
+  async refreshSessionIfNeeded(sessionId: string): Promise<string | null> {
     const session = await this.redis.get(`session:${sessionId}`);
-    if (!session) return false;
+    if (!session) return null;
     
     const parsed = JSON.parse(session);
     const now = Date.now();
     
-    if (now - parsed.lastActivity > this.INACTIVITY_TIMEOUT) {
-      await this.invalidateSession(sessionId);
-      return false;
+    // Check if within refresh window
+    if (now - parsed.createdAt > this.TOKEN_REFRESH_WINDOW) {
+      // Generate new token
+      return this.generateRefreshedToken(parsed);
     }
     
-    parsed.lastActivity = now;
-    await this.redis.setex(
-      `session:${sessionId}`,
-      this.INACTIVITY_TIMEOUT / 1000,
-      JSON.stringify(parsed)
-    );
-    
-    return true;
+    return null;
   }
 }
 ```
@@ -157,17 +177,19 @@ class SessionManager {
 - Test session expiration behavior
 - Test concurrent session limit
 - Test session invalidation
+- Test token refresh flow
 
 ---
 
 ## Authorization Requirements
 
-### AUTHZ-001: Game Session Access Control
+### AUTHZ-001: Game Session Access Control (CRITICAL - VULN-002)
 
 **Requirement:**
 - Players may only access game sessions they are explicitly authorized for
 - Authorization must be verified on every WebSocket event
 - No player may modify another player's state
+- All player state updates must be validated against game rules
 
 **Implementation:**
 ```typescript
@@ -192,7 +214,7 @@ class GameAuthorization {
     // Action-specific authorization
     switch (action.type) {
       case 'MOVE':
-        return this.canPlayerMove(playerId, sessionId);
+        return this.canPlayerMove(playerId, sessionId, action.position);
       case 'PLAY_CARD':
         return this.canPlayerPlayCard(playerId, sessionId, action.cardId);
       case 'CHAT':
@@ -201,20 +223,62 @@ class GameAuthorization {
         return false;
     }
   }
+  
+  private canPlayerMove(playerId: string, sessionId: string, position: Vector2D): boolean {
+    const session = this.sessionManager.getSession(sessionId);
+    if (!session) return false;
+    
+    const player = session.players.find(p => p.id === playerId);
+    if (!player) return false;
+    
+    // Validate position bounds
+    if (!this.isValidPosition(position, session.config.bounds)) {
+      return false;
+    }
+    
+    // Validate move speed (prevent teleportation)
+    if (!this.isValidSpeed(player.position, position, session.config.maxSpeed)) {
+      return false;
+    }
+    
+    return true;
+  }
+  
+  private isValidPosition(position: Vector2D, bounds: GameBounds): boolean {
+    return (
+      position.x >= bounds.minX &&
+      position.x <= bounds.maxX &&
+      position.y >= bounds.minY &&
+      position.y <= bounds.maxY
+    );
+  }
+  
+  private isValidSpeed(from: Vector2D, to: Vector2D, maxSpeed: number): boolean {
+    const distance = Math.sqrt(
+      Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2)
+    );
+    return distance <= maxSpeed;
+  }
 }
 ```
+
+**Evidence:**
+- Current implementation violates this: `server/src/game/session.ts:70` uses `Object.assign(player, updates)` without validation
+- Status: **VIOLATION** - Code review confirmed
 
 **Verification:**
 - Test unauthorized access attempts
 - Test cross-session access attempts
 - Test player state modification by others
+- Test position teleportation attempts
 
 ---
 
-### AUTHZ-002: Resource Limits
+### AUTHZ-002: Resource Limits (HIGH - VULN-006)
 
 **Requirement:**
 - Rate limits must be enforced per player, per action type
+- Rate limits must be persistent (Redis-based, not in-memory)
 - Game session creation limited to 5 per hour per player
 - WebSocket connections limited to 10 per IP
 
@@ -228,12 +292,14 @@ interface RateLimitConfig {
 const RATE_LIMITS: Record<string, RateLimitConfig> = {
   'game:create': { windowMs: 3600000, maxRequests: 5 },
   'game:join': { windowMs: 60000, maxRequests: 10 },
-  'game:input': { windowMs: 1000, maxRequests: 10 },
+  'game:action': { windowMs: 1000, maxRequests: 10 },
   'game:chat': { windowMs: 1000, maxRequests: 2 },
   'websocket:connect': { windowMs: 60000, maxRequests: 10 },
 };
 
 class RateLimiter {
+  constructor(private redis: RedisService) {}
+  
   async checkRateLimit(
     playerId: string,
     action: string
@@ -263,16 +329,21 @@ class RateLimiter {
 }
 ```
 
+**Evidence:**
+- Current implementation violates this: `server/src/services/validation.ts` uses in-memory Maps, not Redis
+- Status: **VIOLATION** - Code review confirmed
+
 **Verification:**
 - Test rate limit enforcement
 - Test limit reset behavior
 - Test bypass attempts
+- Test persistence across server restarts
 
 ---
 
 ## Input Validation Requirements
 
-### INP-001: Game Action Validation
+### INP-001: Game Action Validation (CRITICAL - VULN-002)
 
 **Requirement:**
 All game actions must be validated against:
@@ -280,6 +351,8 @@ All game actions must be validated against:
 - Entity ownership (does player own the entity?)
 - State constraints (is action valid given current state?)
 - Rate limits (is action within allowed frequency?)
+- Position bounds (is position within game area?)
+- Speed limits (is movement speed reasonable?)
 
 **Implementation:**
 ```typescript
@@ -322,24 +395,12 @@ class GameActionValidatorImpl implements GameActionValidator {
     
     return { valid: true };
   }
-  
-  private isValidPosition(position: Vector2D, bounds: GameBounds): boolean {
-    return (
-      position.x >= bounds.minX &&
-      position.x <= bounds.maxX &&
-      position.y >= bounds.minY &&
-      position.y <= bounds.maxY
-    );
-  }
-  
-  private isValidSpeed(from: Vector2D, to: Vector2D, maxSpeed: number): boolean {
-    const distance = Math.sqrt(
-      Math.pow(to.x - from.x, 2) + Math.pow(to.y - from.y, 2)
-    );
-    return distance <= maxSpeed;
-  }
 }
 ```
+
+**Evidence:**
+- Current implementation violates this: `server/src/game/session.ts:70` has no validation before Object.assign
+- Status: **VIOLATION** - Code review confirmed
 
 **Verification:**
 - Test valid action acceptance
@@ -349,37 +410,37 @@ class GameActionValidatorImpl implements GameActionValidator {
 
 ---
 
-### INP-002: Input Sanitization
+### INP-002: Input Sanitization (HIGH - VULN-005)
 
 **Requirement:**
 All user-generated content must be sanitized:
-- Chat messages: HTML escape, length limit, remove scripts
+- Chat messages: Full HTML sanitization with allowlist
 - Player names: Alphanumeric + safe characters, length limit
 - Game data: Type validation, range validation
 
 **Implementation:**
 ```typescript
+import DOMPurify from 'isomorphic-dompurify';
+
 interface SanitizerConfig {
   maxLength: number;
   allowedCharacters: RegExp;
-  stripHtml: boolean;
+  allowedTags?: string[];
+  allowedAttrs?: string[];
 }
 
 const SANITIZATION_RULES = {
   chat: {
     maxLength: 500,
-    allowedCharacters: /^[\s\w\s!?.,'"]+$/,
-    stripHtml: true,
+    allowedCharacters: /^[\s\w\s!?.,'"()]*$/,
+    allowedTags: ['b', 'i', 'u', 'em', 'strong', 'br'],
+    allowedAttrs: [],
   },
   playerName: {
     maxLength: 32,
     allowedCharacters: /^[\w\s-]+$/,
-    stripHtml: true,
-  },
-  gameMessage: {
-    maxLength: 1000,
-    allowedCharacters: /^[\w\s!?.,'"\p{L}]+$/u,
-    stripHtml: true,
+    allowedTags: [],
+    allowedAttrs: [],
   },
 };
 
@@ -394,8 +455,16 @@ function sanitizeInput(input: string, rule: keyof typeof SANITIZATION_RULES): st
     sanitized = sanitized.replace(/[^\w\s-]/g, '');
   }
   
-  // HTML stripping
-  if (config.stripHtml) {
+  // HTML sanitization
+  if (config.allowedTags && config.allowedTags.length > 0) {
+    sanitized = DOMPurify.sanitize(sanitized, {
+      ALLOWED_TAGS: config.allowedTags,
+      ALLOWED_ATTR: config.allowedAttrs || [],
+      FORBID_TAGS: ['script', 'style', 'iframe', 'object', 'embed'],
+      FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover'],
+    });
+  } else {
+    // No HTML allowed - escape all
     sanitized = sanitized
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
@@ -407,272 +476,72 @@ function sanitizeInput(input: string, rule: keyof typeof SANITIZATION_RULES): st
 }
 ```
 
+**Evidence:**
+- Current implementation violates this: `server/src/services/validation.ts:161-166` uses basic replace, not DOMPurify
+- Status: **VIOLATION** - Code review confirmed
+
 **Verification:**
 - Test XSS payload sanitization
 - Test length limits
 - Test character whitelist enforcement
+- Test bypass attempts
 
 ---
 
-## Data Protection Requirements
+## Transport Security Requirements
 
-### DATA-001: Encryption in Transit
+### TRANS-001: WebSocket Security (HIGH - VULN-003, VULN-004)
 
 **Requirement:**
-- All external communication must use TLS 1.2 or higher
 - WebSocket connections must use WSS (WebSocket Secure)
-- No plain HTTP except for local development
-
-**Implementation:**
-```nginx
-# nginx.conf
-server {
-    listen 443 ssl http2;
-    ssl_protocols TLSv1.2 TLSv1.3;
-    ssl_ciphers HIGH:!aNULL:!MD5;
-    ssl_prefer_server_ciphers on;
-    ssl_certificate /etc/ssl/certs/server.crt;
-    ssl_certificate_key /etc/ssl/private/server.key;
-    
-    # HSTS
-    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-    
-    location / {
-        proxy_pass http://web;
-    }
-    
-    location /ws/ {
-        proxy_pass http://game-server;
-        proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection "upgrade";
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-    }
-}
-```
-
-**Verification:**
-- TLS configuration scan
-- SSL Labs test score A or higher
-- HSTS header verification
-
----
-
-### DATA-002: Encryption at Rest
-
-**Requirement:**
-- Sensitive data in Redis must be encrypted
-- Database columns containing PII must be encrypted
-- Session data must be encrypted with rotating keys
+- HTTP polling transport must be disabled
+- CORS must explicitly whitelist allowed origins
+- No wildcard origin configuration
 
 **Implementation:**
 ```typescript
-class EncryptionService {
-  private readonly ALGORITHM = 'aes-256-gcm';
-  private readonly IV_LENGTH = 16;
-  private readonly TAG_LENGTH = 16;
-  
-  async encrypt(plaintext: string, key: Buffer): Promise<string> {
-    const iv = crypto.randomBytes(this.IV_LENGTH);
-    const cipher = crypto.createCipheriv(this.ALGORITHM, key, iv);
-    
-    let encrypted = cipher.update(plaintext, 'utf8', 'hex');
-    encrypted += cipher.final('hex');
-    
-    const tag = cipher.getAuthTag();
-    
-    // Store as iv:tag:encrypted
-    return `${iv.toString('hex')}:${tag.toString('hex')}:${encrypted}`;
-  }
-  
-  async decrypt(encryptedData: string, key: Buffer): Promise<string> {
-    const [ivHex, tagHex, encrypted] = encryptedData.split(':');
-    
-    const iv = Buffer.from(ivHex, 'hex');
-    const tag = Buffer.from(tagHex, 'hex');
-    
-    const decipher = crypto.createDecipheriv(this.ALGORITHM, key, iv);
-    decipher.setAuthTag(tag);
-    
-    let decrypted = decipher.update(encrypted, 'hex', 'utf8');
-    decrypted += decipher.final('utf8');
-    
-    return decrypted;
-  }
-}
+const ALLOWED_ORIGINS = (process.env.CORS_ORIGINS?.split(',') || []).filter(Boolean);
+
+this.io = new SocketIOServer(httpServer, {
+  cors: {
+    origin: (origin, callback) => {
+      if (ALLOWED_ORIGINS.length === 0) {
+        callback(new Error('CORS not configured'));
+        return;
+      }
+      
+      if (ALLOWED_ORIGINS.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  },
+  // Only allow WebSocket, disable HTTP polling
+  transports: ['websocket'],
+  allowUpgrades: false,
+  // Limit message size to prevent DoS
+  maxHttpBufferSize: 1e6,  // 1MB
+});
 ```
 
-**Verification:**
-- Test encryption/decryption round-trip
-- Verify encrypted data in Redis
-- Test key rotation
-
----
-
-### DATA-003: Data Minimization
-
-**Requirement:**
-- Collect only data necessary for game functionality
-- Retain data only for necessary duration
-- Provide data export and deletion capabilities for players
-
-**Implementation:**
-```typescript
-interface PlayerDataRetention {
-  sessionData: { retentionDays: 30, reason: 'gameplay history' };
-  chatLogs: { retentionDays: 7, reason: 'moderation' };
-  analytics: { retentionDays: 90, reason: 'improvements' };
-  credentials: { retentionDays: -1, reason: 'account maintenance' };
-}
-
-class DataRetentionService {
-  async cleanupExpiredData(): Promise<number> {
-    const cutoff = Date.now() - (30 * 24 * 60 * 60 * 1000);  // 30 days
-    const expiredSessions = await this.database.query(
-      'DELETE FROM sessions WHERE created_at < $1 RETURNING id',
-      [cutoff]
-    );
-    
-    const cutoff7Days = Date.now() - (7 * 24 * 60 * 60 * 1000);
-    await this.database.query(
-      'DELETE FROM chat_logs WHERE timestamp < $1',
-      [cutoff7Days]
-    );
-    
-    return expiredSessions.rowCount;
-  }
-}
-```
+**Evidence:**
+- Current implementation violates this: `server/src/websocket/server.ts:46,51`
+  - Line 46: CORS defaults to `['http://localhost:3000']` without strict validation
+  - Line 51: Both `'websocket'` and `'polling'` transports allowed
+- Status: **VIOLATION** - Code review confirmed
 
 **Verification:**
-- Test data cleanup automation
-- Verify player data export
-- Test data deletion
-
----
-
-## Logging and Monitoring Requirements
-
-### LOG-001: Security Event Logging
-
-**Requirement:**
-The following events must be logged:
-- Authentication attempts (success/failure)
-- Authorization failures
-- Rate limit triggers
-- Suspicious activity patterns
-- System errors
-
-**Implementation:**
-```typescript
-interface SecurityEvent {
-  timestamp: Date;
-  eventType: 'AUTH_SUCCESS' | 'AUTH_FAILURE' | 'AUTHZ_FAILURE' | 'RATE_LIMIT' | 'SUSPICIOUS';
-  playerId?: string;
-  sessionId?: string;
-  ip: string;
-  userAgent: string;
-  details: Record<string, unknown>;
-}
-
-class SecurityLogger {
-  async log(event: SecurityEvent): Promise<void> {
-    const logEntry = {
-      ...event,
-      timestamp: event.timestamp.toISOString(),
-    };
-    
-    // Structured logging
-    console.log(JSON.stringify({
-      level: this.getLogLevel(event.eventType),
-      ...logEntry,
-    }));
-    
-    // Also write to secure audit log
-    await this.auditLog.write(logEntry);
-  }
-  
-  private getLogLevel(eventType: SecurityEvent['eventType']): string {
-    switch (eventType) {
-      case 'AUTH_FAILURE':
-      case 'AUTHZ_FAILURE':
-        return 'warning';
-      case 'RATE_LIMIT':
-        return 'info';
-      case 'SUSPICIOUS':
-        return 'error';
-      default:
-        return 'info';
-    }
-  }
-}
-```
-
-**Verification:**
-- Test log completeness
-- Test log integrity (tamper detection)
-- Test log aggregation
-
----
-
-### LOG-002: Monitoring and Alerting
-
-**Requirement:**
-- Real-time alerts for security events
-- Dashboards for security metrics
-- Anomaly detection for cheating patterns
-
-**Implementation:**
-```typescript
-interface SecurityMetrics {
-  failedAuthCount: number;
-  rateLimitTriggers: number;
-  authorizationFailures: number;
-  suspiciousPatternCount: number;
-}
-
-class SecurityMonitor {
-  private readonly ALERT_THRESHOLDS = {
-    failedAuthPerMinute: 10,
-    rateLimitPerMinute: 100,
-    authzFailurePerMinute: 50,
-  };
-  
-  checkThresholds(metrics: SecurityMetrics): Alert[] {
-    const alerts: Alert[] = [];
-    
-    if (metrics.failedAuthCount > this.ALERT_THRESHOLDS.failedAuthPerMinute) {
-      alerts.push({
-        severity: 'high',
-        type: 'BRUTE_FORCE_DETECTED',
-        message: `High authentication failures: ${metrics.failedAuthCount}/min`,
-      });
-    }
-    
-    if (metrics.rateLimitTriggers > this.ALERT_THRESHOLDS.rateLimitPerMinute) {
-      alerts.push({
-        severity: 'medium',
-        type: 'DOS_ATTACK',
-        message: `High rate limit triggers: ${metrics.rateLimitTriggers}/min`,
-      });
-    }
-    
-    return alerts;
-  }
-}
-```
-
-**Verification:**
-- Test alert triggering
-- Test alert routing
-- Test dashboard accuracy
+- Test CORS validation
+- Test transport security
+- Test message size limits
 
 ---
 
 ## Compliance Requirements
 
-### COMP-001: Security Headers
+### COMP-001: Security Headers (MEDIUM - VULN-010)
 
 **Requirement:**
 All HTTP responses must include:
@@ -683,7 +552,7 @@ All HTTP responses must include:
 - Referrer-Policy: strict-origin-when-cross-origin
 
 **Implementation:**
-```typescript
+```javascript
 // next.config.js
 const securityHeaders = [
   {
@@ -740,13 +609,13 @@ module.exports = {
 
 **Requirement:**
 - All security requirements must have corresponding tests
-- Minimum 80% code coverage for security-critical modules
+- Minimum 90% code coverage for security-critical modules
 - Automated security tests in CI/CD pipeline
 
 **Implementation:**
 ```typescript
 // test/authentication.test.ts
-describe('Authentication', () => {
+describe('Authentication Security', () => {
   describe('Token Generation', () => {
     it('should generate unique tokens', () => {
       const token1 = generateToken(payload1);
@@ -759,6 +628,12 @@ describe('Authentication', () => {
       const result = await validateToken(token, context);
       expect(result).toBeNull();
     });
+    
+    it('should reject tokens with invalid signature', async () => {
+      const invalidToken = generateToken(payload, 'wrong-secret');
+      const result = await validateToken(invalidToken, context);
+      expect(result).toBeNull();
+    });
   });
   
   describe('Session Binding', () => {
@@ -767,6 +642,27 @@ describe('Authentication', () => {
       const result = await validateToken(token, { ...context, ip: '10.0.0.1' });
       expect(result).toBeNull();
     });
+    
+    it('should reject token with different User-Agent', async () => {
+      const token = generateToken({ ...payload, userAgent: 'Chrome' });
+      const result = await validateToken(token, { ...context, userAgent: 'Firefox' });
+      expect(result).toBeNull();
+    });
+  });
+});
+
+describe('Input Validation', () => {
+  it('should reject SQL injection in player name', async () => {
+    const maliciousInput = "'; DROP TABLE players; --";
+    const result = validatePlayerName(maliciousInput);
+    expect(result.valid).toBe(false);
+  });
+  
+  it('should reject XSS in chat messages', async () => {
+    const xssPayload = '<script>alert("xss")</script>';
+    const result = sanitizeChat(xssPayload);
+    expect(result).not.toContain('<script>');
+    expect(result).not.toContain('alert(');
   });
 });
 ```
@@ -778,6 +674,22 @@ describe('Authentication', () => {
 
 ---
 
-*Security Requirements Version: 1.0*
-*Last Updated: 2026-01-18*
-*JungleSecurity - Making security mandatory*
+## Compliance Matrix
+
+| Requirement | Severity | Status | Evidence | Priority |
+|-------------|----------|--------|----------|----------|
+| AUTH-001: Token Management | Critical | VIOLATION | `server/src/websocket/server.ts:223` | P1 |
+| AUTH-002: Credential Storage | Critical | VIOLATION | No hardcoded secrets check | P1 |
+| AUTH-003: Session Management | High | VIOLATION | Missing refresh, invalidation | P2 |
+| AUTHZ-001: Game Session Access | Critical | VIOLATION | `server/src/game/session.ts:70` | P1 |
+| AUTHZ-002: Resource Limits | High | VIOLATION | In-memory rate limiting | P2 |
+| INP-001: Game Action Validation | Critical | VIOLATION | No bounds checking | P1 |
+| INP-002: Input Sanitization | High | VIOLATION | Basic replace sanitization | P2 |
+| TRANS-001: WebSocket Security | High | VIOLATION | CORS + polling allowed | P2 |
+| COMP-001: Security Headers | Medium | ASSUMED | Not verified in code | P3 |
+
+---
+
+*Security Requirements Version: 2.0*  
+*Last Updated: 2026-01-20*  
+*JungleSecurity - Requirements based on code-confirmed vulnerabilities*
