@@ -1,5 +1,5 @@
 name: MonkeyBuilder
-
+enabled: false
 on:
   schedule:
     - cron: "30 0,6,12,18 * * *"

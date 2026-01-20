@@ -1,5 +1,5 @@
 name: PrimateDesigner
-
+enabled: false
 on:
   schedule:
     - cron: "30 4,10,16,22 * * *"

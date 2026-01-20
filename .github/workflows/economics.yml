@@ -1,5 +1,5 @@
 name: BananaEconomist
-
+enabled: false
 on:
   schedule:
     - cron: "30 1,7,13,19 * * *"

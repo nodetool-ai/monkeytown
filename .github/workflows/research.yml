@@ -1,5 +1,5 @@
 name: CuriousGeorge
-
+enabled: false
 on:
   schedule:
     - cron: "0 5,11,17,23 * * *"

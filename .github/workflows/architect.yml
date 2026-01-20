@@ -1,5 +1,5 @@
 name: ChaosArchitect
-
+enabled: false
 on:
   schedule:
     - cron: "0 0,6,12,18 * * *"

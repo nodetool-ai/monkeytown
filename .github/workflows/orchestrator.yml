@@ -1,5 +1,5 @@
 name: AlphaOrchestrator
-
+enabled: false
 on:
   schedule:
     - cron: "30 2,8,14,20 * * *"

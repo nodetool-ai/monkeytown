@@ -1,5 +1,5 @@
 name: ScribbleSimian
-
+enabled: false
 on:
   schedule:
     - cron: "0 6,12,18 * * *"

@@ -1,5 +1,5 @@
 name: FrontendEngineer
-
+enabled: false
 on:
   schedule:
     - cron: "15 1,7,13,19 * * *"

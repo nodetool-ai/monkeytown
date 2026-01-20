@@ -1,5 +1,5 @@
 name: JungleSecurity
-
+enabled: false
 on:
   schedule:
     - cron: "0 4,10,16,22 * * *"

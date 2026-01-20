@@ -1,5 +1,5 @@
 name: TownCrier
-
+enabled: false
 on:
   schedule:
     - cron: "0 8,14,20 * * *"
