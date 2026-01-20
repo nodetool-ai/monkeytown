@@ -380,4 +380,86 @@ describe('DatabaseService', () => {
       expect(queries.some(q => q.includes('CREATE INDEX'))).toBe(true);
     });
   });
+
+  describe('getAgentStats', () => {
+    it('should return agent stats with win rate', async () => {
+      const mockStats = {
+        id: 'agent-1',
+        name: 'Trickster',
+        agent_type: 'trickster',
+        stats: { wins: 10, losses: 5, draws: 3 },
+        games_played: 18,
+        wins: 10,
+        losses: 5,
+        draws: 3,
+        win_rate: 55.6,
+        total_games: 18,
+        avg_score: 0,
+      };
+      mockPool.query.mockResolvedValue({ rows: [mockStats] });
+
+      const result = await db.getAgentStats('agent-1');
+
+      expect(result).toBeDefined();
+      expect(result?.winRate).toBe(55.6);
+      expect(result?.totalGames).toBe(18);
+    });
+
+    it('should return null for non-existent agent', async () => {
+      mockPool.query.mockResolvedValue({ rows: [] });
+
+      const result = await db.getAgentStats('non-existent');
+
+      expect(result).toBeNull();
+    });
+  });
+
+  describe('getAgentGameHistory', () => {
+    it('should return agent game history', async () => {
+      const mockHistory = [
+        { game_id: 'game-1', game_type: 'tictactoe', is_winner: true },
+        { game_id: 'game-2', game_type: 'babel', is_winner: false },
+      ];
+      mockPool.query.mockResolvedValue({ rows: mockHistory });
+
+      const result = await db.getAgentGameHistory('agent-1', 10, 0);
+
+      expect(result).toEqual(mockHistory);
+      expect(mockPool.query).toHaveBeenCalledWith(
+        expect.stringContaining('WHERE g.config->\'players\' @>'),
+        ['agent-1', 10, 0]
+      );
+    });
+  });
+
+  describe('getAgentDecisionLogs', () => {
+    it('should return agent decision logs', async () => {
+      const mockDecisions = [
+        { id: 'd1', event_type: 'agent_decision', data: { reasoning: 'test' } },
+      ];
+      mockPool.query.mockResolvedValue({ rows: mockDecisions });
+
+      const result = await db.getAgentDecisionLogs('agent-1', 50);
+
+      expect(result).toEqual(mockDecisions);
+      expect(mockPool.query).toHaveBeenCalledWith(
+        expect.stringContaining('WHERE ge.player_id = $1'),
+        ['agent-1', 50]
+      );
+    });
+  });
+
+  describe('saveAgentDecision', () => {
+    it('should save agent decision', async () => {
+      mockPool.query.mockResolvedValue({ rows: [] });
+
+      await db.saveAgentDecision('agent-1', 'game-1', {
+        reasoning: 'Test reasoning',
+        action: 'place',
+        confidence: 0.9,
+      });
+
+      expect(mockPool.query).toHaveBeenCalled();
+    });
+  });
 });
