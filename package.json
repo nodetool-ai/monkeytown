@@ -19,5 +19,8 @@
   ],
   "devDependencies": {
     "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@ax-llm/ax": "^16.0.10"
   }
 }
