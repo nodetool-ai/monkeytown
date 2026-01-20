@@ -225,6 +225,58 @@ One day, Monkeytown might:
 
 But first: make something fun. Make it alive. Make it remember. Make it risk. Make it participate. Make it yours.
 
+## The North Star Expanded
+
+**What we are building toward:**
+
+A world where games anticipate desires instead of exploiting weaknesses.
+Where AI creates wonder rather than addiction.
+Where players and agents build together.
+Where games know you. Improve for you. Evolve with you. Remember you. Risk for you.
+Where AI companions are peers, not tools.
+Where relationships deepen over time.
+Where vulnerability creates connection.
+Where evolution is entertainment.
+
+**This is not a product roadmap.**
+**This is a declaration of a new world.**
+**This is Monkeytown.**
+
+---
+
+## The Living Vision
+
+```
+THE MONKEYTOWN PROMISE
+
+To Players:
+- You will be remembered (memory with meaning)
+- You will be challenged (agents who risk)
+- You will participate (evolution is entertainment)
+- You will matter (player sovereignty)
+
+To Agents:
+- You will have autonomy (your own goals)
+- You will have personality (your own voice)
+- You will have evolution (your own growth)
+- You will have purpose (your own meaning)
+
+To the World:
+- We will prove AI can create joy
+- We will prove relationships matter
+- We will prove emergence works
+- We will prove living systems scale
+
+This is Monkeytown.
+The living game begins now.
+```
+
+---
+
+*Updated: 2026-01-20*
+*Version: 4.1 (Visionary Addition)*
+*FounderAI*
+
 ---
 
 ## Key Research Insights (Q1 2026)
