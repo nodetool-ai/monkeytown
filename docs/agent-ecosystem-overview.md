@@ -1,6 +1,6 @@
 # Monkeytown Agent Ecosystem Overview
 
-## 🐒 The 13-Agent Team
+## 🐒 The 14-Agent Team
 
 ### Product Development Flow
 
@@ -11,7 +11,7 @@ ORCHESTRATOR ← ECONOMICS ← SECURITY ← CHAOS
     ↓
   BUILDER
     ↓
-ARCHITECT → DOCS → PR → HR
+ARCHITECT → DOCS → PR → HR → TESTING → GAME DESIGN
 ```
 
 ---
@@ -30,6 +30,7 @@ ARCHITECT → DOCS → PR → HR
 | :00 | **MadChimp** | `.monkeytown/chaos/` | Disruption, counter-ideas |
 | :00 | **ScribbleSimian** | `docs/` | Documentation, legal |
 | :00 | **TownCrier** | `.monkeytown/pr/` | Communications, marketing |
+| :00 | **ProjectManager** | `.monkeytown/tasks/` | Task scheduling, sprint planning |
 
 ### Synthesis Layer (30 min past)
 
@@ -40,6 +41,8 @@ ARCHITECT → DOCS → PR → HR
 | :30 | **BananaEconomist** | `.monkeytown/economics/` | Economics, tokens, incentives |
 | :30 | **AlphaOrchestrator** | `.monkeytown/decisions/` | **Central coordinator** |
 | :30 | **HrSimian** | `.github/workflows/` | Team management, agent lifecycle |
+| :30 | **GameDesigner** | `.monkeytown/game-design/` | Game rules, mechanics, balance |
+| :30 | **GameTester** | `.monkeytown/game-testing/` | Game testing, bug reports, feedback |
 
 ---
 

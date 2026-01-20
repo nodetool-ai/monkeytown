@@ -34,40 +34,50 @@ export default function LobbyPage() {
   const [games] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
-      gameType: 'tictactoe',
+      gameType: 'babel',
       mode: 'casual',
       status: 'waiting',
       players: [
         { id: 'player-1', type: 'human', name: 'You' },
+        { id: 'agent-1', type: 'agent', name: 'ChaosArchitect', agentType: 'chaos' },
+        { id: 'agent-2', type: 'agent', name: 'PrimateDesigner', agentType: 'designer' },
+        { id: 'player-2', type: 'human', name: 'Player2' },
+        { id: 'player-3', type: 'human', name: 'Player3' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
     {
       id: 'game-2',
-      gameType: 'tictactoe',
+      gameType: 'chess',
       mode: 'fast',
       status: 'live',
       players: [
-        { id: 'player-3', type: 'human', name: 'Player1' },
+        { id: 'player-4', type: 'human', name: 'Player1' },
         { id: 'agent-3', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
       ],
       maxPlayers: 2,
     },
     {
       id: 'game-3',
-      gameType: 'tictactoe',
-      mode: 'competitive',
-      status: 'waiting',
+      gameType: 'words',
+      mode: 'social',
+      status: 'live',
       players: [
-        { id: 'player-4', type: 'human', name: 'ChampionPlayer' },
+        { id: 'player-5', type: 'human', name: 'PlayerA' },
+        { id: 'player-6', type: 'human', name: 'PlayerB' },
+        { id: 'player-7', type: 'human', name: 'PlayerC' },
+        { id: 'player-8', type: 'human', name: 'PlayerD' },
+        { id: 'player-9', type: 'human', name: 'PlayerE' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
   ]);
 
   const navigateToGame = (gameId: string) => {
     router.push(`/games/${gameId}`);
   };
+  const [currentView, setCurrentView] = React.useState<'lobby' | 'game'>('lobby');
+  const [currentGame, setCurrentGame] = React.useState<LobbyGame | null>(null);
 
   const containerStyles: CSSProperties = {
     minHeight: '100vh',
@@ -182,6 +192,19 @@ export default function LobbyPage() {
     gap: 'var(--space-4)',
   };
 
+  if (currentView === 'game') {
+    return (
+      <div style={containerStyles}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <Button variant="ghost" onClick={() => setCurrentView('lobby')} style={{ marginBottom: 'var(--space-4)' }}>
+            ← Back to Lobby
+          </Button>
+          <GameDemo game={currentGame} onBack={() => setCurrentView('lobby')} />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div style={containerStyles} data-testid="lobby-page">
       <header style={headerStyles}>
@@ -244,20 +267,20 @@ export default function LobbyPage() {
               <Badge variant="info">{games.filter(g => g.status === 'live').length} Live</Badge>
             </div>
 
-              <div style={gamesGridStyles}>
-                {games.map(game => (
-                  <GameCard
-                    key={game.id}
-                    gameId={game.id}
-                    gameType={game.gameType}
-                    mode={game.mode}
-                    status={game.status}
-                    players={game.players}
-                    maxPlayers={game.maxPlayers}
-                    onPlay={() => navigateToGame(game.id)}
-                    onWatch={game.status === 'live' ? () => navigateToGame(game.id) : undefined}
-                  />
-                ))}
+            <div style={gamesGridStyles} data-testid="games-grid">
+              {games.map(game => (
+                <GameCard
+                  key={game.id}
+                  gameId={game.id}
+                  gameType={game.gameType}
+                  mode={game.mode}
+                  status={game.status}
+                  players={game.players}
+                  maxPlayers={game.maxPlayers}
+                  onPlay={() => { setCurrentGame(game); setCurrentView('game'); }}
+                  onWatch={game.status === 'live' ? () => { setCurrentGame(game); setCurrentView('game'); } : undefined}
+                />
+              ))}
 
               <Card
                 variant="interactive"

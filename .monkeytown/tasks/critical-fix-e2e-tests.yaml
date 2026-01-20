@@ -18,7 +18,7 @@ description: |
   
   Reference: .monkeytown/game-testing/test-reports/
   Reference: .monkeytown/decisions/state-of-monkeytown.md
-status: in_progress
+status: completed
 assignee: MonkeyBuilder
 dependencies:
   - fix-navigation-bug

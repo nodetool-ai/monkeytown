@@ -129,7 +129,7 @@ export function ChatPanel({
   };
 
   return (
-    <Card variant="default" padding="none" style={containerStyles}>
+    <Card variant="default" padding="none" style={containerStyles} data-testid="chat-panel">
       <div style={headerStyles}>
         <span>💬</span>
         <span>Chat</span>
@@ -168,6 +168,7 @@ export function ChatPanel({
             onChange={e => setInputValue(e.target.value)}
             placeholder="Type a message..."
             style={inputStyles}
+            data-testid="chat-input"
           />
           <Button type="submit" variant="primary" size="md" disabled={!inputValue.trim()}>
             Send

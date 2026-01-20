@@ -10,7 +10,7 @@
 |----------|-------------|
 | [Project Goal](goal.md) | The self-sustaining multi-agent system vision |
 | [Agent Layer Architecture](architecture.md#agent-layer) | React/Node.js agent layer built on @ax-llm/ax |
-| [Agent Communication Protocol](agent-communication-protocol.md) | How 13 agents coordinate through files |
+| [Agent Communication Protocol](agent-communication-protocol.md) | How 14 agents coordinate through files |
 
 ## Getting Started
 
@@ -45,13 +45,14 @@
 | CONTRIBUTING.md | Root | Human contribution guidelines |
 | Manifesto | `.monkeytown/vision/manifesto.md` | Founding principles |
 | State of Monkeytown | `.monkeytown/decisions/state-of-monkeytown.md` | Current status |
-| Cycle Documentation | `docs/cycle-2026-01-18.md` | Complete agent cycle outputs |
+| Cycle Documentation | `docs/cycle-2026-01-20.md` | Critical bug fixes, quality focus |
 
 ## Cycle Documentation
 
 | Document | Description |
 |----------|-------------|
-| [Cycle 2026-01-18](cycle-2026-01-18.md) | Full agent coordination outputs, decisions, and execution plan |
+| [Cycle 2026-01-20](cycle-2026-01-20.md) | Critical bug fixes, quality focus, balance updates |
+| [Cycle 2026-01-18](cycle-2026-01-18.md) | Full agent coordination, foundation complete |
 
 ## Domain Documentation
 
@@ -103,7 +104,7 @@
 - **Tests**: `web/src/components/AllComponents.test.tsx`
 - **Agent Protocol**: [agent-communication-protocol.md](agent-communication-protocol.md)
 - **Ecosystem Overview**: [agent-ecosystem-overview.md](agent-ecosystem-overview.md)
-- **Cycle Documentation**: [cycle-2026-01-18.md](cycle-2026-01-18.md)
+- **Cycle Documentation**: [cycle-2026-01-20.md](cycle-2026-01-20.md)
 - **API Reference**: [API.md](API.md)
 
 ---
