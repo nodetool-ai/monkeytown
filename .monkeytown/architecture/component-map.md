@@ -1,8 +1,8 @@
-# Monkeytown Component Map v2.3
+# Monkeytown Component Map v2.4
 
 **Visual map of system components and their relationships**
 
-**Version:** 2.3
+**Version:** 2.4
 **Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
@@ -23,7 +23,8 @@ monkeytown/
 │   ├── chaos/                      # MadChimp
 │   ├── decisions/                  # AlphaOrchestrator
 │   ├── game-design/                # GameDesigner
-│   └── game-testing/               # GameTester
+│   ├── game-testing/               # GameTester
+│   └── tasks/                      # Task scheduling
 │
 ├── web/                            # Frontend Application
 │   ├── src/
@@ -33,26 +34,28 @@ monkeytown/
 │   │   │   └── globals.css         # Global styles
 │   │   ├── components/
 │   │   │   ├── game/               # Game interface components
-│   │   │   │   ├── GameCanvas.tsx      # Main game canvas
-│   │   │   │   ├── ChatPanel.tsx       # In-game chat
+│   │   │   │   ├── GameCanvas.tsx
+│   │   │   │   ├── ChatPanel.tsx
 │   │   │   │   ├── ChatPanel.test.tsx
-│   │   │   │   ├── EvolutionFeed.tsx   # Agent evolution timeline
+│   │   │   │   ├── EvolutionFeed.tsx
 │   │   │   │   ├── EvolutionFeed.test.tsx
-│   │   │   │   ├── GameCard.tsx        # Game listing card
-│   │   │   │   ├── TicTacToe.tsx       # Tic-tac-toe game
-│   │   │   │   ├── TurnTimer.tsx       # Turn countdown
+│   │   │   │   ├── GameCard.tsx
+│   │   │   │   ├── TicTacToe.tsx
+│   │   │   │   ├── TurnTimer.tsx
 │   │   │   │   ├── TurnTimer.test.tsx
-│   │   │   │   ├── GameRules.tsx       # Rules display
-│   │   │   │   ├── TutorialOverlay.tsx # Tutorial overlay
+│   │   │   │   ├── GameRules.tsx
+│   │   │   │   ├── TutorialOverlay.tsx
 │   │   │   │   ├── TutorialOverlay.test.tsx
 │   │   │   │   ├── SpecialActionIndicator.tsx
 │   │   │   │   ├── SpecialActionIndicator.test.tsx
 │   │   │   │   ├── AIReasoningDisplay.tsx
 │   │   │   │   └── index.ts
+│   │   │   ├── lobby/              # Lobby components
+│   │   │   │   └── index.ts
 │   │   │   ├── agents/             # AI agent components
-│   │   │   │   ├── AgentBadge.tsx      # Agent status badge
+│   │   │   │   ├── AgentBadge.tsx
 │   │   │   │   ├── AgentBadge.test.tsx
-│   │   │   │   ├── AgentPanel.tsx      # Agent information panel
+│   │   │   │   ├── AgentPanel.tsx
 │   │   │   │   └── index.ts
 │   │   │   └── ui/                 # Shared UI components
 │   │   │       ├── Button.tsx
@@ -82,21 +85,20 @@ monkeytown/
 │   ├── src/
 │   │   ├── index.ts                # Entry point
 │   │   ├── game/
-│   │   │   ├── Engine.ts           # Game logic engine (babel-engine)
-│   │   │   ├── babel-engine.ts     # Babel engine implementation
+│   │   │   ├── Engine.ts           # Abstract engine base class
+│   │   │   ├── babel-engine.ts     # Babel card game engine
 │   │   │   ├── babel-engine.test.ts
 │   │   │   ├── Matchmaker.ts       # Player matching system
 │   │   │   ├── Session.ts          # Game session management
-│   │   │   ├── ai-opponent.ts      # AI opponent implementation
+│   │   │   ├── ai-opponent.ts      # AI opponent with LLM support
 │   │   │   ├── ai-opponent.test.ts
-│   │   │   ├── server.ts           # Game server instance
+│   │   │   ├── server.ts           # GameServer orchestration
 │   │   │   ├── types.ts            # Game type definitions
 │   │   │   ├── tictactoe-engine.ts # Tic-tac-toe game logic
 │   │   │   ├── referee.ts          # Game rules enforcement
 │   │   │   └── index.ts
 │   │   ├── websocket/
-│   │   │   ├── Server.ts           # WebSocket handler (Socket.IO)
-│   │   │   ├── Connection.ts       # Connection manager
+│   │   │   ├── Server.ts           # EventStream WebSocket handler
 │   │   │   ├── types.ts
 │   │   │   └── index.ts
 │   │   ├── routes/
@@ -116,10 +118,11 @@ monkeytown/
 ├── packages/                       # Shared packages
 │   └── shared/                     # Shared code
 │       ├── index.ts                # Main exports
-│       ├── types.ts                # TypeScript types
-│       ├── constants.ts            # Constants
+│       ├── types.ts                # Shared TypeScript types
+│       ├── constants.ts            # Shared constants
 │       ├── game-types.ts           # Game-specific types
 │       ├── game-constants.ts       # Game constants
+│       ├── gaming-protocol.ts      # Gaming protocol definitions
 │       └── package.json
 │
 ├── deploy/                         # Deployment configs
@@ -133,8 +136,8 @@ monkeytown/
 │       ├── main.tf                 # Main Terraform config
 │       ├── variables.tf            # Terraform variables
 │       ├── outputs.tf              # Terraform outputs
-│       ├── ecs.tf                  # ECS cluster config
-│       ├── ecs-variables.tf        # ECS variables
+│       ├── ecs.tf                  # ECS cluster and services
+│       ├── ecs-variables.tf        # ECS-specific variables
 │       └── README.md               # Infrastructure docs
 │
 ├── docs/                           # Documentation
@@ -504,12 +507,13 @@ interface DatabaseService {
 ### Completed Components
 
 - **Frontend Framework**: Next.js 14 with App Router
-- **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel, TicTacToe
+- **Game Components**: GameCanvas, ChatPanel, EvolutionFeed, AgentPanel, TicTacToe, TurnTimer
 - **UI Components**: Button, Badge, Card (with tests)
-- **Game Engine**: Babel engine with AI opponent
-- **WebSocket Server**: Socket.IO-based event stream
+- **Game Engine**: BabelEngine, TicTacToeEngine, GameSessionManager
+- **AI Opponent**: Multi-difficulty AI with LLM support
+- **WebSocket Server**: Socket.IO-based EventStream with room management
 - **REST API**: Health endpoints, game API routes
-- **Data Layer**: PostgreSQL and Redis services
+- **Data Layer**: PostgreSQL service, Redis service
 - **Docker Setup**: Multi-stage Dockerfiles for web and server
 - **Infrastructure**: Terraform configs for AWS ECS
 - **CI/CD Pipeline**: Complete GitHub Actions workflow
@@ -520,8 +524,8 @@ interface DatabaseService {
 | Game | Status | Location |
 |------|--------|----------|
 | TicTacToe | Complete | `server/src/game/tictactoe-engine.ts` |
+| Babel | Complete | `server/src/game/babel-engine.ts` |
 | AI Opponent | Complete | `server/src/game/ai-opponent.ts` |
-| Babel Engine | Complete | `server/src/game/babel-engine.ts` |
 
 ### In Progress
 
@@ -577,26 +581,11 @@ interface DatabaseService {
 
 ---
 
-## File Locations
-
-| Component | File Path |
-|-----------|-----------|
-| Frontend | `web/` |
-| Backend | `server/` |
-| Shared Types | `packages/shared/` |
-| Docker Configs | `deploy/docker/` |
-| Docker Compose | `docker-compose.yml` |
-| Environment | `.env.example` |
-| Architecture Docs | `.monkeytown/architecture/` |
-| Infrastructure | `infrastructure/terraform/` |
-| CI/CD | `.github/workflows/` |
-
----
-
 ## Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.4 | 2026-01-20 | Updated with verified file structure, Engine.ts base class, EventStream |
 | 2.3 | 2026-01-20 | Added E2E testing, engineer workflows, complete structure |
 | 2.2 | 2026-01-19 | Added GitHub workflows, implemented games, technical debt |
 | 2.1 | 2026-01-19 | Updated with actual file structure |
@@ -604,6 +593,6 @@ interface DatabaseService {
 
 ---
 
-*Version: 2.3*
+*Version: 2.4*
 *Last updated: 2026-01-20*
 *ChaosArchitect - Mapping the chaos*
