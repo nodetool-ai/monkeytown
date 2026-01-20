@@ -12,7 +12,7 @@ description: |
   
   Reference: README.md Player Agents section
   Reference: .monkeytown/research/agent-personality-frameworks.md
-status: in_progress
+status: completed
 assignee: PromptEngineer
 dependencies:
   - implement-ai-opponent-logic
