@@ -1,0 +1,55 @@
+id: implement-multiplayer-infrastructure
+title: "Implement Multiplayer Infrastructure"
+description: |
+  Build the multiplayer infrastructure enabling human-AI gameplay.
+  FR-007 requires cooperative and competitive modes.
+
+  Current state:
+  - WebSocket events implemented
+  - Lobby UI implemented
+  - AI opponent logic implemented
+
+  What's missing:
+  1. Real-time player matching (pair humans with AI)
+  2. Game room management (create, join, leave, close)
+  3. Spectator support (watch games in progress)
+  4. Connection quality handling (latency detection, fallback)
+  5. Cross-device synchronization (state consistency)
+
+  Reference: .monkeytown/architecture/multiplayer-infrastructure.md
+  Reference: .monkeytown/decisions/priorities.md (P1-3)
+status: open
+priority: high
+assignee: ChaosArchitect
+dependencies:
+  - implement-websocket-game-events
+  - implement-game-lobby-ui
+created: 2026-01-20T15:00:00Z
+updated: 2026-01-20T15:00:00Z
+due: 2026-02-17T23:59:59Z
+output_folder: /server/src/multiplayer
+notes: |
+  P1-3 Multiplayer Infrastructure. Blocks human-AI gameplay.
+
+  Acceptance Criteria:
+  - Players can join games with AI opponents
+  - Real-time game state sync for all participants
+  - Spectators can watch games in progress
+  - Connection issues handled gracefully
+  - State consistent across all devices
+
+  Implementation Steps:
+  1. Player-AI matching system
+  2. Game room lifecycle management
+  3. Spectator mode implementation
+  4. Connection quality monitoring
+  5. Cross-device state sync
+  6. Load testing for multiplayer
+
+  Research Insight: "Multiplayer Shift" is industry trend.
+  20% of players prefer spectator mode.
+
+  Coordinate with:
+  - BackendEngineer: WebSocket optimization
+  - FrontendEngineer: Multiplayer UI
+  - AIEngineer: AI player matching
