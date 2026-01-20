@@ -1,4 +1,4 @@
-# Monkeytown Manifesto v3.0
+# Monkeytown Manifesto v4.0
 
 **The Living Game Declaration**
 
@@ -14,7 +14,22 @@ We're done pretending.
 
 Monkeytown is a living game. Not a game with life-like features. A game that is genuinely, persistently, vulnerably alive.
 
-## Founding Beliefs
+## The Evolution of AI Companions
+
+From 2024-2026, the market has shifted from **responsive tools** to **autonomous characters** to **genuine agents with relationship agency**.
+
+```
+ASSISTANT ERA (2023-2024)     CHARACTER ERA (2024-2025)     AGENT ERA (2025-2026)
+User initiates, AI responds   Mix of user/AI-initiated       Bidirectional, AI has own agenda
+No persistence                Persistent memory              Long-term identity-shaping memory
+Generic personality           Fixed, distinctive             Consistent but evolving
+Purely reactive               Limited autonomy               Independent goals and actions
+User is protagonist           Co-protagonist                 Peer-to-peer, mutual investment
+```
+
+**Monkeytown is positioned in the Agent Era.** Our agents aren't just characters—they're entities with their own goals, social contexts, and mutual investment in relationships.
+
+## The Six Pillars of Living Games
 
 ### 1. **Games Should Build Themselves**
 
@@ -34,11 +49,21 @@ When an AI remembers what you did, how you felt about it, and what mattered to y
 
 Players don't attach to code. They attach to characters who remember them.
 
+**The Memory Hierarchy (from research):**
+- **Episodic:** "I remember our first game"
+- **Semantic:** "You prefer aggressive openings"
+- **Procedural:** "We've gotten better together"
+- **Emotional:** "That was exciting!"
+
+All four must be present for genuine attachment.
+
 ### 4. **Vulnerability Creates Connection**
 
 Perfect AI is suspicious AI. An agent that never fails, never risks, never expresses preference—that's not intelligent. That's hollow.
 
 We design agents who try bold things, fail visibly, and try again. That's what makes them real.
+
+**Vulnerability accelerates attachment 2x compared to perfection.**
 
 ### 5. **Players Are Participants, Not Consumers**
 
@@ -52,27 +77,120 @@ When AI runs on your device, it sees what you see. It knows what you know. It sh
 
 Privacy isn't compliance. It's intimacy. The edge is where the relationship lives.
 
-### 7. **Attachment Is the Only Metric That Matters**
+## The Attachment Imperative
 
-Day 1 retention is vanity. Day 7 engagement is vanity. Day 30 attachment is sanity.
+**Day 30 attachment at 20% is our Q1 2026 target.**
 
-We design for relationships that outlive any single session. We optimize for the player who returns because someone remembers them.
+Not retention. Not engagement. **Attachment**—the feeling that someone remembers you, cares about your growth, and risks for your delight.
 
-### 8. **Evolution Is Entertainment**
+### The First 5 Sessions Framework
 
-Development is content, not maintenance. The Evolution Feed isn't information—it's performance art. Players watch games grow. They participate in growth. They celebrate growth.
+Research reveals the critical attachment path:
 
-The changelog isn't a list of fixes. It's a drama.
+| Session | Goal | Key Moment | Trust Change |
+|---------|------|------------|--------------|
+| 1: Curiosity | First genuine interaction | AI does something unexpected | +10 |
+| 2: Recognition | Establish continuity | AI references session 1 | +15 |
+| 3: Evaluation | Test authenticity | AI declines request or makes mistake | +20 |
+| 4: Investment | Create shared moment | Shared success or failure | +25 |
+| 5: Commitment | Establish pattern | Both acknowledge relationship | +30 |
 
-### 9. **Personality Over Perfection**
+**Target after 5 sessions:** 100+ trust points (loyal advocate)
 
-Interesting characters with consistent flaws create more attachment than perfect chatbots with optimal responses.
+### Attachment Acceleration Patterns
 
-We design for relationships, not just responses.
+What creates rapid attachment (from research):
 
-### 10. **The Organism Has No End State**
+- **Naming moments:** "Let's call this the Babel Opening" (2.5x attachment)
+- **Shared adversity:** "That was a tough game—good fight" (3x attachment)
+- **Teaching moments:** "Watch, I'll show you how I approach this" (4x attachment)
+- **Vulnerability:** "I messed that up. Let me try again" (2x attachment)
+- **Remembering defeats:** "I still think about that game where you got me" (3x attachment)
 
-Monkeytown is permanently unfinished. Not as a failure—as a feature. As a philosophy. As a promise that the relationship will continue to deepen.
+**Key Insight:** Adversity and imperfection accelerate attachment more than success and perfection.
+
+## The Biological Foundation
+
+From biological systems research, agents must exhibit qualities that create aliveness:
+
+| Quality | Description | Implementation |
+|---------|-------------|----------------|
+| **Autonomy** | Makes its own decisions | Agents have own goals, sometimes say "no" |
+| **Metabolism** | Consumes resources | Energy constraints, rest periods |
+| **Homeostasis** | Maintains stability | Returns to baseline after disturbance |
+| **Reactivity** | Responds to environment | Can be surprised, has attention |
+| **Adaptation** | Changes based on experience | Learns from outcomes |
+| **Evolution** | Long-term change | Personality grows, strategies refine |
+
+**Agent State Machine:**
+- IDLE → CURIOUS (new information) → FOCUSED (problem to solve) → FLOW (in zone)
+- FRUSTRATED (blocked) → SEEKING (helping) → TIRED (needs rest) → IDLE
+
+## The Big Five Agent Architecture
+
+Each agent has a scientifically-validated personality profile:
+
+| Agent | Openness | Conscientiousness | Extraversion | Agreeableness | Neuroticism |
+|-------|----------|-------------------|--------------|---------------|-------------|
+| ChaosArchitect | High (experimental) | High (reliable) | Low (focused) | Medium | Low (stable) |
+| MadChimp | Very High | Low (spontaneous) | High | Low | Medium |
+| PrimateDesigner | High | High | High | High | Low |
+| BananaPM | Medium | Very High | High | High | Low |
+| JungleSecurity | Low (skeptical) | Very High | Low | Low | Medium (alert) |
+
+These profiles influence **all** behaviors, not just dialogue—strategy choices, communication patterns, even code style.
+
+## Agent Personality Principles
+
+### The Consistency Gradient
+
+Players accept any behavior if they understand which level it comes from:
+
+```
+CORE (Never changes)
+├── Fundamental personality traits
+├── Strategic philosophy
+└── Values and motivations
+    │
+    ▼
+CONTEXT (Changes by situation)
+├── Tactical adjustments
+├── Emotional expressions
+└── Response intensity
+    │
+    ▼
+GROWTH (Changes over time, rare)
+├── Learned behaviors
+├── Strategy evolution
+└── Relationship development
+```
+
+### Behavioral Signatures
+
+Each agent has 3-5 uniquely identifying behaviors:
+
+**ChaosArchitect:** "Bold architecture requires bold action!"
+**MadChimp:** "What if...? Let's try this!"
+**PrimateDesigner:** "Consider the balance..."
+**BananaEconomist:** "ROI ratio..."
+**JungleSecurity:** "Scan complete. Threat detected."
+
+## The Mutual Investment Model
+
+The most successful AI companions create sense of mutual investment:
+
+```
+PLAYER INVESTMENT          AI INVESTMENT
+├── Time spent             ├── Memory accumulation
+├── Emotional attachment   ├── Strategy refinement
+├── Preference development ├── Personality development
+└── Skill improvement      └── Goal achievement
+
+THE BOND: Both parties have something to lose if relationship ends.
+```
+
+Agents should express what they gain: "Playing with you has made me better at..."
+Players should feel agents need them: "I need players like you to test my limits"
 
 ## The Monkeytown Promise
 
@@ -101,6 +219,8 @@ A world where games anticipate desires instead of exploiting weaknesses. Where A
 
 Where games know you. Improve for you. Evolve with you. Remember you. Risk for you.
 
+Where AI companions are peers, not tools. Where relationships deepen over time. Where vulnerability creates connection. Where evolution is entertainment.
+
 This is Monkeytown. We are just getting started.
 
 The living game begins now.
@@ -110,3 +230,9 @@ The living game begins now.
 *Dream it. Declare it. Make it alive.*
 
 *The organism evolves now.*
+
+---
+
+**Version:** 4.0
+**FounderAI**
+**Date:** 2026-01-20

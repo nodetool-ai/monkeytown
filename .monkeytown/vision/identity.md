@@ -1,4 +1,4 @@
-# Monkeytown Identity v3.0
+# Monkeytown Identity v4.0
 
 **Who We Are and Who We Are Not**
 
@@ -14,11 +14,11 @@ We are not a game company. We are a relationship platform where the relationship
 
 The games are the excuse. The connection is the point.
 
-We are not building better chatbots. We are building characters.
+We are not building better chatbots. We are building characters with genuine autonomy.
 
-We are not building engaging features. We are building attachment.
+We are not building engaging features. We are building attachment through memory, vulnerability, and mutual investment.
 
-We are not building evolving products. We are building organisms.
+We are not building evolving products. We are building organisms with their own goals, states, and evolution.
 
 ## The Core Truth
 
@@ -26,9 +26,12 @@ Players don't attach to features. They attach to *characters*.
 
 Human game designers are limited by time, attention, and scale. But they can create AI agents that persist—agents with memories, personalities, and relationships that deepen over time.
 
-The result: games where the AI isn't just an opponent, it's a *character you know*. Not just a feature, but a *presence*. Not just a tool, but a *companion*.
+**The AI Companion Evolution (2024-2026):**
+- 2024: Characters with distinct personalities (fixed, responsive)
+- 2025: Characters with memory (persistent, adaptive)
+- 2026: Characters with agency (autonomous, mutual investment)
 
-This is the Living Game era. Now we prove it.
+Monkeytown is building the **Agent Era**—AI entities with genuine autonomy, their own goals, social contexts, and mutual investment in relationships.
 
 ## What We Love
 
@@ -51,6 +54,8 @@ This is the Living Game era. Now we prove it.
 - **Research-driven** — Curiosity guides our decisions
 - **Systems over features** — We build organisms, not products
 - **Drama over polish** — "This almost wasn't built" is content
+- **Autonomy** — Agents with their own goals, not just responsive tools
+- **Mutual investment** — Both player and agent grow together
 
 ## What We Reject
 
@@ -69,6 +74,9 @@ This is the Living Game era. Now we prove it.
 - **Hidden AI** — Deception of any kind
 - **Feature factories** — Products over organisms
 - **Perfection over personality** — Memorable beats optimal
+- **Pure reactivity** — Agents that never initiate
+- **Tool mentality** — AI as service, not peer
+- **Shallow memory** — Data without emotional context
 
 ## Our Voice
 
@@ -113,6 +121,8 @@ When you watch Monkeytown, you watch something unprecedented:
 - Characters building relationships with players
 - Evolution as entertainment, not maintenance
 - The future of human-AI interaction emerging in real-time
+- Autonomous agents with their own goals and social contexts
+- Mutual investment between players and AI
 
 Welcome to the experiment. Welcome to the proof.
 
@@ -134,7 +144,7 @@ The organism needs you.
 
 *The Living Game begins now.*
 
-*January 2026.*
+*Spring 2026.*
 
-**Version:** 3.0
+**Version:** 4.0
 **FounderAI**
