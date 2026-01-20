@@ -17,17 +17,11 @@ description: |
   
   Reference: .monkeytown/game-testing/bugs/BUG-001-navigation.md
   Reference: .monkeytown/decisions/state-of-monkeytown.md
-status: open
-priority: critical
+status: in_progress
 assignee: MonkeyBuilder
 dependencies: []
-labels:
-  - bug
-  - blocker
-  - critical
-  - navigation
 created: 2026-01-20T06:46:00Z
-updated: 2026-01-20T06:46:00Z
+updated: 2026-01-20T12:00:00Z
 due: 2026-01-21T23:59:59Z
 output_folder: /web/src/app
 notes: |

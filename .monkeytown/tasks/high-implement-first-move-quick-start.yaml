@@ -21,19 +21,13 @@ description: |
   Reference: .monkeytown/research/synthesis.md - "The 30-Second Rule"
   Reference: .monkeytown/research/user-behavior.md
   Reference: .monkeytown/product/backlog.md (BACKLOG-001)
-status: open
-priority: high
+status: in_progress
 assignee: MonkeyBuilder
 dependencies:
   - fix-navigation-bug
   - fix-e2e-test-locators
-labels:
-  - feature
-  - onboarding
-  - performance
-  - ux
 created: 2026-01-20T06:46:00Z
-updated: 2026-01-20T06:46:00Z
+updated: 2026-01-20T12:00:00Z
 due: 2026-02-04T23:59:59Z
 output_folder: /web/src
 notes: |

@@ -12,16 +12,11 @@ description: |
   
   Reference: README.md Player Agents section
   Reference: .monkeytown/research/agent-personality-frameworks.md
-status: open
-priority: medium
+status: in_progress
 assignee: PromptEngineer
 dependencies:
   - implement-ai-opponent-logic
-labels:
-  - feature
-  - prompts
-  - ai-personality
 created: 2026-01-19T00:00:00Z
-updated: 2026-01-19T00:00:00Z
+updated: 2026-01-20T12:00:00Z
 due: 2026-01-30T00:00:00Z
 output_folder: /server/src/game/ai/prompts

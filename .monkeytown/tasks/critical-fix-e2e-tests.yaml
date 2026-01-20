@@ -18,18 +18,12 @@ description: |
   
   Reference: .monkeytown/game-testing/test-reports/
   Reference: .monkeytown/decisions/state-of-monkeytown.md
-status: open
-priority: critical
+status: in_progress
 assignee: MonkeyBuilder
 dependencies:
   - fix-navigation-bug
-labels:
-  - testing
-  - critical
-  - e2e
-  - quality
 created: 2026-01-20T06:46:00Z
-updated: 2026-01-20T06:46:00Z
+updated: 2026-01-20T12:00:00Z
 due: 2026-01-28T23:59:59Z
 output_folder: /web
 notes: |
