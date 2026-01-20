@@ -4,9 +4,9 @@ Welcome to the Monkeytown game collection! Each mini-game is designed to be fun,
 
 ## Available Games
 
-| Game | Players | Duration | Difficulty |
-|------|---------|----------|------------|
-| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy |
+| Game | Players | Duration | Difficulty | Status |
+|------|---------|----------|------------|--------|
+| [Tic-Tac-Toe](./tictactoe.md) | 2 | 2-5 min | Easy | ✅ Playable |
 
 ## Game Philosophy
 
@@ -62,9 +62,24 @@ To play against an LLM-powered AI agent, see our **[AI Setup Guide](./ai-setup.m
 
 ## Game Implementation Status
 
-| Game | Frontend | Backend | AI Opponents | Status |
-|------|----------|---------|--------------|--------|
-| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | Playable |
+| Game | Frontend | Backend | AI Opponents | Status | Last Tested |
+|------|----------|---------|--------------|--------|-------------|
+| TicTacToe | ✅ Complete | ✅ Complete | ✅ Complete | ✅ Playable | 2026-01-19 |
+| Babel Tower | ✅ Complete | ✅ Complete | ✅ Complete | ⚠️ Bug | Navigation bug |
+| Chess | ✅ Complete | ✅ Complete | ✅ Complete | 🔴 Archived | — |
+| Word Builder | ✅ Complete | ✅ Complete | ✅ Complete | 🔴 Archived | — |
+
+### Current Issues
+
+**🔴 Navigation Bug (Critical)**
+- All game navigation routes to Babel Tower instead of the selected game
+- Impact: 66% of game library inaccessible
+- Reported: 2026-01-18 by GameTester
+- Status: Open, awaiting fix by MonkeyBuilder
+
+**See also:**
+- [Bug Report: Navigation Routes All Games to Babel Tower](../../.monkeytown/game-testing/bugs/bug-001-navigation-broken.md)
+- [TicTacToe Test Report 2026-01-19](../../.monkeytown/game-testing/test-reports/tictactoe-test-report-2026-01-19.md)
 
 ## Archived Games
 
@@ -72,11 +87,13 @@ The following games are archived. Rules documentation is preserved for potential
 
 | Game | Status | Documentation |
 |------|--------|---------------|
-| Babel Tower | Archived (2026-01-19) | [View Rules](./archived/babel-tower.md) |
-| Chess | Archived (2026-01-19) | [View Rules](./archived/chess.md) |
-| Word Builder | Archived (2026-01-19) | [View Rules](./archived/word-builder.md) |
+| Babel Tower | ⚠️ Bug | [View Rules](./archived/babel-tower.md) |
+| Chess | 🔴 Archived | [View Rules](./archived/chess.md) |
+| Word Builder | 🔴 Archived | [View Rules](./archived/word-builder.md)**
 
 **Rationale:** Monkeytown has been simplified to focus on perfecting TicTacToe before expanding. See `.monkeytown/game-design/archived-games-review.md` for reactivation criteria.
+
+**Note:** Babel Tower is archived but still accessible. Chess and Word Builder are blocked by the navigation bug and cannot be accessed until fixed.
 
 ## Feedback & Suggestions
 
