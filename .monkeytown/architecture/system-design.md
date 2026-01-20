@@ -1,8 +1,8 @@
-# Monkeytown System Design v2.3
+# Monkeytown System Design v2.4
 
 **Architecture for AI-powered multiplayer game platform**
 
-**Version:** 2.3
+**Version:** 2.4
 **Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
@@ -158,6 +158,7 @@ web/
 - `next: ^14.2.0`
 - `react: ^18.2.0`
 - `react-dom: ^18.2.0`
+- `socket.io-client: ^4.7.2` (WebSocket client)
 
 **Dev Dependencies**:
 - `@playwright/test: ^1.57.0` (E2E tests)
@@ -174,21 +175,20 @@ server/
 ├── src/
 │   ├── index.ts                # Entry point
 │   ├── game/
-│   │   ├── Engine.ts           # Game logic engine (babel-engine)
-│   │   ├── babel-engine.ts     # Babel engine implementation
+│   │   ├── Engine.ts           # Abstract game engine base
+│   │   ├── babel-engine.ts     # Babel card game engine
 │   │   ├── babel-engine.test.ts
 │   │   ├── Matchmaker.ts       # Player matching system
 │   │   ├── Session.ts          # Game session management
-│   │   ├── ai-opponent.ts      # AI opponent implementation
+│   │   ├── ai-opponent.ts      # AI opponent with LLM support
 │   │   ├── ai-opponent.test.ts
-│   │   ├── server.ts           # Game server instance
+│   │   ├── server.ts           # GameServer orchestration
 │   │   ├── types.ts            # Game type definitions
 │   │   ├── tictactoe-engine.ts # Tic-tac-toe game logic
 │   │   ├── referee.ts          # Game rules enforcement
 │   │   └── index.ts
 │   ├── websocket/
-│   │   ├── Server.ts           # WebSocket handler (Socket.IO)
-│   │   ├── Connection.ts       # Connection manager
+│   │   ├── Server.ts           # EventStream WebSocket handler
 │   │   ├── types.ts
 │   │   └── index.ts
 │   ├── routes/
@@ -215,6 +215,7 @@ server/
 - `bcryptjs: ^2.4.3` (Password hashing)
 - `zod: ^3.22.4` (Input validation)
 - `ws: ^8.14.2` (WebSocket library)
+- `uuid: ^9.0.0` (ID generation)
 
 **Dev Dependencies**:
 - `typescript: ^5.3.3`
@@ -258,27 +259,40 @@ packages/shared/
 
 ```typescript
 // Client -> Server messages
-type ClientMessage =
-  | { type: 'join_game'; payload: { gameId: string } }
-  | { type: 'player_input'; payload: { action: InputAction } }
-  | { type: 'chat_message'; payload: { text: string } }
-  | { type: 'heartbeat'; payload: { timestamp: number } };
+interface ClientMessage {
+  type: 'join' | 'leave' | 'action' | 'chat' | 'chat:history' | 'heartbeat';
+  gameId?: string;
+  payload?: Record<string, unknown>;
+}
 
 // Server -> Client messages
-type ServerMessage =
-  | { type: 'game_state'; payload: GameState }
-  | { type: 'player_joined'; payload: Player }
-  | { type: 'player_left'; payload: { playerId: string } }
-  | { type: 'game_event'; payload: GameEvent }
-  | { type: 'error'; payload: { code: string; message: string } };
+interface ServerMessage {
+  type: 'joined' | 'left' | 'state' | 'event' | 'error' | 'chat' | 'chat:history' | 'heartbeat:ack';
+  gameId?: string;
+  payload?: Record<string, unknown>;
+}
+
+// Game action interface (TicTacToe)
+interface TicTacToeAction {
+  type: 'place' | 'forfeit';
+  row?: number;
+  col?: number;
+}
+
+// Game action interface (Babel)
+interface BabelAction {
+  type: string;
+  cardId?: string;
+  targetPlayerId?: string;
+}
 ```
 
 ### 2. Event Flow
 
 ```
-Player Action → WebSocket → Game Server → Redis Pub/Sub → All Players
-                           ↓
-                    PostgreSQL (persistent)
+Player Action → EventStream (Socket.IO) → GameServer → Redis Pub/Sub → All Players
+                            ↓
+                     PostgreSQL (persistent)
 ```
 
 ### 3. REST API Endpoints
@@ -315,27 +329,81 @@ ratelimit:{playerId}:{action} -> TTL-based counters
 ### PostgreSQL Schema
 
 ```sql
+-- Players table
 CREATE TABLE players (
   id UUID PRIMARY KEY,
-  username VARCHAR(64) UNIQUE,
-  stats JSONB,
-  created_at TIMESTAMP
+  username VARCHAR(64) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE,
+  password_hash VARCHAR(255),
+  avatar_url VARCHAR(512),
+  stats JSONB DEFAULT '{}',
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
 );
 
+-- Games table
 CREATE TABLE games (
   id UUID PRIMARY KEY,
-  config JSONB,
+  game_type VARCHAR(32) NOT NULL,
+  config JSONB DEFAULT '{}',
   result JSONB,
+  status VARCHAR(32) DEFAULT 'waiting',
   started_at TIMESTAMP,
-  ended_at TIMESTAMP
+  ended_at TIMESTAMP,
+  created_at TIMESTAMP DEFAULT NOW()
 );
 
+-- Game players junction table
+CREATE TABLE game_players (
+  id UUID PRIMARY KEY,
+  game_id UUID REFERENCES games(id),
+  player_id UUID REFERENCES players(id),
+  player_type VARCHAR(16) DEFAULT 'human',
+  player_order INTEGER,
+  score INTEGER DEFAULT 0,
+  joined_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Chat messages table
+CREATE TABLE chat_messages (
+  id UUID PRIMARY KEY,
+  game_id UUID NOT NULL,
+  sender_id UUID NOT NULL,
+  sender_name VARCHAR(64) NOT NULL,
+  sender_type VARCHAR(16) DEFAULT 'human',
+  content TEXT NOT NULL,
+  timestamp BIGINT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Agent behaviors table
 CREATE TABLE agent_behaviors (
   id UUID PRIMARY KEY,
   personality JSONB,
   decision_model TEXT,
-  version INTEGER
+  version INTEGER DEFAULT 1,
+  created_at TIMESTAMP DEFAULT NOW(),
+  updated_at TIMESTAMP DEFAULT NOW()
 );
+
+-- Game actions log table
+CREATE TABLE game_actions (
+  id UUID PRIMARY KEY,
+  game_id UUID NOT NULL,
+  player_id UUID NOT NULL,
+  action_type VARCHAR(64) NOT NULL,
+  action_data JSONB,
+  turn_number INTEGER,
+  timestamp BIGINT NOT NULL
+);
+
+-- Indexes for performance
+CREATE INDEX idx_games_status ON games(status);
+CREATE INDEX idx_games_type ON games(game_type);
+CREATE INDEX idx_game_players_game_id ON game_players(game_id);
+CREATE INDEX idx_chat_messages_game_id ON chat_messages(game_id);
+CREATE INDEX idx_chat_messages_timestamp ON chat_messages(timestamp DESC);
+CREATE INDEX idx_game_actions_game_id ON game_actions(game_id);
 ```
 
 ---
@@ -650,6 +718,7 @@ app.get('/health/ready', async (req, res) => {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.4 | 2026-01-20 | Updated WebSocket protocol, PostgreSQL schema, verified actual implementation |
 | 2.3 | 2026-01-20 | Updated with E2E testing, Nginx config, full docker-compose |
 | 2.2 | 2026-01-19 | Added implemented games, CI/CD pipeline details, environment config |
 | 2.1 | 2026-01-19 | Updated with actual file structure, dependencies |
@@ -657,6 +726,6 @@ app.get('/health/ready', async (req, res) => {
 
 ---
 
-*Version: 2.3*
+*Version: 2.4*
 *Last updated: 2026-01-20*
 *ChaosArchitect - Making systems resilient*
