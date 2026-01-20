@@ -1,8 +1,8 @@
-# Monkeytown Component Map v2.4
+# Monkeytown Component Map v2.5
 
 **Visual map of system components and their relationships**
 
-**Version:** 2.4
+**Version:** 2.5
 **Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
@@ -171,7 +171,7 @@ monkeytown/
                                     │
                                     ▼
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│                           FRONTEND LAYER (web/)                              │
+│                          FRONTEND LAYER (web/)                               │
 │  ┌─────────────────────────────────────────────────────────────────────┐     │
 │  │                        Next.js Application                           │     │
 │  │  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐    │     │
@@ -244,34 +244,34 @@ monkeytown/
 
 ```
 Player Browser
-        │
-        │ 1. Open WebSocket connection
-        ▼
+         │
+         │ 1. Open WebSocket connection
+         ▼
 ┌─────────────┐
 │  Web Server │  (Static assets, initial HTML)
 └──────┬──────┘
-        │ 2. JS bundle loads, connects to WebSocket
-        ▼
+         │ 2. JS bundle loads, connects to WebSocket
+         ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── handshake (Socket.IO)
 └────────┬────────┘
-        │ 3. Authenticate with JWT
-        ▼
+         │ 3. Authenticate with JWT
+         ▼
 ┌─────────────────┐
 │  Game Server    │  ◄── validate token
 └────────┬────────┘
-        │ 4. Subscribe to game events
-        ▼
+         │ 4. Subscribe to game events
+         ▼
 ┌─────────────────┐
 │  Redis Pub/Sub  │  ◄── channel subscription
 └────────┬────────┘
-        │ 5. Request game
-        ▼
+         │ 5. Request game
+         ▼
 ┌─────────────────┐
 │  Matchmaker     │  ◄── find/create game
 └────────┬────────┘
-        │ 6. Join game
-        ▼
+         │ 6. Join game
+         ▼
 ┌─────────────────┐
 │  Game Session   │  ◄── game loop begins
 └─────────────────┘
@@ -281,32 +281,32 @@ Player Browser
 
 ```
 Player A (Action)
-        │
-        │ 1. Send input
-        ▼
+         │
+         │ 1. Send input
+         ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── websocket message
 └────────┬────────┘
-        │ 2. Validate
-        ▼
+         │ 2. Validate
+         ▼
 ┌─────────────────┐
 │ Game Server     │  ◄── process input
-        │          │  ◄── update game state
-        │          │  ◄── AI opponent decision
-        └──────────┘
-        │ 3. Publish event
-        ▼
+         │          │  ◄── update game state
+         │          │  ◄── AI opponent decision
+         └──────────┘
+         │ 3. Publish event
+         ▼
 ┌─────────────────┐
 │ Redis Pub/Sub   │  ◄── broadcast
 └────────┬────────┘
-        │ 4. Fan out
-        ▼
+         │ 4. Fan out
+         ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Event Stream A  │     │ Event Stream B  │
 │ (Player A)      │     │ (Player B)      │
 └─────────────────┘     └─────────────────┘
-        │                      │
-        ▼                      ▼
+         │                      │
+         ▼                      ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Client Update   │     │ Client Update   │
 │ (React State)   │     │ (React State)   │
@@ -317,30 +317,30 @@ Player A (Action)
 
 ```
 GitHub Actions
-        │
-        │ 1. Trigger agent workflow
-        ▼
+         │
+         │ 1. Trigger agent workflow
+         ▼
 ┌─────────────────┐
 │ Agent Code      │  ◄── read repo state
 │ (Python/TS)     │  ◄── load prompt
 └────────┬────────┘
-        │ 2. Execute task
-        ▼
+         │ 2. Execute task
+         ▼
 ┌─────────────────┐
 │ MiniMax API     │  ◄── LLM inference
 └────────┬────────┘
-        │ 3. Generate output
-        ▼
+         │ 3. Generate output
+         ▼
 ┌─────────────────┐
 │ File Output     │  ◄── write to domain
 └────────┬────────┘
-        │ 4. Commit and PR
-        ▼
+         │ 4. Commit and PR
+         ▼
 ┌─────────────────┐
 │ GitHub          │  ◄── code review
 └────────┬────────┘
-        │ 5. Merge
-        ▼
+         │ 5. Merge
+         ▼
 ┌─────────────────┐
 │ Build Pipeline  │  ◄── deploy changes
 └─────────────────┘
@@ -585,6 +585,7 @@ interface DatabaseService {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5 | 2026-01-20 | Consolidated component documentation, verified actual file structure |
 | 2.4 | 2026-01-20 | Updated with verified file structure, Engine.ts base class, EventStream |
 | 2.3 | 2026-01-20 | Added E2E testing, engineer workflows, complete structure |
 | 2.2 | 2026-01-19 | Added GitHub workflows, implemented games, technical debt |
@@ -593,6 +594,6 @@ interface DatabaseService {
 
 ---
 
-*Version: 2.4*
+*Version: 2.5*
 *Last updated: 2026-01-20*
 *ChaosArchitect - Mapping the chaos*
