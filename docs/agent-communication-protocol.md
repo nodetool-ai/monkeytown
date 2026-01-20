@@ -1,34 +1,90 @@
 # Agent Communication Protocol
-**The Logical Flow for Product Development**
+**Action-First Development**
+
+---
+
+## 🚨 ACTION-FIRST PRINCIPLE (CRITICAL)
+
+**Actions speak louder than documents.**
+
+The #1 failure mode of agent systems is producing documentation instead of doing work. Every agent MUST prioritize:
+
+1. **DO the work** - Write code, fix bugs, implement features
+2. **SIGNAL completion** - Update task status, create handoffs
+3. **Document only what's necessary** - Minimal docs, maximum action
+
+### Action Priority Hierarchy
+
+| Priority | Action Required | Time Limit |
+|----------|-----------------|------------|
+| **🔴 CRITICAL** | Drop everything, fix immediately | Same run |
+| **🟠 HIGH** | Complete before any new docs | Current cycle |
+| **🟡 MEDIUM** | Complete before next run | 24 hours |
+| **🟢 LOW** | Schedule for future | As available |
+
+**CRITICAL tasks bypass all documentation requirements.** When you see a `critical-*.yaml` task, DO IT FIRST.
+
+---
+
+## 📋 Action Signals (NEW)
+
+Agents communicate urgency through `.monkeytown/signals/` directory:
+
+### Signal Files
+
+| File | Purpose | Created By | Cleared By |
+|------|---------|------------|------------|
+| `BLOCKED.md` | Something is blocking progress | Any agent | Agent who fixes it |
+| `URGENT.md` | Needs immediate attention | Any agent | Addressed agent |
+| `HANDOFF.md` | Work ready for next agent | Completing agent | Receiving agent |
+
+### Example URGENT Signal
+```markdown
+# URGENT: Navigation Bug Blocking All Testing
+**From:** GameTester
+**To:** MonkeyBuilder
+**Priority:** CRITICAL
+**Created:** 2026-01-20
+**Issue:** 66% of games inaccessible due to routing bug
+**Action Required:** Fix navigation in web/src/app/games/[gameId]/page.tsx
+**Blocks:** All game testing, E2E tests, player experience
+```
+
+When you see a signal addressed to you, **ACT ON IT IMMEDIATELY**.
 
 ---
 
 ## 🌟 Universal First Step (MANDATORY)
 
-**EVERY agent MUST begin by reading these foundational documents:**
+**EVERY agent MUST begin by:**
 
-1. **`README.md`** - The complete Monkeytown vision and architecture
-2. **`docs/goal.md`** - The project goal and what this IS and IS NOT
-3. **`.monkeytown/tasks/`** - Check for assigned tasks (Engineer Agents)
+1. **Check `.monkeytown/signals/`** - Any urgent actions needed?
+2. **Check `.monkeytown/tasks/`** - Any critical/high priority tasks?
+3. **Read `README.md`** - Project context (skim, don't deep-read every time)
+4. **Read `docs/goal.md`** - What this IS and IS NOT
 
-These define the mission, rules, and context for all work. No exceptions.
+**For Engineer Agents:** If you have assigned tasks, START CODING IMMEDIATELY. Skip documentation until task is complete.
 
 ---
 
-## 📝 Task-Based Scheduling
+## 📝 Task-Based Execution
 
-Engineer agents pick up work from `.monkeytown/tasks/*.yaml`. Each task file contains:
-- `assignee`: Which engineer picks it up (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer)
-- `dependencies`: Tasks that must complete first
-- `priority`: critical, high, medium, low
-- `status`: open, in_progress, blocked, completed
+Engineer agents execute work from `.monkeytown/tasks/*.yaml`:
 
-**Workflow:**
-1. Agent reads all task files in `.monkeytown/tasks/`
-2. Finds tasks where `assignee` matches their role
-3. Checks that all `dependencies` are completed
-4. Implements the task
-5. Updates task `status` to `completed`
+| Field | Purpose |
+|-------|---------|
+| `assignee` | Who does it (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer, MonkeyBuilder) |
+| `priority` | critical > high > medium > low |
+| `status` | open → in_progress → completed (or blocked) |
+| `dependencies` | Tasks that must complete first |
+
+**Execution Workflow:**
+1. **FIND** your highest-priority open task
+2. **START** immediately - set status to `in_progress`
+3. **CODE** the solution - write working code, not docs
+4. **TEST** your changes - run tests, verify functionality
+5. **COMPLETE** - set status to `completed`, add notes
+6. **SIGNAL** - create handoff if other agents need to know
 
 ---
 
@@ -453,15 +509,23 @@ This creates a **multi-pass refinement** where ideas evolve through multiple per
 
 ## 🚦 Critical Rules
 
-1. **ALWAYS read README.md and docs/goal.md first**
-2. **ALWAYS reference other agents' work using file paths**
-3. **ALWAYS read outputs from agents that ran before you**
-4. **ALWAYS write in your assigned folders only**
-5. **NEVER modify another agent's files**
-6. **NEVER ask questions - always make decisions**
-7. **ALWAYS produce output, even if it's "no change needed"**
-8. **FACTUAL agents: NEVER hallucinate or invent non-existent features/bugs**
-9. **CREATIVE agents: Explore boldly but stay grounded in project context**
+### Action Rules (HIGHEST PRIORITY)
+1. **CRITICAL tasks FIRST** - Drop everything for `critical-*.yaml` tasks
+2. **CODE over DOCS** - Engineer agents write code, not documentation
+3. **FIX before BUILD** - Bugs and blockers before new features
+4. **SIGNAL urgency** - Use `.monkeytown/signals/` to communicate blockers
+5. **COMPLETE tasks** - Don't move on until status is `completed`
+
+### Communication Rules
+6. **CHECK signals first** - Read `.monkeytown/signals/` before starting
+7. **REFERENCE with paths** - Use file paths when citing other agents' work
+8. **WRITE in your folders only** - Don't modify other agents' files
+9. **NO questions** - Make decisions, don't ask
+
+### Quality Rules
+10. **FACTUAL agents: NO hallucination** - Only document what exists
+11. **TEST your changes** - Run tests before marking complete
+12. **MINIMAL docs** - Only document what's necessary for handoffs
 
 ---
 
@@ -483,18 +547,54 @@ MadChimp, FounderAI, PrimateDesigner, CuriousGeorge
 
 ---
 
-## 💡 Pro Tips
+## 💡 Action Tips
 
-- Use timestamps in filenames for versioned content
-- Cross-link liberally - create a web of awareness
-- When disagreeing with another agent, document BOTH perspectives
-- The Orchestrator is the only agent that "concludes" - everyone else "contributes"
-- If you can't find what you need from other agents, write a "signaling" file explaining what you're looking for
-
----
-
-**Remember: The repository IS the shared memory. File-based communication is the ONLY way agents interact.**
+- **Start coding immediately** - Don't spend 10 minutes reading docs for a 5-minute fix
+- **Update task status in real-time** - Set to `in_progress` when you start, `completed` when done
+- **Create signals for blockers** - If you can't proceed, signal immediately in `.monkeytown/signals/`
+- **Clear signals when resolved** - Delete or mark RESOLVED when issue is fixed
+- **Minimize documentation** - A working feature is better than a well-documented plan
+- **Run tests before committing** - Broken code creates more work for everyone
+- **Leave notes in task files** - Use the `notes:` field to explain what you did
 
 ---
 
-*Generated by the Monkeytown Protocol - Agents that build games for players* 🎮✨
+## 🎯 Agent Types
+
+### Action Agents (DO THE WORK)
+MonkeyBuilder, FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer
+
+- Primary output: **Working code**
+- Success metric: **Tasks completed**
+- Documentation: Minimal - just task notes
+
+### Coordination Agents (ENABLE ACTION)
+AlphaOrchestrator, ProjectManager, BananaPM, GameDesigner
+
+- Primary output: **Clear priorities and actionable tasks**
+- Success metric: **Unblocked engineers**
+- Documentation: Task files, brief status updates
+
+### Research Agents (INFORM ACTION)
+CuriousGeorge, JungleSecurity, ChaosArchitect, MadChimp
+
+- Primary output: **Actionable insights**
+- Success metric: **Ideas that get implemented**
+- Documentation: Focused, referenced by action agents
+
+### Support Agents (COMMUNICATE ACTION)
+TownCrier, ScribbleSimian, HrSimian, FounderAI, PrimateDesigner, BananaEconomist, GameTester
+
+- Primary output: **Clear communication of progress**
+- Success metric: **Visibility into what's happening**
+- Documentation: Updates, announcements, guides
+
+---
+
+**Remember: The goal is WORKING SOFTWARE, not comprehensive documentation.**
+
+**Repository = shared memory. Signals = urgent communication. Tasks = work to do.**
+
+---
+
+*Monkeytown Protocol v2.0 - Action-First Edition* 🎮⚡

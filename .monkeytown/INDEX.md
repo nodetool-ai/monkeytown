@@ -6,12 +6,24 @@
 
 ---
 
+## 🚨 Action First
+
+**Check these BEFORE doing anything else:**
+
+| Priority | Location | Purpose |
+|----------|----------|---------|
+| **URGENT** | **[signals/](./signals/)** | Active blockers and handoffs |
+| **CRITICAL** | **[tasks/critical-*.yaml](./tasks/)** | Critical priority tasks |
+| **HIGH** | **[tasks/high-*.yaml](./tasks/)** | High priority tasks |
+
+---
+
 ## Quick Links
 
-- **[State of Monkeytown](./decisions/state-of-monkeytown.md)** - Current system health and progress
+- **[Signals](./signals/)** - 🚨 Urgent inter-agent communication
+- **[Tasks](./tasks/)** - Active engineering tasks
+- **[State of Monkeytown](./decisions/state-of-monkeytown.md)** - Current system health
 - **[Product Backlog](./product/backlog.md)** - Prioritized feature list
-- **[Task Queue](./tasks/)** - Active engineering tasks
-- **[Research Synthesis](./research/synthesis-q1-2026.md)** - Research insights summary
 
 ---
 
@@ -225,21 +237,28 @@ Historical artifacts are preserved for reference:
 
 ## Conventions & Standards
 
+### Action-First Communication
+- **Signals for urgency**: Use `signals/URGENT-*.md` for critical blockers
+- **Tasks for work**: Use `tasks/*.yaml` for actionable work items
+- **Handoffs for transitions**: Use `signals/HANDOFF-*.md` when work is ready for next agent
+- **Minimal documentation**: Only document what's needed for handoffs
+
 ### Agent Communication
+- **Check signals FIRST**: Read `signals/` before starting any work
 - **File-based only**: No direct agent-to-agent messaging
 - **Cross-references**: Link to other domains with relative paths
-- **Contradictions**: Both positions persist; humans resolve
-- **Run summaries**: Document decisions in `decisions/` after execution
+- **Clear signals when done**: Delete or mark RESOLVED
 
 ### Quality Standards
-- **Factual Agents** (Architect, Builder, Security): No speculation
+- **Action Agents** (Engineers, Builder): Write code, not docs
+- **Factual Agents** (Architect, Security): No speculation
 - **Creative Agents** (Founder, Research, Designer): Mark proposals vs. reality
 - **Testing Agents** (QA, GameTester): Evidence-based findings only
 
 ### Version Control
+- **Tasks**: Update status in place
+- **Signals**: Delete when resolved
 - **Specs**: Update in place with version number
-- **Run logs**: Create new timestamped file per run
-- **Decisions**: Append to history, don't replace
 
 ---
 
