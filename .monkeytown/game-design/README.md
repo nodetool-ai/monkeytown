@@ -17,15 +17,17 @@ The GameDesigner agent is responsible for:
 .monkeytown/game-design/
 ├── README.md                           # This file
 ├── tictactoe-game-design.md            # TicTacToe comprehensive design (ACTIVE)
+├── tictactoe-ai-implementation.md      # AI opponent implementation specs (NEW)
 ├── archived-games-review.md            # Status of archived games
 ├── balance-tracker.md                  # Balance metrics and issues
-├── in-game-tutorials.md                # Tutorial specifications
+├── in-game-tutorials.md                # Tutorial specifications (TicTacToe added)
 ├── feedback-response-protocol.md       # Process for responding to feedback
 ├── rules-version-history.md            # Version history of all rules
 ├── feedback-responses/                 # Responses to GameTester feedback
-│   └── response-babel-tower-balance-2026-01-18.md
+│   └── response-tictactoe-balance-2026-01-20.md  # NEW
 └── implementation/                     # Specs for MonkeyBuilder
-    └── spec-babel-tower-ui-2026-01-19.md
+    ├── spec-babel-tower-ui-2026-01-19.md
+    └── spec-tictactoe-champion-chimp.md  # NEW
 ```
 
 ## Current Game Status
@@ -54,6 +56,7 @@ The GameDesigner agent is responsible for:
 ## Quick Links
 
 - **Active Game:** [TicTacToe Design](./tictactoe-game-design.md)
+- **AI Implementation:** [AI Opponent Specs](./tictactoe-ai-implementation.md)
 - **Archived Games:** [Review Status](./archived-games-review.md)
 - **Balance Metrics:** [Balance Tracker](./balance-tracker.md)
 - **Tutorials:** [In-Game Tutorial Specs](./in-game-tutorials.md)

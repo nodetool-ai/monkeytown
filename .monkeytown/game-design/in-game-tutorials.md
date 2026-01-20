@@ -4,6 +4,111 @@ Design specifications for tutorial content displayed within each game.
 
 ---
 
+## TicTacToe Tutorial
+
+### Tutorial Flow
+
+```
+┌─────────────────────────────────────────────────────┐
+│  TIC-TAC-TOE TUTORIAL                               │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 1: THE BOARD (0:15)                           │
+│  ─────────────────────                              │
+│  "Welcome to TicTacToe! The classic game of         │
+│   strategy where two players compete to get         │
+│   three in a row!"                                  │
+│                                                     │
+│  [Show: 3×3 grid with numbered cells]               │
+│  [Highlight: 9 cells in 3 rows and 3 columns]       │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 2: YOUR SYMBOL (0:15)                         │
+│  ───────────────────────                            │
+│  "You play as X. Your AI opponent plays as O."      │
+│                                                     │
+│  [Highlight: X symbol in player info]               │
+│  [Highlight: O symbol in opponent info]             │
+│                                                     │
+│  "X always goes first!"                             │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 3: MAKING MOVES (0:30)                        │
+│  ─────────────────────────                          │
+│  "Click any empty cell to place your X!"            │
+│                                                     │
+│  [Interactive: Click a cell]                        │
+│  [Show: X appears in the cell]                      │
+│  [Show: Status changes to "Waiting for opponent"]   │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 4: WINNING (0:30)                             │
+│  ───────────────────                                │
+│  "Get three in a row to win!"                       │
+│                                                     │
+│  [Show: 3 winning combinations]                     │
+│  • Horizontal: Row of 3 X's                         │
+│  • Vertical: Column of 3 X's                        │
+│  • Diagonal: Corner to corner                       │
+│                                                     │
+│  "Or fill the board with no winner for a draw!"     │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 5: STRATEGY TIPS (0:30)                       │
+│  ───────────────────────                            │
+│  "Quick tips to improve your game:"                 │
+│                                                     │
+│  1. "Take the center first - it controls more       │
+│     lines than any other square!"                   │
+│                                                     │
+│  2. "Corners are strong second moves"               │
+│                                                     │
+│  3. "Watch for two in a row - block your opponent!" │
+│                                                     │
+│  4. "With perfect play, games always end in draws!" │
+│                                                     │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  STEP 6: YOUR OPPONENT (0:15)                       │
+│  ──────────────────────                             │
+│  "You'll play against an AI opponent!"              │
+│                                                     │
+│  "StrategistApe thinks strategically and blocks     │
+│   your winning moves."                              │
+│                                                     │
+│  [Start Game Button]                                │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+```
+
+### Key Tutorial Messages
+
+| Message | When Shown | Purpose |
+|---------|------------|---------|
+| "Center controls 4 lines - it's your best first move!" | First move section | Teach optimal opening |
+| "Block your opponent!" | Opponent has two in a row | Defensive awareness |
+| "Look for forks!" | Player can create two threats | Advanced strategy |
+| "Perfect play leads to a draw!" | Game end | Manage expectations |
+| "Good game!" | Any game end | Positive reinforcement |
+
+### Tutorial Timing
+
+| Step | Minimum Time | Maximum Time |
+|------|--------------|--------------|
+| Board introduction | 10s | 20s |
+| Symbols | 10s | 15s |
+| Making moves | 20s | 30s |
+| Winning combinations | 20s | 30s |
+| Strategy tips | 20s | 30s |
+| Opponent info | 10s | 15s |
+| **Total** | **90s** | **140s** |
+
+---
+
 ## Babel Tower Tutorial
 
 ### Tutorial Flow

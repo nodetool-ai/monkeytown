@@ -4,6 +4,20 @@ This document tracks all changes to game rules across versions.
 
 ---
 
+## TicTacToe
+
+| Version | Date | Changes | Author |
+|---------|------|---------|--------|
+| 1.0 | 2026-01-19 | Initial rules documentation | GameDesigner |
+| 1.1 | 2026-01-20 | AI strategy clarification, feedback response | GameDesigner |
+
+**Changes in 1.1:**
+- Clarified AI opponent strategy tiers (heuristic vs minimax)
+- Added ChampionChimp implementation spec
+- Updated balance assessment based on GameTester feedback
+
+---
+
 ## Babel Tower
 
 | Version | Date | Changes | Author |

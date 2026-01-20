@@ -89,7 +89,43 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 ---
 
-## Balance Adjustment Framework
+## Active Game: TicTacToe
+
+### Balance Status: ✅ ACTIVE
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Draw rate (perfect play) | 100% | TBD | ⏳ Pending data |
+| Human win rate vs StrategistApe | 30-50% | TBD | ⏳ Pending data |
+| Average game length | 5-7 turns | TBD | ⏳ Pending data |
+| First-move advantage | 55-60% | TBD | ⏳ Pending data |
+| AI response time | < 2s | 1-2s | ✅ Compliant |
+
+### Known Balance Considerations
+
+1. **StrategistApe AI Behavior:**
+   - Uses heuristic-based strategy (center first, random corners)
+   - Does not implement minimax perfect play
+   - Difficulty: Easy-Medium (appropriate for casual play)
+   - Matches target difficulty for default opponent
+
+2. **ChampionChimp Implementation:**
+   - Per design: Should use minimax for perfect play
+   - Current status: Not available as opponent selection
+   - Priority: P2 enhancement
+
+3. **Difficulty Selector:**
+   - Not currently implemented
+   - Would allow players to choose AI difficulty
+   - Priority: P3 enhancement
+
+### Action Items
+
+- [x] Review StrategistApe balance (2026-01-20) - ✅ Appropriate for casual play
+- [x] Create ChampionChimp implementation spec (2026-01-20)
+- [ ] Collect win rate data from initial playtests
+- [ ] Test draw detection verification
+- [ ] Monitor player satisfaction with AI difficulty
 
 ### When to Intervene
 
@@ -115,9 +151,11 @@ Track balance issues, player feedback, and planned improvements for each game.
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
 | P1 | **Active Game: TicTacToe** | TicTacToe | ✅ Monitoring |
-| P2 | None reported | - | ✅ Awaiting data |
-| P1 | Navigation bug (for future games) | All | ⏳ Blocked (MonkeyBuilder) |
-| P2 | UI Spec (for archived games) | Babel Tower | 🔧 Spec Created (archived) |
+| P2 | ChampionChimp AI (minimax) | TicTacToe | ⏳ Spec Created |
+| P2 | E2E tests reference archived games | All | 🔧 FrontendEngineer |
+| P3 | Difficulty selector | TicTacToe | 📋 Enhancement |
+| P3 | Draw detection test | TicTacToe | ⏳ GameTester |
+| P1 | Navigation bug (for future games) | All | ⏳ FrontendEngineer |
 
 ---
 

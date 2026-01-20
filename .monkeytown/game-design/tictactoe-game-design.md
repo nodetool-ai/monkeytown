@@ -76,21 +76,28 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 
 ### Supported AI Types
 
-| Agent | Type | Strategy | Difficulty |
-|-------|------|----------|------------|
-| **ChampionChimp** | Minimax | Perfect play | Impossible |
-| **StrategistApe** | Minimax | Optimal moves | Hard |
-| **TricksterMonkey** | Heuristic | Traps, unpredictability | Medium-Hard |
-| **GuardianGorilla** | Heuristic | Blocking focused | Medium |
-| **SpeedyGibbon** | Heuristic | Aggressive, fast | Medium |
-| **WildcardLemur** | Random | Unpredictable | Easy |
-| **MentorOrangutan** | Heuristic | Teaching, explains | Easy |
+| Agent | Type | Strategy | Difficulty | Status |
+|-------|------|----------|------------|--------|
+| **ChampionChimp** | Minimax | Perfect play | Impossible | ⏳ Spec Created |
+| **StrategistApe** | Heuristic | Optimal moves | Medium | ✅ Implemented |
+| **TricksterMonkey** | Heuristic | Traps, unpredictability | Medium-Hard | ⏳ Future |
+| **GuardianGorilla** | Heuristic | Blocking focused | Medium | ⏳ Future |
+| **SpeedyGibbon** | Heuristic | Aggressive, fast | Medium | ⏳ Future |
+| **WildcardLemur** | Random | Unpredictable | Easy | ⏳ Future |
+| **MentorOrangutan** | Heuristic | Teaching, explains | Easy | ⏳ Future |
+
+See `.monkeytown/game-design/tictactoe-ai-implementation.md` for implementation details.
 
 ### AI Implementation
 
 **Default:** Minimax algorithm with alpha-beta pruning
 - Depth: Unlimited (perfect play)
 - Evaluation: Standard tic-tac-toe scoring
+
+**Heuristic AI (Current Implementation):**
+- Rule-based priority system
+- Response time: < 50ms
+- See `.monkeytown/game-design/tictactoe-ai-implementation.md` for full specs
 
 **LLM Integration (Optional):** Via Ax framework with Anthropic-compatible API
 - Personality-driven responses
@@ -223,6 +230,7 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
 | 1.0 | 2026-01-19 | Initial game design document | GameDesigner |
+| 1.1 | 2026-01-20 | AI strategy clarification, implementation status, AI implementation guide added | GameDesigner |
 
 ---
 
@@ -230,6 +238,7 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 
 - Rules: `docs/games/tictactoe.md`
 - AI Setup: `docs/games/ai-setup.md`
+- AI Implementation: `.monkeytown/game-design/tictactoe-ai-implementation.md`
 - Tutorials: `.monkeytown/game-design/in-game-tutorials.md`
 - Balance: `.monkeytown/game-design/balance-tracker.md`
 - Testing: `.monkeytown/game-testing/`
