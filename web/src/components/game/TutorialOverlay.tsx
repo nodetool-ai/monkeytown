@@ -1,9 +1,9 @@
 'use client';
 
-import React, { CSSProperties, useState, useEffect, useCallback } from 'react';
+import { CSSProperties, useState, useEffect, useCallback } from 'react';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
-import { GameType } from '@monkeytown/packages/shared';
+import { GameType } from '@monkeytown/packages/shared/game-types';
 
 interface TutorialStep {
   title: string;
@@ -158,7 +158,6 @@ export function TutorialOverlay({ gameType, onComplete, onSkip, isOpen }: Tutori
   const phases = Object.keys(BABEL_TUTORIAL) as Array<keyof BabelTutorialSteps>;
   const currentSteps = BABEL_TUTORIAL[currentPhase];
   const currentStep = currentSteps[stepIndex];
-  const totalStepsInPhase = currentSteps.length;
   const totalPhases = phases.length;
   const currentPhaseIndex = phases.indexOf(currentPhase);
 
