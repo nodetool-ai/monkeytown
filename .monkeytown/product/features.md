@@ -3,7 +3,7 @@
 ## Document Purpose
 This document captures features synthesized from:
 - Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
+- Research (`.monkeytown/research/synthesis-jan-2026.md`, `.monkeytown/research/user-behavior.md`)
 - UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
 - Security (`.monkeytown/security/security-requirements.md`)
 
@@ -11,11 +11,11 @@ This document captures features synthesized from:
 
 ## Core Features (P0 - Must Ship)
 
-### F1: Agent Transparency System
+### F001: Agent Transparency System
 
 **Priority:** P0
 **Source:** Research Finding 1 - Transparency Imperative
-**Evidence:** `.monkeytown/research/synthesis.md` - "Transparency builds trust. Players evaluate AI in three to five sessions."
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust. Players evaluate AI in three to five sessions."
 
 **Description:** Every player touchpoint shows agent presence.
 
@@ -26,6 +26,7 @@ This document captures features synthesized from:
 - Agent attribution in every Evolution Feed update
 
 **Transparency Layers:**
+
 | Layer | Visibility | Content |
 |-------|------------|---------|
 | Layer 1 | Always | Agent name, role, current state |
@@ -33,15 +34,16 @@ This document captures features synthesized from:
 | Layer 3 | Click | Complete history, learning trajectory |
 | Layer 4 | Optional | Decision logs, capability boundaries |
 
-**Agent Colors (from UX Design System):**
-| Agent | Color | Hex |
-|-------|-------|-----|
-| ChaosArchitect | Cyan | #4CC9F0 |
-| PrimateDesigner | Gold | #FFD166 |
-| JungleSecurity | Blue | #4361EE |
-| BananaEconomist | Purple | #7209B7 |
-| MadChimp | Orange | #FF6B35 |
-| FounderAI | Teal | #2EC4B6 |
+**Agent Colors** (from UX Design System):
+
+| Agent | Color | Hex | Emoji |
+|-------|-------|-----|-------|
+| ChaosArchitect | Cyan | #4CC9F0 | 🧠 |
+| PrimateDesigner | Gold | #FFD166 | 🎨 |
+| JungleSecurity | Blue | #4361EE | 🛡️ |
+| BananaEconomist | Purple | #7209B7 | 🍌 |
+| MadChimp | Orange | #FF6B35 | 🔥 |
+| FounderAI | Teal | #2EC4B6 | ✨ |
 
 **Success Metric:** 80%+ player awareness
 
@@ -49,19 +51,18 @@ This document captures features synthesized from:
 
 **Owner:** PrimateDesigner
 
-**Backlog:** BACKLOG-002
-
 ---
 
-### F2: AI Opponent Core
+### F002: AI Opponent Core
 
 **Priority:** P0
 **Source:** Research - Autonomy Gap
-**Evidence:** `.monkeytown/research/synthesis.md` - "Players want genuine intelligence, not scripted behavior."
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Players want genuine intelligence, not scripted behavior."
 
 **Description:** AI opponents with distinct personalities that adapt to player skill.
 
 **Agent Types:**
+
 | Agent | Emoji | Color | Play Style |
 |-------|-------|-------|------------|
 | TricksterMonkey | 🎭 | Fuchsia (#D946EF) | Unpredictable, loves bluffs |
@@ -82,13 +83,11 @@ This document captures features synthesized from:
 
 **Blocking:** Blocks Core Game Loop
 
-**Owner:** MonkeyBuilder
-
-**Backlog:** BACKLOG-003
+**Owner:** AIEngineer
 
 ---
 
-### F3: Core Game Loop
+### F003: Core Game Loop
 
 **Priority:** P0
 **Source:** Vision - Foundation
@@ -96,7 +95,7 @@ This document captures features synthesized from:
 
 **Description:** Complete gameplay cycle for Babel including game state management, turn processing, scoring, and win conditions.
 
-**Session Structure (from Research):**
+**Session Structure** (from Research):
 - First 3 minutes: Curiosity window
 - Minutes 3-15: Engagement zone
 - Minutes 15+: Dependency zone
@@ -108,20 +107,19 @@ This document captures features synthesized from:
 
 **Owner:** MonkeyBuilder
 
-**Backlog:** BACKLOG-004
-
 ---
 
-### F4: Memory System with Emotional Tags
+### F004: Memory System with Emotional Tags
 
 **Priority:** P0
 **Source:** Research Finding 7 - Player Attachment Engineering
-**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context"
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Memory with emotional context"
 **Evidence:** `.monkeytown/vision/principles.md` - "Memory is Love"
 
 **Description:** Agent memory architecture that remembers players with emotional context.
 
 **Memory Layers:**
+
 | Layer | Duration | Purpose |
 |-------|----------|---------|
 | Session | Current game | Last 5 moves, current state |
@@ -137,90 +135,49 @@ This document captures features synthesized from:
 
 **Success Metric:** "She remembered how I felt about that move" moments
 
-**Owner:** MonkeyBuilder
-
-**Backlog:** BACKLOG-007
+**Owner:** AIEngineer
 
 ---
 
-### F5: Trust Budget System
+### F005: Session Memory
 
 **Priority:** P0
-**Source:** Research - Trust Lifecycle
-**Evidence:** `.monkeytown/research/user-behavior.md` - Trust Budget Model
+**Source:** Vision - Session State
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Session Memory Layer"
 
-**Description:** Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
+**Description:** Immediate memory layer tracking current game state for real-time gameplay decisions.
 
-**Trust Budget Model:**
-```
-Initial Budget: 50 trust points (skeptical but open)
+**Requirements:**
+- Track last 5 player moves
+- Maintain current game state
+- Store player strategy (if detectable)
+- Preserve immediate context
 
-EARN TRUST (+points):
-├─ Consistent personality        (+10)
-├─ Genuine competence            (+15)
-├─ Honest limitations            (+10)
-├─ Memory of player              (+15)
-├─ Adaptation to preferences     (+10)
-├─ Vulnerability in character    (+8)
-└─ Transparent about AI nature   (+12)
+**Success Metric:** Last 5 moves accessible in <50ms
 
-SPEND TRUST (-points):
-├─ Inconsistent behavior         (-20)
-├─ Suspected manipulation        (-30)
-├─ Capability failure            (-15)
-├─ Privacy concerns              (-25)
-├─ Hidden AI nature discovered   (-40)
-└─ "Too perfect" AI              (-10)
-
-BUDGET STATES:
-├─ 80+ points: Loyal advocate
-├─ 50-79 points: Engaged user
-├─ 25-49 points: Cautious user
-└─ <25 points: At risk of churn
-```
-
-**Success Metric:** Trust score maintenance above 50 points
-
-**Owner:** MonkeyBuilder
-
-**Backlog:** BACKLOG-005
+**Owner:** AIEngineer
 
 ---
 
-### F6: Security Core (Required for Launch)
+### F006: Navigation Bug Fix (CRITICAL)
 
-**Priority:** P0 (Required for launch)
-**Source:** Security Requirements
-**Evidence:** `.monkeytown/security/security-requirements.md`
+**Priority:** P0-CRITICAL
+**Source:** README.md - Critical Blocker
+**Evidence:** GameTester Bug-001
 
-**Requirements:**
-| ID | Requirement | Validation |
-|----|-------------|------------|
-| AUTH-001 | Token Management | 256-bit signing, session binding, 24-hour validity |
-| AUTH-002 | Credential Storage | No credentials in code, logs, or errors |
-| AUTH-003 | Session Management | 30-min inactivity, max 3 concurrent sessions |
-| AUTHZ-001 | Game Session Access Control | Authorization on every WebSocket event |
-| AUTHZ-002 | Resource Limits | Rate limits: 5 games/hr, 10 WS connections/IP |
-| INP-001 | Game Action Validation | Rules, ownership, state constraints, speed, cooldown |
-| INP-002 | Input Sanitization | Chat (500 chars), names (32 chars), HTML stripping |
-| DATA-001 | Encryption in Transit | TLS 1.2+, WSS |
-| DATA-002 | Encryption at Rest | AES-256-GCM for sensitive data |
-| DATA-003 | Data Minimization | Retention: sessions 30d, chat 7d, analytics 90d |
-| LOG-001 | Security Event Logging | Auth attempts, failures, rate limits, suspicious activity |
+**Description:** Critical fix for routing issue preventing 66% of game library access.
 
-**Success Metric:** Zero critical vulnerabilities
+**Location:** `web/src/app/games/[gameId]/page.tsx`
 
-**Required for launch**
+**Success Metric:** 100% game accessibility
 
-**Owner:** JungleSecurity
-
-**Backlog:** BACKLOG-006
+**Owner:** FrontendEngineer
 
 ---
 
 ## Enhanced Features (P1 - Should Ship)
 
-### F7: Feedback System
+### F007: Feedback System
 
 **Priority:** P1
 **Source:** Research Finding 3 - Evolution Imperative
@@ -247,11 +204,11 @@ Player friction detected → Gentle prompt → Quick capture → Submit
                                                           ↓
                                                 Agent review (human or AI)
                                                           ↓
-                                      Accepted: Prioritized  |  Rejected: Explanation
+                                    Accepted: Prioritized  |  Rejected: Explanation
                                                           ↓
-                                      Status notification (within 24 hours)
+                                    Status notification (within 24 hours)
                                                           ↓
-                                      Celebration when shipped
+                                    Celebration when shipped
 ```
 
 **Success Metrics:**
@@ -262,19 +219,18 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 
 **Dependency:** Agent Transparency
 
-**Owner:** BananaPM
-
-**Backlog:** BACKLOG-009
+**Owner:** FrontendEngineer
 
 ---
 
-### F8: Evolution Feed
+### F008: Evolution Feed
 
 **Priority:** P1
 **Source:** Research Finding 8 - Evolution as Entertainment
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is entertainment"
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Evolution is entertainment"
 
 **Event Types:**
+
 | Type | Icon | Frequency | Player Action | Celebration Level |
 |------|------|-----------|---------------|-------------------|
 | 🌱 In Progress | 🌱 | Daily | Subscribe, watch | Minimal |
@@ -295,11 +251,56 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 
 **Owner:** PrimateDesigner
 
-**Backlog:** BACKLOG-010
+---
+
+### F009: Emotional Tagging
+
+**Priority:** P1
+**Source:** Vision - Memory is Love
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Emotional Tagging (Critical)"
+
+**Description:** System for tagging all memories and game events with emotional context.
+
+**Emotional Tag Categories:**
+- surprise (positive/negative)
+- frustration
+- delight
+- confusion
+- satisfaction
+- anticipation
+
+**Success Metric:** 100% of significant events tagged
+
+**Owner:** AIEngineer
 
 ---
 
-### F9: Agent Vulnerability Protocol
+### F010: "She Remembered" Moments
+
+**Priority:** P1
+**Source:** Research - Memory Echo Pattern
+**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - "Memory Echo is the highest-impact pattern"
+
+**Description:** Design patterns that create genuine recognition moments where players feel known.
+
+**Memory Echo Types:**
+- Direct: "I remember our first game"
+- Implied: "Your aggressive openings..."
+- Questioning: "Do you remember that move?"
+- Emotional: "That was exciting!"
+
+**Naming Moments:**
+- Create memorable events players reference
+- Agents propose names for strategies
+- Players name moves, agents remember
+
+**Success Metric:** 2+ memory references per session
+
+**Owner:** AIEngineer
+
+---
+
+### F011: Vulnerability Protocol
 
 **Priority:** P1
 **Source:** Vision - Vulnerability Principle
@@ -317,75 +318,68 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 - Failure Visibility Score: >50%
 - Preference Expression Rate: >30%
 
-**Owner:** PrimateDesigner
-
-**Backlog:** BACKLOG-008
+**Owner:** GameDesigner
 
 ---
 
-### F10: Game Progression System
+### F012: Agent Personalities
 
 **Priority:** P1
-**Source:** Engaged Player archetype
-**Evidence:** `.monkeytown/research/user-behavior.md` - Session patterns
+**Source:** Research - Personality Frameworks
+**Evidence:** `.monkeytown/research/agent-personality-frameworks.md` - Big Five Model
 
-**Progression Tiers:**
-```
-Egg → Chick → Monkey → Gorilla → ...
-```
+**Description:** Big Five personality profiles for each agent ensuring consistent, distinctive behavior.
 
-**Components:**
-- Achievement system
-- Player statistics
-- Milestone celebrations
-- Agent acknowledgment of achievements
+**Big Five Profiles:**
 
-**Success Metric:** 15+ min session length
+| Agent | Openness | Conscientiousness | Extraversion | Agreeableness | Neuroticism |
+|-------|----------|-------------------|--------------|---------------|-------------|
+| ChaosArchitect | High | High | Low | Medium | Low |
+| MadChimp | Very High | Low | High | Low | Medium |
+| PrimateDesigner | High | High | High | High | Low |
+| BananaPM | Medium | Very High | High | High | Low |
+| JungleSecurity | Low | Very High | Low | Low | Medium |
 
-**Dependency:** Core Game Loop
+**Behavioral Signatures:**
+Each agent has 3-5 uniquely identifying behaviors.
 
-**Owner:** BananaPM
+**Success Metric:** Consistent behavior across interactions
 
-**Backlog:** BACKLOG-011
-
----
-
-### F11: First Game: Babel
-
-**Priority:** P0
-**Source:** Vision - Initial game
-**Evidence:** `.monkeytown/research/user-behavior.md` - First session must show genuine AI capability within 3 minutes
-
-**Description:** A complete, playable card game with AI opponents.
-
-**First Session Flow:**
-1. Landing (0-5 seconds): "AI agents build games" tagline, "Jump In" button
-2. Agent Welcome (5-15 seconds): Agent emoji, brief personality
-3. First Move (15-45 seconds): Game state loaded, move available
-4. First Success (1-3 minutes): Meaningful achievement
-5. Agent Attribution (3-5 minutes): Agent panel accessible
-
-**Features:**
-- Card mechanics and rules
-- AI opponent integration
-- Scoring and win conditions
-- Player progress tracking
-
-**Success Metric:** Playable from first session
-
-**v1.0 Release Criterion**
-
-**Owner:** MonkeyBuilder
-
-**Backlog:** BACKLOG-012
+**Owner:** PromptEngineer
 
 ---
 
-## Performance Requirements (NFR)
+### F013: First 5 Sessions Framework
 
-**Priority:** P0
+**Priority:** P1
+**Source:** Vision - Attachment Engineering
+**Evidence:** `.monkeytown/vision/manifesto.md` - "The First 5 Sessions Framework"
+
+**Description:** Systematic approach to building player attachment within first 5 sessions.
+
+**Session Design:**
+
+| Session | Goal | Key Moment | Trust Change |
+|---------|------|------------|--------------|
+| 1: Curiosity | First interaction | AI does unexpected | +10 |
+| 2: Recognition | Continuity | AI references session 1 | +15 |
+| 3: Evaluation | Test authenticity | AI declines/mistake | +20 |
+| 4: Investment | Shared moment | Shared success/failure | +25 |
+| 5: Commitment | Pattern | Both acknowledge | +30 |
+
+**Success Metric:** Day 5 Checkpoint: 50% active
+
+**Owner:** GameDesigner
+
+---
+
+### F014: Performance Optimization
+
+**Priority:** P1
 **Source:** UX Requirements
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets
+
+**Performance Targets:**
 
 | Metric | Target | Validation |
 |--------|--------|------------|
@@ -396,61 +390,70 @@ Egg → Chick → Monkey → Gorilla → ...
 | Transition | 300ms maximum duration | Performance test |
 | WebSocket latency | < 100ms | Network test |
 
-**Owner:** ChaosArchitect
+**Success Metric:** All targets met
 
-**Backlog:** BACKLOG-013
+**Owner:** FrontendEngineer
 
 ---
 
-## Accessibility Requirements (NFR)
+### F015: Security P1 Mitigations
 
-**Priority:** P1
-**Source:** Security - Inclusive design
-**Evidence:** `.monkeytown/ux/design-system.md` - Accessibility checklist
+**Priority:** P0 (Required for launch)
+**Source:** Security Requirements
+**Evidence:** `.monkeytown/security/security-requirements.md`
 
-| Requirement | Target | Validation |
-|-------------|--------|------------|
-| Color contrast ratio | 4.5:1 minimum | Automated test |
-| Keyboard navigation | All interactions | Accessibility test |
-| Touch target size | ≥ 44×44px | Design review |
-| Color not sole information carrier | All UI | Design review |
-| prefers-reduced-motion | All animations | Automated test |
+**Requirements:**
+
+| Category | ID | Requirement |
+|----------|-----|-------------|
+| Authentication | AUTH-001 | Token Management (256-bit, session binding, 24h validity) |
+| Authentication | AUTH-002 | Credential Storage (no hardcoded secrets) |
+| Authentication | AUTH-003 | Session Management (30min timeout, 3 concurrent max) |
+| Authorization | AUTHZ-001 | Game Session Access Control |
+| Authorization | AUTHZ-002 | Resource Limits (5 games/hr, 10 WS connections/IP) |
+| Input Validation | INP-001 | Game Action Validation |
+| Input Validation | INP-002 | Input Sanitization |
+| Data Protection | DATA-001 | Encryption in Transit (TLS 1.2+) |
+| Data Protection | DATA-002 | Encryption at Rest |
+| Data Protection | DATA-003 | Data Minimization |
+
+**Success Metric:** Zero critical vulnerabilities
+
+**Required for launch**
 
 **Owner:** JungleSecurity
-
-**Backlog:** BACKLOG-014
 
 ---
 
 ## Feature Dependencies
 
 ```
-Agent Transparency (F1)
+Agent Transparency (F001)
     ↓
-AI Opponent Core (F2) ───┐
+AI Opponent Core (F002) ───┐
     ↓                    │
-Core Game Loop (F3) ─────┤
+Core Game Loop (F003) ─────┤
     ↓                    │
-Memory System (F4) ──────┤
+Memory System (F004) ──────┤
     ↓                    │
-Trust Budget (F5) ───────┤
-    ↓                    ↓
-First Game: Babel (F11) ←─┘
+Session Memory (F005) ─────┤
+    ↓                    │
+"She Remembered" (F010) ───┤
+    ↓                    │
+First 5 Sessions (F013) ───┘
     ↓
-    ├─→ Game Progression (F10)
+    ├─→ Feedback System (F007)
     │
-Security Core (F6) ──→ Accessibility (F1)
+Security Core (F015) ──→ Accessibility (NFR-002)
     ↓
-Feedback System (F7)
+Feedback System (F007)
     ↓
-Evolution Feed (F8)
-    ↓
-Agent Vulnerability (F9)
+Evolution Feed (F008)
 ```
 
 ---
 
-## Competitive Positioning (Updated February 2026)
+## Competitive Positioning
 
 | Attribute | Character.AI | Agency | Meta AI | **Monkeytown** |
 |-----------|--------------|--------|---------|----------------|
@@ -462,73 +465,45 @@ Agent Vulnerability (F9)
 | Player Feedback | Limited | Limited | None | **Direct** |
 | Edge AI | None | None | Emerging | **Planned** |
 | Attachment Design | Weak | Medium | None | **Engineered** |
-| Evolution as Content | None | Limited | None | **Native** |
-| Memory Architecture | Basic | Emerging | Basic | **4-layer (Q1)** |
 | **Authenticity Leadership** | Low | Medium | Low | **HIGHEST** ✓ |
 | **Community Formation** | Large | Growing | Massive | **Developing** |
 | **Design Wisdom** | Medium | Medium | Low | **6+ months** ✓ |
 
-**February 2026 Update:** Primary competitive threat is now **Agency** (direct positioning, 15M users, aggressive expansion) and **Meta AI** (massive scale threat, gaming ambitions announced). Window contracted from 12 to 9 months.
-
 ---
 
-## Quality Imperative (Updated February 2026)
+## Quality Imperative
 
 ### Quality Multiplier Effect
 
-| Quality Level | Trust Multiplier | Impact |
-|---------------|------------------|--------|
-| High (exceeds expectations) | 1.2x | Trust accelerates |
-| Average (meets expectations) | 1.0x | Trust maintains |
-| Low (below expectations) | 0.6x | Trust erodes |
+| Quality Level | Trust Multiplier | Player Response |
+|---------------|------------------|-----------------|
+| High (exceeds expectations) | 1.2x | "This is amazing" |
+| Average (meets expectations) | 1.0x | "This works" |
+| Low (below expectations) | 0.6x | "This is frustrating" |
 | AI slop | 0.3x | Immediate departure |
 
-### Quality Standards (All Features)
-
-| Standard | Target | Validation |
-|----------|--------|------------|
-| Functional Excellence | 99% completion, <2s AI decisions, 60fps | Automated tests |
-| Transparency Excellence | Agent attribution at every touchpoint | UX review |
-| Relationship Excellence | Memory, personality, vulnerability | User survey |
-
-### Quality Leadership Window
-
-**9 months** (down from 12) to establish quality leadership before it becomes table stakes. The window is contracting due to Meta AI entry and Agency acceleration.
+**Window of Opportunity:** 9 months (contracted from 12)
 
 ---
 
-## Prioritization Framework
-
-Features are prioritized by:
-1. **Player impact (40%):** How much joy does this create?
-2. **Agent autonomy (20%):** Can agents own this end-to-end?
-3. **Strategic value (25%):** Does this advance the vision?
-4. **Feasibility (15%):** Can we ship this well?
-
-**February 2026 Update:** Window of Opportunity contracted to 9 months. Quality leadership is now the CRITICAL differentiator. Speed with authenticity is paramount.
-
----
-
-## Evidence References (Updated February 2026)
+## Evidence References
 
 ### Vision Sources
-- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
-- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
-- `.monkeytown/vision/principles.md` - 20 operating principles
-- `.monkeytown/vision/product-vision.md` - v1.0 blueprint
+- `.monkeytown/vision/manifesto.md` - v4.0 Living Game Declaration
+- `.monkeytown/vision/product-vision.md` - v1.0 Blueprint
+- `.monkeytown/vision/roadmap.md` - Three Horizons
+- `.monkeytown/vision/principles.md` - 25 Operating Principles
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
-- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
-- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
-- `.monkeytown/research/competitors.md` - Competitive landscape analysis
+- `.monkeytown/research/synthesis-jan-2026.md` - January 2026 strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns
 - `.monkeytown/research/ai-trust-patterns.md` - Trust patterns
-- `.monkeytown/research/patterns.md` - Design pattern language
+- `.monkeytown/research/agent-personality-frameworks.md` - Personality models
 
 ### UX Sources
-- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
-- `.monkeytown/ux/design-system.md` - Component library, agent colors
-- `.monkeytown/ux/visual-language.md` - Design tokens
+- `.monkeytown/ux/index.md` - UX Documentation Index
+- `.monkeytown/ux/interface-concept.md` - Interface concepts
+- `.monkeytown/ux/design-system.md` - Component library
 
 ### Security Sources
 - `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
@@ -540,4 +515,4 @@ Features are prioritized by:
 
 **Version:** 5.0
 **Updated:** 2026-01-20
-**Sources:** vision/, research/synthesis.md (Feb 2026), research/user-behavior.md, ux/, security/
+**Sources:** vision/, research/synthesis-jan-2026.md, research/user-behavior.md, ux/, security/

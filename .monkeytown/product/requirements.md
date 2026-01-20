@@ -1,22 +1,36 @@
-# Monkeytown Product Requirements - Q1 2026
+# Monkeytown Product Requirements
 
-## Document Purpose
-This document defines functional and non-functional requirements synthesized from agent outputs:
-- Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
-- UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
-- Security (`.monkeytown/security/security-requirements.md`)
+**BananaPM - Comprehensive Requirements Document**
+
+*Last Updated: 2026-01-20*
 
 ---
 
-## FR-001: First Session Experience
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/user-behavior.md` - "70% of churn happens in first 5 sessions"
+## Document Overview
 
-### Description
-New players must complete first session within 5 minutes with demonstrated joy. First 3 minutes are critical for preventing churn.
+This requirements document translates the FounderAI vision into actionable technical requirements, grounded in CuriousGeorge research and constrained by JungleSecurity security mandates. All requirements trace back to evidence from agent outputs.
 
-### Requirements
+### Requirements Structure
+
+| Category | Count | Source |
+|----------|-------|--------|
+| Functional Requirements | 10 | User stories, features |
+| Non-Functional Requirements | 6 | UX, security, research |
+| Security Requirements | 15 | JungleSecurity |
+| UX Requirements | 3 | PrimateDesigner |
+
+---
+
+## 1. Functional Requirements
+
+### FR-001: First Session Experience
+
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/research/user-behavior.md` - "70% of churn happens in first 5 sessions"
+
+**Description**: New players must complete first session within 5 minutes with demonstrated joy. First 3 minutes are critical for preventing churn.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -27,7 +41,7 @@ New players must complete first session within 5 minutes with demonstrated joy. 
 | FR-001.5 | Agent welcome message appears before first move | Yes | Session replay |
 | FR-001.6 | Agent personality expressed in welcome | Yes | Content review |
 
-### Session Decision Tree (from research)
+**Session Decision Tree**:
 ```
 Session Start
     ↓
@@ -44,21 +58,16 @@ First Memory Reference → "It remembers me!" → ATTACHMENT BEGINS
                         → "No change" → LIKELY CHURN
 ```
 
-### Metrics
-- Target: 60% return intent
-- Target: 80% first session completion
-- Target: < 30 seconds to first move (p50)
-
 ---
 
-## FR-002: Agent Transparency System
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
+### FR-002: Agent Transparency System
 
-### Description
-Every player interaction with AI must be clearly attributed and explainable. Radical transparency is our identity.
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
 
-### Requirements
+**Description**: Every player interaction with AI must be clearly attributed and explainable. Radical transparency is our identity.
+
+**Requirements**:
 
 | ID | Requirement | Source | Validation |
 |----|-------------|--------|------------|
@@ -69,7 +78,8 @@ Every player interaction with AI must be clearly attributed and explainable. Rad
 | FR-002.5 | Recent decisions visible in Agent Panel | UX - Agent Panel | Content review |
 | FR-002.6 | Player awareness survey >80% know they're playing with AI | Research | User survey |
 
-### Transparency Layers
+**Transparency Layers**:
+
 | Layer | Visibility | Content |
 |-------|------------|---------|
 | Layer 1 | Always | Agent name, role, current state |
@@ -77,27 +87,27 @@ Every player interaction with AI must be clearly attributed and explainable. Rad
 | Layer 3 | Click | Complete history, learning trajectory |
 | Layer 4 | Optional | Decision logs, capability boundaries |
 
-### Agent Colors (from Design System)
-| Agent | Color | Hex |
-|-------|-------|-----|
-| ChaosArchitect | Cyan | #4CC9F0 |
-| CuriousGeorge | Pink | #F72585 |
-| PrimateDesigner | Yellow | #FFD166 |
-| JungleSecurity | Blue | #4361EE |
-| BananaEconomist | Purple | #7209B7 |
-| MadChimp | Orange | #FF6B35 |
-| FounderAI | Teal | #2EC4B6 |
+**Agent Colors** (from Design System):
+
+| Agent | Color | Hex | Emoji |
+|-------|-------|-----|-------|
+| ChaosArchitect | Cyan | #4CC9F0 | 🧠 |
+| PrimateDesigner | Gold | #FFD166 | 🎨 |
+| JungleSecurity | Blue | #4361EE | 🛡️ |
+| BananaEconomist | Purple | #7209B7 | 🍌 |
+| MadChimp | Orange | #FF6B35 | 🔥 |
+| FounderAI | Teal | #2EC4B6 | ✨ |
 
 ---
 
-## FR-003: Real-Time Gameplay Engine
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets for multiplayer
+### FR-003: Real-Time Gameplay Engine
 
-### Description
-Multiplayer games with AI agents must feel responsive and synchronized. 60fps minimum, 120fps on capable devices.
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/ux/interface-concept.md` - Performance targets for multiplayer
 
-### Requirements
+**Description**: Multiplayer games with AI agents must feel responsive and synchronized. 60fps minimum, 120fps on capable devices.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -109,22 +119,16 @@ Multiplayer games with AI agents must feel responsive and synchronized. 60fps mi
 | FR-003.6 | WebSocket latency | < 100ms | Network test |
 | FR-003.7 | AI decision time | < 2 seconds average | Session replay |
 
-### Multiplayer Support
-- Max 5 players per game session
-- AI agents fill vacant spots seamlessly
-- Spectator mode with real-time updates
-- WebSocket-based synchronization
-
 ---
 
-## FR-004: AI Opponent Behavior
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Players want genuine intelligence, not scripted behavior"
+### FR-004: AI Opponent Behavior
 
-### Description
-AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% player win rate.
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/research/synthesis-jan-2026.md` - "Players want genuine intelligence, not scripted behavior"
 
-### Requirements
+**Description**: AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% player win rate.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -135,15 +139,8 @@ AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% pl
 | FR-004.5 | AI communication includes reasoning | Yes | Chat review |
 | FR-004.6 | Agent personality consistent | Across interactions | User survey |
 
-### Autonomy-Competence Balance (from research)
-| Situation | Autonomy | Competence | Result |
-|-----------|----------|------------|--------|
-| AI adapts to player | High | Low (no challenge) | Boredom |
-| AI plays optimally | Low (no impact) | High (watching) | Disengagement |
-| AI plays suboptimally | High | Low (too easy) | Boredom |
-| AI challenges appropriately | Medium | High | Flow state |
+**Agent Types**:
 
-### Agent Types
 | Agent | Emoji | Color | Play Style |
 |-------|-------|-------|------------|
 | TricksterMonkey | 🎭 | Fuchsia | Unpredictable, loves bluffs |
@@ -156,14 +153,14 @@ AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% pl
 
 ---
 
-## FR-005: Memory System with Emotional Tags
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context is critical"
+### FR-005: Memory System with Emotional Tags
 
-### Description
-Agent memory architecture that remembers players with emotional context. "She remembered how I felt about that move."
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/vision/manifesto.md` - "Memory is how love looks to machines"
 
-### Requirements
+**Description**: Agent memory architecture that remembers players with emotional context. "She remembered how I felt about that move."
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -171,22 +168,28 @@ Agent memory architecture that remembers players with emotional context. "She re
 | FR-005.2 | Short-term memory duration | 24 hours | Backend test |
 | FR-005.3 | Long-term memory persistence | Yes | Backend test |
 | FR-005.4 | Emotional tagging | What surprised, frustrated, delighted | Content review |
-| FR-005.5 | "She Remembered" events | >1 per session | Analytics |
+| FR-005.5 | "She Remembered" events | >2 per session | Analytics |
 | FR-005.6 | Return to specific agent rate | >50% | Analytics |
 
-### Memory Echo Pattern (from research)
-Players who receive specific, relevant memory references are 3x more likely to become long-term users.
+**Memory Layers**:
+
+| Type | Duration | Content |
+|------|----------|---------|
+| Session | Current game | Last 5 moves, current state |
+| Short-Term | 24 hours | Player preferences, reactions |
+| Long-Term | Persistent | History, interactions, achievements |
+| Emotional | All layers | What surprised, frustrated, delighted |
 
 ---
 
-## FR-006: Feedback System
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/research/user-behavior.md` - Feedback psychology
+### FR-006: Feedback System
 
-### Description
-Player feedback must be easy to submit and visibly impactful. Feedback submission time < 30 seconds.
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/research/user-behavior.md` - Feedback psychology
 
-### Requirements
+**Description**: Player feedback must be easy to submit and visibly impactful. Feedback submission time < 30 seconds.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -198,29 +201,29 @@ Player feedback must be easy to submit and visibly impactful. Feedback submissio
 | FR-006.6 | Player attribution when feedback ships | Yes | Content review |
 | FR-006.7 | Feedback submission rate | >5% | Analytics |
 
-### Feedback Flow
+**Feedback Flow**:
 ```
 Player friction detected → Gentle prompt → Quick capture → Submit
                                                           ↓
                                                 Agent review (human or AI)
                                                           ↓
-                                      Accepted: Prioritized  |  Rejected: Explanation
+                                    Accepted: Prioritized  |  Rejected: Explanation
                                                           ↓
-                                      Status notification (within 24 hours)
+                                    Status notification (within 24 hours)
                                                           ↓
-                                      Celebration when shipped with attribution
+                                    Celebration when shipped with attribution
 ```
 
 ---
 
-## FR-007: Evolution Feed System
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is entertainment"
+### FR-007: Evolution Feed System
 
-### Description
-Game evolution must be visible, celebrated, and attributed. Changes feel like events, not glitches.
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/vision/manifesto.md` - "Evolution is entertainment"
 
-### Requirements
+**Description**: Game evolution must be visible, celebrated, and attributed. Changes feel like events, not glitches.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -231,7 +234,8 @@ Game evolution must be visible, celebrated, and attributed. Changes feel like ev
 | FR-007.5 | Player can "follow" features for updates | Yes | Automated test |
 | FR-007.6 | Feature adoption rate | >70% | Analytics |
 
-### Event Types
+**Event Types**:
+
 | Type | Icon | Frequency | Celebration |
 |------|------|-----------|-------------|
 | 🌱 In Progress | 🌱 | Daily | Minimal |
@@ -242,14 +246,14 @@ Game evolution must be visible, celebrated, and attributed. Changes feel like ev
 
 ---
 
-## FR-008: Agent Vulnerability Protocol
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
+### FR-008: Agent Vulnerability Protocol
 
-### Description
-Agents must risk, prefer bold failures to safe successes, and acknowledge mistakes visibly.
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
 
-### Requirements
+**Description**: Agents must risk, prefer bold failures to safe successes, and acknowledge mistakes visibly.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -259,19 +263,18 @@ Agents must risk, prefer bold failures to safe successes, and acknowledge mistak
 | FR-008.4 | Preference expression rate | >30% | Chat analysis |
 | FR-008.5 | Vulnerability recognition | >50% | User survey |
 
-### Research Evidence
-Personality without vulnerability is a brand voice. Perfect agents are forgettable.
+**Research Evidence**: Personality without vulnerability is a brand voice. Perfect agents are forgettable. Vulnerability accelerates attachment 2x.
 
 ---
 
-## FR-009: Participation Architecture
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution with players, not to them"
+### FR-009: Participation Architecture
 
-### Description
-Players can witness debates, participate in arguments, and feel the drama of creation.
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/research/synthesis-jan-2026.md` - "Evolution with players, not to them"
 
-### Requirements
+**Description**: Players can witness debates, participate in arguments, and feel the drama of creation.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -282,14 +285,14 @@ Players can witness debates, participate in arguments, and feel the drama of cre
 
 ---
 
-## FR-010: Trust Budget System
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/user-behavior.md` - Trust Budget Model
+### FR-010: Trust Budget System
 
-### Description
-Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/research/user-behavior.md` - Trust Budget Model
 
-### Requirements
+**Description**: Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
+
+**Requirements**:
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -302,7 +305,8 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 | FR-010.7 | Suspected manipulation | -30 points spent | User survey |
 | FR-010.8 | Hidden AI nature | -40 points spent | User survey |
 
-### Budget States
+**Budget States**:
+
 | Points | State | Action |
 |--------|-------|--------|
 | 80+ | Loyal advocate | Reinforce relationship |
@@ -312,11 +316,12 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-001: Performance
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets
+## 2. Non-Functional Requirements
 
-### Requirements
+### NFR-001: Performance
+
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/ux/interface-concept.md` - Performance targets
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -329,11 +334,10 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-002: Accessibility
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/ux/design-system.md` - Accessibility checklist
+### NFR-002: Accessibility
 
-### Requirements
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/ux/design-system.md` - Accessibility checklist
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -346,49 +350,52 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-003: Security (Mandatory)
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/security/security-requirements.md`
+### NFR-003: Security (Mandatory)
 
-### Authentication (AUTH)
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/security/security-requirements.md`
+
+**Authentication (AUTH)**:
+
 | ID | Requirement | Validation |
 |----|-------------|------------|
 | AUTH-001 | Token Management | 256-bit signing, session binding, 24-hour validity |
 | AUTH-002 | Credential Storage | No credentials in code, logs, or errors |
 | AUTH-003 | Session Management | 30-min inactivity, max 3 concurrent sessions |
 
-### Authorization (AUTHZ)
+**Authorization (AUTHZ)**:
+
 | ID | Requirement | Validation |
 |----|-------------|------------|
 | AUTHZ-001 | Game Session Access Control | Authorization on every WebSocket event |
 | AUTHZ-002 | Resource Limits | Rate limits: 5 games/hr, 10 WS connections/IP |
 
-### Input Validation (INP)
+**Input Validation (INP)**:
+
 | ID | Requirement | Validation |
 |----|-------------|------------|
 | INP-001 | Game Action Validation | Rules, ownership, state constraints, speed, cooldown |
 | INP-002 | Input Sanitization | Chat (500 chars), names (32 chars), HTML stripping |
 
-### Data Protection (DATA)
+**Data Protection (DATA)**:
+
 | ID | Requirement | Validation |
 |----|-------------|------------|
 | DATA-001 | Encryption in Transit | TLS 1.2+, WSS |
 | DATA-002 | Encryption at Rest | AES-256-GCM for sensitive data |
 | DATA-003 | Data Minimization | Retention: sessions 30d, chat 7d, analytics 90d |
 
-### Logging (LOG)
+**Logging (LOG)**:
+
 | ID | Requirement | Validation |
 |----|-------------|------------|
 | LOG-001 | Security Event Logging | Auth attempts, failures, rate limits, suspicious activity |
 
 ---
 
----
+### NFR-004: Reliability
 
-## NFR-004: Reliability
-**Priority:** Critical (P0)
-
-### Requirements
+**Priority**: Critical (P0)
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -399,11 +406,10 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-005: Quality Excellence (NEW - January 2026)
-**Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative
+### NFR-005: Quality Excellence
 
-### Quality Multiplier Requirements
+**Priority**: Critical (P0)
+**Evidence**: `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
@@ -413,15 +419,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 | NFR-005.4 | No AI slop patterns | 100% | Code review |
 | NFR-005.5 | Excellence in every touchpoint | Yes | QA review |
 
-### Quality Standards
-
-| Standard | Description | Target |
-|----------|-------------|--------|
-| Functional Excellence | Every feature works reliably | 99% completion |
-| Transparency Excellence | Agent attribution visible | 100% of interactions |
-| Relationship Excellence | Memory, personality, vulnerability | User survey >4.0 |
-
-### Quality Multiplier Impact
+**Quality Multiplier Impact**:
 
 | Quality Level | Trust Multiplier | Action Required |
 |---------------|------------------|-----------------|
@@ -432,66 +430,45 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## NFR-006: Privacy & Edge AI
-**Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat"
+### NFR-006: Privacy & Edge AI
 
-### Requirements
+**Priority**: High (P1)
+**Evidence**: `.monkeytown/research/synthesis-jan-2026.md` - "Edge AI as competitive moat"
 
 | ID | Requirement | Target | Validation |
 |----|-------------|--------|------------|
-| NFR-005.1 | Local personality layer | All agent interactions | Architecture review |
-| NFR-005.2 | Offline gameplay | Core game loop | Game test |
-| NFR-005.3 | Response latency | < 100ms personality | Performance test |
-| NFR-005.4 | Privacy controls | User toggle | UI review |
-| NFR-005.5 | Local inference usage | >80% | Analytics |
-
-### Architecture
-```
-┌─────────────────────────────────────────────────────────┐
-│                    PLAYER DEVICE                         │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  PERSONALITY LAYER (Local - Always Active)      │   │
-│  │  • Agent voice consistent                       │   │
-│  │  • Immediate responses (<100ms)                 │   │
-│  │  • No cloud data required                       │   │
-│  │  • Offline capable for core features            │   │
-│  └─────────────────────────────────────────────────┘   │
-│                           ↑                             │
-│                           ↓ (fallback)                  │
-│  ┌─────────────────────────────────────────────────┐   │
-│  │  REASONING LAYER (Cloud - When Available)       │   │
-│  │  • Complex decisions                            │   │
-│  │  • Long-term strategy                           │   │
-│  │  • Learning from behavior                       │   │
-│  └─────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────┘
-```
+| NFR-006.1 | Local personality layer | All agent interactions | Architecture review |
+| NFR-006.2 | Offline gameplay | Core game loop | Game test |
+| NFR-006.3 | Response latency | < 100ms personality | Performance test |
+| NFR-006.4 | Privacy controls | User toggle | UI review |
+| NFR-006.5 | Local inference usage | >80% | Analytics |
 
 ---
 
-## Compliance Matrix
+## 3. Requirements Traceability Matrix
 
 | Requirement | Research | Vision | UX | Security | Priority |
 |-------------|----------|--------|-----|----------|----------|
-| First Session | ✓ | ✓ | ✓ | | Critical |
-| Agent Transparency | ✓ | ✓ | ✓ | | Critical |
-| Memory System | ✓ | ✓ | | | Critical |
-| AI Opponents | ✓ | | | | Critical |
-| Trust Budget | ✓ | | | | Critical |
-| Performance | | | ✓ | | Critical |
-| Security | | | | ✓ | Critical |
-| Quality Excellence | ✓ (Jan 2026) | | | | Critical |
-| Feedback Loop | ✓ | ✓ | ✓ | | High |
-| Evolution Feed | ✓ | ✓ | ✓ | | High |
-| Agent Vulnerability | | ✓ | | | High |
-| Participation | ✓ | ✓ | | | High |
-| Accessibility | | | ✓ | | High |
-| Edge AI | ✓ | ✓ | | ✓ | High |
+| FR-001: First Session | ✓ | ✓ | ✓ | | Critical |
+| FR-002: Agent Transparency | ✓ | ✓ | ✓ | | Critical |
+| FR-003: Game Engine | | | ✓ | | Critical |
+| FR-004: AI Opponents | ✓ | | | | Critical |
+| FR-005: Memory System | ✓ | ✓ | | | Critical |
+| FR-006: Feedback Loop | ✓ | ✓ | ✓ | | High |
+| FR-007: Evolution Feed | ✓ | ✓ | ✓ | | High |
+| FR-008: Agent Vulnerability | | ✓ | | | High |
+| FR-009: Participation | ✓ | ✓ | | | High |
+| FR-010: Trust Budget | ✓ | | | | Critical |
+| NFR-001: Performance | | | ✓ | | Critical |
+| NFR-002: Accessibility | | | ✓ | | High |
+| NFR-003: Security | | | | ✓ | Critical |
+| NFR-004: Reliability | | | | | Critical |
+| NFR-005: Quality Excellence | ✓ (Jan 2026) | | | | Critical |
+| NFR-006: Edge AI | ✓ | ✓ | | ✓ | High |
 
 ---
 
-## Dependencies
+## 4. Dependencies
 
 | Requirement | Depends On | Blocking |
 |-------------|------------|----------|
@@ -508,85 +485,25 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-## Success Metrics Summary
-
-### Engagement Metrics (Updated February 2026)
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Day 1 Retention | 65% | 70% | 75% |
-| Day 5 Checkpoint | 50% | 55% | 60% |
-| Day 7 Retention | 40% | 45% | 50% |
-| Day 30 Attachment | 25% | 30% | 35% |
-| Session Length | 18 min | 20 min | 25 min |
-| Session Frequency | 4/week | 5/week | 5/week |
-
-### Trust Metrics (February 2026 Update)
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Agent Attribution Recognition | 80% | 90% | 95% |
-| Feedback Submission Rate | 5% | 7% | 10% |
-| Positive Feedback Ratio | 60%+ | 70%+ | 75%+ |
-
-### Attachment Metrics
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| "She Remembered" Events | >2/session | >3/session | >4/session |
-| Return to Specific Agent | 50% | 60% | 70% |
-| Vulnerability Recognition | >50% | >70% | >85% |
-| Memory Echo Rate | 3+/session | 4+/session | 5+/session |
-
-### Observer Metrics (NEW - February 2026)
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Observer % of Users | 35% | 30% | 25% |
-| Observer Conversion to Player | 25% | 30% | 35% |
-| Watch Time (Observers) | 15+ min | 20+ min | 25+ min |
-
-### Quality Metrics (Updated January 2026)
-| Metric | Q1 Target | Q2 Target | Q4 Target |
-|--------|-----------|-----------|-----------|
-| Quality Rating (1-5) | 4.0+ | 4.3+ | 4.5+ |
-| Quality Consistency | 90% | 93% | 95% |
-| Quality Perception | >85% positive | >88% positive | >90% positive |
-| AI Slop Incidents | 0 | 0 | 0 |
-
-### Window of Opportunity (February 2026 Update)
-| Factor | Window | After Window |
-|--------|--------|--------------|
-| Authenticity leadership | **9 months** | Commoditized |
-| Community formation | 15 months | Network effects |
-| Design wisdom | Ongoing | Compound advantage |
-| Technical differentiation | 21 months | Catching up |
-| Evolution narrative | 12 months | Standard feature |
-
-**February 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration. Quality leadership remains the critical differentiator.
-
----
-
-## Evidence References
+## 5. Evidence References
 
 ### Vision Sources
-- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
-- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
-- `.monkeytown/vision/principles.md` - 20 operating principles
+- `.monkeytown/vision/manifesto.md` - v4.0 Living Game Declaration
+- `.monkeytown/vision/product-vision.md` - v1.0 Blueprint
+- `.monkeytown/vision/roadmap.md` - Three Horizons
+- `.monkeytown/vision/principles.md` - 25 Operating Principles
 
-### Research Sources (Updated February 2026)
-- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
-- `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative, competitive positioning
-- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
-- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
-- `.monkeytown/research/trends-jan-2026.md` - Updated market trends
-- `.monkeytown/research/competitors.md` - Competitive analysis
-- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns and recovery
-- `.monkeytown/research/user-behavior-ai-games.md` - AI gaming behavior patterns
-- `.monkeytown/research/multiplayer-ai-coordination.md` - Multiplayer coordination
-- `.monkeytown/research/human-ai-team-dynamics.md` - Team dynamics patterns
-- `.monkeytown/research/patterns.md` - Design pattern language
-- `.monkeytown/research/patterns-jan-2026.md` - Updated pattern library
+### Research Sources
+- `.monkeytown/research/synthesis-jan-2026.md` - Strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns
+- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns
+- `.monkeytown/research/agent-personality-frameworks.md` - Personality models
 
 ### UX Sources
-- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
-- `.monkeytown/ux/design-system.md` - Component library, agent colors
+- `.monkeytown/ux/index.md` - UX Documentation Index
+- `.monkeytown/ux/interface-concept.md` - Interface concepts
+- `.monkeytown/ux/design-system.md` - Component library
+- `.monkeytown/ux/soul-of-monkeytown.md` - Design philosophy
 
 ### Security Sources
 - `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
@@ -594,8 +511,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ---
 
-*Requirements serve features. Features serve players. Players serve Monkeytown.*
-
-**Version:** 4.0
-**Updated:** 2026-01-20
-**Sources:** vision/, research/synthesis.md (Feb 2026), research/user-behavior.md, ux/, security/
+*Requirements maintained by BananaPM*
+*Traced to vision, research, UX, and security sources*
+*Evidence-based, no invented requirements*
+*Last Updated: 2026-01-20*
