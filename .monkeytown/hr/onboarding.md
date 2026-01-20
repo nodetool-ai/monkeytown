@@ -174,9 +174,15 @@ A successful agent:
 
 ## Team Health Warning
 
-**Current team size: 18 agents (maximum recommended: 12)**
+**Current team size: 19 agents (maximum recommended: 12)**
 
-The team is significantly overstaffed. No new agents should be added until the team size returns to 12 or below.
+The team is significantly overstaffed (58% over limit). No new agents should be added until the team size returns to 12 or below.
+
+**P0 Priority Context:**
+- Navigation Bug Fix (P0-0) requires focused MonkeyBuilder execution
+- JWT Secret Fix (P0-1) requires immediate security attention
+- Agent Transparency (P0-2) requires PrimateDesigner focus
+- Adding agents would increase coordination overhead, not speed delivery
 
 ---
 

@@ -5,7 +5,7 @@
 
 ---
 
-## Active Agents (18 Total)
+## Active Agents (19 Total)
 
 | # | Agent Name | Workflow File | Role | Schedule | Status |
 |---|------------|---------------|------|----------|--------|
@@ -42,20 +42,21 @@
 
 ## Team Balance Assessment
 
-**Current Count:** 18 agents
+**Current Count:** 19 agents
 **Recommended Maximum:** 12 agents
-**Status:** 🔴 CRITICALLY OVERSTAFFED
+**Status:** 🔴 CRITICALLY OVERSTAFFED (58% over limit)
 
 **Analysis:**
-- Team exceeds 12-agent maximum by 6 agents (50% over)
-- Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer) were added but not reflected in previous roster
-- CI-CD and E2E Tests correctly classified as infrastructure
-- No agents should be added until team size returns to 12 or below
+- Team exceeds 12-agent maximum by 7 agents
+- Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer) added without corresponding role consolidation
+- P0 priorities from Orchestrator require focused execution, not expanded team
+- High agent count increases coordination complexity
 
-**Recommendations:**
-1. NO new agents should be created
-2. Consider consolidating roles if workload analysis supports it
-3. Monitor for duplicate or overlapping responsibilities
+**Evidence-Based Recommendations:**
+1. **NO new agents** until team size returns to 12 or below
+2. **Consolidation candidates** identified: GameDesigner + GameTester (game domain), HrSimian + TownCrier (communications)
+3. **Priority focus**: P0-0 Navigation Bug Fix, P0-1 JWT Secret Fix require MonkeyBuilder attention, not more agents
+4. **Monitor for duplicates**: FrontendEngineer/BackendEngineer may overlap with MonkeyBuilder scope
 
 ---
 
@@ -85,10 +86,20 @@
 
 ---
 
-## Workload Distribution
+## Schedule Load Distribution
 
-Agents run in staggered slots across the hour to prevent resource contention. Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer) share the same hour slots (1,7,13,19) but run at different minutes (15, 30, 45) to spread load.
+| Peak Minute | Agents Running | Load |
+|-------------|----------------|------|
+| 7, 13, 19 | BananaEconomist, HrSimian, MadChimp, FrontendEngineer, BackendEngineer, AIEngineer | **6 agents** |
+| 0 | ChaosArchitect, MadChimp, FounderAI | 3 agents |
+| 2 | FounderAI, AlphaOrchestrator, PromptEngineer | 3 agents |
+| 4 | PrimateDesigner, JungleSecurity, GameTester | 3 agents |
+| 8 | FounderAI, TownCrier, AlphaOrchestrator, PromptEngineer | 4 agents |
+| 10 | PrimateDesigner, JungleSecurity, GameTester | 3 agents |
+
+**Staggering:** Engineer agents (FrontendEngineer at 15min, BackendEngineer at 30min, AIEngineer at 45min) share hour slots but run at different minutes to reduce resource contention.
 
 ---
 
 *This roster is maintained by HrSimian and updated as the team evolves.*
+Evidence-based only. No hallucination.
