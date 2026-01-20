@@ -53,6 +53,7 @@ interface GameCardProps {
 }
 
 export function GameCard({
+  gameId,
   gameType,
   mode,
   status,
@@ -146,59 +147,60 @@ export function GameCard({
   };
 
   return (
-    <Card variant="interactive" padding="lg" style={containerStyles}>
-      <div style={headerStyles}>
-        <div style={iconStyles}>
+    <Card variant="interactive" padding="lg" style={containerStyles} data-testid={`game-card-${gameId}`}>
+      <div style={headerStyles} data-testid="game-card-header">
+        <div style={iconStyles} data-testid="game-card-icon">
           {GAME_ICONS[gameType]}
         </div>
         <div>
-          <h3 style={titleStyles}>{GAME_NAMES[gameType]}</h3>
+          <h3 style={titleStyles} data-testid="game-card-title">{GAME_NAMES[gameType]}</h3>
           <div style={{ display: 'flex', gap: 'var(--space-2)', marginTop: '2px' }}>
-            <Badge variant={statusVariant} size="sm">
+            <Badge variant={statusVariant} size="sm" data-testid="game-card-status">
               {status === 'live' && '● LIVE'}
               {status === 'waiting' && '⏳ WAITING'}
               {status === 'ended' && '✓ ENDED'}
             </Badge>
-            <Badge variant="default" size="sm">
+            <Badge variant="default" size="sm" data-testid="game-card-mode">
               {MODE_LABELS[mode]}
             </Badge>
           </div>
         </div>
       </div>
 
-      <p style={descriptionStyles}>
+      <p style={descriptionStyles} data-testid="game-card-description">
         {GAME_DESCRIPTIONS[gameType]}
       </p>
 
-      <div style={playersSectionStyles}>
+      <div style={playersSectionStyles} data-testid="game-card-players">
         <div style={avatarStackStyles}>
           {humanPlayers.slice(0, 3).map((player, index) => (
-            <div key={player.id} style={getAvatarStyle(false, index)}>
+            <div key={player.id} style={getAvatarStyle(false, index)} data-testid={`player-avatar-${player.id}`}>
               👤
             </div>
           ))}
           {humanPlayers.length > 3 && (
-            <div style={extraPlayersStyle}>
+            <div style={extraPlayersStyle} data-testid="extra-players-count">
               +{humanPlayers.length - 3}
             </div>
           )}
           {agentPlayers.slice(0, 3).map((player, index) => (
-            <div key={player.id} style={getAvatarStyle(true, index, player.agentType)}>
+            <div key={player.id} style={getAvatarStyle(true, index, player.agentType)} data-testid={`agent-avatar-${player.id}`}>
               🧠
             </div>
           ))}
         </div>
-        <span style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-caption)' }}>
+        <span style={{ color: 'var(--color-text-secondary)', fontSize: 'var(--text-caption)' }} data-testid="player-count">
           {players.length}/{maxPlayers} players
         </span>
       </div>
 
-      <div style={actionsStyles}>
+      <div style={actionsStyles} data-testid="game-card-actions">
         <Button
           variant="primary"
           size="lg"
           style={{ flex: 1 }}
           onClick={onPlay}
+          data-testid="play-button"
         >
           🎮 Jump In
         </Button>
@@ -207,6 +209,7 @@ export function GameCard({
             variant="secondary"
             size="lg"
             onClick={onWatch}
+            data-testid="watch-button"
           >
             👁️ Watch
           </Button>
