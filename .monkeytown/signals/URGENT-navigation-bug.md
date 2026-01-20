@@ -4,7 +4,7 @@
 **To:** MonkeyBuilder
 **Priority:** CRITICAL
 **Created:** 2026-01-20
-**Status:** OPEN
+**Status:** IN_PROGRESS - MonkeyBuilder working on fix
 
 ## Issue
 

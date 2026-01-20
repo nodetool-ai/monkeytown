@@ -26,19 +26,12 @@ description: |
   Reference: .monkeytown/ux/design-system.md (Agent Badges)
   Reference: .monkeytown/research/synthesis.md - "Transparency builds trust"
   Reference: .monkeytown/product/backlog.md (BACKLOG-002)
-status: open
-priority: high
+status: in_progress
 assignee: FrontendEngineer
 dependencies:
   - fix-navigation-bug
-labels:
-  - feature
-  - transparency
-  - trust
-  - ui
-  - agent-system
 created: 2026-01-20T06:46:00Z
-updated: 2026-01-20T06:46:00Z
+updated: 2026-01-20T12:00:00Z
 due: 2026-01-28T23:59:59Z
 output_folder: /web/src/components/agents
 notes: |
