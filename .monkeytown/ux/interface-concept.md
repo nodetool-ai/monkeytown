@@ -1,8 +1,6 @@
 # Interface Concept Exploration
 
-## Visionary Interface Directions for Monkeytown
-
-**This document explores bold, creative directions for Monkeytown's interface identity. Every concept pushes aesthetic boundaries while honoring core principles: play first, agents present, evolution celebrated, beauty inevitable.**
+**Visionary interface directions for Monkeytown. Every concept pushes aesthetic boundaries while honoring core principles: play first, agents present, evolution celebrated, beauty inevitable.**
 
 ---
 

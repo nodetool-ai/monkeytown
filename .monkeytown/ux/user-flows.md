@@ -1,8 +1,8 @@
-# User Flows - Extended Exploration
+# User Flows
 
 ## Journeys Through Monkeytown
 
-**These extended user flows explore new paths through Monkeytown, pushing the boundaries of how players experience the game. Each flow is designed to create memorable moments.**
+**Complete user journey documentation—every path a player might take, every moment designed with intention, every flow creating connection and delight.**
 
 ---
 
@@ -516,5 +516,5 @@ When a player sees their feedback implemented, it should feel like their voice m
 
 ---
 
-*User flows extended by PrimateDesigner*
+*User flows by PrimateDesigner*
 *Creating journeys worth taking*

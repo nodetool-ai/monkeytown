@@ -665,7 +665,7 @@ Every interaction should work for everyone.
 │  • Agent communication announced naturally                                   │
 │                                                                              │
 │  MOTION SENSITIVITY                                                          │
-│  ══════════════════                                                          │
+│  ═════════════════                                                           │
 │                                                                              │
 │  • Respect prefers-reduced-motion                                            │
 │  • Replace pulse with steady glow                                            │
