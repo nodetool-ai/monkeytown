@@ -1,4 +1,5 @@
 import { Pool } from 'pg';
+import { v4 as uuid } from 'uuid';
 
 export class DatabaseService {
   private pool: Pool;
@@ -120,6 +121,88 @@ export class DatabaseService {
     return this.query<Agent>(
       'SELECT * FROM agents ORDER BY created_at DESC LIMIT $1 OFFSET $2',
       [limit, offset]
+    );
+  }
+
+  async getAgentStats(agentId: string): Promise<AgentStats | null> {
+    const rows = await this.query<AgentStats>(
+      `SELECT 
+        a.id,
+        a.name,
+        a.agent_type,
+        a.stats,
+        COUNT(DISTINCT g.id) as games_played,
+        COALESCE((a.stats->>'wins')::int, 0) as wins,
+        COALESCE((a.stats->>'losses')::int, 0) as losses,
+        COALESCE((a.stats->>'draws')::int, 0) as draws,
+        0 as win_rate,
+        0 as total_games,
+        0 as avg_score
+       FROM agents a
+       WHERE a.id = $1`,
+      [agentId]
+    );
+    if (rows.length === 0) return null;
+    const row = rows[0];
+    const stats = row.stats || { wins: 0, losses: 0, draws: 0 };
+    const totalGames = stats.wins + stats.losses + stats.draws;
+    const winRate = totalGames > 0 ? ((stats.wins / totalGames) * 100).toFixed(1) : '0.0';
+    return {
+      ...row,
+      wins: stats.wins,
+      losses: stats.losses,
+      draws: stats.draws,
+      winRate: parseFloat(winRate),
+      totalGames,
+      avgScore: 0,
+    };
+  }
+
+  async getAgentGameHistory(agentId: string, limit = 20, offset = 0): Promise<AgentGameHistory[]> {
+    return this.query<AgentGameHistory>(
+      `SELECT 
+        g.id as game_id,
+        g.game_type,
+        g.started_at,
+        g.ended_at,
+        g.result,
+        (g.result->>'winnerId') = $1 as is_winner
+       FROM games g
+       WHERE g.config->'players' @> json_build_array($1)::jsonb
+       ORDER BY g.started_at DESC
+       LIMIT $2 OFFSET $3`,
+      [agentId, limit, offset]
+    );
+  }
+
+  async getAgentDecisionLogs(agentId: string, limit = 50): Promise<AgentDecisionLog[]> {
+    return this.query<AgentDecisionLog>(
+      `SELECT 
+        ge.id,
+        ge.event_type,
+        ge.player_id,
+        ge.data,
+        ge.created_at
+       FROM game_events ge
+       WHERE ge.player_id = $1
+       AND ge.event_type IN ('agent_decision', 'ai_move', 'ai_action')
+       ORDER BY ge.created_at DESC
+       LIMIT $2`,
+      [agentId, limit]
+    );
+  }
+
+  async saveAgentDecision(agentId: string, gameId: string, decision: AgentDecisionData): Promise<void> {
+    await this.query(
+      `INSERT INTO game_events (id, game_id, event_type, player_id, data, created_at)
+       VALUES ($1, $2, $3, $4, $5, NOW())`,
+      [
+        decision.id || uuid(),
+        gameId,
+        'agent_decision',
+        agentId,
+        JSON.stringify(decision),
+      ]
     );
   }
 
@@ -395,4 +478,43 @@ interface LeaderboardEntry {
   avatar: string;
   wins: number;
   games_played: number;
+}
+
+interface AgentStats {
+  id: string;
+  name: string;
+  agent_type?: string;
+  stats: { wins: number; losses: number; draws: number };
+  games_played: number;
+  wins: number;
+  losses: number;
+  draws: number;
+  winRate: number;
+  totalGames: number;
+  avgScore: number;
+}
+
+interface AgentGameHistory {
+  game_id: string;
+  game_type: string;
+  started_at?: Date;
+  ended_at?: Date;
+  result?: Record<string, unknown>;
+  is_winner: boolean;
+}
+
+interface AgentDecisionLog {
+  id: string;
+  event_type: string;
+  player_id?: string;
+  data: Record<string, unknown>;
+  created_at?: Date;
+}
+
+interface AgentDecisionData {
+  id?: string;
+  reasoning: string;
+  action: string;
+  confidence: number;
+  alternativeActions?: string[];
 }

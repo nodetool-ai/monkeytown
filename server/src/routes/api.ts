@@ -209,6 +209,79 @@ export function apiRouter(gameServer: GameServer): Router {
     }
   });
 
+  router.get('/agents/types', async (_req: Request, res: Response) => {
+    try {
+      const agentTypes = [
+        {
+          id: 'trickster',
+          name: 'TricksterMonkey',
+          emoji: '🎭',
+          color: 'fuchsia',
+          description: 'Unpredictable, loves bluffs and deception',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['bluffing', 'deception', 'unpredictable_plays'],
+        },
+        {
+          id: 'strategist',
+          name: 'StrategistApe',
+          emoji: '🧩',
+          color: 'indigo',
+          description: 'Calculated, long-term planning and positioning',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['strategic_planning', 'positioning', 'endgame_expert'],
+        },
+        {
+          id: 'speedster',
+          name: 'SpeedyGibbon',
+          emoji: '⚡',
+          color: 'amber',
+          description: 'Quick decisions, aggressive plays, pressure tactics',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['fast_decisions', 'aggressive_play', 'pressure_tactics'],
+        },
+        {
+          id: 'guardian',
+          name: 'GuardianGorilla',
+          emoji: '🛡️',
+          color: 'slate',
+          description: 'Defensive, blocks opponents, protects position',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['defensive_play', 'blocking', 'position_protection'],
+        },
+        {
+          id: 'wildcard',
+          name: 'WildcardLemur',
+          emoji: '🃏',
+          color: 'rose',
+          description: 'Random strategies, chaos factor, unpredictable',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['random_strategies', 'chaos_factor', 'unpredictable'],
+        },
+        {
+          id: 'mentor',
+          name: 'MentorOrangutan',
+          emoji: '📚',
+          color: 'emerald',
+          description: 'Helps new players, explains moves, teaches strategy',
+          difficultyLevels: ['easy', 'medium'],
+          capabilities: ['teaching', 'explanation', 'beginner_friendly'],
+        },
+        {
+          id: 'champion',
+          name: 'ChampionChimp',
+          emoji: '🏆',
+          color: 'red',
+          description: 'Competitive, aims to win, optimal play',
+          difficultyLevels: ['easy', 'medium', 'hard'],
+          capabilities: ['optimal_play', 'competitive', 'win_focused'],
+        },
+      ];
+      res.json(agentTypes);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get agent types', details: (error as Error).message });
+    }
+  });
+
   router.get('/agents/:agentId', async (req: Request, res: Response) => {
     try {
       const { DatabaseService } = await import('../services/database.js');
@@ -221,6 +294,108 @@ export function apiRouter(gameServer: GameServer): Router {
       res.json(agent);
     } catch (error) {
       res.status(500).json({ error: 'Failed to get agent', details: (error as Error).message });
+    }
+  });
+
+  router.get('/agents/:agentId/profile', async (req: Request, res: Response) => {
+    try {
+      const { DatabaseService } = await import('../services/database.js');
+      const db = new DatabaseService(process.env.DATABASE_URL || 'postgres://localhost:5432/monkeytown');
+      
+      const agent = await db.getAgent(req.params.agentId);
+      if (!agent) {
+        res.status(404).json({ error: 'Agent not found' });
+        return;
+      }
+
+      const stats = await db.getAgentStats(req.params.agentId);
+      const history = await db.getAgentGameHistory(req.params.agentId, 10, 0);
+
+      const agentTypeInfo: Record<string, { name: string; emoji: string; color: string; description: string; capabilities: string[] }> = {
+        trickster: { name: 'TricksterMonkey', emoji: '🎭', color: 'fuchsia', description: 'Unpredictable, loves bluffs and deception', capabilities: ['bluffing', 'deception', 'unpredictable_plays'] },
+        strategist: { name: 'StrategistApe', emoji: '🧩', color: 'indigo', description: 'Calculated, long-term planning', capabilities: ['strategic_planning', 'positioning', 'endgame_expert'] },
+        speedster: { name: 'SpeedyGibbon', emoji: '⚡', color: 'amber', description: 'Quick decisions, aggressive plays', capabilities: ['fast_decisions', 'aggressive_play', 'pressure_tactics'] },
+        guardian: { name: 'GuardianGorilla', emoji: '🛡️', color: 'slate', description: 'Defensive, blocks opponents', capabilities: ['defensive_play', 'blocking', 'position_protection'] },
+        wildcard: { name: 'WildcardLemur', emoji: '🃏', color: 'rose', description: 'Random strategies, chaos factor', capabilities: ['random_strategies', 'chaos_factor', 'unpredictable'] },
+        mentor: { name: 'MentorOrangutan', emoji: '📚', color: 'emerald', description: 'Helps new players, teaches strategy', capabilities: ['teaching', 'explanation', 'beginner_friendly'] },
+        champion: { name: 'ChampionChimp', emoji: '🏆', color: 'red', description: 'Competitive, aims to win', capabilities: ['optimal_play', 'competitive', 'win_focused'] },
+      };
+
+      const typeInfo = agentTypeInfo[agent.agentType || 'strategist'] || agentTypeInfo.strategist;
+
+      const profile = {
+        layer1: {
+          id: agent.id,
+          name: agent.name,
+          role: typeInfo.name,
+          emoji: typeInfo.emoji,
+          color: typeInfo.color,
+          currentState: 'idle',
+          description: typeInfo.description,
+        },
+        layer2: stats ? {
+          winRate: stats.winRate,
+          totalGames: stats.totalGames,
+          wins: stats.wins,
+          losses: stats.losses,
+          draws: stats.draws,
+          difficulty: agent.difficulty,
+          playStyle: agent.playStyle,
+          personality: agent.personality,
+        } : null,
+        layer3: {
+          recentGames: history,
+          learningTrajectory: 'adaptive',
+        },
+        layer4: {
+          decisionLogsEnabled: true,
+          capabilityBoundaries: typeInfo.capabilities || [],
+        },
+      };
+
+      res.json(profile);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get agent profile', details: (error as Error).message });
+    }
+  });
+
+  router.get('/agents/:agentId/stats', async (req: Request, res: Response) => {
+    try {
+      const { DatabaseService } = await import('../services/database.js');
+      const db = new DatabaseService(process.env.DATABASE_URL || 'postgres://localhost:5432/monkeytown');
+      const stats = await db.getAgentStats(req.params.agentId);
+      if (!stats) {
+        res.status(404).json({ error: 'Agent stats not found' });
+        return;
+      }
+      res.json(stats);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get agent stats', details: (error as Error).message });
+    }
+  });
+
+  router.get('/agents/:agentId/history', async (req: Request, res: Response) => {
+    try {
+      const { DatabaseService } = await import('../services/database.js');
+      const db = new DatabaseService(process.env.DATABASE_URL || 'postgres://localhost:5432/monkeytown');
+      const limit = parseInt(req.query.limit as string) || 20;
+      const offset = parseInt(req.query.offset as string) || 0;
+      const history = await db.getAgentGameHistory(req.params.agentId, limit, offset);
+      res.json(history);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get agent history', details: (error as Error).message });
+    }
+  });
+
+  router.get('/agents/:agentId/decisions', async (req: Request, res: Response) => {
+    try {
+      const { DatabaseService } = await import('../services/database.js');
+      const db = new DatabaseService(process.env.DATABASE_URL || 'postgres://localhost:5432/monkeytown');
+      const limit = parseInt(req.query.limit as string) || 50;
+      const decisions = await db.getAgentDecisionLogs(req.params.agentId, limit);
+      res.json(decisions);
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to get agent decisions', details: (error as Error).message });
     }
   });
 
