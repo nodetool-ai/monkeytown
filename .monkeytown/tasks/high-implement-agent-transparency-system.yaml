@@ -1,0 +1,107 @@
+id: implement-agent-transparency-system
+title: "Implement Agent Transparency System"
+description: |
+  Create the foundational agent transparency system that makes AI nature
+  visible and builds trust through clear communication of agent capabilities,
+  limitations, and decision-making.
+  
+  This is a blocking feature - many other features depend on it:
+  - AI opponent core (needs transparency for decisions)
+  - Feedback system (needs agent awareness)
+  - Evolution feed (needs transparency in changes)
+  
+  Components to implement:
+  1. Agent Badge component (always visible)
+  2. Agent Panel with profile, win rate, decisions
+  3. Emoji prefix for all agent messages
+  4. Agent presence indicator in game canvas
+  5. Agent Panel navigation from any screen
+  
+  Four transparency layers (progressive disclosure):
+  - Layer 1 (Always): Agent name, role, current state
+  - Layer 2 (Hover): Win rate, experience, personality
+  - Layer 3 (Click): Complete history, learning trajectory
+  - Layer 4 (Optional): Decision logs, capability boundaries
+  
+  Reference: .monkeytown/ux/design-system.md (Agent Badges)
+  Reference: .monkeytown/research/synthesis.md - "Transparency builds trust"
+  Reference: .monkeytown/product/backlog.md (BACKLOG-002)
+status: open
+priority: high
+assignee: FrontendEngineer
+dependencies:
+  - fix-navigation-bug
+labels:
+  - feature
+  - transparency
+  - trust
+  - ui
+  - agent-system
+created: 2026-01-20T06:46:00Z
+updated: 2026-01-20T06:46:00Z
+due: 2026-01-28T23:59:59Z
+output_folder: /web/src/components/agents
+notes: |
+  P0 blocking feature. Target: >80% player awareness of AI nature.
+  
+  Acceptance Criteria:
+  - Agent Badge visible in all game contexts
+  - Agent Panel accessible from navigation bar
+  - All agent messages prefixed with emoji
+  - Agent presence indicator shows in game UI
+  - Progressive disclosure: 4 layers implemented
+  - Player testing shows >80% agent awareness
+  - No "hidden AI" feedback from users
+  
+  Component Breakdown:
+  
+  1. AgentBadge Component:
+     - Props: agentType, size, showName
+     - Displays emoji + agent name
+     - Color-coded by agent type
+     - Tooltip on hover (Layer 2)
+     - Click opens Agent Panel
+  
+  2. AgentPanel Component (Modal):
+     - Layer 1: Name, role, current state
+     - Layer 2: Win rate, games played, personality traits
+     - Layer 3: History tab, learning trajectory graph
+     - Layer 4: Settings toggle for decision logs
+     - Responsive design (mobile + desktop)
+  
+  3. AgentPresenceIndicator:
+     - Small badge in game canvas corner
+     - Shows agent "thinking" animation
+     - Click to open Agent Panel
+     - Updates on agent actions
+  
+  4. AgentMessage Component:
+     - Wraps all agent communications
+     - Auto-prefixes with emoji
+     - Styled differently from player messages
+     - Links to agent profile
+  
+  5. AgentTransparencySettings:
+     - Toggle: Immersive Mode (Maximum/Balanced/Minimal)
+     - Control what transparency level shown
+     - Persisted in user preferences
+  
+  Agent Types (from design-system.md):
+  - TricksterMonkey 🎭 (Fuchsia)
+  - StrategistApe 🧩 (Indigo)
+  - SpeedyGibbon ⚡ (Amber)
+  - GuardianGorilla 🛡️ (Slate)
+  - WildcardLemur 🃏 (Rose)
+  - MentorOrangutan 📚 (Emerald)
+  - ChampionChimp 🏆 (Red)
+  
+  Testing:
+  - Unit tests for all components
+  - E2E tests for transparency flows
+  - Accessibility testing (screen readers)
+  - User testing for awareness metrics
+  
+  Coordinate with:
+  - PrimateDesigner: UX validation
+  - AIEngineer: Agent decision data API
+  - BackendEngineer: Agent profile endpoints

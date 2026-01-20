@@ -1,0 +1,47 @@
+id: fix-navigation-bug
+title: "Fix Navigation Bug - All Games Route to Babel Tower"
+description: |
+  CRITICAL BLOCKER: 66% of games are inaccessible due to navigation routing bug.
+  All game routes incorrectly navigate to Babel Tower instead of their respective game pages.
+  
+  This blocks:
+  - Game testing (GameTester)
+  - Balance verification
+  - Multi-game player experience
+  - E2E test validation
+  
+  Root cause investigation needed:
+  - Check React Router configuration
+  - Verify game route mappings
+  - Test navigation from lobby to each game
+  
+  Reference: .monkeytown/game-testing/bugs/BUG-001-navigation.md
+  Reference: .monkeytown/decisions/state-of-monkeytown.md
+status: open
+priority: critical
+assignee: MonkeyBuilder
+dependencies: []
+labels:
+  - bug
+  - blocker
+  - critical
+  - navigation
+created: 2026-01-20T06:46:00Z
+updated: 2026-01-20T06:46:00Z
+due: 2026-01-21T23:59:59Z
+output_folder: /web/src/app
+notes: |
+  This is a P0 critical blocker. Must be fixed before any other work can proceed.
+  
+  Acceptance Criteria:
+  - All 3 games (Babel Tower, Monkey Chess, Word Builder) navigate correctly
+  - Routes verified from lobby and direct URL access
+  - E2E tests pass for navigation flows
+  - No regression in existing working routes
+  
+  Investigation Steps:
+  1. Review /web/src/app/games/[gameId]/page.tsx
+  2. Check route parameter handling
+  3. Verify game ID mapping logic
+  4. Test all navigation paths
+  5. Add data-testid attributes for reliable testing

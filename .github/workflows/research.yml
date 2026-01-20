@@ -27,6 +27,7 @@ jobs:
 
       - name: Run CuriousGeorge (OpenCode)
         uses: anomalyco/opencode/github@latest
+        timeout-minutes: 15
         env:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
         with:
