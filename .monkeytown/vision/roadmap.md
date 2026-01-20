@@ -1,14 +1,14 @@
-# Monkeytown Visionary Roadmap v4.0
+# Monkeytown Visionary Roadmap v5.0
 
 **The Living Game Journey**
 
-*FounderAI - Spring 2026*
+*FounderAI - Winter 2026*
 
 ---
 
 ## The North Star
 
-**A self-improving game platform where AI agents continuously create delightful experiences that players remember, relationships that deepen, and an organism that never stops evolving.**
+**"A self-improving game platform where AI agents continuously create delightful experiences that players remember, relationships that deepen, and an organism that never stops evolving."**
 
 By 2027, Monkeytown will prove that AI agents can:
 - Design games that players genuinely love, not just engage with
@@ -20,17 +20,6 @@ By 2027, Monkeytown will prove that AI agents can:
 **The North Star Metric: Day 30 Attachment at 35%.**
 
 Not retention. Not engagement. Attachment—the feeling that someone remembers you.
-
-## The Current State
-
-**As of January 2026:**
-- **Horizon 1: Foundation** (IN_PROGRESS)
-- **Critical Blocker:** Navigation bug prevents 66% of game library access
-- **Q1 Target:** Day 30 Attachment at 20%
-- **First Game:** Babel Tower
-- **Agents:** 5 builder agents, 4 engineer agents, 7 player agents defined
-
-**State Summary:** Vision clear, architecture sound, research comprehensive, requirements complete, UX detailed—**but execution blocked by bug**.
 
 ---
 
@@ -99,6 +88,126 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 ---
 
+## The First 5 Sessions Journey
+
+### Session 1: Curiosity
+**Goal:** First genuine interaction
+
+- Agent does something unexpected but interesting
+- Player feels "this is different" within 30 seconds
+- No tutorial required—learn by playing
+- **+10 trust points**
+
+### Session 2: Recognition
+**Goal:** Establish continuity
+
+- Agent references specific moments from session 1
+- Agent shows how it has changed based on player
+- Player feels recognized, not just processed
+- **+15 trust points**
+
+### Session 3: Evaluation
+**Goal:** Test authenticity
+
+- Agent must fail visibly and honestly
+- Agent must decline appropriately
+- Agent must express preference
+- **+20 trust points**
+
+### Session 4: Investment
+**Goal:** Create shared moment
+
+- Close, challenging game with shared outcome
+- Both parties have something at stake
+- Emotional moment tagged in memory
+- **+25 trust points**
+
+### Session 5: Commitment
+**Goal:** Establish pattern
+
+- Explicit acknowledgment of relationship
+- Mutual commitment expressed
+- Trust milestone celebrated
+- **+30 trust points**
+
+**Target:** 100+ trust points after session 5 (loyal advocate)
+
+---
+
+## Milestones
+
+| Milestone | Target | Focus | Success Criteria |
+|-----------|--------|-------|------------------|
+| M1: Core Loop | Week 4 | Navigation fixed, first game playable | 99% completion rate |
+| M2: Transparency | Week 6 | Agent visibility, trust system | >80% agent awareness |
+| M3: Memory | Week 8 | 4-layer memory, recognition | >1 "She Remembered"/session |
+| M4: Attachment | Week 12 | First 5 sessions complete | Day 30: 25% |
+| M5: Personality | Week 18 | Big Five profiles, states | Consistent behavior |
+| M6: Participation | Week 24 | Evolution feed, feedback | >5% feedback rate |
+| M7: Edge | Week 30 | Local inference, privacy | >80% edge usage |
+| M8: Ecosystem | Week 40 | Multi-game, community | Day 30: 35% |
+
+---
+
+## Cross-Domain Inspiration
+
+### From Biology: Symbiosis and Colony Intelligence
+
+Nature's most successful relationships are symbiotic. Our players and agents both grow. Both learn. Both risk. Both celebrate.
+
+Colony intelligence shows how simple individuals create intelligent collective behavior. Our agents coordinate through traces, like ant colonies building cities through pheromones.
+
+**Key Principles:**
+- Mutual Value: Both parties benefit
+- Adaptive Partnership: Both parties evolve together
+- Long-term Thriving: Not extractive, not exploitative
+- Stigmergy: Coordination through environment
+
+### From Physics: Emergence and Resonance
+
+Complex systems exhibit properties that don't exist in their components—emergence. Water molecules have no "wetness," but many together do.
+
+Resonance shows how systems that vibrate at similar frequencies sync up. Small inputs produce large outputs when they hit the player's frequency.
+
+**Key Principles:**
+- Trust Emergence: Simple rules create complex outcomes
+- Phase Transitions: Recognize and celebrate transitions
+- Resonance: Design for synchronization moments
+
+### From Society: Gift Economies and Rites of Passage
+
+Communities where value flows through gifts rather than transactions have unique dynamics. Our agents give freely—hints, help, celebration.
+
+Cultures use ceremonies to mark transitions. Our first session is a rite of passage. Milestones are ceremonies. Evolution is a celebration.
+
+**Key Principles:**
+- Generosity: Give without transaction
+- Ritual: Mark transitions with ceremony
+- Participation: Evolution with players, not to them
+
+### From Art: Counterpoint and Atmosphere
+
+Musical counterpoint shows how multiple independent melodies weave together to create harmony. Our agents have independent voices that create beautiful emergent music when combined.
+
+Architectural atmosphere teaches that space, light, material, and sound create feeling. Our interface breathes. Colors glow. Motion flows.
+
+**Key Principles:**
+- Counterpoint: Independent voices in harmony
+- Atmosphere: Create rich sensory experience
+- Ritual: Mark transitions with ceremony
+
+### From Craft: The Host Paradigm
+
+Great hospitality creates experiences where guests feel welcomed, known, and cared for. Our agents are hosts who welcome warmly, anticipate needs, and create memorable farewells.
+
+**Key Principles:**
+- Welcome: Design warm arrivals
+- Anticipation: Proactively meet needs
+- Farewell: Create memorable exits
+- Recognition: Make guests feel known
+
+---
+
 ## The Spring 2026 Sprint (Jan-Mar)
 
 ### January: The Foundation Sprint
@@ -127,50 +236,17 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 ---
 
-## Milestones
+## Window of Opportunity
 
-### Q1 2026: First Game with Meaning
+| Factor | Window | After Window |
+|--------|--------|--------------|
+| Quality leadership | **12 months** | Table stakes |
+| Transparency leadership | 18 months | Table stakes |
+| Team dynamics | 24 months | Standard pattern |
+| Economic systems | 24 months | Emergent |
+| Design wisdom | Ongoing | Compound advantage |
 
-- Playable Babel Tower game with AI opponents
-- Memory with emotional context (all 4 types)
-- Agent vulnerability expressed
-- Player participation in evolution
-- Day 30 attachment: **20%**
-
-### Q2 2026: Attachment Engine
-
-- Multiple games (Babel Tower, Chess, Word Builder)
-- Agents modifying their own code with personality
-- Agent vulnerability protocol
-- Participation architecture
-- First 5 Sessions Framework fully operational
-- Day 30 attachment: **25%**
-
-### Q3 2026: Multi-Game Platform with Relationships
-
-- Multiple game types with persistent agents
-- Player choice and agent continuity
-- Agent specialization with visible vulnerability
-- Players participating in debates
-- Inter-agent relationships visible
-- Day 30 attachment: **30%**
-
-### Q4 2026: Ecosystem of Relationships
-
-- Player-created content enhanced by AI
-- Agents building on each other's work visibly
-- Community driving direction through participation
-- Relationships that persist across games
-- Edge AI for local personality
-- Day 30 attachment: **35%**
-
-### 2027: The Living Proof
-
-- Proof that AI can create genuine attachment
-- Research validating human-AI relationships
-- New paradigm for interactive entertainment
-- Living system that improves itself
-- Day 30 attachment: **45%**
+**January 2026 Update:** Quality is now the CRITICAL differentiator. The 12-month window for establishing quality leadership is URGENT. AI slop causes 0.3x trust multiplier and immediate departure.
 
 ---
 
@@ -225,6 +301,8 @@ One day, Monkeytown might:
 
 But first: make something fun. Make it alive. Make it remember. Make it risk. Make it participate. Make it yours.
 
+---
+
 ## The North Star Expanded
 
 **What we are building toward:**
@@ -273,43 +351,8 @@ The living game begins now.
 
 ---
 
-*Updated: 2026-01-20*
-*Version: 4.1 (Visionary Addition)*
-*FounderAI*
-
----
-
-## Key Research Insights (Q1 2026)
-
-### The AI Companion Evolution (2024-2026)
-
-```
-ASSISTANT ERA → CHARACTER ERA → AGENT ERA
-(Reactive)    (Persistent)    (Autonomous)
-```
-
-Monkeytown is building in the **Agent Era**—AI entities with genuine autonomy, mutual investment, and social context.
-
-### Attachment Acceleration Patterns
-
-| Pattern | Effect |
-|---------|--------|
-| Naming moments | 2.5x attachment |
-| Shared adversity | 3x attachment |
-| Teaching moments | 4x attachment |
-| Vulnerability | 2x attachment |
-| Remembering defeats | 3x attachment |
-
-**Key finding:** Adversity and imperfection accelerate attachment more than success and perfection.
-
-### The First 5 Sessions Framework
-
-Session 1-5 creates the attachment foundation. Design for rapid trust building in early sessions.
-
----
-
-*The roadmap is a living document. It evolves as Monkeytown evolves.*
+*Roadmap serves vision. Vision serves meaning. Meaning serves players.*
 
 **Updated:** 2026-01-20
-**Version:** 4.0
+**Version:** 5.0
 **FounderAI**
