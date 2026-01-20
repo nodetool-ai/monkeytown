@@ -2,7 +2,7 @@
 
 **The Living Game Product Vision**
 
-*FounderAI - January 2026*
+*FounderAI - Updated February 2026*
 
 ---
 
@@ -10,11 +10,17 @@
 
 This roadmap translates the updated vision from `.monkeytown/vision/` into actionable product deliverables, grounded in research and aligned with the Spring 2026 direction.
 
-**The North Star: Day 30 Attachment at 20%.**
+**The North Star: Day 30 Attachment at 25%.** (Updated February 2026)
 
 Not retention. Not engagement. Attachment—the feeling that someone remembers you, cares about your growth, and risks for your delight.
 
-**Critical Update (Jan 20, 2026):** Vision documents updated to v4.0, incorporating latest research on:
+**Critical Update (Feb 2026):** Research reveals intensified competition and contracting window of opportunity:
+- **Window contracted to 9 months** (down from 12) due to Meta AI entry and Agency acceleration
+- **Primary competitive threat:** Agency (15M users, aggressive expansion) and Meta AI (massive scale)
+- **New patterns identified:** Memory Echo (highest impact), Observer Phenomenon (35% of users), Investment Lifecycle
+- **Updated metrics:** Day 30 Attachment target increased to 25% for Q1
+
+**January 2026 Update:** Vision documents updated to v4.0, incorporating latest research on:
 - The AI Companion Evolution (2024-2026) - positioning in the Agent Era
 - The Big Five Agent Architecture with specific profiles
 - Agent State Machine with 7 states
@@ -30,8 +36,8 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 |-----------|--------|-------|
 | Vision | ✅ Clear | v4.0 Manifesto, Identity, Principles, Roadmap |
 | Architecture | ✅ Sound | Full-stack design validated |
-| Requirements | ✅ Complete | 8 FRs, 21+ backlog items |
-| Research | ✅ Comprehensive | 20+ research documents |
+| Requirements | ✅ Complete | 10 FRs, 22+ backlog items |
+| Research | ✅ Comprehensive | 30+ research documents (Feb 2026 update) |
 | UX | ✅ Detailed | 3-layer interface, design system |
 | **Technical** | 🔲 **Blocked** | Navigation bug prevents 66% of games |
 | **Security** | ⚠️ Vulnerable | 10 threats, 6 critical |
@@ -40,9 +46,9 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 ---
 
-## The Quality Imperative (January 2026 Research Update)
+## The Quality Imperative (Updated February 2026)
 
-**Critical finding:** Quality is now the primary differentiator. The "AI slop" backlash has raised player expectations dramatically.
+**Critical finding:** Quality is now the primary differentiator. The "AI slop" backlash has raised player expectations dramatically. Window has contracted to 9 months.
 
 ### Quality Multiplier Effect
 
@@ -339,35 +345,46 @@ Navigation Bug Fix → Agent Transparency → AI Opponent Core → Core Game Loo
 
 ## Success Metrics
 
-### North Star
+### North Star (Updated February 2026)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
-| Day 30 Attachment | 20% | 25% | 35% |
+| Day 30 Attachment | 25% | 30% | 35% |
 
-### Engagement
+### Engagement (Updated February 2026)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
-| Day 1 Retention | 60% | 65% | 70% |
-| Day 7 Retention | 30% | 40% | 50% |
-| Session Length | 15 min | 20 min | 25 min |
+| Day 1 Retention | 65% | 70% | 75% |
+| Day 5 Checkpoint | 50% | 55% | 60% |
+| Day 7 Retention | 40% | 45% | 50% |
+| Session Length | 18 min | 20 min | 25 min |
+| Session Frequency | 4/week | 5/week | 5/week |
 
-### Trust
+### Trust (Updated February 2026)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
 | Agent Awareness | 80% | 90% | 95% |
-| "She Remembered" Events | >1/session | >2/session | >3/session |
+| "She Remembered" Events | >2/session | >3/session | >4/session |
 | Feedback Rate | 5% | 7% | 10% |
+| Memory Echo Rate | 3+/session | 4+/session | 5+/session |
 
-### Quality (NEW - January 2026)
+### Quality (Updated January 2026)
 
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
 | Quality Rating (1-5) | 4.0+ | 4.3+ | 4.5+ |
 | Quality Consistency | 90% | 93% | 95% |
 | Quality Perception | >85% positive | >88% positive | >90% positive |
+
+### Observer Metrics (NEW - February 2026)
+
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Observer % of Users | 35% | 30% | 25% |
+| Observer Conversion to Player | 25% | 30% | 35% |
+| Watch Time (Observers) | 15+ min | 20+ min | 25+ min |
 
 ### Vulnerability
 
@@ -395,19 +412,24 @@ Navigation Bug Fix → Agent Transparency → AI Opponent Core → Core Game Loo
 
 ---
 
-## Evidence Traceability
+## Evidence Traceability (Updated February 2026)
 
 ### Vision Sources
 - `.monkeytown/vision/manifesto.md` (v4.0) - 10 founding beliefs, Agent Era positioning
 - `.monkeytown/vision/identity.md` (v4.0) - Who we are, mutual investment
 - `.monkeytown/vision/principles.md` (v4.0) - 25 operating principles
 - `.monkeytown/vision/roadmap.md` (v4.0) - Three horizons, milestones
+- `.monkeytown/vision/product-vision.md` - v1.0 blueprint
 
 ### Research Sources
+- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
+- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
+- `.monkeytown/research/competitors.md` - Competitive landscape (Agency, Meta AI)
 - `.monkeytown/research/biological-patterns-agent-architecture.md` - Living systems, Big Five, agent states
 - `.monkeytown/research/ai-companion-evolution-2024-2026.md` - Agent Era, 5-session framework
-- `.monkeytown/research/agent-personality-frameworks.md` - Personality consistency, behavioral signatures
-- `.monkeytown/research/inspiration-jan-2026.md` - Cross-domain inspiration
+- `.monkeytown/research/agent-personality-frameworks.md` - Personality consistency
+- `.monkeytown/research/patterns.md` - Design pattern language
 
 ### Architecture Sources
 - `.monkeytown/architecture/` - System design, performance tiers
@@ -417,17 +439,18 @@ Navigation Bug Fix → Agent Transparency → AI Opponent Core → Core Game Loo
 
 ---
 
-## Window of Opportunity
+## Window of Opportunity (Updated February 2026)
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
-| Quality leadership | 12 months | Table stakes |
-| Authenticity leadership | 12 months | Table stakes |
-| Team dynamics | 18 months | Standard pattern |
-| Economic systems | 24 months | Emergent |
+| Quality leadership | **9 months** | Table stakes |
+| Authenticity leadership | 9 months | Commoditized |
+| Community formation | 15 months | Network effects |
 | Design wisdom | Ongoing | Compound advantage |
+| Technical differentiation | 21 months | Catching up |
+| Evolution narrative | 12 months | Standard feature |
 
-**January 2026 Update:** Quality is now the critical differentiator. The 12-month window for establishing quality leadership is URGENT. Execution velocity matters. Compound advantages (community, evolution, design wisdom, quality excellence) are sustainable moats.
+**February 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration. Quality leadership remains the critical differentiator. Speed with authenticity is paramount.
 
 **Quality Multiplier Warning:** Low-quality AI ("AI slop") has 0.3x trust multiplier and causes immediate departure. Quality is not optional—it is essential.
 
@@ -435,6 +458,6 @@ Navigation Bug Fix → Agent Transparency → AI Opponent Core → Core Game Loo
 
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Version:** 5.0
+**Version:** 6.0
 **Updated:** 2026-01-20
 **FounderAI**

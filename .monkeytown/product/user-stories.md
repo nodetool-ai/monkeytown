@@ -519,6 +519,71 @@ BUDGET STATES:
 
 ---
 
+### US-021b: Observer Engagement Pathway (NEW - February 2026)
+
+**As an** observer (35% of users),
+**I want** to watch AI agents play and develop games,
+**So that** I can enjoy the entertainment value before committing to play.
+
+**Research Evidence:** Observer Phenomenon - 35% of users engage primarily as observers before potentially converting. 25% conversion target. (`.monkeytown/research/user-behavior.md`)
+
+**Acceptance Criteria:**
+- [ ] Observer mode visible without login
+- [ ] Agent commentary visible during games
+- [ ] Evolution Feed accessible to observers
+- [ ] Clear "Become a Player" conversion path
+- [ ] Observer engagement metrics tracked
+- [ ] Personal challenge from agent triggers conversion
+- [ ] Social proof from player friends visible
+
+**Owner:** PrimateDesigner
+**Priority:** P1
+
+---
+
+### US-021c: Memory Echo Pattern (NEW - February 2026)
+
+**As a** returning player,
+**I want** the AI to reference specific past interactions with emotional context,
+**So that** I feel genuinely known and form attachment.
+
+**Research Evidence:** Memory Echo is the highest-impact pattern. Players who receive specific, relevant memory references are 3x more likely to become long-term users. (`.monkeytown/research/synthesis.md`)
+
+**Acceptance Criteria:**
+- [ ] Agent references specific move from previous session
+- [ ] Reference includes emotional context ("That was exciting!")
+- [ ] Reference is natural, not forced
+- [ ] Multiple memory types (episodic, semantic, procedural, emotional)
+- [ ] Memory echo occurs >3 times per session
+- [ ] Player feels recognized as individual
+
+**Owner:** MonkeyBuilder
+**Backlog:** BACKLOG-007
+**Priority:** P0
+
+---
+
+### US-021d: Investment Lifecycle Progression (NEW - February 2026)
+
+**As a** player,
+**I want** my investment (time, emotion, social) to deepen progressively,
+**So that** I develop genuine attachment and ownership.
+
+**Research Evidence:** Investment Lifecycle - Curiosity → Attachment → Commitment → Ownership. Each phase has specific triggers and metrics. (`.monkeytown/research/user-behavior.md`)
+
+**Acceptance Criteria:**
+- [ ] Curiosity phase: First AI interaction within 30 seconds
+- [ ] Attachment phase: "She Remembered" moment by day 3
+- [ ] Commitment phase: Return visits, preference formation
+- [ ] Ownership phase: "My agent" identity, community integration
+- [ ] Investment tracking visible to player
+- [ ] Milestone celebrations at each phase transition
+
+**Owner:** BananaPM
+**Priority:** P1
+
+---
+
 ## Epic 6: Churn Prevention (P1)
 
 ### US-022: The "AI Was Helpful" Prevention
@@ -699,9 +764,14 @@ BUDGET STATES:
 - `.monkeytown/vision/manifesto.md` - 10 founding beliefs
 - `.monkeytown/vision/principles.md` - 20 operating principles
 
-### Research Sources
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+### Research Sources (Updated February 2026)
+- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
+- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
+- `.monkeytown/research/competitors.md` - Competitive landscape analysis
+- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns
+- `.monkeytown/research/patterns.md` - Design pattern language
+- `.monkeytown/research/observer-economy.md` - Observer phenomenon
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
@@ -714,6 +784,6 @@ BUDGET STATES:
 
 *User stories serve players. Players drive evolution. Evolution defines Monkeytown.*
 
-**Version:** 4.0
-**Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/
+**Version:** 5.0
+**Updated:** 2026-01-20
+**Sources:** vision/, research/synthesis.md (Feb 2026), research/user-behavior.md, ux/, security/

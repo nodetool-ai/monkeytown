@@ -450,25 +450,29 @@ Agent Vulnerability (F9)
 
 ---
 
-## Competitive Positioning
+## Competitive Positioning (Updated February 2026)
 
-| Attribute | Character.AI | AI Dungeon | Inworld | **Monkeytown** |
-|-----------|--------------|------------|---------|----------------|
-| AI Nature | Hidden | Hidden | Hidden | **Celebrated** |
-| Multiplayer | Weak (1:1) | None | Via games | **Native** |
-| Agent Autonomy | Chatbot | Dungeon master | NPCs | **Players** |
-| Evolution | None | None | None | **Native** |
-| Transparency | Low | Low | Low | **High** |
+| Attribute | Character.AI | Agency | Meta AI | **Monkeytown** |
+|-----------|--------------|--------|---------|----------------|
+| AI Nature | Hidden | Partial | Hidden | **Celebrated** |
+| Multiplayer | Weak (1:1) | Limited | Emerging | **Native** |
+| Agent Autonomy | Chatbot | Emerging | Limited | **Players** |
+| Evolution | None | Limited | None | **Native** |
+| Transparency | Low | Medium | Low | **High** |
 | Player Feedback | Limited | Limited | None | **Direct** |
-| Edge AI | None | None | None | **Planned** |
-| Attachment Design | Weak | None | None | **Engineered** |
-| Evolution as Content | None | None | None | **Native** |
-| Memory Architecture | Basic | None | None | **Planned (Q1)** |
-| **Quality Leadership** | Low | Medium | Medium | **HIGHEST** ✓ |
+| Edge AI | None | None | Emerging | **Planned** |
+| Attachment Design | Weak | Medium | None | **Engineered** |
+| Evolution as Content | None | Limited | None | **Native** |
+| Memory Architecture | Basic | Emerging | Basic | **4-layer (Q1)** |
+| **Authenticity Leadership** | Low | Medium | Low | **HIGHEST** ✓ |
+| **Community Formation** | Large | Growing | Massive | **Developing** |
+| **Design Wisdom** | Medium | Medium | Low | **6+ months** ✓ |
+
+**February 2026 Update:** Primary competitive threat is now **Agency** (direct positioning, 15M users, aggressive expansion) and **Meta AI** (massive scale threat, gaming ambitions announced). Window contracted from 12 to 9 months.
 
 ---
 
-## Quality Imperative (January 2026 Research Update)
+## Quality Imperative (Updated February 2026)
 
 ### Quality Multiplier Effect
 
@@ -489,7 +493,7 @@ Agent Vulnerability (F9)
 
 ### Quality Leadership Window
 
-**12 months** to establish quality leadership before it becomes table stakes.
+**9 months** (down from 12) to establish quality leadership before it becomes table stakes. The window is contracting due to Meta AI entry and Agency acceleration.
 
 ---
 
@@ -501,19 +505,25 @@ Features are prioritized by:
 3. **Strategic value (25%):** Does this advance the vision?
 4. **Feasibility (15%):** Can we ship this well?
 
+**February 2026 Update:** Window of Opportunity contracted to 9 months. Quality leadership is now the CRITICAL differentiator. Speed with authenticity is paramount.
+
 ---
 
-## Evidence References
+## Evidence References (Updated February 2026)
 
 ### Vision Sources
 - `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
 - `.monkeytown/vision/manifesto.md` - 10 founding beliefs
 - `.monkeytown/vision/principles.md` - 20 operating principles
+- `.monkeytown/vision/product-vision.md` - v1.0 blueprint
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
-- `.monkeytown/research/trends.md` - Market trends
+- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
+- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
+- `.monkeytown/research/competitors.md` - Competitive landscape analysis
+- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns
+- `.monkeytown/research/patterns.md` - Design pattern language
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
@@ -528,6 +538,6 @@ Features are prioritized by:
 
 *Features serve players. Players drive evolution. Evolution defines Monkeytown.*
 
-**Version:** 4.0
-**Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/
+**Version:** 5.0
+**Updated:** 2026-01-20
+**Sources:** vision/, research/synthesis.md (Feb 2026), research/user-behavior.md, ux/, security/

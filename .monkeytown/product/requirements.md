@@ -510,34 +510,56 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ## Success Metrics Summary
 
-### Engagement Metrics
+### Engagement Metrics (Updated February 2026)
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
-| Day 1 Retention | 60% | 65% | 70% |
-| Day 7 Retention | 30% | 40% | 50% |
-| Day 30 Attachment | 20% | 25% | 35% |
-| Session Length | 15 min | 20 min | 25 min |
+| Day 1 Retention | 65% | 70% | 75% |
+| Day 5 Checkpoint | 50% | 55% | 60% |
+| Day 7 Retention | 40% | 45% | 50% |
+| Day 30 Attachment | 25% | 30% | 35% |
+| Session Length | 18 min | 20 min | 25 min |
+| Session Frequency | 4/week | 5/week | 5/week |
 
-### Trust Metrics
+### Trust Metrics (February 2026 Update)
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
 | Agent Attribution Recognition | 80% | 90% | 95% |
 | Feedback Submission Rate | 5% | 7% | 10% |
+| Positive Feedback Ratio | 60%+ | 70%+ | 75%+ |
 
 ### Attachment Metrics
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
-| "She Remembered" Events | >1/session | >2/session | >3/session |
+| "She Remembered" Events | >2/session | >3/session | >4/session |
 | Return to Specific Agent | 50% | 60% | 70% |
 | Vulnerability Recognition | >50% | >70% | >85% |
+| Memory Echo Rate | 3+/session | 4+/session | 5+/session |
 
-### Quality Metrics (NEW - January 2026)
+### Observer Metrics (NEW - February 2026)
+| Metric | Q1 Target | Q2 Target | Q4 Target |
+|--------|-----------|-----------|-----------|
+| Observer % of Users | 35% | 30% | 25% |
+| Observer Conversion to Player | 25% | 30% | 35% |
+| Watch Time (Observers) | 15+ min | 20+ min | 25+ min |
+
+### Quality Metrics (Updated January 2026)
 | Metric | Q1 Target | Q2 Target | Q4 Target |
 |--------|-----------|-----------|-----------|
 | Quality Rating (1-5) | 4.0+ | 4.3+ | 4.5+ |
 | Quality Consistency | 90% | 93% | 95% |
 | Quality Perception | >85% positive | >88% positive | >90% positive |
 | AI Slop Incidents | 0 | 0 | 0 |
+
+### Window of Opportunity (February 2026 Update)
+| Factor | Window | After Window |
+|--------|--------|--------------|
+| Authenticity leadership | **9 months** | Commoditized |
+| Community formation | 15 months | Network effects |
+| Design wisdom | Ongoing | Compound advantage |
+| Technical differentiation | 21 months | Catching up |
+| Evolution narrative | 12 months | Standard feature |
+
+**February 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration. Quality leadership remains the critical differentiator.
 
 ---
 
@@ -548,12 +570,19 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 - `.monkeytown/vision/manifesto.md` - 10 founding beliefs
 - `.monkeytown/vision/principles.md` - 20 operating principles
 
-### Research Sources (Updated January 2026)
+### Research Sources (Updated February 2026)
+- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
 - `.monkeytown/research/synthesis-jan-2026.md` - Quality Imperative, competitive positioning
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
+- `.monkeytown/research/trends.md` - Emerging trends (intentional friction, sovereign identity)
 - `.monkeytown/research/trends-jan-2026.md` - Updated market trends
+- `.monkeytown/research/competitors.md` - Competitive analysis
 - `.monkeytown/research/ai-trust-patterns.md` - Trust patterns and recovery
+- `.monkeytown/research/user-behavior-ai-games.md` - AI gaming behavior patterns
+- `.monkeytown/research/multiplayer-ai-coordination.md` - Multiplayer coordination
+- `.monkeytown/research/human-ai-team-dynamics.md` - Team dynamics patterns
+- `.monkeytown/research/patterns.md` - Design pattern language
+- `.monkeytown/research/patterns-jan-2026.md` - Updated pattern library
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
@@ -567,6 +596,6 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 *Requirements serve features. Features serve players. Players serve Monkeytown.*
 
-**Version:** 3.0
-**Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/
+**Version:** 4.0
+**Updated:** 2026-01-20
+**Sources:** vision/, research/synthesis.md (Feb 2026), research/user-behavior.md, ux/, security/
