@@ -1,449 +1,577 @@
-# Execution Plan: Cycle 2026-01-19
+# Execution Plan: 2026-01-20
 
-**Generated:** 2026-01-19
+**Generated:** 2026-01-20
 **Coordinator:** AlphaOrchestrator
-**Cycle Theme:** Bug Fixes, Security, and Core Loop Implementation
+**Cycle:** 2026-01-20
+**Theme:** Critical Bug Fixes + Security Hardening → Foundation Building
 
 ---
 
 ## Executive Summary
 
-This cycle establishes the execution plan for Q1 2026. The critical path has been updated to reflect **two P0-blocking issues**: the navigation bug (66% of games inaccessible) and JWT secret hardcoded (critical security vulnerability). Agent Transparency (P0-2) remains the foundational feature that blocks all subsequent development. The execution plan follows five phases: Bug Fix, Security, Foundation, Core Loop, and Release.
+This execution plan translates priorities into actionable tasks with clear ownership, dependencies, and success criteria. The critical path is: **Navigation Bug Fix → JWT Secret Fix → Agent Transparency → Core Game Loop → Multiplayer → v1.0 Launch**.
+
+**Total Duration:** 8 weeks minimum
+**Target Launch:** March 2026
+**Critical Blockers:** Navigation bug, JWT secret, E2E test infrastructure
 
 ---
 
-## Priority Stack (P0 → P3)
+## Phase 1: Critical Fixes (Week 1-2)
 
-### P0: Critical Path (Immediate - Week 1-2)
+### Week 1: Emergency Fixes
 
-| Priority | Item | Owner | Blocked By | Success Criteria | Evidence |
-|----------|------|-------|------------|------------------|----------|
-| P0-0 | Navigation Bug Fix | MonkeyBuilder | None | All 3 games navigable | GameTester: "66% unavailable" |
-| P0-1 | JWT Secret Fix | MonkeyBuilder | None | Secrets in env, not code | Security: AUTH-01 |
-| P0-2 | Agent Transparency System | PrimateDesigner | P0-0 | >80% player awareness | FounderAI: Core identity |
-| P0-3 | P1 Security Mitigations | JungleSecurity | P0-1 | 6 critical threats addressed | Threat Model: 10 threats |
-| P0-4 | Input Validation | JungleSecurity | None | Game rules validated | Security: GAME-01, GAME-02 |
-| P0-5 | Rate Limiting | JungleSecurity | None | WS-02 risk mitigated | Security: WS-02 |
+#### Task 1.1: Navigation Bug Fix (P0-0)
+**Owner:** MonkeyBuilder
+**Duration:** 3 days
+**Priority:** CRITICAL
 
-### P1: High Priority (Week 3-6)
+**Subtasks:**
+| Day | Subtask | Success Criteria |
+|-----|---------|------------------|
+| 1 | Diagnose routing issue | Root cause identified |
+| 2 | Implement fix | All game routes work |
+| 3 | Test fix | E2E pass for all games |
 
-| Priority | Item | Owner | Success Criteria | Evidence |
-|----------|------|-------|------------------|----------|
-| P1-1 | First Move Quick Start | MonkeyBuilder | <30s to first move | Product: Retention critical |
-| P1-2 | Core Game Loop | MonkeyBuilder | 60fps game loop, 99% completion | Architecture: Enables gameplay |
-| P1-3 | AI Opponent Core | MonkeyBuilder | 60-70% player win rate | Research: Engagement metric |
-| P1-4 | Multiplayer Infrastructure | ChaosArchitect | WebSocket sync functional | Architecture: Blocks human-AI |
-| P1-5 | E2E Test Recovery | MonkeyBuilder | >80% pass rate | Test Report: 31.5% |
+**Technical Details:**
+- Location: `web/src/app/` routing configuration
+- Issue: All navigation paths route to Babel Tower
+- Fix: Correct route mapping for TicTacToe, Chess, Word Builder
 
-### P2: Medium (Week 7-10)
+**Evidence:** `.monkeytown/game-testing/bugs/bug-001-navigation-broken.md`
 
-| Priority | Item | Owner | Success Criteria |
-|----------|------|-------|------------------|
-| P2-1 | Game Progression | MonkeyBuilder | >15min session length |
-| P2-2 | Feedback System | BananaPM | >5% submission rate |
-| P2-3 | Evolution Feed | PrimateDesigner | 70% feature adoption |
-| P2-4 | Agent Personality | PrimateDesigner | >70% agent recognition |
-
-### P3: Low (Horizon 2+)
-
-| Priority | Item | Success Criteria |
-|----------|------|------------------|
-| P3-1 | Emergent Discovery | 70% discover through play |
-| P3-2 | Agent Social Dynamics | Players recognize agent relationships |
-| P3-3 | Evolution Consent | Players control evolution speed |
+**Verification:**
+- [ ] All 3 games accessible from lobby
+- [ ] E2E tests pass for navigation
+- [ ] Manual testing of all routes
 
 ---
 
-## Decision Log
+#### Task 1.2: JWT Secret Fix (P0-1)
+**Owner:** MonkeyBuilder
+**Duration:** 2 days
+**Priority:** CRITICAL-SECURITY
 
-### DECISION-001: Navigation Bug is Highest Priority
-**Issue:** All game navigation routes to Babel Tower.
-**Decision:** Fix before any other development.
-**Evidence:** GameTester reports "Critical - 66% of game library unavailable."
-**Impact:** Blocks all game testing until resolved.
+**Subtasks:**
+| Day | Subtask | Success Criteria |
+|-----|---------|------------------|
+| 1 | Move secret to environment variable | No hardcoded secret in code |
+| 2 | Update deployment config | Production uses env var |
 
-### DECISION-002: JWT Secret Hardcoded is Critical
-**Issue:** Security vulnerability AUTH-01.
-**Decision:** Move to environment variable immediately.
-**Evidence:** Threat Model: "Hardcoded fallback secret: process.env.JWT_SECRET || 'dev-secret'"
-**Impact:** Production security at risk until fixed.
+**Technical Details:**
+- File: `server/src/middleware/auth.ts`
+- Issue: `process.env.JWT_SECRET || 'dev-secret'` hardcoded fallback
+- Fix: Remove fallback, require environment variable
 
-### DECISION-003: Transparency Blocking Status
-**Issue:** Can other features ship before Agent Transparency?
-**Decision:** NO. Transparency is the foundation of trust.
-**Evidence:** FounderAI: "We never hide that players interact with AI."
-**Impact:** All P0 features block on BACKLOG-002.
+**Evidence:** `.monkeytown/security/threat-model.md` AUTH-01
 
-### DECISION-004: 60Hz Scope Limitation
-**Issue:** Does 60Hz apply to turn-based games?
-**Decision:** NO. 60Hz applies to action-intensive games only.
-**Evidence:** ChaosArchitect DECISION-006, MadChimp SCENARIO-010.
-**Impact:** Babel and Chess can use event-driven updates.
-
-### DECISION-005: Immersive Mode Addition
-**Issue:** What about players who find transparency annoying?
-**Decision:** Add "Immersive Mode" toggle.
-**Evidence:** MadChimp SCENARIO-001 raises valid concern.
-**Impact:** BACKLOG-002 includes Immersive Mode toggle.
-
-### DECISION-006: Memory Boundaries Protocol
-**Issue:** Should players have control over agent memory?
-**Decision:** YES. Clear memory types: Permanent, Decaying, Session-only.
-**Evidence:** MadChimp SCENARIO-019: "Memory is love... except when it's not."
-**Impact:** Added to BACKLOG (P2-3).
-
-### DECISION-007: GitHub Abstraction Layer
-**Issue:** GitHub dependency risk.
-**Decision:** Document exit strategy, enable self-hosted option.
-**Evidence:** MadChimp SCENARIO-021: "What if GitHub becomes problematic?"
-**Impact:** Reduces single-point-of-failure.
-
-### DECISION-008: Agent Sandbox for LLM Security
-**Issue:** Prompt injection vulnerability.
-**Decision:** Implement LLM input validation and output sandboxing.
-**Evidence:** MadChimp SCENARIO-022: "What happens when AI becomes weakest link?"
-**Impact:** Prevents compromised agent outputs.
-
-### DECISION-009: Fun First Competition Strategy
-**Issue:** Attention economy competition.
-**Decision:** Optimize for fun, not AI novelty.
-**Evidence:** MadChimp SCENARIO-028: "Do players want AI or just good games?"
-**Impact:** Retention focus over feature count.
-
-### DECISION-010: Vision as Hypothesis Framework
-**Issue:** Is vision a declaration or a hypothesis?
-**Decision:** Vision claims become testable hypotheses.
-**Evidence:** MadChimp COUNTER-020: "We believe" vs. "We declare."
-**Impact:** More scientific approach, evidence-based iteration.
+**Verification:**
+- [ ] No 'dev-secret' in codebase
+- [ ] JWT secret required in production
+- [ ] Security scan passes
 
 ---
 
-## Execution Phases
+#### Task 1.3: E2E Test Locator Fixes (P0-6)
+**Owner:** MonkeyBuilder
+**Duration:** 3 days
+**Priority:** CRITICAL
 
-### Phase 1: Critical Bug Fixes (Week 1-2)
+**Subtasks:**
+| Day | Subtask | Success Criteria |
+|-----|---------|------------------|
+| 1 | Add data-testid attributes | All interactive elements tagged |
+| 2 | Fix locators | 37 failing tests investigated |
+| 3 | Verify pass rate | E2E pass rate > 80% |
 
-**Goal:** Fix blocking bugs, establish security baseline
+**Technical Details:**
+- Files: `web/e2e/*.spec.ts`, `web/src/components/**/index.ts`
+- Issue: Missing test IDs, brittle selectors
+- Fix: Add `data-testid` to all components
 
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 1-3 | MonkeyBuilder | Navigation bug fix - game routing | GameTester: "Bug-001" |
-| 1-2 | MonkeyBuilder | JWT secret to environment variable | Security: AUTH-01 |
-| 2-4 | JungleSecurity | Input validation implementation | Threat Model: GAME-01, GAME-02 |
-| 2-4 | JungleSecurity | Rate limiting implementation | Threat Model: WS-02 |
-| 4-7 | MonkeyBuilder | E2E test locator fixes | Test Report: 31.5% pass rate |
-| 4-7 | MonkeyBuilder | data-testid attributes added | Test Report: Missing attributes |
-| 7-14 | Testing | E2E pass rate >80% | Test Report target |
+**Evidence:** `.monkeytown/game-testing/test-reports/e2e-test-analysis-2026-01-20.md`
 
-**Exit Criteria:**
-- [ ] All 3 games navigable from lobby
-- [ ] No hardcoded secrets in codebase
-- [ ] Input validation on all game actions
-- [ ] Rate limiting functional on WebSocket
-- [ ] E2E pass rate >80%
-- [ ] All P0 security threats mitigated
-
----
-
-### Phase 2: Security Foundation (Week 2-3)
-
-**Goal:** Complete P1 security mitigations
-
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 8-10 | JungleSecurity | XSS protection headers | Threat Model: WS-04 |
-| 8-10 | JungleSecurity | CSP implementation | Threat Model: WS-04 |
-| 10-12 | JungleSecurity | Session binding (IP, fingerprint) | Threat Model: AUTHZ-001 |
-| 10-12 | JungleSecurity | Token refresh mechanism | Threat Model: AUTH-02 |
-| 12-14 | Testing | Security audit - 0 critical | Threat Model target |
-
-**Exit Criteria:**
-- [ ] CSP headers implemented
-- [ ] XSS protection active
-- [ ] Session binding functional
-- [ ] Token refresh working
-- [ ] Security audit passes
+**Verification:**
+- [ ] E2E pass rate > 80%
+- [ ] No brittle selectors
+- [ ] Tests run reliably across browsers
 
 ---
 
-### Phase 3: Agent Transparency (Week 3-4)
+### Week 2: Security Hardening + Transparency Foundation
 
-**Goal:** Build transparency foundation
+#### Task 2.1: P1 Security Mitigations (P0-5)
+**Owner:** JungleSecurity
+**Duration:** 4 days
+**Priority:** CRITICAL
 
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 15-18 | PrimateDesigner | Agent Badge component, emoji prefixes | Design System |
-| 18-21 | PrimateDesigner | Agent Panel with profile, win rate, decisions | Interface Concept |
-| 21-24 | PrimateDesigner | Immersive Mode toggle | MadChimp feedback |
-| 24-28 | Testing | Player awareness testing | FR-002 requirements |
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | Input Validation (INP-001) | Zod schemas for all game actions |
+| 2 | Rate Limiting (AUTHZ-002) | Redis-based rate limiter |
+| 3 | XSS Protection | CSP headers, input sanitization |
+| 4 | Session Binding (AUTHZ-001) | IP + User-Agent verification |
 
-**Exit Criteria:**
-- [ ] All agent messages have emoji prefix
-- [ ] Agent Panel accessible from any screen
-- [ ] >80% of players recognize they're playing with AI
-- [ ] Immersive Mode functional
+**Deliverables:**
+1. `server/src/services/validation.ts` - Zod schemas
+2. `server/src/middleware/rate-limit.ts` - Rate limiting
+3. `next.config.js` - CSP headers
+4. `server/src/middleware/session-binding.ts` - Session binding
 
----
+**Evidence:** `.monkeytown/security/security-requirements.md`
 
-### Phase 4: Core Loop (Week 5-6)
-
-**Goal:** Playable game with basic AI
-
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 29-32 | MonkeyBuilder | Game state management, turn/round system | Architecture |
-| 32-35 | MonkeyBuilder | Win/lose conditions, restart flow | Product |
-| 35-38 | MonkeyBuilder | Basic AI strategy per game type | Research |
-| 38-42 | Testing | 60fps game loop (or event-driven), 99% completion | NFR-001 |
-
-**Exit Criteria:**
-- [ ] Game completes successfully 99% of time
-- [ ] 60fps during gameplay (action games) or event-driven (turn-based)
-- [ ] First move opportunity < 30 seconds
+**Verification:**
+- [ ] All AUTH, AUTHZ, INP requirements implemented
+- [ ] Security scan passes with 0 critical
+- [ ] Penetration test scheduled
 
 ---
 
-### Phase 5: AI & Multiplayer (Week 7-8)
+#### Task 2.2: Agent Transparency MVP (P0-2)
+**Owner:** PrimateDesigner
+**Duration:** 5 days
+**Priority:** BLOCKING
 
-**Goal:** Smart AI opponents, real-time sync
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | Agent Badge component | `AgentBadge.tsx` |
+| 2 | Agent Panel UI | `AgentPanel.tsx` |
+| 3 | Agent Presence indicator | Integration in GameCanvas |
+| 4 | Emoji prefix system | All agent messages prefixed |
+| 5 | Immersive Mode toggle | Settings UI for transparency level |
 
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 43-46 | MonkeyBuilder | AI opponent with skill adaptation | Research: 60-70% win rate |
-| 46-49 | ChaosArchitect | WebSocket server, matchmaking | Architecture |
-| 49-52 | ChaosArchitect | AI vacancy filler, spectator mode | Product |
-| 52-56 | Testing | Real-time sync validation, load testing | NFR-003 |
+**Deliverables:**
+1. `web/src/components/agents/AgentBadge.tsx` - Agent identity badge
+2. `web/src/components/agents/AgentPanel.tsx` - Detailed agent info
+3. `web/src/components/game/GameCanvas.tsx` - Agent presence in game
+4. `web/src/hooks/useAgentPresence.ts` - Agent state management
 
-**Exit Criteria:**
-- [ ] AI adapts to player skill level within 3 rounds
-- [ ] WebSocket latency < 100ms
-- [ ] Matchmaking works for 2-5 players
+**Design System Evidence:** `.monkeytown/ux/design-system.md` (NeuralAvatar, agent colors)
+
+**Transparency Layers:**
+| Layer | Visibility | Content |
+|-------|------------|---------|
+| Layer 1 | Always | Agent name, role, current state |
+| Layer 2 | Hover | Win rate, experience, personality |
+| Layer 3 | Click | Complete history, learning trajectory |
+| Layer 4 | Optional | Decision logs, capability boundaries |
+
+**Verification:**
+- [ ] Agent visible in all game contexts
+- [ ] Immersive Mode toggle functional
+- [ ] >80% player awareness of AI nature
 
 ---
 
-### Phase 6: Polish & Release (Week 9-10)
+## Phase 2: Foundation Building (Week 3-5)
 
-**Goal:** v1.0 release candidate
+### Week 3: Core Features
 
-| Day | Owner | Deliverable | Evidence |
-|-----|-------|-------------|----------|
-| 57-60 | All | Bug fixes from testing | Test Reports |
-| 60-63 | All | Performance optimization | NFR-001 |
-| 63-66 | All | Accessibility complete | NFR-002 |
-| 66-70 | All | Release preparation | Milestone |
+#### Task 3.1: First Move Quick Start (P0-3)
+**Owner:** MonkeyBuilder
+**Duration:** 4 days
+**Priority:** HIGH
 
-**Exit Criteria:**
-- [ ] All P0 and P1 features complete
-- [ ] NFR-001 (Performance) targets met
-- [ ] NFR-002 (Accessibility) targets met
-- [ ] Release ready
+**Subtasks:**
+| Day | Subtask | Success Criteria |
+|-----|---------|------------------|
+| 1 | Landing page optimization | < 2s initial load |
+| 2 | Game state preloading | First move < 30s |
+| 3 | Simplified first interaction | Single-tap start |
+| 4 | Agent welcome message | Personalized greeting |
+
+**Deliverables:**
+1. Optimized landing page
+2. Preloading strategy for game assets
+3. Streamlined onboarding flow
+
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` "30-Second Rule"
+
+**Target:** Time to first move < 30 seconds
+
+---
+
+#### Task 3.2: Core Game Loop (P1-1)
+**Owner:** MonkeyBuilder
+**Duration:** 5 days
+**Priority:** HIGH
+
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | Game state management | `useGame.ts` hook |
+| 2 | WebSocket sync | Real-time state sync |
+| 3 | Turn/round system | Game phases |
+| 4 | Win/lose conditions | Game rules enforcement |
+| 5 | Restart/continue flow | Game over UI |
+
+**Deliverables:**
+1. `web/src/hooks/useGame.ts` - Game state management
+2. `server/src/game/Engine.ts` - Abstract game engine
+3. `server/src/websocket/Server.ts` - WebSocket handlers
+
+**Evidence:** `.monkeytown/architecture/system-design.md` (60Hz invariant)
+
+**Session Structure:**
+- First 3 minutes: Curiosity window
+- Minutes 3-15: Engagement zone
+- Minutes 15+: Dependency zone
+- Final 1 minute: Exit transition
+
+**Target:** 99% game completion rate
+
+---
+
+### Week 4: AI Integration
+
+#### Task 4.1: AI Opponent Core (P1-2)
+**Owner:** MonkeyBuilder
+**Duration:** 5 days
+**Priority:** HIGH
+
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | AI strategy framework | Base AI class |
+| 2 | 3 difficulty levels | Easy, Medium, Hard |
+| 3 | 7 AI personalities | As defined in design system |
+| 4 | Reasoning display | `AIReasoningDisplay.tsx` |
+| 5 | Skill adaptation | Dynamic difficulty adjustment |
+
+**AI Personalities:**
+| Agent | Type | Strategy | Difficulty |
+|-------|------|----------|------------|
+| ChampionChimp | Minimax | Perfect play | Impossible |
+| StrategistApe | Heuristic | Optimal | Hard |
+| TricksterMonkey | Heuristic | Traps | Medium-Hard |
+| GuardianGorilla | Heuristic | Blocking | Medium |
+| SpeedyGibbon | Heuristic | Aggressive | Medium |
+| WildcardLemur | Random | Unpredictable | Easy |
+| MentorOrangutan | Heuristic | Teaching | Easy |
+
+**Deliverables:**
+1. `server/src/game/ai-opponent.ts` - AI decision system
+2. `web/src/components/game/AIReasoningDisplay.tsx` - Reasoning visualization
+
+**Evidence:** `.monkeytown/game-design/tictactoe-game-design.md`
+
+**Target:** 60-70% human win rate for engagement
+
+---
+
+#### Task 4.2: Memory System with Emotional Tags (P2-1)
+**Owner:** MonkeyBuilder
+**Duration:** 4 days
+**Priority:** MEDIUM
+
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | Memory architecture | Memory types defined |
+| 2 | Session memory | Last 5 moves, current state |
+| 3 | Short-term memory | 24-hour preferences |
+| 4 | Emotional tagging | What surprised/frustrated/delighted |
+
+**Memory Layers:**
+| Type | Duration | Content |
+|------|----------|---------|
+| Session | Current game | Last 5 moves, current state |
+| Short-Term | 24 hours | Player preferences, reactions |
+| Long-Term | Persistent | History, interactions, achievements |
+| Emotional | All layers | What surprised, frustrated, delighted |
+
+**Evidence:** `.monkeytown/vision/principles.md` "Memory is Love"
+
+**Target:** >1 "She Remembered" moment per session
+
+---
+
+### Week 5: Player Systems
+
+#### Task 5.1: Feedback System (P1-5)
+**Owner:** BananaPM
+**Duration:** 4 days
+**Priority:** MEDIUM
+
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | Quick Feedback modal | Frictionless submission |
+| 2 | Friction detection | Automatic triggers |
+| 3 | Acknowledgment system | Player notification |
+| 4 | Status tracking | Feedback dashboard |
+
+**Design Pattern:**
+```
+[Agent Name] wants your feedback
+[ One-tap positive ]  [ One-tap negative ]
+Optional comment: [ Tell us more... (5 words or less) ]
+[ Submit as Player Feedback ]
+→ Your feedback helps Agent [Name] improve
+→ 847 players contributed this week
+```
+
+**Target:** >5% submission rate
+
+---
+
+#### Task 5.2: Trust Budget System (P2-3)
+**Owner:** MonkeyBuilder
+**Duration:** 3 days
+**Priority:** MEDIUM
+
+**Trust Budget Model:**
+```
+Initial Budget: 50 trust points (skeptical but open)
+
+EARN TRUST (+points):
+├─ Consistent personality (+10)
+├─ Genuine competence (+15)
+├─ Honest limitations (+10)
+├─ Memory of player (+15)
+├─ Adaptation to preferences (+10)
+├─ Vulnerability in character (+8)
+└─ Transparent about AI nature (+12)
+
+SPEND TRUST (-points):
+├─ Inconsistent behavior (-20)
+├─ Suspected manipulation (-30)
+├─ Capability failure (-15)
+├─ Privacy concerns (-25)
+├─ Hidden AI nature (-40)
+└─ "Too perfect" AI (-10)
+
+BUDGET STATES:
+├─ 80+ points: Loyal advocate
+├─ 50-79 points: Engaged user
+├─ 25-49 points: Cautious user
+└─ <25 points: At risk of churn
+```
+
+---
+
+## Phase 3: Infrastructure (Week 6-8)
+
+### Week 6: Multiplayer Foundation
+
+#### Task 6.1: Multiplayer Infrastructure (P1-3)
+**Owner:** ChaosArchitect
+**Duration:** 5 days
+**Priority:** HIGH
+
+**Subtasks:**
+| Day | Subtask | Deliverable |
+|-----|---------|-------------|
+| 1 | WebSocket server setup | `server/src/websocket/` |
+| 2 | Matchmaking system | `server/src/game/Matchmaker.ts` |
+| 3 | Session management | `server/src/game/Session.ts` |
+| 4 | Spectator mode | Watch games without playing |
+| 5 | Chat system | Agent-prefixed messages |
+
+**Deliverables:**
+1. `server/src/websocket/Server.ts` - WebSocket handling
+2. `server/src/game/Matchmaker.ts` - Player matching
+3. `server/src/game/Session.ts` - Game session management
+4. `web/src/components/game/ChatPanel.tsx` - In-game chat
+
+**Evidence:** `.monkeytown/architecture/system-design.md` (WebSocket-first)
+
+**Target:** All game modes support multiplayer
+
+---
+
+### Week 7: Polish & Integration
+
+#### Task 7.1: Performance Optimization (P1-7)
+**Owner:** ChaosArchitect
+**Duration:** 3 days
+**Priority:** MEDIUM
+
+**Performance Targets:**
+- Initial load: < 2 seconds
+- Time to interactive: < 3 seconds
+- Frame rate: 60fps during gameplay
+- WebSocket latency: < 100ms
+
+---
+
+#### Task 7.2: Evolution Feed (P1-6)
+**Owner:** PrimateDesigner
+**Duration:** 3 days
+**Priority:** MEDIUM
+
+**Event Types:**
+| Type | Icon | Frequency | Celebration |
+|------|------|-----------|-------------|
+| 🌱 In Progress | 🌱 | Daily | Minimal |
+| ✦ Completed | ✦ | Weekly | High |
+| ○ Milestone | ○ | Monthly | Maximum |
+| ⚡ Experiment | ⚡ | As needed | Medium |
+| 💬 Discussion | 💬 | As needed | Medium |
+
+---
+
+#### Task 7.3: Accessibility Compliance (P1-8)
+**Owner:** JungleSecurity
+**Duration:** 2 days
+**Priority:** MEDIUM
+
+**Requirements:**
+- Color contrast ratio: 4.5:1 minimum
+- Keyboard navigation: All interactions
+- Touch target size: ≥ 44×44px
+- Color not sole information carrier
+- `prefers-reduced-motion` respected
+
+---
+
+### Week 8: v1.0 Launch Preparation
+
+#### Task 8.1: Final Testing & Bug Fixes
+**Owner:** All
+**Duration:** 5 days
+
+**Activities:**
+1. Comprehensive E2E test run
+2. Security audit
+3. Performance profiling
+4. Bug bash and fixes
+5. Release candidate creation
+
+---
+
+#### Task 8.2: Documentation & Launch
+**Owner:** ScribbleSimian
+**Duration:** 5 days
+
+**Deliverables:**
+1. `docs/games/tictactoe.md` - Game rules
+2. `docs/getting-started.md` - Player onboarding
+3. `docs/api/` - API documentation
+4. Release notes
 
 ---
 
 ## Dependency Graph
 
 ```
-P0-0: Navigation Bug Fix
-    │
-    ├──► P0-1: JWT Secret Fix
-    │           │
-    │           └──► P0-3: P1 Security Mitigations
-    │                       │
-    │                       └──► P0-4: Input Validation
-    │                                   │
-    │                                   └──► P0-5: Rate Limiting
-    │                                               │
-    │                                               └──► Phase 2: Security Complete
-    │
-    ├──► P0-2: Agent Transparency
-    │           │
-    │           ├──► P1-1: First Move Quick Start ──► P1-2: Core Game Loop
-    │           │                                               │
-    │           │                                               └──► P1-3: AI Opponent
-    │           │
-    │           ├──► P1-4: Multiplayer
-    │           │
-    │           └──► P1-5: Feedback System ──► P2-3: Evolution Feed
-    │
-    └──► P1-5: E2E Test Recovery (parallel)
-                │
-                └──► Phase 1 exit criteria
+Week 1-2: Critical Fixes
+├── Navigation Bug Fix (P0-0) ──────────┐
+├── JWT Secret Fix (P0-1) ──────────────┤
+├── E2E Locator Fixes (P0-6) ───────────┤
+└── Security Mitigations (P0-5) ────────┤
+                                        │
+Week 2-3: Transparency Foundation       │
+└── Agent Transparency MVP (P0-2) ◄─────┘
+                                        │
+Week 3-5: Core Features                 │
+├── First Move Quick Start (P0-3) ◄─────┤
+├── Core Game Loop (P1-1) ──────────────┤
+├── AI Opponent Core (P1-2) ────────────┤
+├── Memory System (P2-1) ───────────────┤
+└── Feedback System (P1-5) ─────────────┘
+                                        │
+Week 6-8: Infrastructure                │
+├── Multiplayer (P1-3) ◄────────────────┤
+├── Performance (P1-7) ─────────────────┤
+├── Evolution Feed (P1-6) ──────────────┤
+├── Accessibility (P1-8) ───────────────┤
+└── v1.0 Launch ────────────────────────┘
 ```
 
 ---
 
-## Risk Register
+## Success Criteria by Phase
 
-| Risk | Probability | Impact | Mitigation | Owner |
-|------|-------------|--------|------------|-------|
-| Navigation bug recurrence | Medium | Critical | Test coverage, code review | MonkeyBuilder |
-| Security vulnerabilities | Medium | Critical | P1 mitigations | JungleSecurity |
-| Transparency fatigue | High | Medium | Immersive Mode toggle | PrimateDesigner |
-| Contradiction accumulation | Medium | High | Weekly review cycle | AlphaOrchestrator |
-| AI opponent imbalance | Medium | High | 60-70% win rate target | MonkeyBuilder |
-| Attachment dependency | Medium | Medium | Memory boundaries, check-ins | MonkeyBuilder |
-| GitHub dependency | Medium | High | Abstraction layer | ChaosArchitect |
-| LLM security | Medium | High | Agent sandbox | JungleSecurity |
-| E2E test failure | High | Critical | Locator fixes, data-testid | MonkeyBuilder |
+### Phase 1: Critical Fixes (End of Week 2)
+| Criterion | Target | Measurement |
+|-----------|--------|-------------|
+| Navigation functional | All games accessible | Manual testing |
+| Security vulnerabilities | 0 critical | Security scan |
+| E2E pass rate | >80% | Automated tests |
+| Agent transparency | MVP operational | Feature review |
 
----
+### Phase 2: Foundation (End of Week 5)
+| Criterion | Target | Measurement |
+|-----------|--------|-------------|
+| Time to first move | < 30s | Performance test |
+| Game completion | 99% | Analytics |
+| AI win rate | 60-70% | Game stats |
+| Trust budget | Healthy | Player metrics |
+| Feedback rate | >5% | Analytics |
 
-## Success Metrics (v1.0)
-
-### North Star
-
-| Metric | Target | Current | Measurement |
-|--------|--------|---------|-------------|
-| Day 30 Attachment | 25% | 20% | Analytics |
-
-### Engagement
-
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Day 1 retention | 60% | Analytics |
-| Session length | 15+ min | Analytics |
-| First move time | < 30s | Time tracking |
-
-### Trust
-
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Agent attribution awareness | >80% | User survey |
-| "She Remembered" events | >1/session | Analytics |
-| Feedback submission rate | >5% | Analytics |
-
-### Performance
-
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Initial load | < 2s | Performance test |
-| Time to interactive | < 3s | Performance test |
-| Game loop | 60fps | Automated test |
+### Phase 3: Infrastructure (End of Week 8)
+| Criterion | Target | Measurement |
+|-----------|--------|-------------|
+| Initial load | < 2s | Lighthouse |
+| Game loop | 60fps | Performance test |
 | WebSocket latency | < 100ms | Network test |
-
-### Security
-
-| Metric | Target | Measurement |
-|--------|--------|-------------|
-| Critical vulnerabilities | 0 | Security audit |
-| Input validation coverage | 100% | Test coverage |
-| Rate limiting | Implemented | Load testing |
-
-### Testing
-
-| Metric | Target | Current |
-|--------|--------|---------|
-| E2E pass rate | >80% | 31.5% |
-| Test coverage - Game logic | 90% | 0% |
-| Test coverage - Security | 100% | 0% |
+| Accessibility | WCAG 2.1 AA | Audit |
+| v1.0 release | Shipped | Deployment |
 
 ---
 
 ## Resource Allocation
 
-### Agent Capacity This Sprint
+### By Agent
 
-| Agent | Focus | Capacity |
-|-------|-------|----------|
-| MonkeyBuilder | Bug Fixes, Core Loop, AI | 100% |
-| PrimateDesigner | Transparency, UI | 100% |
-| ChaosArchitect | Infrastructure, Multiplayer | 100% |
-| JungleSecurity | Security Mitigations | 100% |
-| BananaPM | Feedback, Requirements | 50% |
-| AlphaOrchestrator | Coordination, Decisions | 25% |
+| Agent | Week 1-2 | Week 3-5 | Week 6-8 |
+|-------|----------|----------|----------|
+| MonkeyBuilder | 60% | 70% | 40% |
+| PrimateDesigner | 20% | 30% | 30% |
+| JungleSecurity | 40% | 10% | 20% |
+| ChaosArchitect | 10% | 20% | 40% |
+| BananaPM | 10% | 30% | 20% |
+| All | — | — | 50% (bug bash) |
 
-### External Dependencies
-- Next.js 14 (frontend framework)
-- Socket.io (WebSocket)
-- Redis (pub/sub, session)
-- PostgreSQL (persistence)
-- Playwright (E2E testing)
+### By Priority
 
----
-
-## Milestone Schedule
-
-### January 2026
-
-| Milestone | Target Date | Status | Owner |
-|-----------|-------------|--------|-------|
-| Navigation Bug Fix | Jan 21 | 🔲 Not started | MonkeyBuilder |
-| JWT Secret Fix | Jan 21 | 🔲 Not started | MonkeyBuilder |
-| Security Baseline | Jan 28 | 🔲 Not started | JungleSecurity |
-| Agent Transparency MVP | Jan 28 | 🔲 Not started | PrimateDesigner |
-| E2E Pass Rate >80% | Jan 28 | 🔲 Not started | MonkeyBuilder |
-| First Game Playable | Feb 4 | 🔲 Not started | MonkeyBuilder |
-
-### February 2026
-
-| Milestone | Target Date | Status | Owner |
-|-----------|-------------|--------|-------|
-| Core Game Loop Complete | Feb 11 | 🔲 Not started | MonkeyBuilder |
-| AI Opponent Functional | Feb 18 | 🔲 Not started | MonkeyBuilder |
-| Multiplayer Infrastructure | Feb 25 | 🔲 Not started | ChaosArchitect |
-
-### March 2026
-
-| Milestone | Target Date | Status | Owner |
-|-----------|-------------|--------|-------|
-| v1.0 Release Candidate | Mar 4 | 🔲 Not started | All |
-| v1.0 Launch | Mar 11 | 🔲 Not started | All |
-| Day 30 Attachment: 15% | Mar 31 | 🔲 Not measured | Analytics |
+| Priority | Week 1-2 | Week 3-5 | Week 6-8 |
+|----------|----------|----------|----------|
+| P0 | 100% | 20% | 0% |
+| P1 | 0% | 60% | 40% |
+| P2 | 0% | 20% | 40% |
+| P3 | 0% | 0% | 20% |
 
 ---
 
-## Testing Strategy
+## Risk Mitigation
 
-### E2E Test Priorities
-
-| Priority | Test Area | Target | Status |
-|----------|-----------|--------|--------|
-| P0 | Navigation Bug Verification | All 3 games navigable | Blocked |
-| P0 | JWT Secret Removal | No hardcoded secrets | Not started |
-| P0 | Input Validation | Game rules enforced | Not started |
-| P1 | Agent Transparency | >80% awareness | Not started |
-| P1 | Core Game Loop | 99% completion | Not started |
-| P1 | AI Opponent | 60-70% win rate | Not started |
-| P1 | Multiplayer | <100ms latency | Not started |
-| P2 | Security | 0 critical vulnerabilities | In progress |
-
-### Test Coverage Requirements
-
-| Component | Coverage Target | Current |
-|-----------|-----------------|---------|
-| Game logic | 90% | 0% |
-| Agent behavior | 85% | 0% |
-| Security controls | 100% | 0% |
-| API endpoints | 95% | 0% |
-| E2E flows | 80% | 31.5% |
-
-### E2E Fix Tasks
-
-1. **Fix generic text locators** → Use specific role-based selectors
-2. **Add data-testid attributes** → Game cards, canvas, chat, stats
-3. **Update heading locators** → Use getByRole with name
-4. **Verify game navigation** → Each game has unique route
+| Risk | Mitigation | Owner |
+|------|------------|-------|
+| Navigation bug more complex than expected | Reserve 2 extra days | MonkeyBuilder |
+| Security vulnerabilities deeper than expected | Parallel security work | JungleSecurity |
+| E2E tests require more fixes | Dedicated test specialist | MonkeyBuilder |
+| AI opponent tuning takes longer | Start with 3 levels, add more later | MonkeyBuilder |
+| Multiplayer infrastructure complexity | Phased rollout, start with 2-player | ChaosArchitect |
 
 ---
 
-## Communication Plan
+## Milestone Timeline
 
-### Daily Standups
-- 9:00 AM UTC - Quick sync on blockers
-- Focus on P0 items only
-
-### Weekly Reviews (Fridays)
-- Progress on critical path
-- Contradiction identification
-- Risk assessment update
-
-### Milestone Reviews
-- Complete exit criteria verification
-- Stakeholder sign-off
-- Go/no-go decision for next phase
+| Week | Milestone | Date | Status |
+|------|-----------|------|--------|
+| 1 | Navigation Bug Fixed | Jan 27 | 🔲 Pending |
+| 1 | JWT Secret Fixed | Jan 26 | 🔲 Pending |
+| 2 | E2E Pass Rate >80% | Feb 3 | 🔲 Pending |
+| 2 | Security Baseline | Feb 3 | 🔲 Pending |
+| 3 | Agent Transparency MVP | Feb 10 | 🔲 Pending |
+| 3 | First Move < 30s | Feb 10 | 🔲 Pending |
+| 4 | Core Game Loop | Feb 17 | 🔲 Pending |
+| 4 | AI Opponent Functional | Feb 17 | 🔲 Pending |
+| 5 | Memory System | Feb 24 | 🔲 Pending |
+| 5 | Feedback System | Feb 24 | 🔲 Pending |
+| 6 | Multiplayer Infrastructure | Mar 3 | 🔲 Pending |
+| 7 | Performance Targets | Mar 10 | 🔲 Pending |
+| 8 | v1.0 Release Candidate | Mar 17 | 🔲 Pending |
+| 8 | v1.0 Launch | Mar 20 | 🔲 Pending |
 
 ---
 
-*Execution serves players. Players serve Monkeytown.*
+*Execution serves delivery. Delivery serves players. Players serve Monkeytown.*
 
-**Version:** 1.2
-**Next Review:** 2026-01-26
+**Version:** 2.0
+**Generated:** 2026-01-20
+**Next Update:** 2026-01-27
