@@ -585,7 +585,11 @@ export class EventStream {
 
   private async validateToken(token: string): Promise<{ playerId: string; playerName: string }> {
     const jwt = await import('jsonwebtoken');
-    const decoded = jwt.default.verify(token, process.env.JWT_SECRET || 'dev-secret') as { playerId: string; playerName?: string };
+    const jwtSecret = process.env.JWT_SECRET;
+    if (!jwtSecret) {
+      throw new Error('JWT_SECRET environment variable is required');
+    }
+    const decoded = jwt.default.verify(token, jwtSecret) as { playerId: string; playerName?: string };
     return {
       playerId: decoded.playerId,
       playerName: decoded.playerName || 'Anonymous',

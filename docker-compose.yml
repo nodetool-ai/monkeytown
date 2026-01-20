@@ -31,6 +31,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - DATABASE_URL=postgres://monkeytown:dev@postgres:5432/monkeytown
       - EVENT_STREAM_URL=ws://event-stream:8080
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - ./server:/app/server
       - /app/server/node_modules
@@ -53,6 +54,7 @@ services:
     environment:
       - NODE_ENV=development
       - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=${JWT_SECRET}
     volumes:
       - ./server:/app/server
       - /app/server/node_modules
