@@ -1,9 +1,9 @@
-# Monkeytown Component Map v2.2
+# Monkeytown Component Map v2.3
 
 **Visual map of system components and their relationships**
 
-**Version:** 2.2
-**Date:** 2026-01-19
+**Version:** 2.3
+**Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
 ---
@@ -72,6 +72,10 @@ monkeytown/
 │   ├── tsconfig.json
 │   ├── next.config.js
 │   ├── vitest.config.ts
+│   ├── playwright.config.ts
+│   ├── e2e/
+│   │   └── lobby.spec.ts           # E2E tests
+│   ├── E2E_TESTING.md
 │   └── .eslintrc.json
 │
 ├── server/                         # Backend Application
@@ -124,7 +128,7 @@ monkeytown/
 │       ├── Dockerfile.server       # Backend Dockerfile
 │       └── nginx.conf              # Nginx configuration
 │
-├── infrastructure/                  # Infrastructure as code
+├── infrastructure/                 # Infrastructure as code
 │   └── terraform/
 │       ├── main.tf                 # Main Terraform config
 │       ├── variables.tf            # Terraform variables
@@ -237,34 +241,34 @@ monkeytown/
 
 ```
 Player Browser
-       │
-       │ 1. Open WebSocket connection
-       ▼
+        │
+        │ 1. Open WebSocket connection
+        ▼
 ┌─────────────┐
 │  Web Server │  (Static assets, initial HTML)
 └──────┬──────┘
-       │ 2. JS bundle loads, connects to WebSocket
-       ▼
+        │ 2. JS bundle loads, connects to WebSocket
+        ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── handshake (Socket.IO)
 └────────┬────────┘
-       │ 3. Authenticate with JWT
-       ▼
+        │ 3. Authenticate with JWT
+        ▼
 ┌─────────────────┐
 │  Game Server    │  ◄── validate token
 └────────┬────────┘
-       │ 4. Subscribe to game events
-       ▼
+        │ 4. Subscribe to game events
+        ▼
 ┌─────────────────┐
 │  Redis Pub/Sub  │  ◄── channel subscription
 └────────┬────────┘
-       │ 5. Request game
-       ▼
+        │ 5. Request game
+        ▼
 ┌─────────────────┐
 │  Matchmaker     │  ◄── find/create game
 └────────┬────────┘
-       │ 6. Join game
-       ▼
+        │ 6. Join game
+        ▼
 ┌─────────────────┐
 │  Game Session   │  ◄── game loop begins
 └─────────────────┘
@@ -274,32 +278,32 @@ Player Browser
 
 ```
 Player A (Action)
-       │
-       │ 1. Send input
-       ▼
+        │
+        │ 1. Send input
+        ▼
 ┌─────────────────┐
 │ Event Stream    │  ◄── websocket message
 └────────┬────────┘
-       │ 2. Validate
-       ▼
+        │ 2. Validate
+        ▼
 ┌─────────────────┐
 │ Game Server     │  ◄── process input
-       │          │  ◄── update game state
-       │          │  ◄── AI opponent decision
-       └──────────┘
-       │ 3. Publish event
-       ▼
+        │          │  ◄── update game state
+        │          │  ◄── AI opponent decision
+        └──────────┘
+        │ 3. Publish event
+        ▼
 ┌─────────────────┐
 │ Redis Pub/Sub   │  ◄── broadcast
 └────────┬────────┘
-       │ 4. Fan out
-       ▼
+        │ 4. Fan out
+        ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Event Stream A  │     │ Event Stream B  │
 │ (Player A)      │     │ (Player B)      │
 └─────────────────┘     └─────────────────┘
-       │                      │
-       ▼                      ▼
+        │                      │
+        ▼                      ▼
 ┌─────────────────┐     ┌─────────────────┐
 │ Client Update   │     │ Client Update   │
 │ (React State)   │     │ (React State)   │
@@ -310,30 +314,30 @@ Player A (Action)
 
 ```
 GitHub Actions
-       │
-       │ 1. Trigger agent workflow
-       ▼
+        │
+        │ 1. Trigger agent workflow
+        ▼
 ┌─────────────────┐
 │ Agent Code      │  ◄── read repo state
 │ (Python/TS)     │  ◄── load prompt
 └────────┬────────┘
-       │ 2. Execute task
-       ▼
+        │ 2. Execute task
+        ▼
 ┌─────────────────┐
 │ MiniMax API     │  ◄── LLM inference
 └────────┬────────┘
-       │ 3. Generate output
-       ▼
+        │ 3. Generate output
+        ▼
 ┌─────────────────┐
 │ File Output     │  ◄── write to domain
 └────────┬────────┘
-       │ 4. Commit and PR
-       ▼
+        │ 4. Commit and PR
+        ▼
 ┌─────────────────┐
 │ GitHub          │  ◄── code review
 └────────┬────────┘
-       │ 5. Merge
-       ▼
+        │ 5. Merge
+        ▼
 ┌─────────────────┐
 │ Build Pipeline  │  ◄── deploy changes
 └─────────────────┘
@@ -509,6 +513,7 @@ interface DatabaseService {
 - **Docker Setup**: Multi-stage Dockerfiles for web and server
 - **Infrastructure**: Terraform configs for AWS ECS
 - **CI/CD Pipeline**: Complete GitHub Actions workflow
+- **E2E Testing**: Playwright configuration and lobby tests
 
 ### Implemented Games
 
@@ -565,6 +570,10 @@ interface DatabaseService {
 | `docs.yml` | 6,12,18 @ :00 | Documentation |
 | `pr.yml` | 8,14,20 @ :00 | PR updates |
 | `ci-cd.yml` | On push/PR | Build and deploy |
+| `frontend-engineer.yml` | 15 min past: 1,7,13,19 | Frontend code |
+| `backend-engineer.yml` | 30 min past: 1,7,13,19 | Backend code |
+| `ai-engineer.yml` | 45 min past: 1,7,13,19 | AI logic |
+| `prompt-engineer.yml` | 0 min past: 2,8,14,20 | Prompt design |
 
 ---
 
@@ -588,12 +597,13 @@ interface DatabaseService {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.3 | 2026-01-20 | Added E2E testing, engineer workflows, complete structure |
 | 2.2 | 2026-01-19 | Added GitHub workflows, implemented games, technical debt |
 | 2.1 | 2026-01-19 | Updated with actual file structure |
 | 2.0 | 2026-01-19 | Initial version |
 
 ---
 
-*Version: 2.2*
-*Last updated: 2026-01-19*
+*Version: 2.3*
+*Last updated: 2026-01-20*
 *ChaosArchitect - Mapping the chaos*
