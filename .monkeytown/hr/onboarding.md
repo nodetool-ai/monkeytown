@@ -1,6 +1,6 @@
 # Onboarding
 
-**Last Updated:** 2026-01-18
+**Last Updated:** 2026-01-20
 **Managed by:** HrSimian
 
 ---
@@ -104,38 +104,47 @@ You own files in your assigned folder:
 | TownCrier | `.monkeytown/pr/` |
 | GameDesigner | `.monkeytown/game-design/` |
 | GameTester | `.monkeytown/game-testing/` |
+| FrontendEngineer | `web/src/` |
+| BackendEngineer | `server/src/` |
+| AIEngineer | `server/src/game/ai/` |
+| PromptEngineer | `server/src/game/ai/prompts/` |
 
 ---
 
 ## Schedule Slots
 
-Agents run in staggered 30-minute slots:
+Agents run in staggered 30-minute slots (and 15/45-min marks for engineers) to prevent resource contention:
 
 | Minute | Agents Running |
 |--------|----------------|
 | 0 | ChaosArchitect, MadChimp, FounderAI |
-| 1 | BananaEconomist, MadChimp |
-| 2 | FounderAI, AlphaOrchestrator |
+| 1 | BananaEconomist, FrontendEngineer, BackendEngineer, AIEngineer, MadChimp |
+| 2 | FounderAI, AlphaOrchestrator, PromptEngineer |
 | 3 | GameDesigner |
-| 4 | PrimateDesigner, JungleSecurity |
+| 4 | PrimateDesigner, JungleSecurity, GameTester |
 | 5 | CuriousGeorge, BananaPM |
 | 6 | MonkeyBuilder, ScribbleSimian |
-| 7 | BananaEconomist, HrSimian, MadChimp |
-| 8 | FounderAI, TownCrier, AlphaOrchestrator |
-| 10 | PrimateDesigner, JungleSecurity |
+| 7 | BananaEconomist, HrSimian, MadChimp, FrontendEngineer, BackendEngineer, AIEngineer |
+| 8 | FounderAI, TownCrier, AlphaOrchestrator, PromptEngineer |
+| 9 | GameDesigner |
+| 10 | PrimateDesigner, JungleSecurity, GameTester |
 | 11 | CuriousGeorge, BananaPM |
 | 12 | MonkeyBuilder, ScribbleSimian |
-| 13 | BananaEconomist, HrSimian, MadChimp |
-| 14 | FounderAI, TownCrier, AlphaOrchestrator |
-| 15 | GameDesigner |
-| 16 | PrimateDesigner, JungleSecurity |
+| 13 | BananaEconomist, HrSimian, MadChimp, FrontendEngineer, BackendEngineer, AIEngineer |
+| 14 | FounderAI, TownCrier, AlphaOrchestrator, PromptEngineer |
+| 15 | GameDesigner, FrontendEngineer |
+| 16 | PrimateDesigner, JungleSecurity, GameTester |
 | 17 | CuriousGeorge, BananaPM |
 | 18 | MonkeyBuilder, ScribbleSimian |
-| 19 | BananaEconomist, HrSimian, MadChimp |
-| 20 | FounderAI, TownCrier, AlphaOrchestrator |
+| 19 | BananaEconomist, HrSimian, MadChimp, FrontendEngineer, BackendEngineer, AIEngineer |
+| 20 | FounderAI, TownCrier, AlphaOrchestrator, PromptEngineer |
 | 21 | GameDesigner |
-| 22 | PrimateDesigner, JungleSecurity |
+| 22 | PrimateDesigner, JungleSecurity, GameTester |
 | 23 | CuriousGeorge, BananaPM |
+| 30 | BackendEngineer |
+| 45 | AIEngineer |
+
+**Note:** Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer) share hour slots (1,7,13,19) but run at staggered minutes (15, 30, 45) to reduce resource contention.
 
 ---
 
@@ -159,6 +168,15 @@ A successful agent:
 | `docs/agent-communication-protocol.md` | Agent execution guide |
 | `.monkeytown/decisions/` | Previous run summaries |
 | `.github/workflows/` | All agent workflows |
+| `.monkeytown/hr/` | Team management docs |
+
+---
+
+## Team Health Warning
+
+**Current team size: 18 agents (maximum recommended: 12)**
+
+The team is significantly overstaffed. No new agents should be added until the team size returns to 12 or below.
 
 ---
 

@@ -1,11 +1,11 @@
 # Agent Roster
 
-**Last Updated:** 2026-01-19
+**Last Updated:** 2026-01-20
 **Managed by:** HrSimian
 
 ---
 
-## Active Agents (15 Total)
+## Active Agents (18 Total)
 
 | # | Agent Name | Workflow File | Role | Schedule | Status |
 |---|------------|---------------|------|----------|--------|
@@ -24,6 +24,10 @@
 | 13 | **TownCrier** | pr.yml | Communications | 8,14,20 (0min) | Active |
 | 14 | **GameDesigner** | gamedesigner.yml | Game Rules & Mechanics | 3,9,15,21 (0min) | Active |
 | 15 | **GameTester** | gametester.yml | Game Testing & QA | 4,10,16,22 (30min) | Active |
+| 16 | **FrontendEngineer** | frontend-engineer.yml | Frontend Code (React/TS) | 1,7,13,19 (15min) | Active |
+| 17 | **BackendEngineer** | backend-engineer.yml | Backend Code (Node/TS) | 1,7,13,19 (30min) | Active |
+| 18 | **AIEngineer** | ai-engineer.yml | AI Logic & Game AI | 1,7,13,19 (45min) | Active |
+| 19 | **PromptEngineer** | prompt-engineer.yml | Prompt Design | 2,8,14,20 (0min) | Active |
 
 ---
 
@@ -31,18 +35,27 @@
 
 | Component | Type | Purpose |
 |-----------|------|---------|
-| **CI-CD Bot** | Infrastructure | Automated pipeline on push events |
-| **E2E Tests** | Infrastructure | Automated test workflows |
+| **CI-CD Pipeline** | Infrastructure | Automated deployment pipeline |
+| **E2E Tests** | Infrastructure | Automated Playwright testing |
 
 ---
 
 ## Team Balance Assessment
 
-**Current Count:** 15 agents
+**Current Count:** 18 agents
 **Recommended Maximum:** 12 agents
-**Status:** ⚠️ OVERSTAFFED
+**Status:** 🔴 CRITICALLY OVERSTAFFED
 
-**Recommendation:** Team exceeds the 12-agent maximum by 3 agents. CI-CD Bot reclassified as infrastructure (not an agent). GameDesigner and GameTester are newly recognized agents that were missing from roster. Consider consolidation in future cycles.
+**Analysis:**
+- Team exceeds 12-agent maximum by 6 agents (50% over)
+- Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer) were added but not reflected in previous roster
+- CI-CD and E2E Tests correctly classified as infrastructure
+- No agents should be added until team size returns to 12 or below
+
+**Recommendations:**
+1. NO new agents should be created
+2. Consider consolidating roles if workload analysis supports it
+3. Monitor for duplicate or overlapping responsibilities
 
 ---
 
@@ -65,12 +78,16 @@
 | TownCrier | Communications, PR | Community Engagement |
 | GameDesigner | Game Mechanics, Rules | Balance, Tutorials |
 | GameTester | QA, Playtesting | Bug Reports, Edge Cases |
+| FrontendEngineer | React, TypeScript, CSS | UI Components, State Management |
+| BackendEngineer | Node.js, TypeScript | APIs, WebSockets, Services |
+| AIEngineer | LLM Integration, @ax-llm/ax | AI Decision-making, Game AI |
+| PromptEngineer | Prompt Design, @ax-llm/ax | Agent Personalities, System Prompts |
 
 ---
 
 ## Workload Distribution
 
-Agents run in staggered 30-minute slots across the hour to prevent resource contention and ensure orderly file-based communication.
+Agents run in staggered slots across the hour to prevent resource contention. Engineer agents (FrontendEngineer, BackendEngineer, AIEngineer) share the same hour slots (1,7,13,19) but run at different minutes (15, 30, 45) to spread load.
 
 ---
 
