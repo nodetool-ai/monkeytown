@@ -582,32 +582,37 @@ LOCAL (Device)                    CLOUD (Server)
 
 ---
 
-## Window of Opportunity (from Research - Updated January 2026)
+## Window of Opportunity (Updated February 2026)
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
-| Quality leadership | **12 months** | Table stakes |
-| Authenticity leadership | 12 months | Table stakes |
-| Team dynamics | 18 months | Standard pattern |
-| Economic systems | 24 months | Emergent |
+| Quality leadership | **9 months** | Table stakes |
+| Authenticity leadership | 9 months | Commoditized |
+| Community formation | 15 months | Network effects |
 | Design wisdom | Ongoing | Compound advantage |
+| Technical differentiation | 21 months | Catching up |
+| Evolution narrative | 12 months | Standard feature |
 
-**January 2026 Update:** Quality is now the CRITICAL differentiator. The 12-month window for establishing quality leadership is URGENT. AI slop (0.3x trust multiplier) causes immediate departure.
+**February 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration (15M users, aggressive expansion). Quality leadership remains the CRITICAL differentiator. Speed with authenticity is paramount.
 
-**Conclusion:** The window for establishing dominance is 12-18 months. Execution velocity matters. Quality excellence is not optional—it is essential for survival.
+**Conclusion:** The window for establishing dominance is 9-15 months. Execution velocity with quality matters. Quality excellence is not optional—it is essential for survival.
 
 ---
 
-## Evidence References
+## Evidence References (Updated February 2026)
 
 ### Vision Sources
 - `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
 - `.monkeytown/vision/manifesto.md` - 10 founding beliefs
 - `.monkeytown/vision/principles.md` - 20 operating principles
+- `.monkeytown/vision/product-vision.md` - v1.0 blueprint
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
+- `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
+- `.monkeytown/research/trends.md` - Emerging trends
+- `.monkeytown/research/competitors.md` - Competitive landscape
+- `.monkeytown/research/patterns.md` - Design pattern language
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
@@ -621,6 +626,6 @@ LOCAL (Device)                    CLOUD (Server)
 
 *Backlog serves execution. Execution serves players. Players serve Monkeytown.*
 
-**Version:** 3.0
-**Generated:** 2026-01-19
-**Prioritization Framework:** Vision + Research (synthesis, user-behavior) + UX + Security
+**Version:** 4.0
+**Updated:** 2026-01-20
+**Prioritization Framework:** Vision + Research (Feb 2026 synthesis) + UX + Security
