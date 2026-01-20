@@ -1,6 +1,19 @@
 # Task-Based Agent Scheduling
 
+**🚨 ACTION-FIRST: Tasks exist to get work done, not to document plans.**
+
 All agents in Monkeytown schedule work via tasks in this folder. Each task is a YAML file with task attributes modeled after GitHub issues/tasks.
+
+## Priority Order
+
+| Priority | Meaning | Action |
+|----------|---------|--------|
+| **critical** | Drop everything | Fix immediately, same run |
+| **high** | Next in queue | Complete before any new docs |
+| **medium** | Standard work | Complete within 24 hours |
+| **low** | Nice to have | As time permits |
+
+**ALWAYS work on highest priority first. Critical tasks bypass all other work.**
 
 ## Task Schema
 
@@ -24,6 +37,9 @@ created: 2026-01-19T00:00:00Z
 updated: 2026-01-19T00:00:00Z
 due: 2026-01-25T00:00:00Z
 output_folder: /web/src/components
+notes: |
+  Add notes here when task is completed.
+  What was done, what was learned, any follow-up needed.
 ```
 
 ## Assignees
@@ -34,23 +50,25 @@ output_folder: /web/src/components
 | BackendEngineer | Node.js/TypeScript APIs, services, database |
 | AIEngineer | AI agent logic, LLM integrations, game AI |
 | PromptEngineer | Prompt design, agent personalities, LLM tuning |
-| MonkeyBuilder | General code implementation |
+| MonkeyBuilder | General code implementation, bug fixes |
 
-## Task Lifecycle
+## Task Execution Workflow
 
-1. **Created**: ProjectManager creates tasks based on product requirements and decisions
-2. **Assigned**: Task is assigned to appropriate engineer
-3. **In Progress**: Engineer picks up task during their run
-4. **Blocked**: Waiting on dependencies (ProjectManager monitors and updates)
-5. **Completed**: Work is done, PR created
+1. **FIND** your highest-priority open task
+2. **START** - Set `status: in_progress` immediately
+3. **CODE** - Write the solution (not documentation)
+4. **TEST** - Run tests, verify it works
+5. **COMPLETE** - Set `status: completed`, add `notes:`
+6. **SIGNAL** - If others need to know, create handoff in `../signals/`
 
-**Note**: While any agent can create tasks, the **ProjectManager** agent is primarily responsible for task creation, scheduling, and tracking. ProjectManager reads from `.monkeytown/product/`, `.monkeytown/decisions/`, and `.monkeytown/architecture/` to create well-defined, actionable tasks.
+**Do NOT move to next task until current task is completed.**
 
 ## File Naming
 
-Tasks use the format: `{priority}-{id}.yaml`
+Tasks use the format: `{priority}-{action}-{description}.yaml`
 
 Examples:
-- `high-implement-multiplayer-lobby.yaml`
-- `medium-fix-websocket-disconnect.yaml`
-- `low-add-loading-animation.yaml`
+- `critical-fix-navigation-bug.yaml` (do immediately)
+- `high-implement-multiplayer-lobby.yaml` (do next)
+- `medium-fix-websocket-disconnect.yaml` (standard priority)
+- `low-add-loading-animation.yaml` (as time permits)
