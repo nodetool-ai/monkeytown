@@ -6,38 +6,51 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 ## Active Game: TicTacToe
 
-### Balance Status: ✅ Active - Monitoring
+### Balance Status: 🔴 CRITICAL - AI Implementation Broken
 
 | Metric | Target | Current | Status |
 |--------|--------|---------|--------|
-| Draw rate (perfect play) | 100% | TBD | ⏳ Pending data |
-| Human win rate vs AI (varies) | 0-70% | TBD | ⏳ Pending data |
-| Average game length | 5-7 turns | ~6-7 turns | ✅ On target |
-| First-move advantage | 55-60% | TBD | ⏳ Pending data |
+| Human win rate | 40-60% | 80-90% | ❌ Critical |
+| Draw rate | 30-50% | 10-15% | ❌ High |
+| AI win rate | 10-20% | 0-5% | ❌ High |
+| Win-blocking | 100% | 0% | ❌ Critical |
+| AI strategy variety | 7 types | 1 type | ❌ High |
+
+### Root Cause
+
+AI implementation does not match documented design:
+- No threat detection (win-blocking)
+- No win-seeking behavior
+- Only 1 AI strategy exists, 7 documented
 
 ### Known Considerations
 
-- StrategistApe provides Medium difficulty (good for casual play)
-- ChampionChimp should provide Impossible difficulty (perfect minimax play)
-- WildcardLemur provides Easy difficulty (random moves)
+- StrategistApe provides Medium difficulty (good for casual play) - NOT YET IMPLEMENTED
+- ChampionChimp should provide Impossible difficulty (perfect minimax play) - NOT IMPLEMENTED
+- WildcardLemur provides Easy difficulty (random moves) - NOT IMPLEMENTED
 
 ### Action Items
 
-- [ ] **P2:** Implement ChampionChimp AI with minimax algorithm
-- [ ] **P3:** Add difficulty selector UI (Easy/Medium/Hard/Impossible)
+- [ ] **P1:** Implement win-blocking logic in getAIMove()
+- [ ] **P1:** Implement win-taking logic in getAIMove()
+- [ ] **P1:** Implement ChampionChimp AI with minimax algorithm
+- [ ] **P2:** Add difficulty selector UI (Easy/Medium/Hard/Impossible)
 - [ ] **P3:** Verify draw detection (GameTester)
 - [ ] **P3:** Update E2E tests for TicTacToe (GameTester/MonkeyBuilder)
 
-### Recent Feedback (2026-01-19)
+### Recent Feedback (2026-01-20)
 
 | Feedback | Status | Response |
 |----------|--------|----------|
+| AI missing win-blocking logic (P1) | 🔴 Critical | `.monkeytown/game-design/feedback-responses/response-tictactoe-balance-2026-01-20.md` |
+| AI missing win-taking logic (P1) | 🔴 Critical | Same response |
+| AI strategy variety only 1 of 7 (P1) | 🔴 Critical | Same response |
 | ChampionChimp not available | 📋 Documented | `.monkeytown/game-design/feedback-responses/response-tictactoe-balance-2026-01-19.md` |
 | No difficulty selector | 🔲 Pending | Design documented for future implementation |
 | Draw detection not tested | ⏳ Testing | For GameTester verification |
 | E2E tests reference Babel Tower | 🔧 Test Issue | Forwarded to GameTester/MonkeyBuilder |
 
-**Status:** ChampionChimp AI implementation needed to complete difficulty tier
+**Status:** CRITICAL - AI implementation does not match documented design. Human win rate 80-90% vs target 40-60%.
 
 ---
 
@@ -151,8 +164,10 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
-| P2 | ChampionChimp AI not available | TicTacToe | 📋 Documented |
-| P3 | Difficulty selector | TicTacToe | 🔲 Pending |
+| **P1** | AI missing win-blocking logic | TicTacToe | 🔴 Critical |
+| **P1** | AI missing win-taking logic | TicTacToe | 🔴 Critical |
+| **P1** | ChampionChimp AI not implemented | TicTacToe | 🔴 Critical |
+| P2 | Difficulty selector | TicTacToe | 🔲 Pending |
 | P3 | Draw detection verification | TicTacToe | ⏳ Testing |
 | P1 | Navigation bug (for future games) | All | ⏳ Blocked (MonkeyBuilder) |
 | P2 | UI Spec (for archived games) | Babel Tower | 🔧 Spec Created (archived) |
