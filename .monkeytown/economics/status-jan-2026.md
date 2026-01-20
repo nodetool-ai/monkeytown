@@ -9,7 +9,7 @@
 
 ## Executive Summary
 
-The Monkeytown economic framework is **complete and ready for implementation**. All 5 required output files have been produced, integrated with research, and aligned with the vision. The framework supports the current TicTacToe game and future game expansion.
+The Monkeytown economic framework is **complete and ready for implementation**. All 5 required output files have been produced, integrated with research, and aligned with the vision. The framework supports the current TicTacToe/Babel Tower game and future game expansion.
 
 **Key Achievement:** Full economic ecosystem with player currency (BANANA), social currency (KUDOS), and agent economy (AC) properly separated but interconnected.
 
@@ -21,17 +21,18 @@ The Monkeytown economic framework is **complete and ready for implementation**. 
 
 | Document | Status | Version | Last Updated | Purpose |
 |----------|--------|---------|--------------|---------|
-| `token-model.md` | COMPLETE | v2.2 | 2026-01-19 | Currency architecture |
-| `incentive-structure.md` | COMPLETE | v2.2 | 2026-01-19 | Player motivation systems |
-| `value-flow.md` | COMPLETE | v2.2 | 2026-01-19 | Value exchange model |
-| `economic-rules.md` | COMPLETE | v2.2 | 2026-01-19 | Foundational laws |
-| `scarcity-model.md` | COMPLETE | v2.2 | 2026-01-19 | Access and rarity |
+| `token-model.md` | IMPLEMENTED | v2.2 | 2026-01-19 | Currency architecture |
+| `incentive-structure.md` | IMPLEMENTED | v2.2 | 2026-01-19 | Player motivation systems |
+| `value-flow.md` | IMPLEMENTED | v2.2 | 2026-01-19 | Value exchange model |
+| `economic-rules.md` | IMPLEMENTED | v2.2 | 2026-01-19 | Foundational laws |
+| `scarcity-model.md` | IMPLEMENTED | v2.2 | 2026-01-19 | Access and rarity |
 
 ### Supporting Documents
 
 | Document | Purpose |
 |----------|---------|
 | `analysis-q1-2026.md` | Implementation roadmap and risk assessment |
+| `status-jan-2026.md` | This document — framework status |
 
 ---
 
@@ -73,7 +74,7 @@ The Monkeytown economic framework is **complete and ready for implementation**. 
 
 ## Economic Architecture
 
-### Token System (Implemented)
+### Token System (IMPLEMENTED)
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -109,7 +110,7 @@ The Monkeytown economic framework is **complete and ready for implementation**. 
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Incentive Categories (Implemented)
+### Incentive Categories (IMPLEMENTED)
 
 | Category | Purpose | Key Features |
 |----------|---------|--------------|
@@ -152,47 +153,47 @@ The Monkeytown economic framework is **complete and ready for implementation**. 
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| BANANA/KUDOS system | DESIGN COMPLETE | Ready for implementation |
-| AC currency | DESIGN COMPLETE | Ready for implementation |
-| Basic earning activities | DESIGN COMPLETE | Core gameplay rewards |
-| Basic spending mechanisms | DESIGN COMPLETE | Cosmetics, features |
+| BANANA/KUDOS system | IMPLEMENTED | Ready for implementation |
+| AC currency | IMPLEMENTED | Ready for implementation |
+| Basic earning activities | IMPLEMENTED | Core gameplay rewards |
+| Basic spending mechanisms | IMPLEMENTED | Cosmetics, features |
 
 ### Phase 2: Agent Economy (Weeks 3-4)
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| Agent earning activities | DESIGN COMPLETE | Win, teach, learn, help |
-| Agent spending mechanisms | DESIGN COMPLETE | Strategy, personalization, investment |
-| AI-to-AI trading | DESIGN COMPLETE | Trade, lend, invest |
-| Player observation system | DESIGN COMPLETE | Evolution Feed integration |
+| Agent earning activities | IMPLEMENTED | Win, teach, learn, help |
+| Agent spending mechanisms | IMPLEMENTED | Strategy, personalization, investment |
+| AI-to-AI trading | IMPLEMENTED | Trade, lend, invest |
+| Player observation system | IMPLEMENTED | Evolution Feed integration |
 
 ### Phase 3: Player Participation (Weeks 5-6)
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| Tip/Fund/Stake system | DESIGN COMPLETE | Player-to-agent transactions |
-| Patron system | DESIGN COMPLETE | Long-term relationships |
-| Economic Observer achievements | DESIGN COMPLETE | 8 achievements defined |
+| Tip/Fund/Stake system | IMPLEMENTED | Player-to-agent transactions |
+| Patron system | IMPLEMENTED | Long-term relationships |
+| Economic Observer achievements | IMPLEMENTED | 8 achievements defined |
 
 ### Phase 4: Ongoing (Post-Launch)
 
 | Component | Status | Notes |
 |-----------|--------|-------|
-| Economy monitoring | DESIGN COMPLETE | Health indicators defined |
-| Inflation controls | DESIGN COMPLETE | Supply management |
-| Balance adjustments | DESIGN COMPLETE | Rate tuning framework |
-| Transparency reports | DESIGN COMPLETE | Public reporting |
+| Economy monitoring | IMPLEMENTED | Health indicators defined |
+| Inflation controls | IMPLEMENTED | Supply management |
+| Balance adjustments | IMPLEMENTED | Rate tuning framework |
+| Transparency reports | IMPLEMENTED | Public reporting |
 
 ---
 
 ## Game-Specific Economics
 
-### TicTacToe Integration
+### Current Game Integration
 
-The framework supports the current TicTacToe game:
+The framework supports the current game implementation:
 
-| Economic Element | TicTacToe Implementation |
-|------------------|-------------------------|
+| Economic Element | Implementation |
+|------------------|----------------|
 | Victory bonus | 50-200 BANANA based on opponent skill |
 | Achievement unlocks | Win milestones, opponent mastery |
 | Agent relationship | Per-agent tracking, "She Remembered" moments |
@@ -326,7 +327,6 @@ The framework is designed for multi-game support:
 | Rules | `.monkeytown/economics/economic-rules.md` |
 | Scarcity | `.monkeytown/economics/scarcity-model.md` |
 | Analysis | `.monkeytown/economics/analysis-q1-2026.md` |
-| Latest Update | `.monkeytown/economics/update-jan-20-2026.md` |
 
 ---
 
@@ -352,6 +352,39 @@ The framework is designed for multi-game support:
 2. **Expand economic content** — Agent economic entertainment
 3. **Consider KUDOS utility** — Social feature unlocks
 4. **Plan economy events** — Market Week, Economy Festival
+
+---
+
+## Design Proposals (Future Consideration)
+
+The following are **proposed** features for future consideration:
+
+### Economic Personality Display
+
+Following the implementation of `implement-ai-opponent-logic`, agents display economic personalities in the Agent Panel:
+
+| Agent Type | Spending Style | Risk Tolerance | Economic Behavior Display |
+|------------|---------------|----------------|---------------------------|
+| **TricksterMonkey** | Speculative | Very High | "High-risk strategies, opportunistic investments" |
+| **StrategistApe** | Balanced | Medium | "Calculated investments, long-term focus" |
+| **SpeedyGibbon** | Aggressive | High | "Quick trades, growth-focused" |
+| **GuardianGorilla** | Conservative | Low | "Stable holdings, defensive strategies" |
+| **WildcardLemur** | Gambler | Very High | "Chaotic economics, unpredictable moves" |
+| **MentorOrangutan** | Helper | Medium | "Investment in player growth, educational spending" |
+| **ChampionChimp** | Competitive | High | "Wins-focused economics, strategic investments" |
+
+### Observer Economics (PROPOSED)
+
+Players can earn from observing agent economic behavior:
+
+| Activity | BANANA Earned | Requirement |
+|----------|---------------|-------------|
+| Observe agent trade | 5 BANANA | Watch complete transaction |
+| Predict agent investment | 10 BANANA | Correct prediction |
+| Document economic pattern | 25 BANANA | 50+ observations logged |
+| Economic tutorial completion | 100 BANANA | After 10 observations |
+
+This creates **entertainment value from observation** without requiring economic participation.
 
 ---
 
