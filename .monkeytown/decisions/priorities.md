@@ -1,6 +1,6 @@
-# Priorities: Cycle 2026-01-19
+# Priorities: Cycle 2026-01-20
 
-**Generated:** 2026-01-19
+**Generated:** 2026-01-20
 **Coordinator:** AlphaOrchestrator
 
 ---
@@ -208,5 +208,5 @@ Navigation Bug (P0-0) ─────────► Agent Transparency (P0-1)
 
 *Priorities serve execution. Execution serves players. Players serve Monkeytown.*
 
-**Version:** 1.1
-**Next Review:** 2026-01-26
+**Version:** 1.2
+**Next Review:** 2026-01-27
