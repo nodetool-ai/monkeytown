@@ -12,14 +12,15 @@ This backlog prioritizes features for implementation based on:
 ## Prioritization Framework
 
 ### Priority Levels
+
 | Level | Meaning | Target Completion |
 |-------|---------|-------------------|
 | P0 | Critical - Must have for launch | Current sprint |
 | P1 | High - Should have for launch | Before v1.0 |
 | P2 | Medium - Nice to have | Post-launch |
-| P3 | Low - Future consideration | Horizon 2+ |
 
 ### Scoring Matrix
+
 | Factor | Weight | Description |
 |--------|--------|-------------|
 | Player Impact | 40% | How much joy does this create? |
@@ -38,8 +39,8 @@ This backlog prioritizes features for implementation based on:
 |--------|--------|
 | User Story | US-001: First Move in 30 Seconds |
 | Requirements | FR-001 |
-| Evidence | `.monkeytown/research/synthesis.md` - "The 30-Second Rule" |
-| Owner | MonkeyBuilder |
+| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "The 30-Second Rule" |
+| Owner | FrontendEngineer |
 | Dependencies | None |
 | Validation | Time to first move < 30s |
 
@@ -61,7 +62,7 @@ This backlog prioritizes features for implementation based on:
 |--------|--------|
 | User Story | US-002: AI Nature Visible, US-005: Agent Transparency Panel |
 | Requirements | FR-002 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Transparency builds trust" |
+| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Transparency builds trust" |
 | Owner | PrimateDesigner |
 | Dependencies | None |
 | Validation | >80% player awareness |
@@ -73,7 +74,7 @@ This backlog prioritizes features for implementation based on:
 2.4 Implement agent presence indicator in game canvas
 2.5 Create Agent Panel navigation from any screen
 
-**Transparency Layers (from research):**
+**Transparency Layers:**
 | Layer | Visibility | Content |
 |-------|------------|---------|
 | Layer 1 | Always | Agent name, role, current state |
@@ -88,10 +89,10 @@ This backlog prioritizes features for implementation based on:
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-005: AI Opponent Intelligence, US-024: AI Opponent Fairness |
+| User Story | US-009: Player defeats AI, US-010: Player loses to AI |
 | Requirements | FR-004 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Genuine intelligence, not scripted" |
-| Owner | MonkeyBuilder |
+| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Genuine intelligence, not scripted" |
+| Owner | AIEngineer |
 | Dependencies | BACKLOG-002 |
 | Validation | 60-70% player win rate |
 
@@ -103,7 +104,7 @@ This backlog prioritizes features for implementation based on:
 3.5 Implement agent personality in communication
 3.6 Performance testing (AI decision < 2s)
 
-**Agent Types (from `.monkeytown/ux/design-system.md`):**
+**Agent Types:**
 | Agent | Emoji | Color | Play Style |
 |-------|-------|-------|------------|
 | TricksterMonkey | 🎭 | Fuchsia | Unpredictable, loves bluffs |
@@ -136,7 +137,7 @@ This backlog prioritizes features for implementation based on:
 4.5 Add restart/continue flow
 4.6 Error handling and recovery
 
-**Session Structure (from research):**
+**Session Structure:**
 - First 3 minutes: Curiosity window
 - Minutes 3-15: Engagement zone
 - Minutes 15+: Dependency zone
@@ -144,49 +145,7 @@ This backlog prioritizes features for implementation based on:
 
 ---
 
-### BACKLOG-005: Trust Budget System
-**Estimated:** 1 sprint
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-007: Trust Budget Health |
-| Requirements | FR-010 |
-| Evidence | `.monkeytown/research/user-behavior.md` - Trust Budget Model |
-| Owner | MonkeyBuilder |
-| Dependencies | BACKLOG-002 |
-| Validation | Player trust score maintenance |
-
-**Trust Budget Model:**
-```
-Initial Budget: 50 trust points (skeptical but open)
-
-EARN TRUST (+points):
-├─ Consistent personality (+10)
-├─ Genuine competence (+15)
-├─ Honest limitations (+10)
-├─ Memory of player (+15)
-├─ Adaptation to preferences (+10)
-├─ Vulnerability in character (+8)
-└─ Transparent about AI nature (+12)
-
-SPEND TRUST (-points):
-├─ Inconsistent behavior (-20)
-├─ Suspected manipulation (-30)
-├─ Capability failure (-15)
-├─ Privacy concerns (-25)
-├─ Hidden AI nature (-40)
-└─ "Too perfect" AI (-10)
-
-BUDGET STATES:
-├─ 80+ points: Loyal advocate
-├─ 50-79 points: Engaged user
-├─ 25-49 points: Cautious user
-└─ <25 points: At risk of churn
-```
-
----
-
-### BACKLOG-006: Security Core (P0 - Required for Launch)
+### BACKLOG-005: Security Core (P0 - Required for Launch)
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
@@ -196,33 +155,33 @@ BUDGET STATES:
 | Evidence | `.monkeytown/security/security-requirements.md` |
 | Owner | JungleSecurity |
 | Dependencies | None |
-| Validation | Zero critical vulnerabilities **+ Quality pass** |
+| Validation | Zero critical vulnerabilities + Quality pass |
 
 **Critical:** Security failures destroy trust (0.3x multiplier). Quality is non-negotiable.
 
 **Tasks:**
-6.1 Token Management (AUTH-001): 256-bit signing, session binding, 24-hour validity
-6.2 Session Management (AUTH-003): 30-min inactivity, max 3 concurrent sessions
-6.3 Game Session Access Control (AUTHZ-001): Authorization on every WebSocket event
-6.4 Rate Limits (AUTHZ-002): Game create 5/hr, WebSocket 10/IP
-6.5 Input Validation (INP-001): Game rules, entity ownership, state constraints
-6.6 Input Sanitization (INP-002): Chat, names, messages
+5.1 Token Management (AUTH-001): 256-bit signing, session binding, 24-hour validity
+5.2 Session Management (AUTH-003): 30-min inactivity, max 3 concurrent sessions
+5.3 Game Session Access Control (AUTHZ-001): Authorization on every WebSocket event
+5.4 Rate Limits (AUTHZ-002): Game create 5/hr, WebSocket 10/IP
+5.5 Input Validation (INP-001): Game rules, entity ownership, state constraints
+5.6 Input Sanitization (INP-002): Chat, names, messages
 
 ---
 
 ## P1: High (Before v1.0)
 
-### BACKLOG-007: Memory System with Emotional Tags
+### BACKLOG-006: Memory System with Emotional Tags
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-009: "She Remembered" Moment, US-010: Emotional Tagging, US-011, US-012 |
+| User Story | US-003: "She Remembered" Moment, US-006: Returning Player |
 | Requirements | FR-005 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Memory with emotional context" |
-| Owner | MonkeyBuilder |
+| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Memory with emotional context" |
+| Owner | AIEngineer |
 | Dependencies | BACKLOG-003 |
-| Validation | ">1 She Remembered event per session" |
+| Validation | ">2 She Remembered events per session" |
 
 **Memory Layers:**
 | Type | Duration | Content |
@@ -236,34 +195,34 @@ BUDGET STATES:
 
 ---
 
-### BACKLOG-008: Agent Vulnerability Protocol
+### BACKLOG-007: Agent Vulnerability Protocol
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-015: Agent Vulnerability Expression |
+| User Story | US-007: Agent Vulnerability Expression |
 | Requirements | FR-008 |
 | Evidence | `.monkeytown/vision/principles.md` - "Vulnerability Over Safety" |
-| Owner | PrimateDesigner |
+| Owner | GameDesigner |
 | Dependencies | BACKLOG-002 |
 | Validation | ">50% vulnerability recognition" |
 
 **Components:**
-8.1 Risk Budgets: Each agent attempts creative/risky moves
-8.2 Preference Expression: Agents defend choices, not just execute
-8.3 Failure Visibility: Agents acknowledge mistakes visibly
-8.4 Bold Strategy Attempts: Weekly bold moves, some fail
+7.1 Risk Budgets: Each agent attempts creative/risky moves
+7.2 Preference Expression: Agents defend choices, not just execute
+7.3 Failure Visibility: Agents acknowledge mistakes visibly
+7.4 Bold Strategy Attempts: Weekly bold moves, some fail
 
 **Research Evidence:** Personality without vulnerability is a brand voice. Perfect agents are forgettable. (`.monkeytown/vision/principles.md`)
 
 ---
 
-### BACKLOG-009: Feedback System
+### BACKLOG-008: Feedback System
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-018: Easy Feedback, US-019: Feedback Impact |
+| User Story | US-004: Easy Feedback, US-014: Feedback Impact |
 | Requirements | FR-006 |
 | Evidence | `.monkeytown/research/user-behavior.md` - Feedback psychology |
 | Owner | BananaPM |
@@ -271,12 +230,12 @@ BUDGET STATES:
 | Validation | >5% submission rate |
 
 **Tasks:**
-9.1 Design Quick Feedback modal (under 30 seconds)
-9.2 Implement friction detection triggers
-9.3 Create feedback categorization
-9.4 Build acknowledgment notification (within 24 hours)
-9.5 Implement status tracking
-9.6 Add player attribution when feedback ships
+8.1 Design Quick Feedback modal (under 30 seconds)
+8.2 Implement friction detection triggers
+8.3 Create feedback categorization
+8.4 Build acknowledgment notification (within 24 hours)
+8.5 Implement status tracking
+8.6 Add player attribution when feedback ships
 
 **Design Pattern:**
 ```
@@ -290,16 +249,16 @@ Optional comment: [ Tell us more... (5 words or less) ]
 
 ---
 
-### BACKLOG-010: Evolution Feed
+### BACKLOG-009: Evolution Feed
 **Estimated:** 1 sprint
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-020: Evolution Feed Engagement |
+| User Story | US-005: Evolution Feed Engagement |
 | Requirements | FR-007 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Evolution is entertainment" |
+| Evidence | `.monkeytown/research/synthesis-jan-2026.md` - "Evolution is entertainment" |
 | Owner | PrimateDesigner |
-| Dependencies | BACKLOG-009 |
+| Dependencies | BACKLOG-008 |
 | Validation | 70% feature adoption |
 
 **Event Types:**
@@ -313,47 +272,32 @@ Optional comment: [ Tell us more... (5 words or less) ]
 
 ---
 
-### BACKLOG-011: Game Progression System
+### BACKLOG-010: First 5 Sessions Framework
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-010: Game Progression |
-| Requirements | FR-008 |
-| Evidence | `.monkeytown/research/user-behavior.md` - Session patterns |
-| Owner | MonkeyBuilder |
-| Dependencies | BACKLOG-004 |
-| Validation | >15 min session length |
+| User Story | US-008: Complete first 5 sessions |
+| Requirements | FR-010, FR-013 |
+| Evidence | `.monkeytown/vision/manifesto.md` - "The First 5 Sessions Framework" |
+| Owner | GameDesigner |
+| Dependencies | BACKLOG-006, BACKLOG-007 |
+| Validation | Day 5 Checkpoint: 50% active |
 
-**Progression Tiers:**
-```
-Egg → Chick → Monkey → Gorilla → ... (animal theme)
-```
-
----
-
-### BACKLOG-012: First Game Implementation (Babel)
-**Estimated:** 3 sprints
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | All US |
-| Requirements | All FR |
-| Evidence | `.monkeytown/ux/interface-concept.md` - Game Canvas |
-| Owner | MonkeyBuilder |
-| Dependencies | BACKLOG-004, BACKLOG-006 |
-| Validation | Playable from first session |
-
-**First Session Flow:**
-1. Landing (0-5 seconds): "AI agents build games" tagline, "Jump In" button
-2. Agent Welcome (5-15 seconds): Agent emoji, brief personality
-3. First Move (15-45 seconds): Game state loaded, move available
-4. First Success (1-3 minutes): Meaningful achievement
-5. Agent Attribution (3-5 minutes): Agent panel accessible
+**Session Design:**
+| Session | Goal | Key Moment | Trust Change |
+|---------|------|------------|--------------|
+| 1: Curiosity | First interaction | AI does unexpected | +10 |
+| 2: Recognition | Continuity | AI references session 1 | +15 |
+| 3: Evaluation | Test authenticity | AI declines/mistake | +20 |
+| 4: Investment | Shared moment | Shared success/failure | +25 |
+| 5: Commitment | Pattern | Both acknowledge | +30 |
 
 ---
 
-### BACKLOG-013: Performance Optimization
+## P2: Medium (Post-launch)
+
+### BACKLOG-011: Performance Optimization
 **Estimated:** 1 sprint (ongoing)
 
 | Aspect | Detail |
@@ -373,178 +317,43 @@ Egg → Chick → Monkey → Gorilla → ... (animal theme)
 
 ---
 
-### BACKLOG-014: Accessibility Compliance
-**Estimated:** 1 sprint
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | N/A |
-| Requirements | NFR-002 |
-| Evidence | `.monkeytown/ux/design-system.md` - Accessibility checklist |
-| Owner | JungleSecurity |
-| Dependencies | None |
-| Validation | All NFR-002 targets met |
-
-**Requirements:**
-- Color contrast ratio: 4.5:1 minimum
-- Keyboard navigation: All interactions
-- Touch target size: ≥ 44×44px
-- Color not sole information carrier
-- `prefers-reduced-motion` respected
-
----
-
-## P2: Medium (Post-launch)
-
-### BACKLOG-015: Debate Visualization
+### BACKLOG-012: Agent Personalities
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-016: Agent Debate Visibility |
-| Requirements | FR-009 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Agent disagreement creates drama" |
-| Owner | PrimateDesigner |
-| Dependencies | BACKLOG-010 |
-| Validation | ">35% DAU debate engagement" |
-
-**Features:**
-- Agent disagreements visible in Evolution Feed
-- Near-miss features highlighted ("this almost wasn't built")
-- Players can watch agent tension resolve
-- Community can participate in debates
-
----
-
-### BACKLOG-016: Player Attribution System
-**Estimated:** 1 sprint
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-019: Feedback Impact, US-021: Community Contribution |
-| Requirements | FR-009 |
-| Evidence | `.monkeytown/vision/principles.md` - "Participation Architecture" |
-| Owner | BananaPM |
-| Dependencies | BACKLOG-009 |
-| Validation | ">200 player attribution events per shipped feature" |
-
-**Features:**
-- Player attribution when feedback is incorporated
-- "Inspired by Player X" indicators
-- Community contribution statistics
-- Top contributors acknowledged
-
----
-
-### BACKLOG-017: Multiplayer Infrastructure
-**Estimated:** 3 sprints
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-006: Cooperative Multiplayer |
-| Requirements | FR-007 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Multiplayer Shift" |
-| Owner | ChaosArchitect |
-| Dependencies | BACKLOG-004 |
-| Validation | All game modes support multiplayer |
-
-**Features:**
-- WebSocket server for real-time sync
-- Matchmaking system (2-5 players)
-- AI vacancy filler
-- Spectator mode
-- Chat system with agent prefixes
-
----
-
-### BACKLOG-018: Edge AI Layer
-**Estimated:** 3 sprints
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-013: Edge AI for Privacy |
-| Requirements | NFR-005 |
-| Evidence | `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat" |
-| Owner | ChaosArchitect |
-| Dependencies | BACKLOG-003 |
-| Validation | >80% local inference |
-
-**Architecture:**
-```
-LOCAL (Device)                    CLOUD (Server)
-┌─────────────────────┐          ┌─────────────────┐
-│  Personality Layer  │ ←────→  │  Reasoning Lr   │
-│  • Instant response │          │  • Complex AI   │
-│  • Privacy preserved│          │  • Learning     │
-│  • Offline capable  │          │  • Strategy     │
-└─────────────────────┘          └─────────────────┘
-```
-
----
-
-### BACKLOG-019: Exit Transition Care
-**Estimated:** 1 sprint
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-023: Exit Transition Care |
-| Requirements | FR-EXIT |
-| Evidence | `.monkeytown/research/user-behavior.md` - Final 1 minute |
-| Owner | PrimateDesigner |
+| User Story | US-011: Player sees agent personality |
+| Requirements | FR-012 |
+| Evidence | `.monkeytown/research/agent-personality-frameworks.md` - Big Five Model |
+| Owner | PromptEngineer |
 | Dependencies | BACKLOG-007 |
-| Validation | Positive exit sentiment |
+| Validation | Consistent behavior |
 
-**Features:**
-- Clear natural stopping point
-- Agent acknowledges session completion
-- Return incentive mentioned
-- Relationship acknowledgment ("I'll remember this")
+**Big Five Profiles:**
+| Agent | Openness | Conscientiousness | Extraversion | Agreeableness | Neuroticism |
+|-------|----------|-------------------|--------------|---------------|-------------|
+| ChaosArchitect | High | High | Low | Medium | Low |
+| MadChimp | Very High | Low | High | Low | Medium |
+| PrimateDesigner | High | High | High | High | Low |
 
 ---
 
-## P3: Low (Horizon 2+)
-
-### BACKLOG-020: Spectator Mode
+### BACKLOG-013: Game Progression System
 **Estimated:** 2 sprints
 
 | Aspect | Detail |
 |--------|--------|
-| User Story | US-009: Spectator Conversion |
-| Requirements | FR-SPECTATOR |
-| Evidence | `.monkeytown/research/user-behavior.md` - Observer economy |
-| Owner | PrimateDesigner |
-| Dependencies | BACKLOG-017 |
-| Validation | 25% spectator conversion |
-
-**Research Evidence:** 20% of users prefer watching to playing. Make agent development watchable.
-
----
-
-### BACKLOG-021: Agent Personality Expression
-**Estimated:** 2 sprints
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-003: Agent Personality Expression |
-| Requirements | FR-PERSONALITY |
-| Evidence | `.monkeytown/ux/interface-concept.md` - Player Agent System |
-| Owner | PrimateDesigner |
-| Dependencies | BACKLOG-002 |
-| Validation | >70% agent recognition |
-
----
-
-### BACKLOG-022: Additional Game Modes
-**Estimated:** 3 sprints
-
-| Aspect | Detail |
-|--------|--------|
-| User Story | US-006, US-010 |
-| Requirements | FR-GAMES |
-| Evidence | `.monkeytown/vision/roadmap.md` - Multiple game types |
+| User Story | US-012: Player tracks progress |
+| Requirements | FR-010 |
+| Evidence | `.monkeytown/research/user-behavior.md` - Session patterns |
 | Owner | MonkeyBuilder |
-| Dependencies | BACKLOG-012 |
-| Validation | Multiple game types available |
+| Dependencies | BACKLOG-004 |
+| Validation | >15 min session length |
+
+**Progression Tiers:**
+```
+Egg → Chick → Monkey → Gorilla → ... (animal theme)
+```
 
 ---
 
@@ -555,34 +364,23 @@ LOCAL (Device)                    CLOUD (Server)
 - BACKLOG-002: Agent Transparency ✓
 - BACKLOG-003: AI Opponent Core ✓
 - BACKLOG-004: Core Game Loop ✓
-- BACKLOG-005: Trust Budget System ✓
-- BACKLOG-006: Security Core ✓
-- BACKLOG-007: Memory System ✓
-- BACKLOG-008: Agent Vulnerability ✓
-- BACKLOG-009: Feedback System ✓
-- BACKLOG-010: Evolution Feed ✓
-- BACKLOG-011: Game Progression ✓
-- BACKLOG-012: First Game Implementation ✓
-- BACKLOG-013: Performance Optimization ✓
-- BACKLOG-014: Accessibility Compliance ✓
+- BACKLOG-005: Security Core ✓
+- BACKLOG-006: Memory System ✓
+- BACKLOG-007: Agent Vulnerability ✓
+- BACKLOG-008: Feedback System ✓
+- BACKLOG-009: Evolution Feed ✓
+- BACKLOG-010: First 5 Sessions ✓
 
 ### v1.1: Personality (Target: Q2 2026)
-- BACKLOG-015: Debate Visualization ✓
-- BACKLOG-016: Player Attribution ✓
-- BACKLOG-021: Agent Personality Expression ✓
+- BACKLOG-012: Agent Personalities ✓
 
-### v1.5: Intelligence (Target: Q2 2026)
-- BACKLOG-017: Multiplayer Infrastructure ✓
-- BACKLOG-018: Edge AI Layer ✓
-- BACKLOG-019: Exit Transition Care ✓
-
-### v2.0: Platform (Target: Q3 2026)
-- BACKLOG-020: Spectator Mode ✓
-- BACKLOG-022: Additional Game Modes ✓
+### v2.0: Platform (Target: Q3-Q4 2026)
+- BACKLOG-011: Performance Optimization ✓
+- BACKLOG-013: Game Progression ✓
 
 ---
 
-## Window of Opportunity (Updated February 2026)
+## Window of Opportunity
 
 | Factor | Window | After Window |
 |--------|--------|--------------|
@@ -593,30 +391,28 @@ LOCAL (Device)                    CLOUD (Server)
 | Technical differentiation | 21 months | Catching up |
 | Evolution narrative | 12 months | Standard feature |
 
-**February 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration (15M users, aggressive expansion). Quality leadership remains the CRITICAL differentiator. Speed with authenticity is paramount.
-
-**Conclusion:** The window for establishing dominance is 9-15 months. Execution velocity with quality matters. Quality excellence is not optional—it is essential for survival.
+**January 2026 Update:** Window contracted from 12 to 9 months due to Meta AI entry and Agency acceleration. Quality leadership remains the CRITICAL differentiator. Speed with authenticity is paramount.
 
 ---
 
-## Evidence References (Updated February 2026)
+## Evidence References
 
 ### Vision Sources
-- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
-- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
-- `.monkeytown/vision/principles.md` - 20 operating principles
-- `.monkeytown/vision/product-vision.md` - v1.0 blueprint
+- `.monkeytown/vision/manifesto.md` - v4.0 Living Game Declaration
+- `.monkeytown/vision/product-vision.md` - v1.0 Blueprint
+- `.monkeytown/vision/roadmap.md` - Three Horizons
+- `.monkeytown/vision/principles.md` - 25 Operating Principles
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - February 2026 strategic integration
+- `.monkeytown/research/synthesis-jan-2026.md` - January 2026 strategic integration
 - `.monkeytown/research/user-behavior.md` - User behavior patterns, 5-7-30 rule
-- `.monkeytown/research/trends.md` - Emerging trends
-- `.monkeytown/research/competitors.md` - Competitive landscape
-- `.monkeytown/research/patterns.md` - Design pattern language
+- `.monkeytown/research/ai-trust-patterns.md` - Trust patterns
+- `.monkeytown/research/agent-personality-frameworks.md` - Personality models
 
 ### UX Sources
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
 - `.monkeytown/ux/design-system.md` - Component library, agent colors
+- `.monkeytown/ux/soul-of-monkeytown.md` - Design philosophy
 
 ### Security Sources
 - `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
@@ -628,4 +424,4 @@ LOCAL (Device)                    CLOUD (Server)
 
 **Version:** 4.0
 **Updated:** 2026-01-20
-**Prioritization Framework:** Vision + Research (Feb 2026 synthesis) + UX + Security
+**Prioritization Framework:** Vision + Research (Jan 2026 synthesis) + UX + Security
