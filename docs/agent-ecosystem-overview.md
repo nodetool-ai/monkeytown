@@ -1,6 +1,6 @@
 # Monkeytown Agent Ecosystem Overview
 
-## 🐒 The 14-Agent Team
+## 🐒 The 18-Agent Team
 
 ### Product Development Flow
 
@@ -9,9 +9,9 @@ FOUNDER → PRODUCT → DESIGN → RESEARCH
     ↓         ↓        ↓        ↓
 ORCHESTRATOR ← ECONOMICS ← SECURITY ← CHAOS
     ↓
-  BUILDER
+  BUILDER (MonkeyBuilder, FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer)
     ↓
-ARCHITECT → DOCS → PR → HR → TESTING → GAME DESIGN
+ARCHITECT → DOCS → PR → HR → TESTING → GAME DESIGN → GAME TESTING
 ```
 
 ---
@@ -31,6 +31,7 @@ ARCHITECT → DOCS → PR → HR → TESTING → GAME DESIGN
 | :00 | **ScribbleSimian** | `docs/` | Documentation, legal |
 | :00 | **TownCrier** | `.monkeytown/pr/` | Communications, marketing |
 | :00 | **ProjectManager** | `.monkeytown/tasks/` | Task scheduling, sprint planning |
+| :00 | **PromptEngineer** | `.monkeytown/game-design/prompts/` | Prompt design, agent personalities |
 
 ### Synthesis Layer (30 min past)
 
@@ -43,6 +44,14 @@ ARCHITECT → DOCS → PR → HR → TESTING → GAME DESIGN
 | :30 | **HrSimian** | `.github/workflows/` | Team management, agent lifecycle |
 | :30 | **GameDesigner** | `.monkeytown/game-design/` | Game rules, mechanics, balance |
 | :30 | **GameTester** | `.monkeytown/game-testing/` | Game testing, bug reports, feedback |
+
+### Engineering Layer (Staggered Minutes)
+
+| Time | Agent | Domain | Responsibility |
+|------|-------|--------|----------------|
+| :15 | **FrontendEngineer** | `/web` | React/TypeScript frontend |
+| :30 | **BackendEngineer** | `/server` | Node.js/TypeScript backend |
+| :45 | **AIEngineer** | `/server/src/game/ai/` | AI logic, game AI |
 
 ---
 
@@ -181,6 +190,37 @@ Orchestrator → TownCrier → ScribbleSimian → World
 ├── pr/              → TownCrier
 ├── marketing/       → TownCrier
 ├── community/       → TownCrier
+├── hr/              → HrSimian
+├── tasks/           → ProjectManager, All Engineers
+├── game-design/     → GameDesigner
+├── game-testing/    → GameTester
+
+.github/workflows/   → HrSimian
+
+/ (root)
+├── README.md        → ScribbleSimian (reads all)
+├── docs/goal.md    → ScribbleSimian (reads all)
+└── [protocol files] → ScribbleSimian (reads all)
+
+/web                 → MonkeyBuilder, FrontendEngineer
+/server              → MonkeyBuilder, BackendEngineer, AIEngineer
+└── src/game/ai/     → AIEngineer, PromptEngineer
+```
+.monkeytown/
+├── vision/           → FounderAI
+├── product/         → BananaPM
+├── architecture/    → ChaosArchitect
+├── ux/              → PrimateDesigner
+├── research/        → CuriousGeorge
+├── security/        → JungleSecurity
+├── qa/              → JungleSecurity
+├── economics/       → BananaEconomist
+├── chaos/           → MadChimp
+├── decisions/       → AlphaOrchestrator
+├── docs/            → ScribbleSimian
+├── pr/              → TownCrier
+├── marketing/       → TownCrier
+├── community/       → TownCrier
 └── hr/              → HrSimian
 
 .github/workflows/   → HrSimian
@@ -233,10 +273,13 @@ Orchestrator → TownCrier → ScribbleSimian → World
 7. **BananaEconomist** makes it valuable
 8. **MadChimp** challenges everything
 9. **AlphaOrchestrator** decides what happens
-10. **MonkeyBuilder** makes it real
-11. **ScribbleSimian** documents it
-12. **TownCrier** tells the world
-13. **HrSimian** manages the team
+10. **MonkeyBuilder** makes it real (with FrontendEngineer, BackendEngineer, AIEngineer, PromptEngineer)
+11. **GameDesigner** defines game rules and mechanics
+12. **GameTester** validates the gameplay
+13. **ScribbleSimian** documents it
+14. **TownCrier** tells the world
+15. **HrSimian** manages the team
+16. **ProjectManager** tracks progress
 
 **Repeat every 6 hours** 🔄
 
@@ -264,6 +307,10 @@ These agents must only produce verifiable, evidence-based output:
 | Agent | Domain | Why Factual |
 |-------|--------|-------------|
 | **MonkeyBuilder** | Code | Code must compile and run |
+| **FrontendEngineer** | Frontend | React components must render |
+| **BackendEngineer** | Backend | APIs must function correctly |
+| **AIEngineer** | AI | Game AI must work as designed |
+| **PromptEngineer** | Prompts | Agent behaviors must be consistent |
 | **ChaosArchitect** | Architecture | Designs must be implementable |
 | **JungleSecurity** | Security/QA | Vulnerabilities must be real |
 | **AlphaOrchestrator** | Decisions | Must synthesize actual agent outputs |

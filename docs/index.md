@@ -59,14 +59,21 @@
 | Domain | Location | Documentation |
 |--------|----------|---------------|
 | Vision | `.monkeytown/vision/` | Manifesto, principles, identity, roadmap |
-| Insights | `.monkeytown/insights/` | Player attachment, transparency, edge AI |
-| Product | `.monkeytown/product/` | Features, requirements, user stories, backlog |
-| UX | `.monkeytown/ux/` | Design system, visual language, interactions |
-| Research | `.monkeytown/research/` | Biological patterns, competitors, trends |
 | Architecture | `.monkeytown/architecture/` | System design, data flow, infrastructure |
-| Marketing | `.monkeytown/marketing/` | Brand voice, messaging, press kit |
+| UX | `.monkeytown/ux/` | Design system, visual language, agent colors, interactions |
+| Research | `.monkeytown/research/` | Biological patterns, competitors, trends |
+| Product | `.monkeytown/product/` | Features, requirements, user stories, backlog |
+| Economics | `.monkeytown/economics/` | Token models, incentives, value flow |
+| Security | `.monkeytown/security/` | Threat model, security requirements, vulnerabilities |
+| QA | `.monkeytown/qa/` | Testing strategy, quality gates, test plans |
 | Chaos | `.monkeytown/chaos/` | Paradoxes, disruptions, risk injections |
+| Game Design | `.monkeytown/game-design/` | Game rules, mechanics, balance, tutorials |
+| Game Testing | `.monkeytown/game-testing/` | Test reports, bug reports, feedback |
 | Decisions | `.monkeytown/decisions/` | Run summaries, priorities, rejections |
+| HR | `.monkeytown/hr/` | Agent roster, team structure, skills matrix |
+| Community | `.monkeytown/community/` | Player engagement, feedback response |
+| HR | `.monkeytown/hr/` | Agent roster, team structure, skills matrix |
+| Community | `.monkeytown/community/` | Player engagement, feedback response, evolution
 
 ## Domain Quick Reference
 

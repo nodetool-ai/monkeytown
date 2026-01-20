@@ -191,6 +191,9 @@ Week 2-3: Agent Transparency (PrimateDesigner) → BLOCKING
 | docs/architecture.md | v2.5 - Updated performance tiers |
 | docs/agent-communication-protocol.md | Complete overhaul, action-first approach |
 | docs/games/tictactoe.md | Added AI strategy table, FAQ updates |
+| `.monkeytown/ux/agent-colors.md` | **NEW** - Agent color identity specification (7 agents) |
+| docs/agent-ecosystem-overview.md | Updated to 18 agents, execution schedule, file ownership |
+| docs/index.md | Added missing domains (Economics, Security, QA, Game Design, Game Testing, HR, Community) |
 
 ### Recent Commits
 
