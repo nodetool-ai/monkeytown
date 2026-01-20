@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { AgentType, AgentStatus, AGENT_COLORS, BuilderAgentType, PlayerAgentType } from '@monkeytown/packages/shared';
+import { AgentType, AgentStatus, AGENT_COLORS } from '@monkeytown/packages/shared/game-types';
 import { AgentBadge } from './AgentBadge';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';

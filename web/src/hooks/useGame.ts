@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
-import type { GameState, GameCard, ChatMessage, Player, AgentType, GameStatus } from '@monkeytown/packages/shared';
+import type { GameState, ChatMessage, AgentType, GameStatus } from '@monkeytown/packages/shared/game-types';
 
 export interface BabelCard {
   id: string;

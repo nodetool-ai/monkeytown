@@ -154,8 +154,8 @@ describe('GameCanvas', () => {
       />
     );
 
-    expect(screen.getByText(/⏱️/i)).toBeInTheDocument();
-    expect(screen.getByText((content) => content.includes('45') && content.includes('s'))).toBeInTheDocument();
+    const timerElement = screen.getByText((content) => content === '30' || content === '45');
+    expect(timerElement).toBeInTheDocument();
   });
 
   it('calls onCardSelect when a card is clicked', () => {

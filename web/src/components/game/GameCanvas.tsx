@@ -1,13 +1,13 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { GameState, GameCard as GameCardType, PlayerType, AgentType, AGENT_COLORS, PlayerAgentType } from '@monkeytown/packages/shared';
+import { GameState, GameCard as GameCardType, AgentType, AGENT_COLORS } from '@monkeytown/packages/shared/game-types';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 import { AgentBadge } from '../agents';
 import { ChatPanel } from './ChatPanel';
-import { TurnTimer, useTurnTimer } from './TurnTimer';
-import { SpecialActionIndicator, isSpecialCard, getSpecialActionType } from './SpecialActionIndicator';
+import { TurnTimer } from './TurnTimer';
+import { SpecialActionIndicator, isSpecialCard } from './SpecialActionIndicator';
 
 interface GameCanvasProps {
   gameState: GameState;

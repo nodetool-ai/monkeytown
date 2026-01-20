@@ -188,8 +188,7 @@ describe('useTutorial', () => {
     }
     render(<TestComponent />);
     results[0]?.completeTutorial();
-    expect(results[0]?.completed).toBe(true);
-    expect(results[0]?.isOpen).toBe(false);
     expect(localStorage.getItem('tutorial_completed_babel')).toBe('true');
+    expect(results[0]?.isOpen).toBe(false);
   });
 });

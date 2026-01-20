@@ -1,6 +1,6 @@
 'use client';
 
-import React, { CSSProperties, useState } from 'react';
+import { CSSProperties, useState } from 'react';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 
@@ -14,7 +14,6 @@ interface SpecialActionIndicatorProps {
   card: BabelCard;
   isSelected?: boolean;
   onSelect?: () => void;
-  onSpecialAction?: (actionType: 'sabotage' | 'boost' | 'steal') => void;
   disabled?: boolean;
   showTooltip?: boolean;
 }
@@ -23,7 +22,6 @@ export function SpecialActionIndicator({
   card,
   isSelected = false,
   onSelect,
-  onSpecialAction,
   disabled = false,
   showTooltip = true,
 }: SpecialActionIndicatorProps) {

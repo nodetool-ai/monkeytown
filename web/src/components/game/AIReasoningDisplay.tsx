@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties, useState, useEffect, useCallback } from 'react';
-import { AgentType, PlayerAgentType, AGENT_COLORS, PLAYER_AGENT_CONFIG } from '@monkeytown/packages/shared';
+import { PlayerAgentType, AGENT_COLORS, PLAYER_AGENT_CONFIG } from '@monkeytown/packages/shared/game-types';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
 
@@ -32,7 +32,6 @@ export function AIReasoningDisplay({
   onToggleExpand,
   maxVisible = 5,
 }: AIReasoningDisplayProps) {
-  const [isVisible, setIsVisible] = useState(true);
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {

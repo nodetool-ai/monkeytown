@@ -1,7 +1,6 @@
 'use client';
 
-import React, { CSSProperties, useState, useEffect, useCallback } from 'react';
-import { Card } from '../ui/Card';
+import React, { CSSProperties, useState, useEffect } from 'react';
 import { Badge } from '../ui/Badge';
 
 interface TurnTimerProps {
@@ -100,11 +99,6 @@ export function TurnTimer({
     transition: 'width 100ms linear, background var(--duration-fast) var(--ease-out)',
   };
 
-  const labelStyles: CSSProperties = {
-    fontSize: 'var(--text-caption)',
-    color: 'var(--color-text-secondary)',
-  };
-
   const statusStyles: CSSProperties = {
     display: 'flex',
     alignItems: 'center',
@@ -156,7 +150,6 @@ export function TurnTimerDisplay({
   turnDurationSeconds,
   turnStartTime,
   turnTimerActive,
-  playerId,
   compact = false,
 }: TurnTimerDisplayProps) {
   const isOwnTurn = currentPlayerId === currentTurnPlayerId;

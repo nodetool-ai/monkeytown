@@ -1,7 +1,7 @@
 'use client';
 
 import React, { CSSProperties } from 'react';
-import { GameType, GameMode, GameStatus, PlayerType, AgentType, AGENT_COLORS, PlayerAgentType, PLAYER_AGENT_CONFIG } from '@monkeytown/packages/shared';
+import { GameType, GameMode, GameStatus, PlayerType, AgentType, AGENT_COLORS } from '@monkeytown/packages/shared/game-types';
 import { Button } from '../components/ui/Button';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
@@ -29,7 +29,7 @@ export default function LobbyPage() {
   const { events: evolutionEvents } = useEvolutionFeed();
 
   // Updated games list to feature TicTacToe as the primary game
-  const [games, setGames] = React.useState<LobbyGame[]>([
+  const [games] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
       gameType: 'tictactoe',

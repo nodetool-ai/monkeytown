@@ -1,7 +1,7 @@
 'use client';
 
-import React, { CSSProperties, useState } from 'react';
-import { GameType } from '@monkeytown/packages/shared';
+import { CSSProperties, useState } from 'react';
+import { GameType } from '@monkeytown/packages/shared/game-types';
 import { Card } from '../ui/Card';
 import { Button } from '../ui/Button';
 
