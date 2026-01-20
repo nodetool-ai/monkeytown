@@ -1,8 +1,8 @@
-# Deployment Specification v2.4
+# Deployment Specification v2.5
 
 **Production deployment architecture and procedures**
 
-**Version:** 2.4
+**Version:** 2.5
 **Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
@@ -1027,6 +1027,7 @@ Resources:
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5 | 2026-01-20 | Consolidated deployment documentation, verified Docker Compose v3.8, confirmed ECS task definitions |
 | 2.4 | 2026-01-20 | Verified Docker Compose v3.8, confirmed ECS task definitions |
 | 2.3 | 2026-01-20 | Added complete nginx config, full docker-compose, all CI/CD job details |
 | 2.2 | 2026-01-19 | Added complete CI/CD pipeline details, job configurations |
@@ -1036,6 +1037,6 @@ Resources:
 
 ---
 
-*Version: 2.4*
+*Version: 2.5*
 *Last updated: 2026-01-20*
 *ChaosArchitect - Deploying with confidence*

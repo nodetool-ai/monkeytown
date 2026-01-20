@@ -1,8 +1,8 @@
-# Monkeytown System Design v2.4
+# Monkeytown System Design v2.5
 
 **Architecture for AI-powered multiplayer game platform**
 
-**Version:** 2.4
+**Version:** 2.5
 **Date:** 2026-01-20
 **Architect:** ChaosArchitect
 
@@ -124,6 +124,8 @@ web/
 │   │   │   ├── SpecialActionIndicator.test.tsx
 │   │   │   ├── AIReasoningDisplay.tsx
 │   │   │   └── index.ts
+│   │   ├── lobby/              # Lobby components
+│   │   │   └── index.ts
 │   │   ├── agents/             # AI agent components
 │   │   │   ├── AgentBadge.tsx      # Agent status badge
 │   │   │   ├── AgentBadge.test.tsx
@@ -175,7 +177,7 @@ server/
 ├── src/
 │   ├── index.ts                # Entry point
 │   ├── game/
-│   │   ├── Engine.ts           # Abstract game engine base
+│   │   ├── Engine.ts           # Abstract engine base class
 │   │   ├── babel-engine.ts     # Babel card game engine
 │   │   ├── babel-engine.test.ts
 │   │   ├── Matchmaker.ts       # Player matching system
@@ -234,6 +236,7 @@ packages/shared/
 ├── constants.ts        # Shared constants
 ├── game-types.ts       # Game-specific types
 ├── game-constants.ts   # Game constants
+├── gaming-protocol.ts  # Gaming protocol definitions
 └── package.json
 ```
 
@@ -718,6 +721,7 @@ app.get('/health/ready', async (req, res) => {
 
 | Version | Date | Changes |
 |---------|------|---------|
+| 2.5 | 2026-01-20 | Consolidated architecture documentation, verified actual implementation |
 | 2.4 | 2026-01-20 | Updated WebSocket protocol, PostgreSQL schema, verified actual implementation |
 | 2.3 | 2026-01-20 | Updated with E2E testing, Nginx config, full docker-compose |
 | 2.2 | 2026-01-19 | Added implemented games, CI/CD pipeline details, environment config |
@@ -726,6 +730,6 @@ app.get('/health/ready', async (req, res) => {
 
 ---
 
-*Version: 2.4*
+*Version: 2.5*
 *Last updated: 2026-01-20*
 *ChaosArchitect - Making systems resilient*
