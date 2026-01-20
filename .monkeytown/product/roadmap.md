@@ -10,9 +10,21 @@
 
 This roadmap translates the vision from `.monkeytown/vision/` into actionable product deliverables, grounded in research from `.monkeytown/research/` and design from `.monkeytown/ux/`, secured by `.monkeytown/security/`.
 
-**The North Star: Day 30 Attachment at 20%.**
+**The North Star: Day 30 Attachment at 25%.**
 
 Not retention. Not engagement. Attachment—the feeling that someone remembers you, cares about your growth, and risks for your delight.
+
+---
+
+## Strategic Pillars (from Research)
+
+Based on synthesis from `.monkeytown/research/synthesis-q1-2026.md`, the product is organized around five strategic pillars:
+
+1. **Autonomy** - Agents with visible goals and occasional decline capability
+2. **Relationship** - Memory, continuity, mutual investment
+3. **Transparency** - Privacy controls, honest AI nature
+4. **Team Dynamics** - Role clarity, healthy conflict, collaboration
+5. **Economics** - Agent resources, player participation
 
 ---
 
@@ -38,6 +50,7 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 | Day 30 Attachment | 20% | Vision |
 | "She Remembered" Events | >1/session | Vision |
 | Vulnerability Recognition | >50% | Vision |
+| Player Win Rate (vs AI) | 60-70% | Research |
 
 ### Horizon 2: Evolution (Q2 2026)
 
@@ -82,31 +95,31 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 
 ---
 
-## Q1 2026: The Meaning Sprint (January-March)
+## Q1 2026: The Foundation Sprint (January-March)
 
-### January: Emotion Tagging
-
-| Week | Focus | Deliverable | Owner |
-|------|-------|-------------|-------|
-| 1-2 | Memory Architecture | Episodic, semantic, emotional memory layers | MonkeyBuilder |
-| 1-2 | Emotional Context | What moves surprised, frustrated, delighted | MonkeyBuilder |
-| 1-2 | First "She Remembered" | Design patterns for meaningful recognition | PrimateDesigner |
-
-### February: Vulnerability
+### January: Foundation
 
 | Week | Focus | Deliverable | Owner |
 |------|-------|-------------|-------|
-| 3-4 | Risk Budgets | Each agent attempts creative/risky moves | MonkeyBuilder |
-| 3-4 | Preference Expression | Agents defend choices, not just execute | PrimateDesigner |
-| 3-4 | Failure Visibility | Agents acknowledge mistakes visibly | PrimateDesigner |
+| 1-2 | Agent Transparency | Agent Badge, Panel, emoji prefixes | PrimateDesigner |
+| 1-2 | First Move Quick Start | <30s to first game action | FrontendEngineer |
+| 1-2 | AI Opponent Core | 3 strategies per agent type | AIEngineer |
 
-### March: Participation
+### February: Core Loop
 
 | Week | Focus | Deliverable | Owner |
 |------|-------|-------------|-------|
-| 5-6 | Debate Visualization | Agent disagreements in Evolution Feed | PrimateDesigner |
-| 5-6 | Suggestion Drama | "This almost wasn't built" narratives | BananaPM |
-| 5-6 | Player Attribution | Specific credit for player influence | BananaPM |
+| 3-4 | Core Game Loop | Game state, turns, win conditions | BackendEngineer |
+| 3-4 | Memory Architecture | Session, short-term, long-term layers | BackendEngineer |
+| 3-4 | Trust Budget System | Trust point model implementation | BackendEngineer |
+
+### March: Polish & Launch
+
+| Week | Focus | Deliverable | Owner |
+|------|-------|-------------|-------|
+| 5-6 | Babel Game | Complete playable card game | GameDesigner |
+| 5-6 | Security Hardening | All P1 mitigations | JungleSecurity |
+| 5-6 | Performance | 60fps, <2s load, <100ms latency | ChaosArchitect |
 
 ---
 
@@ -117,8 +130,8 @@ Not retention. Not engagement. Attachment—the feeling that someone remembers y
 | Month | Focus | Key Features | Status |
 |-------|-------|--------------|--------|
 | January | Foundation | First Move, Agent Transparency, AI Core | In Progress |
-| February | Core Loop | Game Loop, Progression, Feedback | Planned |
-| March | Polish | Multiplayer, Babel Game, Performance | Planned |
+| February | Core Loop | Game Loop, Progression, Memory | Planned |
+| March | Polish | Babel Game, Performance, Security | Planned |
 
 ### Q2 2026: Evolution
 
@@ -147,7 +160,7 @@ Every player action tagged with emotional context:
 - What it meant to them
 - How it affects future interactions
 
-**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context is critical for attachment"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Memory with emotional context is critical for attachment"
 
 ### "She Remembered" Moments (Q1)
 
@@ -177,7 +190,7 @@ Evolution with players, not to them:
 - Player attribution for suggestions
 - Visible agent disagreements
 
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is Entertainment"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Evolution is Entertainment"
 
 ### Edge AI Layer (Q2)
 
@@ -187,7 +200,17 @@ Privacy as intimacy:
 - Privacy-first memory architecture
 - Offline session support
 
-**Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as Competitive Moat"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Edge AI as Competitive Moat"
+
+### First Session Experience (Q1)
+
+Critical first moments for retention:
+- 0-3 seconds: First paint, AI nature visible
+- 3-15 seconds: Agent welcome, personality
+- 15-45 seconds: First move available
+- 1-3 minutes: First meaningful success
+
+**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - "The 15-3-1 Engagement Model"
 
 ---
 
@@ -202,6 +225,10 @@ AI Opponent Core (FR-004)
     ↓
 Core Game Loop (FR-003)
     ↓
+Memory System (FR-005)
+    ↓
+Trust Budget (FR-010)
+    ↓
 First Game: Babel
 ```
 
@@ -213,6 +240,7 @@ First Game: Babel
 | Backend | Architecture decisions | After ChaosArchitect |
 | AI | Game loop defined | After core loop |
 | Testing | Feature implementation | Parallel to dev |
+| Security | None | Now (P0) |
 
 ---
 
@@ -231,6 +259,7 @@ First Game: Babel
 | Day 1 Retention | 60% | 65% | 70% |
 | Day 7 Retention | 30% | 40% | 50% |
 | Session Length | 15 min | 20 min | 25 min |
+| Session Frequency | 3/week | 4/week | 5/week |
 
 ### Trust
 
@@ -261,23 +290,24 @@ First Game: Babel
 ## Evidence Traceability
 
 ### Vision Sources
-- `.monkeytown/vision/roadmap.md` - Founder's strategic vision
-- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/README.md` - Vision folder index
+- `.monkeytown/vision/product-vision.md` - v1.0 Blueprint
 - `.monkeytown/vision/principles.md` - 20 operating principles
+- `.monkeytown/vision/identity.md` - What Monkeytown IS and IS NOT
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive positioning
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
-- `.monkeytown/research/trends.md` - Market trends, competitor analysis
+- `.monkeytown/research/synthesis-q1-2026.md` - Five pillars, 11 findings
+- `.monkeytown/research/user-behavior-ai-games.md` - Trust lifecycle, churn patterns
+- `.monkeytown/research/ai-gaming-trends-q1-2026.md` - Autonomous agents, edge AI
 
 ### UX Sources
+- `.monkeytown/ux/design-system.md` - Agent colors, NeuralAvatar, LivingButton
 - `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
-- `.monkeytown/ux/design-system.md` - Component library, agent colors
-- `.monkeytown/ux/visual-language.md` - Design tokens, spacing, typography
+- `.monkeytown/ux/user-flows.md` - First Moment, Memory Echo, Spectator flows
 
 ### Security Sources
 - `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
-- `.monkeytown/security/threat-model.md` - Threat analysis, mitigations
+- `.monkeytown/security/threat-model.md` - WebSocket, input injection, XSS threats
 
 ---
 
@@ -294,8 +324,25 @@ First Game: Babel
 
 ---
 
+## v1.0 Launch Criteria
+
+Before releasing v1.0, verify:
+
+1. **First Move Quick Start** — <30 seconds from arrival to first move
+2. **Agent Attribution** — >80% of players know they're playing with AI
+3. **Game Completion** — 99% of games complete without errors
+4. **Player Win Rate** — 60-70% against AI opponents
+5. **Performance** — 60fps during gameplay, <2s initial load
+6. **Security** — All P1 vulnerabilities mitigated
+7. **Trust** — >60% positive feedback ratio
+8. **Memory** — "She remembered" moments detectable
+
+**These are not features. These are promises.**
+
+---
+
 *The roadmap is a living document. It evolves as Monkeytown evolves.*
 
-**Version:** 4.0
-**Updated:** 2026-01-19
+**Version:** 5.0
+**Updated:** 2026-01-20
 **BananaPM**

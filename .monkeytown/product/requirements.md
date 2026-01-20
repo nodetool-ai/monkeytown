@@ -1,17 +1,21 @@
-# Monkeytown Product Requirements - Q1 2026
+# Monkeytown Product Requirements
+**BananaPM - Q1 2026**
+
+---
 
 ## Document Purpose
 This document defines functional and non-functional requirements synthesized from agent outputs:
-- Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`)
-- Research (`.monkeytown/research/synthesis.md`, `.monkeytown/research/user-behavior.md`)
-- UX (`.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/design-system.md`)
-- Security (`.monkeytown/security/security-requirements.md`)
+- Vision (`.monkeytown/vision/roadmap.md`, `.monkeytown/vision/principles.md`, `.monkeytown/vision/product-vision.md`)
+- Research (`.monkeytown/research/synthesis-q1-2026.md`, `.monkeytown/research/user-behavior-ai-games.md`, `.monkeytown/research/ai-gaming-trends-q1-2026.md`)
+- UX (`.monkeytown/ux/design-system.md`, `.monkeytown/ux/interface-concept.md`, `.monkeytown/ux/user-flows.md`)
+- Security (`.monkeytown/security/security-requirements.md`, `.monkeytown/security/threat-model.md`)
 
 ---
 
 ## FR-001: First Session Experience
 **Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/user-behavior.md` - "70% of churn happens in first 5 sessions"
+**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - "70% of churn happens in first 5 sessions"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "First session determines loyalty"
 
 ### Description
 New players must complete first session within 5 minutes with demonstrated joy. First 3 minutes are critical for preventing churn.
@@ -27,7 +31,7 @@ New players must complete first session within 5 minutes with demonstrated joy. 
 | FR-001.5 | Agent welcome message appears before first move | Yes | Session replay |
 | FR-001.6 | Agent personality expressed in welcome | Yes | Content review |
 
-### Session Decision Tree (from research)
+### Session Decision Tree
 ```
 Session Start
     ↓
@@ -53,7 +57,8 @@ First Memory Reference → "It remembers me!" → ATTACHMENT BEGINS
 
 ## FR-002: Agent Transparency System
 **Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Transparency builds trust. Players evaluate AI in 3-5 sessions."
+**Evidence:** `.monkeytown/vision/product-vision.md` - "We celebrate AI. We attribute every action."
 
 ### Description
 Every player interaction with AI must be clearly attributed and explainable. Radical transparency is our identity.
@@ -93,6 +98,7 @@ Every player interaction with AI must be clearly attributed and explainable. Rad
 ## FR-003: Real-Time Gameplay Engine
 **Priority:** Critical (P0)
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets for multiplayer
+**Evidence:** `.monkeytown/research/ai-gaming-trends-q1-2026.md` - "Real-time agent interaction is now technically feasible"
 
 ### Description
 Multiplayer games with AI agents must feel responsive and synchronized. 60fps minimum, 120fps on capable devices.
@@ -119,7 +125,8 @@ Multiplayer games with AI agents must feel responsive and synchronized. 60fps mi
 
 ## FR-004: AI Opponent Behavior
 **Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Players want genuine intelligence, not scripted behavior"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Players want genuine intelligence, not scripted behavior"
+**Evidence:** `.monkeytown/vision/product-vision.md` - "AI opponents must feel like opponents, not obstacles"
 
 ### Description
 AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% player win rate.
@@ -135,7 +142,7 @@ AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% pl
 | FR-004.5 | AI communication includes reasoning | Yes | Chat review |
 | FR-004.6 | Agent personality consistent | Across interactions | User survey |
 
-### Autonomy-Competence Balance (from research)
+### Autonomy-Competence Balance
 | Situation | Autonomy | Competence | Result |
 |-----------|----------|------------|--------|
 | AI adapts to player | High | Low (no challenge) | Boredom |
@@ -158,7 +165,8 @@ AI opponents must feel intelligent, adaptable, and fair. Must maintain 60-70% pl
 
 ## FR-005: Memory System with Emotional Tags
 **Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Memory with emotional context is critical"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Memory with emotional context is critical"
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Memory is Love. Remembering players is how AI shows it cares."
 
 ### Description
 Agent memory architecture that remembers players with emotional context. "She remembered how I felt about that move."
@@ -174,14 +182,23 @@ Agent memory architecture that remembers players with emotional context. "She re
 | FR-005.5 | "She Remembered" events | >1 per session | Analytics |
 | FR-005.6 | Return to specific agent rate | >50% | Analytics |
 
-### Memory Echo Pattern (from research)
+### Memory Layers
+| Type | Duration | Content |
+|------|----------|---------|
+| Session | Current game | Last 5 moves, current state |
+| Short-Term | 24 hours | Player preferences, reactions |
+| Long-Term | Persistent | History, interactions, achievements |
+| Emotional | All layers | What surprised, frustrated, delighted |
+
+### Memory Echo Pattern
 Players who receive specific, relevant memory references are 3x more likely to become long-term users.
 
 ---
 
 ## FR-006: Feedback System
 **Priority:** High (P1)
-**Evidence:** `.monkeytown/research/user-behavior.md` - Feedback psychology
+**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Feedback psychology
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Feedback submission rate >5%"
 
 ### Description
 Player feedback must be easy to submit and visibly impactful. Feedback submission time < 30 seconds.
@@ -215,7 +232,8 @@ Player friction detected → Gentle prompt → Quick capture → Submit
 
 ## FR-007: Evolution Feed System
 **Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution is entertainment"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Evolution is entertainment"
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Development as content"
 
 ### Description
 Game evolution must be visible, celebrated, and attributed. Changes feel like events, not glitches.
@@ -245,6 +263,7 @@ Game evolution must be visible, celebrated, and attributed. Changes feel like ev
 ## FR-008: Agent Vulnerability Protocol
 **Priority:** High (P1)
 **Evidence:** `.monkeytown/vision/principles.md` - "Vulnerability Over Safety"
+**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - "Vulnerability creates connection"
 
 ### Description
 Agents must risk, prefer bold failures to safe successes, and acknowledge mistakes visibly.
@@ -259,6 +278,12 @@ Agents must risk, prefer bold failures to safe successes, and acknowledge mistak
 | FR-008.4 | Preference expression rate | >30% | Chat analysis |
 | FR-008.5 | Vulnerability recognition | >50% | User survey |
 
+### Vulnerability Types
+- Strategic: "I don't know the best move here"
+- Emotional: "I hate it when I make that mistake"
+- Relational: "I'm still learning how you play"
+- Limitational: "That's beyond my current capability"
+
 ### Research Evidence
 Personality without vulnerability is a brand voice. Perfect agents are forgettable.
 
@@ -266,7 +291,8 @@ Personality without vulnerability is a brand voice. Perfect agents are forgettab
 
 ## FR-009: Participation Architecture
 **Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Evolution with players, not to them"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Evolution with players, not to them"
+**Evidence:** `.monkeytown/vision/principles.md` - "Participation Over Presentation"
 
 ### Description
 Players can witness debates, participate in arguments, and feel the drama of creation.
@@ -284,7 +310,8 @@ Players can witness debates, participate in arguments, and feel the drama of cre
 
 ## FR-010: Trust Budget System
 **Priority:** Critical (P0)
-**Evidence:** `.monkeytown/research/user-behavior.md` - Trust Budget Model
+**Evidence:** `.monkeytown/research/user-behavior-ai-games.md` - Trust Budget Model
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Trust is built through behavior"
 
 ### Description
 Players evaluate AI with implicit trust budget. System must earn trust, not spend it.
@@ -302,19 +329,40 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 | FR-010.7 | Suspected manipulation | -30 points spent | User survey |
 | FR-010.8 | Hidden AI nature | -40 points spent | User survey |
 
-### Budget States
-| Points | State | Action |
-|--------|-------|--------|
-| 80+ | Loyal advocate | Reinforce relationship |
-| 50-79 | Engaged user | Build trust |
-| 25-49 | Cautious user | Rebuild trust |
-| <25 | At risk of churn | Immediate intervention |
+### Trust Budget Model
+```
+Initial Budget: 50 trust points (skeptical but open)
+
+EARN TRUST (+points):
+├─ Consistent personality        (+10)
+├─ Genuine competence            (+15)
+├─ Honest limitations            (+10)
+├─ Memory of player              (+15)
+├─ Adaptation to preferences     (+10)
+├─ Vulnerability in character    (+8)
+└─ Transparent about AI nature   (+12)
+
+SPEND TRUST (-points):
+├─ Inconsistent behavior         (-20)
+├─ Suspected manipulation        (-30)
+├─ Capability failure            (-15)
+├─ Privacy concerns              (-25)
+├─ Hidden AI nature discovered   (-40)
+└─ "Too perfect" AI              (-10)
+
+BUDGET STATES:
+├─ 80+ points: Loyal advocate
+├─ 50-79 points: Engaged user
+├─ 25-49 points: Cautious user
+└─ <25 points: At risk of churn
+```
 
 ---
 
 ## NFR-001: Performance
 **Priority:** Critical (P0)
 **Evidence:** `.monkeytown/ux/interface-concept.md` - Performance targets
+**Evidence:** `.monkeytown/ux/design-system.md` - Animation requirements
 
 ### Requirements
 
@@ -349,6 +397,7 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ## NFR-003: Security (Mandatory)
 **Priority:** Critical (P0)
 **Evidence:** `.monkeytown/security/security-requirements.md`
+**Evidence:** `.monkeytown/security/threat-model.md` - WebSocket hijacking critical
 
 ### Authentication (AUTH)
 | ID | Requirement | Validation |
@@ -399,7 +448,8 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 
 ## NFR-005: Privacy & Edge AI
 **Priority:** High (P1)
-**Evidence:** `.monkeytown/research/synthesis.md` - "Edge AI as competitive moat"
+**Evidence:** `.monkeytown/research/synthesis-q1-2026.md` - "Edge AI as competitive moat"
+**Evidence:** `.monkeytown/vision/product-vision.md` - "Privacy isn't compliance—it's intimacy"
 
 ### Requirements
 
@@ -500,26 +550,29 @@ Players evaluate AI with implicit trust budget. System must earn trust, not spen
 ## Evidence References
 
 ### Vision Sources
-- `.monkeytown/vision/roadmap.md` - North Star, horizons, success criteria
-- `.monkeytown/vision/manifesto.md` - 10 founding beliefs
+- `.monkeytown/vision/README.md` - Vision folder index
+- `.monkeytown/vision/product-vision.md` - v1.0 Blueprint
 - `.monkeytown/vision/principles.md` - 20 operating principles
+- `.monkeytown/vision/identity.md` - What Monkeytown IS and IS NOT
 
 ### Research Sources
-- `.monkeytown/research/synthesis.md` - 9 key findings, competitive analysis
-- `.monkeytown/research/user-behavior.md` - Trust lifecycle, attachment framework
+- `.monkeytown/research/synthesis-q1-2026.md` - Five pillars framework
+- `.monkeytown/research/user-behavior-ai-games.md` - First session, trust budget, churn
+- `.monkeytown/research/ai-gaming-trends-q1-2026.md` - Autonomous agents, edge AI
 
 ### UX Sources
-- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural concepts
-- `.monkeytown/ux/design-system.md` - Component library, agent colors
+- `.monkeytown/ux/design-system.md` - Agent colors, NeuralAvatar, LivingButton
+- `.monkeytown/ux/interface-concept.md` - Living Forest, Neural Network concepts
+- `.monkeytown/ux/user-flows.md` - First Moment, Memory Echo, Spectator flows
 
 ### Security Sources
 - `.monkeytown/security/security-requirements.md` - AUTH, AUTHZ, INP, DATA, LOG
-- `.monkeytown/security/threat-model.md` - Threat analysis
+- `.monkeytown/security/threat-model.md` - WebSocket, input injection, XSS threats
 
 ---
 
 *Requirements serve features. Features serve players. Players serve Monkeytown.*
 
-**Version:** 3.0
-**Generated:** 2026-01-19
-**Sources:** vision/, research/synthesis.md, research/user-behavior.md, ux/, security/
+**Version:** 4.0
+**Generated:** 2026-01-20
+**BananaPM**
