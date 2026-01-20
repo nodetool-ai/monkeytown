@@ -32,38 +32,47 @@ export default function LobbyPage() {
   const [games] = React.useState<LobbyGame[]>([
     {
       id: 'game-1',
-      gameType: 'tictactoe',
+      gameType: 'babel',
       mode: 'casual',
       status: 'waiting',
       players: [
         { id: 'player-1', type: 'human', name: 'You' },
+        { id: 'agent-1', type: 'agent', name: 'ChaosArchitect', agentType: 'chaos' },
+        { id: 'agent-2', type: 'agent', name: 'PrimateDesigner', agentType: 'designer' },
+        { id: 'player-2', type: 'human', name: 'Player2' },
+        { id: 'player-3', type: 'human', name: 'Player3' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
     {
       id: 'game-2',
-      gameType: 'tictactoe',
+      gameType: 'chess',
       mode: 'fast',
       status: 'live',
       players: [
-        { id: 'player-3', type: 'human', name: 'Player1' },
+        { id: 'player-4', type: 'human', name: 'Player1' },
         { id: 'agent-3', type: 'agent', name: 'StrategistApe', agentType: 'strategist' },
       ],
       maxPlayers: 2,
     },
     {
       id: 'game-3',
-      gameType: 'tictactoe',
-      mode: 'competitive',
-      status: 'waiting',
+      gameType: 'words',
+      mode: 'social',
+      status: 'live',
       players: [
-        { id: 'player-4', type: 'human', name: 'ChampionPlayer' },
+        { id: 'player-5', type: 'human', name: 'PlayerA' },
+        { id: 'player-6', type: 'human', name: 'PlayerB' },
+        { id: 'player-7', type: 'human', name: 'PlayerC' },
+        { id: 'player-8', type: 'human', name: 'PlayerD' },
+        { id: 'player-9', type: 'human', name: 'PlayerE' },
       ],
-      maxPlayers: 2,
+      maxPlayers: 5,
     },
   ]);
 
   const [currentView, setCurrentView] = React.useState<'lobby' | 'game'>('lobby');
+  const [currentGame, setCurrentGame] = React.useState<LobbyGame | null>(null);
 
   const containerStyles: CSSProperties = {
     minHeight: '100vh',
@@ -185,7 +194,7 @@ export default function LobbyPage() {
           <Button variant="ghost" onClick={() => setCurrentView('lobby')} style={{ marginBottom: 'var(--space-4)' }}>
             ← Back to Lobby
           </Button>
-          <GameDemo onBack={() => setCurrentView('lobby')} />
+          <GameDemo game={currentGame} onBack={() => setCurrentView('lobby')} />
         </div>
       </div>
     );
@@ -253,7 +262,7 @@ export default function LobbyPage() {
               <Badge variant="info">{games.filter(g => g.status === 'live').length} Live</Badge>
             </div>
 
-            <div style={gamesGridStyles}>
+            <div style={gamesGridStyles} data-testid="games-grid">
               {games.map(game => (
                 <GameCard
                   key={game.id}
@@ -263,8 +272,8 @@ export default function LobbyPage() {
                   status={game.status}
                   players={game.players}
                   maxPlayers={game.maxPlayers}
-                  onPlay={() => setCurrentView('game')}
-                  onWatch={game.status === 'live' ? () => setCurrentView('game') : undefined}
+                  onPlay={() => { setCurrentGame(game); setCurrentView('game'); }}
+                  onWatch={game.status === 'live' ? () => { setCurrentGame(game); setCurrentView('game'); } : undefined}
                 />
               ))}
 
@@ -338,17 +347,32 @@ export default function LobbyPage() {
   );
 }
 
-function GameDemo({ onBack }: { onBack: () => void }) {
+function GameDemo({ game, onBack }: { game: LobbyGame | null; onBack: () => void }) {
   const { messages, sendMessage } = useLocalChat();
 
+  const GAME_TITLES: Record<string, string> = {
+    tictactoe: '❌ TicTacToe ⭕',
+    babel: '🗼 Babel Tower',
+    chess: '♟️ Monkey Chess',
+    words: '📝 Word Builder',
+  };
+
+  const GAME_WELCOME_MESSAGES: Record<string, string> = {
+    tictactoe: "Welcome to TicTacToe! I'm ready to play. Good luck! 🎮",
+    babel: 'Welcome to Babel Tower! Let\'s build the tallest tower together! 🗼',
+    chess: 'Welcome to Monkey Chess! Prepare for a strategic battle! ♟️',
+    words: 'Welcome to Word Builder! Let\'s create some words! 📝',
+  };
+
+  const gameType = game?.gameType || 'tictactoe';
+
   React.useEffect(() => {
-    // Welcome message from AI opponent
     sendMessage({
       senderId: 'ai-opponent',
       senderName: 'StrategistApe',
       senderType: 'agent',
       agentType: 'strategist',
-      content: 'Welcome to TicTacToe! I\'m ready to play. Good luck! 🎮',
+      content: GAME_WELCOME_MESSAGES[gameType],
     });
   }, []);
 
@@ -373,7 +397,7 @@ function GameDemo({ onBack }: { onBack: () => void }) {
   };
 
   return (
-    <div style={{ padding: 'var(--space-4)' }}>
+    <div style={{ padding: 'var(--space-4)' }} data-testid="game-canvas">
       <div style={{
         display: 'flex',
         alignItems: 'center',
@@ -385,7 +409,7 @@ function GameDemo({ onBack }: { onBack: () => void }) {
         <Button variant="ghost" onClick={onBack}>← Back</Button>
         <div>
           <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-h2)', fontWeight: 600 }}>
-            ❌ TicTacToe ⭕
+            {GAME_TITLES[gameType]}
           </h1>
           <span style={{ fontSize: 'var(--text-caption)', color: 'var(--color-text-secondary)' }}>
             Play against AI
