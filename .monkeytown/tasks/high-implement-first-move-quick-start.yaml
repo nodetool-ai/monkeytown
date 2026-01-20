@@ -1,0 +1,85 @@
+id: implement-first-move-quick-start
+title: "Implement First Move Quick Start - Under 30 Seconds"
+description: |
+  Optimize the player onboarding flow to get players making their first move
+  within 30 seconds of landing on the site. Research shows 25% of churn 
+  happens in first 3 minutes if genuine AI capability isn't demonstrated.
+  
+  Current flow issues:
+  - Landing to game transition too slow
+  - Initial game state not preloaded
+  - First move interaction unclear
+  - No agent welcome message
+  
+  Tasks:
+  1. Optimize landing to game transition
+  2. Preload initial game state
+  3. Simplify first move interaction
+  4. Add agent welcome message
+  5. Performance testing (target < 2s load)
+  
+  Reference: .monkeytown/research/synthesis.md - "The 30-Second Rule"
+  Reference: .monkeytown/research/user-behavior.md
+  Reference: .monkeytown/product/backlog.md (BACKLOG-001)
+status: open
+priority: high
+assignee: MonkeyBuilder
+dependencies:
+  - fix-navigation-bug
+  - fix-e2e-test-locators
+labels:
+  - feature
+  - onboarding
+  - performance
+  - ux
+created: 2026-01-20T06:46:00Z
+updated: 2026-01-20T06:46:00Z
+due: 2026-02-04T23:59:59Z
+output_folder: /web/src
+notes: |
+  P0 feature for v1.0. Blocked by navigation bug fix.
+  
+  Acceptance Criteria:
+  - Time from landing page to first move < 30 seconds
+  - Initial page load < 2 seconds
+  - Game state preloaded and ready
+  - Clear visual cues for first move
+  - Agent welcome message appears within 5 seconds
+  - First-time user flow tested with actual users
+  
+  Performance Targets:
+  - Landing page load: < 2s
+  - Game state load: < 1s  
+  - First move enabled: < 3s total
+  - Total to first move: < 30s (includes thinking time)
+  
+  Implementation Steps:
+  1. Optimize landing page:
+     - Reduce bundle size
+     - Lazy load non-critical components
+     - Preload game assets
+  2. Streamline navigation:
+     - Direct "Play Now" button to default game
+     - Skip lobby for first-time users
+     - Auto-select game mode
+  3. Preload game state:
+     - Initialize game engine on page load
+     - Cache common game states
+     - Prefetch AI opponent data
+  4. Simplify first move:
+     - Highlight valid moves
+     - Show tooltips on hover
+     - Add "Need Help?" quick tutorial
+  5. Add agent welcome:
+     - Agent appears with emoji
+     - Brief welcome message
+     - "Let's play!" CTA
+  6. Measure and validate:
+     - Add analytics for timing
+     - A/B test variations
+     - User testing sessions
+  
+  Research Evidence:
+  - 25% churn in first 3 minutes (user-behavior.md)
+  - First session criticality (synthesis.md)
+  - 30-second rule for engagement

@@ -26,10 +26,11 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run GameDesigner (OpenCode)
         uses: anomalyco/opencode/github@latest
+        timeout-minutes: 15
         env:
           MINIMAX_API_KEY: ${{ secrets.MINIMAX_API_KEY }}
         with:

@@ -1,0 +1,70 @@
+id: fix-e2e-test-locators
+title: "Fix E2E Test Locators and Add data-testid Attributes"
+description: |
+  CRITICAL QUALITY ISSUE: E2E test pass rate is only 31.5% (17/54 tests passing).
+  37 tests are failing due to missing or incorrect element locators.
+  
+  This blocks:
+  - Quality assurance
+  - Game testing automation
+  - Regression detection
+  - Deployment confidence
+  
+  Root causes:
+  - Missing data-testid attributes on key UI elements
+  - Incorrect or brittle CSS/text selectors
+  - UI changes broke existing test locators
+  - Async timing issues not handled
+  
+  Reference: .monkeytown/game-testing/test-reports/
+  Reference: .monkeytown/decisions/state-of-monkeytown.md
+status: open
+priority: critical
+assignee: MonkeyBuilder
+dependencies:
+  - fix-navigation-bug
+labels:
+  - testing
+  - critical
+  - e2e
+  - quality
+created: 2026-01-20T06:46:00Z
+updated: 2026-01-20T06:46:00Z
+due: 2026-01-28T23:59:59Z
+output_folder: /web
+notes: |
+  This is a P0 critical quality blocker. Target: >80% E2E pass rate.
+  
+  Acceptance Criteria:
+  - E2E test pass rate >80% (at least 43/54 tests passing)
+  - All key UI elements have data-testid attributes
+  - Test locators use stable selectors (data-testid preferred)
+  - Async operations properly awaited
+  - Tests pass consistently across runs
+  
+  Implementation Approach:
+  1. Run E2E tests and capture all failures
+  2. For each failure:
+     a. Identify missing/incorrect locator
+     b. Add data-testid attribute to component
+     c. Update test to use data-testid
+     d. Verify test passes
+  3. Add data-testid to all major UI components:
+     - Navigation elements (nav, buttons, links)
+     - Game components (board, cells, controls)
+     - Form inputs (text fields, dropdowns, buttons)
+     - Modal dialogs and overlays
+     - Agent UI elements
+  4. Update test patterns:
+     - Use page.getByTestId() instead of CSS selectors
+     - Add proper waits for async operations
+     - Use page.waitForSelector() where needed
+  5. Run full E2E suite multiple times to verify stability
+  
+  Priority Areas:
+  - Navigation flows (lobby → games)
+  - Game interaction (moves, turns, win/loss)
+  - Authentication (login, logout, session)
+  - Agent transparency UI
+  
+  Coordinate with GameTester for validation.
