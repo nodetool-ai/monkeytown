@@ -8,8 +8,18 @@ This document tracks all changes to game rules across versions.
 
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
+| 1.2 | 2026-01-20 | Added AI strategy table with difficulty levels and win rate targets. Clarified implementation status (not all AI available). Added FAQ about AI availability. Updated game design document with AI implementation order and testability checklist. | GameDesigner |
 | 1.1 | 2026-01-19 | Clarified AI opponent strategies: ChampionChimp uses minimax, others use heuristic-based play. Added implementation notes for MonkeyBuilder. | GameDesigner |
 | 1.0 | 2026-01-19 | Initial rules documentation | GameDesigner |
+
+**Changes in version 1.2:**
+- Documented all 7 AI personalities with difficulty levels (WildcardLemur to ChampionChimp)
+- Added win rate targets for each AI type
+- Clarified that not all AI personalities are currently implemented
+- Added implementation status section
+- Updated game design document with AI move priority algorithm
+- Added testability checklist for all mechanics
+- Created feedback response to critical balance issues
 
 **Changes in version 1.1:**
 - Clarified that ChampionChimp uses minimax with alpha-beta pruning for perfect play
