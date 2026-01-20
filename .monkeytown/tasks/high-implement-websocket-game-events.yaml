@@ -9,7 +9,7 @@ description: |
   
   Reference: .monkeytown/architecture/system-design.md
   Reference: server/src/websocket/
-status: open
+status: completed
 priority: high
 assignee: BackendEngineer
 dependencies: []
@@ -18,6 +18,38 @@ labels:
   - backend
   - websocket
 created: 2026-01-19T00:00:00Z
-updated: 2026-01-19T00:00:00Z
+updated: 2026-01-20T06:34:00Z
 due: 2026-01-26T00:00:00Z
 output_folder: /server/src/websocket
+notes: |
+  WebSocket event handlers implemented at server/src/websocket/server.ts with:
+  - join_game / game:join: Join game room
+  - leave_game / game:leave: Leave game room
+  - start_game / game:start: Start game session
+  - player_input / game:move / game:action: Handle player moves
+  - game:state:sync / get_game_state: Sync game state
+  - chat_message / game:chat: Handle chat messages
+  - heartbeat / ping: Keep-alive support
+  - get_connection_stats: Connection statistics
+  - get_lobby_games: Lobby game listing
+  
+  Events broadcast to game room:
+  - game:joined: Player successfully joined
+  - player_joined: New player joined
+  - player_left: Player left
+  - game:started: Game started
+  - game:state: Game state updated
+  - player_moved: Player made a move
+  - game_ended: Game ended
+  - chat_message: New chat message
+  
+  Tests written at server/src/websocket/server.test.ts with 42 tests covering:
+  - Connection management
+  - Game action messages
+  - Player move messages
+  - Game state sync
+  - Chat messages
+  - Heartbeat handling
+  - Error responses
+  - Game event flows
+  - State synchronization
