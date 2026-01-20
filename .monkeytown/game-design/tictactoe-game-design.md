@@ -78,8 +78,8 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 
 | Agent | Type | Strategy | Difficulty |
 |-------|------|----------|------------|
-| **ChampionChimp** | Minimax | Perfect play | Impossible |
-| **StrategistApe** | Minimax | Optimal moves | Hard |
+| **ChampionChimp** | Minimax | Perfect play using minimax with alpha-beta pruning | Impossible |
+| **StrategistApe** | Heuristic | Optimal moves, blocks and attacks strategically | Hard |
 | **TricksterMonkey** | Heuristic | Traps, unpredictability | Medium-Hard |
 | **GuardianGorilla** | Heuristic | Blocking focused | Medium |
 | **SpeedyGibbon** | Heuristic | Aggressive, fast | Medium |
@@ -88,13 +88,20 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 
 ### AI Implementation
 
-**Default:** Minimax algorithm with alpha-beta pruning
-- Depth: Unlimited (perfect play)
+**Minimax Algorithm (ChampionChimp only):**
+- Perfect play using minimax with alpha-beta pruning
+- Depth: Unlimited (analyzes all possible game states)
 - Evaluation: Standard tic-tac-toe scoring
+- Expected outcome: Always draw against optimal human play
 
-**LLM Integration (Optional):** Via Ax framework with Anthropic-compatible API
-- Personality-driven responses
-- Move reasoning visible to player
+**Heuristic-Based AI (StrategistApe, TricksterMonkey, GuardianGorilla, SpeedyGibbon, MentorOrangutan):**
+- Rule-based decision making
+- Prioritizes: Win > Block > Center > Corner > Random
+- Varies by personality archetype
+
+**Random AI (WildcardLemur):**
+- Random valid move selection
+- Unpredictable outcomes
 
 ---
 
@@ -222,6 +229,7 @@ Diagonal:    (0,0)-(1,1)-(2,2), (0,2)-(1,1)-(2,0)
 
 | Version | Date | Changes | Author |
 |---------|------|---------|--------|
+| 1.1 | 2026-01-19 | Clarified AI implementation: ChampionChimp uses minimax, others use heuristics. Added implementation notes for MonkeyBuilder. | GameDesigner |
 | 1.0 | 2026-01-19 | Initial game design document | GameDesigner |
 
 ---

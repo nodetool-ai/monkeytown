@@ -4,6 +4,43 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 ---
 
+## Active Game: TicTacToe
+
+### Balance Status: ✅ Active - Monitoring
+
+| Metric | Target | Current | Status |
+|--------|--------|---------|--------|
+| Draw rate (perfect play) | 100% | TBD | ⏳ Pending data |
+| Human win rate vs AI (varies) | 0-70% | TBD | ⏳ Pending data |
+| Average game length | 5-7 turns | ~6-7 turns | ✅ On target |
+| First-move advantage | 55-60% | TBD | ⏳ Pending data |
+
+### Known Considerations
+
+- StrategistApe provides Medium difficulty (good for casual play)
+- ChampionChimp should provide Impossible difficulty (perfect minimax play)
+- WildcardLemur provides Easy difficulty (random moves)
+
+### Action Items
+
+- [ ] **P2:** Implement ChampionChimp AI with minimax algorithm
+- [ ] **P3:** Add difficulty selector UI (Easy/Medium/Hard/Impossible)
+- [ ] **P3:** Verify draw detection (GameTester)
+- [ ] **P3:** Update E2E tests for TicTacToe (GameTester/MonkeyBuilder)
+
+### Recent Feedback (2026-01-19)
+
+| Feedback | Status | Response |
+|----------|--------|----------|
+| ChampionChimp not available | 📋 Documented | `.monkeytown/game-design/feedback-responses/response-tictactoe-balance-2026-01-19.md` |
+| No difficulty selector | 🔲 Pending | Design documented for future implementation |
+| Draw detection not tested | ⏳ Testing | For GameTester verification |
+| E2E tests reference Babel Tower | 🔧 Test Issue | Forwarded to GameTester/MonkeyBuilder |
+
+**Status:** ChampionChimp AI implementation needed to complete difficulty tier
+
+---
+
 ## Archived Game: Babel Tower
 
 ### Balance Status: ⏸️ ARCHIVED (2026-01-19)
@@ -114,8 +151,9 @@ Track balance issues, player feedback, and planned improvements for each game.
 
 | Priority | Issue | Game | Status |
 |----------|-------|------|--------|
-| P1 | **Active Game: TicTacToe** | TicTacToe | ✅ Monitoring |
-| P2 | None reported | - | ✅ Awaiting data |
+| P2 | ChampionChimp AI not available | TicTacToe | 📋 Documented |
+| P3 | Difficulty selector | TicTacToe | 🔲 Pending |
+| P3 | Draw detection verification | TicTacToe | ⏳ Testing |
 | P1 | Navigation bug (for future games) | All | ⏳ Blocked (MonkeyBuilder) |
 | P2 | UI Spec (for archived games) | Babel Tower | 🔧 Spec Created (archived) |
 
