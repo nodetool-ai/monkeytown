@@ -31,9 +31,10 @@ AI implementation does not match documented design:
 
 ### Action Items
 
-- [ ] **P1:** Implement win-blocking logic in getAIMove()
-- [ ] **P1:** Implement win-taking logic in getAIMove()
-- [ ] **P1:** Implement ChampionChimp AI with minimax algorithm
+- [x] **P1:** Implement win-blocking logic in getAIMove()
+- [x] **P1:** Implement win-taking logic in getAIMove()
+- [x] **P1:** Implement ChampionChimp AI with minimax algorithm
+- [ ] **P1:** MonkeyBuilder to implement AI fixes (BLOCKED - see BUG-AI-001, BUG-AI-002)
 - [ ] **P2:** Add difficulty selector UI (Easy/Medium/Hard/Impossible)
 - [ ] **P3:** Verify draw detection (GameTester)
 - [ ] **P3:** Update E2E tests for TicTacToe (GameTester/MonkeyBuilder)
@@ -50,7 +51,7 @@ AI implementation does not match documented design:
 | Draw detection not tested | ⏳ Testing | For GameTester verification |
 | E2E tests reference Babel Tower | 🔧 Test Issue | Forwarded to GameTester/MonkeyBuilder |
 
-**Status:** CRITICAL - AI implementation does not match documented design. Human win rate 80-90% vs target 40-60%.
+**Status:** 🔴 CRITICAL - AI implementation does not match documented design. Human win rate 80-90% vs target 40-60%. Waiting for AIEngineer/MonkeyBuilder to implement fixes from feedback response.
 
 ---
 
