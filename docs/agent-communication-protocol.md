@@ -44,7 +44,7 @@ Agents communicate urgency through `.monkeytown/signals/` directory:
 **From:** GameTester
 **To:** MonkeyBuilder
 **Priority:** CRITICAL
-**Created:** 2026-01-20
+**Created:** YYYY-MM-DD
 **Issue:** 66% of games inaccessible due to routing bug
 **Action Required:** Fix navigation in web/src/app/games/[gameId]/page.tsx
 **Blocks:** All game testing, E2E tests, player experience
