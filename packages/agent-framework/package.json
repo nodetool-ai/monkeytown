@@ -1,0 +1,48 @@
+{
+  "name": "@monkeytown/agent-framework",
+  "version": "1.0.0",
+  "description": "Multi-agent coordination framework for managing AI agents, tasks, and automatic PR merging",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "multi-agent",
+    "coordination",
+    "github-actions",
+    "opencode",
+    "task-management"
+  ],
+  "author": "Monkeytown Team",
+  "license": "MIT",
+  "dependencies": {
+    "@octokit/rest": "^21.0.0",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0",
+    "vitest": "^1.2.0",
+    "eslint": "^8.57.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0"
+  },
+  "peerDependencies": {
+    "@octokit/rest": ">=20.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

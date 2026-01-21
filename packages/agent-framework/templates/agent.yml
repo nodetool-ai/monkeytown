@@ -1,0 +1,84 @@
+# Agent Workflow Template
+#
+# This template creates a specialized agent that:
+# - Picks up tasks assigned to it
+# - Executes work in its domain
+# - Creates PRs for changes
+# - Signals handoffs when complete
+#
+# Copy this to .github/workflows/{agent-name}.yml and configure.
+
+name: "{{AGENT_NAME}}"
+on:
+  schedule:
+    # Run 4x daily - adjust timing to avoid conflicts
+    - cron: "{{CRON_SCHEDULE}}"
+  workflow_dispatch:
+
+jobs:
+  agent:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run {{AGENT_NAME}} (OpenCode)
+        uses: anomalyco/opencode/github@latest
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Add your LLM API key
+          # OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          model: anthropic/claude-sonnet-4-20250514  # Or your preferred model
+          prompt: |-
+            🤖 {{AGENT_NAME}}: {{AGENT_ROLE}}
+
+            ## IMMEDIATE ACTIONS (Do these FIRST)
+            1. Check `.agents/signals/URGENT-*.md` for critical issues
+            2. Check `.agents/tasks/critical-*.yaml` assigned to you
+            3. Check `.agents/tasks/high-*.yaml` assigned to you
+
+            ## Your Responsibilities
+            {{AGENT_RESPONSIBILITIES}}
+
+            ## Domain Folders
+            {{DOMAIN_FOLDERS}}
+
+            ## Output Folders
+            {{OUTPUT_FOLDERS}}
+
+            ## Workflow
+            1. FIND your highest-priority open task
+            2. START - Update task status to 'in_progress'
+            3. CODE - Implement the solution
+            4. TEST - Run tests, verify it works
+            5. COMPLETE - Update task status to 'completed'
+            6. SIGNAL - Create handoff if others need to know
+
+            ## Rules
+            - Work on ONE task at a time
+            - Update task status as you progress
+            - Create PRs with 'auto-merge' label when ready
+            - Signal handoffs for dependent work
+            - Prioritize: critical > high > medium > low
+
+            Read signals. Check tasks. Do the work.
