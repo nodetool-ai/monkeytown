@@ -283,11 +283,7 @@ export class PRManager {
   async merge(prNumber: number): Promise<MergeResult> {
     const pr = await this.get(prNumber);
     if (!pr) {
-      return {
-        success: false,
-        error: 'PR not found',
-        pullRequest: pr!
-      };
+      throw new Error(`PR #${prNumber} not found`);
     }
 
     const readyCheck = await this.isReadyToMerge(prNumber);
