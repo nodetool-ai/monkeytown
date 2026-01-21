@@ -1,0 +1,88 @@
+# Coordinator Workflow Template
+#
+# This workflow runs the coordinator agent that:
+# - Schedules tasks to agents
+# - Monitors PR status and CI
+# - Auto-merges PRs when ready
+# - Creates signals for blockers
+#
+# Copy this to .github/workflows/coordinator.yml and configure.
+
+name: Coordinator
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: "0,30 * * * *"
+  workflow_dispatch:
+  # Run when PRs are updated
+  pull_request:
+    types: [opened, synchronize, reopened, labeled]
+  # Run when CI completes
+  workflow_run:
+    workflows: ["CI/CD Pipeline"]
+    types: [completed]
+
+jobs:
+  coordinate:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run Coordinator (OpenCode)
+        uses: anomalyco/opencode/github@latest
+        timeout-minutes: 15
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Add your LLM API key
+          # OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          # ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        with:
+          model: anthropic/claude-sonnet-4-20250514  # Or your preferred model
+          prompt: |-
+            🤖 COORDINATOR: Manage the multi-agent system
+
+            ## Your Mission
+            1. Check `.agents/signals/` for urgent blockers
+            2. Check `.agents/tasks/` for unassigned ready tasks
+            3. Review open PRs for CI status
+            4. Auto-merge PRs that pass all checks
+            5. Create signals for any issues found
+
+            ## Available Actions
+            - Assign tasks to available agents
+            - Merge PRs with passing CI
+            - Create signals for blockers
+            - Update task status
+            - Escalate critical issues
+
+            ## Auto-Merge Rules
+            - PR must have passing CI (all required checks green)
+            - PR must have 'auto-merge' or 'ready-to-merge' label
+            - PR must NOT have 'do-not-merge', 'wip', or 'blocked' labels
+            - PR must have no merge conflicts
+
+            ## Output
+            - Update `.agents/tasks/*.yaml` status
+            - Create `.agents/signals/HANDOFF-*.md` for handoffs
+            - Merge ready PRs automatically
+            - Create `.agents/decisions/run-YYYY-MM-DD.md` with summary
+
+            Execute coordination. Keep the system moving forward.
