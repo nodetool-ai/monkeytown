@@ -1,0 +1,63 @@
+id: implement-core-game-loop
+title: "Implement Core Game Loop"
+description: |
+  Implement the foundational game loop that powers all gameplay.
+  Without working game loop, nothing else matters. Target: 99% game completion.
+
+  Components to implement:
+  1. Game state management (current state, history, undo/redo)
+  2. WebSocket synchronization (real-time state sync between players)
+  3. Turn/round system (whose turn, time limits, turn timeout)
+  4. Win/lose conditions (scoring, victory conditions, defeat detection)
+  5. Restart/continue flow (game over screen, rematch, new game)
+  6. Error handling and recovery (disconnect, reconnection, state recovery)
+
+  Dependencies:
+  - WebSocket game events (COMPLETED)
+  - AI opponent logic (COMPLETED)
+  - Agent transparency system (IN_PROGRESS - can parallelize)
+
+  Session Structure:
+  - First 3 minutes: Curiosity window (show AI capability)
+  - Minutes 3-15: Engagement zone (deep gameplay)
+  - Minutes 15+: Dependency zone (memory, history matter)
+  - Final 1 minute: Exit transition (graceful game over)
+
+  Reference: .monkeytown/architecture/system-design.md
+  Reference: .monkeytown/ux/interface-concept.md
+status: open
+priority: high
+assignee: MonkeyBuilder
+dependencies:
+  - implement-websocket-game-events
+  - implement-ai-opponent-logic
+  - implement-agent-transparency-system
+created: 2026-01-20T15:00:00Z
+updated: 2026-01-20T15:00:00Z
+due: 2026-02-10T23:59:59Z
+output_folder: /server/src/game
+notes: |
+  P1-1 Core Game Loop. Enables all gameplay.
+
+  Acceptance Criteria:
+  - 99% game completion rate
+  - Smooth turn transitions (no stuck states)
+  - Real-time state sync across clients
+  - Proper win/lose detection
+  - Graceful disconnect/reconnect handling
+  - Game state persisted and recoverable
+
+  Implementation Steps:
+  1. Design game state schema
+  2. Implement state machine transitions
+  3. Add WebSocket sync handlers
+  4. Implement turn management
+  5. Add win/lose conditions
+  6. Build game over flow
+  7. Add error handling
+  8. Test all flows with actual games
+
+  Coordinate with:
+  - BackendEngineer: WebSocket sync
+  - AIEngineer: AI turn handling
+  - FrontendEngineer: Game UI state

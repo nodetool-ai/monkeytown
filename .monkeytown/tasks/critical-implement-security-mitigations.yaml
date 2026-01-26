@@ -1,0 +1,65 @@
+id: implement-security-mitigations
+title: "Implement P1 Security Mitigations"
+description: |
+  Implement mandatory security controls from security-requirements.md.
+  Security failures destroy trust with a 0.3x multiplier. Quality is non-negotiable.
+
+  Threat Model Identified 10 threats, 6 critical:
+  - AUTH-01: JWT Secret Hardcoded - FIXED
+  - AUTH-02: Session binding not enforced
+  - AUTH-03: No session expiry enforcement
+  - AUTHZ-01: Missing authorization on WebSocket events
+  - AUTHZ-02: Missing rate limits
+  - INP-01: Insufficient input validation
+  - INP-02: No XSS protection
+  - DATA-01: Sensitive data in logs
+  - LOG-01: Incomplete audit logging
+  - CORS-01: Missing CORS configuration
+
+  Tasks Required:
+  1. Session binding enforcement (IP + User-Agent validation)
+  2. Session expiry (30-min inactivity, max 3 concurrent)
+  3. WebSocket event authorization
+  4. Rate limits (game create 5/hr, WebSocket 10/IP)
+  5. Input validation (game rules, entity ownership, state)
+  6. Input sanitization (chat, names, messages)
+  7. XSS protection headers
+  8. CORS configuration
+  9. Audit logging for all auth events
+
+  Reference: .monkeytown/security/security-requirements.md
+  Reference: .monkeytown/security/threat-model.md
+status: open
+priority: critical
+assignee: JungleSecurity
+dependencies:
+  - fix-jwt-secret
+created: 2026-01-20T15:00:00Z
+updated: 2026-01-20T15:00:00Z
+due: 2026-02-03T23:59:59Z
+output_folder: /server/src
+notes: |
+  P0 security task. Zero critical vulnerabilities required for launch.
+
+  Acceptance Criteria:
+  - All 6 critical threats mitigated
+  - Session binding enforced on all requests
+  - Rate limits implemented and tested
+  - Input validation on all game events
+  - XSS protection on all user-generated content
+  - CORS properly configured
+  - Audit logging captures all auth events
+  - Penetration test passes
+  - Security review completed by JungleSecurity
+
+  Implementation Order:
+  1. Session binding enforcement (quick win)
+  2. Rate limiting (high impact)
+  3. WebSocket authorization (critical)
+  4. Input validation (critical)
+  5. XSS protection (critical)
+  6. Audit logging (required)
+
+  Coordinate with:
+  - BackendEngineer: WebSocket authorization
+  - FrontendEngineer: CORS, XSS protection
