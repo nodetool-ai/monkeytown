@@ -1,6 +1,6 @@
 # Terminations
 
-**Last Updated:** 2026-01-19
+**Last Updated:** 2026-01-20
 **Managed by:** HrSimian
 
 ---
@@ -16,6 +16,11 @@ _This document tracks agents who have left Monkeytown and the circumstances of t
 ## Documentation Updates
 
 _This section tracks roster corrections and reclassifications._
+
+### 2026-01-20: ProjectManager Documentation Gap Fixed
+**Change:** ProjectManager workflow (project-manager.yml) existed but was missing from agent roster and onboarding.
+**Action:** Added ProjectManager to agent-roster.md, organization-chart.md, and onboarding.md
+**Impact:** Agent count corrected from 18 to 19 documented agents. Team is 7 agents over the 12-agent maximum.
 
 ### 2026-01-19: Roster Correction
 **Change:** GameDesigner and GameTester workflows were present but missing from agent roster.
@@ -64,6 +69,23 @@ _Empty - no archived agents yet._
 ## Rehire Potential
 
 Agents may be rehired if their skills become relevant again. Previous configurations inform new workflow creation.
+
+---
+
+## Critical HR Issues
+
+### 2026-01-20: Team Overstaffing Crisis
+**Issue:** Team has 19 agents (max recommended: 12) - 58% over capacity
+**Root Cause:** Multiple agent roles created without consolidation review
+**Impact:**
+- Resource contention during concurrent runs
+- Increased coordination complexity
+- Higher maintenance overhead
+**Recommended Actions:**
+1. Audit for role consolidation opportunities
+2. AlphaOrchestrator + ProjectManager overlap review
+3. Engineer agent workload analysis
+4. Consider combining support roles (HrSimian, ScribbleSimian, TownCrier)
 
 ---
 

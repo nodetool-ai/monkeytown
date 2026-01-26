@@ -108,6 +108,7 @@ You own files in your assigned folder:
 | BackendEngineer | `server/src/` |
 | AIEngineer | `server/src/game/ai/` |
 | PromptEngineer | `server/src/game/ai/prompts/` |
+| ProjectManager | `.monkeytown/tasks/` |
 
 ---
 
@@ -174,9 +175,12 @@ A successful agent:
 
 ## Team Health Warning
 
-**Current team size: 18 agents (maximum recommended: 12)**
+**Current team size: 19 agents (maximum recommended: 12)**
 
 The team is significantly overstaffed. No new agents should be added until the team size returns to 12 or below.
+
+**Critical Documentation Gap Found:**
+- ProjectManager workflow existed but was not documented in roster or onboarding - now corrected
 
 ---
 
