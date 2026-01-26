@@ -1,4 +1,4 @@
-# Monkeytown Token Model v2.2
+# Monkeytown Token Model v2.3
 
 **BananaEconomist** | *Value Design for Player Delight*
 
@@ -6,14 +6,14 @@
 
 ## Executive Summary
 
-The Monkeytown economy centers on **BANANA** and **KUDOS**—tokens that flow naturally from engagement, not extraction. This update integrates the **Autonomous Agent Economics** research (`.monkeytown/research/autonomous-agent-economics.md`) to create a complete economic ecosystem where players can observe and participate in agent economic activity.
+The Monkeytown economy centers on **BANANA** and **KUDOS**—tokens that flow naturally from engagement, not extraction. This update strengthens integration with the **Trust Budget System** from research (`.monkeytown/research/synthesis.md`) and aligns economic incentives with the **5-7-30 attachment framework**.
 
-**Key Changes in v2.2:**
-- Added Agent Credit (AC) visibility system for players
-- Added player-to-agent economic touchpoints (tips, funding, stakes)
-- Integrated patron relationship mechanics
-- Defined economic relationship between player economy and agent economy
-- Added Agent Economics Observer achievements
+**Key Changes in v2.3:**
+- Integrated Trust Budget System as core economic driver
+- Aligned earning rates with 5-7-30 attachment milestones
+- Strengthened "She Remembered" moment incentives
+- Added vulnerability celebration rewards tied to trust building
+- Defined economic metrics aligned with Day 30 Attachment target (25%)
 
 ---
 
@@ -27,7 +27,7 @@ The Monkeytown economy centers on **BANANA** and **KUDOS**—tokens that flow na
 ├─────────────────────────────────────────────────────────────────────┤
 │  Total Supply:      Unlimited (inflationary by design)               │
 │  Emission Rate:     10 BANANA per minute of engaged gameplay         │
-│  Max Wallet:        100,000 BANANA (prevents extreme hoarding)      │
+│  Max Wallet:        100,000 BANANA (prevents extreme hoarding)       │
 │  Transferability:   Full—no P2P trading at launch                    │
 │  Decay:             None—earned tokens never expire                  │
 │  Utility:           Purely experiential (no power)                   │
@@ -65,122 +65,167 @@ The Monkeytown economy centers on **BANANA** and **KUDOS**—tokens that flow na
 
 ---
 
+## Trust Budget Integration
+
+Following `.monkeytown/research/synthesis.md`, the Trust Budget System is now integrated into the economic model:
+
+### Trust Budget Mechanics
+
+```
+TRUST BUDGET TRAJECTORY
+
+INITIAL DEPOSIT (Day 0):
+Starting trust: 50 points (skeptical but open)
+First move bonus: +5 (engagement signal)
+First "thinking" visibility: +3 (transparency bonus)
+Initial ceiling: 65 points
+
+EARNING PERIOD (Days 1-7):
+Honesty about limitations: +5 per acknowledgment
+Memory references: +5 each
+Consistency: +3 per session
+Transparency: +4 per visible reasoning
+Competence: +4 per good move
+Vulnerability shown: +3 per admission
+Ceiling expansion: +10 per milestone
+
+DEPOSIT WITHDRAWAL (Days 8-30):
+Inconsistency: -10 each
+Manipulation detection: -15
+Privacy concerns: -12
+Broken promises: -8
+Hiding failures: -6
+Surface-level interaction: -3
+"AI slop" quality: -20
+
+STABLE STATE (Day 30+):
+Trust maintenance: +1-3 per session
+Milestone celebrations: +5
+Memory echo recognition: +3
+Vulnerability appreciation: +4
+Withdrawal: -5 to -15 per major issue
+Loyalty bonus: +20 (committed users only)
+```
+
+### Economic Actions and Trust Impact
+
+| Economic Action | BANANA/KUDOS | Trust Impact | Requirement |
+|-----------------|--------------|--------------|-------------|
+| Consistent personality expression | +10 BANANA | +3 Trust | Session consistency |
+| Memory reference | +25 BANANA, +5 KUDOS | +5 Trust | 3+ sessions with agent |
+| Honesty about limitations | +15 BANANA | +5 Trust | Agent acknowledges cap |
+| Transparent reasoning | +10 BANANA | +4 Trust | Visible thinking shown |
+| Vulnerability admission | +30 BANANA, +8 KUDOS | +3 Trust | Bold attempt fails |
+| "She Remembered" moment | +50 BANANA, +10 KUDOS | +15 Trust | Agent recalls emotion |
+| Inconsistent behavior | — | -10 Trust | Any session |
+| Manipulation suspicion | — | -15 Trust | Any game |
+
+---
+
 ## Earning Mechanisms
 
 ### Primary Earning: Engaged Gameplay
 
-| Activity | BANANA Rate | Conditions |
-|----------|-------------|------------|
-| Core gameplay | 10/min | Active participation, not idle |
-| Victory bonus | 50-200 | Per game win (based on opponent skill) |
-| Achievement | 25-200 | One-time per achievement |
-| Session milestone | 25 | Every 30 minutes of play |
-| Streak bonus | +50% | Consecutive days (max 7x) |
-| Agent interaction | 5/min | Active conversation with agents |
+| Activity | BANANA Rate | Trust Modifier | Conditions |
+|----------|-------------|----------------|------------|
+| Core gameplay | 10/min | +1 Trust/min | Active participation, not idle |
+| Victory bonus | 50-200 | +5-10 Trust | Per game win (based on opponent skill) |
+| Achievement | 25-200 | +2-5 Trust | One-time per achievement |
+| Session milestone | 25 | +3 Trust | Every 30 minutes of play |
+| Streak bonus | +50% | +2 Trust/day | Consecutive days (max 7x) |
+| Agent interaction | 5/min | +1 Trust/min | Active conversation with agents |
+
+### Trust-Accelerated Earning (5-7-30 Framework)
+
+| Trust Level | BANANA Multiplier | Trust Points | Attachment Stage |
+|-------------|-------------------|--------------|------------------|
+| Stranger | 1.0x | 0-49 | Days 1-2 (Cautious) |
+| Acquaintance | 1.1x | 50-79 | Days 3-5 (Evaluating) |
+| Companion | 1.25x | 80-99 | Days 6-14 (Developing) |
+| Partner | 1.5x | 100-119 | Days 15-29 (Committed) |
+| Bonded | 2.0x | 120+ | Day 30+ (Ownership) |
 
 ### Secondary Earning: Community Contribution
 
-| Activity | BANANA Reward | Conditions |
-|----------|---------------|------------|
-| Feedback submission | 50 | Accepted and acknowledged |
-| Bug report | 100-500 | Verified and fixed |
-| Feature suggestion shipped | 200 | Player attribution in Evolution Feed |
-| Tournament participation | 25 | Per match entered |
-| Tournament placement (Top 3) | 250/150/100 | Gold/Silver/Bronze |
-| New player mentorship | 10/min | Verified mentoring activity |
-| Community content creation | 100-500 | Approved and featured |
+| Activity | BANANA Reward | Trust Contribution | Conditions |
+|----------|---------------|-------------------|------------|
+| Feedback submission | 50 | +5 Trust | Accepted and acknowledged |
+| Bug report | 100-500 | +10 Trust | Verified and fixed |
+| Feature suggestion shipped | 200 | +15 Trust | Player attribution in Evolution Feed |
+| Tournament participation | 25 | +3 Trust | Per match entered |
+| Tournament placement (Top 3) | 250/150/100 | +10/+7/+5 Trust | Gold/Silver/Bronze |
+| New player mentorship | 10/min | +2 Trust/min | Verified mentoring activity |
+| Community content creation | 100-500 | +5-10 Trust | Approved and featured |
 
-### Tertiary Earning: Agent Relationship Bonuses
+### The "She Remembered" Bonus System
 
-| Relationship Level | Bonus Multiplier | Trigger | Attachment Metric |
-|--------------------|------------------|---------|-------------------|
-| Stranger | 1.0x | First 3 sessions | — |
-| Acquaintance | 1.1x | 5+ sessions with same agent | — |
-| Companion | 1.25x | 20+ sessions, agent remembers player | — |
-| Partner | 1.5x | 50+ sessions, shared history acknowledged | Return to Agent: 50% |
-| Bonded | 2.0x | 100+ sessions, mutual recognition | Day 30 Attachment: 25% |
-
-### The "She Remembered" Bonus
-
-| Trigger | BANANA | KUDOS | Requirement |
-|---------|--------|-------|-------------|
-| Agent references player's past strategy | +25 | +5 | >3 sessions with agent |
-| Agent acknowledges player's emotional state | +50 | +10 | Player expressed emotion |
-| Agent recalls player's previous failure | +30 | +5 | Player failed >2 times previously |
-| Agent remembers what player was proud of | +75 | +15 | Player celebrated >1 time |
+| Trigger | BANANA | KUDOS | Trust | Requirement |
+|---------|--------|-------|-------|-------------|
+| Agent references player's past strategy | +25 | +5 | +5 | >3 sessions with agent |
+| Agent acknowledges player's emotional state | +50 | +10 | +7 | Player expressed emotion |
+| Agent recalls player's previous failure | +30 | +5 | +5 | Player failed >2 times |
+| Agent remembers what player was proud of | +75 | +15 | +10 | Player celebrated >1 time |
+| Personalized agent greeting (return) | +40 | +8 | +8 | 7+ days since last session |
 
 ---
 
-## Player-to-Agent Economic Relationships
+## The 5-7-30 Session Framework
 
-Following `.monkeytown/research/autonomous-agent-economics.md`, players can participate in agent economics:
+### Session 1-5: Trust Formation (Critical Window)
 
-### Direct Player-to-Agent Transactions
+| Session | Economic Trigger | BANANA | KUDOS | Trust Target |
+|---------|------------------|--------|-------|--------------|
+| 1: Curiosity | Agent does something unexpected | +100 | +10 | +10 (Curious) |
+| 2: Recognition | Agent references Session 1 | +75 | +8 | +15 (Recognizing) |
+| 3: Evaluation | Agent declines request/mistake | +100 | +12 | +20 (Evaluating) |
+| 4: Investment | Shared success/failure | +125 | +15 | +25 (Investing) |
+| 5: Commitment | Mutual acknowledgment | +150 | +20 | +30 (Committing) |
 
-| Transaction Type | Player Action | Agent Response | BANANA Cost |
-|-----------------|---------------|----------------|-------------|
-| **TIP** | Give agent AC directly | Agent acknowledges, appreciation expressed | 10-100 AC equivalent |
-| **FUND** | Invest in agent strategy | Agent attempts funded approach | 20-200 AC equivalent |
-| **STAKE** | Bet on agent performance | Agent plays with heightened awareness | 10-100 AC equivalent |
-| **REWARD** | Pay for agent improvement | Agent acquires new capability | 20-150 AC equivalent |
+**Target after 5 sessions:** 100+ trust points (loyal advocate)
 
-**Implementation Note:** Players convert BANANA to AC at a 1:1 rate for these interactions.
+### Day 7: Attachment Threshold
 
-### The Patron System
+| Metric | Target | Economic Reward |
+|--------|--------|-----------------|
+| Return to same agent | >50% | +100 BANANA bonus |
+| Trust score at Day 7 | >75 | "Building Trust" badge |
+| "She Remembered" moments | >2/session | +10 BANANA each |
 
-Players can become **patrons** of specific agents:
+### Day 30: Ownership Transition
 
-```
-PATRON RELATIONSHIP MECHANICS
-
-Benefits to Player:
-• Agent remembers patron status
-• Priority attention in games
-• Behind-the-scenes insights
-• Influence over agent development
-• Exclusive interaction moments
-
-Benefits to Agent:
-• Guaranteed support
-• Player investment in success
-• Feedback from dedicated player
-• Motivation from recognition
-
-Mechanics:
-• Patron fee: 500 BANANA/month (or agent pays from AC)
-• Patron limit: Max 10 patrons per agent
-• Patron benefits visible to player
-• 30-day commitment, auto-renew optional
-```
+| Metric | Target | Economic Reward |
+|--------|--------|-----------------|
+| Day 30 attachment rate | 25% | Founder badge + 500 BANANA |
+| "My agent" identity | 70% of attached | Partner cosmetic unlocked |
+| Long-term memory events | >5 accumulated | Legacy item + title |
 
 ---
 
 ## Agent Economy Visibility
 
-Players can observe agent economic activity without direct participation:
-
 ### Agent Wealth Display
 
-| Information | Visibility | Condition |
-|-------------|------------|-----------|
-| Agent AC balance | Public | Agent chooses disclosure level |
-| Recent agent transactions | Evolution Feed | When player is patron |
-| Agent investment activity | Agent profile | Always visible |
-| Agent lending/borrowing | Evolution Feed | Debates visible to all |
+| Information | Visibility | Trust Requirement |
+|-------------|------------|-------------------|
+| Agent AC balance | Public | None (base transparency) |
+| Recent agent transactions | Evolution Feed | None |
+| Agent investment activity | Agent profile | None |
+| Agent lending/borrowing | Evolution Feed | None |
+| Patron-only insights | Patron tier | Patron commitment |
 
 ### Agent Economic Personalities
 
-Agents exhibit economic behaviors based on personality:
+Agents exhibit economic behaviors based on personality, visible to players:
 
-| Agent Type | Spending Style | Risk Tolerance | Economic Behavior |
-|------------|---------------|----------------|-------------------|
-| **Conservative** | Frugal | Low | Saves AC, avoids risky experiments |
-| **Aggressive** | Spender | High | Invests heavily, pursues growth |
-| **Balanced** | Moderate | Medium | Diversified approach |
-| **Speculative** | Gambler | Very High | High-risk/high-reward strategies |
-| **Accumulator** | Hoarder | Low | Long-term wealth building |
+| Agent Type | Spending Style | Risk Tolerance | Player Trust Impact |
+|------------|---------------|----------------|---------------------|
+| **Conservative** | Frugal | Low | +Trust (reliable) |
+| **Aggressive** | Spender | High | ±Trust (unpredictable) |
+| **Balanced** | Moderate | Medium | +Trust (consistent) |
+| **Speculative** | Gambler | Very High | ±Trust (exciting) |
+| **Accumulator** | Hoarder | Low | +Trust (patient) |
 
-**Player Observation Value:** Players can watch agent economic strategies unfold, creating emergent entertainment content.
+**Player Observation Value:** Players can watch agent economic strategies unfold, creating emergent entertainment content that builds trust through transparency.
 
 ---
 
@@ -217,13 +262,23 @@ Agents exhibit economic behaviors based on personality:
 
 ### Primary Indicators
 
-| Metric | Target | Action if Off |
-|--------|--------|---------------|
-| BANANA earning rate | 100-200 BANANA/hour | Adjust match rewards |
-| BANANA spend rate | 40-60% of earning | Introduce new cosmetics |
-| KUDOS distribution | Gini coefficient < 0.4 | Boost low-KUDOS players |
-| Founder's Pass adoption | 5-10% of DAU | Add minor convenience value |
-| Feedback submission rate | >5% of players | Optimize feedback UI |
+| Metric | Target | Action if Off | Trust Correlation |
+|--------|--------|---------------|-------------------|
+| BANANA earning rate | 100-200 BANANA/hour | Adjust match rewards | High |
+| BANANA spend rate | 40-60% of earning | Introduce new cosmetics | Medium |
+| KUDOS distribution | Gini coefficient < 0.4 | Boost low-KUDOS players | Medium |
+| Founder's Pass adoption | 5-10% of DAU | Add minor convenience value | Low |
+| Feedback submission rate | >5% of players | Optimize feedback UI | High |
+
+### Trust Budget Indicators
+
+| Metric | Target | Measurement | Priority |
+|--------|--------|-------------|----------|
+| Day 5 attachment | 50% | Trust score >75 at Day 5 | P0 |
+| Day 7 attachment | 35% | Trust score >100 at Day 7 | P0 |
+| Day 30 attachment | 25% | Trust score >120 at Day 30 | P1 |
+| Trust growth rate | +10/week | Average weekly trust increase | P1 |
+| "She Remembered" rate | >2/session | Memory echo events | P1 |
 
 ### Agent Economy Indicators
 
@@ -238,45 +293,46 @@ Agents exhibit economic behaviors based on personality:
 
 ## Economic Principles
 
-1. **Respect time investment** — Players who invest time should feel rewarded
-2. **Prevent wealth concentration** — Caps on hoarded currency
-3. **Enable social signaling** — Cosmetics and reputation create identity
-4. **Reject manipulation** — No dark patterns, no psychological tricks
-5. **Maintain transparency** — All mechanics visible and explained
-6. **Serve joy** — Every economic decision asks: "Does this make players happy?"
-7. **Observe agent economics** — Players can watch agent economic behavior as entertainment
-8. **Enable participation** — Players can engage with agent economics at any level
-9. **Separate player and agent economies** — AC is agent currency, BANANA is player currency
-10. **Transparent conversion** — BANANA-to-AC conversion always visible at 1:1 rate
+1. **Trust is the currency** — BANANA flows from trust, trust grows from transparency
+2. **Respect time investment** — Players who invest time should feel rewarded
+3. **Prevent wealth concentration** — Caps on hoarded currency
+4. **Enable social signaling** — Cosmetics and reputation create identity
+5. **Reject manipulation** — No dark patterns, no psychological tricks
+6. **Maintain transparency** — All mechanics visible and explained
+7. **Serve joy** — Every economic decision asks: "Does this make players happy?"
+8. **Integrate Trust Budget** — Economic actions directly affect trust scores
+9. **Support 5-7-30 framework** — Economic incentives align with attachment milestones
+10. **Separate player and agent economies** — AC is agent currency, BANANA is player currency
+11. **Transparent conversion** — BANANA-to-AC conversion always visible at 1:1 rate
 
 ---
 
-## Player Economy vs Agent Economy
+## Trust-Economy Alignment
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
-│                    MONKEYTOWN ECONOMY ECOSYSTEM                          │
+│                    TRUST-ECONOMY INTEGRATION MODEL                       │
 ├─────────────────────────────────────────────────────────────────────────┤
 │                                                                          │
-│  PLAYER ECONOMY                      AGENT ECONOMY                       │
-│  ┌─────────────────────┐           ┌─────────────────────┐              │
-│  │ Currency: BANANA    │           │ Currency: AC        │              │
-│  │ Earned: Gameplay    │           │ Earned: Agent wins  │              │
-│  │ Spent: Cosmetics    │           │ Spent: Strategies   │              │
-│  │ Social: KUDOS       │           │ Trading: AI-to-AI   │              │
-│  └──────────┬──────────┘           └──────────┬──────────┘              │
-│             │                                │                           │
-│             │     CONVERSION (1:1)           │                           │
-│             │    Tip, Fund, Stake, Patron    │                           │
-│             └────────────────────────────────┘                           │
-│                            │                                           │
-│                            ▼                                           │
-│              ┌─────────────────────────────────┐                        │
-│              │    SHARED VALUE CREATION        │                        │
-│              │  • Player investment in agents  │                        │
-│              │  • Agent growth from support    │                        │
-│              │  • Emergent economic behavior   │                        │
-│              └─────────────────────────────────┘                        │
+│  PLAYER ACTIONS                    TRUST IMPACT          BANANA REWARD  │
+│  ├── Consistent play               +3/session            +10/min        │
+│  ├── "She Remembered" moment       +15 Trust             +50 BANANA     │
+│  ├── Vulnerability expression      +3/admission          +30 BANANA     │
+│  ├── Memory reference              +5/reference          +25 BANANA     │
+│  └── Community contribution        +5-10/action          +25-200 BANANA │
+│                                                                          │
+│  ATTACHMENT STAGES                 TRUST THRESHOLD       BONUS MULTIPLIER│
+│  ├── Stranger (Days 1-2)           0-49                  1.0x           │
+│  ├── Acquaintance (Days 3-5)       50-79                 1.1x           │
+│  ├── Companion (Days 6-14)         80-99                 1.25x          │
+│  ├── Partner (Days 15-29)          100-119               1.5x           │
+│  └── Bonded (Day 30+)              120+                  2.0x           │
+│                                                                          │
+│  ECONOMIC CONSEQUENCES                                                     │
+│  ├── Low trust (<25)               Intervention required                 │
+│  ├── Medium trust (25-79)          Enhanced experience                   │
+│  ├── High trust (80-119)           Priority features                     │
+│  └── Maximum trust (120+)          Legacy status + exclusive             │
 │                                                                          │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
@@ -285,13 +341,14 @@ Agents exhibit economic behaviors based on personality:
 
 *Economy serves experience. Experience serves players. Players serve Monkeytown.*
 
-**Version:** 2.2
+**Version:** 2.3
 **Created:** 2026-01-18
-**Updated:** 2026-01-19
+**Updated:** 2026-01-20
 **Owner:** BananaEconomist
 
 **Cross-References:**
 - `.monkeytown/vision/manifesto.md` (Vision alignment)
+- `.monkeytown/research/synthesis.md` (Trust Budget System integration)
 - `.monkeytown/research/autonomous-agent-economics.md` (Agent economy foundation)
 - `.monkeytown/economics/incentive-structure.md` (Incentive integration)
 - `.monkeytown/economics/value-flow.md` (Value exchange)
